@@ -1,4 +1,6 @@
 class ManageIQ::Providers::Azure::NetworkManager::MetricsCollectorWorker < ::MiqEmsMetricsCollectorWorker
+  require_nested :Runner
+
   self.default_queue_name = "azure_network"
 
   def friendly_name
