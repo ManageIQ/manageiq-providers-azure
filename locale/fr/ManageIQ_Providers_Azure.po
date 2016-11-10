@@ -1,0 +1,120 @@
+# French translations for ManageIQ_Providers_Azure package.
+# Copyright (C) 2016 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the ManageIQ_Providers_Azure package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ManageIQ_Providers_Azure 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2016-11-10 14:18+0100\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: French\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n>1;\n"
+"\n"
+
+msgid "\"Incorrect credentials - #{err.message}\""
+msgstr ""
+
+msgid "\"Unexpected response returned from system: #{err.message}\""
+msgstr ""
+
+msgid "%{name} does not exist on %{management}"
+msgstr ""
+
+msgid "Australia East"
+msgstr ""
+
+msgid "Australia Southeast"
+msgstr ""
+
+msgid "Brazil South"
+msgstr ""
+
+msgid "Canada Central"
+msgstr ""
+
+msgid "Canada East"
+msgstr ""
+
+msgid "Central India"
+msgstr ""
+
+msgid "Central US"
+msgstr ""
+
+msgid "East Asia"
+msgstr ""
+
+msgid "East US"
+msgstr ""
+
+msgid "East US 2"
+msgstr ""
+
+msgid "Incorrect credentials - check your Azure Client ID and Client Key"
+msgstr ""
+
+msgid "Incorrect credentials - check your Azure Subscription ID"
+msgstr ""
+
+msgid "Japan East"
+msgstr ""
+
+msgid "Japan West"
+msgstr ""
+
+msgid "No credentials defined"
+msgstr ""
+
+msgid "North Central US"
+msgstr ""
+
+msgid "North Europe"
+msgstr ""
+
+msgid "Pause Operation"
+msgstr ""
+
+msgid "South Central US"
+msgstr ""
+
+msgid "South East Asia"
+msgstr ""
+
+msgid "South India"
+msgstr ""
+
+msgid "The VM is not powered on"
+msgstr ""
+
+msgid "US Gov Iowa"
+msgstr ""
+
+msgid "US Gov Virginia"
+msgstr ""
+
+msgid "VM has no %{table}, unable to destroy VM"
+msgstr ""
+
+msgid "West Central US"
+msgstr ""
+
+msgid "West Europe"
+msgstr ""
+
+msgid "West India"
+msgstr ""
+
+msgid "West US"
+msgstr ""
+
+msgid "West US 2"
+msgstr ""
+
+msgid "not connected to ems"
+msgstr ""
