@@ -14,10 +14,6 @@ module ManageIQ::Providers::Azure::EventCatcherMixin
     "#{object_class}_#{event_type}_"
   end
 
-  def parse_provider_type(event)
-    event["resourceProviderName"]["value"]
-  end
-
   def parse_vm_ref(event)
     # E.g. /subscriptions/123456789-a1234-12b4-1234-5cd67890312/resourceGroups/
     # rg_name/providers/Microsoft.Compute/virtualMachines/vm_name
