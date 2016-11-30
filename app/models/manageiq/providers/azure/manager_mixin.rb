@@ -34,7 +34,9 @@ module ManageIQ::Providers::Azure::ManagerMixin
         raise MiqException::MiqInvalidCredentialsError, _("Incorrect credentials - check your Azure Subscription ID")
       end
 
-      ::Azure::Armrest::ArmrestService.configure(
+      ::Azure::Armrest::Configuration.log = $azure_log
+
+      ::Azure::Armrest::Configuration.new(
         :client_id       => client_id,
         :client_key      => client_key,
         :tenant_id       => azure_tenant_id,
