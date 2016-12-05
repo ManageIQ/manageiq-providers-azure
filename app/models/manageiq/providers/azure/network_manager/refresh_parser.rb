@@ -31,11 +31,12 @@ class ManageIQ::Providers::Azure::NetworkManager::RefreshParser
     get_security_groups
     get_cloud_networks
     get_network_ports
-    get_floating_ips
     get_load_balancers
     get_load_balancer_pools
     get_load_balancer_listeners
     get_load_balancer_health_checks
+    get_floating_ips
+
     _log.info("#{log_header}...Complete")
 
     @data
@@ -338,20 +339,53 @@ class ManageIQ::Providers::Azure::NetworkManager::RefreshParser
     uid = ip.id
 
     new_result = {
-      :type             => self.class.floating_ip_type,
-      :ems_ref          => uid,
-      :status           => ip.properties.try(:provisioning_state),
-      :address          => ip.properties.try(:ip_address) || ip.name,
-      # TODO(lsmola) get :fixed_ip_address from the correct related cloud_subnet_network_port
-      :fixed_ip_address => @data_index.fetch_path(:network_ports,
-                                                  floating_ip_network_port_id(ip),
-                                                  :cloud_subnet_network_ports).try(:first).try(:[], :address),
-      :network_port     => @data_index.fetch_path(:network_ports, floating_ip_network_port_id(ip)),
-      :vm               => @data_index.fetch_path(:network_ports,
-                                                  floating_ip_network_port_id(ip),
-                                                  :device),
+      :type    => self.class.floating_ip_type,
+      :ems_ref => uid,
+      :status  => ip.properties.try(:provisioning_state),
+      :address => ip.properties.try(:ip_address) || ip.name,
     }
+
+    network_port_id = floating_ip_network_port_id(ip)
+    network_port    = @data_index.fetch_path(:network_ports, network_port_id)
+
+    if network_port
+      new_result.merge!(floating_ip_for_vm(network_port))
+    else
+      new_result.merge!(floating_ip_for_load_balancer(network_port_id))
+    end
+
     return uid, new_result
+  end
+
+  def floating_ip_for_load_balancer(network_port_id)
+    load_balancer = @data_index.fetch_path(:load_balancers, network_port_id)
+    load_balancer.nil? ? {} : {:network_port => create_network_port(load_balancer)}
+  end
+
+  def floating_ip_for_vm(network_port)
+    # TODO(lsmola) get :fixed_ip_address from the correct related cloud_subnet_network_port
+
+    {
+      :network_port     => network_port,
+      :fixed_ip_address => network_port[:cloud_subnet_network_ports].try(:first).try(:[], :address),
+      :vm               => network_port[:device]
+    }
+  end
+
+  def create_network_port(load_balancer)
+    uid = "#{load_balancer[:ems_ref]}/nic1"
+
+    new_result = {
+      :device_ref    => load_balancer[:ems_ref],
+      :device        => load_balancer,
+      :ems_ref       => uid,
+      :name          => uid,
+      :status        => "Succeeded",
+      :type          => self.class.network_port_type,
+    }
+
+    @data[:network_ports] << new_result
+    @data_index.store_path(:network_ports, uid, new_result)
   end
 
   def parse_cloud_subnet_network_port(network_port)

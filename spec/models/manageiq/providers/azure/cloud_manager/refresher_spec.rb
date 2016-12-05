@@ -13,10 +13,10 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
 
     @resource_group = 'miq-azure-test1'
     @device_name    = 'miq-test-rhel1' # Make sure this is running if generating a new cassette.
-    @ip_address     = '13.82.103.106'  # This will change if you had to restart the @device_name.
-    @mismatch_ip    = '40.71.84.41'  # This will change if you had to restart the 'miqmismatch' VM.
-    @template = nil
-    @avail_zone = nil
+    @ip_address     = '13.82.226.29' # This will change if you had to restart the @device_name.
+    @mismatch_ip    = '13.90.255.238' # This will change if you had to restart the 'miqmismatch' VM.
+    @template       = nil
+    @avail_zone     = nil
 
     cred = {
       :userid   => @client_id,
@@ -92,6 +92,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
       assert_specific_orchestration_stack
       assert_specific_nic_and_ip
       assert_specific_load_balancers
+      assert_specific_load_balancer_networking
       assert_specific_load_balancer_listeners
       assert_specific_load_balancer_health_checks
     end
@@ -113,12 +114,12 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
       :relationship                  => 0,
       :miq_queue                     => 13,
       :orchestration_template        => 4,
-      :orchestration_stack           => 18,
-      :orchestration_stack_parameter => 188,
+      :orchestration_stack           => 20,
+      :orchestration_stack_parameter => 196,
       :orchestration_stack_output    => 9,
-      :orchestration_stack_resource  => 77,
+      :orchestration_stack_resource  => 79,
       :security_group                => 11,
-      :network_port                  => 11,
+      :network_port                  => 14,
       :cloud_network                 => 6,
       :floating_ip                   => 13,
       :network_router                => 0,
@@ -175,7 +176,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
     expect(@ems.miq_templates.size).to eq(expected_table_counts[:miq_template])
 
     expect(@ems.orchestration_stacks.size).to eql(expected_table_counts[:orchestration_stack])
-    expect(@ems.direct_orchestration_stacks.size).to eql(17)
+    expect(@ems.direct_orchestration_stacks.size).to eql(19)
   end
 
   def assert_specific_load_balancers
@@ -208,6 +209,12 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
     expect(@lb.vms.first.ext_management_system).to eq @ems
     expect(@lb.vms.collect(&:name).sort).to match_array ["rspec-lb-a", "rspec-lb-b"]
     expect(@lb_no_members.load_balancer_pool_members.count).to eq 0
+  end
+
+  def assert_specific_load_balancer_networking
+    floating_ip      = FloatingIp.where(:address => "40.71.82.83").first
+
+    expect(@lb).to eq floating_ip.network_port.device
   end
 
   def assert_specific_load_balancer_listeners
