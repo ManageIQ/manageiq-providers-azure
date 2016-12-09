@@ -1,7 +1,5 @@
 # manageiq-providers-azure
 
-[![Join the chat at https://gitter.im/ManageIQ/manageiq-providers-azure](https://badges.gitter.im/ManageIQ/manageiq-providers-azure.svg)](https://gitter.im/ManageIQ/manageiq-providers-azure?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 [![Gem Version](https://badge.fury.io/rb/manageiq-providers-azure.svg)](http://badge.fury.io/rb/manageiq-providers-azure)
 [![Build Status](https://travis-ci.org/ManageIQ/manageiq-providers-azure.svg)](https://travis-ci.org/ManageIQ/manageiq-providers-azure)
 [![Code Climate](https://codeclimate.com/github/ManageIQ/manageiq-providers-azure.svg)](https://codeclimate.com/github/ManageIQ/manageiq-providers-azure)
