@@ -1,0 +1,5 @@
+GlobalVars:
+  AllowedVariables:
+  # Loggers
+  - $log
+  - $azure_log
