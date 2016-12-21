@@ -97,26 +97,13 @@ module ManageIQ::Providers
 
       def get_stack_resources(name, group)
         resources = @tds.list_deployment_operations(name, group)
-        # relying on deployment operations to collect resources; but each resource may appear multiple times
-        # consolidate multiple appearances into only one
-        resources.reject! do |resource|
-          resource.properties.try(:target_resource).nil? || resource_already_collected?(resources, resource)
+        # resources with provsioning_operation 'Create' are the ones created by this stack
+        resources.select! do |resource|
+          resource.properties.provisioning_operation =~ /^create$/i
         end
 
         process_collection(resources, :orchestration_stack_resources) do |resource|
           parse_stack_resource(resource, group)
-        end
-      end
-
-      def resource_already_collected?(all, resource)
-        all.each do |old_resource|
-          return false if old_resource.equal?(resource)
-          old_id = old_resource.properties.target_resource.id
-          search_id = resource.properties.target_resource.id
-          if old_id == search_id
-            transfer_selected_resource_properties(old_resource, resource)
-            return true
-          end
         end
       end
 
@@ -127,25 +114,6 @@ module ManageIQ::Providers
         else
           resource.properties.status_message.to_s
         end
-      end
-
-      # new_resource is to be excluded.
-      # copy any failed state to the old resource; concatenate all status messages
-      def transfer_selected_resource_properties(old_resource, new_resource)
-        if new_resource.properties.provisioning_state != 'Succeeded'
-          old_resource.properties.provisioning_state = new_resource.properties.provisioning_state
-        end
-
-        new_status_message = get_resource_status_message(new_resource)
-        return unless new_status_message
-
-        old_status_message = get_resource_status_message(old_resource)
-
-        old_resource.properties['status_message'] = if old_status_message
-                                                      "#{old_status_message}\n#{new_status_message}"
-                                                    else
-                                                      new_status_message
-                                                    end
       end
 
       def get_stack_templates
