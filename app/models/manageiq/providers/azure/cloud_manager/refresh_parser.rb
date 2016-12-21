@@ -1,3 +1,5 @@
+require 'azure-armrest'
+
 module ManageIQ::Providers
   module Azure
     class CloudManager::RefreshParser < ManageIQ::Providers::CloudManager::RefreshParser
@@ -27,8 +29,9 @@ module ManageIQ::Providers
         @data              = {}
         @data_index        = {}
         @resource_to_stack = {}
-        @template_uris     = {}
-        @template_refs     = {}
+        @template_uris     = {} # templates need to be download
+        @template_refs     = {} # templates need to be retrieved from VMDB
+        @template_directs  = {} # templates contents already got by API
       end
 
       def ems_inv_to_hashes
@@ -155,7 +158,9 @@ module ManageIQ::Providers
           template[:content] = stacks[stack_ref].try(:orchestration_template).try(:content)
         end
 
-        raw_templates = (@template_uris.values + @template_refs.values).select { |raw| raw[:content] }
+        raw_templates = (@template_uris.values + @template_refs.values + @template_directs.values).select do |raw|
+          raw[:content]
+        end
         process_collection(raw_templates, :orchestration_templates) do |template|
           parse_stack_template(template)
         end
@@ -359,19 +364,43 @@ module ManageIQ::Providers
       end
 
       def stack_template_hash(deployment)
-        uri = deployment.properties.try(:template_link).try(:uri)
-        template_hashes = uri ? @template_uris : @template_refs
-        key = uri ? uri : deployment.id
+        direct_stack_template(deployment) || uri_stack_template(deployment) || id_stack_template(deployment)
+      end
 
-        template_hash = template_hashes[key]
-        unless template_hash
-          ver = deployment.properties.try(:template_link).try(:content_version)
-          template_hash = {:description => "contentVersion: #{ver}", :name => deployment.name, :uid => deployment.id}
-          template_hashes[key] = template_hash
+      def direct_stack_template(deployment)
+        content = @tds.get_template(deployment.name, deployment.resource_group)
+        init_template_hash(deployment, content.to_s).tap do |template_hash|
+          @template_directs[deployment.id] = template_hash
         end
+      rescue ::Azure::Armrest::ConflictException
+        # Templates were not saved for deployments created before 03/20/2016
+        nil
+      end
 
-        # This is a hash for the raw template. The template content is to be fetched
-        template_hash
+      def uri_stack_template(deployment)
+        uri = deployment.properties.try(:template_link).try(:uri)
+        return unless uri
+        @template_uris[uri] ||
+          init_template_hash(deployment).tap do |template_hash|
+            @template_uris[uri] = template_hash
+          end
+      end
+
+      def id_stack_template(deployment)
+        init_template_hash(deployment).tap do |template_hash|
+          @template_refs[deployment.id] = template_hash
+        end
+      end
+
+      def init_template_hash(deployment, content = nil)
+        # If content is nil it is to be fetched
+        ver = deployment.properties.try(:template_link).try(:content_version)
+        {
+          :description => "contentVersion: #{ver}",
+          :name        => deployment.name,
+          :uid         => deployment.id,
+          :content     => content
+        }
       end
 
       def download_template(uri)
