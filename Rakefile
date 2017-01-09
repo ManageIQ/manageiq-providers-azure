@@ -6,3 +6,5 @@ end
 
 APP_RAKEFILE = File.expand_path("../spec/manageiq/Rakefile", __FILE__)
 load 'rails/tasks/engine.rake'
+
+task :default => 'app:test:providers:azure'
