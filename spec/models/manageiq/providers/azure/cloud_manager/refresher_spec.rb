@@ -13,8 +13,8 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
 
     @resource_group = 'miq-azure-test1'
     @device_name    = 'miq-test-rhel1' # Make sure this is running if generating a new cassette.
-    @ip_address     = '40.117.184.27'  # This will change if you had to restart the @device_name.
-    @mismatch_ip    = '40.117.189.73'  # This will change if you had to restart the 'miqmismatch' VM.
+    @ip_address     = '13.82.103.106'  # This will change if you had to restart the @device_name.
+    @mismatch_ip    = '40.71.84.41'  # This will change if you had to restart the 'miqmismatch' VM.
     @template = nil
     @avail_zone = nil
 
@@ -56,7 +56,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
       it "will perform a full refresh with a plain proxy enabled" do
         allow(VMDB::Util).to receive(:http_proxy_uri).and_return(proxy)
         setup_ems_and_cassette
-        expect(OrchestrationTemplate.count).to eql(3)
+        expect(OrchestrationTemplate.count).to eql(4)
         assert_specific_orchestration_template
       end
     end
@@ -68,7 +68,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
 
         allow(VMDB::Util).to receive(:http_proxy_uri).and_return(proxy)
         setup_ems_and_cassette
-        expect(OrchestrationTemplate.count).to eql(3)
+        expect(OrchestrationTemplate.count).to eql(4)
         assert_specific_orchestration_template
       end
     end
@@ -100,7 +100,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
   def expected_table_counts
     {
       :ext_management_system         => 2,
-      :flavor                        => 63,
+      :flavor                        => 80,
       :availability_zone             => 1,
       :vm_or_template                => 12,
       :vm                            => 11,
@@ -112,12 +112,12 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
       :operating_system              => 11,
       :relationship                  => 0,
       :miq_queue                     => 13,
-      :orchestration_template        => 3,
-      :orchestration_stack           => 17,
-      :orchestration_stack_parameter => 186,
+      :orchestration_template        => 4,
+      :orchestration_stack           => 18,
+      :orchestration_stack_parameter => 188,
       :orchestration_stack_output    => 9,
-      :orchestration_stack_resource  => 76,
-      :security_group                => 10,
+      :orchestration_stack_resource  => 77,
+      :security_group                => 11,
       :network_port                  => 11,
       :cloud_network                 => 6,
       :floating_ip                   => 13,
@@ -175,7 +175,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
     expect(@ems.miq_templates.size).to eq(expected_table_counts[:miq_template])
 
     expect(@ems.orchestration_stacks.size).to eql(expected_table_counts[:orchestration_stack])
-    expect(@ems.direct_orchestration_stacks.size).to eql(16)
+    expect(@ems.direct_orchestration_stacks.size).to eql(17)
   end
 
   def assert_specific_load_balancers
