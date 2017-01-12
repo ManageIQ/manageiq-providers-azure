@@ -53,29 +53,6 @@ describe ManageIQ::Providers::Azure::CloudManager::ProvisionWorkflow do
         end
       end
     end
-
-    context "floating ips" do
-      context "not attached to a VM or Load Balancer"
-        it "#get_targets_for_ems" do
-        f_ip = FactoryGirl.create(:floating_ip_azure, :ext_management_system => ems.network_manager, :load_balancer_id => nil, :vm_id => nil)
-        ems.floating_ips << f_ip
-        expect(workflow.allowed_floating_ip_addresses.length).to eq(1)
-      end
-
-      context "already attached to a VM"
-        it "#get_targets_for_ems" do
-        f_ip = FactoryGirl.create(:floating_ip_azure, :ext_management_system => ems.network_manager, :load_balancer_id => nil, :vm_id => 123)
-        ems.floating_ips << f_ip
-        expect(workflow.allowed_floating_ip_addresses.length).to eq(0)
-      end
-
-      context "already attached to a Load Balancer"
-        it "#get_targets_for_ems" do
-        f_ip = FactoryGirl.create(:floating_ip_azure, :ext_management_system => ems.network_manager, :load_balancer_id => 456, :vm_id => nil)
-        ems.floating_ips << f_ip
-        expect(workflow.allowed_floating_ip_addresses.length).to eq(0)
-      end
-    end
   end
 
   context "with applied tags" do
