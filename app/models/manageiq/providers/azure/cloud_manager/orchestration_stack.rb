@@ -44,7 +44,7 @@ class ManageIQ::Providers::Azure::CloudManager::OrchestrationStack < ManageIQ::P
 
   def raw_delete_stack
     ext_management_system.with_provider_connection do |configure|
-      Azure::Armrest::TemplateDeploymentService.new(configure).delete(name, resource_group)
+      Azure::Armrest::TemplateDeploymentService.new(configure).delete_associated_resources(name, resource_group)
     end
   rescue => err
     _log.error "stack=[#{name}], error: #{err}"
