@@ -53,6 +53,34 @@ describe ManageIQ::Providers::Azure::CloudManager::ProvisionWorkflow do
         end
       end
     end
+
+    context "floating ips" do
+      before do
+        FactoryGirl.create(:network_port_azure, :id => 1, :device_id => nil)
+        ems.floating_ips << FactoryGirl.create(
+          :floating_ip_azure,
+          :ext_management_system => ems.network_manager,
+          :network_port_id       => 1
+        )
+
+        FactoryGirl.create(:network_port_azure, :id => 2, :device_id => 1)
+        ems.floating_ips << FactoryGirl.create(
+          :floating_ip_azure,
+          :ext_management_system => ems.network_manager,
+          :network_port_id       => 2
+        )
+
+        ems.floating_ips << FactoryGirl.create(
+          :floating_ip_azure,
+          :ext_management_system => ems.network_manager,
+          :network_port_id       => nil
+        )
+      end
+
+      it "allowed_floating_ips" do
+        expect(workflow.allowed_floating_ip_addresses.length).to eq(2)
+      end
+    end
   end
 
   context "with applied tags" do
