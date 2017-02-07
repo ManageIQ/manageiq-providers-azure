@@ -14,7 +14,12 @@ namespace :spec do
   task :setup => 'app:test:providers:azure:setup'
 end
 
+desc "Update your local ManageIQ repository"
+task :update do
+  sh "bin/update" unless ENV['CI']
+end
+
 desc "Run all azure specs"
-task :spec => 'app:test:providers:azure'
+task :spec => [:update, 'app:test:providers:azure']
 
 task :default => :spec
