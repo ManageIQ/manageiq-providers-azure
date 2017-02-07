@@ -3,6 +3,7 @@ if ENV['CI']
   SimpleCov.start
 end
 
+# Uncomment in case you use vcr cassettes
 VCR.configure do |config|
   config.ignore_hosts 'codeclimate.com' if ENV['CI']
   config.cassette_library_dir = File.join(ManageIQ::Providers::Azure::Engine.root, 'spec/vcr_cassettes')
