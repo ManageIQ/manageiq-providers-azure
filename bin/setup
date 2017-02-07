@@ -1,11 +1,14 @@
 #!/usr/bin/env ruby
 require 'pathname'
+require 'fileutils'
 
 gem_root = Pathname.new(__dir__).join("..")
 
 unless gem_root.join("spec/manageiq").exist?
   puts "== Cloning manageiq sample app =="
   system "git clone https://github.com/ManageIQ/manageiq.git --branch master --depth 1 spec/manageiq"
+  FileUtils.cp "spec/manageiq/config/database.pg.yml", "spec/manageiq/config/database.yml", :verbose => true
+  FileUtils.cp "spec/manageiq/certs/v2_key.dev", "spec/manageiq/certs/v2_key", :verbose => true
 end
 
 require gem_root.join("spec/manageiq/lib/manageiq/environment").to_s
