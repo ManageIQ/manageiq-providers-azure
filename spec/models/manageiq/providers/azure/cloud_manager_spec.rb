@@ -177,6 +177,42 @@ describe ManageIQ::Providers::Azure::CloudManager do
       assert_region(emses[2], "Azure-westus")
     end
 
+    context "supports features" do
+      before(:each) do
+        name = 'Azure-CentralUS'
+        region = 'centralus'
+        @ems = FactoryGirl.create(:ems_azure, :name => name, :provider_region => region)
+      end
+
+      it "supports regions" do
+        expect(@ems).to respond_to(:supports_regions?)
+        expect(@ems.supports_regions?).to eql(true)
+      end
+
+      it "supports discovery" do
+        expect(@ems).to respond_to(:supports_discovery?)
+        expect(@ems.supports_discovery?).to eql(true)
+      end
+
+      it "supports provisioning" do
+        expect(@ems).to respond_to(:supports_provisioning?)
+        expect(@ems.supports_provisioning?).to eql(true)
+      end
+
+      it "supports timeline events if insights is registered" do
+        allow(@ems).to receive(:insights?).and_return(true)
+        expect(@ems).to respond_to(:supports_timeline?)
+        expect(@ems.supports_provisioning?).to eql(true)
+      end
+
+      it "does not support timeline events if insights not registered" do
+        allow(@ems).to receive(:insights?).and_return(false)
+        expect(@ems).to respond_to(:supports_timeline?)
+        expect(@ems.supports_timeline?).to eql(false)
+        expect(@ems.unsupported_reason(:timeline)).to eql('Timeline not supported for this region')
+      end
+    end
+
     context "with records from a different account" do
       it "with the same name" do |example|
         FactoryGirl.create(:ems_azure_with_authentication, :name => "Azure-westus", :provider_region => "westus")
