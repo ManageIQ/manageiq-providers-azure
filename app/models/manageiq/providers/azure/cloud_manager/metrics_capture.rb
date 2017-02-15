@@ -74,14 +74,7 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
   }.freeze
 
   def perf_collect_metrics(interval_name, start_time = nil, end_time = nil)
-    ems = target.ext_management_system
-
-    raise "No EMS defined" if ems.nil?
-
-    unless ems.insights?
-      _log.info("Metrics not supported for region: " + _("[#{ems.provider_region}]"))
-      return
-    end
+    raise "No EMS defined" if target.ext_management_system.nil?
 
     log_header = "[#{interval_name}] for: [#{target.class.name}], [#{target.id}], [#{target.name}]"
 
@@ -190,6 +183,13 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
   end
 
   def get_counters(metrics_conn)
+    ems = target.ext_management_system
+
+    unless ems.insights?
+      _log.info("Metrics not supported for region: " + _("[#{ems.provider_region}]"))
+      return []
+    end
+
     begin
       counters, _timings = Benchmark.realtime_block(:capture_counters) do
         metrics_conn
