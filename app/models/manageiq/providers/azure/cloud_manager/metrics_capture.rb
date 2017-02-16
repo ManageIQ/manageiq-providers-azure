@@ -183,6 +183,13 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
   end
 
   def get_counters(metrics_conn)
+    ems = target.ext_management_system
+
+    unless ems.insights?
+      _log.info("Metrics not supported for region: " + _("[#{ems.provider_region}]"))
+      return []
+    end
+
     begin
       counters, _timings = Benchmark.realtime_block(:capture_counters) do
         metrics_conn
@@ -194,6 +201,7 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
       _log.log_backtrace(err)
       raise
     end
+
     counters
   end
 end

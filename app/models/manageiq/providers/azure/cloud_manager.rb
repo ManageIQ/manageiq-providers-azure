@@ -1,3 +1,5 @@
+require 'azure-armrest'
+
 class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManager
   require_nested :AvailabilityZone
   require_nested :EventCatcher
@@ -25,7 +27,23 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
   supports :provisioning
   supports :regions
 
+  supports :timeline do
+    unless insights?
+      unsupported_reason_add(:timeline, _('Timeline not supported for this region'))
+    end
+  end
+
   before_create :ensure_managers
+
+  # If the Microsoft.Insights Azure provider is not registered, then neither
+  # events nor metrics are supported for that EMS.
+  #
+  def insights?
+    with_provider_connection do |conf|
+      rps = ::Azure::Armrest::ResourceProviderService.new(conf)
+      rps.get('Microsoft.Insights').registration_state.casecmp('registered').zero?
+    end
+  end
 
   def ensure_network_manager
     build_network_manager(:type => 'ManageIQ::Providers::Azure::NetworkManager') unless network_manager
