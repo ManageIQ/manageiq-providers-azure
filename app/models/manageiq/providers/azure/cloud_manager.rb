@@ -1,5 +1,3 @@
-require 'azure-armrest'
-
 class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManager
   require_nested :AvailabilityZone
   require_nested :EventCatcher
@@ -39,6 +37,7 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
   # events nor metrics are supported for that EMS.
   #
   def insights?
+    require 'azure-armrest'
     with_provider_connection do |conf|
       rps = ::Azure::Armrest::ResourceProviderService.new(conf)
       rps.get('Microsoft.Insights').registration_state.casecmp('registered').zero?
