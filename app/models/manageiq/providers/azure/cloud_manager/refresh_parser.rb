@@ -1,5 +1,3 @@
-require 'azure-armrest'
-
 module ManageIQ::Providers
   module Azure
     class CloudManager::RefreshParser < ManageIQ::Providers::CloudManager::RefreshParser
