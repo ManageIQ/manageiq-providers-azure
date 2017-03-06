@@ -380,7 +380,8 @@ module ManageIQ::Providers
           :ssl_verify  => @config.ssl_verify
         }
 
-        RestClient::Request.execute(options).body
+        body = RestClient::Request.execute(options).body
+        JSON.parse(body).to_s # normalize to remove white spaces
       rescue => e
         _log.error("Failed to download Azure template #{uri}. Reason: #{e.inspect}")
         nil
