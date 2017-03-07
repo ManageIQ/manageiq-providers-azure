@@ -27,8 +27,9 @@ module ManageIQ::Providers
         @data              = {}
         @data_index        = {}
         @resource_to_stack = {}
-        @template_uris     = {}
-        @template_refs     = {}
+        @template_uris     = {} # templates need to be download
+        @template_refs     = {} # templates need to be retrieved from VMDB
+        @template_directs  = {} # templates contents already got by API
       end
 
       def ems_inv_to_hashes
@@ -94,26 +95,13 @@ module ManageIQ::Providers
 
       def get_stack_resources(name, group)
         resources = @tds.list_deployment_operations(name, group)
-        # relying on deployment operations to collect resources; but each resource may appear multiple times
-        # consolidate multiple appearances into only one
-        resources.reject! do |resource|
-          resource.properties.try(:target_resource).nil? || resource_already_collected?(resources, resource)
+        # resources with provsioning_operation 'Create' are the ones created by this stack
+        resources.select! do |resource|
+          resource.properties.provisioning_operation =~ /^create$/i
         end
 
         process_collection(resources, :orchestration_stack_resources) do |resource|
           parse_stack_resource(resource, group)
-        end
-      end
-
-      def resource_already_collected?(all, resource)
-        all.each do |old_resource|
-          return false if old_resource.equal?(resource)
-          old_id = old_resource.properties.target_resource.id
-          search_id = resource.properties.target_resource.id
-          if old_id == search_id
-            transfer_selected_resource_properties(old_resource, resource)
-            return true
-          end
         end
       end
 
@@ -126,25 +114,6 @@ module ManageIQ::Providers
         end
       end
 
-      # new_resource is to be excluded.
-      # copy any failed state to the old resource; concatenate all status messages
-      def transfer_selected_resource_properties(old_resource, new_resource)
-        if new_resource.properties.provisioning_state != 'Succeeded'
-          old_resource.properties.provisioning_state = new_resource.properties.provisioning_state
-        end
-
-        new_status_message = get_resource_status_message(new_resource)
-        return unless new_status_message
-
-        old_status_message = get_resource_status_message(old_resource)
-
-        old_resource.properties['status_message'] = if old_status_message
-                                                      "#{old_status_message}\n#{new_status_message}"
-                                                    else
-                                                      new_status_message
-                                                    end
-      end
-
       def get_stack_templates
         # download all template uris
         @template_uris.each { |uri, template| template[:content] = download_template(uri) }
@@ -155,7 +124,9 @@ module ManageIQ::Providers
           template[:content] = stacks[stack_ref].try(:orchestration_template).try(:content)
         end
 
-        raw_templates = (@template_uris.values + @template_refs.values).select { |raw| raw[:content] }
+        raw_templates = (@template_uris.values + @template_refs.values + @template_directs.values).select do |raw|
+          raw[:content]
+        end
         process_collection(raw_templates, :orchestration_templates) do |template|
           parse_stack_template(template)
         end
@@ -359,19 +330,43 @@ module ManageIQ::Providers
       end
 
       def stack_template_hash(deployment)
-        uri = deployment.properties.try(:template_link).try(:uri)
-        template_hashes = uri ? @template_uris : @template_refs
-        key = uri ? uri : deployment.id
+        direct_stack_template(deployment) || uri_stack_template(deployment) || id_stack_template(deployment)
+      end
 
-        template_hash = template_hashes[key]
-        unless template_hash
-          ver = deployment.properties.try(:template_link).try(:content_version)
-          template_hash = {:description => "contentVersion: #{ver}", :name => deployment.name, :uid => deployment.id}
-          template_hashes[key] = template_hash
+      def direct_stack_template(deployment)
+        content = @tds.get_template(deployment.name, deployment.resource_group)
+        init_template_hash(deployment, content.to_s).tap do |template_hash|
+          @template_directs[deployment.id] = template_hash
         end
+      rescue ::Azure::Armrest::ConflictException
+        # Templates were not saved for deployments created before 03/20/2016
+        nil
+      end
 
-        # This is a hash for the raw template. The template content is to be fetched
-        template_hash
+      def uri_stack_template(deployment)
+        uri = deployment.properties.try(:template_link).try(:uri)
+        return unless uri
+        @template_uris[uri] ||
+          init_template_hash(deployment).tap do |template_hash|
+            @template_uris[uri] = template_hash
+          end
+      end
+
+      def id_stack_template(deployment)
+        init_template_hash(deployment).tap do |template_hash|
+          @template_refs[deployment.id] = template_hash
+        end
+      end
+
+      def init_template_hash(deployment, content = nil)
+        # If content is nil it is to be fetched
+        ver = deployment.properties.try(:template_link).try(:content_version)
+        {
+          :description => "contentVersion: #{ver}",
+          :name        => deployment.name,
+          :uid         => deployment.id,
+          :content     => content
+        }
       end
 
       def download_template(uri)
@@ -383,7 +378,8 @@ module ManageIQ::Providers
           :ssl_verify  => @config.ssl_verify
         }
 
-        RestClient::Request.execute(options).body
+        body = RestClient::Request.execute(options).body
+        JSON.parse(body).to_s # normalize to remove white spaces
       rescue => e
         _log.error("Failed to download Azure template #{uri}. Reason: #{e.inspect}")
         nil

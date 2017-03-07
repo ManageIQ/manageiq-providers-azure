@@ -13,8 +13,8 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
 
     @resource_group = 'miq-azure-test1'
     @device_name    = 'miq-test-rhel1' # Make sure this is running if generating a new cassette.
-    @ip_address     = '13.82.226.29' # This will change if you had to restart the @device_name.
-    @mismatch_ip    = '13.90.255.238' # This will change if you had to restart the 'miqmismatch' VM.
+    @ip_address     = '40.71.255.121' # This will change if you had to restart the @device_name.
+    @mismatch_ip    = 'miqmismatch1' # This will change if you had to restart the 'miqmismatch' VM.
     @template       = nil
     @avail_zone     = nil
 
@@ -56,7 +56,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
       it "will perform a full refresh with a plain proxy enabled" do
         allow(VMDB::Util).to receive(:http_proxy_uri).and_return(proxy)
         setup_ems_and_cassette
-        expect(OrchestrationTemplate.count).to eql(4)
+        expect(OrchestrationTemplate.count).to eql(18)
         assert_specific_orchestration_template
       end
     end
@@ -68,7 +68,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
 
         allow(VMDB::Util).to receive(:http_proxy_uri).and_return(proxy)
         setup_ems_and_cassette
-        expect(OrchestrationTemplate.count).to eql(4)
+        expect(OrchestrationTemplate.count).to eql(18)
         assert_specific_orchestration_template
       end
     end
@@ -101,7 +101,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
   def expected_table_counts
     {
       :ext_management_system         => 2,
-      :flavor                        => 80,
+      :flavor                        => 83,
       :availability_zone             => 1,
       :vm_or_template                => 12,
       :vm                            => 11,
@@ -113,11 +113,11 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
       :operating_system              => 11,
       :relationship                  => 0,
       :miq_queue                     => 13,
-      :orchestration_template        => 4,
+      :orchestration_template        => 18,
       :orchestration_stack           => 20,
       :orchestration_stack_parameter => 196,
       :orchestration_stack_output    => 9,
-      :orchestration_stack_resource  => 79,
+      :orchestration_stack_resource  => 73,
       :security_group                => 11,
       :network_port                  => 14,
       :cloud_network                 => 6,
@@ -601,10 +601,10 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
   def assert_specific_orchestration_template
     @orch_template = OrchestrationTemplateAzure.find_by(:name => "spec-nested-deployment-dont-delete")
     expect(@orch_template).to have_attributes(
-      :md5 => "521a0cf7ec949c106980d9da173ea21d"
+      :md5 => "05e28d9332a3b60def5fbd66ac031a7d"
     )
     expect(@orch_template.description).to eql('contentVersion: 1.0.0.0')
-    expect(@orch_template.content).to start_with("{\n  \"$schema\": \"http://schema.management.azure.com"\
+    expect(@orch_template.content).to start_with("{\"$schema\":\"http://schema.management.azure.com"\
       "/schemas/2015-01-01/deploymentTemplate.json\"")
   end
 
