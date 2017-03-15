@@ -1,0 +1,38 @@
+---
+:ems:
+  :ems_azure:
+    :event_handling:
+      :event_groups:
+        :addition:
+          :critical:
+            - virtualMachines_write_EndRequest
+        :deletion:
+          :critical:
+            - virtualMachines_delete_EndRequest
+        :power:
+          :critical:
+            - virtualMachines_deallocate_EndRequest
+            - virtualMachines_start_EndRequest
+            - virtualMachines_restart_EndRequest
+    :disabled_regions: []
+    :additional_regions: {}
+:http_proxy:
+  :azure:
+    :host:
+    :password:
+    :port:
+    :user:
+:log:
+  :level_azure: warn
+  :level_azure_in_evm: error
+:workers:
+  :worker_base:
+    :event_catcher:
+      :event_catcher_azure:
+        :poll: 15.seconds
+    :queue_worker_base:
+      :ems_metrics_collector_worker:
+        :ems_metrics_collector_worker_azure: {}
+      :ems_refresh_worker:
+        :ems_refresh_worker_azure: {}
+        :ems_refresh_worker_azure_network: {}
