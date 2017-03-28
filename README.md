@@ -5,7 +5,7 @@
 [![Code Climate](https://codeclimate.com/github/ManageIQ/manageiq-providers-azure.svg)](https://codeclimate.com/github/ManageIQ/manageiq-providers-azure)
 [![Test Coverage](https://codeclimate.com/github/ManageIQ/manageiq-providers-azure/badges/coverage.svg)](https://codeclimate.com/github/ManageIQ/manageiq-providers-azure/coverage)
 [![Dependency Status](https://gemnasium.com/ManageIQ/manageiq-providers-azure.svg)](https://gemnasium.com/ManageIQ/manageiq-providers-azure)
-[![Security](https://hakiri.io/github/ManageIQ/manageiq-providers-azure/master.svg)](https://hakiri.io/github/ManageIQ/manageiq-providers-azure/master)
+[![Security](https://hakiri.io/github/ManageIQ/manageiq-providers-azure/fine.svg)](https://hakiri.io/github/ManageIQ/manageiq-providers-azure/fine)
 
 [![Chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ManageIQ/manageiq-providers-azure?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Translate](https://img.shields.io/badge/translate-zanata-blue.svg)](https://translate.zanata.org/zanata/project/view/manageiq-providers-azure)
