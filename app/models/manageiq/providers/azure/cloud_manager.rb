@@ -32,6 +32,7 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
   end
 
   before_create :ensure_managers
+  before_update :ensure_managers_zone_and_provider_region
 
   # If the Microsoft.Insights Azure provider is not registered, then neither
   # events nor metrics are supported for that EMS.
