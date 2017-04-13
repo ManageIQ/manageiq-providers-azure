@@ -57,4 +57,70 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
   def ip_addresses
     @ip_addresses ||= gather_data_for_this_region(@ips)
   end
+
+  # Create the necessary service classes and lock down their api-version
+  # strings using the config/settings.yml from the provider repo. The
+  # "to_s" call for the version strings puts the date in the format
+  # that we need, i.e. "YYYY-MM-DD".
+  #
+
+  def availability_set_service(config)
+    @avs ||= ::Azure::Armrest::AvailabilitySetService.new(config)
+    @avs.api_version = Settings.ems.ems_azure.api_versions.availability_set.to_s
+    @avs
+  end
+
+  def ip_address_service(config)
+    @ips ||= ::Azure::Armrest::Network::IpAddressService.new(config)
+    @ips.api_version = Settings.ems.ems_azure.api_versions.ip_address.to_s
+    @ips
+  end
+
+  def load_balancer_service(config)
+    @lbs ||= ::Azure::Armrest::Network::LoadBalancerService.new(config)
+    @lbs.api_version = Settings.ems.ems_azure.api_versions.load_balancer.to_s
+    @lbs
+  end
+
+  def network_interface_service(config)
+    @nis ||= ::Azure::Armrest::Network::NetworkInterfaceService.new(config)
+    @nis.api_version = Settings.ems.ems_azure.api_versions.network_interface.to_s
+    @nis
+  end
+
+  def network_security_group_service(config)
+    @nsg ||= ::Azure::Armrest::Network::NetworkSecurityGroupService.new(config)
+    @nsg.api_version = Settings.ems.ems_azure.api_versions.network_security_group.to_s
+    @nsg
+  end
+
+  def resource_group_service(config)
+    @rgs ||= ::Azure::Armrest::ResourceGroupService.new(config)
+    @rgs.api_version = Settings.ems.ems_azure.api_versions.resource_group.to_s
+    @rgs
+  end
+
+  def template_deployment_service(config)
+    @tds ||= ::Azure::Armrest::TemplateDeploymentService.new(config)
+    @tds.api_version = Settings.ems.ems_azure.api_versions.template_deployment.to_s
+    @tds
+  end
+
+  def storage_account_service(config)
+    @sas ||= ::Azure::Armrest::StorageAccountService.new(config)
+    @sas.api_version = Settings.ems.ems_azure.api_versions.storage_account.to_s
+    @sas
+  end
+
+  def virtual_machine_service(config)
+    @vms ||= ::Azure::Armrest::VirtualMachineService.new(config)
+    @vms.api_version = Settings.ems.ems_azure.api_versions.virtual_machine.to_s
+    @vms
+  end
+
+  def virtual_network_service(config)
+    @vns ||= ::Azure::Armrest::Network::VirtualNetworkService.new(config)
+    @vns.api_version = Settings.ems.ems_azure.api_versions.virtual_network.to_s
+    @vns
+  end
 end
