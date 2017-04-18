@@ -84,8 +84,8 @@ module ManageIQ::Providers::Azure::CloudManager::Provision::Cloning
   end
 
   def log_clone_options(clone_options)
-    dumpObj(clone_options, "#{_log.prefix} Clone Options: ", $log, :info)
-    dumpObj(options, "#{_log.prefix} Prov Options:  ", $log, :info, :protected =>
+    dump_obj(clone_options, "#{_log.prefix} Clone Options: ", $log, :info)
+    dump_obj(options, "#{_log.prefix} Prov Options:  ", $log, :info, :protected =>
     {:path => workflow_class.encrypted_options_field_regs})
   end
 
