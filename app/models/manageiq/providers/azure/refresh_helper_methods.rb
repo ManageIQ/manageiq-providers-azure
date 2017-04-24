@@ -65,62 +65,62 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
   #
 
   def availability_set_service(config)
-    @avs ||= ::Azure::Armrest::AvailabilitySetService.new(config)
-    @avs.api_version = Settings.ems.ems_azure.api_versions.availability_set.to_s
-    @avs
+    ::Azure::Armrest::AvailabilitySetService.new(config).tap do |service|
+      service.api_version = Settings.ems.ems_azure.api_versions.availability_set.to_s
+    end
   end
 
   def ip_address_service(config)
-    @ips ||= ::Azure::Armrest::Network::IpAddressService.new(config)
-    @ips.api_version = Settings.ems.ems_azure.api_versions.ip_address.to_s
-    @ips
+    ::Azure::Armrest::Network::IpAddressService.new(config).tap do |service|
+      service.api_version = Settings.ems.ems_azure.api_versions.ip_address.to_s
+    end
   end
 
   def load_balancer_service(config)
-    @lbs ||= ::Azure::Armrest::Network::LoadBalancerService.new(config)
-    @lbs.api_version = Settings.ems.ems_azure.api_versions.load_balancer.to_s
-    @lbs
+    ::Azure::Armrest::Network::LoadBalancerService.new(config).tap do |service|
+      service.api_version = Settings.ems.ems_azure.api_versions.load_balancer.to_s
+    end
   end
 
   def network_interface_service(config)
-    @nis ||= ::Azure::Armrest::Network::NetworkInterfaceService.new(config)
-    @nis.api_version = Settings.ems.ems_azure.api_versions.network_interface.to_s
-    @nis
+    ::Azure::Armrest::Network::NetworkInterfaceService.new(config).tap do |service|
+      service.api_version = Settings.ems.ems_azure.api_versions.network_interface.to_s
+    end
   end
 
   def network_security_group_service(config)
-    @nsg ||= ::Azure::Armrest::Network::NetworkSecurityGroupService.new(config)
-    @nsg.api_version = Settings.ems.ems_azure.api_versions.network_security_group.to_s
-    @nsg
+    ::Azure::Armrest::Network::NetworkSecurityGroupService.new(config).tap do |service|
+      service.api_version = Settings.ems.ems_azure.api_versions.network_security_group.to_s
+    end
   end
 
   def resource_group_service(config)
-    @rgs ||= ::Azure::Armrest::ResourceGroupService.new(config)
-    @rgs.api_version = Settings.ems.ems_azure.api_versions.resource_group.to_s
-    @rgs
+    ::Azure::Armrest::ResourceGroupService.new(config).tap do |service|
+      service.api_version = Settings.ems.ems_azure.api_versions.resource_group.to_s
+    end
   end
 
   def template_deployment_service(config)
-    @tds ||= ::Azure::Armrest::TemplateDeploymentService.new(config)
-    @tds.api_version = Settings.ems.ems_azure.api_versions.template_deployment.to_s
-    @tds
+    ::Azure::Armrest::TemplateDeploymentService.new(config).tap do |service|
+      service.api_version = Settings.ems.ems_azure.api_versions.template_deployment.to_s
+    end
   end
 
   def storage_account_service(config)
-    @sas ||= ::Azure::Armrest::StorageAccountService.new(config)
-    @sas.api_version = Settings.ems.ems_azure.api_versions.storage_account.to_s
-    @sas
+    ::Azure::Armrest::StorageAccountService.new(config).tap do |service|
+      service.api_version = Settings.ems.ems_azure.api_versions.storage_account.to_s
+    end
   end
 
   def virtual_machine_service(config)
-    @vms ||= ::Azure::Armrest::VirtualMachineService.new(config)
-    @vms.api_version = Settings.ems.ems_azure.api_versions.virtual_machine.to_s
-    @vms
+    ::Azure::Armrest::VirtualMachineService.new(config).tap do |service|
+      service.api_version = Settings.ems.ems_azure.api_versions.virtual_machine.to_s
+    end
   end
 
   def virtual_network_service(config)
-    @vns ||= ::Azure::Armrest::Network::VirtualNetworkService.new(config)
-    @vns.api_version = Settings.ems.ems_azure.api_versions.virtual_network.to_s
-    @vns
+    ::Azure::Armrest::Network::VirtualNetworkService.new(config).tap do |service|
+      service.api_version = Settings.ems.ems_azure.api_versions.virtual_network.to_s
+    end
   end
 end
