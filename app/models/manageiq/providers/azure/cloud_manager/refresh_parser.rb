@@ -16,13 +16,13 @@ module ManageIQ::Providers
         @subscription_id = ems.subscription
 
         # TODO(lsmola) NetworkManager, remove network endpoints once this is entirely moved under NetworkManager
-        @nis               = ::Azure::Armrest::Network::NetworkInterfaceService.new(@config)
-        @ips               = ::Azure::Armrest::Network::IpAddressService.new(@config)
-        @vmm               = ::Azure::Armrest::VirtualMachineService.new(@config)
-        @asm               = ::Azure::Armrest::AvailabilitySetService.new(@config)
-        @tds               = ::Azure::Armrest::TemplateDeploymentService.new(@config)
-        @rgs               = ::Azure::Armrest::ResourceGroupService.new(@config)
-        @sas               = ::Azure::Armrest::StorageAccountService.new(@config)
+        @nis               = network_interface_service(@config)
+        @ips               = ip_address_service(@config)
+        @vmm               = virtual_machine_service(@config)
+        @asm               = availability_set_service(@config)
+        @tds               = template_deployment_service(@config)
+        @rgs               = resource_group_service(@config)
+        @sas               = storage_account_service(@config)
         @options           = options || {}
         @data              = {}
         @data_index        = {}
@@ -149,7 +149,7 @@ module ManageIQ::Providers
       #
       def get_images
         images = gather_data_for_this_region(@sas, 'list_all_private_images')
-      rescue Azure::Armrest::ApiException => err
+      rescue ::Azure::Armrest::ApiException => err
         _log.warn("Unable to collect Azure private images for: [#{@ems.name}] - [#{@ems.id}]: #{err.message}")
       else
         process_collection(images, :vms) { |image| parse_image(image) }
