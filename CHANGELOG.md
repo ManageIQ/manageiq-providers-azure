@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Refactor service creation lock down api-version strings [(#51)](https://github.com/ManageIQ/manageiq-providers-azure/pull/51)
 
-## Fine RC-1
+## Fine Beta-2
 
 ### Added
 - Add backtrace info to verify_credentials failure [(#43)](https://github.com/ManageIQ/manageiq-providers-azure/pull/43)
