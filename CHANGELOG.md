@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## Fine RC-1
+## Fine Beta-2
 
 ### Added
 - Add backtrace info to verify_credentials failure [(#43)](https://github.com/ManageIQ/manageiq-providers-azure/pull/43)
