@@ -224,7 +224,7 @@ module ManageIQ::Providers
           :raw_power_state     => power_status(instance),
           :operating_system    => process_os(instance),
           :flavor              => series,
-          :location            => uid,
+          :location            => instance.location,
           :orchestration_stack => @data_index.fetch_path(:orchestration_stacks, @resource_to_stack[uid]),
           :availability_zone   => @data_index.fetch_path(:availability_zones, 'default'),
           :hardware            => {
