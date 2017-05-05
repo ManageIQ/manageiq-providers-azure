@@ -487,9 +487,7 @@ module ManageIQ::Providers
       def parse_managed_image(image)
         uid = image.id.downcase
 
-        resource_group = ResourceGroup.where(:name => image.resource_group.downcase).find do |rg|
-          rg.ems_ref.include?(@ems.subscription)
-        end
+        os = image.properties.storage_profile.try(:os_disk).try(:os_type) || 'unknown'
 
         new_result = {
           :type               => ManageIQ::Providers::Azure::CloudManager::Template.name,
@@ -502,11 +500,10 @@ module ManageIQ::Providers
           :raw_power_state    => 'never',
           :template           => true,
           :publicly_available => false,
-          :resource_group_id  => resource_group.try(:id),
           :operating_system   => process_os(image),
           :hardware           => {
             :bitness  => 64,
-            :guest_os => image.properties.storage_profile.os_disk.os_type
+            :guest_os => OperatingSystem.normalize_os_name(os)
           }
         }
 
