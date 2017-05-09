@@ -2,12 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## Unreleased - as of Sprint 60 ending 2017-05-08
+
+### Added
+- Make azure-armrest dependency less pessimistic [(#55)](https://github.com/ManageIQ/manageiq-providers-azure/pull/55)
+
 ## Unreleased - as of Sprint 59 ending 2017-04-24
 
 ### Added
 - Refactor service creation lock down api-version strings [(#51)](https://github.com/ManageIQ/manageiq-providers-azure/pull/51)
 
-## Fine Beta-2
+## Fine Release Candidate
 
 ### Added
 - Add backtrace info to verify_credentials failure [(#43)](https://github.com/ManageIQ/manageiq-providers-azure/pull/43)
