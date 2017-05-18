@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.description = "Azure Provider for ManageIQ"
   s.licenses    = ["Apache-2.0"]
 
-  s.files = Dir["{app,config.lib}/**/*"]
+  s.files = Dir["{app,config,lib}/**/*"]
 
   s.add_dependency "azure-armrest", "~>0.7.2"
 
