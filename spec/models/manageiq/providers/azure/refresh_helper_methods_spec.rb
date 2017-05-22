@@ -12,6 +12,16 @@ describe ManageIQ::Providers::Azure::RefreshHelperMethods do
   let(:virtual_machine_eastus) { Azure::Armrest::VirtualMachine.new(:name => "foo", :location => "eastus") }
   let(:virtual_machine_southindia) { Azure::Armrest::VirtualMachine.new(:name => "bar", :location => "SouthIndia") }
 
+  context "get_resource_group_ems_ref" do
+    it "returns the expected value" do
+      virtual_machine_eastus.subscription_id = "abc123"
+      virtual_machine_eastus.resource_group = "Test_Group"
+
+      expected = "/subscriptions/abc123/resourceGroups/test_group"
+      expect(@ems_azure.get_resource_group_ems_ref(virtual_machine_eastus)).to eql(expected)
+    end
+  end
+
   context "gather_data_for_region" do
     it "requires a service name" do
       expect { @ems_azure.gather_data_for_this_region }.to raise_error(ArgumentError)

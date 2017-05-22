@@ -44,6 +44,12 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
     end
   end
 
+  # Given an object, return the matching ems_ref for its resource group.
+  #
+  def get_resource_group_ems_ref(object)
+    "/subscriptions/#{object.subscription_id}/resourceGroups/#{object.resource_group.downcase}"
+  end
+
   # TODO(lsmola) NetworkManager, move below methods under NetworkManager, once it is not needed in Cloudmanager
   def get_vm_nics(instance)
     nic_ids = instance.properties.network_profile.network_interfaces.collect(&:id)

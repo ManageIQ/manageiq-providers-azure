@@ -6,14 +6,6 @@ describe ManageIQ::Providers::Azure::CloudManager::Vm do
   let(:power_state_off) { "VM deallocated" }
   let(:power_state_suspended) { "VM stopping" }
 
-  context "resource_group" do
-    it "defines a resource_group method that returns the expected value based on uid_ems" do
-      vm.uid_ems = "aaa\\bbb\\ccc\\ddd"
-      expect(vm).to respond_to(:resource_group)
-      expect(vm.resource_group).to eq("bbb")
-    end
-  end
-
   context "#is_available?" do
     context("with :start") do
       let(:state) { :start }

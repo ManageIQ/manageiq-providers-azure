@@ -229,6 +229,8 @@ module ManageIQ::Providers
         # unified under the NetworkManager
         hardware_network_info = get_hardware_network_info(instance)
 
+        rg_ems_ref = get_resource_group_ems_ref(instance)
+
         new_result = {
           :type                => 'ManageIQ::Providers::Azure::CloudManager::Vm',
           :uid_ems             => uid,
@@ -241,6 +243,7 @@ module ManageIQ::Providers
           :location            => instance.location,
           :orchestration_stack => @data_index.fetch_path(:orchestration_stacks, @resource_to_stack[uid]),
           :availability_zone   => @data_index.fetch_path(:availability_zones, 'default'),
+          :resource_group      => @data_index.fetch_path(:resource_groups, rg_ems_ref),
           :hardware            => {
             :disks    => [], # Filled in later conditionally on flavor
             :networks => hardware_network_info
@@ -507,6 +510,7 @@ module ManageIQ::Providers
         uid = image.id.downcase
 
         os = image.properties.storage_profile.try(:os_disk).try(:os_type) || 'unknown'
+        rg_ems_ref = get_resource_group_ems_ref(image)
 
         new_result = {
           :type               => ManageIQ::Providers::Azure::CloudManager::Template.name,
@@ -520,6 +524,7 @@ module ManageIQ::Providers
           :template           => true,
           :publicly_available => false,
           :operating_system   => process_os(image),
+          :resource_group     => @data_index.fetch_path(:resource_groups, rg_ems_ref),
           :hardware           => {
             :bitness  => 64,
             :guest_os => OperatingSystem.normalize_os_name(os)
@@ -555,6 +560,7 @@ module ManageIQ::Providers
 
       def parse_image(image)
         uid = image.uri
+
         new_result = {
           :type               => ManageIQ::Providers::Azure::CloudManager::Template.name,
           :uid_ems            => uid,
@@ -571,6 +577,7 @@ module ManageIQ::Providers
             :guest_os => image.operating_system
           }
         }
+
         return uid, new_result
       end
 
