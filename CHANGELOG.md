@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## Unreleased - as of Sprint 61 ending 2017-05-22
+
+### Added
+- Add support for managed images [(#65)](https://github.com/ManageIQ/manageiq-providers-azure/pull/65)
+
+### Fixed
+- Provisioning - First and Last names are not required. [(#73)](https://github.com/ManageIQ/manageiq-providers-azure/pull/73)
+
 ## Unreleased - as of Sprint 60 ending 2017-05-08
 
 ### Added
@@ -12,7 +20,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Refactor service creation lock down api-version strings [(#51)](https://github.com/ManageIQ/manageiq-providers-azure/pull/51)
 
-## Fine Release Candidate
+## Fine-1
 
 ### Added
 - Add backtrace info to verify_credentials failure [(#43)](https://github.com/ManageIQ/manageiq-providers-azure/pull/43)
