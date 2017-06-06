@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## Unreleased - as of Sprint 62 ending 2017-06-05
+
+### Fixed
+- Upgrade armrest gem to 0.7.3 [(#74)](https://github.com/ManageIQ/manageiq-providers-azure/pull/74)
+
 ## Unreleased - as of Sprint 61 ending 2017-05-22
 
 ### Added
