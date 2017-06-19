@@ -36,7 +36,6 @@
     :user:
 :log:
   :level_azure: warn
-  :level_azure_in_evm: error
 :workers:
   :worker_base:
     :event_catcher:
