@@ -709,30 +709,31 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
   end
 
   def assert_specific_nic_and_ip
-    nic_group  = 'miq-azure-test1' # EastUS
-    ip_group   = 'miq-azure-test4' # Also EastUS
+    nic_group = 'miq-azure-test1' # EastUS
+    ip_group  = 'miq-azure-test4' # Also EastUS
+    nic_name  = 'miqmismatch1'
 
-    nic_name = "/subscriptions/#{@subscription_id}/resourceGroups"\
+    ems_ref_nic = "/subscriptions/#{@subscription_id}/resourceGroups"\
                "/#{nic_group}/providers/Microsoft.Network"\
                "/networkInterfaces/miqmismatch1"
 
-    ems_ref = "/subscriptions/#{@subscription_id}/resourceGroups"\
+    ems_ref_ip = "/subscriptions/#{@subscription_id}/resourceGroups"\
                "/#{ip_group}/providers/Microsoft.Network"\
                "/publicIPAddresses/miqmismatch1"
 
-    @network_port = ManageIQ::Providers::Azure::NetworkManager::NetworkPort.where(:name => nic_name).first
-    @floating_ip  = ManageIQ::Providers::Azure::NetworkManager::FloatingIp.where(:ems_ref => ems_ref).first
+    @network_port = ManageIQ::Providers::Azure::NetworkManager::NetworkPort.where(:ems_ref => ems_ref_nic).first
+    @floating_ip  = ManageIQ::Providers::Azure::NetworkManager::FloatingIp.where(:ems_ref => ems_ref_ip).first
 
     expect(@network_port).to have_attributes(
       :status  => 'Succeeded',
       :name    => nic_name,
-      :ems_ref => nic_name, # Same
+      :ems_ref => ems_ref_nic
     )
 
     expect(@floating_ip).to have_attributes(
       :status  => 'Succeeded',
       :address => @mismatch_ip,
-      :ems_ref => ems_ref,
+      :ems_ref => ems_ref_ip,
     )
 
     expect(@network_port.device.id).to eql(@floating_ip.vm.id)

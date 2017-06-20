@@ -376,12 +376,12 @@ class ManageIQ::Providers::Azure::NetworkManager::RefreshParser
     uid = "#{load_balancer[:ems_ref]}/nic1"
 
     new_result = {
-      :device_ref    => load_balancer[:ems_ref],
-      :device        => load_balancer,
-      :ems_ref       => uid,
-      :name          => uid,
-      :status        => "Succeeded",
-      :type          => self.class.network_port_type,
+      :device_ref => load_balancer[:ems_ref],
+      :device     => load_balancer,
+      :ems_ref    => uid,
+      :name       => File.basename(load_balancer[:ems_ref]) + '/nic1',
+      :status     => "Succeeded",
+      :type       => self.class.network_port_type,
     }
 
     @data[:network_ports] << new_result
@@ -414,7 +414,7 @@ class ManageIQ::Providers::Azure::NetworkManager::RefreshParser
 
     new_result = {
       :type                       => self.class.network_port_type,
-      :name                       => uid,
+      :name                       => network_port.name,
       :ems_ref                    => uid,
       :status                     => network_port.properties.try(:provisioning_state),
       :mac_address                => network_port.properties.try(:mac_address),
