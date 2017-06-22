@@ -6,6 +6,8 @@ module ManageIQ::Providers::Azure::CloudManager::Vm::Operations::Power
       unsupported_reason_add(:reboot_guest, unsupported_reason(:control)) unless supports_control?
       unsupported_reason_add(:reboot_guest, _("The VM is not powered on")) unless current_state == "on"
     end
+
+    supports_not :reset, :reason => "Hard reboot not supported on Azure"
   end
 
   def raw_suspend
