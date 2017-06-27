@@ -1,5 +1,14 @@
 require 'azure-armrest'
 describe ManageIQ::Providers::Azure::CloudManager do
+  describe ".raw_connect" do
+    it "decrypts passwords" do
+      allow(::Azure::Armrest::Configuration).to receive(:new)
+
+      expect(MiqPassword).to receive(:try_decrypt).with("1234567890")
+      described_class.raw_connect("klmnopqrst", "1234567890", "abcdefghij", 'subscription', 'proxy_uri')
+    end
+  end
+
   it ".ems_type" do
     expect(described_class.ems_type).to eq('azure')
   end
