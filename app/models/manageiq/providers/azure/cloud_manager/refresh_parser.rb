@@ -75,11 +75,16 @@ module ManageIQ::Providers
         process_collection(a_zones, :availability_zones) { |az| parse_az(az) }
       end
 
-      def get_stacks
-        # deployments are realizations of a template in the Azure provider
-        # they are parsed and converted to stacks in vmdb
+      # Deployments are realizations of a template in the Azure provider.
+      # They are parsed and converted to stacks in vmdb.
+      #
+      def get_deployments
         deployments = gather_data_for_this_region(@tds, 'list')
         process_collection(deployments, :orchestration_stacks) { |dp| parse_stack(dp) }
+      end
+
+      def get_stacks
+        get_deployments
         update_nested_stack_relations
       end
 
@@ -134,7 +139,7 @@ module ManageIQ::Providers
         end
 
         # link stacks to templates, convert raw_template to template
-        @data_index[:orchestration_stacks].each do |_stack_uid, stack|
+        Hash(@data_index[:orchestration_stacks]).each do |_stack_uid, stack|
           raw_template = stack[:orchestration_template]
           stack[:orchestration_template] = @data_index.fetch_path(:orchestration_templates, raw_template[:uid])
         end
@@ -543,7 +548,7 @@ module ManageIQ::Providers
 
       # Remap from children to parent
       def update_nested_stack_relations
-        @data[:orchestration_stacks].each do |stack|
+        Array(@data[:orchestration_stacks]).each do |stack|
           stack[:children].each do |child_stack_id|
             child_stack = @data_index.fetch_path(:orchestration_stacks, child_stack_id)
             child_stack[:parent] = stack if child_stack
