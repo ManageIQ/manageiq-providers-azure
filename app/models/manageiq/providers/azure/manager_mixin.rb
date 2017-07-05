@@ -38,7 +38,7 @@ module ManageIQ::Providers::Azure::ManagerMixin
 
       ::Azure::Armrest::Configuration.new(
         :client_id       => client_id,
-        :client_key      => client_key,
+        :client_key      => MiqPassword.try_decrypt(client_key),
         :tenant_id       => azure_tenant_id,
         :subscription_id => subscription,
         :proxy           => proxy_uri,
