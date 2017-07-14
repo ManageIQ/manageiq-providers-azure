@@ -10,7 +10,7 @@ module ManageIQ::Providers
         new(ems, options).ems_inv_to_hashes
       end
 
-      def initialize(ems, options = nil)
+      def initialize(ems, options = Config::Options.new)
         @ems    = ems
         @config = ems.connect
         @subscription_id = ems.subscription
@@ -24,6 +24,7 @@ module ManageIQ::Providers
         @rgs               = resource_group_service(@config)
         @sas               = storage_account_service(@config)
         @mis               = managed_image_service(@config)
+        @vmis              = virtual_machine_image_service(@config, :location => @ems.provider_region)
         @options           = options || {}
         @data              = {}
         @data_index        = {}
@@ -45,6 +46,7 @@ module ManageIQ::Providers
         get_instances
         get_managed_images
         get_images
+        get_market_images if @options.get_market_images
         _log.info("#{log_header}...Complete")
 
         @data
@@ -165,6 +167,18 @@ module ManageIQ::Providers
       def get_managed_images
         images = gather_data_for_this_region(@mis)
         process_collection(images, :vms) { |image| parse_managed_image(image) }
+      end
+
+      def get_market_images
+        urns   = @options.market_image_urns
+        images = if urns
+                   gather_data_for_this_region(@vmis).select do |image|
+                     urns.include?(image.id)
+                   end
+                 else
+                   gather_data_for_this_region(@vmis)
+                 end
+        process_collection(images, :vms) { |image| parse_market_image(image) }
       end
 
       def parse_resource_group(resource_group)
@@ -510,6 +524,29 @@ module ManageIQ::Providers
             :bitness  => 64,
             :guest_os => OperatingSystem.normalize_os_name(os)
           }
+        }
+
+        return uid, new_result
+      end
+
+      def parse_market_image(image)
+        uid = image.id
+
+        new_result = {
+            :type               => ManageIQ::Providers::Azure::CloudManager::Template.name,
+            :uid_ems            => uid,
+            :ems_ref            => uid,
+            :name               => "#{image.offer} - #{image.sku} - #{image.version}",
+            :description        => "#{image.offer} - #{image.sku} - #{image.version}",
+            :location           => @ems.provider_region,
+            :vendor             => 'azure',
+            :raw_power_state    => 'never',
+            :template           => true,
+            :publicly_available => true,
+            :hardware           => {
+                :bitness  => 64,
+                :guest_os => 'unknown'
+            }
         }
 
         return uid, new_result
