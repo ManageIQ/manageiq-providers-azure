@@ -548,7 +548,7 @@ module ManageIQ::Providers
               :bitness  => 64,
               :guest_os => 'unknown'
             }
-        }
+          }
 
         return uid, new_result
       end
