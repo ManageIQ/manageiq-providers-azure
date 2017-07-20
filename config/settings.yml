@@ -30,6 +30,8 @@
     :additional_regions: {}
 :ems_refresh:
   :azure:
+    # If get_market_images is enabled with no filters, all public images will be added
+    # This will cause performance issues during refresh and at places in the UI where images are listed
     :get_market_images: false
     :market_image_urns:
       - MicrosoftWindowsServer:WindowsServer-HUB:2016-Datacenter-HUB:2016.127.20170630
