@@ -51,7 +51,7 @@ module ManageIQ::Providers::Azure::CloudManager::Provision::Cloning
 
     # TODO: Ideally this would be a check against source.storage or source.disks
     if source.ems_ref =~ /.+:.+:.+:.+/
-      urn_keys = ['publisher', 'offer', 'sku', 'version']
+      urn_keys = %w[publisher offer sku version]
       image_reference = Hash[urn_keys.zip(source.ems_ref.split(':'))]
       os, target_uri, source_uri = nil
     elsif source.ems_ref.starts_with?('/subscriptions')

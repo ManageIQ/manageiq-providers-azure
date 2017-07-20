@@ -532,7 +532,8 @@ module ManageIQ::Providers
       def parse_market_image(image)
         uid = image.id
 
-        new_result = {
+        new_result =
+          {
             :type               => ManageIQ::Providers::Azure::CloudManager::Template.name,
             :uid_ems            => uid,
             :ems_ref            => uid,
@@ -544,8 +545,8 @@ module ManageIQ::Providers
             :template           => true,
             :publicly_available => true,
             :hardware           => {
-                :bitness  => 64,
-                :guest_os => 'unknown'
+              :bitness  => 64,
+              :guest_os => 'unknown'
             }
         }
 
