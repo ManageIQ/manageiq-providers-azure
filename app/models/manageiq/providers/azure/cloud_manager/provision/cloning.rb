@@ -50,10 +50,16 @@ module ManageIQ::Providers::Azure::CloudManager::Provision::Cloning
     nic_id = associated_nic || create_nic
 
     # TODO: Ideally this would be a check against source.storage or source.disks
-    if source.ems_ref.starts_with?('/subscriptions')
+    if source.ems_ref =~ /.+:.+:.+:.+/
+      urn_keys = %w(publisher offer sku version)
+      image_reference = Hash[urn_keys.zip(source.ems_ref.split(':'))]
+      os, target_uri, source_uri = nil
+    elsif source.ems_ref.starts_with?('/subscriptions')
       os = source.operating_system.product_name
       target_uri, source_uri = nil
+      image_reference = { :id => source.ems_ref }
     else
+      image_reference = nil
       target_uri, source_uri, os = gather_storage_account_properties
     end
 
@@ -90,7 +96,7 @@ module ManageIQ::Providers::Azure::CloudManager::Provision::Cloning
     else
       # Default to a storage account type of "Standard_LRS" for managed images for now.
       cloud_options[:properties][:storageProfile][:osDisk][:managedDisk] = {:storageAccountType => 'Standard_LRS'}
-      cloud_options[:properties][:storageProfile][:imageReference] = {:id => source.ems_ref}
+      cloud_options[:properties][:storageProfile][:imageReference] = image_reference
     end
 
     cloud_options[:properties][:osProfile][:customData] = custom_data unless userdata_payload.nil?
