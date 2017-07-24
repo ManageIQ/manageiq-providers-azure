@@ -2,7 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
-## Unreleased - as of Sprint 64 ending 2017-07-10
+## Unreleased - as of Sprint 65 ending 2017-07-24
+
+### Added
+- Marketplace image support [(#95)](https://github.com/ManageIQ/manageiq-providers-azure/pull/95)
+- Add blacklists for VM username and password when provisioning [(#88)](https://github.com/ManageIQ/manageiq-providers-azure/pull/88)
+
+### Fixed
+- Fix find_destination_in_vmdb to use insensitive find azure machine name in vmdb [(#93)](https://github.com/ManageIQ/manageiq-providers-azure/pull/93)
+
+ Unreleased - as of Sprint 64 ending 2017-07-10
 
 ### Added
 - Disable reset operation for VMs and add specs [(#81)](https://github.com/ManageIQ/manageiq-providers-azure/pull/81)
