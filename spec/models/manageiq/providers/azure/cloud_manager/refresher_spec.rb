@@ -3,13 +3,8 @@ require 'azure-armrest'
 describe ManageIQ::Providers::Azure::CloudManager::Refresher do
   before do
     _guid, _server, zone = EvmSpecHelper.create_guid_miq_server_zone
-    @ems = FactoryGirl.create(:ems_azure, :zone => zone, :provider_region => 'eastus')
 
-    # This will only pick up resources that the "MIQ Azure Testing" service principal has access to.
-    @client_id  = Rails.application.secrets.azure.try(:[], 'client_id') || 'AZURE_CLIENT_ID'
-    @client_key = Rails.application.secrets.azure.try(:[], 'client_secret') || 'AZURE_CLIENT_SECRET'
-    @tenant_id  = Rails.application.secrets.azure.try(:[], 'tenant_id') || 'AZURE_TENANT_ID'
-    @subscription_id = Rails.application.secrets.azure.try(:[], 'subscription_id') || 'AZURE_SUBSCRIPTION_ID'
+    @ems = FactoryGirl.create(:ems_azure_with_vcr_authentication, :zone => zone, :provider_region => 'eastus')
 
     @resource_group = 'miq-azure-test1'
     @managed_vm     = 'miqazure-linux-managed'
@@ -19,15 +14,6 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
     @managed_disk   = "miqazure-linux-managed_OsDisk_1_7b2bdf790a7d4379ace2846d307730cd"
     @template       = nil
     @avail_zone     = nil
-
-    cred = {
-      :userid   => @client_id,
-      :password => @client_key
-    }
-
-    @ems.authentications << FactoryGirl.create(:authentication, cred)
-    @ems.update_attributes(:azure_tenant_id => @tenant_id)
-    @ems.update_attributes(:subscription => @subscription_id)
   end
 
   after do
@@ -178,11 +164,6 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
   end
 
   def assert_ems
-    expect(@ems).to have_attributes(
-      :api_version => nil,
-      :uid_ems     => @tenant_id
-    )
-
     expect(@ems.flavors.size).to eql(expected_table_counts[:flavor])
     expect(@ems.availability_zones.size).to eql(expected_table_counts[:availability_zone])
     expect(@ems.vms_and_templates.size).to eql(expected_table_counts[:vm_or_template])
@@ -199,10 +180,10 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
   end
 
   def assert_specific_load_balancers
-    lb_ems_ref      = "/subscriptions/#{@subscription_id}/"\
+    lb_ems_ref      = "/subscriptions/#{@ems.subscription}/"\
                       "resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb1"
 
-    lb_pool_ems_ref = "/subscriptions/#{@subscription_id}/"\
+    lb_pool_ems_ref = "/subscriptions/#{@ems.subscription}/"\
                       "resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/"\
                       "rspec-lb1/backendAddressPools/rspec-lb-pool"
 
@@ -237,15 +218,15 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
   end
 
   def assert_specific_load_balancer_listeners
-    lb_listener_ems_ref      = "/subscriptions/#{@subscription_id}/resourceGroups/"\
+    lb_listener_ems_ref      = "/subscriptions/#{@ems.subscription}/resourceGroups/"\
                                "miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb1/"\
                                "loadBalancingRules/rspec-lb1-rule"
 
-    lb_pool_member_1_ems_ref = "/subscriptions/#{@subscription_id}/resourceGroups/"\
+    lb_pool_member_1_ems_ref = "/subscriptions/#{@ems.subscription}/resourceGroups/"\
                                "miq-azure-test1/providers/Microsoft.Network/networkInterfaces/rspec-lb-a670/"\
                                "ipConfigurations/ipconfig1"
 
-    lb_pool_member_2_ems_ref = "/subscriptions/#{@subscription_id}/resourceGroups/"\
+    lb_pool_member_2_ems_ref = "/subscriptions/#{@ems.subscription}/resourceGroups/"\
                                "miq-azure-test1/providers/Microsoft.Network/networkInterfaces/rspec-lb-b843/"\
                                "ipConfigurations/ipconfig1"
 
@@ -274,7 +255,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
   end
 
   def assert_specific_load_balancer_health_checks
-    health_check_ems_ref = "/subscriptions/#{@subscription_id}/resourceGroups/"\
+    health_check_ems_ref = "/subscriptions/#{@ems.subscription}/resourceGroups/"\
                            "miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb1/"\
                            "probes/rspec-lb-probe"
 
@@ -355,7 +336,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
   def assert_specific_cloud_network
     name = 'miq-azure-test1'
 
-    cn_resource_id = "/subscriptions/#{@subscription_id}"\
+    cn_resource_id = "/subscriptions/#{@ems.subscription}"\
                      "/resourceGroups/#{@resource_group}/providers/Microsoft.Network"\
                      "/virtualNetworks/#{@resource_group}"
 
@@ -394,7 +375,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
   def assert_specific_vm_powered_on
     vm = ManageIQ::Providers::Azure::CloudManager::Vm.where(
       :name => @device_name, :raw_power_state => "VM running").first
-    vm_resource_id = "#{@subscription_id}\\#{@resource_group}\\microsoft.compute/virtualmachines\\#{@device_name}"
+    vm_resource_id = "#{@ems.subscription}\\#{@resource_group}\\microsoft.compute/virtualmachines\\#{@device_name}"
 
     expect(vm).to have_attributes(
       :template              => false,
@@ -530,7 +511,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
 
   def assert_specific_vm_powered_off_attributes(v)
     name = 'miqazure-centos1'
-    vm_resource_id = "#{@subscription_id}\\#{@resource_group}\\microsoft.compute/virtualmachines\\#{name}"
+    vm_resource_id = "#{@ems.subscription}\\#{@resource_group}\\microsoft.compute/virtualmachines\\#{name}"
 
     expect(v).to have_attributes(
       :template              => false,
@@ -648,7 +629,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
       :status         => "Succeeded",
       :description    => "spec-nested-deployment-dont-delete",
       :resource_group => "miq-azure-test1",
-      :ems_ref        => "/subscriptions/#{@subscription_id}/resourceGroups"\
+      :ems_ref        => "/subscriptions/#{@ems.subscription}/resourceGroups"\
                          "/miq-azure-test1/providers/Microsoft.Resources"\
                          "/deployments/spec-nested-deployment-dont-delete",
     )
@@ -666,7 +647,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
     # assert one of the parameter models
     expect(parameters.find { |p| p.name == 'adminUsername' }).to have_attributes(
       :value   => "deploy1admin",
-      :ems_ref => "/subscriptions/#{@subscription_id}/resourceGroups"\
+      :ems_ref => "/subscriptions/#{@ems.subscription}/resourceGroups"\
                   "/miq-azure-test1/providers/Microsoft.Resources"\
                   "/deployments/spec-nested-deployment-dont-delete\\adminUsername"
     )
@@ -683,7 +664,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
       :resource_category      => "Microsoft.Compute/availabilitySets",
       :resource_status        => "Succeeded",
       :resource_status_reason => "OK",
-      :ems_ref                => "/subscriptions/#{@subscription_id}/resourceGroups"\
+      :ems_ref                => "/subscriptions/#{@ems.subscription}/resourceGroups"\
                                  "/miq-azure-test1/providers/Microsoft.Compute/availabilitySets/spec0deply1as"
     )
   end
@@ -696,7 +677,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
       :key         => "siteUri",
       :value       => "hard-coded output for test",
       :description => "siteUri",
-      :ems_ref     => "/subscriptions/#{@subscription_id}/resourceGroups"\
+      :ems_ref     => "/subscriptions/#{@ems.subscription}/resourceGroups"\
                       "/miq-azure-test1/providers/Microsoft.Resources"\
                       "/deployments/spec-deployment-dont-delete\\siteUri"
     )
@@ -728,11 +709,11 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
     ip_group  = 'miq-azure-test4' # Also EastUS
     nic_name  = 'miqmismatch1'
 
-    ems_ref_nic = "/subscriptions/#{@subscription_id}/resourceGroups"\
+    ems_ref_nic = "/subscriptions/#{@ems.subscription}/resourceGroups"\
                "/#{nic_group}/providers/Microsoft.Network"\
                "/networkInterfaces/miqmismatch1"
 
-    ems_ref_ip = "/subscriptions/#{@subscription_id}/resourceGroups"\
+    ems_ref_ip = "/subscriptions/#{@ems.subscription}/resourceGroups"\
                "/#{ip_group}/providers/Microsoft.Network"\
                "/publicIPAddresses/miqmismatch1"
 
