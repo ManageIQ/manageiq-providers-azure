@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## Fine-3
+
+### Added
+- Refactor service creation lock down api-version strings [(#51)](https://github.com/ManageIQ/manageiq-providers-azure/pull/51)
+- Add support for managed images [(#65)](https://github.com/ManageIQ/manageiq-providers-azure/pull/65)
+
+### Fixed
+- Upgrade armrest gem to 0.7.3 [(#74)](https://github.com/ManageIQ/manageiq-providers-azure/pull/74)
+- Handle possibility of network_port not having private_ip_address [(#85)](https://github.com/ManageIQ/manageiq-providers-azure/pull/85)
+- Handle possibility of no orchestration stacks [(#84)](https://github.com/ManageIQ/manageiq-providers-azure/pull/84)
+
 ## Fine-1
 
 ### Added
