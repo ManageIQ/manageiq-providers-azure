@@ -71,14 +71,13 @@ module ManageIQ::Providers::Azure::ManagerMixin
       known_ems_regions = known_emses.index_by(&:provider_region)
 
       config     = raw_connect(clientid, clientkey, azure_tenant_id, subscription)
-      azure_vmm  = ::Azure::Armrest::VirtualMachineService.new(config)
+      azure_res  = ::Azure::Armrest::ResourceService.new(config)
 
-      azure_vmm.locations.each do |region|
-        region = region.delete(' ').downcase
-        next if known_ems_regions.include?(region)
-        next if vms_in_region(azure_vmm, region).count == 0 # instances
+      azure_res.list_locations.each do |region|
+        next if known_ems_regions.include?(region.name)
+        next if vms_in_region(azure_res, region.name).count == 0 # instances
         # TODO: Check if images are == 0 and if so then skip
-        new_emses << create_discovered_region(region, clientid, clientkey, azure_tenant_id, subscription, all_ems_names)
+        new_emses << create_discovered_region(region.name, clientid, clientkey, azure_tenant_id, subscription, all_ems_names)
       end
 
       # at least create the Azure-eastus region.
@@ -99,8 +98,9 @@ module ManageIQ::Providers::Azure::ManagerMixin
       )
     end
 
-    def vms_in_region(azure_vmm, region)
-      azure_vmm.list_all.select { |vm| vm['location'] == region }
+    def vms_in_region(azure_res, region)
+      filter = "resourceType eq 'Microsoft.Compute/virtualMachines' and location eq '#{region}'"
+      azure_res.list_all(:all => true, :filter => filter)
     end
 
     def discover_from_queue(clientid, clientkey, azure_tenant_id, subscription)
