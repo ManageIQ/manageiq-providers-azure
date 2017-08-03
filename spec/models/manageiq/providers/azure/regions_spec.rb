@@ -1,4 +1,10 @@
+require 'azure-armrest'
+
 describe ManageIQ::Providers::Azure::Regions do
+  before do
+    ::Azure::Armrest::Configuration.clear_caches
+  end
+
   it "has all the regions" do
     ems = FactoryGirl.create(:ems_azure_with_vcr_authentication)
 
