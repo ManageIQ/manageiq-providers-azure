@@ -1,14 +1,17 @@
 require 'azure-armrest'
 
 describe ManageIQ::Providers::Azure::Regions do
-  before do
+  after do
     ::Azure::Armrest::Configuration.clear_caches
   end
 
   it "has all the regions" do
     ems = FactoryGirl.create(:ems_azure_with_vcr_authentication)
+    ems.reload
 
-    VCR.use_cassette(described_class.name.underscore) do
+    name = described_class.name.underscore
+
+    VCR.use_cassette(name, :allow_unused_http_interactions => true, :decode_compressed_response => true) do
       # Any subclass of ArmrestService will suffice here.
       vms = Azure::Armrest::VirtualMachineService.new(ems.connect)
 
