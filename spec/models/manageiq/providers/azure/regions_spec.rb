@@ -1,22 +1,19 @@
-require 'azure-armrest'
-
 describe ManageIQ::Providers::Azure::Regions do
-  after do
-    ::Azure::Armrest::Configuration.clear_caches
-  end
 
-  it "has all the regions" do
-    ems = FactoryGirl.create(:ems_azure_with_vcr_authentication)
-    ems.reload
+  context "region list" do
+    # You can get these by running Azure::Armrest::ArmrestService#list_locations
+    def azure_regions
+      %w(
+        australiaeast australiasoutheast brazilsouth canadacentral canadaeast
+        centralindia centralus eastasia eastus eastus2 japaneast japanwest
+        koreacentral koreasouth northcentralus northeurope southcentralus
+        southeastasia southindia uksouth ukwest westcentralus westeurope
+        westindia westus westus2
+      )
+    end
 
-    name = described_class.name.underscore
-
-    VCR.use_cassette(name, :allow_unused_http_interactions => true, :decode_compressed_response => true) do
-      # Any subclass of ArmrestService will suffice here.
-      vms = Azure::Armrest::VirtualMachineService.new(ems.connect)
-
+    it "has all the regions" do
       defined_regions = described_class.regions.map { |_name, config| config[:name] }
-      azure_regions   = vms.list_locations.map(&:name)
 
       # We cheat a bit here because our sub doesn't have access to some regions
       defined_regions.reject! { |region| region =~ /usgov|china|germany/i }
