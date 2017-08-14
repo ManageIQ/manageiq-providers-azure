@@ -100,6 +100,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
       assert_specific_load_balancer_health_checks
       assert_specific_vm_with_managed_disk
       assert_specific_managed_disk
+      assert_specific_resource_group
     end
   end
 
@@ -481,6 +482,17 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
 
     expect(disk.location).to be_nil
     expect(disk.size).to eql(1023.megabyte)
+  end
+
+  def assert_specific_resource_group
+    vm_managed   = Vm.find_by(:name => @managed_vm)
+    vm_unmanaged = Vm.find_by(:name => @device_name)
+
+    managed_group = ResourceGroup.find_by(:name => 'miq-azure-test4')
+    unmanaged_group = ResourceGroup.find_by(:name => 'miq-azure-test1')
+
+    expect(vm_managed.resource_group).to eql(managed_group)
+    expect(vm_unmanaged.resource_group).to eql(unmanaged_group)
   end
 
   def assert_specific_vm_powered_off
