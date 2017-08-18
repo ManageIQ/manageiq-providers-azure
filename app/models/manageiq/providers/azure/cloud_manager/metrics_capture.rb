@@ -2,12 +2,21 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
   INTERVAL_1_MINUTE = "PT1M".freeze
 
   # Linux, Windows counters
-  CPU_METERS     = ["\\Processor(_Total)\\% Processor Time", "\\Processor\\PercentProcessorTime"].freeze
+  CPU_METERS     = ["\\Processor Information(_Total)\\% Processor Time",
+                    "\\Processor(_Total)\\% Processor Time",
+                    "\\Processor\\PercentProcessorTime"].freeze
+
   NETWORK_METERS = ["\\NetworkInterface\\BytesTotal"].freeze # Linux (No windows counter available)
-  MEMORY_METERS  = ["\\Memory\\PercentUsedMemory", "\\Memory\\% Committed Bytes In Use"].freeze
+
+  MEMORY_METERS  = ["\\Memory\\PercentUsedMemory",
+                    "\\Memory\\% Committed Bytes In Use",
+                    "\\Memory\\Committed Bytes"].freeze
+
   DISK_METERS    = ["\\PhysicalDisk\\BytesPerSecond",
                     "\\PhysicalDisk(_Total)\\Disk Read Bytes/sec", # Windows
-                    "\\PhysicalDisk(_Total)\\Disk Write Bytes/sec"].freeze # Windows
+                    "\\PhysicalDisk(_Total)\\Disk Write Bytes/sec",
+                    "\\LogicalDisk(_Total)\\Disk Read Bytes/sec",
+                    "\\LogicalDisk(_Total)\\Disk Write Bytes/sec"].freeze # Windows
 
   COUNTER_INFO = [
     {
