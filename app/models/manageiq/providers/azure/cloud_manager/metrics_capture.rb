@@ -202,14 +202,14 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
     begin
       counters, _timings = Benchmark.realtime_block(:capture_counters) do
         metrics_conn
-          .list('Microsoft.Compute', 'virtualMachines', target.name, target.resource_group)
+          .list('Microsoft.Compute', 'virtualMachines', target.name, target.resource_group.name)
           .select { |m| m.name.value.in?(COUNTER_NAMES) }
       end
     rescue ::Azure::Armrest::RequestTimeoutException # Problem on Azure side
-      _log.warn("Timeout attempting to collect metrics definitions for: #{target.name}/#{target.resource_group}. Skipping.")
+      _log.warn("Timeout attempting to collect metrics definitions for: #{target.name}/#{target.resource_group.name}. Skipping.")
       counters = []
     rescue Exception => err
-      _log.error("Unhandled exception during counter collection: #{target.name}/#{target.resource_group}")
+      _log.error("Unhandled exception during counter collection: #{target.name}/#{target.resource_group.name}")
       _log.log_backtrace(err)
       raise
     end
