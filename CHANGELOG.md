@@ -3,6 +3,7 @@
 All notable changes to this project will be documented in this file.
 
 ## Sprint 67 ending 2017-08-21
+- Updated metric names for Azure metrics [(#114)](https://github.com/ManageIQ/manageiq-providers-azure/pull/114)
 - Create resource group association for instances and managed images [(#72)](https://github.com/ManageIQ/manageiq-providers-azure/pull/72)
 
 
