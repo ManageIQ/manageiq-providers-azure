@@ -14,12 +14,12 @@ module ManageIQ::Providers::Azure::CloudManager::VmOrTemplateShared::Scanning
     require 'MiqVm/miq_azure_vm'
 
     vm_args = { :name => name }
-    _log.debug "name: #{name} (template = #{template})"
+    _log.debug ("name: #{name} (template = #{template})")
     if template
-      _log.debug "image_uri: #{uid_ems}"
+      _log.debug ("image_uri: #{uid_ems}")
       vm_args[:image_uri] = uid_ems
     else
-      _log.debug "resource_group: #{resource_group}"
+      _log.debug ("resource_group: #{resource_group}")
       vm_args[:resource_group] = resource_group
     end
 
@@ -61,13 +61,13 @@ module ManageIQ::Providers::Azure::CloudManager::VmOrTemplateShared::Scanning
     begin
       vm_obj = provider_service.get(name, resource_group)
       if vm_obj.managed_disk?
-        _log.debug "VM #{name} has a Managed Disk - Snapshot required for Scan"
+        _log.debug ("VM #{name} has a Managed Disk - Snapshot required for Scan")
         return true
       end
     rescue => err
-      _log.error "Error Class=#{err.class.name}, Message=#{err.message}"
+      _log.error ("Error Class=#{err.class.name}, Message=#{err.message}")
     end
-    _log.debug "VM #{name} does not have a Managed Disk - no Snapshot required for Scan"
+    _log.debug ("VM #{name} does not have a Managed Disk - no Snapshot required for Scan")
     false
   end
 end
