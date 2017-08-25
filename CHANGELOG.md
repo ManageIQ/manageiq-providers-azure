@@ -2,10 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
-## Sprint 67 ending 2017-08-21
+## Unreleased - as of Sprint 67 ending 2017-08-21
 - Updated metric names for Azure metrics [(#114)](https://github.com/ManageIQ/manageiq-providers-azure/pull/114)
 - Create resource group association for instances and managed images [(#72)](https://github.com/ManageIQ/manageiq-providers-azure/pull/72)
-
 
 ## Unreleased - as of Sprint 66 ending 2017-08-07
 
@@ -26,7 +25,7 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 - Fix find_destination_in_vmdb to use insensitive find azure machine name in vmdb [(#93)](https://github.com/ManageIQ/manageiq-providers-azure/pull/93)
 
- Unreleased - as of Sprint 64 ending 2017-07-10
+## Unreleased - as of Sprint 64 ending 2017-07-10
 
 ### Added
 - Disable reset operation for VMs and add specs [(#81)](https://github.com/ManageIQ/manageiq-providers-azure/pull/81)
@@ -36,18 +35,8 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 - Security Groups array_integer data type [(#91)](https://github.com/ManageIQ/manageiq-providers-azure/pull/91)
 - Fix VM password restrictions [(#87)](https://github.com/ManageIQ/manageiq-providers-azure/pull/87)
-- Handle possibility of no orchestration stacks [(#84)](https://github.com/ManageIQ/manageiq-providers-azure/pull/84)
-- Handle possibility of network_port not having private_ip_address [(#85)](https://github.com/ManageIQ/manageiq-providers-azure/pull/85)
-
-## Unreleased - as of Sprint 62 ending 2017-06-05
-
-### Fixed
-- Upgrade armrest gem to 0.7.3 [(#74)](https://github.com/ManageIQ/manageiq-providers-azure/pull/74)
 
 ## Unreleased - as of Sprint 61 ending 2017-05-22
-
-### Added
-- Add support for managed images [(#65)](https://github.com/ManageIQ/manageiq-providers-azure/pull/65)
 
 ### Fixed
 - Provisioning - First and Last names are not required. [(#73)](https://github.com/ManageIQ/manageiq-providers-azure/pull/73)
@@ -57,10 +46,16 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Make azure-armrest dependency less pessimistic [(#55)](https://github.com/ManageIQ/manageiq-providers-azure/pull/55)
 
-## Unreleased - as of Sprint 59 ending 2017-04-24
+## Fine-3
 
 ### Added
 - Refactor service creation lock down api-version strings [(#51)](https://github.com/ManageIQ/manageiq-providers-azure/pull/51)
+- Add support for managed images [(#65)](https://github.com/ManageIQ/manageiq-providers-azure/pull/65)
+
+### Fixed
+- Upgrade armrest gem to 0.7.3 [(#74)](https://github.com/ManageIQ/manageiq-providers-azure/pull/74)
+- Handle possibility of network_port not having private_ip_address [(#85)](https://github.com/ManageIQ/manageiq-providers-azure/pull/85)
+- Handle possibility of no orchestration stacks [(#84)](https://github.com/ManageIQ/manageiq-providers-azure/pull/84)
 
 ## Fine-1
 
