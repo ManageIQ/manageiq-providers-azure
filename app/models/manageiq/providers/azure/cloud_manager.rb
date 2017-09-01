@@ -13,6 +13,7 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
   require_nested :Provision
   require_nested :ProvisionWorkflow
   require_nested :OrchestrationStack
+  require_nested :OrchestrationTemplate
   require_nested :OrchestrationServiceOptionConverter
 
   include ManageIQ::Providers::Azure::ManagerMixin
