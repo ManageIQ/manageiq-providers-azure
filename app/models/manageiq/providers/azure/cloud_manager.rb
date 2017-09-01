@@ -34,6 +34,8 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
   before_create :ensure_managers
   before_update :ensure_managers_zone_and_provider_region
 
+  SSA_SNAPSHOT_SUFFIX = "__EVM__SSA__SNAPSHOT".freeze
+
   # If the Microsoft.Insights Azure provider is not registered, then neither
   # events nor metrics are supported for that EMS.
   #
@@ -113,5 +115,57 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
     vm.reboot_guest
   rescue => err
     _log.error "vm=[#{vm.name}], error: #{err}"
+  end
+
+  def vm_create_evm_snapshot(vm, options = {})
+    conf     = connect(options)
+    vm_svc   = vm.provider_service(conf)
+    snap_svc = snapshot_service(conf)
+    vm_obj   = vm_svc.get(vm.name, vm.resource_group)
+    return unless vm_obj.managed_disk?
+    os_disk      = vm_obj.properties.storage_profile.os_disk
+    snap_options = { :location   => vm.location,
+                     :properties => {
+                       :creationData => {
+                         :createOption     => "Copy",
+                         :sourceResourceId => os_disk.managed_disk.id
+                       }
+                     } }
+    snap_name = "#{os_disk.name}#{SSA_SNAPSHOT_SUFFIX}"
+    _log.debug("vm=[#{vm.name}] creating SSA snapshot #{snap_name}")
+    begin
+      snap_svc.get(snap_name, vm.resource_group)
+    rescue ::Azure::Armrest::NotFoundException, ::Azure::Armrest::ResourceNotFoundException => err
+      begin
+        snap_svc.create(snap_name, vm.resource_group, snap_options)
+        return snap_name
+      rescue => err
+        _log.error("vm=[#{vm.name}], error: #{err}")
+        _log.debug { err.backtrace.join("\n") }
+        raise "Error #{err} creating SSA Snapshot #{snap_name}"
+      end
+    end
+    _log.error("SSA Snapshot #{snap_name} already exists.")
+    raise "Snapshot #{snap_name} already exists. Another SSA request for this VM is in progress or a previous one failed to clean up properly."
+  end
+
+  def vm_delete_evm_snapshot(vm, options = {})
+    conf      = connect(options)
+    vm_svc    = vm.provider_service(conf)
+    snap_svc  = snapshot_service(conf)
+    vm_obj    = vm_svc.get(vm.name, vm.resource_group)
+    os_disk   = vm_obj.properties.storage_profile.os_disk
+    snap_name = "#{os_disk.name}#{SSA_SNAPSHOT_SUFFIX}"
+    _log.debug("vm=[#{vm.name}] deleting SSA snapshot #{snap_name}")
+    snap_svc.delete(snap_name, vm.resource_group)
+  rescue => err
+    _log.error("vm=[#{vm.name}], error: #{err}")
+    _log.debug { err.backtrace.join("\n") }
+  end
+
+  def snapshot_service(connection = nil)
+    _log.debug("Enter")
+    connection ||= connect
+    ::Azure::Armrest::Storage::SnapshotService.new(connection)
   end
 end
