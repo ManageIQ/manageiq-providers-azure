@@ -2,8 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
+
 ## Unreleased - as of Sprint 67 ending 2017-08-21
+
+### Fixed
 - Updated metric names for Azure metrics [(#114)](https://github.com/ManageIQ/manageiq-providers-azure/pull/114)
+
+### Added
 - Create resource group association for instances and managed images [(#72)](https://github.com/ManageIQ/manageiq-providers-azure/pull/72)
 
 ## Unreleased - as of Sprint 66 ending 2017-08-07
