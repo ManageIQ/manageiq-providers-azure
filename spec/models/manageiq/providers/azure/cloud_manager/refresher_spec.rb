@@ -625,7 +625,9 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
   end
 
   def assert_specific_orchestration_template
-    @orch_template = OrchestrationTemplateAzure.find_by(:name => "spec-nested-deployment-dont-delete")
+    @orch_template = ManageIQ::Providers::Azure::CloudManager::OrchestrationTemplate.find_by(
+      :name => "spec-nested-deployment-dont-delete"
+    )
     expect(@orch_template).to have_attributes(
       :md5 => "05e28d9332a3b60def5fbd66ac031a7d"
     )
@@ -636,7 +638,8 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
 
   def assert_specific_orchestration_stack
     @orch_stack = ManageIQ::Providers::Azure::CloudManager::OrchestrationStack.find_by(
-      :name => "spec-nested-deployment-dont-delete")
+      :name => "spec-nested-deployment-dont-delete"
+    )
     expect(@orch_stack).to have_attributes(
       :status         => "Succeeded",
       :description    => "spec-nested-deployment-dont-delete",

@@ -459,7 +459,7 @@ module ManageIQ::Providers
 
       def parse_stack_template(template)
         new_result = {
-          :type        => "OrchestrationTemplateAzure",
+          :type        => ManageIQ::Providers::Azure::CloudManager::OrchestrationTemplate.name,
           :name        => template[:name],
           :description => template[:description],
           :content     => template[:content],
