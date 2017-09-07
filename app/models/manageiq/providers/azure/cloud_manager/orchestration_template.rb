@@ -1,4 +1,8 @@
 class ManageIQ::Providers::Azure::CloudManager::OrchestrationTemplate < ::OrchestrationTemplate
+  def format
+    'json'.freeze
+  end
+
   def parameter_groups
     # Azure format does not have the concept of parameter group
     # Place all parameters in one group
