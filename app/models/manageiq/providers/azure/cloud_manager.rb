@@ -175,8 +175,8 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
     end
   end
 
-  def vm_delete_managed_snapshot(vm, options = {})
-    snap_svc  = snapshot_service(@connection)
+  def vm_delete_managed_snapshot(vm, _options = {})
+    snap_svc = snapshot_service(@connection)
     _log.debug("vm=[#{vm.name}] deleting SSA snapshot #{vm.snap_name}")
     snap_svc.delete(vm.snap_name, vm.resource_group.name)
   rescue => err

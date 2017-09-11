@@ -41,9 +41,7 @@ module ManageIQ::Providers::Azure::CloudManager::VmOrTemplateShared
     @os_disk ||= vm_object.properties.storage_profile.os_disk
   end
 
-  def managed_disk?
-    vm_object.managed_disk?
-  end
+  delegate :managed_disk?, to: :vm_object
 
   def snap_name
     @snap_name ||= "#{os_disk.name}#{SSA_SNAPSHOT_SUFFIX}"
