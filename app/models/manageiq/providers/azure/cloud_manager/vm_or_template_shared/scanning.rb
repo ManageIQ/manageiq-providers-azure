@@ -19,8 +19,8 @@ module ManageIQ::Providers::Azure::CloudManager::VmOrTemplateShared::Scanning
       _log.debug("image_uri: #{uid_ems}")
       vm_args[:image_uri] = uid_ems
     else
-      _log.debug("resource_group: #{resource_group}")
       vm_args[:resource_group] = resource_group
+      vm_args[:snapshot] = ost.scanData["snapshot"]["name"] unless managed_disk?
     end
 
     ost.scanTime = Time.now.utc unless ost.scanTime
@@ -58,16 +58,6 @@ module ManageIQ::Providers::Azure::CloudManager::VmOrTemplateShared::Scanning
   end
 
   def require_snapshot_for_scan?
-    begin
-      vm_obj = provider_service.get(name, resource_group)
-      if vm_obj.managed_disk?
-        _log.debug("VM #{name} has a Managed Disk - Snapshot required for Scan")
-        return true
-      end
-    rescue => err
-      _log.error("Error Class=#{err.class.name}, Message=#{err.message}")
-    end
-    _log.debug("VM #{name} does not have a Managed Disk - no Snapshot required for Scan")
-    false
+    true
   end
 end

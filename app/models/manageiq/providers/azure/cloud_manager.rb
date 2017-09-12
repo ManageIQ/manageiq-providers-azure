@@ -34,8 +34,6 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
   before_create :ensure_managers
   before_update :ensure_managers_zone_and_provider_region
 
-  SSA_SNAPSHOT_SUFFIX = "__EVM__SSA__SNAPSHOT".freeze
-
   # If the Microsoft.Insights Azure provider is not registered, then neither
   # events nor metrics are supported for that EMS.
   #
@@ -118,49 +116,86 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
   end
 
   def vm_create_evm_snapshot(vm, options = {})
-    conf     = connect(options)
-    vm_svc   = vm.provider_service(conf)
-    snap_svc = snapshot_service(conf)
-    vm_obj   = vm_svc.get(vm.name, vm.resource_group)
-    return unless vm_obj.managed_disk?
-    os_disk      = vm_obj.properties.storage_profile.os_disk
+    @connection = connect(options)
+    vm.provider_service(@connection)
+    if vm.managed_disk?
+      vm_create_evm_managed_snapshot(vm)
+    else
+      vm_create_evm_blob_snapshot(vm)
+    end
+  end
+
+  def vm_create_evm_managed_snapshot(vm)
+    snap_svc     = snapshot_service(@connection)
     snap_options = { :location   => vm.location,
                      :properties => {
                        :creationData => {
                          :createOption     => "Copy",
-                         :sourceResourceId => os_disk.managed_disk.id
+                         :sourceResourceId => vm.os_disk.managed_disk.id
                        }
                      } }
-    snap_name = "#{os_disk.name}#{SSA_SNAPSHOT_SUFFIX}"
-    _log.debug("vm=[#{vm.name}] creating SSA snapshot #{snap_name}")
+    _log.debug("vm=[#{vm.name}] creating SSA snapshot #{vm.ssa_snap_name}")
     begin
-      snap_svc.get(snap_name, vm.resource_group)
+      ssa_snap_name  = vm.ssa_snap_name
+      resource_group = vm.resource_group.name
+      snap_svc.get(ssa_snap_name, resource_group)
     rescue ::Azure::Armrest::NotFoundException, ::Azure::Armrest::ResourceNotFoundException => err
       begin
-        snap_svc.create(snap_name, vm.resource_group, snap_options)
-        return snap_name
+        snap_svc.create(ssa_snap_name, resource_group, snap_options)
+        return ssa_snap_name
       rescue => err
         _log.error("vm=[#{vm.name}], error: #{err}")
         _log.debug { err.backtrace.join("\n") }
-        raise "Error #{err} creating SSA Snapshot #{snap_name}"
+        raise "Error #{err} creating SSA Snapshot #{ssa_snap_name}"
       end
     end
-    _log.error("SSA Snapshot #{snap_name} already exists.")
-    raise "Snapshot #{snap_name} already exists. Another SSA request for this VM is in progress or a previous one failed to clean up properly."
+    _log.error("SSA Snapshot #{ssa_snap_name} already exists.")
+    raise "Snapshot #{ssa_snap_name} already exists. Another SSA request for this VM is in progress or a previous one failed to clean up properly."
+  end
+
+  def vm_create_evm_blob_snapshot(vm)
+    _log.debug("vm=[#{vm.name}] creating SSA snapshot for #{vm.blob_uri}")
+    begin
+      snapshot_info = vm.storage_acct.create_blob_snapshot(vm.container, vm.blob, vm.key)
+      return snapshot_info[:x_ms_snapshot]
+    rescue => err
+      _log.error("vm=[#{vm.name}], error:#{err}")
+      _log.debug { err.backtrace.join("\n") }
+      raise "Error #{err} creating SSA Snapshot for #{vm.name}"
+    end
   end
 
   def vm_delete_evm_snapshot(vm, options = {})
-    conf      = connect(options)
-    vm_svc    = vm.provider_service(conf)
-    snap_svc  = snapshot_service(conf)
-    vm_obj    = vm_svc.get(vm.name, vm.resource_group)
-    os_disk   = vm_obj.properties.storage_profile.os_disk
-    snap_name = "#{os_disk.name}#{SSA_SNAPSHOT_SUFFIX}"
-    _log.debug("vm=[#{vm.name}] deleting SSA snapshot #{snap_name}")
-    snap_svc.delete(snap_name, vm.resource_group)
+    @connection = connect(options)
+    if vm.managed_disk?
+      vm_delete_managed_snapshot(vm, options)
+    else
+      vm_delete_blob_snapshot(vm, options)
+    end
+  end
+
+  def vm_delete_managed_snapshot(vm, _options = {})
+    snap_svc = snapshot_service(@connection)
+    _log.debug("vm=[#{vm.name}] deleting SSA snapshot #{vm.ssa_snap_name}")
+    snap_svc.delete(vm.ssa_snap_name, vm.resource_group.name)
   rescue => err
-    _log.error("vm=[#{vm.name}], error: #{err}")
+    _log.error("vm=[#{vm.name}], error: #{err} deleting SSA snapshot #{vm.ssa_snap_name}")
     _log.debug { err.backtrace.join("\n") }
+  end
+
+  def vm_delete_blob_snapshot(vm, options = {})
+    unless options[:snMor]
+      _log.error("Unable to clean up SSA snapshot: Missing Snapshot Date")
+      return
+    end
+    _log.debug("vm=[#{vm.name}] deleting SSA snapshot for #{vm.blob_uri} with date #{options[:snMor]}")
+    begin
+      snap_opts = { :date => options[:snMor] }
+      vm.storage_acct.delete_blob(vm.container, vm.blob, vm.key, snap_opts)
+    rescue => err
+      _log.error("vm=[#{vm.name}], error:#{err} deleting SSA snapshot with date #{options[:snMor]}")
+      _log.debug { err.backtrace.join("\n") }
+    end
   end
 
   def snapshot_service(connection = nil)
