@@ -135,23 +135,23 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
                          :sourceResourceId => vm.os_disk.managed_disk.id
                        }
                      } }
-    _log.debug("vm=[#{vm.name}] creating SSA snapshot #{vm.snap_name}")
+    _log.debug("vm=[#{vm.name}] creating SSA snapshot #{vm.ssa_snap_name}")
     begin
-      snap_name      = vm.snap_name
+      ssa_snap_name  = vm.ssa_snap_name
       resource_group = vm.resource_group.name
-      snap_svc.get(snap_name, resource_group)
+      snap_svc.get(ssa_snap_name, resource_group)
     rescue ::Azure::Armrest::NotFoundException, ::Azure::Armrest::ResourceNotFoundException => err
       begin
-        snap_svc.create(snap_name, resource_group, snap_options)
-        return snap_name
+        snap_svc.create(ssa_snap_name, resource_group, snap_options)
+        return ssa_snap_name
       rescue => err
         _log.error("vm=[#{vm.name}], error: #{err}")
         _log.debug { err.backtrace.join("\n") }
-        raise "Error #{err} creating SSA Snapshot #{snap_name}"
+        raise "Error #{err} creating SSA Snapshot #{ssa_snap_name}"
       end
     end
-    _log.error("SSA Snapshot #{snap_name} already exists.")
-    raise "Snapshot #{snap_name} already exists. Another SSA request for this VM is in progress or a previous one failed to clean up properly."
+    _log.error("SSA Snapshot #{ssa_snap_name} already exists.")
+    raise "Snapshot #{ssa_snap_name} already exists. Another SSA request for this VM is in progress or a previous one failed to clean up properly."
   end
 
   def vm_create_evm_blob_snapshot(vm)
@@ -177,10 +177,10 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
 
   def vm_delete_managed_snapshot(vm, _options = {})
     snap_svc = snapshot_service(@connection)
-    _log.debug("vm=[#{vm.name}] deleting SSA snapshot #{vm.snap_name}")
-    snap_svc.delete(vm.snap_name, vm.resource_group.name)
+    _log.debug("vm=[#{vm.name}] deleting SSA snapshot #{vm.ssa_snap_name}")
+    snap_svc.delete(vm.ssa_snap_name, vm.resource_group.name)
   rescue => err
-    _log.error("vm=[#{vm.name}], error: #{err} deleting SSA snapshot #{vm.snap_name}")
+    _log.error("vm=[#{vm.name}], error: #{err} deleting SSA snapshot #{vm.ssa_snap_name}")
     _log.debug { err.backtrace.join("\n") }
   end
 

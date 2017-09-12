@@ -43,8 +43,8 @@ module ManageIQ::Providers::Azure::CloudManager::VmOrTemplateShared
 
   delegate :managed_disk?, to: :vm_object
 
-  def snap_name
-    @snap_name ||= "#{os_disk.name}#{SSA_SNAPSHOT_SUFFIX}"
+  def ssa_snap_name
+    @ssa_snap_name ||= "#{os_disk.name}#{SSA_SNAPSHOT_SUFFIX}"
   end
 
   def blob_uri
