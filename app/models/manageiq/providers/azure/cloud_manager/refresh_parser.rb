@@ -169,15 +169,32 @@ module ManageIQ::Providers
         process_collection(images, :vms) { |image| parse_managed_image(image) }
       end
 
+      # Collect marketplace image information if configured to do so. Normally
+      # users will specify images in their configuration file. If the option
+      # to collect marketplace images is selected, but there are no images
+      # specified in the configuration file, it will attempt to collect all
+      # marketplace images, which is an expensive operation.
+      #
       def get_market_images
-        urns   = @options.market_image_urns
-        images = if urns
-                   gather_data_for_this_region(@vmis).select do |image|
-                     urns.include?(image.id)
-                   end
-                 else
-                   gather_data_for_this_region(@vmis)
-                 end
+        urns = @options.market_image_urns
+
+        if urns
+          images = urns.collect do |urn|
+            publisher, offer, sku, version = urn.split(':')
+
+            ::Azure::Armrest::VirtualMachineImage.new(
+              :location  => @ems.provider_region,
+              :publisher => publisher,
+              :offer     => offer,
+              :sku       => sku,
+              :version   => version,
+              :id        => urn
+            )
+          end
+        else
+          images = gather_data_for_this_region(@vmis)
+        end
+
         process_collection(images, :vms) { |image| parse_market_image(image) }
       end
 
