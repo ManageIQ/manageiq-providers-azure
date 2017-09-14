@@ -142,7 +142,9 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
       snap_svc.get(ssa_snap_name, resource_group)
     rescue ::Azure::Armrest::NotFoundException, ::Azure::Armrest::ResourceNotFoundException => err
       begin
-        snap_svc.create(ssa_snap_name, resource_group, snap_options)
+        response = snap_svc.create(ssa_snap_name, resource_group, snap_options)
+        # wait a minute at a time, allowing the Job Timeout to handle long-running snapshots here
+        next until snap_svc.wait(response.response_headers) =~ /^succe/i
         return ssa_snap_name
       rescue => err
         _log.error("vm=[#{vm.name}], error: #{err}")
@@ -158,6 +160,8 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
     _log.debug("vm=[#{vm.name}] creating SSA snapshot for #{vm.blob_uri}")
     begin
       snapshot_info = vm.storage_acct.create_blob_snapshot(vm.container, vm.blob, vm.key)
+      # wait a minute at a time, allowing the Job Timeout to handle long-running snapshots here
+      next until vm.storage_acct_service.wait(snapshot_info) =~ /^succe/i
       return snapshot_info[:x_ms_snapshot]
     rescue => err
       _log.error("vm=[#{vm.name}], error:#{err}")
