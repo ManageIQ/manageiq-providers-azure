@@ -138,13 +138,17 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
     begin
       ssa_snap_name  = vm.ssa_snap_name
       resource_group = vm.resource_group.name
-      snap_svc.get(ssa_snap_name, resource_group)
+      snap_svc.get(ssa_snap_name, resource_group) # Check if snapshot already exists
     rescue ::Azure::Armrest::NotFoundException, ::Azure::Armrest::ResourceNotFoundException => err
       begin
+        # The snapshot doesn't exist, create it.
         response = snap_svc.create(ssa_snap_name, resource_group, snap_options)
         # wait a minute at a time, allowing the Job Timeout to handle long-running snapshots here
-        next until snap_svc.wait(response.response_headers) =~ /^succe/i
-        return ssa_snap_name
+        loop do
+          snap_state = snap_svc.wait(response.response_headers)
+          _log.debug("Snapshot creation state = #{snap_state}")
+          return ssa_snap_name if snap_state =~ /succe/i
+        end
       rescue => err
         _log.error("vm=[#{vm.name}], error: #{err}")
         _log.debug { err.backtrace.join("\n") }
@@ -160,8 +164,11 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
     begin
       snapshot_info = vm.storage_acct.create_blob_snapshot(vm.container, vm.blob, vm.key)
       # wait a minute at a time, allowing the Job Timeout to handle long-running snapshots here
-      next until vm.storage_acct_service.wait(snapshot_info) =~ /^succe/i
-      return snapshot_info[:x_ms_snapshot]
+      loop do
+        snap_state = vm.storage_acct_service.wait(snapshot_info)
+        _log.debug("Snapshot creation state = #{snap_state}")
+        return snapshot_info[:x_ms_snapshot] if snap_state =~ /succe/i
+      end
     rescue => err
       _log.error("vm=[#{vm.name}], error:#{err}")
       _log.debug { err.backtrace.join("\n") }
