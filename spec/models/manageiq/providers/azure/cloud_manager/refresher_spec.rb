@@ -37,6 +37,32 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
     @ems.reload
   end
 
+  context "marketplace images" do
+    let(:urns) do
+      [
+        "Foo:Bar:Stuff:1.0",
+        "Foo:Baz:Stuff:1.1",
+        "Foo:Baz:MoreStuff:2.1",
+        "Foo:Baz:MoreStuff:latest"
+      ]
+    end
+
+    let(:settings) do
+      {:ems_refresh => {:azure => {:get_market_images => true, :market_image_urns => urns}}}
+    end
+
+    it "does not collect marketplace images by default" do
+      setup_ems_and_cassette
+      expect(VmOrTemplate.where(:publicly_available => true).count).to eql(0)
+    end
+
+    it "collects only the marketplace images from the settings file if present" do
+      stub_settings_merge(settings)
+      setup_ems_and_cassette
+      expect(VmOrTemplate.where(:publicly_available => true).count).to eql(4)
+    end
+  end
+
   context "template deployments" do
     let(:template_deployment_service) { double }
 
