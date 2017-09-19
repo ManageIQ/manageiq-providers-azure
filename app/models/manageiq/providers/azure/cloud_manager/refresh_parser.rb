@@ -6,7 +6,7 @@ module ManageIQ::Providers
 
       TYPE_DEPLOYMENT = "microsoft.resources/deployments"
 
-      def self.ems_inv_to_hashes(ems, options = nil)
+      def self.ems_inv_to_hashes(ems, options = Config::Options.new)
         new(ems, options).ems_inv_to_hashes
       end
 
