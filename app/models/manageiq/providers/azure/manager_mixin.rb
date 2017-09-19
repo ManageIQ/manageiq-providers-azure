@@ -48,6 +48,8 @@ module ManageIQ::Providers::Azure::ManagerMixin
 
     def environment_for(region)
       case region
+      when /germany/i
+        ::Azure::Armrest::Environment::Germany
       when /usgov/i
         ::Azure::Armrest::Environment::USGovernment
       else

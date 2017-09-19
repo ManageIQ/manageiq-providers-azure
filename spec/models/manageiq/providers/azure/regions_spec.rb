@@ -1,24 +1,33 @@
 describe ManageIQ::Providers::Azure::Regions do
 
   context "region list" do
+    let(:eastus) { {:name => "eastus", :description => "East US"} }
+    let(:germanycentral) { {:name => "germanycentral", :description => "Germany Central"} }
+
     # You can get these by running Azure::Armrest::ArmrestService#list_locations
     def azure_regions
       %w(
         australiaeast australiasoutheast brazilsouth canadacentral canadaeast
-        centralindia centralus eastasia eastus eastus2 japaneast japanwest
-        koreacentral koreasouth northcentralus northeurope southcentralus
-        southeastasia southindia uksouth ukwest westcentralus westeurope
-        westindia westus westus2
+        centralindia centralus eastasia eastus eastus2
+        germanycentral germanynortheast japaneast japanwest koreacentral
+        koreasouth northcentralus northeurope southcentralus southeastasia
+        southindia uksouth ukwest usgovarizona usgoviowa usgovtexas usgovvirginia
+        westcentralus westeurope westindia westus westus2
       )
     end
 
-    it "has all the regions" do
-      defined_regions = described_class.regions.map { |_name, config| config[:name] }
+    it "returns the expected array for the names method" do
+      expect(azure_regions).to match_array(described_class.names)
+    end
 
-      # We cheat a bit here because our sub doesn't have access to some regions
-      defined_regions.reject! { |region| region =~ /usgov|china|germany/i }
+    it "returns the expected result for find_by_name" do
+      expect(described_class.find_by_name('eastus')).to eql(eastus)
+      expect(described_class.find_by_name('germanycentral')).to eql(germanycentral)
+    end
 
-      expect(azure_regions).to match_array(defined_regions)
+    it "returns expected results for the all method" do
+      expect(described_class.all).to include(eastus)
+      expect(described_class.all).to include(germanycentral)
     end
   end
 
