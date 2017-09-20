@@ -34,7 +34,7 @@ module ManageIQ::Providers::Azure::CloudManager::VmOrTemplateShared
   end
 
   def vm_object
-    @vm_object ||= provider_service.get(name, resource_group.name)
+    @vm_object ||= provider_service.get(name, resource_group)
   end
 
   def os_disk

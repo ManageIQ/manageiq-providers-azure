@@ -137,7 +137,7 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
     _log.debug("vm=[#{vm.name}] creating SSA snapshot #{vm.ssa_snap_name}")
     begin
       ssa_snap_name  = vm.ssa_snap_name
-      resource_group = vm.resource_group.name
+      resource_group = vm.resource_group
       snap_svc.get(ssa_snap_name, resource_group) # Check if snapshot already exists
     rescue ::Azure::Armrest::NotFoundException, ::Azure::Armrest::ResourceNotFoundException => err
       begin
@@ -188,7 +188,7 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
   def vm_delete_managed_snapshot(vm, _options = {})
     snap_svc = snapshot_service(@connection)
     _log.debug("vm=[#{vm.name}] deleting SSA snapshot #{vm.ssa_snap_name}")
-    snap_svc.delete(vm.ssa_snap_name, vm.resource_group.name)
+    snap_svc.delete(vm.ssa_snap_name, vm.resource_group)
   rescue => err
     _log.error("vm=[#{vm.name}], error: #{err} deleting SSA snapshot #{vm.ssa_snap_name}")
     _log.debug { err.backtrace.join("\n") }
