@@ -55,25 +55,29 @@ module ManageIQ::Providers
       private
 
       def get_resource_groups
-        process_collection(resource_groups, :resource_groups) do |resource_group|
+        groups = collect_inventory(:resource_groups) { resource_groups }
+        process_collection(groups, :resource_groups) do |resource_group|
           parse_resource_group(resource_group)
         end
       end
 
       def get_series
-        series = []
-        begin
-          series = @vmm.series(@ems.provider_region)
-        rescue ::Azure::Armrest::BadGatewayException, ::Azure::Armrest::GatewayTimeoutException,
-               ::Azure::Armrest::BadRequestException => err
-          _log.error("Error Class=#{err.class.name}, Message=#{err.message}")
+        series = collect_inventory(:series) do
+          begin
+            @vmm.series(@ems.provider_region)
+          rescue ::Azure::Armrest::BadGatewayException, ::Azure::Armrest::GatewayTimeoutException,
+                 ::Azure::Armrest::BadRequestException => err
+            _log.error("Error Class=#{err.class.name}, Message=#{err.message}")
+            []
+          end
         end
+
         process_collection(series, :flavors) { |s| parse_series(s) }
       end
 
       def get_availability_zones
         # cannot get availability zones from provider; create a default one
-        a_zones = [::Azure::Armrest::BaseModel.new(:name => @ems.name, :id => 'default')]
+        a_zones = collect_inventory(:availability_zones) { [::Azure::Armrest::BaseModel.new(:name => @ems.name, :id => 'default')] }
         process_collection(a_zones, :availability_zones) { |az| parse_az(az) }
       end
 
@@ -81,7 +85,7 @@ module ManageIQ::Providers
       # They are parsed and converted to stacks in vmdb.
       #
       def get_deployments
-        deployments = gather_data_for_this_region(@tds, 'list')
+        deployments = collect_inventory(:deployments) { gather_data_for_this_region(@tds, 'list') }
         process_collection(deployments, :orchestration_stacks) { |dp| parse_stack(dp) }
       end
 
@@ -103,7 +107,7 @@ module ManageIQ::Providers
       end
 
       def get_stack_resources(name, group)
-        resources = @tds.list_deployment_operations(name, group)
+        resources = collect_inventory(:stack_resources) { @tds.list_deployment_operations(name, group) }
         # resources with provsioning_operation 'Create' are the ones created by this stack
         resources.select! do |resource|
           resource.properties.provisioning_operation =~ /^create$/i
@@ -125,7 +129,10 @@ module ManageIQ::Providers
 
       def get_stack_templates
         # download all template uris
+        _log.info("Retrieving templates...")
         @template_uris.each { |uri, template| template[:content] = download_template(uri) }
+        _log.info("Retrieving templates...Complete - Count [#{@template_uris.count}]")
+        _log.debug("Memory usage: #{'%.02f' % collector_memory_usage} MiB")
 
         # load from existing stacks => templates
         stacks = OrchestrationStack.where(:ems_ref => @template_refs.keys, :ext_management_system => @ems).index_by(&:ems_ref)
@@ -148,7 +155,7 @@ module ManageIQ::Providers
       end
 
       def get_instances
-        instances = gather_data_for_this_region(@vmm)
+        instances = collect_inventory(:instances) { gather_data_for_this_region(@vmm) }
         process_collection(instances, :vms) { |instance| parse_instance(instance) }
       end
 
@@ -157,7 +164,7 @@ module ManageIQ::Providers
       # that it doesn't affect the rest of inventory collection.
       #
       def get_images
-        images = gather_data_for_this_region(@sas, 'list_all_private_images')
+        images = collect_inventory(:private_images) { gather_data_for_this_region(@sas, 'list_all_private_images') }
       rescue ::Azure::Armrest::ApiException => err
         _log.warn("Unable to collect Azure private images for: [#{@ems.name}] - [#{@ems.id}]: #{err.message}")
       else
@@ -165,7 +172,7 @@ module ManageIQ::Providers
       end
 
       def get_managed_images
-        images = gather_data_for_this_region(@mis)
+        images = collect_inventory(:managed_images) { gather_data_for_this_region(@mis) }
         process_collection(images, :vms) { |image| parse_managed_image(image) }
       end
 

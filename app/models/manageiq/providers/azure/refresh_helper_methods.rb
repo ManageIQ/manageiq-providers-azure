@@ -1,6 +1,25 @@
 module ManageIQ::Providers::Azure::RefreshHelperMethods
   extend ActiveSupport::Concern
 
+  def collect_inventory(inv_type)
+    collection_name = inv_type.to_s.titleize
+
+    _log.info("Retrieving #{collection_name}...")
+
+    inventory = yield
+    inv_count = inventory.blank? ? 0 : inventory.length
+
+    _log.info("Retrieving #{collection_name}...Complete - Count [#{inv_count}]")
+    _log.debug("Memory usage: #{'%.02f' % collector_memory_usage} MiB")
+
+    inventory
+  end
+
+  def collector_memory_usage
+    require 'miq-process'
+    MiqProcess.processInfo[:proportional_set_size].to_f / 1.megabyte
+  end
+
   def process_collection(collection, key, store_in_data = true)
     @data[key] ||= [] if store_in_data
 
