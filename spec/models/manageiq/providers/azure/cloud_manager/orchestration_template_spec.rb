@@ -7,7 +7,7 @@ describe ManageIQ::Providers::Azure::CloudManager::OrchestrationTemplate do
     end
   end
 
-  let(:valid_template) { FactoryGirl.create(:orchestration_template_azure_with_content) }
+  let(:valid_template) { FactoryGirl.create(:orchestration_template_azure_in_json) }
 
   context "when a raw template in JSON format is given" do
     it "parses parameters from a template" do
