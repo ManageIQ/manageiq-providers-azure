@@ -13,6 +13,11 @@ module ManageIQ::Providers::Azure::CloudManager::VmOrTemplateShared
     @storage_acct_service ||= ::Azure::Armrest::StorageAccountService.new(@connection)
   end
 
+  def image_service(connection = nil)
+    @connection ||= connection || ext_management_system.connect
+    @image_service ||= ::Azure::Armrest::Storage::ImageService.new(@connection)
+  end
+
   def blob_info
     @blob_info ||= storage_acct_service.parse_uri(blob_uri)
   end
@@ -37,17 +42,54 @@ module ManageIQ::Providers::Azure::CloudManager::VmOrTemplateShared
     @vm_object ||= provider_service.get(name, resource_group.name)
   end
 
+  def image_object
+    @image_object ||= image_service.get(name, managed_resource_group)
+  end
+
   def os_disk
-    @os_disk ||= vm_object.properties.storage_profile.os_disk
+    if template 
+      @os_disk ||= image_object.properties.storage_profile.os_disk
+    else
+      @os_disk ||= vm_object.properties.storage_profile.os_disk
+    end
+    @os_disk
   end
 
   delegate :managed_disk?, to: :vm_object
+
+  def managed_image?
+    return false unless ems_ref =~ /^\/subscriptions\//i
+    os_disk.try(:managed_disk) ? true : false
+  end
+
+  def managed_resource_group
+    return nil unless (ems_ref =~ /^\/subscriptions\//i)
+    ref_parts = ems_ref.split('/')
+    if ref_parts[3] =~ /resourceGroups/i
+      return ref_parts[4]
+    end
+    nil
+  end
+
+  def managed_image_disk_name
+    return nil unless managed_image?
+    @managed_image_disk_name ||= File.basename(os_disk.managed_disk.id)
+  end
 
   def ssa_snap_name
     @ssa_snap_name ||= "#{os_disk.name}#{SSA_SNAPSHOT_SUFFIX}"
   end
 
   def blob_uri
-    @blob_uri ||= os_disk.vhd.uri
+    if template
+      if ems_ref =~ /^https:/
+        @blob_uri ||= ems_ref
+      else
+        @blob_uri ||= os_disk.blob_uri if os_disk.try(:blob_uri)
+      end
+    else
+      @blob_uri ||= os_disk.vhd.uri
+    end
+    @blob_uri
   end
 end

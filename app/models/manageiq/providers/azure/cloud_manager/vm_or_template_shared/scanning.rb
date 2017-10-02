@@ -16,8 +16,14 @@ module ManageIQ::Providers::Azure::CloudManager::VmOrTemplateShared::Scanning
     vm_args = { :name => name }
     _log.debug("name: #{name} (template = #{template})")
     if template
-      _log.debug("image_uri: #{uid_ems}")
-      vm_args[:image_uri] = uid_ems
+      if managed_image?
+        vm_args[:resource_group] = managed_resource_group
+        vm_args[:managed_image]  = managed_image_disk_name
+      elsif blob_uri
+        vm_args[:image_uri] = blob_uri
+      else
+        vm_args[:image_uri] = uid_ems
+      end
     else
       vm_args[:resource_group] = resource_group
       vm_args[:snapshot] = ost.scanData["snapshot"]["name"] unless managed_disk?
