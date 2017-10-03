@@ -47,12 +47,11 @@ module ManageIQ::Providers::Azure::CloudManager::VmOrTemplateShared
   end
 
   def os_disk
-    if template 
-      @os_disk ||= image_object.properties.storage_profile.os_disk
-    else
-      @os_disk ||= vm_object.properties.storage_profile.os_disk
-    end
-    @os_disk
+    @os_disk ||= if template
+                   image_object.properties.storage_profile.os_disk
+                 else
+                   vm_object.properties.storage_profile.os_disk
+                 end
   end
 
   delegate :managed_disk?, to: :vm_object
@@ -63,7 +62,7 @@ module ManageIQ::Providers::Azure::CloudManager::VmOrTemplateShared
   end
 
   def managed_resource_group
-    return nil unless (ems_ref =~ /^\/subscriptions\//i)
+    return nil unless ems_ref =~ /^\/subscriptions\//i
     ref_parts = ems_ref.split('/')
     if ref_parts[3] =~ /resourceGroups/i
       return ref_parts[4]
@@ -84,8 +83,8 @@ module ManageIQ::Providers::Azure::CloudManager::VmOrTemplateShared
     if template
       if ems_ref =~ /^https:/
         @blob_uri ||= ems_ref
-      else
-        @blob_uri ||= os_disk.blob_uri if os_disk.try(:blob_uri)
+      elsif os_disk.try(:blob_uri)
+        @blob_uri ||= os_disk.blob_uri
       end
     else
       @blob_uri ||= os_disk.vhd.uri
