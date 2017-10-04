@@ -57,23 +57,9 @@ module ManageIQ::Providers::Azure::ManagerMixin
       end
     end
 
-    # Discovery
-
-    def discover_queue(clientid, clientkey, azure_tenant_id, subscription)
-      MiqQueue.put(
-        :class_name  => name,
-        :method_name => "discover_from_queue",
-        :args        => [clientid, MiqPassword.encrypt(clientkey), azure_tenant_id, subscription]
-      )
-    end
-
     def vms_in_region(azure_res, region)
       filter = "resourceType eq 'Microsoft.Compute/virtualMachines' and location eq '#{region}'"
       azure_res.list_all(:all => true, :filter => filter)
-    end
-
-    def discover_from_queue(clientid, clientkey, azure_tenant_id, subscription)
-      discover(clientid, MiqPassword.decrypt(clientkey), azure_tenant_id, subscription)
     end
   end
 end
