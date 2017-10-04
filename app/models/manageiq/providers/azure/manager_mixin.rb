@@ -56,10 +56,5 @@ module ManageIQ::Providers::Azure::ManagerMixin
         ::Azure::Armrest::Environment::Public
       end
     end
-
-    def vms_in_region(azure_res, region)
-      filter = "resourceType eq 'Microsoft.Compute/virtualMachines' and location eq '#{region}'"
-      azure_res.list_all(:all => true, :filter => filter)
-    end
   end
 end
