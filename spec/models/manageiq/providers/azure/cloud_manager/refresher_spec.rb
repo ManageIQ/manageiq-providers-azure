@@ -9,8 +9,8 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
     @resource_group = 'miq-azure-test1'
     @managed_vm     = 'miqazure-linux-managed'
     @device_name    = 'miq-test-rhel1' # Make sure this is running if generating a new cassette.
-    @ip_address     = '13.82.180.158'  # This will change if you had to restart the @device_name.
-    @mismatch_ip    = '13.82.224.98'   # This will change if you had to restart the 'miqmismatch' VM.
+    @ip_address     = '52.168.175.105' # This will change if you had to restart the @device_name.
+    @mismatch_ip    = '40.71.255.104'  # This will change if you had to restart the 'miqmismatch' VM.
     @managed_disk   = "miqazure-linux-managed_OsDisk_1_7b2bdf790a7d4379ace2846d307730cd"
     @template       = nil
     @avail_zone     = nil
@@ -85,7 +85,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
       it "will perform a full refresh with a plain proxy enabled" do
         allow(VMDB::Util).to receive(:http_proxy_uri).and_return(proxy)
         setup_ems_and_cassette
-        expect(OrchestrationTemplate.count).to eql(19)
+        expect(OrchestrationTemplate.count).to eql(20)
         assert_specific_orchestration_template
       end
     end
@@ -97,7 +97,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
 
         allow(VMDB::Util).to receive(:http_proxy_uri).and_return(proxy)
         setup_ems_and_cassette
-        expect(OrchestrationTemplate.count).to eql(19)
+        expect(OrchestrationTemplate.count).to eql(20)
         assert_specific_orchestration_template
       end
     end
@@ -133,29 +133,30 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
   def expected_table_counts
     {
       :ext_management_system         => 2,
-      :flavor                        => 99,
+      :flavor                        => 133,
       :availability_zone             => 1,
-      :vm_or_template                => 13,
-      :vm                            => 12,
+      :vm_or_template                => 14,
+      :vm                            => 13,
       :miq_template                  => 1,
-      :disk                          => 12,
+      :disk                          => 13,
       :guest_device                  => 0,
-      :hardware                      => 13,
-      :network                       => 22,
-      :operating_system              => 12,
+      :hardware                      => 14,
+      :network                       => 23,
+      :operating_system              => 13,
       :relationship                  => 0,
-      :miq_queue                     => 14,
-      :orchestration_template        => 19,
-      :orchestration_stack           => 21,
-      :orchestration_stack_parameter => 207,
-      :orchestration_stack_output    => 10,
-      :orchestration_stack_resource  => 77,
-      :security_group                => 12,
-      :network_port                  => 15,
+      :miq_queue                     => 15,
+      :orchestration_template        => 20,
+      :orchestration_stack           => 22,
+      :orchestration_stack_parameter => 225,
+      :orchestration_stack_output    => 11,
+      :orchestration_stack_resource  => 83,
+      :security_group                => 13,
+      :network_port                  => 16,
       :cloud_network                 => 6,
       :floating_ip                   => 13,
       :network_router                => 0,
       :cloud_subnet                  => 6,
+      :resource_group                => 4
     }
   end
 
@@ -185,6 +186,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
       :floating_ip                   => FloatingIp.count,
       :network_router                => NetworkRouter.count,
       :cloud_subnet                  => CloudSubnet.count,
+      :resource_group                => ResourceGroup.count,
     }
 
     expect(actual).to eq expected_table_counts
@@ -203,7 +205,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
     expect(@ems.miq_templates.size).to eq(expected_table_counts[:miq_template])
 
     expect(@ems.orchestration_stacks.size).to eql(expected_table_counts[:orchestration_stack])
-    expect(@ems.direct_orchestration_stacks.size).to eql(20)
+    expect(@ems.direct_orchestration_stacks.size).to eql(21)
   end
 
   def assert_specific_load_balancers
@@ -514,11 +516,16 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
     vm_managed   = Vm.find_by(:name => @managed_vm)
     vm_unmanaged = Vm.find_by(:name => @device_name)
 
+    # VM in eastus, resource group in westus
+    vm_mismatch  = Vm.find_by(:name => 'miqmismatch2')
+
     managed_group = ResourceGroup.find_by(:name => 'miq-azure-test4')
     unmanaged_group = ResourceGroup.find_by(:name => 'miq-azure-test1')
+    mismatch_group = ResourceGroup.find_by(:name => 'miq-azure-test3')
 
     expect(vm_managed.resource_group).to eql(managed_group)
     expect(vm_unmanaged.resource_group).to eql(unmanaged_group)
+    expect(vm_mismatch.resource_group).to eql(mismatch_group)
   end
 
   def assert_specific_vm_powered_off

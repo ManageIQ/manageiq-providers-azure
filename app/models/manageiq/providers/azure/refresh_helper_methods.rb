@@ -57,10 +57,11 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
     end
   end
 
+  # Because resources do not necessarily have to belong to the same region as
+  # the resource group they live in, we do not filter by region here.
+  #
   def resource_groups
-    @resource_groups ||= @rgs.list.select do |resource_group|
-      resource_group.location.casecmp(@ems.provider_region).zero?
-    end
+    @resource_groups ||= @rgs.list
   end
 
   # Given an object, return the matching ems_ref for its resource group.
