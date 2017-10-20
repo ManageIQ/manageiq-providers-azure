@@ -6,14 +6,15 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
 
     @ems = FactoryGirl.create(:ems_azure_with_vcr_authentication, :zone => zone, :provider_region => 'eastus')
 
-    @resource_group = 'miq-azure-test1'
-    @managed_vm     = 'miqazure-linux-managed'
-    @device_name    = 'miq-test-rhel1' # Make sure this is running if generating a new cassette.
-    @ip_address     = '52.168.175.105' # This will change if you had to restart the @device_name.
-    @mismatch_ip    = '40.71.255.104'  # This will change if you had to restart the 'miqmismatch' VM.
-    @managed_disk   = "miqazure-linux-managed_OsDisk_1_7b2bdf790a7d4379ace2846d307730cd"
-    @template       = nil
-    @avail_zone     = nil
+    @resource_group    = 'miq-azure-test1'
+    @managed_vm        = 'miqazure-linux-managed'
+    @device_name       = 'miq-test-rhel1' # Make sure this is running if generating a new cassette.
+    @ip_address        = '40.76.6.142' # This will change if you had to restart the @device_name.
+    @mismatch_ip       = '40.76.203.26' # This will change if you had to restart the 'miqmismatch' VM.
+    @managed_os_disk   = "miqazure-linux-managed_OsDisk_1_7b2bdf790a7d4379ace2846d307730cd"
+    @managed_data_disk = "miqazure-linux-managed-data-disk"
+    @template          = nil
+    @avail_zone        = nil
   end
 
   after do
@@ -85,7 +86,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
       it "will perform a full refresh with a plain proxy enabled" do
         allow(VMDB::Util).to receive(:http_proxy_uri).and_return(proxy)
         setup_ems_and_cassette
-        expect(OrchestrationTemplate.count).to eql(20)
+        expect(OrchestrationTemplate.count).to eql(21)
         assert_specific_orchestration_template
       end
     end
@@ -97,7 +98,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
 
         allow(VMDB::Util).to receive(:http_proxy_uri).and_return(proxy)
         setup_ems_and_cassette
-        expect(OrchestrationTemplate.count).to eql(20)
+        expect(OrchestrationTemplate.count).to eql(21)
         assert_specific_orchestration_template
       end
     end
@@ -124,7 +125,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
       assert_specific_load_balancer_networking
       assert_specific_load_balancer_listeners
       assert_specific_load_balancer_health_checks
-      assert_specific_vm_with_managed_disk
+      assert_specific_vm_with_managed_disks
       assert_specific_managed_disk
       assert_specific_resource_group
     end
@@ -138,18 +139,18 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
       :vm_or_template                => 14,
       :vm                            => 13,
       :miq_template                  => 1,
-      :disk                          => 13,
+      :disk                          => 14,
       :guest_device                  => 0,
       :hardware                      => 14,
       :network                       => 23,
       :operating_system              => 13,
       :relationship                  => 0,
       :miq_queue                     => 15,
-      :orchestration_template        => 20,
-      :orchestration_stack           => 22,
-      :orchestration_stack_parameter => 225,
+      :orchestration_template        => 21,
+      :orchestration_stack           => 23,
+      :orchestration_stack_parameter => 233,
       :orchestration_stack_output    => 11,
-      :orchestration_stack_resource  => 83,
+      :orchestration_stack_resource  => 84,
       :security_group                => 13,
       :network_port                  => 16,
       :cloud_network                 => 6,
@@ -205,7 +206,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
     expect(@ems.miq_templates.size).to eq(expected_table_counts[:miq_template])
 
     expect(@ems.orchestration_stacks.size).to eql(expected_table_counts[:orchestration_stack])
-    expect(@ems.direct_orchestration_stacks.size).to eql(21)
+    expect(@ems.direct_orchestration_stacks.size).to eql(22)
   end
 
   def assert_specific_load_balancers
@@ -498,17 +499,17 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
     )
   end
 
-  def assert_specific_vm_with_managed_disk
+  def assert_specific_vm_with_managed_disks
     vm = Vm.find_by(:name => @managed_vm)
-
-    expect(vm.disks.size).to be > 0
-    expect(vm.disks.first.device_name).to eql(@managed_disk)
+    expect(vm.disks.size).to eq(2)
+    expect(vm.disks.collect(&:device_name)).to match_array([@managed_os_disk, @managed_data_disk])
   end
 
   def assert_specific_managed_disk
-    disk = Disk.find_by(:device_name => @managed_disk)
-
-    expect(disk.location).to be_nil
+    disk = Disk.find_by(:device_name => @managed_os_disk)
+    expect(disk.location).to eql("/subscriptions/#{@ems.subscription}/resourceGroups/"\
+                                  "MIQ-AZURE-TEST4/providers/Microsoft.Compute/disks/"\
+                                  "miqazure-linux-managed_OsDisk_1_7b2bdf790a7d4379ace2846d307730cd")
     expect(disk.size).to eql(1023.megabyte)
   end
 
