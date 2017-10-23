@@ -5,80 +5,35 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
-## Unreleased as of Sprint 71 ending 2017-10-16
+## Fine-4
 
 ### Added
 - SSA Support for Managed Images [(#133)](https://github.com/ManageIQ/manageiq-providers-azure/pull/133)
-
-## Unreleased as of Sprint 70 ending 2017-10-02
-
-### Added
 - Add logging of timings counts and memory usage [(#128)](https://github.com/ManageIQ/manageiq-providers-azure/pull/128)
 - Add support for regions in Germany [(#98)](https://github.com/ManageIQ/manageiq-providers-azure/pull/98)
+- Changes to wait for snapshot completion. [(#126)](https://github.com/ManageIQ/manageiq-providers-azure/pull/126)
+- Wait for SSA Snapshot Success [(#125)](https://github.com/ManageIQ/manageiq-providers-azure/pull/125)
+- Snapshot Blob Disks for SSA [(#122)](https://github.com/ManageIQ/manageiq-providers-azure/pull/122)
+- Create resource group association for instances and managed images [(#72)](https://github.com/ManageIQ/manageiq-providers-azure/pull/72)
+- Add additional_regions support and add specs for regions [(#103)](https://github.com/ManageIQ/manageiq-providers-azure/pull/103)
+- Marketplace image support [(#95)](https://github.com/ManageIQ/manageiq-providers-azure/pull/95)
+- Add blacklists for VM username and password when provisioning [(#88)](https://github.com/ManageIQ/manageiq-providers-azure/pull/88)
+- Disable reset operation for VMs and add specs [(#81)](https://github.com/ManageIQ/manageiq-providers-azure/pull/81)
+- Use a simpler name for network ports [(#80)](https://github.com/ManageIQ/manageiq-providers-azure/pull/80)
+- Decrypt client keys in raw connect [(#86)](https://github.com/ManageIQ/manageiq-providers-azure/pull/86)
+- Make azure-armrest dependency less pessimistic [(#55)](https://github.com/ManageIQ/manageiq-providers-azure/pull/55)
 
 ### Fixed
 - Don't assume NIC IP configuration has subnet [(#132)](https://github.com/ManageIQ/manageiq-providers-azure/pull/132)
 - Don't collect information externally if marketplace images are specified [(#124)](https://github.com/ManageIQ/manageiq-providers-azure/pull/124)
-
-## Unreleased as of Sprint 69 ending 2017-09-18
-
-### Added
-- Changes to wait for snapshot completion. [(#126)](https://github.com/ManageIQ/manageiq-providers-azure/pull/126)
-- Wait for SSA Snapshot Success [(#125)](https://github.com/ManageIQ/manageiq-providers-azure/pull/125)
-- Snapshot Blob Disks for SSA [(#122)](https://github.com/ManageIQ/manageiq-providers-azure/pull/122)
-
-## Unreleased as of Sprint 68 ending 2017-09-04
-
-### Fixed
 - Add Snapshot Code for Azure Managed Disks [(#117)](https://github.com/ManageIQ/manageiq-providers-azure/pull/117)
-
-## Unreleased - as of Sprint 67 ending 2017-08-21
-
-### Fixed
 - Updated metric names for Azure metrics [(#114)](https://github.com/ManageIQ/manageiq-providers-azure/pull/114)
-
-### Added
-- Create resource group association for instances and managed images [(#72)](https://github.com/ManageIQ/manageiq-providers-azure/pull/72)
-
-## Unreleased - as of Sprint 66 ending 2017-08-07
-
-### Added
-- Refactor discovery code eliminate a warning [(#104)](https://github.com/ManageIQ/manageiq-providers-azure/pull/104)
-- Add additional_regions support and add specs for regions [(#103)](https://github.com/ManageIQ/manageiq-providers-azure/pull/103)
-
-### Fixed
 - Remove sample orchestration template [(#107)](https://github.com/ManageIQ/manageiq-providers-azure/pull/107)
 - Ignore case when gathering data for region  [(#99)](https://github.com/ManageIQ/manageiq-providers-azure/pull/99)
-
-## Unreleased - as of Sprint 65 ending 2017-07-24
-
-### Added
-- Marketplace image support [(#95)](https://github.com/ManageIQ/manageiq-providers-azure/pull/95)
-- Add blacklists for VM username and password when provisioning [(#88)](https://github.com/ManageIQ/manageiq-providers-azure/pull/88)
-
-### Fixed
 - Fix find_destination_in_vmdb to use insensitive find azure machine name in vmdb [(#93)](https://github.com/ManageIQ/manageiq-providers-azure/pull/93)
-
-## Unreleased - as of Sprint 64 ending 2017-07-10
-
-### Added
-- Disable reset operation for VMs and add specs [(#81)](https://github.com/ManageIQ/manageiq-providers-azure/pull/81)
-- Use a simpler name for network ports [(#80)](https://github.com/ManageIQ/manageiq-providers-azure/pull/80)
-- Decrypt client keys in raw connect [(#86)](https://github.com/ManageIQ/manageiq-providers-azure/pull/86)
-
-### Fixed
 - Security Groups array_integer data type [(#91)](https://github.com/ManageIQ/manageiq-providers-azure/pull/91)
 - Fix VM password restrictions [(#87)](https://github.com/ManageIQ/manageiq-providers-azure/pull/87)
-
-## Unreleased - as of Sprint 61 ending 2017-05-22
-
-### Fixed
 - Provisioning - First and Last names are not required. [(#73)](https://github.com/ManageIQ/manageiq-providers-azure/pull/73)
-
-## Unreleased - as of Sprint 60 ending 2017-05-08
-
-### Added
-- Make azure-armrest dependency less pessimistic [(#55)](https://github.com/ManageIQ/manageiq-providers-azure/pull/55)
 
 ## Fine-3
 
