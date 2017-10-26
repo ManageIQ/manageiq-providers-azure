@@ -266,7 +266,7 @@ module ManageIQ::Providers
         data_disks.each do |disk|
           disk_size      = disk.respond_to?(:disk_size_gb) ? disk.disk_size_gb * 1.gigabyte : 0
           disk_name      = disk.name
-          disk_location  = disk.try(:vhd).try(:uri)
+          disk_location  = disk.try(:vhd).try(:uri) || disk.try(:managed_disk).try(:id)
 
           add_instance_disk(hardware_disks_array, disk_size, disk_name, disk_location)
         end
@@ -311,7 +311,7 @@ module ManageIQ::Providers
 
         os_disk = instance.properties.storage_profile.os_disk
         sz      = series[:root_disk_size]
-        vhd_loc = os_disk.try(:vhd).try(:uri)
+        vhd_loc = os_disk.try(:vhd).try(:uri) || os_disk.try(:managed_disk).try(:id)
 
         add_instance_disk(hardware_hash[:disks], sz, os_disk.name, vhd_loc) unless sz.zero?
 
