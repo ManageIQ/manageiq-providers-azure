@@ -1,15 +1,15 @@
-# Gettext catalog for ManageIQ Azure provider plugin
-# Copyright (C) 2016
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the ManageIQ_Providers_Azure package.
-# Milan Zázrivec <mzazrivec@redhat.com>, 2016.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: ManageIQ_Providers_Azure 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-10 14:18+0100\n"
-"PO-Revision-Date: 2016-11-10 14:18+0100\n"
+"POT-Creation-Date: 2017-10-31 15:46+0100\n"
+"PO-Revision-Date: 2017-10-31 15:46+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -17,6 +17,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: ../app/models/manageiq/providers/azure/cloud_manager/event_catcher.rb:10
+msgid "\" [#{ems.provider_region}]\""
+msgstr ""
 
 #: ../app/models/manageiq/providers/azure/manager_mixin.rb:16
 msgid "\"Incorrect credentials - #{err.message}\""
@@ -26,48 +30,60 @@ msgstr ""
 msgid "\"Unexpected response returned from system: #{err.message}\""
 msgstr ""
 
+#: ../app/models/manageiq/providers/azure/cloud_manager/metrics_capture.rb:198
+msgid "\"[#{ems.provider_region}]\""
+msgstr ""
+
 #: ../app/models/manageiq/providers/azure/cloud_manager/orchestration_stack.rb:66
 msgid "%{name} does not exist on %{management}"
 msgstr ""
 
-#: ../app/models/manageiq/providers/azure/regions.rb:7
+#: ../app/models/manageiq/providers/azure/regions.rb:10
 msgid "Australia East"
 msgstr ""
 
-#: ../app/models/manageiq/providers/azure/regions.rb:11
+#: ../app/models/manageiq/providers/azure/regions.rb:14
 msgid "Australia Southeast"
 msgstr ""
 
-#: ../app/models/manageiq/providers/azure/regions.rb:15
+#: ../app/models/manageiq/providers/azure/regions.rb:18
 msgid "Brazil South"
 msgstr ""
 
-#: ../app/models/manageiq/providers/azure/regions.rb:19
+#: ../app/models/manageiq/providers/azure/regions.rb:22
 msgid "Canada Central"
 msgstr ""
 
-#: ../app/models/manageiq/providers/azure/regions.rb:23
+#: ../app/models/manageiq/providers/azure/regions.rb:26
 msgid "Canada East"
 msgstr ""
 
-#: ../app/models/manageiq/providers/azure/regions.rb:27
+#: ../app/models/manageiq/providers/azure/regions.rb:30
 msgid "Central India"
 msgstr ""
 
-#: ../app/models/manageiq/providers/azure/regions.rb:31
+#: ../app/models/manageiq/providers/azure/regions.rb:34
 msgid "Central US"
 msgstr ""
 
-#: ../app/models/manageiq/providers/azure/regions.rb:35
+#: ../app/models/manageiq/providers/azure/regions.rb:38
 msgid "East Asia"
 msgstr ""
 
-#: ../app/models/manageiq/providers/azure/regions.rb:39
+#: ../app/models/manageiq/providers/azure/regions.rb:42
 msgid "East US"
 msgstr ""
 
-#: ../app/models/manageiq/providers/azure/regions.rb:43
+#: ../app/models/manageiq/providers/azure/regions.rb:46
 msgid "East US 2"
+msgstr ""
+
+#: ../app/models/manageiq/providers/azure/regions.rb:50
+msgid "Germany Central"
+msgstr ""
+
+#: ../app/models/manageiq/providers/azure/regions.rb:54
+msgid "Germany Northeast"
 msgstr ""
 
 #: ../app/models/manageiq/providers/azure/manager_mixin.rb:18
@@ -78,39 +94,47 @@ msgstr ""
 msgid "Incorrect credentials - check your Azure Subscription ID"
 msgstr ""
 
-#: ../app/models/manageiq/providers/azure/regions.rb:47
+#: ../app/models/manageiq/providers/azure/regions.rb:58
 msgid "Japan East"
 msgstr ""
 
-#: ../app/models/manageiq/providers/azure/regions.rb:51
+#: ../app/models/manageiq/providers/azure/regions.rb:62
 msgid "Japan West"
+msgstr ""
+
+#: ../app/models/manageiq/providers/azure/regions.rb:66
+msgid "Korea Central"
+msgstr ""
+
+#: ../app/models/manageiq/providers/azure/regions.rb:70
+msgid "Korea South"
 msgstr ""
 
 #: ../app/models/manageiq/providers/azure/manager_mixin.rb:5
 msgid "No credentials defined"
 msgstr ""
 
-#: ../app/models/manageiq/providers/azure/regions.rb:55
+#: ../app/models/manageiq/providers/azure/regions.rb:74
 msgid "North Central US"
 msgstr ""
 
-#: ../app/models/manageiq/providers/azure/regions.rb:59
+#: ../app/models/manageiq/providers/azure/regions.rb:78
 msgid "North Europe"
 msgstr ""
 
-#: ../app/models/manageiq/providers/azure/cloud_manager/vm/operations/power.rb:17
+#: ../app/models/manageiq/providers/azure/cloud_manager/vm/operations/power.rb:19
 msgid "Pause Operation"
 msgstr ""
 
-#: ../app/models/manageiq/providers/azure/regions.rb:63
+#: ../app/models/manageiq/providers/azure/regions.rb:82
 msgid "South Central US"
 msgstr ""
 
-#: ../app/models/manageiq/providers/azure/regions.rb:67
+#: ../app/models/manageiq/providers/azure/regions.rb:86
 msgid "South East Asia"
 msgstr ""
 
-#: ../app/models/manageiq/providers/azure/regions.rb:71
+#: ../app/models/manageiq/providers/azure/regions.rb:90
 msgid "South India"
 msgstr ""
 
@@ -118,11 +142,31 @@ msgstr ""
 msgid "The VM is not powered on"
 msgstr ""
 
-#: ../app/models/manageiq/providers/azure/regions.rb:75
+#: ../app/models/manageiq/providers/azure/cloud_manager.rb:31
+msgid "Timeline not supported for this region"
+msgstr ""
+
+#: ../app/models/manageiq/providers/azure/regions.rb:94
+msgid "UK South"
+msgstr ""
+
+#: ../app/models/manageiq/providers/azure/regions.rb:98
+msgid "UK West"
+msgstr ""
+
+#: ../app/models/manageiq/providers/azure/regions.rb:102
+msgid "US Gov Arizona"
+msgstr ""
+
+#: ../app/models/manageiq/providers/azure/regions.rb:106
 msgid "US Gov Iowa"
 msgstr ""
 
-#: ../app/models/manageiq/providers/azure/regions.rb:79
+#: ../app/models/manageiq/providers/azure/regions.rb:110
+msgid "US Gov Texas"
+msgstr ""
+
+#: ../app/models/manageiq/providers/azure/regions.rb:114
 msgid "US Gov Virginia"
 msgstr ""
 
@@ -130,23 +174,23 @@ msgstr ""
 msgid "VM has no %{table}, unable to destroy VM"
 msgstr ""
 
-#: ../app/models/manageiq/providers/azure/regions.rb:91
+#: ../app/models/manageiq/providers/azure/regions.rb:126
 msgid "West Central US"
 msgstr ""
 
-#: ../app/models/manageiq/providers/azure/regions.rb:83
+#: ../app/models/manageiq/providers/azure/regions.rb:118
 msgid "West Europe"
 msgstr ""
 
-#: ../app/models/manageiq/providers/azure/regions.rb:87
+#: ../app/models/manageiq/providers/azure/regions.rb:122
 msgid "West India"
 msgstr ""
 
-#: ../app/models/manageiq/providers/azure/regions.rb:95
+#: ../app/models/manageiq/providers/azure/regions.rb:130
 msgid "West US"
 msgstr ""
 
-#: ../app/models/manageiq/providers/azure/regions.rb:99
+#: ../app/models/manageiq/providers/azure/regions.rb:134
 msgid "West US 2"
 msgstr ""
 
