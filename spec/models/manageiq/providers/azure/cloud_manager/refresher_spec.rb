@@ -9,8 +9,8 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
     @resource_group    = 'miq-azure-test1'
     @managed_vm        = 'miqazure-linux-managed'
     @device_name       = 'miq-test-rhel1' # Make sure this is running if generating a new cassette.
-    @ip_address        = '40.76.6.142' # This will change if you had to restart the @device_name.
-    @mismatch_ip       = '40.76.203.26' # This will change if you had to restart the 'miqmismatch' VM.
+    @ip_address        = '40.76.35.39' # This will change if you had to restart the @device_name.
+    @mismatch_ip       = '40.76.46.32' # This will change if you had to restart the 'miqmismatch' VM.
     @managed_os_disk   = "miqazure-linux-managed_OsDisk_1_7b2bdf790a7d4379ace2846d307730cd"
     @managed_data_disk = "miqazure-linux-managed-data-disk"
     @template          = nil
@@ -134,7 +134,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
   def expected_table_counts
     {
       :ext_management_system         => 2,
-      :flavor                        => 133,
+      :flavor                        => 144,
       :availability_zone             => 1,
       :vm_or_template                => 14,
       :vm                            => 13,
@@ -495,7 +495,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
 
     expect(disk).to have_attributes(
       :location => "https://miqazuretest18686.blob.core.windows.net/vhds/miq-test-rhel12016218112243.vhd",
-      :size     => 1023.megabyte
+      :size     => 32212255232 # 30gb, approx
     )
   end
 
@@ -510,7 +510,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
     expect(disk.location).to eql("/subscriptions/#{@ems.subscription}/resourceGroups/"\
                                   "MIQ-AZURE-TEST4/providers/Microsoft.Compute/disks/"\
                                   "miqazure-linux-managed_OsDisk_1_7b2bdf790a7d4379ace2846d307730cd")
-    expect(disk.size).to eql(1023.megabyte)
+    expect(disk.size).to eql(32.gigabytes)
   end
 
   def assert_specific_resource_group
