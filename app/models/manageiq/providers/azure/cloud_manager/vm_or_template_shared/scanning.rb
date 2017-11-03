@@ -26,7 +26,7 @@ module ManageIQ::Providers::Azure::CloudManager::VmOrTemplateShared::Scanning
       end
     else
       vm_args[:resource_group] = resource_group
-      vm_args[:snapshot] = ost.scanData["snapshot"]["name"] unless managed_disk?
+      vm_args[:snapshot] = ost.scanData["snapshot"]["name"]
     end
 
     ost.scanTime = Time.now.utc unless ost.scanTime
