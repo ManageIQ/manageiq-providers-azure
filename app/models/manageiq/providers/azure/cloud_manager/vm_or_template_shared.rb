@@ -1,7 +1,8 @@
 module ManageIQ::Providers::Azure::CloudManager::VmOrTemplateShared
   extend ActiveSupport::Concern
   include_concern 'Scanning'
-  SSA_SNAPSHOT_SUFFIX = "__EVM__SSA__SNAPSHOT".freeze
+  SSA_SNAPSHOT_SUFFIX = "_SSA_SNAPSHOT".freeze
+  SSA_NAME_MAX        = 80
 
   def provider_service(connection = nil)
     @connection ||= connection || ext_management_system.connect
@@ -76,7 +77,12 @@ module ManageIQ::Providers::Azure::CloudManager::VmOrTemplateShared
   end
 
   def ssa_snap_name
-    @ssa_snap_name ||= "#{os_disk.name}#{SSA_SNAPSHOT_SUFFIX}"
+    @ssa_snap_name ||= if "#{name}#{SSA_SNAPSHOT_SUFFIX}".size > SSA_NAME_MAX
+                         name_end = SSA_NAME_MAX - SSA_SNAPSHOT_SUFFIX.size - 1
+                         "#{name[0..name_end]}#{SSA_SNAPSHOT_SUFFIX}"
+                       else
+                         "#{name}#{SSA_SNAPSHOT_SUFFIX}"
+                       end
   end
 
   def blob_uri
