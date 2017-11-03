@@ -217,7 +217,7 @@ module ManageIQ::Providers
       end
 
       def parse_resource_group(resource_group)
-        uid = resource_group.id
+        uid = resource_group.id.downcase
         new_result = {
           :type    => 'ManageIQ::Providers::Azure::ResourceGroup',
           :name    => resource_group.name,

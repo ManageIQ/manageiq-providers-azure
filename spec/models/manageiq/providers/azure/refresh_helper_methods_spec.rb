@@ -17,7 +17,7 @@ describe ManageIQ::Providers::Azure::RefreshHelperMethods do
       virtual_machine_eastus.subscription_id = "abc123"
       virtual_machine_eastus.resource_group = "Test_Group"
 
-      expected = "/subscriptions/abc123/resourceGroups/test_group"
+      expected = "/subscriptions/abc123/resourcegroups/test_group"
       expect(@ems_azure.get_resource_group_ems_ref(virtual_machine_eastus)).to eql(expected)
     end
   end
