@@ -10,9 +10,7 @@ module ManageIQ::Providers::Azure::ManagerMixin
   end
 
   def verify_credentials(_auth_type = nil, options = {})
-    connection_rescue_block do
-      connect(options)
-    end
+    connect(options)
   end
 
   module ClassMethods
