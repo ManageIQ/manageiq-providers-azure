@@ -10,19 +10,9 @@ module ManageIQ::Providers::Azure::ManagerMixin
   end
 
   def verify_credentials(_auth_type = nil, options = {})
-    require 'azure-armrest'
-    conf = connect(options)
-  rescue ArgumentError => err
-    raise MiqException::MiqInvalidCredentialsError, _("Incorrect credentials - #{err.message}")
-  rescue ::Azure::Armrest::UnauthorizedException, ::Azure::Armrest::BadRequestException
-    raise MiqException::MiqInvalidCredentialsError, _("Incorrect credentials - check your Azure Client ID and Client Key")
-  rescue MiqException::MiqInvalidCredentialsError
-    raise # Raise before falling into catch-all block below
-  rescue => err
-    _log.error("Error Class=#{err.class.name}, Message=#{err.message}, Backtrace=#{err.backtrace}")
-    raise MiqException::MiqInvalidCredentialsError, _("Unexpected response returned from system: #{err.message}")
-  else
-    conf
+    connection_rescue_block do
+      connect(options)
+    end
   end
 
   module ClassMethods
@@ -36,14 +26,30 @@ module ManageIQ::Providers::Azure::ManagerMixin
 
       ::Azure::Armrest::Configuration.log = $azure_log
 
-      ::Azure::Armrest::Configuration.new(
-        :client_id       => client_id,
-        :client_key      => MiqPassword.try_decrypt(client_key),
-        :tenant_id       => azure_tenant_id,
-        :subscription_id => subscription,
-        :proxy           => proxy_uri,
-        :environment     => environment_for(provider_region)
-      )
+      connection_rescue_block do
+        ::Azure::Armrest::Configuration.new(
+          :client_id       => client_id,
+          :client_key      => MiqPassword.try_decrypt(client_key),
+          :tenant_id       => azure_tenant_id,
+          :subscription_id => subscription,
+          :proxy           => proxy_uri,
+          :environment     => environment_for(provider_region)
+        )
+      end
+    end
+
+    def connection_rescue_block
+      require 'azure-armrest'
+      yield
+    rescue ArgumentError => err
+      raise MiqException::MiqInvalidCredentialsError, _("Incorrect credentials - #{err.message}")
+    rescue ::Azure::Armrest::UnauthorizedException, ::Azure::Armrest::BadRequestException
+      raise MiqException::MiqInvalidCredentialsError, _("Incorrect credentials - check your Azure Client ID and Client Key")
+    rescue MiqException::MiqInvalidCredentialsError
+      raise # Raise before falling into catch-all block below
+    rescue => err
+      _log.error("Error Class=#{err.class.name}, Message=#{err.message}, Backtrace=#{err.backtrace}")
+      raise MiqException::MiqInvalidCredentialsError, _("Unexpected response returned from system: #{err.message}")
     end
 
     def environment_for(region)
