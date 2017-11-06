@@ -93,14 +93,16 @@ describe ManageIQ::Providers::Azure::CloudManager do
     end
 
     context "#validation" do
+      before do
+        @e.subscription = "not_blank"
+      end
       it "handles unknown error" do
-        allow(ManageIQ::Providers::Azure::CloudManager).to receive(:raw_connect).and_raise(StandardError)
+        allow(Azure::Armrest::Configuration).to receive(:new).and_raise(StandardError)
         expect { @e.verify_credentials }.to raise_error(MiqException::MiqInvalidCredentialsError, /Unexpected response returned*/)
       end
 
       it "handles incorrect password" do
-        allow(ManageIQ::Providers::Azure::CloudManager).to receive(:raw_connect).and_raise(
-          Azure::Armrest::UnauthorizedException.new(nil, nil, nil))
+        allow(Azure::Armrest::Configuration).to receive(:new).and_raise(Azure::Armrest::UnauthorizedException.new(nil, nil, nil))
         expect { @e.verify_credentials }.to raise_error(MiqException::MiqInvalidCredentialsError, /Incorrect credentials*/)
       end
     end
