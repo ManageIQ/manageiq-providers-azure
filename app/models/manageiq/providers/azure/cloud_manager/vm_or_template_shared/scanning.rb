@@ -25,7 +25,7 @@ module ManageIQ::Providers::Azure::CloudManager::VmOrTemplateShared::Scanning
         vm_args[:image_uri] = uid_ems
       end
     else
-      vm_args[:resource_group] = resource_group
+      vm_args[:resource_group] = resource_group.name
       vm_args[:snapshot] = ost.scanData["snapshot"]["name"]
     end
 
