@@ -8,8 +8,10 @@
       :managed_image: 2017-03-30
       :network_interface: 2017-03-01
       :network_security_group: 2016-12-01
+      :resource: 2016-09-01
       :resource_group: 2016-09-01
       :storage_account: 2016-12-01
+      :storage_disk: 2017-03-30
       :template_deployment: 2016-09-01
       :virtual_machine: 2017-03-30
       :virtual_network: 2017-03-01
@@ -38,6 +40,8 @@
       - MicrosoftWindowsServer:WindowsServer-HUB:2016-Datacenter-HUB:2016.127.20170630
       - OpenLogic:CentOS:7.3:7.3.20170517
       - RedHat:RHEL:7.3:7.3.2017051117
+    # Collecting disk information on unmanaged VM's slows down the refresh.
+    :get_unmanaged_disk_space: true
 
 :http_proxy:
   :azure:
