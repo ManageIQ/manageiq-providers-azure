@@ -23,6 +23,7 @@ module ManageIQ::Providers
         @tds               = template_deployment_service(@config)
         @rgs               = resource_group_service(@config)
         @sas               = storage_account_service(@config)
+        @sds               = storage_disk_service(@config)
         @mis               = managed_image_service(@config)
         @options           = options || {}
         @data              = {}
@@ -39,6 +40,8 @@ module ManageIQ::Providers
         _log.info("#{log_header}...")
         get_resource_groups
         get_series
+        get_managed_disks
+        get_unmanaged_storage
         get_availability_zones
         get_stacks
         get_stack_templates
@@ -51,6 +54,14 @@ module ManageIQ::Providers
       end
 
       private
+
+      def get_managed_disks
+        @managed_disks ||= @sds.list_all
+      end
+
+      def get_unmanaged_storage
+        @storage_accounts ||= @sas.list_all
+      end
 
       def get_resource_groups
         process_collection(resource_groups, :resource_groups) do |resource_group|
@@ -264,16 +275,8 @@ module ManageIQ::Providers
       def populate_hardware_hash_with_disks(hardware_disks_array, instance)
         data_disks = instance.properties.storage_profile.data_disks
         data_disks.each do |disk|
-          disk_size      = disk.respond_to?(:disk_size_gb) ? disk.disk_size_gb * 1.gigabyte : 0
-          disk_name      = disk.name
-          disk_location  = disk.try(:vhd).try(:uri) || disk.try(:managed_disk).try(:id)
-
-          add_instance_disk(hardware_disks_array, disk_size, disk_name, disk_location)
+          add_instance_disk(hardware_disks_array, instance, disk)
         end
-      end
-
-      def add_instance_disk(disks, size, name, location)
-        super(disks, size, location, name, "azure")
       end
 
       # TODO(lsmola) NetworkManager, storing IP addresses under hardware/network will go away, once all providers are
@@ -309,13 +312,52 @@ module ManageIQ::Providers
         hardware_hash[:memory_mb]       = series[:memory] / 1.megabyte
         hardware_hash[:disk_capacity]   = series[:root_disk_size] + series[:swap_disk_size]
 
-        os_disk = instance.properties.storage_profile.os_disk
-        sz      = series[:root_disk_size]
-        vhd_loc = os_disk.try(:vhd).try(:uri) || os_disk.try(:managed_disk).try(:id)
+        disk = instance.properties.storage_profile.os_disk
+        add_instance_disk(hardware_hash[:disks], instance, disk)
+      end
 
-        add_instance_disk(hardware_hash[:disks], sz, os_disk.name, vhd_loc) unless sz.zero?
+      # Redefine the inherited method for our purposes
+      def add_instance_disk(array, instance, disk)
+        if instance.managed_disk?
+          disk_type     = 'managed'
+          disk_location = disk.managed_disk.id
+          managed_disk  = @managed_disks.find { |d| d.id.casecmp(disk_location).zero? }
+          disk_size     = managed_disk.properties.disk_size_gb.gigabytes
+          mode          = managed_disk.sku.name
+        else
+          disk_type     = 'unmanaged'
+          disk_location = disk.try(:vhd).try(:uri)
+          disk_size     = disk.try(:disk_size_gb).try(:gigabytes)
 
-        # No data availbale on swap disk? Called temp or resource disk.
+          if disk_location
+            uri = Addressable::URI.parse(disk_location)
+            storage_name = uri.host.split('.').first
+            container_name = File.dirname(uri.path)
+            blob_name = uri.basename
+
+            storage_acct = @storage_accounts.find { |s| s.name.casecmp(storage_name).zero? }
+            mode = storage_acct.sku.name
+
+            if @options.get_unmanaged_disk_space && disk_size.nil?
+              storage_keys = @sas.list_account_keys(storage_acct.name, storage_acct.resource_group)
+              storage_key  = storage_keys['key1'] || storage_keys['key2']
+              blob_props   = storage_acct.blob_properties(container_name, blob_name, storage_key)
+              disk_size    = blob_props.content_length.to_i
+            end
+          end
+        end
+
+        disk_record = {
+          :device_type     => 'disk',
+          :controller_type => 'azure',
+          :device_name     => disk.name,
+          :location        => disk_location,
+          :size            => disk_size,
+          :disk_type       => disk_type,
+          :mode            => mode
+        }
+
+        array << disk_record
       end
 
       def parse_stack(deployment)

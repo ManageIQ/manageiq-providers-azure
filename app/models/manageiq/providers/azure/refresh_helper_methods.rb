@@ -112,6 +112,12 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
     end
   end
 
+  def storage_disk_service(config)
+    ::Azure::Armrest::Storage::DiskService.new(config).tap do |service|
+      service.api_version = Settings.ems.ems_azure.api_versions.storage_disk.to_s
+    end
+  end
+
   def storage_account_service(config)
     ::Azure::Armrest::StorageAccountService.new(config).tap do |service|
       service.api_version = Settings.ems.ems_azure.api_versions.storage_account.to_s
