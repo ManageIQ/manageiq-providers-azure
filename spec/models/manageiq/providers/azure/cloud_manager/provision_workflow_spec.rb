@@ -143,8 +143,8 @@ describe ManageIQ::Providers::Azure::CloudManager::ProvisionWorkflow do
                                           :supports_64_bit => true)
         ems.flavors << FactoryGirl.create(:flavor, :name => "Standard_A1", :supports_32_bit => false,
                                           :supports_64_bit => true)
-        ems.resource_groups << FactoryGirl.create(:resource_group)
-        ems.resource_groups << FactoryGirl.create(:resource_group)
+        ems.resource_groups << FactoryGirl.create(:resource_group, :type => 'ManageIQ::Providers::Azure::ResourceGroup')
+        ems.resource_groups << FactoryGirl.create(:resource_group, :type => 'ManageIQ::Providers::Azure::ResourceGroup')
       end
 
       it "#allowed_instance_types" do

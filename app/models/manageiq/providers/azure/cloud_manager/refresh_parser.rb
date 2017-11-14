@@ -219,7 +219,7 @@ module ManageIQ::Providers
       def parse_resource_group(resource_group)
         uid = resource_group.id
         new_result = {
-          :type    => "ResourceGroup",
+          :type    => 'ManageIQ::Providers::Azure::ResourceGroup',
           :name    => resource_group.name,
           :ems_ref => uid,
         }
