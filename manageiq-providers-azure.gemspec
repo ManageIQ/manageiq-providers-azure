@@ -14,6 +14,7 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,lib}/**/*"]
 
   s.add_dependency "azure-armrest", "~>0.9.3"
+  s.add_dependency "manageiq-smartstate", "~>0.2.3"
 
   s.add_development_dependency "codeclimate-test-reporter", "~> 1.0.0"
   s.add_development_dependency "simplecov"
