@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
+## Gaprindashvili Beta2
+
+### Added
+- Correct and update disk information [(#158)](https://github.com/ManageIQ/manageiq-providers-azure/pull/158)
+
+### Fixed
+- Add an Azure STI class for ResourceGroup [(#165)](https://github.com/ManageIQ/manageiq-providers-azure/pull/165)
+- Downcase ems_ref for resource groups [(#156)](https://github.com/ManageIQ/manageiq-providers-azure/pull/156)
+
 ## Gaprindashvili Beta1
 
 ### Added
