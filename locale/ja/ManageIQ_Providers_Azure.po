@@ -1,153 +1,195 @@
-# Japanese translations for ManageIQ_Providers_Azure package.
-# Copyright (C) 2016 THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the ManageIQ_Providers_Azure package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
-#
+# asasaki <asasaki@redhat.com>, 2017. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: ManageIQ_Providers_Azure 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2016-11-10 14:18+0100\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2017-10-31 15:46+0100\n"
+"PO-Revision-Date: 2017-11-13 01:19-0500\n"
+"Last-Translator: asasaki <asasaki@redhat.com>\n"
 "Language-Team: Japanese\n"
-"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"\n"
+"Language: ja\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"X-Generator: Zanata 3.9.6\n"
 
+#: ../app/models/manageiq/providers/azure/cloud_manager/event_catcher.rb:10
 msgid "\" [#{ems.provider_region}]\""
-msgstr ""
+msgstr "\" [#{ems.provider_region}]\""
 
+#: ../app/models/manageiq/providers/azure/manager_mixin.rb:16
 msgid "\"Incorrect credentials - #{err.message}\""
-msgstr ""
+msgstr "\"正しくない認証情報 - #{err.message}\""
 
+#: ../app/models/manageiq/providers/azure/manager_mixin.rb:23
 msgid "\"Unexpected response returned from system: #{err.message}\""
-msgstr ""
+msgstr "\"予期しない応答がシステムから返されました: #{err.message}\""
 
+#: ../app/models/manageiq/providers/azure/cloud_manager/metrics_capture.rb:198
 msgid "\"[#{ems.provider_region}]\""
-msgstr ""
+msgstr "\"[#{ems.provider_region}]\""
 
+#: ../app/models/manageiq/providers/azure/cloud_manager/orchestration_stack.rb:66
 msgid "%{name} does not exist on %{management}"
-msgstr ""
+msgstr "%{name}は%{management}に存在しません"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:10
 msgid "Australia East"
-msgstr ""
+msgstr "オーストラリア東部"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:14
 msgid "Australia Southeast"
-msgstr ""
+msgstr "オーストラリア南東部"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:18
 msgid "Brazil South"
-msgstr ""
+msgstr "ブラジル南部"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:22
 msgid "Canada Central"
-msgstr ""
+msgstr "カナダ中部"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:26
 msgid "Canada East"
-msgstr ""
+msgstr "カナダ東部"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:30
 msgid "Central India"
-msgstr ""
+msgstr "インド中部"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:34
 msgid "Central US"
-msgstr ""
+msgstr "米国中部"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:38
 msgid "East Asia"
-msgstr ""
+msgstr "東アジア"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:42
 msgid "East US"
-msgstr ""
+msgstr "米国東部"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:46
 msgid "East US 2"
-msgstr ""
+msgstr "米国東部 2"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:50
 msgid "Germany Central"
-msgstr ""
+msgstr "ドイツ中部"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:54
 msgid "Germany Northeast"
-msgstr ""
+msgstr "ドイツ北東部"
 
+#: ../app/models/manageiq/providers/azure/manager_mixin.rb:18
 msgid "Incorrect credentials - check your Azure Client ID and Client Key"
-msgstr ""
+msgstr "正しくない認証情報 - Azure クライアント ID およびクライアントキーを確認してください"
 
+#: ../app/models/manageiq/providers/azure/manager_mixin.rb:34
 msgid "Incorrect credentials - check your Azure Subscription ID"
-msgstr ""
+msgstr "正しくない認証情報 - Azure サブスクリプション ID を確認してください"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:58
 msgid "Japan East"
-msgstr ""
+msgstr "東日本"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:62
 msgid "Japan West"
-msgstr ""
+msgstr "西日本"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:66
 msgid "Korea Central"
-msgstr ""
+msgstr "韓国中部"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:70
 msgid "Korea South"
-msgstr ""
+msgstr "韓国南部"
 
+#: ../app/models/manageiq/providers/azure/manager_mixin.rb:5
 msgid "No credentials defined"
-msgstr ""
+msgstr "認証情報が定義されていません"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:74
 msgid "North Central US"
-msgstr ""
+msgstr "米国中北部"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:78
 msgid "North Europe"
-msgstr ""
+msgstr "北ヨーロッパ"
 
+#: ../app/models/manageiq/providers/azure/cloud_manager/vm/operations/power.rb:19
 msgid "Pause Operation"
-msgstr ""
+msgstr "一時停止操作"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:82
 msgid "South Central US"
-msgstr ""
+msgstr "米国中南部"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:86
 msgid "South East Asia"
-msgstr ""
+msgstr "東南アジア"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:90
 msgid "South India"
-msgstr ""
+msgstr "インド南部"
 
+#: ../app/models/manageiq/providers/azure/cloud_manager/vm/operations/power.rb:7
 msgid "The VM is not powered on"
-msgstr ""
+msgstr "VM の電源がオンになっていません"
 
+#: ../app/models/manageiq/providers/azure/cloud_manager.rb:31
 msgid "Timeline not supported for this region"
-msgstr ""
+msgstr "この地域の時間帯はサポートされていません"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:94
 msgid "UK South"
-msgstr ""
+msgstr "英国南部"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:98
 msgid "UK West"
-msgstr ""
+msgstr "英国西部"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:102
 msgid "US Gov Arizona"
-msgstr ""
+msgstr "米国政府 (アリゾナ)"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:106
 msgid "US Gov Iowa"
-msgstr ""
+msgstr "米国政府 (アイオワ)"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:110
 msgid "US Gov Texas"
-msgstr ""
+msgstr "米国政府 (テキサス)"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:114
 msgid "US Gov Virginia"
-msgstr ""
+msgstr "米国政府 (バージニア)"
 
+#: ../app/models/manageiq/providers/azure/cloud_manager/vm/operations.rb:7
 msgid "VM has no %{table}, unable to destroy VM"
-msgstr ""
+msgstr "仮想マシンには %{table} がないため、仮想マシンを破棄できません"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:126
 msgid "West Central US"
-msgstr ""
+msgstr "米国中西部"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:118
 msgid "West Europe"
-msgstr ""
+msgstr "西ヨーロッパ"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:122
 msgid "West India"
-msgstr ""
+msgstr "インド西部"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:130
 msgid "West US"
-msgstr ""
+msgstr "米国西部"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:134
 msgid "West US 2"
-msgstr ""
+msgstr "米国西部 2"
 
+#: ../app/models/manageiq/providers/azure/cloud_manager/template.rb:8
 msgid "not connected to ems"
-msgstr ""
+msgstr "EMS に接続されていません"
