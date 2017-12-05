@@ -29,7 +29,7 @@ class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Stream
   def get_events
     # Grab only events for the last minute if this is the first poll
     filter = @since ? "eventTimestamp ge #{@since}" : "eventTimestamp ge #{startup_interval}"
-    fields = 'authorization,description,eventName,eventTimestamp,resourceGroupName,resourceId,resourceType'
+    fields = 'authorization,description,eventName,eventTimestamp,resourceGroupName,resourceProviderName,resourceId,resourceType'
     events = connection.list(:filter => filter, :select => fields, :all => true).sort_by(&:event_timestamp)
 
     # HACK: the Azure Insights API does not support the 'gt' (greater than relational operator)
