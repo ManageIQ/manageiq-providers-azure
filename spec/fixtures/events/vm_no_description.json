@@ -1,0 +1,14 @@
+{
+  "eventName":{
+    "value":"New Recommendation",
+    "localizedValue":"New Recommendation"
+  },
+  "id":"/subscriptions/xyz/resourceGroups/foo/providers/Microsoft.Compute/virtualMachines/my_vm1/events/c06c7125-c863-42f6-a991-98175d5ee5c5/ticks/636468902825032036",
+  "resourceGroupName":"foo",
+  "resourceId":"/subscriptions/xyz/resourceGroups/foo/providers/Microsoft.Compute/virtualMachines/my_vm1",
+  "resourceType":{
+    "value":"Microsoft.Compute/virtualMachines",
+    "localizedValue":"Microsoft.Compute/virtualMachines"
+  },
+  "eventTimestamp":"2017-11-21T19:44:42.5032036Z"
+}

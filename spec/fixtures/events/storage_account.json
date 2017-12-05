@@ -1,0 +1,19 @@
+{
+  "authorization":{
+    "action":"Microsoft.Storage/storageAccounts/listKeys/action",
+    "scope":"/subscriptions/xyz/resourceGroups/foo1/providers/Microsoft.Storage/storageAccounts/foodiagnostics"
+  },
+  "description":"",
+  "eventName":{
+    "value":"BeginRequest",
+    "localizedValue":"Begin request"
+  },
+  "id":"/subscriptions/xyz/resourceGroups/foo1/providers/Microsoft.Storage/storageAccounts/foodiagnostics/events/b26d3cfc-c50e-493b-ab57-1bd6860d8fb5/ticks/636467630868082029",
+  "resourceGroupName":"foo1",
+  "resourceId":"/subscriptions/xyz/resourceGroups/foo1/providers/Microsoft.Storage/storageAccounts/foodiagnostics",
+  "resourceType":{
+    "value":"Microsoft.Storage/storageAccounts",
+    "localizedValue":"Microsoft.Storage/storageAccounts"
+  },
+  "eventTimestamp":"2017-11-20T08:24:46.8082029Z"
+}

@@ -1,0 +1,19 @@
+{
+  "authorization":{
+    "action":"Microsoft.Compute/virtualMachines/deallocate/action",
+    "scope":"/subscriptions/xyz/resourceGroups/bar/providers/Microsoft.Compute/virtualMachines/another_vm"
+  },
+  "description":"",
+  "eventName":{
+    "value":"BeginRequest",
+    "localizedValue":"BeginRequest"
+  },
+  "id":"/subscriptions/xyz/resourceGroups/bar/providers/Microsoft.Compute/virtualMachines/another_vm/events/176f7676-a318-4c48-b1c6-e0e64a555aa1/ticks/636468904275023866",
+  "resourceGroupName":"bar",
+  "resourceId":"/subscriptions/xyz/resourceGroups/bar/providers/Microsoft.Compute/virtualMachines/another_vm",
+  "resourceType":{
+    "value":"Microsoft.Compute/virtualMachines",
+    "localizedValue":"Microsoft.Compute/virtualMachines"
+  },
+  "eventTimestamp":"2017-11-21T19:47:07.5023866Z"
+}
