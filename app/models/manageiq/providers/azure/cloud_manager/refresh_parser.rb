@@ -254,6 +254,8 @@ module ManageIQ::Providers
         view = @vmm.get_instance_view(instance.name, instance.resource_group)
         status = view.statuses.find { |s| s.code =~ %r{^PowerState/} }
         status.display_status if status
+      rescue ::Azure::Armrest::NotFoundException
+        'off' # Possible race condition caused by retirement deletion.
       end
 
       def process_os(instance)
