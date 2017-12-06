@@ -182,12 +182,14 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
     storage_account   = storage_accounts(storage_conn).find { |account| account.name == storage_acct_name }
     storage_key       = storage_conn.list_account_keys(storage_account.name, storage_account.resource_group).fetch('key1')
 
-    # TODO: The following needs to pass :all => true for proper paging in case
-    #       the time range is > 1000 metrics, but there seems to be a bug in
-    #       continuation tokens when doing this.
+    filter = "PartitionKey eq '#{partition_key}' and CounterName eq '#{counter.name.value}' and Timestamp ge datetime'#{start_time.iso8601}' and Timestamp le datetime'#{end_time.iso8601}'"
+
+    fields = 'Timestamp,TIMESTAMP,Average'
+
     storage_account.table_data(table_name, storage_key,
-      :filter => "PartitionKey eq '#{partition_key}' and CounterName eq '#{counter.name.value}' and Timestamp ge datetime'#{start_time.iso8601}' and Timestamp le datetime'#{end_time.iso8601}'",
-      :select => "Timestamp,TIMESTAMP,Average"
+      :filter => filter,
+      :select => fields,
+      :all    => true
     )
   end
 
