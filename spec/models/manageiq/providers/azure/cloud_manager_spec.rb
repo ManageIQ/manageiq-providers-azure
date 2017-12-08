@@ -302,4 +302,12 @@ describe ManageIQ::Providers::Azure::CloudManager do
       end
     end
   end
+
+  context 'catalog types' do
+    let(:ems) { FactoryGirl.create(:ems_azure) }
+
+    it "#supported_catalog_types" do
+      expect(ems.supported_catalog_types).to eq(%w(azure))
+    end
+  end
 end
