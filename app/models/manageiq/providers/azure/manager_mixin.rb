@@ -70,8 +70,10 @@ module ManageIQ::Providers::Azure::ManagerMixin
       known_emses = all_emses.select { |e| e.authentication_userid == clientid }
       known_ems_regions = known_emses.index_by(&:provider_region)
 
-      config     = raw_connect(clientid, clientkey, azure_tenant_id, subscription)
-      azure_vmm  = ::Azure::Armrest::VirtualMachineService.new(config)
+      config = raw_connect(clientid, clientkey, azure_tenant_id, subscription)
+
+      azure_vmm = ::Azure::Armrest::VirtualMachineService.new(config)
+      azure_vmm.api_version = Settings.ems.ems_azure.api_versions.virtual_machine.to_s
 
       azure_vmm.locations.each do |region|
         region = region.delete(' ').downcase
