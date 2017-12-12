@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
+## Gaprindashvili RC
+
+### Added
+- Handle possibility of arrays for Network Security Groups [(#180)](https://github.com/ManageIQ/manageiq-providers-azure/pull/180)
+
+### Fixed
+- Add a guard when getting power status for a VM [(#178)](https://github.com/ManageIQ/manageiq-providers-azure/pull/178)
+- Update VCR cassettes [(#179)](https://github.com/ManageIQ/manageiq-providers-azure/pull/179)
+- Added supported_catalog_types [(#185)](https://github.com/ManageIQ/manageiq-providers-azure/pull/185)
+- Set api-version explicitly for discovery and regenerate cassettes [(#183)](https://github.com/ManageIQ/manageiq-providers-azure/pull/183)
+- Guard against deleted NIC on load balancer [(#181)](https://github.com/ManageIQ/manageiq-providers-azure/pull/181)
+- Add the :all flag for metrics collection [(#176)](https://github.com/ManageIQ/manageiq-providers-azure/pull/176)
+
 ## Gaprindashvili Beta2
 
 ### Added
