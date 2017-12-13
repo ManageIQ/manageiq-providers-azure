@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
+## Unreleased as of Sprint 75 ending 2017-12-11
+
+### Added
+- Select only the event fields that we need [(#171)](https://github.com/ManageIQ/manageiq-providers-azure/pull/171)
+
+### Fixed
+- Added supported_catalog_types [(#185)](https://github.com/ManageIQ/manageiq-providers-azure/pull/185)
+- Set api-version explicitly for discovery and regenerate cassettes [(#183)](https://github.com/ManageIQ/manageiq-providers-azure/pull/183)
+- Add resourceProviderName to list of collected event fields [(#182)](https://github.com/ManageIQ/manageiq-providers-azure/pull/182)
+- Guard against deleted NIC on load balancer [(#181)](https://github.com/ManageIQ/manageiq-providers-azure/pull/181)
+- Handle possibility of arrays for Network Security Groups [(#180)](https://github.com/ManageIQ/manageiq-providers-azure/pull/180)
+- Update VCR cassettes [(#179)](https://github.com/ManageIQ/manageiq-providers-azure/pull/179)
+- Add a guard when getting power status for a VM  [(#178)](https://github.com/ManageIQ/manageiq-providers-azure/pull/178)
+- Add the :all flag for metrics collection [(#176)](https://github.com/ManageIQ/manageiq-providers-azure/pull/176)
+
 ## Unreleased as of Sprint 74 ending 2017-11-27
 
 ### Fixed
