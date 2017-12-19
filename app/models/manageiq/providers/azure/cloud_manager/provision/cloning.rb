@@ -1,7 +1,7 @@
 module ManageIQ::Providers::Azure::CloudManager::Provision::Cloning
   def do_clone_task_check(clone_task_ref)
     source.with_provider_connection do |azure|
-      vms      = Azure::Armrest::VirtualMachineService.new(azure)
+      vms      = ::Azure::Armrest::VirtualMachineService.new(azure)
       instance = vms.get(clone_task_ref[:vm_name], clone_task_ref[:vm_resource_group])
       status   = instance.properties.provisioning_state
       return true if status == "Succeeded"
@@ -18,7 +18,7 @@ module ManageIQ::Providers::Azure::CloudManager::Provision::Cloning
     sas = nil
 
     source.with_provider_connection do |azure|
-      sas = Azure::Armrest::StorageAccountService.new(azure)
+      sas = ::Azure::Armrest::StorageAccountService.new(azure)
     end
 
     return if sas.nil?
@@ -35,7 +35,7 @@ module ManageIQ::Providers::Azure::CloudManager::Provision::Cloning
       source_uri = image.uri
 
       target_uri = File.join(endpoint, "manageiq", dest_name + "_" + SecureRandom.uuid + ".vhd")
-    rescue Azure::Armrest::ResourceNotFoundException => err
+    rescue ::Azure::Armrest::ResourceNotFoundException => err
       _log.error("Error Class=#{err.class.name}, Message=#{err.message}")
     end
 
@@ -47,8 +47,6 @@ module ManageIQ::Providers::Azure::CloudManager::Provision::Cloning
   end
 
   def prepare_for_clone_task
-    nic_id = associated_nic || create_nic
-
     # TODO: Ideally this would be a check against source.storage or source.disks
     if source.ems_ref.starts_with?('/subscriptions')
       os = source.operating_system.product_name
@@ -76,12 +74,21 @@ module ManageIQ::Providers::Azure::CloudManager::Provision::Cloning
             :caching      => 'ReadWrite',
             :osType       => os
           }
-        },
-        :networkProfile  => {
-          :networkInterfaces => [{:id => nic_id}],
         }
       }
     }
+
+    # The -1 value is set in ProvisionWorkflow to distinguish between the
+    # desire for a new Public IP address vs a private IP.
+    #
+    if floating_ip
+      nic_id = associated_nic || create_nic(true)
+    else
+      public_ip = options[:floating_ip_address].first == -1
+      nic_id = create_nic(public_ip)
+    end
+
+    cloud_options[:properties][:networkProfile] = {:networkInterfaces => [{:id => nic_id}]}
 
     if target_uri
       cloud_options[:properties][:storageProfile][:osDisk][:name]  = dest_name + SecureRandom.uuid + '.vhd'
@@ -94,6 +101,7 @@ module ManageIQ::Providers::Azure::CloudManager::Provision::Cloning
     end
 
     cloud_options[:properties][:osProfile][:customData] = custom_data unless userdata_payload.nil?
+
     cloud_options
   end
 
@@ -119,41 +127,47 @@ module ManageIQ::Providers::Azure::CloudManager::Provision::Cloning
     floating_ip.try(:network_port).try(:ems_ref)
   end
 
-  def create_nic
+  def create_nic(with_public_ip = true)
     source.with_provider_connection do |azure|
-      nis             = Azure::Armrest::Network::NetworkInterfaceService.new(azure)
-      ips             = Azure::Armrest::Network::IpAddressService.new(azure)
-      ip              = ips.create("#{dest_name}-publicIp", resource_group.name, :location => region)
-      network_options = build_nic_options(ip.id)
+      nis = ::Azure::Armrest::Network::NetworkInterfaceService.new(azure)
+
+      if with_public_ip
+        ips = ::Azure::Armrest::Network::IpAddressService.new(azure)
+        ip  = ips.create("#{dest_name}-publicIp", resource_group.name, :location => region)
+        network_options = build_nic_options(ip.id)
+      else
+        network_options = build_nic_options
+      end
 
       return nis.create(dest_name, resource_group.name, network_options).id
     end
   end
 
-  def build_nic_options(ip)
+  def build_nic_options(ip_id = nil)
+    ip_config = {
+      :name       => dest_name,
+      :properties => {
+        :subnet => {:id => cloud_subnet.ems_ref}
+      }
+    }
+
+    ip_config[:properties][:publicIPAddress] = {:id => ip_id} if ip_id
+
     network_options = {
       :location   => region,
       :properties => {
-        :ipConfigurations => [
-          :name       => dest_name,
-          :properties => {
-            :subnet          => {
-              :id => cloud_subnet.ems_ref
-            },
-            :publicIPAddress => {
-              :id => ip
-            },
-          }
-        ],
+        :ipConfigurations => [ip_config]
       }
     }
+
     network_options[:properties][:networkSecurityGroup] = {:id => security_group.ems_ref} if security_group
+
     network_options
   end
 
   def start_clone(clone_options)
     source.with_provider_connection do |azure|
-      vms = Azure::Armrest::VirtualMachineService.new(azure)
+      vms = ::Azure::Armrest::VirtualMachineService.new(azure)
       vm  = vms.create(dest_name, resource_group.name, clone_options)
 
       {
