@@ -26,6 +26,10 @@ class ManageIQ::Providers::Azure::CloudManager::ProvisionWorkflow < ManageIQ::Pr
     end
   end
 
+  def allowed_floating_ip_addresses(options = {})
+    super(options).merge(-1 => 'New')
+  end
+
   private
 
   def dialog_name_from_automate(message = 'get_dialog_name')
