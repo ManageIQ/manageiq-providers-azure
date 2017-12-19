@@ -78,7 +78,8 @@ describe ManageIQ::Providers::Azure::CloudManager::ProvisionWorkflow do
       end
 
       it "allowed_floating_ips" do
-        expect(workflow.allowed_floating_ip_addresses.length).to eq(2)
+        expect(workflow.allowed_floating_ip_addresses.length).to eq(3)
+        expect(workflow.allowed_floating_ip_addresses[-1]).to eq('New')
       end
     end
   end
