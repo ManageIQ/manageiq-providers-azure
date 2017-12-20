@@ -22,6 +22,10 @@ module ManageIQ::Providers::Azure::ManagerMixin
         raise MiqException::MiqInvalidCredentialsError, _("Incorrect credentials - check your Azure Subscription ID")
       end
 
+      if provider_region.blank?
+        $azure_log.warn("No region selected. Validating credentials against public environment.")
+      end
+
       ::Azure::Armrest::Configuration.log = $azure_log
 
       connection_rescue_block do
