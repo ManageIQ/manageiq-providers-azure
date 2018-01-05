@@ -22,9 +22,9 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
 
   has_many :resource_groups, :foreign_key => :ems_id, :dependent => :destroy
 
-  supports :discovery
-  supports :provisioning
-  supports :regions
+  supports_not :discovery
+  supports     :provisioning
+  supports     :regions
 
   supports :timeline do
     unless insights?
