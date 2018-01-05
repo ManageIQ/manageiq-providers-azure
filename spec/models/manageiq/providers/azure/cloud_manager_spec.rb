@@ -219,9 +219,9 @@ describe ManageIQ::Providers::Azure::CloudManager do
         expect(@ems.supports_regions?).to eql(true)
       end
 
-      it "supports discovery" do
+      it "supports_not discovery" do
         expect(@ems).to respond_to(:supports_discovery?)
-        expect(@ems.supports_discovery?).to eql(true)
+        expect(@ems.supports_discovery?).to eql(false)
       end
 
       it "supports provisioning" do
