@@ -65,6 +65,10 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
     )
   end
 
+  def self.api_allowed_attributes
+    %w[azure_tenant_id].freeze
+  end
+
   def blacklisted_provider_types
     %r{Microsoft.Classic}
   end
