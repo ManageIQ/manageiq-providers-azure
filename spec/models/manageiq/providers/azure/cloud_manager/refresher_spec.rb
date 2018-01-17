@@ -9,8 +9,8 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
     @resource_group    = 'miq-azure-test1'
     @managed_vm        = 'miqazure-linux-managed'
     @device_name       = 'miq-test-rhel1' # Make sure this is running if generating a new cassette.
-    @ip_address        = '52.179.3.76'  # This will change if you had to restart the @device_name.
-    @mismatch_ip       = '52.168.73.61' # This will change if you had to restart the 'miqmismatch' VM.
+    @ip_address        = '52.224.165.15'  # This will change if you had to restart the @device_name.
+    @mismatch_ip       = '52.168.33.118'  # This will change if you had to restart the 'miqmismatch1' VM.
     @managed_os_disk   = "miqazure-linux-managed_OsDisk_1_7b2bdf790a7d4379ace2846d307730cd"
     @managed_data_disk = "miqazure-linux-managed-data-disk"
     @template          = nil
@@ -134,7 +134,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
   def expected_table_counts
     {
       :ext_management_system         => 2,
-      :flavor                        => 148,
+      :flavor                        => 156,
       :availability_zone             => 1,
       :vm_or_template                => 14,
       :vm                            => 13,
