@@ -54,4 +54,8 @@ class ManageIQ::Providers::Azure::NetworkManager < ManageIQ::Providers::NetworkM
   def description
     ManageIQ::Providers::Azure::Regions.find_by_name(provider_region)[:description]
   end
+
+  def self.display_name(number = 1)
+    n_('Network Manager (Microsoft Azure)', 'Network Managers (Microsoft Azure)', number)
+  end
 end

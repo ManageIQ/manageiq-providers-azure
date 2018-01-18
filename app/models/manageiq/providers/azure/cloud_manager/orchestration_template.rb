@@ -46,6 +46,10 @@ class ManageIQ::Providers::Azure::CloudManager::OrchestrationTemplate < ::Orches
     err.message
   end
 
+  def self.display_name(number = 1)
+    n_('Azure Template', 'Azure Templates', number)
+  end
+
   private
 
   def mode_opt
