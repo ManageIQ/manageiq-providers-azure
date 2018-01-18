@@ -219,4 +219,8 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
     connection ||= connect
     ::Azure::Armrest::Storage::SnapshotService.new(connection)
   end
+
+  def self.display_name(number = 1)
+    n_('Cloud Provider (Microsoft Azure)', 'Cloud Providers (Microsoft Azure)', number)
+  end
 end

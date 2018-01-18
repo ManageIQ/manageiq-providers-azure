@@ -38,4 +38,8 @@ class ManageIQ::Providers::Azure::CloudManager::Vm < ManageIQ::Providers::CloudM
       "unknown"
     end
   end
+
+  def self.display_name(number = 1)
+    n_('Instance (Microsoft Azure)', 'Instances (Microsoft Azure)', number)
+  end
 end
