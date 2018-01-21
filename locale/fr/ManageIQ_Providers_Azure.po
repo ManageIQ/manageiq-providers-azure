@@ -1,11 +1,13 @@
 # Laurence Ganseman <laurence.ganseman@stoquart.com>, 2017. #zanata
+# croe <croe@redhat.com>, 2017. #zanata
+# Milan Zázrivec <mzazrivec@redhat.com>, 2018. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: ManageIQ_Providers_Azure 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-31 15:46+0100\n"
-"PO-Revision-Date: 2017-11-09 04:36-0500\n"
-"Last-Translator: Laurence Ganseman <laurence.ganseman@stoquart.com>\n"
+"PO-Revision-Date: 2018-01-21 05:51-0500\n"
+"Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,7 +22,7 @@ msgstr "\" [#{ems.provider_region}]\""
 
 #: ../app/models/manageiq/providers/azure/manager_mixin.rb:16
 msgid "\"Incorrect credentials - #{err.message}\""
-msgstr "\"Informations d''identification incorrectes - #{err.message}\""
+msgstr "\"Informations d'identification incorrectes - #{err.message}\""
 
 #: ../app/models/manageiq/providers/azure/manager_mixin.rb:23
 msgid "\"Unexpected response returned from system: #{err.message}\""
@@ -172,7 +174,7 @@ msgstr "US Gov Virginia"
 
 #: ../app/models/manageiq/providers/azure/cloud_manager/vm/operations.rb:7
 msgid "VM has no %{table}, unable to destroy VM"
-msgstr "La VM n''a pas de %{table}, impossible de détruire la VM"
+msgstr "La VM n'a pas de %{table}, impossible de détruire la VM"
 
 #: ../app/models/manageiq/providers/azure/regions.rb:126
 msgid "West Central US"
