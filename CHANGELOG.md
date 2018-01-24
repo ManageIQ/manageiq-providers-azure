@@ -5,31 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
-## Gaprindashvili RC
+## Gaprindashvili-1
 
 ### Added
 - Handle possibility of arrays for Network Security Groups [(#180)](https://github.com/ManageIQ/manageiq-providers-azure/pull/180)
-
-### Fixed
-- Add a guard when getting power status for a VM [(#178)](https://github.com/ManageIQ/manageiq-providers-azure/pull/178)
-- Update VCR cassettes [(#179)](https://github.com/ManageIQ/manageiq-providers-azure/pull/179)
-- Added supported_catalog_types [(#185)](https://github.com/ManageIQ/manageiq-providers-azure/pull/185)
-- Set api-version explicitly for discovery and regenerate cassettes [(#183)](https://github.com/ManageIQ/manageiq-providers-azure/pull/183)
-- Guard against deleted NIC on load balancer [(#181)](https://github.com/ManageIQ/manageiq-providers-azure/pull/181)
-- Add the :all flag for metrics collection [(#176)](https://github.com/ManageIQ/manageiq-providers-azure/pull/176)
-
-## Gaprindashvili Beta2
-
-### Added
 - Correct and update disk information [(#158)](https://github.com/ManageIQ/manageiq-providers-azure/pull/158)
-
-### Fixed
-- Add an Azure STI class for ResourceGroup [(#165)](https://github.com/ManageIQ/manageiq-providers-azure/pull/165)
-- Downcase ems_ref for resource groups [(#156)](https://github.com/ManageIQ/manageiq-providers-azure/pull/156)
-
-## Gaprindashvili Beta1
-
-### Added
 - SSA Support for Managed Images [(#133)](https://github.com/ManageIQ/manageiq-providers-azure/pull/133)
 - Add logging of timings counts and memory usage [(#128)](https://github.com/ManageIQ/manageiq-providers-azure/pull/128)
 - Add support for regions in Germany [(#98)](https://github.com/ManageIQ/manageiq-providers-azure/pull/98)
@@ -45,8 +25,19 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - Use a simpler name for network ports [(#80)](https://github.com/ManageIQ/manageiq-providers-azure/pull/80)
 - Decrypt client keys in raw connect [(#86)](https://github.com/ManageIQ/manageiq-providers-azure/pull/86)
 - Make azure-armrest dependency less pessimistic [(#55)](https://github.com/ManageIQ/manageiq-providers-azure/pull/55)
+- Allow for possibility of private IP [(#172)](https://github.com/ManageIQ/manageiq-providers-azure/pull/172)
+- Log warning if no provider region is specified [(#191)](https://github.com/ManageIQ/manageiq-providers-azure/pull/191)
+- Azure doesn't support discovery [(#193)](Fixes to cleanup agents if AgentCoordinatorWorker is restarted)
 
 ### Fixed
+- Add a guard when getting power status for a VM [(#178)](https://github.com/ManageIQ/manageiq-providers-azure/pull/178)
+- Update VCR cassettes [(#179)](https://github.com/ManageIQ/manageiq-providers-azure/pull/179)
+- Added supported_catalog_types [(#185)](https://github.com/ManageIQ/manageiq-providers-azure/pull/185)
+- Set api-version explicitly for discovery and regenerate cassettes [(#183)](https://github.com/ManageIQ/manageiq-providers-azure/pull/183)
+- Guard against deleted NIC on load balancer [(#181)](https://github.com/ManageIQ/manageiq-providers-azure/pull/181)
+- Add the :all flag for metrics collection [(#176)](https://github.com/ManageIQ/manageiq-providers-azure/pull/176)
+- Add an Azure STI class for ResourceGroup [(#165)](https://github.com/ManageIQ/manageiq-providers-azure/pull/165)
+- Downcase ems_ref for resource groups [(#156)](https://github.com/ManageIQ/manageiq-providers-azure/pull/156)
 - Don't assume NIC IP configuration has subnet [(#132)](https://github.com/ManageIQ/manageiq-providers-azure/pull/132)
 - Don't collect information externally if marketplace images are specified [(#124)](https://github.com/ManageIQ/manageiq-providers-azure/pull/124)
 - Add Snapshot Code for Azure Managed Disks [(#117)](https://github.com/ManageIQ/manageiq-providers-azure/pull/117)
