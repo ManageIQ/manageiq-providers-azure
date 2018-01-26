@@ -139,7 +139,18 @@ module ManageIQ::Providers::Azure::CloudManager::Provision::Cloning
 
       if with_public_ip
         ips = ::Azure::Armrest::Network::IpAddressService.new(azure)
-        ip  = ips.create("#{dest_name}-publicIp", resource_group.name, :location => region)
+
+        # Use the existing Public IP if possible. Otherwise create a new one.
+        if floating_ip.try(:ems_ref)
+          begin
+            ip = ips.get_by_id(floating_ip.ems_ref)
+          rescue ::Azure::Armrest::NotFoundException
+            ip = ips.create("#{dest_name}-publicIp", resource_group.name, :location => region)
+          end
+        else
+          ip = ips.create("#{dest_name}-publicIp", resource_group.name, :location => region)
+        end
+
         network_options = build_nic_options(ip.id)
       else
         network_options = build_nic_options
