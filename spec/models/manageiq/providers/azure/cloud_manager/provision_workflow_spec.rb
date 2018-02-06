@@ -160,9 +160,10 @@ describe ManageIQ::Providers::Azure::CloudManager::ProvisionWorkflow do
 
   context "with VPC relationships" do
     before do
+      @az1 = FactoryGirl.create(:availability_zone, :ext_management_system => ems)
       @cn1 = FactoryGirl.create(:cloud_network, :ext_management_system => ems.network_manager)
-      @cs1 = FactoryGirl.create(:cloud_subnet, :cloud_network => @cn1)
-      @cs2 = FactoryGirl.create(:cloud_subnet, :cloud_network => @cn1)
+      FactoryGirl.create(:cloud_subnet, :cloud_network => @cn1, :availability_zone => @az1)
+      FactoryGirl.create(:cloud_subnet, :cloud_network => @cn1)
     end
 
     context "#allowed_cloud_subnets" do
@@ -173,6 +174,19 @@ describe ManageIQ::Providers::Azure::CloudManager::ProvisionWorkflow do
       it "with a cloud_network" do
         workflow.values[:cloud_network] = [@cn1.id, @cn1.name]
         expect(workflow.allowed_cloud_subnets.length).to eq(2)
+      end
+    end
+
+    context "#allowed_cloud_networks" do
+      it "#allowed_cloud_networks with zone" do
+        workflow.values[:placement_availability_zone] = [@az1.id, @az1.name]
+        cns = workflow.allowed_cloud_networks
+        expect(cns.keys).to match_array [@cn1.id]
+      end
+
+      it "#allowed_cloud_networks without availability zone returns nothing" do
+        cns = workflow.allowed_cloud_networks
+        expect(cns.keys).to match_array []
       end
     end
   end
