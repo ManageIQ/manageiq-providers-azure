@@ -20,7 +20,7 @@ class ManageIQ::Providers::Azure::CloudManager::OrchestrationTemplate < ::Orches
         :label         => key.titleize,
         :data_type     => val['type'],
         :default_value => val['defaultValue'],
-        :hidden        => val['type'] == 'securestring',
+        :hidden        => val['type'].casecmp('securestring').zero?,
         :required      => true
       )
 

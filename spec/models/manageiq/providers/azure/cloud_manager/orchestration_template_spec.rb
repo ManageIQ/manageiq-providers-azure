@@ -28,7 +28,7 @@ describe ManageIQ::Providers::Azure::CloudManager::OrchestrationTemplate do
       :name          => "adminPassword",
       :label         => "Admin Password",
       :description   => "Admin password",
-      :data_type     => "securestring",
+      :data_type     => "secureString",
       :default_value => nil,
       :hidden        => true,
       :required      => true,
