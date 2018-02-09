@@ -162,6 +162,7 @@ describe ManageIQ::Providers::Azure::CloudManager::ProvisionWorkflow do
     before do
       @az1 = FactoryGirl.create(:availability_zone, :ext_management_system => ems)
       @cn1 = FactoryGirl.create(:cloud_network, :ext_management_system => ems.network_manager)
+      @cn2 = FactoryGirl.create(:cloud_network, :ext_management_system => ems.network_manager)
       FactoryGirl.create(:cloud_subnet, :cloud_network => @cn1, :availability_zone => @az1)
       FactoryGirl.create(:cloud_subnet, :cloud_network => @cn1)
     end
@@ -184,9 +185,9 @@ describe ManageIQ::Providers::Azure::CloudManager::ProvisionWorkflow do
         expect(cns.keys).to match_array [@cn1.id]
       end
 
-      it "#allowed_cloud_networks without availability zone returns nothing" do
+      it "#allowed_cloud_networks without availability zone returns everything" do
         cns = workflow.allowed_cloud_networks
-        expect(cns.keys).to match_array []
+        expect(cns.keys).to match_array [@cn1.id, @cn2.id]
       end
     end
   end
