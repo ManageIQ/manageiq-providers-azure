@@ -9,7 +9,7 @@
             }
         },
         "adminPassword": {
-            "type": "securestring",
+            "type": "secureString",
             "metadata": {
               "description": "Admin password"
             }
