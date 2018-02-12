@@ -27,7 +27,13 @@ class ManageIQ::Providers::Azure::CloudManager::ProvisionWorkflow < ManageIQ::Pr
   end
 
   def allowed_floating_ip_addresses(options = {})
-    super(options).merge(-1 => 'New')
+    num_vms_selected = dialog_field_visibility_service.number_of_vms_visibility_service.number_of_vms
+
+    if num_vms_selected > 1
+      {-1 => 'New'}
+    else
+      super(options).merge(-1 => 'New')
+    end
   end
 
   private
@@ -38,5 +44,9 @@ class ManageIQ::Providers::Azure::CloudManager::ProvisionWorkflow < ManageIQ::Pr
 
   def self.provider_model
     ManageIQ::Providers::Azure::CloudManager
+  end
+
+  def dialog_field_visibility_service
+    @dialog_field_visibility_service ||= ManageIQ::Providers::Azure::DialogFieldVisibilityService.new
   end
 end
