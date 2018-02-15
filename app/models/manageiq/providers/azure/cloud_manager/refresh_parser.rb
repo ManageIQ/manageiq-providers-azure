@@ -365,8 +365,15 @@ module ManageIQ::Providers
           disk_type     = 'managed'
           disk_location = disk.managed_disk.id
           managed_disk  = @managed_disks.find { |d| d.id.casecmp(disk_location).zero? }
-          disk_size     = managed_disk.properties.disk_size_gb.gigabytes
-          mode          = managed_disk.sku.name
+
+          if managed_disk
+            disk_size = managed_disk.properties.disk_size_gb.gigabytes
+            mode      = managed_disk.sku.name
+          else
+            _log.warn("Unable to find disk information for #{instance.name}/#{instance.resource_group}")
+            disk_size = nil
+            mode      = nil
+          end
         else
           disk_type     = 'unmanaged'
           disk_location = disk.try(:vhd).try(:uri)
