@@ -210,6 +210,9 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
     rescue ::Azure::Armrest::RequestTimeoutException # Problem on Azure side
       _log.warn("Timeout attempting to collect metrics definitions for: #{target.name}/#{target.resource_group.name}. Skipping.")
       counters = []
+    rescue ::Azure::Armrest::NotFoundException # VM deleted
+      _log.warn("Could not find metrics definitions for: #{target.name}/#{target.resource_group.name}. Skipping.")
+      counters = []
     rescue Exception => err
       _log.error("Unhandled exception during counter collection: #{target.name}/#{target.resource_group.name}")
       _log.log_backtrace(err)
