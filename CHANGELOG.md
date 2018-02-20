@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
+## Unreleased as of Sprint 79 ending 2018-02-12
+
+### Fixed
+- Treat securestring case insentive [(#206)](https://github.com/ManageIQ/manageiq-providers-azure/pull/206)
+
 ## Gaprindashvili-1 - Released 2018-01-31
 
 ### Added
@@ -52,6 +57,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - Smart state Snapshot Managed Disk Name 80 Char Limit [(#157)](https://github.com/ManageIQ/manageiq-providers-azure/pull/157)
 - Pass manageiq-smartstate the Resource Group Name not the Object [(#155)](https://github.com/ManageIQ/manageiq-providers-azure/pull/155)
 - Fix exception handing for credential validation on raw_connect [(#161)](https://github.com/ManageIQ/manageiq-providers-azure/pull/161)
+- Correct and update disk information [(#158)](https://github.com/ManageIQ/manageiq-providers-azure/pull/158)
+- Handle possibility of arrays for Network Security Groups [(#180)](https://github.com/ManageIQ/manageiq-providers-azure/pull/180)
 
 ## Unreleased as of Sprint 78 ending 2018-01-29
 
@@ -69,12 +76,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 ### Fixed
 - Add resourceProviderName to list of collected event fields [(#182)](https://github.com/ManageIQ/manageiq-providers-azure/pull/182)
-- Handle possibility of arrays for Network Security Groups [(#180)](https://github.com/ManageIQ/manageiq-providers-azure/pull/180)
-
-## Unreleased as of Sprint 73 ending 2017-11-13
-
-### Fixed
-- Correct and update disk information [(#158)](https://github.com/ManageIQ/manageiq-providers-azure/pull/158)
 
 ## Unreleased as of Sprint 72 ending 2017-10-30
 
