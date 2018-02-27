@@ -70,7 +70,7 @@ class ManageIQ::Providers::Azure::InventoryCollectionDefault::CloudManager < Man
 
     def orchestration_stacks_resources(extra_attributes = {})
       attributes = {
-        :manager_ref => [:stack, :ems_ref]
+        :manager_ref => %i(stack ems_ref)
       }
 
       super(attributes.merge!(extra_attributes))
@@ -78,7 +78,7 @@ class ManageIQ::Providers::Azure::InventoryCollectionDefault::CloudManager < Man
 
     def orchestration_stacks_outputs(extra_attributes = {})
       attributes = {
-        :manager_ref => [:stack, :ems_ref]
+        :manager_ref => %i(stack ems_ref)
       }
 
       super(attributes.merge!(extra_attributes))
@@ -86,7 +86,7 @@ class ManageIQ::Providers::Azure::InventoryCollectionDefault::CloudManager < Man
 
     def orchestration_stacks_parameters(extra_attributes = {})
       attributes = {
-        :manager_ref => [:stack, :ems_ref]
+        :manager_ref => %i(stack ems_ref)
       }
 
       super(attributes.merge!(extra_attributes))

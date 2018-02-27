@@ -5,7 +5,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
 
   attr_reader :subscription_id
 
-  # TODO cleanup later when old refresh is deleted
+  # TODO: cleanup later when old refresh is deleted
   include ManageIQ::Providers::Azure::RefreshHelperMethods
   include Vmdb::Logging
 
@@ -50,7 +50,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
   def power_status(instance)
     view = @vmm.get_instance_view(instance.name, instance.resource_group)
     status = view.statuses.find { |s| s.code =~ %r{^PowerState/} }
-    status.display_status if status
+    status&.display_status
   rescue ::Azure::Armrest::NotFoundException
     'off' # Possible race condition caused by retirement deletion.
   end
@@ -110,7 +110,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
 
     body = RestClient::Request.execute(options).body
     JSON.parse(body).to_s # normalize to remove white spaces
-  rescue => e
+  rescue StandardError => e
     _log.error("Failed to download Azure template #{uri}. Reason: #{e.inspect}")
     nil
   end
