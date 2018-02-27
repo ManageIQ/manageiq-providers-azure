@@ -63,7 +63,6 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
     # TODO(lsmola) add filtered API
   end
 
-
   def images
     return [] if references(:miq_templates).blank?
 
@@ -146,7 +145,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
     # ems_refs of every related object. Now this is not very nice fro ma design point of view, but we really want
     # to see changes in VM's associated objects, so the VM view is always consistent and have fresh data. The partial
     # reason for this is, that AWS doesn't send all the objects state change,
-    unless references(:vms).blank?
+    if references(:vms).present?
       infer_related_vm_ems_refs_db!
       infer_related_vm_ems_refs_api!
     end
