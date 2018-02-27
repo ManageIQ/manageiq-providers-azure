@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
+## Unreleased as of Sprint 80 ending 2018-02-26
+
+### Added
+- Added azure_tenant_id to API_ALLOWED_ATTRIBUTES [(#198)](https://github.com/ManageIQ/manageiq-providers-azure/pull/198)
+
+### Fixed
+- Allow users to choose public or private IP when provisioning multiple VMs [(#210)](https://github.com/ManageIQ/manageiq-providers-azure/pull/210)
+Handle possible race conditions for disks events [(#209)](https://github.com/ManageIQ/manageiq-providers-azure/pull/209)
+
 ## Unreleased as of Sprint 79 ending 2018-02-12
 
 ### Fixed
