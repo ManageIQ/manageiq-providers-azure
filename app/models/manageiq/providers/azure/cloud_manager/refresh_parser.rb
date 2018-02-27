@@ -649,7 +649,7 @@ module ManageIQ::Providers
           :publicly_available => false,
           :hardware           => {
             :bitness  => 64,
-            :guest_os => image.operating_system
+            :guest_os => OperatingSystem.normalize_os_name(image.operating_system)
           }
         }
 
