@@ -375,7 +375,7 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
   # Find both OS and SKU if possible, otherwise just the OS type.
   def guest_os(instance)
     image_reference = instance.properties.storage_profile.try(:image_reference)
-    if image_reference && image_reference.try(:offer)
+    if image_reference&.try(:offer)
       "#{image_reference.offer} #{image_reference.sku.tr('-', ' ')}"
     else
       instance.properties.storage_profile.os_disk.os_type

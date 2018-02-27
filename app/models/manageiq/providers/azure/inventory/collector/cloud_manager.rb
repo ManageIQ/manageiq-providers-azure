@@ -23,7 +23,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::CloudManager < ManageIQ:
       begin
         @vmm.series(@ems.provider_region)
       rescue ::Azure::Armrest::BadGatewayException, ::Azure::Armrest::GatewayTimeoutException,
-        ::Azure::Armrest::BadRequestException => err
+             ::Azure::Armrest::BadRequestException => err
         _log.error("Error Class=#{err.class.name}, Message=#{err.message}")
         []
       end

@@ -189,12 +189,12 @@ class ManageIQ::Providers::Azure::Inventory::Parser::NetworkManager < ManageIQ::
       frontend_port = listener.properties["frontendPort"].to_i
 
       persister_load_balancer_listener = persister.load_balancer_listeners.build(
-        :ems_ref                      => uid,
-        :load_balancer_protocol       => listener.properties["protocol"],
-        :load_balancer_port_range     => (backend_port..backend_port),
-        :instance_protocol            => listener.properties["protocol"],
-        :instance_port_range          => (frontend_port..frontend_port),
-        :load_balancer                => persister_load_balancer,
+        :ems_ref                  => uid,
+        :load_balancer_protocol   => listener.properties["protocol"],
+        :load_balancer_port_range => (backend_port..backend_port),
+        :instance_protocol        => listener.properties["protocol"],
+        :instance_port_range      => (frontend_port..frontend_port),
+        :load_balancer            => persister_load_balancer,
       )
 
       persister.load_balancer_listener_pools.build(
@@ -251,10 +251,10 @@ class ManageIQ::Providers::Azure::Inventory::Parser::NetworkManager < ManageIQ::
 
       # We will copy members of our listeners into health check members
       health_check_members = health_check
-                               .properties["loadBalancingRules"]
-                               .map { |x| by_load_balancer_listeners[x.id] }
-                               .map { |x| by_load_balancer_pool_member_pools[x] }
-                               .flatten
+                             .properties["loadBalancingRules"]
+                             .map { |x| by_load_balancer_listeners[x.id] }
+                             .map { |x| by_load_balancer_pool_member_pools[x] }
+                             .flatten
 
       health_check_members.compact.each do |health_check_member|
         persister.load_balancer_health_check_members.build(
@@ -295,8 +295,6 @@ class ManageIQ::Providers::Azure::Inventory::Parser::NetworkManager < ManageIQ::
       rule.properties.source_address_prefix
     elsif rule.properties.respond_to?(:source_address_prefixes)
       rule.properties.source_address_prefixes.join(',')
-    else
-      nil # Old api-version
     end
   end
 
@@ -305,8 +303,6 @@ class ManageIQ::Providers::Azure::Inventory::Parser::NetworkManager < ManageIQ::
       rule.properties.destination_port_range.split('-').first.to_i
     elsif rule.properties.respond_to?(:destination_port_ranges)
       rule.properties.destination_port_ranges.flat_map { |e| e.split('-') }.map(&:to_i).min
-    else
-      nil # Old api-version
     end
   end
 
@@ -315,8 +311,6 @@ class ManageIQ::Providers::Azure::Inventory::Parser::NetworkManager < ManageIQ::
       rule.properties.destination_port_range.split('-').last.to_i
     elsif rule.properties.respond_to?(:destination_port_ranges)
       rule.properties.destination_port_ranges.flat_map { |e| e.split('-') }.map(&:to_i).max
-    else
-      nil # Old api-version
     end
   end
 
@@ -328,7 +322,7 @@ class ManageIQ::Providers::Azure::Inventory::Parser::NetworkManager < ManageIQ::
     # where id of the network port is
     # /subscriptions/{guid}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkInterfaces/vm1nic1
     cloud_subnet_network_port_id = ip.properties.try(:ip_configuration).try(:id)
-    cloud_subnet_network_port_id.split("/")[0..-3].join("/") if cloud_subnet_network_port_id
+    cloud_subnet_network_port_id&.split("/")[0..-3].join("/")
   end
 
   def resource_id_for_instance_id(id)
@@ -337,9 +331,8 @@ class ManageIQ::Providers::Azure::Inventory::Parser::NetworkManager < ManageIQ::
     return nil unless id
     _, _, guid, _, resource_group, _, type, sub_type, name = id.split("/")
     resource_uid(guid,
-      resource_group.downcase,
-      "#{type.downcase}/#{sub_type.downcase}",
-      name
-    )
+                 resource_group.downcase,
+                 "#{type.downcase}/#{sub_type.downcase}",
+                 name)
   end
 end
