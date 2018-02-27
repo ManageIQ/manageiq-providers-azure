@@ -1,5 +1,5 @@
 module ManageIQ::Providers
-  class Azure::NetworkManager::Refresher < ManageIQ::Providers::BaseManager::Refresher
+  class Azure::NetworkManager::Refresher < ManageIQ::Providers::BaseManager::ManagerRefresher
     include ::EmsRefresh::Refreshers::EmsRefresherMixin
 
     def parse_legacy_inventory(ems)
