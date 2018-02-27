@@ -322,7 +322,7 @@ class ManageIQ::Providers::Azure::Inventory::Parser::NetworkManager < ManageIQ::
     # where id of the network port is
     # /subscriptions/{guid}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkInterfaces/vm1nic1
     cloud_subnet_network_port_id = ip.properties.try(:ip_configuration).try(:id)
-    cloud_subnet_network_port_id&.split("/")[0..-3].join("/")
+    cloud_subnet_network_port_id.split("/")[0..-3].join("/") if cloud_subnet_network_port_id
   end
 
   def resource_id_for_instance_id(id)
