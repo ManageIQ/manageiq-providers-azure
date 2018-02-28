@@ -5,7 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
-## Gaprindashvili-1
+## Gaprindashvili-2
+
+### Fixed
+- Handle possible race conditions for disks, events [(#209)](https://github.com/ManageIQ/manageiq-providers-azure/pull/209)
+
+## Gaprindashvili-1 - Released 2018-02-01
 
 ### Added
 - Handle possibility of arrays for Network Security Groups [(#180)](https://github.com/ManageIQ/manageiq-providers-azure/pull/180)
