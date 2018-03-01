@@ -31,8 +31,16 @@ module AzureRefresherSpecCommon
     }
   ].freeze
 
-
   ALL_REFRESH_SETTINGS = (AzureRefresherSpecCommon::ALL_GRAPH_REFRESH_SETTINGS + AzureRefresherSpecCommon::ALL_OLD_REFRESH_SETTINGS).freeze
+
+  MODELS = %i(
+    ext_management_system flavor availability_zone vm_or_template vm miq_template disk guest_device
+    hardware network operating_system relationship orchestration_template orchestration_stack
+    orchestration_stack_parameter orchestration_stack_output orchestration_stack_resource security_group
+    network_port cloud_network floating_ip network_router cloud_subnet resource_group load_balancer
+    load_balancer_pool load_balancer_pool_member load_balancer_pool_member_pool load_balancer_listener
+    load_balancer_listener_pool load_balancer_health_check load_balancer_health_check_member
+  ).freeze
 
   def refresh_with_cassette(targets, suffix)
     @ems.reload
@@ -65,34 +73,52 @@ module AzureRefresherSpecCommon
     @ems.reload
   end
 
+  def serialize_inventory
+    skip_atributes = %w(updated_on last_refresh_date updated_at)
+    inventory = {}
+    MODELS.each do |rel|
+      inventory[rel] = rel.to_s.classify.constantize.all.collect do |e|
+        e.attributes.except(*skip_atributes)
+      end
+    end
+
+    inventory
+  end
+
   def expected_table_counts
     {
-      :ext_management_system         => 2,
-      :flavor                        => 156,
-      :availability_zone             => 1,
-      :vm_or_template                => 14,
-      :vm                            => 13,
-      :miq_template                  => 1,
-      :disk                          => 14,
-      :guest_device                  => 0,
-      :hardware                      => 14,
-      :network                       => 23,
-      :operating_system              => 13,
-      :relationship                  => 0,
-      :miq_queue                     => 15,
-      :orchestration_template        => 21,
-      :orchestration_stack           => 23,
-      :orchestration_stack_parameter => 233,
-      :orchestration_stack_output    => 11,
-      :orchestration_stack_resource  => 84,
-      :security_group                => 13,
-      :network_port                  => 16,
-      :cloud_network                 => 6,
-      :floating_ip                   => 13,
-      :network_router                => 0,
-      :cloud_subnet                  => 6,
-      :resource_group                => 4,
-      :load_balancer                 => 3,
+      :ext_management_system             => 2,
+      :flavor                            => 156,
+      :availability_zone                 => 1,
+      :vm_or_template                    => 14,
+      :vm                                => 13,
+      :miq_template                      => 1,
+      :disk                              => 14,
+      :guest_device                      => 0,
+      :hardware                          => 14,
+      :network                           => 23,
+      :operating_system                  => 13,
+      :relationship                      => 0,
+      :orchestration_template            => 21,
+      :orchestration_stack               => 23,
+      :orchestration_stack_parameter     => 233,
+      :orchestration_stack_output        => 11,
+      :orchestration_stack_resource      => 84,
+      :security_group                    => 13,
+      :network_port                      => 16,
+      :cloud_network                     => 6,
+      :floating_ip                       => 13,
+      :network_router                    => 0,
+      :cloud_subnet                      => 6,
+      :resource_group                    => 4,
+      :load_balancer                     => 3,
+      :load_balancer_pool                => 3,
+      :load_balancer_pool_member         => 4,
+      :load_balancer_pool_member_pool    => 4,
+      :load_balancer_listener            => 2,
+      :load_balancer_listener_pool       => 2,
+      :load_balancer_health_check        => 3,
+      :load_balancer_health_check_member => 4,
     }
   end
 
@@ -101,65 +127,11 @@ module AzureRefresherSpecCommon
   end
 
   def base_expected_table_counts
-    {
-      :ext_management_system         => 0,
-      :flavor                        => 0,
-      :availability_zone             => 0,
-      :vm_or_template                => 0,
-      :vm                            => 0,
-      :miq_template                  => 0,
-      :disk                          => 0,
-      :guest_device                  => 0,
-      :hardware                      => 0,
-      :network                       => 0,
-      :operating_system              => 0,
-      :relationship                  => 0,
-      :miq_queue                     => 0,
-      :orchestration_template        => 0,
-      :orchestration_stack           => 0,
-      :orchestration_stack_parameter => 0,
-      :orchestration_stack_output    => 0,
-      :orchestration_stack_resource  => 0,
-      :security_group                => 0,
-      :network_port                  => 0,
-      :cloud_network                 => 0,
-      :floating_ip                   => 0,
-      :network_router                => 0,
-      :cloud_subnet                  => 0,
-      :resource_group                => 0,
-      :load_balancer                 => 0,
-    }
+    Hash[MODELS.collect { |m| [m, 0] }]
   end
 
   def actual_table_counts
-    {
-      :ext_management_system         => ExtManagementSystem.count,
-      :flavor                        => Flavor.count,
-      :availability_zone             => AvailabilityZone.count,
-      :vm_or_template                => VmOrTemplate.count,
-      :vm                            => Vm.count,
-      :miq_template                  => MiqTemplate.count,
-      :disk                          => Disk.count,
-      :guest_device                  => GuestDevice.count,
-      :hardware                      => Hardware.count,
-      :network                       => Network.count,
-      :operating_system              => OperatingSystem.count,
-      :relationship                  => Relationship.count,
-      :miq_queue                     => MiqQueue.count,
-      :orchestration_template        => OrchestrationTemplate.count,
-      :orchestration_stack           => OrchestrationStack.count,
-      :orchestration_stack_parameter => OrchestrationStackParameter.count,
-      :orchestration_stack_output    => OrchestrationStackOutput.count,
-      :orchestration_stack_resource  => OrchestrationStackResource.count,
-      :security_group                => SecurityGroup.count,
-      :network_port                  => NetworkPort.count,
-      :cloud_network                 => CloudNetwork.count,
-      :floating_ip                   => FloatingIp.count,
-      :network_router                => NetworkRouter.count,
-      :cloud_subnet                  => CloudSubnet.count,
-      :resource_group                => ResourceGroup.count,
-      :load_balancer                 => LoadBalancer.count,
-    }
+    Hash[MODELS.collect { |m| [m, m.to_s.classify.constantize.count] }]
   end
 
   def assert_table_counts(passed_counts = nil)
