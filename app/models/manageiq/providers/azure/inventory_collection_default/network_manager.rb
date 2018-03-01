@@ -22,10 +22,10 @@ class ManageIQ::Providers::Azure::InventoryCollectionDefault::NetworkManager < M
         :parent_inventory_collections => [:cloud_networks],
       }
 
-      extra_attributes[:targeted_arel] = lambda do |inventory_collection|
+      attributes[:targeted_arel] = lambda do |inventory_collection|
         manager_uuids = inventory_collection.parent_inventory_collections.flat_map { |c| c.manager_uuids.to_a }
         inventory_collection.parent.cloud_subnets.joins(:cloud_network).where(
-          :cloud_network => {:ems_ref => manager_uuids}
+          :cloud_networks => {:ems_ref => manager_uuids}
         )
       end
 
