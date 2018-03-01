@@ -79,7 +79,7 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
         :flavor              => series,
         :location            => instance.location,
         # TODO(lsmola) for release > g, we can use secondary indexes for this as
-        :orchestration_stack => persister.stack_resources_secondary_index[instance.id.downcase].try(:[], :stack),
+        :orchestration_stack => persister.stack_resources_secondary_index[instance.id.downcase],
         :availability_zone   => persister.availability_zones.lazy_find('default'),
         :resource_group      => persister.resource_groups.lazy_find(rg_ems_ref),
       )
@@ -222,7 +222,7 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
     # TODO(lsmola) for release > g, we can use secondary indexes for this as
     # :parent => persister.orchestration_stacks_resources.lazy_find({:ems_ref => res_uid } , {:key => :stack, :ref => :by_...}),
     persister.orchestration_stacks.data.each do |stack_data|
-      stack_data[:parent] = persister.stack_resources_secondary_index[stack_data[:ems_ref].downcase].try(:[], :stack)
+      stack_data[:parent] = persister.stack_resources_secondary_index[stack_data[:ems_ref].downcase]
     end
   end
 
@@ -274,7 +274,7 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
       )
 
       # TODO(lsmola) for release > g, we can use secondary indexes for this
-      persister.stack_resources_secondary_index[persister_stack_resource[:ems_ref].downcase] = persister_stack_resource
+      persister.stack_resources_secondary_index[persister_stack_resource[:ems_ref].downcase] = persister_stack_resource[:stack]
     end
   end
 
