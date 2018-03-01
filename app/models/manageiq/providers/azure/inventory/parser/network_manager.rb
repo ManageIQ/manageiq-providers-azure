@@ -164,14 +164,11 @@ class ManageIQ::Providers::Azure::Inventory::Parser::NetworkManager < ManageIQ::
   def load_balancer_pool_members(persister_load_balancer_pool, pool)
     pool["properties"]["backendIPConfigurations"].to_a.each do |ipconfig|
       uid      = ipconfig.id
-      nic_id   = persister.network_port_secondary_index[uid]
-      net_port = persister.network_ports.find(nic_id)
-
-      next unless net_port && net_port[:device]
+      nic_id   = uid.split("/")[0..-3].join("/") # Convert IpConfiguration id to networkInterfaces id
 
       persister_load_balancer_pool_member = persister.load_balancer_pool_members.build(
         :ems_ref => uid,
-        :vm      => net_port[:device]
+        :vm      => persister.network_ports.lazy_find(nic_id, :key => :device)
       )
 
       persister.load_balancer_pool_member_pools.build(
