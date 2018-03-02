@@ -44,7 +44,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
       begin
         @vmm.series(@ems.provider_region)
       rescue ::Azure::Armrest::BadGatewayException, ::Azure::Armrest::GatewayTimeoutException,
-        ::Azure::Armrest::BadRequestException => err
+             ::Azure::Armrest::BadRequestException => err
         _log.error("Error Class=#{err.class.name}, Message=#{err.message}")
         []
       end
@@ -242,7 +242,6 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
   end
 
   def infer_related_lb_ems_refs_db!
-
   end
 
   def infer_related_lb_ems_refs_api!
@@ -261,7 +260,6 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
   end
 
   def infer_related_stacks_ems_refs_db!
-
   end
 
   def infer_related_stacks_ems_refs_api!
@@ -321,8 +319,8 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
 
   def infer_related_vm_ems_refs_db!
     changed_vms = manager.vms
-                    .where(:ems_ref => references(:vms))
-                    .includes(:key_pairs, :network_ports, :floating_ips, :orchestration_stack, :resource_group, :cloud_subnets => [:cloud_network])
+                         .where(:ems_ref => references(:vms))
+                         .includes(:key_pairs, :network_ports, :floating_ips, :orchestration_stack, :resource_group, :cloud_subnets => [:cloud_network])
 
     changed_vms.each do |vm|
       stack      = vm.orchestration_stack
@@ -360,8 +358,8 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
 
   def infer_related_network_port_ems_refs_db!
     changed_network_ports = manager.network_ports
-                              .where(:ems_ref => references(:network_ports))
-                              .includes(:floating_ips, :cloud_subnets => [:cloud_network])
+                                   .where(:ems_ref => references(:network_ports))
+                                   .includes(:floating_ips, :cloud_subnets => [:cloud_network])
 
     changed_network_ports.each do |network_port|
       network_port.cloud_subnets.collect { |x| x.cloud_network.try(:ems_ref) }.compact.each { |ems_ref| add_simple_target!(:cloud_networks, ems_ref) }

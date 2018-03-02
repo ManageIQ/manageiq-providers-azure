@@ -163,18 +163,22 @@ module AzureRefresherSpecCommon
                           "rspec-lb1/backendAddressPools/rspec-lb-pool"
 
     @lb = ManageIQ::Providers::Azure::NetworkManager::LoadBalancer.where(
-      :name    => "rspec-lb1").first
+      :name    => "rspec-lb1"
+    ).first
     @lb_no_members = ManageIQ::Providers::Azure::NetworkManager::LoadBalancer.where(
-      :name    => "rspec-lb2").first
-    @pool          = ManageIQ::Providers::Azure::NetworkManager::LoadBalancerPool.where(
-      :ems_ref => lb_pool_ems_ref).first
+      :name    => "rspec-lb2"
+    ).first
+    @pool = ManageIQ::Providers::Azure::NetworkManager::LoadBalancerPool.where(
+      :ems_ref => lb_pool_ems_ref
+    ).first
 
     expect(@lb).to have_attributes(
-                     "ems_ref"         => lb_ems_ref,
-                     "name"            => "rspec-lb1",
-                     "description"     => nil,
-                     "cloud_tenant_id" => nil,
-                     "type"            => "ManageIQ::Providers::Azure::NetworkManager::LoadBalancer")
+      "ems_ref"         => lb_ems_ref,
+      "name"            => "rspec-lb1",
+      "description"     => nil,
+      "cloud_tenant_id" => nil,
+      "type"            => "ManageIQ::Providers::Azure::NetworkManager::LoadBalancer"
+    )
 
     expect(@lb.ext_management_system).to eq(@ems.network_manager)
     expect(@lb.vms.count).to eq 2
@@ -187,7 +191,7 @@ module AzureRefresherSpecCommon
   end
 
   def assert_specific_load_balancer_networking
-    floating_ip      = FloatingIp.where(:address => "40.71.82.83").first
+    floating_ip = FloatingIp.where(:address => "40.71.82.83").first
 
     expect(@lb).to eq floating_ip.network_port.device
   end
@@ -206,19 +210,20 @@ module AzureRefresherSpecCommon
                                    "ipConfigurations/ipconfig1"
 
     @listener = ManageIQ::Providers::Azure::NetworkManager::LoadBalancerListener.where(
-      :ems_ref => lb_listener_ems_ref).first
+      :ems_ref => lb_listener_ems_ref
+    ).first
 
     expect(@listener).to have_attributes(
-                           "ems_ref"                  => lb_listener_ems_ref,
-                           "name"                     => nil,
-                           "description"              => nil,
-                           "load_balancer_protocol"   => "Tcp",
-                           "load_balancer_port_range" => 80...81,
-                           "instance_protocol"        => "Tcp",
-                           "instance_port_range"      => 80...81,
-                           "cloud_tenant_id"          => nil,
-                           "type"                     => "ManageIQ::Providers::Azure::NetworkManager::LoadBalancerListener"
-                         )
+      "ems_ref"                  => lb_listener_ems_ref,
+      "name"                     => nil,
+      "description"              => nil,
+      "load_balancer_protocol"   => "Tcp",
+      "load_balancer_port_range" => 80...81,
+      "instance_protocol"        => "Tcp",
+      "instance_port_range"      => 80...81,
+      "cloud_tenant_id"          => nil,
+      "type"                     => "ManageIQ::Providers::Azure::NetworkManager::LoadBalancerListener"
+    )
     expect(@listener.ext_management_system).to eq(@ems.network_manager)
     expect(@lb.load_balancer_listeners).to eq [@listener]
     expect(@listener.load_balancer_pools).to eq([@pool])
@@ -235,18 +240,19 @@ module AzureRefresherSpecCommon
                                "probes/rspec-lb-probe"
 
     @health_check = ManageIQ::Providers::Azure::NetworkManager::LoadBalancerHealthCheck.where(
-      :ems_ref => health_check_ems_ref).first
+      :ems_ref => health_check_ems_ref
+    ).first
 
     expect(@health_check).to have_attributes(
-                               "ems_ref"         => health_check_ems_ref,
-                               "name"            => nil,
-                               "protocol"        => "Http",
-                               "port"            => 80,
-                               "url_path"        => "/",
-                               "interval"        => 5,
-                               "cloud_tenant_id" => nil,
-                               "type"            => "ManageIQ::Providers::Azure::NetworkManager::LoadBalancerHealthCheck"
-                             )
+      "ems_ref"         => health_check_ems_ref,
+      "name"            => nil,
+      "protocol"        => "Http",
+      "port"            => 80,
+      "url_path"        => "/",
+      "interval"        => 5,
+      "cloud_tenant_id" => nil,
+      "type"            => "ManageIQ::Providers::Azure::NetworkManager::LoadBalancerHealthCheck"
+    )
     expect(@listener.load_balancer_health_checks.first).to eq @health_check
     expect(@health_check.load_balancer).to eq @lb
     expect(@health_check.load_balancer_health_check_members.count).to eq 2
@@ -258,9 +264,9 @@ module AzureRefresherSpecCommon
     @sg = ManageIQ::Providers::Azure::NetworkManager::SecurityGroup.where(:name => @device_name).first
 
     expect(@sg).to have_attributes(
-                     :name        => @device_name,
-                     :description => 'miq-azure-test1-eastus'
-                   )
+      :name        => @device_name,
+      :description => 'miq-azure-test1-eastus'
+    )
 
     expected_firewall_rules = [
       {:host_protocol => "TCP", :direction => "Inbound", :port => 22,  :end_port => 22,  :source_ip_range => "*"},
@@ -271,9 +277,9 @@ module AzureRefresherSpecCommon
     expect(@sg.firewall_rules.size).to eq(3)
 
     @sg.firewall_rules
-      .order(:host_protocol, :direction, :port, :end_port, :source_ip_range, :source_security_group_id)
-      .zip(expected_firewall_rules)
-      .each do |actual, expected|
+       .order(:host_protocol, :direction, :port, :end_port, :source_ip_range, :source_security_group_id)
+       .zip(expected_firewall_rules)
+       .each do |actual, expected|
       expect(actual).to have_attributes(expected)
     end
   end
@@ -285,20 +291,20 @@ module AzureRefresherSpecCommon
     @flavor = ManageIQ::Providers::Azure::CloudManager::Flavor.where(:name => "basic_a0").first
 
     expect(@flavor).to have_attributes(
-                         :name                     => "basic_a0",
-                         :description              => nil,
-                         :enabled                  => true,
-                         :cpus                     => 1,
-                         :cpu_cores                => 1,
-                         :memory                   => 768.megabytes,
-                         :supports_32_bit          => nil,
-                         :supports_64_bit          => nil,
-                         :supports_hvm             => nil,
-                         :supports_paravirtual     => nil,
-                         :block_storage_based_only => nil,
-                         :root_disk_size           => 1023.megabytes,
-                         :swap_disk_size           => 20.megabytes
-                       )
+      :name                     => "basic_a0",
+      :description              => nil,
+      :enabled                  => true,
+      :cpus                     => 1,
+      :cpu_cores                => 1,
+      :memory                   => 768.megabytes,
+      :supports_32_bit          => nil,
+      :supports_64_bit          => nil,
+      :supports_hvm             => nil,
+      :supports_paravirtual     => nil,
+      :block_storage_based_only => nil,
+      :root_disk_size           => 1023.megabytes,
+      :swap_disk_size           => 20.megabytes
+    )
 
     expect(@flavor.ext_management_system).to eq(@ems)
   end
@@ -319,12 +325,12 @@ module AzureRefresherSpecCommon
     @avail_zone = ManageIQ::Providers::Azure::CloudManager::AvailabilityZone.first
 
     expect(@cn).to have_attributes(
-                     :name    => name,
-                     :ems_ref => cn_resource_id,
-                     :cidr    => "10.16.0.0/16",
-                     :status  => nil,
-                     :enabled => true
-                   )
+      :name    => name,
+      :ems_ref => cn_resource_id,
+      :cidr    => "10.16.0.0/16",
+      :status  => nil,
+      :enabled => true
+    )
     expect(@cn.vms.size).to be >= 1
     expect(@cn.network_ports.size).to be >= 1
 
@@ -334,11 +340,11 @@ module AzureRefresherSpecCommon
     expect(@cn.cloud_subnets.size).to eq(1)
     @subnet = @cn.cloud_subnets.where(:name => "default").first
     expect(@subnet).to have_attributes(
-                         :name              => "default",
-                         :ems_ref           => "#{cn_resource_id}/subnets/default",
-                         :cidr              => "10.16.0.0/24",
-                         :availability_zone => @avail_zone
-                       )
+      :name              => "default",
+      :ems_ref           => "#{cn_resource_id}/subnets/default",
+      :cidr              => "10.16.0.0/24",
+      :availability_zone => @avail_zone
+    )
 
     vm_subnet = @subnet.vms.where(:name => @device_name).first
     expect(vm_subnet.cloud_subnets.size).to be >= 1
@@ -349,33 +355,34 @@ module AzureRefresherSpecCommon
 
   def assert_specific_vm_powered_on
     vm = ManageIQ::Providers::Azure::CloudManager::Vm.where(
-      :name => @device_name, :raw_power_state => "VM running").first
+      :name => @device_name, :raw_power_state => "VM running"
+    ).first
     vm_resource_id = "#{@ems.subscription}\\#{@resource_group}\\microsoft.compute/virtualmachines\\#{@device_name}"
 
     expect(vm).to have_attributes(
-                    :template              => false,
-                    :ems_ref               => vm_resource_id,
-                    :ems_ref_obj           => nil,
-                    :uid_ems               => vm_resource_id,
-                    :vendor                => "azure",
-                    :power_state           => "on",
-                    :location              => "eastus",
-                    :tools_status          => nil,
-                    :boot_time             => nil,
-                    :standby_action        => nil,
-                    :connection_state      => nil,
-                    :cpu_affinity          => nil,
-                    :memory_reserve        => nil,
-                    :memory_reserve_expand => nil,
-                    :memory_limit          => nil,
-                    :memory_shares         => nil,
-                    :memory_shares_level   => nil,
-                    :cpu_reserve           => nil,
-                    :cpu_reserve_expand    => nil,
-                    :cpu_limit             => nil,
-                    :cpu_shares            => nil,
-                    :cpu_shares_level      => nil
-                  )
+      :template              => false,
+      :ems_ref               => vm_resource_id,
+      :ems_ref_obj           => nil,
+      :uid_ems               => vm_resource_id,
+      :vendor                => "azure",
+      :power_state           => "on",
+      :location              => "eastus",
+      :tools_status          => nil,
+      :boot_time             => nil,
+      :standby_action        => nil,
+      :connection_state      => nil,
+      :cpu_affinity          => nil,
+      :memory_reserve        => nil,
+      :memory_reserve_expand => nil,
+      :memory_limit          => nil,
+      :memory_shares         => nil,
+      :memory_shares_level   => nil,
+      :cpu_reserve           => nil,
+      :cpu_reserve_expand    => nil,
+      :cpu_limit             => nil,
+      :cpu_shares            => nil,
+      :cpu_shares_level      => nil
+    )
 
     expect(vm.ext_management_system).to eql(@ems)
     expect(vm.availability_zone).to eql(@avail_zone)
@@ -389,24 +396,26 @@ module AzureRefresherSpecCommon
 
   def assert_specific_vm_powered_on_hardware(v)
     expect(v.hardware).to have_attributes(
-                            :guest_os            => nil,
-                            :guest_os_full_name  => nil,
-                            :bios                => nil,
-                            :annotation          => nil,
-                            :cpu_sockets         => 1,
-                            :memory_mb           => 768,
-                            :disk_capacity       => 1043.megabyte,
-                            :bitness             => nil,
-                            :virtualization_type => nil
-                          )
+      :guest_os            => nil,
+      :guest_os_full_name  => nil,
+      :bios                => nil,
+      :annotation          => nil,
+      :cpu_sockets         => 1,
+      :memory_mb           => 768,
+      :disk_capacity       => 1043.megabyte,
+      :bitness             => nil,
+      :virtualization_type => nil
+    )
 
     expect(v.hardware.guest_devices.size).to eql(0)
     expect(v.hardware.nics.size).to eql(0)
-    floating_ip   = ManageIQ::Providers::Azure::NetworkManager::FloatingIp.where(
-      :address => @ip_address).first
+    floating_ip = ManageIQ::Providers::Azure::NetworkManager::FloatingIp.where(
+      :address => @ip_address
+    ).first
     cloud_network = ManageIQ::Providers::Azure::NetworkManager::CloudNetwork.where(
-      :name => @resource_group).first
-    cloud_subnet  = cloud_network.cloud_subnets.first
+      :name => @resource_group
+    ).first
+    cloud_subnet = cloud_network.cloud_subnets.first
     expect(v.floating_ip).to eql(floating_ip)
     expect(v.floating_ips.first).to eql(floating_ip)
     expect(v.floating_ip_addresses.first).to eql(floating_ip.address)
@@ -423,25 +432,25 @@ module AzureRefresherSpecCommon
     expect(v.hardware.networks.size).to eql(2)
     network = v.hardware.networks.where(:description => "public").first
     expect(network).to have_attributes(
-                         :description => "public",
-                         :ipaddress   => @ip_address,
-                         :hostname    => "ipconfig1"
-                       )
+      :description => "public",
+      :ipaddress   => @ip_address,
+      :hostname    => "ipconfig1"
+    )
     network = v.hardware.networks.where(:description => "private").first
     expect(network).to have_attributes(
-                         :description => "private",
-                         :ipaddress   => "10.16.0.4",
-                         :hostname    => "ipconfig1"
-                       )
+      :description => "private",
+      :ipaddress   => "10.16.0.4",
+      :hostname    => "ipconfig1"
+    )
   end
 
   def assert_specific_disk
     disk = Disk.where(:device_name => @device_name).first
 
     expect(disk).to have_attributes(
-                      :location => "https://miqazuretest18686.blob.core.windows.net/vhds/miq-test-rhel12016218112243.vhd",
-                      :size     => 32212255232 # 30gb, approx
-                    )
+      :location => "https://miqazuretest18686.blob.core.windows.net/vhds/miq-test-rhel12016218112243.vhd",
+      :size     => 32212255232 # 30gb, approx
+    )
   end
 
   def assert_specific_vm_with_managed_disks
@@ -479,7 +488,8 @@ module AzureRefresherSpecCommon
 
     v = ManageIQ::Providers::Azure::CloudManager::Vm.where(
       :name            => vm_name,
-      :raw_power_state => 'VM deallocated').first
+      :raw_power_state => 'VM deallocated'
+    ).first
 
     az1           = ManageIQ::Providers::Azure::CloudManager::AvailabilityZone.first
     floating_ip   = ManageIQ::Providers::Azure::NetworkManager::FloatingIp.where(:address => "miqazure-centos1").first
@@ -505,42 +515,42 @@ module AzureRefresherSpecCommon
     vm_resource_id = "#{@ems.subscription}\\#{@resource_group}\\microsoft.compute/virtualmachines\\#{name}"
 
     expect(v).to have_attributes(
-                   :template              => false,
-                   :ems_ref               => vm_resource_id,
-                   :ems_ref_obj           => nil,
-                   :uid_ems               => vm_resource_id,
-                   :vendor                => "azure",
-                   :power_state           => "off",
-                   :location              => "eastus",
-                   :tools_status          => nil,
-                   :boot_time             => nil,
-                   :standby_action        => nil,
-                   :connection_state      => nil,
-                   :cpu_affinity          => nil,
-                   :memory_reserve        => nil,
-                   :memory_reserve_expand => nil,
-                   :memory_limit          => nil,
-                   :memory_shares         => nil,
-                   :memory_shares_level   => nil,
-                   :cpu_reserve           => nil,
-                   :cpu_reserve_expand    => nil,
-                   :cpu_limit             => nil,
-                   :cpu_shares            => nil,
-                   :cpu_shares_level      => nil
-                 )
+      :template              => false,
+      :ems_ref               => vm_resource_id,
+      :ems_ref_obj           => nil,
+      :uid_ems               => vm_resource_id,
+      :vendor                => "azure",
+      :power_state           => "off",
+      :location              => "eastus",
+      :tools_status          => nil,
+      :boot_time             => nil,
+      :standby_action        => nil,
+      :connection_state      => nil,
+      :cpu_affinity          => nil,
+      :memory_reserve        => nil,
+      :memory_reserve_expand => nil,
+      :memory_limit          => nil,
+      :memory_shares         => nil,
+      :memory_shares_level   => nil,
+      :cpu_reserve           => nil,
+      :cpu_reserve_expand    => nil,
+      :cpu_limit             => nil,
+      :cpu_shares            => nil,
+      :cpu_shares_level      => nil
+    )
   end
 
   def assert_specific_vm_powered_off_hardware(v)
     expect(v.hardware).to have_attributes(
-                            :guest_os           => nil,
-                            :guest_os_full_name => nil,
-                            :bios               => nil,
-                            :annotation         => nil,
-                            :cpu_sockets        => 1,
-                            :memory_mb          => 768,
-                            :disk_capacity      => 1043.megabytes,
-                            :bitness            => nil
-                          )
+      :guest_os           => nil,
+      :guest_os_full_name => nil,
+      :bios               => nil,
+      :annotation         => nil,
+      :cpu_sockets        => 1,
+      :memory_mb          => 768,
+      :disk_capacity      => 1043.megabytes,
+      :bitness            => nil
+    )
 
     expect(v.hardware.disks.size).to eql(1)
     expect(v.hardware.guest_devices.size).to eql(0)
@@ -556,29 +566,29 @@ module AzureRefresherSpecCommon
     @template = ManageIQ::Providers::Azure::CloudManager::Template.find_by(:ems_ref => template_resource_id)
 
     expect(@template).to have_attributes(
-                           :template              => true,
-                           :ems_ref               => template_resource_id,
-                           :ems_ref_obj           => nil,
-                           :uid_ems               => template_resource_id,
-                           :vendor                => "azure",
-                           :power_state           => "never",
-                           :location              => "eastus",
-                           :tools_status          => nil,
-                           :boot_time             => nil,
-                           :standby_action        => nil,
-                           :connection_state      => nil,
-                           :cpu_affinity          => nil,
-                           :memory_reserve        => nil,
-                           :memory_reserve_expand => nil,
-                           :memory_limit          => nil,
-                           :memory_shares         => nil,
-                           :memory_shares_level   => nil,
-                           :cpu_reserve           => nil,
-                           :cpu_reserve_expand    => nil,
-                           :cpu_limit             => nil,
-                           :cpu_shares            => nil,
-                           :cpu_shares_level      => nil
-                         )
+      :template              => true,
+      :ems_ref               => template_resource_id,
+      :ems_ref_obj           => nil,
+      :uid_ems               => template_resource_id,
+      :vendor                => "azure",
+      :power_state           => "never",
+      :location              => "eastus",
+      :tools_status          => nil,
+      :boot_time             => nil,
+      :standby_action        => nil,
+      :connection_state      => nil,
+      :cpu_affinity          => nil,
+      :memory_reserve        => nil,
+      :memory_reserve_expand => nil,
+      :memory_limit          => nil,
+      :memory_shares         => nil,
+      :memory_shares_level   => nil,
+      :cpu_reserve           => nil,
+      :cpu_reserve_expand    => nil,
+      :cpu_limit             => nil,
+      :cpu_shares            => nil,
+      :cpu_shares_level      => nil
+    )
 
     expect(@template.ext_management_system).to eq(@ems)
     expect(@template.operating_system).to eq(nil)
@@ -586,16 +596,16 @@ module AzureRefresherSpecCommon
     expect(@template.snapshots.size).to eq(0)
 
     expect(@template.hardware).to have_attributes(
-                                    :guest_os            => "windows_generic",
-                                    :guest_os_full_name  => nil,
-                                    :bios                => nil,
-                                    :annotation          => nil,
-                                    :memory_mb           => nil,
-                                    :disk_capacity       => nil,
-                                    :bitness             => 64,
-                                    :virtualization_type => nil,
-                                    :root_device_type    => nil
-                                  )
+      :guest_os            => "windows_generic",
+      :guest_os_full_name  => nil,
+      :bios                => nil,
+      :annotation          => nil,
+      :memory_mb           => nil,
+      :disk_capacity       => nil,
+      :bitness             => 64,
+      :virtualization_type => nil,
+      :root_device_type    => nil
+    )
 
     expect(@template.hardware.disks.size).to eq(0)
     expect(@template.hardware.guest_devices.size).to eq(0)
@@ -608,8 +618,8 @@ module AzureRefresherSpecCommon
       :name => "spec-nested-deployment-dont-delete"
     )
     expect(@orch_template).to have_attributes(
-                                :md5 => "05e28d9332a3b60def5fbd66ac031a7d"
-                              )
+      :md5 => "05e28d9332a3b60def5fbd66ac031a7d"
+    )
     expect(@orch_template.description).to eql('contentVersion: 1.0.0.0')
     expect(@orch_template.content).to start_with("{\"$schema\":\"http://schema.management.azure.com"\
           "/schemas/2015-01-01/deploymentTemplate.json\"")
@@ -620,13 +630,13 @@ module AzureRefresherSpecCommon
       :name => "spec-nested-deployment-dont-delete"
     )
     expect(@orch_stack).to have_attributes(
-                             :status         => "Succeeded",
-                             :description    => "spec-nested-deployment-dont-delete",
-                             :resource_group => "miq-azure-test1",
-                             :ems_ref        => "/subscriptions/#{@ems.subscription}/resourceGroups"\
-                             "/miq-azure-test1/providers/Microsoft.Resources"\
-                             "/deployments/spec-nested-deployment-dont-delete",
-                             )
+      :status         => "Succeeded",
+      :description    => "spec-nested-deployment-dont-delete",
+      :resource_group => "miq-azure-test1",
+      :ems_ref        => "/subscriptions/#{@ems.subscription}/resourceGroups"\
+      "/miq-azure-test1/providers/Microsoft.Resources"\
+      "/deployments/spec-nested-deployment-dont-delete",
+    )
 
     assert_specific_orchestration_stack_parameters
     assert_specific_orchestration_stack_resources
@@ -640,11 +650,11 @@ module AzureRefresherSpecCommon
 
     # assert one of the parameter models
     expect(parameters.find { |p| p.name == 'adminUsername' }).to have_attributes(
-                                                                   :value   => "deploy1admin",
-                                                                   :ems_ref => "/subscriptions/#{@ems.subscription}/resourceGroups"\
+      :value   => "deploy1admin",
+      :ems_ref => "/subscriptions/#{@ems.subscription}/resourceGroups"\
                       "/miq-azure-test1/providers/Microsoft.Resources"\
                       "/deployments/spec-nested-deployment-dont-delete\\adminUsername"
-                                                                 )
+    )
   end
 
   def assert_specific_orchestration_stack_resources
@@ -653,28 +663,29 @@ module AzureRefresherSpecCommon
 
     # assert one of the resource models
     expect(resources.find { |r| r.name == 'spec0deply1as' }).to have_attributes(
-                                                                  :logical_resource       => "spec0deply1as",
-                                                                  :physical_resource      => "a2495990-63ae-4ea3-8904-866b7e01ec18",
-                                                                  :resource_category      => "Microsoft.Compute/availabilitySets",
-                                                                  :resource_status        => "Succeeded",
-                                                                  :resource_status_reason => "OK",
-                                                                  :ems_ref                => "/subscriptions/#{@ems.subscription}/resourceGroups"\
+      :logical_resource       => "spec0deply1as",
+      :physical_resource      => "a2495990-63ae-4ea3-8904-866b7e01ec18",
+      :resource_category      => "Microsoft.Compute/availabilitySets",
+      :resource_status        => "Succeeded",
+      :resource_status_reason => "OK",
+      :ems_ref                => "/subscriptions/#{@ems.subscription}/resourceGroups"\
                                      "/miq-azure-test1/providers/Microsoft.Compute/availabilitySets/spec0deply1as"
-                                                                )
+    )
   end
 
   def assert_specific_orchestration_stack_outputs
     outputs = ManageIQ::Providers::Azure::CloudManager::OrchestrationStack.find_by(
-      :name => "spec-deployment-dont-delete").outputs
+      :name => "spec-deployment-dont-delete"
+    ).outputs
     expect(outputs.size).to eq(1)
     expect(outputs[0]).to have_attributes(
-                            :key         => "siteUri",
-                            :value       => "hard-coded output for test",
-                            :description => "siteUri",
-                            :ems_ref     => "/subscriptions/#{@ems.subscription}/resourceGroups"\
-                          "/miq-azure-test1/providers/Microsoft.Resources"\
-                          "/deployments/spec-deployment-dont-delete\\siteUri"
-                          )
+      :key         => "siteUri",
+      :value       => "hard-coded output for test",
+      :description => "siteUri",
+      :ems_ref     => "/subscriptions/#{@ems.subscription}/resourceGroups"\
+    "/miq-azure-test1/providers/Microsoft.Resources"\
+    "/deployments/spec-deployment-dont-delete\\siteUri"
+    )
   end
 
   def assert_specific_orchestration_stack_associations
@@ -686,7 +697,8 @@ module AzureRefresherSpecCommon
 
     # orchestration stack can be nested
     parent_stack = ManageIQ::Providers::Azure::CloudManager::OrchestrationStack.find_by(
-      :name => "spec-deployment-dont-delete")
+      :name => "spec-deployment-dont-delete"
+    )
     expect(@orch_stack.parent).to eql(parent_stack)
 
     # orchestration stack can have vms
@@ -715,16 +727,16 @@ module AzureRefresherSpecCommon
     @floating_ip  = ManageIQ::Providers::Azure::NetworkManager::FloatingIp.where(:ems_ref => ems_ref_ip).first
 
     expect(@network_port).to have_attributes(
-                               :status  => 'Succeeded',
-                               :name    => nic_name,
-                               :ems_ref => ems_ref_nic
-                             )
+      :status  => 'Succeeded',
+      :name    => nic_name,
+      :ems_ref => ems_ref_nic
+    )
 
     expect(@floating_ip).to have_attributes(
-                              :status  => 'Succeeded',
-                              :address => @mismatch_ip,
-                              :ems_ref => ems_ref_ip,
-                              )
+      :status  => 'Succeeded',
+      :address => @mismatch_ip,
+      :ems_ref => ems_ref_ip,
+    )
 
     expect(@network_port.device.id).to eql(@floating_ip.vm.id)
   end
