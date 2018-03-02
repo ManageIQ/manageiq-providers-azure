@@ -28,11 +28,19 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
   # API queries for CloudManager
   ###########################################
   def resource_groups
-    return [] if references(:resource_groups).blank?
+    refs = references(:resource_groups)
 
-    # TODO(lsmola) add filtered API
-    collect_inventory(:resource_groups) { @resource_groups ||= @rgs.list(:all => true) }.select do |resource_group|
-      references(:resource_groups).include?(resource_group.id.downcase)
+    return [] if refs.blank?
+
+    if refs.size > record_limit
+      set = Set.new(refs)
+      collect_inventory(:resource_groups) { @resource_groups ||= @rgs.list(:all => true) }.select do |resource_group|
+        set.include?(resource_group.id.downcase)
+      end
+    else
+      Parallel.map(refs, in_threads: thread_limit) do |ems_ref|
+        @rgs.get(File.basename(ems_ref))
+      end
     end
   end
 
