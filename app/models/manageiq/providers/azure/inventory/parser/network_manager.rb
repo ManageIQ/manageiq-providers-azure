@@ -137,7 +137,6 @@ class ManageIQ::Providers::Azure::Inventory::Parser::NetworkManager < ManageIQ::
         :name    => name,
       )
 
-      load_balancer_pools(lb)
       load_balancer_listeners(persister_load_balancer, lb)
       load_balancer_network_port(persister_load_balancer, lb)
     end
@@ -148,9 +147,11 @@ class ManageIQ::Providers::Azure::Inventory::Parser::NetworkManager < ManageIQ::
     end
   end
 
-  def load_balancer_pools(lb)
+  def load_balancer_pools(lb, pool_id)
     lb.properties["backendAddressPools"].each do |pool|
       uid = pool.id
+
+      next unless pool_id == uid # TODO(lsmola) find more effective way
 
       persister_load_balancer_pool = persister.load_balancer_pools.build(
         :ems_ref => uid,
@@ -198,6 +199,8 @@ class ManageIQ::Providers::Azure::Inventory::Parser::NetworkManager < ManageIQ::
         :load_balancer_listener => persister_load_balancer_listener,
         :load_balancer_pool     => persister.load_balancer_pools.lazy_find(pool_id)
       )
+
+      load_balancer_pools(lb, pool_id)
     end
   end
 
