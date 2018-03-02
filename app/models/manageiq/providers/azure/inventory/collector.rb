@@ -16,6 +16,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
 
     @config          = manager.connect
     @subscription_id = @config.subscription_id
+    @thread_limit    = Settings.ems_refresh.azure.parallel_thread_limit
 
     @resource_to_stack = {}
     @template_uris     = {} # templates need to be download
@@ -135,5 +136,20 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
   rescue StandardError => e
     _log.error("Failed to download Azure template #{uri}. Reason: #{e.inspect}")
     nil
+  end
+
+  # Do not use threads in test environment in order to avoid breaking specs.
+  #
+  def thread_limit
+    Rails.env.test? ? 0 : @thread_limit
+  end
+
+  # The point at which we decide to grab a full listing and filter internally
+  # instead of grabbing individual resources via parallel threads.
+  #
+  # The default is to resort to a single request for sets of 500 or less.
+  #
+  def record_limit(multiplier = 20)
+    @thread_limit * multiplier
   end
 end
