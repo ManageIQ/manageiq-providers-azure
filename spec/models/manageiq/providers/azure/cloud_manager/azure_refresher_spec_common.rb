@@ -76,7 +76,7 @@ module AzureRefresherSpecCommon
   def serialize_inventory
     skip_atributes = %w(updated_on last_refresh_date updated_at)
     inventory = {}
-    MODELS.each do |rel|
+    AzureRefresherSpecCommon::MODELS.each do |rel|
       inventory[rel] = rel.to_s.classify.constantize.all.collect do |e|
         e.attributes.except(*skip_atributes)
       end
@@ -112,7 +112,7 @@ module AzureRefresherSpecCommon
       :cloud_subnet                      => 6,
       :resource_group                    => 4,
       :load_balancer                     => 3,
-      :load_balancer_pool                => 3,
+      :load_balancer_pool                => @refresh_settings[:inventory_object_refresh] ? 2 : 3,
       :load_balancer_pool_member         => 4,
       :load_balancer_pool_member_pool    => 4,
       :load_balancer_listener            => 2,

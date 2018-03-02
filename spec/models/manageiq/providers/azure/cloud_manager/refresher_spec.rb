@@ -7,6 +7,8 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
   AzureRefresherSpecCommon::ALL_REFRESH_SETTINGS.each do |refresh_settings|
     context "with settings #{refresh_settings}" do
       before(:each) do
+        @refresh_settings = refresh_settings
+
         stub_settings_merge(
           :ems_refresh => {
             :azure         => refresh_settings,

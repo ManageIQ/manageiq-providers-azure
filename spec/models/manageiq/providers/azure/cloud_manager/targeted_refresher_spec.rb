@@ -64,7 +64,6 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
             :flavor                => 1,
             :floating_ip           => 1,
             :hardware              => 1,
-            :miq_queue             => 2,
             :network               => 2,
             :network_port          => 1,
             :operating_system      => 1,
@@ -93,7 +92,6 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
             :flavor                => 1,
             :floating_ip           => 1,
             :hardware              => 1,
-            :miq_queue             => 2,
             :network               => 2,
             :network_port          => 1,
             :operating_system      => 1,
@@ -123,7 +121,6 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
             :flavor                => 1,
             :floating_ip           => 1,
             :hardware              => 1,
-            :miq_queue             => 2,
             :network               => 2,
             :network_port          => 1,
             :operating_system      => 1,
@@ -180,11 +177,17 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
           refresh_with_cassette([lb_target], "_targeted/lb_created_by_stack_refresh")
 
           assert_counts(
-            :ext_management_system => 2,
-            :floating_ip           => 1,
-            :load_balancer         => 1,
-            :miq_queue             => 1,
-            :network_port          => 1,
+            :ext_management_system             => 2,
+            :floating_ip                       => 1,
+            :load_balancer                     => 1,
+            :load_balancer_health_check        => 1,
+            :load_balancer_health_check_member => 2,
+            :load_balancer_listener            => 1,
+            :load_balancer_listener_pool       => 1,
+            :load_balancer_pool                => 1,
+            :load_balancer_pool_member         => 2,
+            :load_balancer_pool_member_pool    => 2,
+            :network_port                      => 1,
           )
         end
       end
@@ -194,11 +197,17 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
           refresh_with_cassette([lb_non_stack_target], "_targeted/lb_refresh")
 
           assert_counts(
-            :ext_management_system => 2,
-            :floating_ip           => 1,
-            :load_balancer         => 1,
-            :miq_queue             => 1,
-            :network_port          => 1
+            :ext_management_system             => 2,
+            :floating_ip                       => 1,
+            :load_balancer                     => 1,
+            :load_balancer_health_check        => 1,
+            :load_balancer_health_check_member => 2,
+            :load_balancer_listener            => 1,
+            :load_balancer_listener_pool       => 1,
+            :load_balancer_pool                => 1,
+            :load_balancer_pool_member         => 2,
+            :load_balancer_pool_member_pool    => 2,
+            :network_port                      => 1
           )
         end
       end
@@ -218,7 +227,6 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
             :flavor                => 2,
             :floating_ip           => 2,
             :hardware              => 2,
-            :miq_queue             => 3,
             :network               => 4,
             :network_port          => 2,
             :operating_system      => 2,
@@ -260,23 +268,29 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
         assert_specific_load_balancer_health_checks
 
         assert_counts(
-          :availability_zone     => 1,
-          :cloud_network         => 1,
-          :cloud_subnet          => 1,
-          :disk                  => 2,
-          :ext_management_system => 2,
-          :flavor                => 2,
-          :floating_ip           => 4,
-          :hardware              => 2,
-          :load_balancer         => 2,
-          :miq_queue             => 3,
-          :network               => 4,
-          :network_port          => 4,
-          :operating_system      => 2,
-          :resource_group        => 1,
-          :security_group        => 2,
-          :vm                    => 2,
-          :vm_or_template        => 2
+          :availability_zone                 => 1,
+          :cloud_network                     => 1,
+          :cloud_subnet                      => 1,
+          :disk                              => 2,
+          :ext_management_system             => 2,
+          :flavor                            => 2,
+          :floating_ip                       => 4,
+          :hardware                          => 2,
+          :load_balancer                     => 2,
+          :load_balancer_health_check        => 2,
+          :load_balancer_health_check_member => 2,
+          :load_balancer_listener            => 1,
+          :load_balancer_listener_pool       => 1,
+          :load_balancer_pool                => 1,
+          :load_balancer_pool_member         => 2,
+          :load_balancer_pool_member_pool    => 2,
+          :network                           => 4,
+          :network_port                      => 4,
+          :operating_system                  => 2,
+          :resource_group                    => 1,
+          :security_group                    => 2,
+          :vm                                => 2,
+          :vm_or_template                    => 2
         )
       end
 
@@ -285,27 +299,33 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
         assert_specific_orchestration_stack
 
         assert_counts(
-          :availability_zone             => 1,
-          :cloud_network                 => 1,
-          :cloud_subnet                  => 1,
-          :disk                          => 2,
-          :ext_management_system         => 2,
-          :flavor                        => 1,
-          :floating_ip                   => 1,
-          :hardware                      => 2,
-          :load_balancer                 => 1,
-          :miq_queue                     => 3,
-          :network                       => 2,
-          :network_port                  => 3,
-          :operating_system              => 2,
-          :orchestration_stack           => 2,
-          :orchestration_stack_output    => 1,
-          :orchestration_stack_parameter => 29,
-          :orchestration_stack_resource  => 10,
-          :orchestration_template        => 2,
-          :resource_group                => 1,
-          :vm                            => 2,
-          :vm_or_template                => 2
+          :availability_zone                 => 1,
+          :cloud_network                     => 1,
+          :cloud_subnet                      => 1,
+          :disk                              => 2,
+          :ext_management_system             => 2,
+          :flavor                            => 1,
+          :floating_ip                       => 1,
+          :hardware                          => 2,
+          :load_balancer                     => 1,
+          :load_balancer_health_check        => 1,
+          :load_balancer_health_check_member => 2,
+          :load_balancer_listener            => 1,
+          :load_balancer_listener_pool       => 1,
+          :load_balancer_pool                => 1,
+          :load_balancer_pool_member         => 2,
+          :load_balancer_pool_member_pool    => 2,
+          :network                           => 2,
+          :network_port                      => 3,
+          :operating_system                  => 2,
+          :orchestration_stack               => 2,
+          :orchestration_stack_output        => 1,
+          :orchestration_stack_parameter     => 29,
+          :orchestration_stack_resource      => 10,
+          :orchestration_template            => 2,
+          :resource_group                    => 1,
+          :vm                                => 2,
+          :vm_or_template                    => 2
         )
       end
     end
