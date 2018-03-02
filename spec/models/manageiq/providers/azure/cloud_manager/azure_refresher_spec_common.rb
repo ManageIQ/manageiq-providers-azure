@@ -740,4 +740,100 @@ module AzureRefresherSpecCommon
 
     expect(@network_port.device.id).to eql(@floating_ip.vm.id)
   end
+
+  def lb_non_stack_target
+    lb_resource_id = "/subscriptions/#{@ems.subscription}/"\
+                            "resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb1"
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :load_balancers,
+                               :manager_ref => {:ems_ref => lb_resource_id})
+  end
+
+  def lb_non_stack_target2
+    lb_resource_id2 = "/subscriptions/#{@ems.subscription}/"\
+                            "resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb2"
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :load_balancers,
+                               :manager_ref => {:ems_ref => lb_resource_id2})
+  end
+
+  def lbs_targets
+    [lb_non_stack_target, lb_non_stack_target2]
+  end
+
+  def lbs_vms_targets
+    vm_resource_id1 = "#{@ems.subscription}\\miq-azure-test1\\microsoft.compute/virtualmachines\\rspec-lb-a"
+    vm_target1      = ManagerRefresh::Target.new(:manager     => @ems,
+                                                 :association => :vms,
+                                                 :manager_ref => {:ems_ref => vm_resource_id1})
+
+    vm_resource_id2 = "#{@ems.subscription}\\miq-azure-test1\\microsoft.compute/virtualmachines\\rspec-lb-b"
+    vm_target2      = ManagerRefresh::Target.new(:manager     => @ems,
+                                                 :association => :vms,
+                                                 :manager_ref => {:ems_ref => vm_resource_id2})
+    [vm_target1, vm_target2]
+  end
+
+  def vm_powered_on_target
+    vm_resource_id = "#{@ems.subscription}\\#{@resource_group}\\microsoft.compute/virtualmachines\\#{@device_name}"
+
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :vms,
+                               :manager_ref => {:ems_ref => vm_resource_id})
+  end
+
+  def vm_powered_off_target
+    vm_resource_id = "#{@ems.subscription}\\#{@resource_group}\\microsoft.compute/virtualmachines\\#{@vm_powered_off}"
+
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :vms,
+                               :manager_ref => {:ems_ref => vm_resource_id})
+  end
+
+  def vm_with_managed_disk_target
+    vm_resource_id = "#{@ems.subscription}\\#{@resource_group_managed_vm}\\microsoft.compute/virtualmachines\\#{@managed_vm}"
+
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :vms,
+                               :manager_ref => {:ems_ref => vm_resource_id})
+  end
+
+  def parent_orchestration_stack_target
+    stack_resource_id = "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test1/providers/Microsoft.Resources/deployments/spec-deployment-dont-delete"
+
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :orchestration_stacks,
+                               :manager_ref => {:ems_ref => stack_resource_id})
+  end
+
+  def child_orchestration_stack_vm_target
+    vm_resource_id = "#{@ems.subscription}\\miq-azure-test1\\microsoft.compute/virtualmachines\\spec0deply1vm0"
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :vms,
+                               :manager_ref => {:ems_ref => vm_resource_id})
+  end
+
+  def child_orchestration_stack_vm_target2
+    vm_resource_id2 = "#{@ems.subscription}\\miq-azure-test1\\microsoft.compute/virtualmachines\\spec0deply1vm1"
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :vms,
+                               :manager_ref => {:ems_ref => vm_resource_id2})
+  end
+
+  def lb_target
+    lb_resource_id = "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/spec0deply1lb"
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :load_balancers,
+                               :manager_ref => {:ems_ref => lb_resource_id})
+  end
+
+  def template_target
+    template_resource_id = "https://miqazuretest14047.blob.core.windows.net/system/"\
+                                 "Microsoft.Compute/Images/miq-test-container/"\
+                                 "test-win2k12-img-osDisk.e17a95b0-f4fb-4196-93c5-0c8be7d5c536.vhd"
+
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :miq_templates,
+                               :manager_ref => {:ems_ref => template_resource_id})
+  end
 end
