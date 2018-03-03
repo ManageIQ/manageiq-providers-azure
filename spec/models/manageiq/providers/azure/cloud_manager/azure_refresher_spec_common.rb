@@ -58,6 +58,7 @@ module AzureRefresherSpecCommon
   end
 
   def setup_ems_and_cassette(refresh_settings)
+    stub_with_current_settings(refresh_settings)
     @ems.reload
 
     name = described_class.name.underscore
@@ -70,11 +71,21 @@ module AzureRefresherSpecCommon
       EmsRefresh.refresh(@ems.network_manager)
     end
 
+    ::Azure::Armrest::Configuration.clear_caches
     @ems.reload
   end
 
+  def stub_with_current_settings(current_settings)
+    stub_settings_merge(
+      :ems_refresh => {
+        :azure         => current_settings,
+        :azure_network => current_settings,
+      }
+    )
+  end
+
   def serialize_inventory
-    skip_atributes = %w(updated_on last_refresh_date updated_at)
+    skip_atributes = %w(updated_on last_refresh_date updated_at last_updated)
     inventory = {}
     AzureRefresherSpecCommon::MODELS.each do |rel|
       inventory[rel] = rel.to_s.classify.constantize.all.collect do |e|
@@ -83,6 +94,24 @@ module AzureRefresherSpecCommon
     end
 
     inventory
+  end
+
+  def assert_models_not_changed(inventory_before, inventory_after)
+    aggregate_failures do
+      AzureRefresherSpecCommon::MODELS.each do |model|
+        # TODO(lsmola) solve special handling for :load_balancer_pool, that differs from old refresh
+        next if model == :load_balancer_pool
+
+        expect(inventory_after[model].count).to eq(inventory_before[model].count), "#{model} count"\
+               " doesn't fit \nexpected: #{inventory_before[model].count}\ngot#{inventory_after[model].count}"
+
+        inventory_after[model].each do |item_after|
+          item_before = inventory_before[model].detect { |i| i["id"] == item_after["id"] }
+          expect(item_after).to eq(item_before), \
+                  "class: #{model.to_s.classify}\nexpected: #{item_before}\ngot: #{item_after}"
+        end
+      end
+    end
   end
 
   def expected_table_counts

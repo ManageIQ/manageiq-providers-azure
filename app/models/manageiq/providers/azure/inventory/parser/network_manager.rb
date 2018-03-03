@@ -113,6 +113,7 @@ class ManageIQ::Providers::Azure::Inventory::Parser::NetworkManager < ManageIQ::
         :device_ref      => network_port.properties.try(:virtual_machine).try(:id),
         :device          => persister.vms.lazy_find(vm_id),
         :security_groups => security_groups,
+        :source          => "refresh",
       )
 
       network_port.properties.ip_configurations.map do |x|
@@ -213,6 +214,7 @@ class ManageIQ::Providers::Azure::Inventory::Parser::NetworkManager < ManageIQ::
       :ems_ref    => uid,
       :name       => File.basename(lb.id) + '/nic1',
       :status     => "Succeeded",
+      :source     => "refresh",
     )
   end
 

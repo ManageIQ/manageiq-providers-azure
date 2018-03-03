@@ -91,12 +91,11 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
 
   def instance_hardware(persister_instance, instance, series)
     persister_hardware = persister.hardwares.build(
-      :vm_or_template       => persister_instance,
-      :cpu_sockets          => series[:cpus],
-      :cpu_cores_per_socket => 1,
-      :cpu_total_cores      => series[:cpus],
-      :memory_mb            => series[:memory] / 1.megabyte,
-      :disk_capacity        => series[:root_disk_size] + series[:swap_disk_size],
+      :vm_or_template  => persister_instance,
+      :cpu_sockets     => series[:cpus],
+      :cpu_total_cores => series[:cpus],
+      :memory_mb       => series[:memory] / 1.megabyte,
+      :disk_capacity   => series[:root_disk_size] + series[:swap_disk_size],
     )
 
     hardware_networks(persister_hardware, instance)

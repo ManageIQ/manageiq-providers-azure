@@ -33,17 +33,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
           setup_ems_and_cassette(refresh_settings)
           inventory_after = serialize_inventory
 
-          aggregate_failures do
-            AzureRefresherSpecCommon::MODELS.each do |model|
-              expect(inventory_after[model].count).to eq inventory_before[model].count
-
-              inventory_after[model].each do |item_after|
-                item_before = inventory_before[model].detect { |i| i["id"] == item_after["id"] }
-                expect(item_after).to eq(item_before), \
-                  "class: #{model.to_s.classify}\nexpected: #{item_before}\ngot: #{item_after}"
-              end
-            end
-          end
+          assert_models_not_changed(inventory_before, inventory_after)
         end
       end
     end
