@@ -239,6 +239,11 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
       infer_related_network_port_ems_refs_db!
       infer_related_network_port_ems_refs_api!
     end
+
+    if references(:cloud_networks).present?
+      infer_related_cloud_network_ems_refs_db!
+      infer_related_cloud_network_ems_refs_api!
+    end
   end
 
   def infer_related_lb_ems_refs_db!
@@ -387,6 +392,20 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
 
     # Reset the target cache, so we can access new targets inside
     target.manager_refs_by_association_reset
+  end
+
+  def infer_related_cloud_network_ems_refs_db!
+    changed_cloud_networks = manager.cloud_networks
+                    .where(:ems_ref => references(:cloud_networks))
+                    .includes(:orchestration_stack)
+
+    changed_cloud_networks.each do |cloud_network|
+      add_simple_target!(:orchestration_stacks, cloud_network.orchestration_stack.try(:ems_ref))
+    end
+  end
+
+  def infer_related_cloud_network_ems_refs_api!
+
   end
 
   def add_simple_target!(association, ems_ref)

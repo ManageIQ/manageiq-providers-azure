@@ -43,12 +43,16 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
       context "with full refresh preceding targeted refresh" do
         before :each do
           setup_ems_and_cassette(@refresh_settings)
+          @inventory_before = serialize_inventory
           assert_all
           ::Azure::Armrest::Configuration.clear_caches
         end
 
         after :each do
           assert_all
+
+          inventory_after = serialize_inventory
+          assert_models_not_changed(@inventory_before, inventory_after)
         end
 
         it ".ems_type" do
