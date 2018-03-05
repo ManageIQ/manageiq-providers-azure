@@ -366,9 +366,6 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
   def infer_related_network_port_ems_refs_api!
     network_ports.each do |network_port|
       add_simple_target!(:security_groups, network_port.properties.try(:network_security_group).try(:id))
-      if (instance_id = network_port.properties.try(:virtual_machine).try(:id))
-        add_simple_target!(:vms, resource_id_for_instance_id(instance_id))
-      end
 
       # We do not model subnets as top level collection for Azure, so we want to obtain only cloud_network
       subnets = network_port.properties.ip_configurations.map { |x| x.properties.try(:subnet).try(:id) }
