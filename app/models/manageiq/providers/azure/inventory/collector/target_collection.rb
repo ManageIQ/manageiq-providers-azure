@@ -221,12 +221,10 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
     # We have a list of stacks, vms, etc. collected from events. Now we want to look into our DB and API, and collect
     # ems_refs of every related object.
     if references(:orchestration_stacks).present?
-      infer_related_stacks_ems_refs_db!
       infer_related_stacks_ems_refs_api!
     end
 
     if references(:load_balancers).present?
-      infer_related_lb_ems_refs_db!
       infer_related_lb_ems_refs_api!
     end
 
@@ -242,11 +240,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
 
     if references(:cloud_networks).present?
       infer_related_cloud_network_ems_refs_db!
-      infer_related_cloud_network_ems_refs_api!
     end
-  end
-
-  def infer_related_lb_ems_refs_db!
   end
 
   def infer_related_lb_ems_refs_api!
@@ -262,9 +256,6 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
         add_simple_target!(:floating_ips, front_end_config.try(:properties).try(:public_ip_address).try(:id))
       end
     end
-  end
-
-  def infer_related_stacks_ems_refs_db!
   end
 
   def infer_related_stacks_ems_refs_api!
@@ -402,10 +393,6 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
     changed_cloud_networks.each do |cloud_network|
       add_simple_target!(:orchestration_stacks, cloud_network.orchestration_stack.try(:ems_ref))
     end
-  end
-
-  def infer_related_cloud_network_ems_refs_api!
-
   end
 
   def add_simple_target!(association, ems_ref)
