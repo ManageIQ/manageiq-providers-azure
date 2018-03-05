@@ -79,7 +79,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
     if refs.size > record_limit
       set = Set.new(refs)
       @stacks_cache ||= collect_inventory(:deployments) { gather_data_for_this_region(@tds, 'list') }.select do |stack|
-        refs.include?(stack.id)
+        set.include?(stack.id)
       end
     else
       collect_inventory(:orchestration_stacks) do
@@ -106,22 +106,34 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
   end
 
   def instances
-    return [] if references(:vms).blank?
+    refs = references(:vms)
 
-    @instances_cache ||= collect_inventory(:instances) { gather_data_for_this_region(@vmm) }.select do |instance|
-      uid = resource_uid(subscription_id,
-                         instance.resource_group.downcase,
-                         instance.type.downcase,
-                         instance.name)
+    return [] if refs.blank?
 
-      references(:vms).include?(uid)
+    if refs.size > record_limit
+      set = Set.new(refs)
+      @instances_cache ||= collect_inventory(:instances) { gather_data_for_this_region(@vmm) }.select do |instance|
+        uid = resource_uid(subscription_id,
+                           instance.resource_group.downcase,
+                           instance.type.downcase,
+                           instance.name)
+
+        set.include?(uid)
+      end
+    else
+      Parallel.map(refs, in_threads: thread_limit) do |ems_ref|
+        _subscription_id, group, _provider, _service, name = ems_ref.tr("\\", '/').split('/')
+        @vmm.get(name, group)
+      end
     end
+  rescue ::Azure::Armrest::Exception => err
+    _log.error("Error Class=#{err.class.name}, Message=#{err.message}")
+    []
   end
 
   def images
     return [] if references(:miq_templates).blank?
 
-    # TODO(lsmola) add filtered API
     collect_inventory(:private_images) { gather_data_for_this_region(@sas, 'list_all_private_images') }.select do |image|
       references(:miq_templates).include?(image.uri)
     end
