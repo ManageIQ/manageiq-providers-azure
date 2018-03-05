@@ -38,43 +38,59 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
         set.include?(resource_group.id.downcase)
       end
     else
-      Parallel.map(refs, in_threads: thread_limit) do |ems_ref|
-        @rgs.get(File.basename(ems_ref))
+      collect_inventory(:resource_groups) do
+        Parallel.map(refs, in_threads: thread_limit) do |ems_ref|
+          @rgs.get(File.basename(ems_ref))
+        end
       end
     end
+  rescue ::Azure::Armrest::Exception => err
+    _log.error("Error Class=#{err.class.name}, Message=#{err.message}")
+    []
   end
 
   def flavors
-    return [] if name_references(:flavors).blank?
+    refs = name_references(:flavors)
 
-    # TODO(lsmola) add filtered API
-    collect_inventory(:series) do
-      begin
-        @vmm.series(@ems.provider_region)
-      rescue ::Azure::Armrest::BadGatewayException, ::Azure::Armrest::GatewayTimeoutException,
-             ::Azure::Armrest::BadRequestException => err
-        _log.error("Error Class=#{err.class.name}, Message=#{err.message}")
-        []
-      end
-    end.select do |flavor|
-      name_references(:flavors).include?(flavor.name.downcase)
+    return [] if refs.blank?
+    set = Set.new(refs)
+
+    collect_inventory(:series){ @vmm.series(@ems.provider_region) }.select do |flavor|
+      set.include?(flavor.name.downcase)
     end
+  rescue ::Azure::Armrest::Exception => err
+    _log.error("Error Class=#{err.class.name}, Message=#{err.message}")
+    []
   end
 
   def availability_zones
     return [] if references(:availability_zones).blank?
 
-    # TODO(lsmola) add filtered API
     collect_inventory(:availability_zones) { [::Azure::Armrest::BaseModel.new(:name => @ems.name, :id => 'default')] }
+  rescue ::Azure::Armrest::Exception => err
+    _log.error("Error Class=#{err.class.name}, Message=#{err.message}")
+    []
   end
 
   def stacks
-    return [] if references(:orchestration_stacks).blank?
+    refs = references(:orchestration_stacks)
+    return [] if refs.blank?
 
-    # TODO(lsmola) add filtered API
-    @stacks_cache ||= collect_inventory(:deployments) { gather_data_for_this_region(@tds, 'list') }.select do |stack|
-      references(:orchestration_stacks).include?(stack.id)
+    if refs.size > record_limit
+      set = Set.new(refs)
+      @stacks_cache ||= collect_inventory(:deployments) { gather_data_for_this_region(@tds, 'list') }.select do |stack|
+        refs.include?(stack.id)
+      end
+    else
+      collect_inventory(:orchestration_stacks) do
+        Parallel.map(refs, in_threads: thread_limit) do |ems_ref|
+          @tds.get_by_id(ems_ref)
+        end
+      end
     end
+  rescue ::Azure::Armrest::Exception => err
+    _log.error("Error Class=#{err.class.name}, Message=#{err.message}")
+    []
   end
 
   def clear_stacks_cache!
