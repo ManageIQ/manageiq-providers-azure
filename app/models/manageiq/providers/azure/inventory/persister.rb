@@ -5,7 +5,7 @@ class ManageIQ::Providers::Azure::Inventory::Persister < ManagerRefresh::Invento
 
   attr_reader :collector
 
-  attr_reader :stack_resources_secondary_index, :network_port_secondary_index, :cloud_subnet_network_ports_secondary_index
+  attr_reader :stack_resources_secondary_index, :cloud_subnet_network_ports_secondary_index
 
   # @param manager [ManageIQ::Providers::BaseManager] A manager object
   # @param target [Object] A refresh Target object
@@ -19,7 +19,6 @@ class ManageIQ::Providers::Azure::Inventory::Persister < ManagerRefresh::Invento
 
     # TODO(lsmola) for release > g, we can use secondary indexes for this as
     @stack_resources_secondary_index            = {}
-    @network_port_secondary_index               = {}
     @cloud_subnet_network_ports_secondary_index = {}
 
     initialize_inventory_collections

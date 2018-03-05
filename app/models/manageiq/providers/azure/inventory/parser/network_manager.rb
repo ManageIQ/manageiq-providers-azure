@@ -94,11 +94,6 @@ class ManageIQ::Providers::Azure::Inventory::Parser::NetworkManager < ManageIQ::
     collector.network_ports.each do |network_port|
       uid = network_port.id
 
-      # TODO(lsmola) solve with secondary index for version > g
-      network_port.properties.ip_configurations.each do |ipconfig|
-        persister.network_port_secondary_index[ipconfig.id] = uid
-      end
-
       vm_id = resource_id_for_instance_id(network_port.properties.try(:virtual_machine).try(:id))
 
       security_groups = [
