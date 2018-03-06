@@ -36,6 +36,10 @@ class ManageIQ::Providers::Azure::Inventory::Collector::CloudManager < ManageIQ:
 
   def stacks
     @stacks_cache ||= collect_inventory(:deployments) { gather_data_for_this_region(@tds, 'list') }
+
+    stacks_advanced_caching(@stacks_cache)
+
+    @stacks_cache
   end
 
   def instances

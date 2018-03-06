@@ -22,6 +22,9 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
 
     # Reset the target cache, so we can access new targets inside
     target.manager_refs_by_association_reset
+
+    # Do stacks advanced caching to avoid not needed N+1 API calls
+    stacks_advanced_caching(stacks)
   end
 
   ###########################################
