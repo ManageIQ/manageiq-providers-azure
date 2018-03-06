@@ -384,8 +384,8 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
 
   def infer_related_cloud_network_ems_refs_db!
     changed_cloud_networks = manager.cloud_networks
-                    .where(:ems_ref => references(:cloud_networks))
-                    .includes(:orchestration_stack)
+                                    .where(:ems_ref => references(:cloud_networks))
+                                    .includes(:orchestration_stack)
 
     changed_cloud_networks.each do |cloud_network|
       add_simple_target!(:orchestration_stacks, cloud_network.orchestration_stack.try(:ems_ref))

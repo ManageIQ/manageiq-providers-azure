@@ -77,7 +77,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
 
         it "will refresh orchestration stack followed by Vm refresh" do
           refresh_with_cassette([parent_orchestration_stack_target], "_targeted_scope/orchestration_stack_refresh")
-           ::Azure::Armrest::Configuration.clear_caches
+          ::Azure::Armrest::Configuration.clear_caches
           refresh_with_cassette([child_orchestration_stack_vm_target], "_targeted_scope/orchestration_stack_vm_refresh")
         end
 

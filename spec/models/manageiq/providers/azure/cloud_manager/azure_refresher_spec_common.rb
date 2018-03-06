@@ -108,7 +108,7 @@ module AzureRefresherSpecCommon
         inventory_after[model].each do |item_after|
           item_before = inventory_before[model].detect { |i| i["id"] == item_after["id"] }
           expect(item_after).to eq(item_before), \
-                  "class: #{model.to_s.classify}\nexpected: #{item_before}\ngot: #{item_after}"
+                                "class: #{model.to_s.classify}\nexpected: #{item_before}\ngot: #{item_after}"
         end
       end
     end
@@ -164,7 +164,7 @@ module AzureRefresherSpecCommon
   end
 
   def assert_table_counts(passed_counts = nil)
-    expect(actual_table_counts).to eq (passed_counts || expected_table_counts)
+    expect(actual_table_counts).to eq(passed_counts || expected_table_counts)
   end
 
   def assert_ems
