@@ -205,15 +205,22 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
       uid  = deployment.id
 
       persister_orchestration_stack = persister.orchestration_stacks.build(
-        :ems_ref                => uid,
-        :name                   => name,
-        :description            => name,
-        :status                 => deployment.properties.provisioning_state,
-        :resource_group         => deployment.resource_group,
-        :orchestration_template => persister.orchestration_templates.lazy_find(uid),
+        :ems_ref        => uid,
+        :name           => name,
+        :description    => name,
+        :status         => deployment.properties.provisioning_state,
+        :finish_time    => deployment.properties.timestamp,
+        :resource_group => deployment.resource_group,
       )
 
-      stack_resources(persister_orchestration_stack, deployment)
+      if (resources = collector.stacks_resources_cache[uid])
+        # If the stack hasn't changed, we load existing resources in batches from our DB, this saves a lot of time
+        # comparing to doing API query for resources per each stack
+        stack_resources_from_cache(persister_orchestration_stack, resources)
+      else
+        stack_resources(persister_orchestration_stack, deployment)
+      end
+
       stack_outputs(persister_orchestration_stack, deployment)
       stack_parameters(persister_orchestration_stack, deployment)
     end
@@ -277,15 +284,30 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
     end
   end
 
+  def stack_resources_from_cache(persister_orchestration_stack, resources)
+    resources.each do |resource|
+      persister_stack_resource = persister.orchestration_stacks_resources.build(
+        resource.merge!(:stack => persister_orchestration_stack)
+      )
+
+      # TODO(lsmola) for release > g, we can use secondary indexes for this
+      persister.stack_resources_secondary_index[persister_stack_resource[:ems_ref].downcase] = persister_stack_resource[:stack]
+    end
+  end
+
   def stack_templates
     collector.stack_templates.each do |template|
-      persister.orchestration_templates.build(
+      persister_orchestration_template = persister.orchestration_templates.build(
         :ems_ref     => template[:uid],
         :name        => template[:name],
         :description => template[:description],
         :content     => template[:content],
         :orderable   => false
       )
+
+      # Assign template to stack here, so we don't need to always load the template
+      persister_orchestration_stack = persister.orchestration_stacks.build(:ems_ref => template[:uid])
+      persister_orchestration_stack[:orchestration_template] = persister_orchestration_template if persister_orchestration_stack
     end
   end
 
