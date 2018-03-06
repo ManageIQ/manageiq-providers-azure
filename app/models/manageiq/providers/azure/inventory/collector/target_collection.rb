@@ -219,11 +219,20 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
   end
 
   def security_groups
-    return [] if references(:security_groups).blank?
+    refs = references(:security_groups)
+    return [] if refs.blank?
 
-    # TODO(lsmola) add filtered API
-    gather_data_for_this_region(@nsg).select do |security_group|
-      references(:security_groups).include?(security_group.id)
+    if refs.size > record_limit
+      set = Set.new(refs)
+      collect_inventory(:security_groups) { gather_data_for_this_region(@nsg) }.select do |security_group|
+        set.include?(security_group.id)
+      end
+    else
+      collect_inventory(:security_groups) do
+        Parallel.map(refs, in_threads: thread_limit) do |ems_ref|
+          @nsg.get_by_id(ems_ref)
+        end
+      end
     end
   end
 
