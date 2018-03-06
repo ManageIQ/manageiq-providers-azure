@@ -132,23 +132,38 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
   end
 
   def images
-    return [] if references(:miq_templates).blank?
+    refs = references(:miq_templates).select{ |ems_ref| ems_ref.start_with?('http') }
+    return [] if refs.blank?
+
+    set = Set.new(refs)
 
     collect_inventory(:private_images) { gather_data_for_this_region(@sas, 'list_all_private_images') }.select do |image|
-      references(:miq_templates).include?(image.uri)
+      set.include?(image.uri)
     end
-  rescue ::Azure::Armrest::ApiException => err
-    _log.warn("Unable to collect Azure private images for: [#{@ems.name}] - [#{@ems.id}]: #{err.message}")
+  rescue ::Azure::Armrest::Exception => err
+    _log.error("Error Class=#{err.class.name}, Message=#{err.message}")
     []
   end
 
   def managed_images
-    return [] if references(:miq_templates).blank?
+    refs = references(:miq_templates).reject{ |ems_ref| ems_ref.start_with?('http') }
+    return [] if refs.blank?
 
-    # TODO(lsmola) add filtered API
-    collect_inventory(:managed_images) { gather_data_for_this_region(@mis) }.select do |image|
-      references(:miq_templates).include?(image.id.downcase)
+    if refs.size > record_limit
+      set = Set.new(refs)
+      collect_inventory(:managed_images) { gather_data_for_this_region(@mis) }.select do |image|
+        set.include?(image.id.downcase)
+      end
+    else
+      collect_inventory(:managed_images) do
+        Parallel.map(refs, in_threads: thread_limit) do |ems_ref|
+          @mis.get_by_id(ems_ref)
+        end
+      end
     end
+  rescue ::Azure::Armrest::Exception => err
+    _log.error("Error Class=#{err.class.name}, Message=#{err.message}")
+    []
   end
 
   def market_images
