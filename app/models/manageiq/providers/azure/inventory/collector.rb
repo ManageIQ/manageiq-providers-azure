@@ -3,7 +3,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
   require_nested :NetworkManager
   require_nested :TargetCollection
 
-  attr_reader :subscription_id
+  attr_reader :subscription_id, :stacks_not_changed_cache, :stacks_resources_cache
 
   # TODO: cleanup later when old refresh is deleted
   include ManageIQ::Providers::Azure::RefreshHelperMethods
@@ -17,6 +17,10 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
     @config          = manager.connect
     @subscription_id = @config.subscription_id
     @thread_limit    = Settings.ems_refresh.azure.parallel_thread_limit
+
+    # Caches for optimizing fetching resources and templates of stacks
+    @stacks_not_changed_cache = {}
+    @stacks_resources_cache = {}
 
     @resource_to_stack = {}
     @template_uris     = {} # templates need to be download
@@ -62,6 +66,9 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
 
   def stack_templates
     stacks.each do |deployment|
+      # Do not fetch templates for stacks we already have in DB and that haven't changed
+      next if stacks_not_changed_cache[deployment.id]
+
       stack_template_hash(deployment)
     end
 
@@ -71,19 +78,13 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
     _log.info("Retrieving templates...Complete - Count [#{@template_uris.count}]")
     _log.debug("Memory usage: #{'%.02f' % collector_memory_usage} MiB")
 
-    # load from existing stacks => templates
-    stacks = OrchestrationStack.where(:ems_ref => @template_refs.keys, :ext_management_system => @ems).index_by(&:ems_ref)
-    @template_refs.each do |stack_ref, template|
-      template[:content] = stacks[stack_ref].try(:orchestration_template).try(:content)
-    end
-
-    (@template_uris.values + @template_refs.values + @template_directs.values).select do |raw|
+    (@template_uris.values + @template_directs.values).select do |raw|
       raw[:content]
     end
   end
 
   def stack_template_hash(deployment)
-    direct_stack_template(deployment) || uri_stack_template(deployment) || id_stack_template(deployment)
+    direct_stack_template(deployment) || uri_stack_template(deployment)
   end
 
   def direct_stack_template(deployment)
@@ -103,12 +104,6 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
       init_template_hash(deployment).tap do |template_hash|
         @template_uris[uri] = template_hash
       end
-  end
-
-  def id_stack_template(deployment)
-    init_template_hash(deployment).tap do |template_hash|
-      @template_refs[deployment.id] = template_hash
-    end
   end
 
   def init_template_hash(deployment, content = nil)
@@ -138,6 +133,10 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
     nil
   end
 
+  protected
+
+  attr_writer :stacks_not_changed_cache, :stacks_resources_cache
+
   # Do not use threads in test environment in order to avoid breaking specs.
   #
   def thread_limit
@@ -151,5 +150,55 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
   #
   def record_limit(multiplier = 20)
     @thread_limit * multiplier
+  end
+
+  def stacks_advanced_caching(stacks)
+    if stacks_not_changed_cache.blank?
+      db_stacks_timestamps              = {}
+      db_stacks_primary_keys            = {}
+      db_stacks_primary_keys_to_ems_ref = {}
+      manager.orchestration_stacks.find_each do |stack|
+        db_stacks_timestamps[stack.ems_ref]         = stack.finish_time
+        db_stacks_primary_keys[stack.ems_ref]       = stack.id
+        db_stacks_primary_keys_to_ems_ref[stack.id] = stack.ems_ref
+      end
+
+      stacks.each do |deployment|
+        next if (api_timestamp = deployment.properties.timestamp).blank?
+        next if (db_timestamp = db_stacks_timestamps[deployment.id]).nil?
+
+        api_timestamp = Time.parse(api_timestamp).utc
+        db_timestamp = db_timestamp.utc
+        # If there isn't a new version of stack, we take times are equal if the difference is below 1s
+        next if (db_timestamp < api_timestamp) && ((db_timestamp - api_timestamp).abs > 1.0)
+
+        stacks_not_changed_cache[deployment.id] = db_stacks_primary_keys[deployment.id]
+      end
+
+      not_changed_stacks_ids = db_stacks_primary_keys.values
+      not_changed_stacks_ids.each_slice(1000) do |batch|
+        manager.orchestration_stacks_resources.where(:stack_id => batch).each do |resource|
+          ems_ref = db_stacks_primary_keys_to_ems_ref[resource.stack_id]
+          next unless ems_ref
+
+          (stacks_resources_cache[ems_ref] ||= []) << parse_db_resource(resource)
+        end
+      end
+    end
+  end
+
+  private
+
+  def parse_db_resource(resource)
+    {
+      :ems_ref                => resource.ems_ref,
+      :name                   => resource.name,
+      :logical_resource       => resource.logical_resource,
+      :physical_resource      => resource.physical_resource,
+      :resource_category      => resource.resource_category,
+      :resource_status        => resource.resource_status,
+      :resource_status_reason => resource.resource_status_reason,
+      :last_updated           => resource.last_updated
+    }
   end
 end
