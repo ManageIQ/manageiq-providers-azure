@@ -373,7 +373,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
   def infer_related_stacks_ems_refs_api!
     # Get resource groups out of Stack references, we need them to fetch stacks
     references(:orchestration_stacks).each do |stack_ems_ref|
-      resource_group_ems_ref = stack_ems_ref.split("/")[0..-5].join("/")
+      resource_group_ems_ref = stack_ems_ref.split("/")[0..4].join("/")
       add_simple_target!(:resource_groups, resource_group_ems_ref.downcase)
     end
     target.manager_refs_by_association_reset
