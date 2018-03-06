@@ -85,7 +85,7 @@ module AzureRefresherSpecCommon
   end
 
   def serialize_inventory
-    skip_atributes = %w(updated_on last_refresh_date updated_at last_updated)
+    skip_atributes = %w(updated_on last_refresh_date updated_at last_updated finish_time)
     inventory = {}
     AzureRefresherSpecCommon::MODELS.each do |rel|
       inventory[rel] = rel.to_s.classify.constantize.all.collect do |e|
