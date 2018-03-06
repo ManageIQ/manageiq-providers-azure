@@ -198,12 +198,24 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
   # API queries for NetworkManager
   ###########################################
   def cloud_networks
-    return [] if references(:cloud_networks).blank?
+    refs = references(:cloud_networks)
+    return [] if refs.blank?
 
-    # TODO(lsmola) add filtered API
-    gather_data_for_this_region(@vns).select do |cloud_network|
-      references(:cloud_networks).include?(cloud_network.id)
+    if refs.size > record_limit
+      set = Set.new(refs)
+      collect_inventory(:cloud_networks) { gather_data_for_this_region(@vns) }.select do |cloud_network|
+        set.include?(cloud_network.id)
+      end
+    else
+      collect_inventory(:cloud_networks) do
+        Parallel.map(refs, in_threads: thread_limit) do |ems_ref|
+          @vns.get_by_id(ems_ref)
+        end
+      end
     end
+  rescue ::Azure::Armrest::Exception => err
+    _log.error("Error Class=#{err.class.name}, Message=#{err.message}")
+    []
   end
 
   def security_groups
