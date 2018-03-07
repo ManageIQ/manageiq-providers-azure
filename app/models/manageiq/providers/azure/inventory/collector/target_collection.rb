@@ -234,15 +234,31 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
         end
       end
     end
+  rescue ::Azure::Armrest::Exception => err
+    _log.error("Error Class=#{err.class.name}, Message=#{err.message}")
+    []
   end
 
   def network_ports
-    return [] if references(:network_ports).blank?
+    refs = references(:network_ports)
+    return [] if refs.blank?
 
-    # TODO(lsmola) add filtered API
-    @network_ports_cache ||= network_interfaces.select do |network_port|
-      references(:network_ports).include?(network_port.id)
+    if refs.size > record_limit
+      set = Set.new(refs)
+      collect_inventory(:network_ports) { @network_ports_cache ||= network_interfaces }.select do |network_port|
+        set.include?(network_port.id)
+      end
+    else
+      refs = refs.select { |ems_ref| ems_ref =~ /networkinterfaces/i }
+      collect_inventory(:network_ports) do
+        Parallel.map(refs, in_threads: thread_limit) do |ems_ref|
+          @nis.get_by_id(ems_ref)
+        end
+      end
     end
+  rescue ::Azure::Armrest::Exception => err
+    _log.error("Error Class=#{err.class.name}, Message=#{err.message}")
+    []
   end
 
   def load_balancers
