@@ -3,7 +3,8 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
   require_nested :NetworkManager
   require_nested :TargetCollection
 
-  attr_reader :subscription_id, :stacks_not_changed_cache, :stacks_resources_cache
+  attr_reader :subscription_id, :stacks_not_changed_cache, :stacks_resources_cache, :stacks_resources_api_cache,
+              :instances_power_state_cache
 
   # TODO: cleanup later when old refresh is deleted
   include ManageIQ::Providers::Azure::RefreshHelperMethods
@@ -21,6 +22,8 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
     # Caches for optimizing fetching resources and templates of stacks
     @stacks_not_changed_cache = {}
     @stacks_resources_cache = {}
+    @stacks_resources_api_cache = {}
+    @instances_power_state_cache = {}
 
     @resource_to_stack = {}
     @template_uris     = {} # templates need to be download
@@ -40,24 +43,17 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
   end
 
   def stack_resources(deployment)
-    group = deployment.resource_group
-    name  = deployment.name
+    cached_stack_resources = stacks_resources_api_cache[deployment.id]
+    return cached_stack_resources if cached_stack_resources
 
-    resources = collect_inventory(:stack_resources) { @tds.list_deployment_operations(name, group) }
-    # resources with provsioning_operation 'Create' are the ones created by this stack
-    resources.select! do |resource|
-      resource.properties.provisioning_operation =~ /^create$/i
-    end
-
-    resources
+    raw_stack_resources(deployment)
   end
 
   def power_status(instance)
-    view = @vmm.get_instance_view(instance.name, instance.resource_group)
-    status = view.statuses.find { |s| s.code =~ %r{^PowerState/} }
-    status&.display_status
-  rescue ::Azure::Armrest::NotFoundException
-    'off' # Possible race condition caused by retirement deletion.
+    cached_power_state = instances_power_state_cache[instance.id]
+    return cached_power_state if cached_power_state
+
+    raw_power_status(instance)
   end
 
   def account_keys(storage_acct)
@@ -135,7 +131,8 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
 
   protected
 
-  attr_writer :stacks_not_changed_cache, :stacks_resources_cache
+  attr_writer :stacks_not_changed_cache, :stacks_resources_cache, :stacks_resources_api_cache,
+              :instances_power_state_cache
 
   # Do not use threads in test environment in order to avoid breaking specs.
   #
@@ -154,6 +151,27 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
 
   def parallel_thread_limit
     options.parallel_thread_limit.to_i || 0
+  end
+
+  def stack_resources_advanced_caching(stacks)
+    if stacks_resources_api_cache.blank?
+      # Fetch resources for stack, but only the stacks that changed
+      results = Parallel.map(stacks.select { |x| !stacks_not_changed_cache[x.id] }, :in_threads => parallel_thread_limit) do |stack|
+        [stack.id, raw_stack_resources(stack)]
+      end
+
+      self.stacks_resources_api_cache = results.to_h
+    end
+  end
+
+  def instances_power_state_advanced_caching(instances)
+    if instances_power_state_cache.blank?
+      results = Parallel.map(instances, :in_threads => parallel_thread_limit) do |instance|
+        [instance.id, raw_power_status(instance)]
+      end
+
+      self.instances_power_state_cache = results.to_h
+    end
   end
 
   def stacks_advanced_caching(stacks)
@@ -192,6 +210,27 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
   end
 
   private
+
+  def raw_stack_resources(deployment)
+    group = deployment.resource_group
+    name  = deployment.name
+
+    resources = collect_inventory(:stack_resources) { @tds.list_deployment_operations(name, group) }
+    # resources with provsioning_operation 'Create' are the ones created by this stack
+    resources.select! do |resource|
+      resource.properties.provisioning_operation =~ /^create$/i
+    end
+
+    resources
+  end
+
+  def raw_power_status(instance)
+    view   = @vmm.get_instance_view(instance.name, instance.resource_group)
+    status = view.statuses.find { |s| s.code =~ %r{^PowerState/} }
+    status&.display_status
+  rescue ::Azure::Armrest::NotFoundException
+    'off' # Possible race condition caused by retirement deletion.
+  end
 
   def parse_db_resource(resource)
     {

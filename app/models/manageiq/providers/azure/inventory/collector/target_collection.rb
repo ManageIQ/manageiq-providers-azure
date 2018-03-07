@@ -25,6 +25,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
 
     # Do stacks advanced caching to avoid not needed N+1 API calls
     stacks_advanced_caching(stacks)
+    instances_power_state_advanced_caching(instances)
   end
 
   ###########################################

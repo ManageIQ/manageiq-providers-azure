@@ -43,7 +43,11 @@ class ManageIQ::Providers::Azure::Inventory::Collector::CloudManager < ManageIQ:
   end
 
   def instances
-    collect_inventory(:instances) { gather_data_for_this_region(@vmm) }
+    instances = collect_inventory(:instances) { gather_data_for_this_region(@vmm) }
+
+    instances_power_state_advanced_caching(instances)
+
+    instances
   end
 
   # The underlying method that gathers these images is a bit brittle.
