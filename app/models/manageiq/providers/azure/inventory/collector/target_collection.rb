@@ -39,7 +39,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
       end
     else
       collect_inventory(:resource_groups) do
-        Parallel.map(refs, in_threads: thread_limit) do |ems_ref|
+        Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
           @rgs.get(File.basename(ems_ref))
         end
       end
@@ -55,7 +55,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
     return [] if refs.blank?
     set = Set.new(refs)
 
-    collect_inventory(:series){ @vmm.series(@ems.provider_region) }.select do |flavor|
+    collect_inventory(:series) { @vmm.series(@ems.provider_region) }.select do |flavor|
       set.include?(flavor.name.downcase)
     end
   rescue ::Azure::Armrest::Exception => err
@@ -83,7 +83,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
       end
     else
       collect_inventory(:orchestration_stacks) do
-        Parallel.map(refs, in_threads: thread_limit) do |ems_ref|
+        Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
           @tds.get_by_id(ems_ref)
         end
       end
@@ -121,7 +121,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
         set.include?(uid)
       end
     else
-      Parallel.map(refs, in_threads: thread_limit) do |ems_ref|
+      Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
         _subscription_id, group, _provider, _service, name = ems_ref.tr("\\", '/').split('/')
         @vmm.get(name, group)
       end
@@ -132,7 +132,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
   end
 
   def images
-    refs = references(:miq_templates).select{ |ems_ref| ems_ref.start_with?('http') }
+    refs = references(:miq_templates).select { |ems_ref| ems_ref.start_with?('http') }
     return [] if refs.blank?
 
     set = Set.new(refs)
@@ -146,7 +146,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
   end
 
   def managed_images
-    refs = references(:miq_templates).reject{ |ems_ref| ems_ref.start_with?('http') }
+    refs = references(:miq_templates).reject { |ems_ref| ems_ref.start_with?('http') }
     return [] if refs.blank?
 
     if refs.size > record_limit
@@ -156,7 +156,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
       end
     else
       collect_inventory(:managed_images) do
-        Parallel.map(refs, in_threads: thread_limit) do |ems_ref|
+        Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
           @mis.get_by_id(ems_ref)
         end
       end
@@ -208,7 +208,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
       end
     else
       collect_inventory(:cloud_networks) do
-        Parallel.map(refs, in_threads: thread_limit) do |ems_ref|
+        Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
           @vns.get_by_id(ems_ref)
         end
       end
@@ -229,7 +229,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
       end
     else
       collect_inventory(:security_groups) do
-        Parallel.map(refs, in_threads: thread_limit) do |ems_ref|
+        Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
           @nsg.get_by_id(ems_ref)
         end
       end
@@ -251,7 +251,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
     else
       refs = refs.select { |ems_ref| ems_ref =~ /networkinterfaces/i }
       collect_inventory(:network_ports) do
-        Parallel.map(refs, in_threads: thread_limit) do |ems_ref|
+        Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
           @nis.get_by_id(ems_ref)
         end
       end
@@ -272,7 +272,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
       end
     else
       collect_inventory(:load_balancers) do
-        Parallel.map(refs, in_threads: thread_limit) do |ems_ref|
+        Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
           @lbs.get_by_id(ems_ref)
         end
       end
@@ -293,7 +293,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
       end
     else
       collect_inventory(:floating_ips) do
-        Parallel.map(refs, in_threads: thread_limit) do |ems_ref|
+        Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
           @ips.get_by_id(ems_ref)
         end
       end
