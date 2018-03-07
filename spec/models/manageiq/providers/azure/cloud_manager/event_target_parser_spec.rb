@@ -56,7 +56,7 @@ describe ManageIQ::Providers::Azure::CloudManager::EventTargetParser do
       expect(target_references(parsed_targets)).to(
         match_array(
           [
-            [:network_ports, {:ems_ref => "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test1/providers/Microsoft.Network/networkInterfaces/ladas_test"}]
+            [:network_ports, {:ems_ref => "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test1/providers/Microsoft.Network/networkInterfaces/rspec-lb-a670"}]
           ]
         )
       )
@@ -113,7 +113,7 @@ describe ManageIQ::Providers::Azure::CloudManager::EventTargetParser do
       expect(target_references(parsed_targets)).to(
         match_array(
           [
-            [:vms, {:ems_ref => "#{@ems.subscription}\\miq-azure-test1\\microsoft.compute/virtualmachines\\ladas_test"}]
+            [:vms, {:ems_ref => "#{@ems.subscription}\\miq-azure-test1\\microsoft.compute/virtualmachines\\miq-test-rhel1"}]
           ]
         )
       )
@@ -131,7 +131,7 @@ describe ManageIQ::Providers::Azure::CloudManager::EventTargetParser do
       expect(target_references(parsed_targets)).to(
         match_array(
           [
-            [:vms, {:ems_ref => "#{@ems.subscription}\\miq-azure-test1\\microsoft.compute/virtualmachines\\ladas_test"}]
+            [:vms, {:ems_ref => "#{@ems.subscription}\\miq-azure-test1\\microsoft.compute/virtualmachines\\miq-test-rhel1"}]
           ]
         )
       )
@@ -149,7 +149,7 @@ describe ManageIQ::Providers::Azure::CloudManager::EventTargetParser do
       expect(target_references(parsed_targets)).to(
         match_array(
           [
-            [:vms, {:ems_ref => "#{@ems.subscription}\\miq-azure-test1\\microsoft.compute/virtualmachines\\ladas_test"}]
+            [:vms, {:ems_ref => "#{@ems.subscription}\\miq-azure-test1\\microsoft.compute/virtualmachines\\miq-test-rhel1"}]
           ]
         )
       )
@@ -167,7 +167,7 @@ describe ManageIQ::Providers::Azure::CloudManager::EventTargetParser do
       expect(target_references(parsed_targets)).to(
         match_array(
           [
-            [:vms, {:ems_ref => "#{@ems.subscription}\\miq-azure-test1\\microsoft.compute/virtualmachines\\ladas_test"}]
+            [:vms, {:ems_ref => "#{@ems.subscription}\\miq-azure-test1\\microsoft.compute/virtualmachines\\miq-test-rhel1"}]
           ]
         )
       )
@@ -185,7 +185,7 @@ describe ManageIQ::Providers::Azure::CloudManager::EventTargetParser do
       expect(target_references(parsed_targets)).to(
         match_array(
           [
-            [:vms, {:ems_ref => "#{@ems.subscription}\\miq-azure-test1\\microsoft.compute/virtualmachines\\ladas_test"}]
+            [:vms, {:ems_ref => "#{@ems.subscription}\\miq-azure-test1\\microsoft.compute/virtualmachines\\miq-test-rhel1"}]
           ]
         )
       )
@@ -245,7 +245,7 @@ describe ManageIQ::Providers::Azure::CloudManager::EventTargetParser do
       expect(target_references(parsed_targets)).to(
         match_array(
           [
-            [:load_balancers, {:ems_ref => "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/ladas_test"}]
+            [:load_balancers, {:ems_ref => "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb1"}]
           ]
         )
       )
@@ -309,15 +309,13 @@ describe ManageIQ::Providers::Azure::CloudManager::EventTargetParser do
           ]
         )
       )
-
-      assert_target_refreshed_with_right_ems_ref(parsed_targets, event_type)
     end
   end
 
   def assert_target_refreshed_with_right_ems_ref(parsed_targets, suffix, expect_to_be_nil = false)
     # Due to non trivial transformation of ems_ref in several places of refresh parser, lets test actual targeted
     # refresh leads to having the object in the DB.
-    refresh_with_cassette(parsed_targets, "_event_target_parser/#{suffix}")
+    refresh_with_cassette(parsed_targets, "/#{suffix}")
     parsed_targets.each do |target|
       if expect_to_be_nil
         expect(fetch_record(target)).to be_nil, "Target :#{target.association} with manager_ref: #{target.manager_ref} is supossed to be soft deleted"
