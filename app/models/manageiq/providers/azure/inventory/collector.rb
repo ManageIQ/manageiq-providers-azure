@@ -153,7 +153,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
     options.parallel_thread_limit.to_i || 0
   end
 
-  def stack_resources_advanced_caching(stacks)
+  def stacks_resources_advanced_caching(stacks)
     if stacks_resources_api_cache.blank?
       # Fetch resources for stack, but only the stacks that changed
       results = Parallel.map(stacks.select { |x| !stacks_not_changed_cache[x.id] }, :in_threads => parallel_thread_limit) do |stack|
@@ -197,6 +197,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
         stacks_not_changed_cache[deployment.id] = db_stacks_primary_keys[deployment.id]
       end
 
+      # Cache resources from the DB
       not_changed_stacks_ids = db_stacks_primary_keys.values
       not_changed_stacks_ids.each_slice(1000) do |batch|
         manager.orchestration_stacks_resources.where(:stack_id => batch).each do |resource|
@@ -206,6 +207,9 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
           (stacks_resources_cache[ems_ref] ||= []) << parse_db_resource(resource)
         end
       end
+
+      # Cache resources from the API
+      stacks_resources_advanced_caching(stacks)
     end
   end
 
