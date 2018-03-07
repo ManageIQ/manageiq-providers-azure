@@ -262,12 +262,24 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
   end
 
   def load_balancers
-    return [] if references(:load_balancers).blank?
+    refs = references(:load_balancers)
+    return [] if refs.blank?
 
-    # TODO(lsmola) add filtered API
-    @load_balancers ||= gather_data_for_this_region(@lbs).select do |load_balancer|
-      references(:load_balancers).include?(load_balancer.id)
+    if refs.size > record_limit
+      set = Set.new(refs)
+      collect_inventory(:load_balancers) { @load_balancers ||= gather_data_for_this_region(@lbs) }.select do |load_balancer|
+        set.include?(load_balancer.id)
+      end
+    else
+      collect_inventory(:load_balancers) do
+        Parallel.map(refs, in_threads: thread_limit) do |ems_ref|
+          @lbs.get_by_id(ems_ref)
+        end
+      end
     end
+  rescue ::Azure::Armrest::Exception => err
+    _log.error("Error Class=#{err.class.name}, Message=#{err.message}")
+    []
   end
 
   def floating_ips
