@@ -283,12 +283,24 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
   end
 
   def floating_ips
-    return [] if references(:floating_ips).blank?
+    refs = references(:floating_ips)
+    return [] if refs.blank?
 
-    # TODO(lsmola) add filtered API
-    @floating_ips_cache ||= gather_data_for_this_region(@ips).select do |floating_ip|
-      references(:floating_ips).include?(floating_ip.id)
+    if refs.size > record_limit
+      set = Set.new(refs)
+      collect_inventory(:floating_ips) { @floating_ips_cache ||= gather_data_for_this_region(@ips) }.select do |floating_ip|
+        set.include?(floating_ip.id)
+      end
+    else
+      collect_inventory(:floating_ips) do
+        Parallel.map(refs, in_threads: thread_limit) do |ems_ref|
+          @ips.get_by_id(ems_ref)
+        end
+      end
     end
+  rescue ::Azure::Armrest::Exception => err
+    _log.error("Error Class=#{err.class.name}, Message=#{err.message}")
+    []
   end
 
   ###########################################
