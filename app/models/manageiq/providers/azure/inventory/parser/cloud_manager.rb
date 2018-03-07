@@ -13,7 +13,7 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
     stack_templates
     instances
     managed_images
-    images
+    images if collector.options.get_private_images
     market_images if collector.options.get_market_images
 
     _log.info("#{log_header}...Complete")
