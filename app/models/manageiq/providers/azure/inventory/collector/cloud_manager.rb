@@ -15,7 +15,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::CloudManager < ManageIQ:
   end
 
   def resource_groups
-    collect_inventory(:resource_groups) { @resource_groups ||= @rgs.list(:all => true) }
+    @resource_groups ||= collect_inventory(:resource_groups) { @rgs.list(:all => true) }
   end
 
   def flavors
@@ -35,7 +35,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::CloudManager < ManageIQ:
   end
 
   def stacks
-    @stacks_cache ||= collect_inventory(:deployments) { gather_data_for_this_region(@tds, 'list') }
+    @stacks_cache ||= collect_inventory(:deployments) { stacks_in_parallel(@tds, 'list') }
 
     stacks_advanced_caching(@stacks_cache)
 
@@ -86,5 +86,18 @@ class ManageIQ::Providers::Azure::Inventory::Collector::CloudManager < ManageIQ:
     else
       gather_data_for_this_region(@vmis)
     end
+  end
+
+  private
+
+  def stacks_in_parallel(arm_service, method_name)
+    region = @ems.provider_region
+
+    Parallel.map(resource_groups, :in_threads => parallel_thread_limit) do |resource_group|
+      arm_service.send(method_name, resource_group.name).select do |resource|
+        location = resource.respond_to?(:location) ? resource.location : resource_group.location
+        location.casecmp(region).zero?
+      end
+    end.flatten
   end
 end

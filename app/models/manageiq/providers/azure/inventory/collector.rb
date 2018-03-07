@@ -152,6 +152,10 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
     @thread_limit * multiplier
   end
 
+  def parallel_thread_limit
+    options.parallel_thread_limit.to_i || 0
+  end
+
   def stacks_advanced_caching(stacks)
     if stacks_not_changed_cache.blank?
       db_stacks_timestamps              = {}
