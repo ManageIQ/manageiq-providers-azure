@@ -4,9 +4,9 @@ module ManageIQ::Providers::Azure
       ManageIQ::Providers::Azure::CloudManager::RefreshParser.ems_inv_to_hashes(ems, refresher_options)
     end
 
-    def save_inventory(ems, _targets, hashes)
+    def save_inventory(ems, target, _hashes)
       super
-      EmsRefresh.queue_refresh(ems.network_manager)
+      EmsRefresh.queue_refresh(ems.network_manager) if target.kind_of?(ManageIQ::Providers::BaseManager)
     end
 
     def preprocess_targets
