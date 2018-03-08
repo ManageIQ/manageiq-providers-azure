@@ -4,7 +4,7 @@ class ManageIQ::Providers::Azure::Inventory::Persister::TargetCollection < Manag
     # Top level models with direct references for Cloud
     add_inventory_collections_with_references(
       cloud,
-      %i(vms miq_templates availability_zones orchestration_stacks flavors)
+      %i(vms miq_templates availability_zones orchestration_stacks resource_groups flavors)
     )
 
     add_inventory_collection_with_references(
@@ -16,7 +16,7 @@ class ManageIQ::Providers::Azure::Inventory::Persister::TargetCollection < Manag
     # Child models with references in the Parent InventoryCollections for Cloud
     add_inventory_collections(
       cloud,
-      %i(hardwares operating_systems networks disks vm_and_template_labels vm_and_template_taggings
+      %i(hardwares operating_systems networks disks
          orchestration_stacks_resources orchestration_stacks_outputs orchestration_stacks_parameters)
     )
 
@@ -26,14 +26,7 @@ class ManageIQ::Providers::Azure::Inventory::Persister::TargetCollection < Manag
     # Top level models with direct references for Network
     add_inventory_collections_with_references(
       network,
-      %i(floating_ips cloud_networks security_groups load_balancers),
-      :parent => manager.network_manager
-    )
-
-    add_inventory_collection_with_references(
-      network,
-      :network_ports,
-      references(:network_ports) + references(:load_balancers),
+      %i(network_ports floating_ips cloud_networks security_groups load_balancers),
       :parent => manager.network_manager
     )
 

@@ -16,6 +16,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
 
     @config          = manager.connect
     @subscription_id = @config.subscription_id
+    @thread_limit    = Settings.ems_refresh.azure.parallel_thread_limit
 
     @resource_to_stack = {}
     @template_uris     = {} # templates need to be download
@@ -57,6 +58,28 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
 
   def account_keys(storage_acct)
     @sas.list_account_keys(storage_acct.name, storage_acct.resource_group)
+  end
+
+  def stack_templates
+    stacks.each do |deployment|
+      stack_template_hash(deployment)
+    end
+
+    # download all template uris
+    _log.info("Retrieving templates...")
+    @template_uris.each { |uri, template| template[:content] = download_template(uri) }
+    _log.info("Retrieving templates...Complete - Count [#{@template_uris.count}]")
+    _log.debug("Memory usage: #{'%.02f' % collector_memory_usage} MiB")
+
+    # load from existing stacks => templates
+    stacks = OrchestrationStack.where(:ems_ref => @template_refs.keys, :ext_management_system => @ems).index_by(&:ems_ref)
+    @template_refs.each do |stack_ref, template|
+      template[:content] = stacks[stack_ref].try(:orchestration_template).try(:content)
+    end
+
+    (@template_uris.values + @template_refs.values + @template_directs.values).select do |raw|
+      raw[:content]
+    end
   end
 
   def stack_template_hash(deployment)
@@ -113,5 +136,20 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
   rescue StandardError => e
     _log.error("Failed to download Azure template #{uri}. Reason: #{e.inspect}")
     nil
+  end
+
+  # Do not use threads in test environment in order to avoid breaking specs.
+  #
+  def thread_limit
+    Rails.env.test? ? 0 : @thread_limit
+  end
+
+  # The point at which we decide to grab a full listing and filter internally
+  # instead of grabbing individual resources via parallel threads.
+  #
+  # The default is to resort to a single request for sets of 500 or less.
+  #
+  def record_limit(multiplier = 20)
+    @thread_limit * multiplier
   end
 end

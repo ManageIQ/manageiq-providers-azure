@@ -35,31 +35,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::CloudManager < ManageIQ:
   end
 
   def stacks
-    stacks = collect_inventory(:deployments) { gather_data_for_this_region(@tds, 'list') }
-
-    stacks.each do |deployment|
-      stack_template_hash(deployment)
-    end
-
-    stacks
-  end
-
-  def stack_templates
-    # download all template uris
-    _log.info("Retrieving templates...")
-    @template_uris.each { |uri, template| template[:content] = download_template(uri) }
-    _log.info("Retrieving templates...Complete - Count [#{@template_uris.count}]")
-    _log.debug("Memory usage: #{'%.02f' % collector_memory_usage} MiB")
-
-    # load from existing stacks => templates
-    stacks = OrchestrationStack.where(:ems_ref => @template_refs.keys, :ext_management_system => @ems).index_by(&:ems_ref)
-    @template_refs.each do |stack_ref, template|
-      template[:content] = stacks[stack_ref].try(:orchestration_template).try(:content)
-    end
-
-    (@template_uris.values + @template_refs.values + @template_directs.values).select do |raw|
-      raw[:content]
-    end
+    @stacks_cache ||= collect_inventory(:deployments) { gather_data_for_this_region(@tds, 'list') }
   end
 
   def instances

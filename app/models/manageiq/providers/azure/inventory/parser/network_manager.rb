@@ -94,11 +94,6 @@ class ManageIQ::Providers::Azure::Inventory::Parser::NetworkManager < ManageIQ::
     collector.network_ports.each do |network_port|
       uid = network_port.id
 
-      # TODO(lsmola) solve with secondary index for version > g
-      network_port.properties.ip_configurations.each do |ipconfig|
-        persister.network_port_secondary_index[ipconfig.id] = uid
-      end
-
       vm_id = resource_id_for_instance_id(network_port.properties.try(:virtual_machine).try(:id))
 
       security_groups = [
@@ -113,6 +108,7 @@ class ManageIQ::Providers::Azure::Inventory::Parser::NetworkManager < ManageIQ::
         :device_ref      => network_port.properties.try(:virtual_machine).try(:id),
         :device          => persister.vms.lazy_find(vm_id),
         :security_groups => security_groups,
+        :source          => "refresh",
       )
 
       network_port.properties.ip_configurations.map do |x|
@@ -137,7 +133,6 @@ class ManageIQ::Providers::Azure::Inventory::Parser::NetworkManager < ManageIQ::
         :name    => name,
       )
 
-      load_balancer_pools(lb)
       load_balancer_listeners(persister_load_balancer, lb)
       load_balancer_network_port(persister_load_balancer, lb)
     end
@@ -148,9 +143,11 @@ class ManageIQ::Providers::Azure::Inventory::Parser::NetworkManager < ManageIQ::
     end
   end
 
-  def load_balancer_pools(lb)
+  def load_balancer_pools(lb, pool_id)
     lb.properties["backendAddressPools"].each do |pool|
       uid = pool.id
+
+      next unless pool_id == uid # TODO(lsmola) find more effective way
 
       persister_load_balancer_pool = persister.load_balancer_pools.build(
         :ems_ref => uid,
@@ -164,14 +161,11 @@ class ManageIQ::Providers::Azure::Inventory::Parser::NetworkManager < ManageIQ::
   def load_balancer_pool_members(persister_load_balancer_pool, pool)
     pool["properties"]["backendIPConfigurations"].to_a.each do |ipconfig|
       uid      = ipconfig.id
-      nic_id   = persister.network_port_secondary_index[uid]
-      net_port = persister.network_ports.find(nic_id)
-
-      next unless net_port && net_port[:device]
+      nic_id   = uid.split("/")[0..-3].join("/") # Convert IpConfiguration id to networkInterfaces id
 
       persister_load_balancer_pool_member = persister.load_balancer_pool_members.build(
         :ems_ref => uid,
-        :vm      => net_port[:device]
+        :vm      => persister.network_ports.lazy_find(nic_id, :key => :device)
       )
 
       persister.load_balancer_pool_member_pools.build(
@@ -201,6 +195,8 @@ class ManageIQ::Providers::Azure::Inventory::Parser::NetworkManager < ManageIQ::
         :load_balancer_listener => persister_load_balancer_listener,
         :load_balancer_pool     => persister.load_balancer_pools.lazy_find(pool_id)
       )
+
+      load_balancer_pools(lb, pool_id)
     end
   end
 
@@ -213,6 +209,7 @@ class ManageIQ::Providers::Azure::Inventory::Parser::NetworkManager < ManageIQ::
       :ems_ref    => uid,
       :name       => File.basename(lb.id) + '/nic1',
       :status     => "Succeeded",
+      :source     => "refresh",
     )
   end
 
