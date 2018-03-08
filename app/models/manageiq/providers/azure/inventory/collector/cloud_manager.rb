@@ -22,17 +22,19 @@ class ManageIQ::Providers::Azure::Inventory::Collector::CloudManager < ManageIQ:
   def stacks
     @stacks_cache ||= collect_inventory(:deployments) { stacks_in_parallel(@tds, 'list') }
 
-    stacks_advanced_caching(@stacks_cache)
+    stacks_advanced_caching(@stacks_cache) unless @stacks_advanced_caching_done
+    @stacks_advanced_caching_done = true
 
     @stacks_cache
   end
 
   def instances
-    instances = collect_inventory(:instances) { gather_data_for_this_region(@vmm) }
+    @instances_cache ||= collect_inventory(:instances) { gather_data_for_this_region(@vmm) }
 
-    instances_power_state_advanced_caching(instances)
+    instances_power_state_advanced_caching(@instances_cache) unless @instances_advanced_caching_done
+    @instances_advanced_caching_done = true
 
-    instances
+    @instances_cache
   end
 
   # The underlying method that gathers these images is a bit brittle.
