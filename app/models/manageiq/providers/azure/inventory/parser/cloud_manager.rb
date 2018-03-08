@@ -304,12 +304,11 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
         :raw_power_state    => 'never',
         :template           => true,
         :publicly_available => false,
-        :operating_system   => process_os(image),
         :resource_group     => persister.resource_groups.lazy_find(rg_ems_ref),
       )
 
-      image_hardware(persister_miq_template, image)
-      image_operating_system(persister_miq_template, image.properties.storage_profile.try(:os_disk).try(:os_type) || 'unknown')
+      image_hardware(persister_miq_template, image.properties.storage_profile.try(:os_disk).try(:os_type) || 'unknown')
+      image_operating_system(persister_miq_template, image)
     end
   end
 
