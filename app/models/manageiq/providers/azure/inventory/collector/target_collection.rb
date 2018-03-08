@@ -191,23 +191,23 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
     # TODO(lsmola) add filtered API
     urns = options.market_image_urns
 
-    collect_inventory_targeted(:market_images) do
-      imgs = if urns
-               urns.collect do |urn|
-                 publisher, offer, sku, version = urn.split(':')
+    imgs = collect_inventory_targeted(:market_images) do
+      if urns
+        urns.collect do |urn|
+          publisher, offer, sku, version = urn.split(':')
 
-                 ::Azure::Armrest::VirtualMachineImage.new(
-                   :location  => manager.provider_region,
-                   :publisher => publisher,
-                   :offer     => offer,
-                   :sku       => sku,
-                   :version   => version,
-                   :id        => urn
-                 )
-               end
-             else
-               gather_data_for_this_region(@vmis)
-             end
+          ::Azure::Armrest::VirtualMachineImage.new(
+            :location  => manager.provider_region,
+            :publisher => publisher,
+            :offer     => offer,
+            :sku       => sku,
+            :version   => version,
+            :id        => urn
+          )
+        end
+      else
+        gather_data_for_this_region(@vmis)
+      end
     end
 
     imgs.select do |image|
