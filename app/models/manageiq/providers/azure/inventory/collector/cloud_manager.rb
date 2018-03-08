@@ -97,7 +97,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::CloudManager < ManageIQ:
   def stacks_in_parallel(arm_service, method_name)
     region = @ems.provider_region
 
-    Parallel.map(resource_groups, :in_threads => parallel_thread_limit) do |resource_group|
+    Parallel.map(resource_groups, :in_threads => thread_limit) do |resource_group|
       arm_service.send(method_name, resource_group.name).select do |resource|
         location = resource.respond_to?(:location) ? resource.location : resource_group.location
         location.casecmp(region).zero?
