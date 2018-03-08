@@ -30,6 +30,9 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
     @template_uris     = {} # templates need to be download
     @template_refs     = {} # templates need to be retrieved from VMDB
     @template_directs  = {} # templates contents already got by API
+
+    @nis = network_interface_service(@config)
+    @ips = ip_address_service(@config)
   end
 
   ##############################################################
@@ -57,8 +60,24 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
     raw_power_status(instance)
   end
 
-  def instance_network_ports
-    collector.get_vm_nics(instance)
+  def network_ports
+    @network_interfaces ||= gather_data_for_this_region(@nis)
+  end
+
+  def floating_ips
+    @floating_ips ||= gather_data_for_this_region(@ips)
+  end
+
+  def instance_network_ports(instance)
+    @indexed_network_ports ||= network_ports.index_by(&:id)
+
+    instance.properties.network_profile.network_interfaces.map(&:id).map { |x| @indexed_network_ports[x] }.compact
+  end
+
+  def instance_floating_ip(public_ip_obj)
+    @indexed_floating_ips ||= floating_ips.index_by(&:id)
+
+    @indexed_floating_ips[public_ip_obj.id]
   end
 
   def account_keys(storage_acct)

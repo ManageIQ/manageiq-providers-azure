@@ -307,18 +307,18 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
     refs = references(:floating_ips)
     return [] if refs.blank?
 
-    if refs.size > record_limit
-      set = Set.new(refs)
-      collect_inventory(:floating_ips) { @floating_ips_cache ||= gather_data_for_this_region(@ips) }.select do |floating_ip|
-        set.include?(floating_ip.id)
-      end
-    else
-      collect_inventory_targeted(:floating_ips) do
-        Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
-          @ips.get_by_id(ems_ref)
-        end
-      end
-    end
+    @floating_ips_cache ||= if refs.size > record_limit
+                              set = Set.new(refs)
+                              collect_inventory(:floating_ips) { @floating_ips_cache ||= gather_data_for_this_region(@ips) }.select do |floating_ip|
+                                set.include?(floating_ip.id)
+                              end
+                            else
+                              collect_inventory_targeted(:floating_ips) do
+                                Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
+                                  @ips.get_by_id(ems_ref)
+                                end
+                              end
+                            end
   rescue ::Azure::Armrest::Exception => err
     _log.error("Error Class=#{err.class.name}, Message=#{err.message}")
     []

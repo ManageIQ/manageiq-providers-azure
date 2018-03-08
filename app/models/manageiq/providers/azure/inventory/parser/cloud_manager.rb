@@ -121,7 +121,7 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
         public_ip_obj = ipconfig.properties.try(:public_ip_address)
         next unless public_ip_obj
 
-        ip_profile = collector.ip_addresses.find { |ip| ip.id == public_ip_obj.id }
+        ip_profile = collector.instance_floating_ip(public_ip_obj)
         next unless ip_profile
 
         public_ip_addr = ip_profile.properties.try(:ip_address)
