@@ -110,7 +110,7 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
   end
 
   def hardware_networks(persister_hardware, instance)
-    collector.get_vm_nics(instance).each do |nic_profile|
+    collector.instance_network_ports(instance).each do |nic_profile|
       nic_profile.properties.ip_configurations.each do |ipconfig|
         hostname        = ipconfig.name
         private_ip_addr = ipconfig.properties.try(:private_ip_address)

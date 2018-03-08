@@ -57,6 +57,10 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
     raw_power_status(instance)
   end
 
+  def instance_network_ports
+    collector.get_vm_nics(instance)
+  end
+
   def account_keys(storage_acct)
     @sas.list_account_keys(storage_acct.name, storage_acct.resource_group)
   end
@@ -143,13 +147,13 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
   end
 
   def stacks_resources_advanced_caching(stacks)
-    if stacks_resources_api_cache.blank?
+    if true
       # Fetch resources for stack, but only the stacks that changed
       results = Parallel.map(stacks.select { |x| !stacks_not_changed_cache[x.id] }, :in_threads => thread_limit) do |stack|
         [stack.id, raw_stack_resources(stack)]
       end
 
-      self.stacks_resources_api_cache = results.to_h
+      self.stacks_resources_api_cache.merge!(results.to_h)
     end
   end
 
@@ -163,12 +167,16 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
     end
   end
 
-  def stacks_advanced_caching(stacks)
-    if stacks_not_changed_cache.blank?
+  def stacks_advanced_caching(stacks, refs = nil)
+    if true
       db_stacks_timestamps              = {}
       db_stacks_primary_keys            = {}
       db_stacks_primary_keys_to_ems_ref = {}
-      manager.orchestration_stacks.find_each do |stack|
+
+      query = manager.orchestration_stacks
+      query = query.where(:ems_ref => refs) if refs
+
+      query.find_each do |stack|
         db_stacks_timestamps[stack.ems_ref]         = stack.finish_time
         db_stacks_primary_keys[stack.ems_ref]       = stack.id
         db_stacks_primary_keys_to_ems_ref[stack.id] = stack.ems_ref

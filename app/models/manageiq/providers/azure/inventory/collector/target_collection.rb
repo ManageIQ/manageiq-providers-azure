@@ -17,6 +17,8 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
     @nsg = network_security_group_service(@config)
     @lbs = load_balancer_service(@config)
 
+    @targeted_stacks_cache = {}
+
     parse_targets!
     infer_related_ems_refs!
 
@@ -24,7 +26,6 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
     target.manager_refs_by_association_reset
 
     # Do stacks advanced caching to avoid not needed N+1 API calls
-    stacks_advanced_caching(stacks)
     instances_power_state_advanced_caching(instances)
   end
 
@@ -42,7 +43,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
         set.include?(resource_group.id.downcase)
       end
     else
-      collect_inventory(:resource_groups) do
+      collect_inventory_targeted(:resource_groups) do
         Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
           @rgs.get(File.basename(ems_ref))
         end
@@ -59,7 +60,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
     return [] if refs.blank?
     set = Set.new(refs)
 
-    collect_inventory(:series) { @vmm.series(@ems.provider_region) }.select do |flavor|
+    collect_inventory_targeted(:series) { @vmm.series(@ems.provider_region) }.select do |flavor|
       set.include?(flavor.name.downcase)
     end
   rescue ::Azure::Armrest::Exception => err
@@ -70,7 +71,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
   def availability_zones
     return [] if references(:availability_zones).blank?
 
-    collect_inventory(:availability_zones) { [::Azure::Armrest::BaseModel.new(:name => @ems.name, :id => 'default')] }
+    collect_inventory_targeted(:availability_zones) { [::Azure::Armrest::BaseModel.new(:name => @ems.name, :id => 'default')] }
   rescue ::Azure::Armrest::Exception => err
     _log.error("Error Class=#{err.class.name}, Message=#{err.message}")
     []
@@ -82,15 +83,27 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
 
     if refs.size > record_limit
       set = Set.new(refs)
-      @stacks_cache ||= collect_inventory(:deployments) { gather_data_for_this_region(@tds, 'list') }.select do |stack|
-        set.include?(stack.id)
-      end
+
+      @stacks_cache ||= super
+      @subset_of_stacks_cache ||= @stacks_cache.select { |stack| set.include?(stack.id) }
     else
-      collect_inventory(:orchestration_stacks) do
-        Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
-          @tds.get_by_id(ems_ref)
+      not_fetched_refs = refs - targeted_stacks_cache.keys
+
+      if not_fetched_refs.present?
+        current_stacks = collect_inventory_targeted(:deployments) do
+          Parallel.map(not_fetched_refs, :in_threads => thread_limit) do |ems_ref|
+            @tds.get_by_id(ems_ref)
+          end
         end
+
+        current_stacks.each do |stack|
+          targeted_stacks_cache[stack.id] = stack
+        end
+
+        stacks_advanced_caching(current_stacks, not_fetched_refs)
       end
+
+      refs.map { |x| targeted_stacks_cache[x] }
     end
   rescue ::Azure::Armrest::Exception => err
     _log.error("Error Class=#{err.class.name}, Message=#{err.message}")
@@ -98,7 +111,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
   end
 
   def clear_stacks_cache!
-    @stacks_cache = nil
+    @subset_of_stacks_cache = nil
   end
 
   def stack_resources(deployment)
@@ -114,22 +127,24 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
 
     return [] if refs.blank?
 
-    if refs.size > record_limit
-      set = Set.new(refs)
-      @instances_cache ||= collect_inventory(:instances) { gather_data_for_this_region(@vmm) }.select do |instance|
-        uid = resource_uid(subscription_id,
-                           instance.resource_group.downcase,
-                           instance.type.downcase,
-                           instance.name)
+    @instances_cache ||= if refs.size > record_limit
+                           set = Set.new(refs)
+                           collect_inventory(:instances) { gather_data_for_this_region(@vmm) }.select do |instance|
+                             uid = resource_uid(subscription_id,
+                                                instance.resource_group.downcase,
+                                                instance.type.downcase,
+                                                instance.name)
 
-        set.include?(uid)
-      end
-    else
-      Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
-        _subscription_id, group, _provider, _service, name = ems_ref.tr("\\", '/').split('/')
-        @vmm.get(name, group)
-      end
-    end
+                             set.include?(uid)
+                           end
+                         else
+                           collect_inventory_targeted(:instances) do
+                             Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
+                               _subscription_id, group, _provider, _service, name = ems_ref.tr("\\", '/').split('/')
+                               @vmm.get(name, group)
+                             end
+                           end
+                         end
   rescue ::Azure::Armrest::Exception => err
     _log.error("Error Class=#{err.class.name}, Message=#{err.message}")
     []
@@ -141,7 +156,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
 
     set = Set.new(refs)
 
-    collect_inventory(:private_images) { gather_data_for_this_region(@sas, 'list_all_private_images') }.select do |image|
+    collect_inventory_targeted(:private_images) { gather_data_for_this_region(@sas, 'list_all_private_images') }.select do |image|
       set.include?(image.uri)
     end
   rescue ::Azure::Armrest::Exception => err
@@ -159,7 +174,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
         set.include?(image.id.downcase)
       end
     else
-      collect_inventory(:managed_images) do
+      collect_inventory_targeted(:managed_images) do
         Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
           @mis.get_by_id(ems_ref)
         end
@@ -176,22 +191,24 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
     # TODO(lsmola) add filtered API
     urns = options.market_image_urns
 
-    imgs = if urns
-             urns.collect do |urn|
-               publisher, offer, sku, version = urn.split(':')
+    collect_inventory_targeted(:market_images) do
+      imgs = if urns
+               urns.collect do |urn|
+                 publisher, offer, sku, version = urn.split(':')
 
-               ::Azure::Armrest::VirtualMachineImage.new(
-                 :location  => manager.provider_region,
-                 :publisher => publisher,
-                 :offer     => offer,
-                 :sku       => sku,
-                 :version   => version,
-                 :id        => urn
-               )
+                 ::Azure::Armrest::VirtualMachineImage.new(
+                   :location  => manager.provider_region,
+                   :publisher => publisher,
+                   :offer     => offer,
+                   :sku       => sku,
+                   :version   => version,
+                   :id        => urn
+                 )
+               end
+             else
+               gather_data_for_this_region(@vmis)
              end
-           else
-             gather_data_for_this_region(@vmis)
-           end
+    end
 
     imgs.select do |image|
       references(:miq_templates).include?(image.id)
@@ -211,7 +228,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
         set.include?(cloud_network.id)
       end
     else
-      collect_inventory(:cloud_networks) do
+      collect_inventory_targeted(:cloud_networks) do
         Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
           @vns.get_by_id(ems_ref)
         end
@@ -232,7 +249,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
         set.include?(security_group.id)
       end
     else
-      collect_inventory(:security_groups) do
+      collect_inventory_targeted(:security_groups) do
         Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
           @nsg.get_by_id(ems_ref)
         end
@@ -247,19 +264,19 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
     refs = references(:network_ports)
     return [] if refs.blank?
 
-    if refs.size > record_limit
-      set = Set.new(refs)
-      collect_inventory(:network_ports) { @network_ports_cache ||= network_interfaces }.select do |network_port|
-        set.include?(network_port.id)
-      end
-    else
-      refs = refs.select { |ems_ref| ems_ref =~ /networkinterfaces/i }
-      collect_inventory(:network_ports) do
-        Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
-          @nis.get_by_id(ems_ref)
-        end
-      end
-    end
+    @network_ports_cache ||= if refs.size > record_limit
+                               set = Set.new(refs)
+                               collect_inventory(:network_ports) { @network_ports_cache ||= network_interfaces }.select do |network_port|
+                                 set.include?(network_port.id)
+                               end
+                             else
+                               refs = refs.select { |ems_ref| ems_ref =~ /networkinterfaces/i }
+                               collect_inventory_targeted(:network_ports) do
+                                 Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
+                                   @nis.get_by_id(ems_ref)
+                                 end
+                               end
+                             end
   rescue ::Azure::Armrest::Exception => err
     _log.error("Error Class=#{err.class.name}, Message=#{err.message}")
     []
@@ -269,18 +286,18 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
     refs = references(:load_balancers)
     return [] if refs.blank?
 
-    if refs.size > record_limit
-      set = Set.new(refs)
-      collect_inventory(:load_balancers) { @load_balancers ||= gather_data_for_this_region(@lbs) }.select do |load_balancer|
-        set.include?(load_balancer.id)
-      end
-    else
-      collect_inventory(:load_balancers) do
-        Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
-          @lbs.get_by_id(ems_ref)
-        end
-      end
-    end
+    @load_balancers_cache ||= if refs.size > record_limit
+                                set = Set.new(refs)
+                                collect_inventory(:load_balancers) { @load_balancers ||= gather_data_for_this_region(@lbs) }.select do |load_balancer|
+                                  set.include?(load_balancer.id)
+                                end
+                              else
+                                collect_inventory_targeted(:load_balancers) do
+                                  Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
+                                    @lbs.get_by_id(ems_ref)
+                                  end
+                                end
+                              end
   rescue ::Azure::Armrest::Exception => err
     _log.error("Error Class=#{err.class.name}, Message=#{err.message}")
     []
@@ -296,7 +313,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
         set.include?(floating_ip.id)
       end
     else
-      collect_inventory(:floating_ips) do
+      collect_inventory_targeted(:floating_ips) do
         Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
           @ips.get_by_id(ems_ref)
         end
@@ -319,6 +336,8 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
   end
 
   private
+
+  attr_accessor :targeted_stacks_cache
 
   def parse_targets!
     target.targets.each do |t|
