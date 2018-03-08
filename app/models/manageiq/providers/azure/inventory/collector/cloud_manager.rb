@@ -1,19 +1,4 @@
 class ManageIQ::Providers::Azure::Inventory::Collector::CloudManager < ManageIQ::Providers::Azure::Inventory::Collector
-  def initialize(_manager, _target)
-    super
-
-    @nis  = network_interface_service(@config)
-    @ips  = ip_address_service(@config)
-    @vmm  = virtual_machine_service(@config)
-    @asm  = availability_set_service(@config)
-    @tds  = template_deployment_service(@config)
-    @rgs  = resource_group_service(@config)
-    @sas  = storage_account_service(@config)
-    @sds  = storage_disk_service(@config)
-    @mis  = managed_image_service(@config)
-    @vmis = virtual_machine_image_service(@config, :location => manager.provider_region)
-  end
-
   def resource_groups
     @resource_groups ||= collect_inventory(:resource_groups) { @rgs.list(:all => true) }
   end

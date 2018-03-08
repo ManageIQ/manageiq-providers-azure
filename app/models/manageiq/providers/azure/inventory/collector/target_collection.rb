@@ -2,21 +2,6 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
   def initialize(_manager, _target)
     super
 
-    @nis  = network_interface_service(@config)
-    @ips  = ip_address_service(@config)
-    @vmm  = virtual_machine_service(@config)
-    @asm  = availability_set_service(@config)
-    @tds  = template_deployment_service(@config)
-    @rgs  = resource_group_service(@config)
-    @sas  = storage_account_service(@config)
-    @sds  = storage_disk_service(@config)
-    @mis  = managed_image_service(@config)
-    @vmis = virtual_machine_image_service(@config, :location => @ems.provider_region)
-
-    @vns = virtual_network_service(@config)
-    @nsg = network_security_group_service(@config)
-    @lbs = load_balancer_service(@config)
-
     @targeted_stacks_cache = {}
 
     parse_targets!

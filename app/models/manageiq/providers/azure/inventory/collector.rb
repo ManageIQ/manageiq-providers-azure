@@ -31,8 +31,20 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
     @template_refs     = {} # templates need to be retrieved from VMDB
     @template_directs  = {} # templates contents already got by API
 
-    @nis = network_interface_service(@config)
-    @ips = ip_address_service(@config)
+    @nis  = network_interface_service(@config)
+    @ips  = ip_address_service(@config)
+    @vmm  = virtual_machine_service(@config)
+    @asm  = availability_set_service(@config)
+    @tds  = template_deployment_service(@config)
+    @rgs  = resource_group_service(@config)
+    @sas  = storage_account_service(@config)
+    @sds  = storage_disk_service(@config)
+    @mis  = managed_image_service(@config)
+    @vmis = virtual_machine_image_service(@config, :location => @ems.provider_region)
+
+    @vns = virtual_network_service(@config)
+    @nsg = network_security_group_service(@config)
+    @lbs = load_balancer_service(@config)
   end
 
   ##############################################################
@@ -71,7 +83,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
   def instance_network_ports(instance)
     @indexed_network_ports ||= network_ports.index_by(&:id)
 
-    instance.properties.network_profile.network_interfaces.map(&:id).map { |x| @indexed_network_ports[x] }.compact
+    instance.properties.network_profile.network_interfaces.map { |x| @indexed_network_ports[x.id] }.compact
   end
 
   def instance_floating_ip(public_ip_obj)
