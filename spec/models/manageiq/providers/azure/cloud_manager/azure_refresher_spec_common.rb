@@ -3,23 +3,27 @@ module AzureRefresherSpecCommon
 
   ALL_GRAPH_REFRESH_SETTINGS = [
     {
+      :get_private_images       => true,
       :inventory_object_refresh => true,
       :inventory_collections    => {
         :saver_strategy => :default,
       },
     }, {
+      :get_private_images       => true,
       :inventory_object_refresh => true,
       :inventory_collections    => {
         :saver_strategy => :batch,
         :use_ar_object  => true,
       },
     }, {
+      :get_private_images       => true,
       :inventory_object_refresh => true,
       :inventory_collections    => {
         :saver_strategy => :batch,
         :use_ar_object  => false,
       },
     }, {
+      :get_private_images               => true,
       :inventory_object_saving_strategy => :recursive,
       :inventory_object_refresh         => true
     }
