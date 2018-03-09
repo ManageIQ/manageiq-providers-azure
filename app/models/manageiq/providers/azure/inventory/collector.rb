@@ -15,7 +15,9 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
 
     @ems = manager # used in helper methods
 
+    # TODO(lsmola) this takes about 4s, see if we can optimize it
     @config          = manager.connect
+
     @subscription_id = @config.subscription_id
     @thread_limit    = (options.parallel_thread_limit || 0)
     @record_limit    = (options.targeted_api_collection_threshold || 500).to_i
@@ -53,11 +55,11 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
   # Shared helpers for full and targeted CloudManager collectors
   ##############################################################
   def managed_disks
-    @managed_disks ||= @sds.list_all
+    @managed_disks ||= collect_inventory(:managed_disks) { @sds.list_all }
   end
 
   def storage_accounts
-    @storage_accounts ||= @sas.list_all
+    @storage_accounts ||= collect_inventory(:storage_accounts) { @sas.list_all }
   end
 
   def stack_resources(deployment)
@@ -75,11 +77,11 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
   end
 
   def network_ports
-    @network_interfaces ||= gather_data_for_this_region(@nis)
+    @network_interfaces ||= collect_inventory(:network_ports) { gather_data_for_this_region(@nis) }
   end
 
   def floating_ips
-    @floating_ips ||= gather_data_for_this_region(@ips)
+    @floating_ips ||= collect_inventory(:floating_ips) { gather_data_for_this_region(@ips) }
   end
 
   def instance_network_ports(instance)
@@ -95,7 +97,8 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
   end
 
   def account_keys(storage_acct)
-    @sas.list_account_keys(storage_acct.name, storage_acct.resource_group)
+    # TODO(lsmola) preload anc cache
+    collect_inventory(:account_keys) { @sas.list_account_keys(storage_acct.name, storage_acct.resource_group) }
   end
 
   def stacks
@@ -191,8 +194,10 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
   def stacks_resources_advanced_caching(stacks)
     if enabled_deployments_caching
       # Fetch resources for stack, but only the stacks that changed
-      results = Parallel.map(stacks.select { |x| !stacks_not_changed_cache[x.id] }, :in_threads => thread_limit) do |stack|
-        [stack.id, raw_stack_resources(stack)]
+      results = collect_inventory_targeted("stacks_resources") do
+        Parallel.map(stacks.select { |x| !stacks_not_changed_cache[x.id] }, :in_threads => thread_limit) do |stack|
+          [stack.id, raw_stack_resources(stack)]
+        end
       end
 
       self.stacks_resources_api_cache.merge!(results.to_h)
@@ -201,8 +206,10 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
 
   def instances_power_state_advanced_caching(instances)
     if instances_power_state_cache.blank?
-      results = Parallel.map(instances, :in_threads => thread_limit) do |instance|
-        [instance.id, raw_power_status(instance)]
+      results = collect_inventory_targeted("instance_power_states") do
+        Parallel.map(instances, :in_threads => thread_limit) do |instance|
+          [instance.id, raw_power_status(instance)]
+        end
       end
 
       self.instances_power_state_cache = results.to_h
