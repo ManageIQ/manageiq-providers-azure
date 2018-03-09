@@ -30,7 +30,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
     else
       collect_inventory_targeted(:resource_groups) do
         Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
-          @rgs.get(File.basename(ems_ref))
+          safe_targeted_request { @rgs.get(File.basename(ems_ref)) }
         end
       end
     end
@@ -77,7 +77,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
       if not_fetched_refs.present?
         current_stacks = collect_inventory_targeted(:deployments) do
           Parallel.map(not_fetched_refs, :in_threads => thread_limit) do |ems_ref|
-            @tds.get_by_id(ems_ref)
+            safe_targeted_request { @tds.get_by_id(ems_ref) }
           end
         end
 
@@ -126,7 +126,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
                            collect_inventory_targeted(:instances) do
                              Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
                                _subscription_id, group, _provider, _service, name = ems_ref.tr("\\", '/').split('/')
-                               @vmm.get(name, group)
+                               safe_targeted_request { @vmm.get(name, group) }
                              end
                            end
                          end
@@ -161,7 +161,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
     else
       collect_inventory_targeted(:managed_images) do
         Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
-          @mis.get_by_id(ems_ref)
+          safe_targeted_request { @mis.get_by_id(ems_ref) }
         end
       end
     end
@@ -215,7 +215,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
     else
       collect_inventory_targeted(:cloud_networks) do
         Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
-          @vns.get_by_id(ems_ref)
+          safe_targeted_request { @vns.get_by_id(ems_ref) }
         end
       end
     end
@@ -236,7 +236,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
     else
       collect_inventory_targeted(:security_groups) do
         Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
-          @nsg.get_by_id(ems_ref)
+          safe_targeted_request { @nsg.get_by_id(ems_ref) }
         end
       end
     end
@@ -258,7 +258,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
                                refs = refs.select { |ems_ref| ems_ref =~ /networkinterfaces/i }
                                collect_inventory_targeted(:network_ports) do
                                  Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
-                                   @nis.get_by_id(ems_ref)
+                                   safe_targeted_request { @nis.get_by_id(ems_ref) }
                                  end
                                end
                              end
@@ -279,7 +279,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
                               else
                                 collect_inventory_targeted(:load_balancers) do
                                   Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
-                                    @lbs.get_by_id(ems_ref)
+                                    safe_targeted_request { @lbs.get_by_id(ems_ref) }
                                   end
                                 end
                               end
@@ -300,7 +300,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
                             else
                               collect_inventory_targeted(:floating_ips) do
                                 Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
-                                  @ips.get_by_id(ems_ref)
+                                  safe_targeted_request { @ips.get_by_id(ems_ref) }
                                 end
                               end
                             end

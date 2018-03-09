@@ -250,6 +250,13 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
     end
   end
 
+  def safe_targeted_request
+    yield
+  rescue ::Azure::Armrest::Exception => err
+    _log.debug("Record not found Error Class=#{err.class.name}, Message=#{err.message}")
+    nil
+  end
+
   private
 
   def raw_stack_resources(deployment)
@@ -263,6 +270,9 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
     end
 
     resources
+  rescue ::Azure::Armrest::Exception => err
+    _log.debug("Records not found Error Class=#{err.class.name}, Message=#{err.message}")
+    []
   end
 
   def raw_power_status(instance)

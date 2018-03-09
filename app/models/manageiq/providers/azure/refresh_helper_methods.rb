@@ -26,7 +26,7 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
     _log.debug("Retrieving Targeted #{collection_name}...Complete - Count [#{inv_count}]")
     _log.debug("Memory usage: #{'%.02f' % collector_memory_usage} MiB")
 
-    inventory
+    inventory.try(:compact)
   end
 
   def collector_memory_usage
