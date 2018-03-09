@@ -154,7 +154,7 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
     if instance.managed_disk?
       disk_type     = 'managed'
       disk_location = disk.managed_disk.id
-      managed_disk  = collector.managed_disks.find { |d| d.id.casecmp(disk_location).zero? }
+      managed_disk  = collector.instance_managed_disk(disk_location)
 
       if managed_disk
         disk_size = managed_disk.properties.disk_size_gb.gigabytes
@@ -175,11 +175,11 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
         container_name = File.dirname(uri.path)
         blob_name = uri.basename
 
-        storage_acct = collector.storage_accounts.find { |s| s.name.casecmp(storage_name).zero? }
+        storage_acct = collector.instance_storage_accounts(storage_name)
         mode = storage_acct.sku.name
 
         if collector.options.get_unmanaged_disk_space && disk_size.nil?
-          storage_keys = collector.account_keys(storage_acct)
+          storage_keys = collector.instance_account_keys(storage_acct)
           storage_key  = storage_keys['key1'] || storage_keys['key2']
           blob_props   = storage_acct.blob_properties(container_name, blob_name, storage_key)
           disk_size    = blob_props.content_length.to_i

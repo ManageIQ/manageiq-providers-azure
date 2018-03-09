@@ -95,9 +95,21 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
     @indexed_floating_ips[public_ip_obj.id]
   end
 
-  def account_keys(storage_acct)
-    # TODO(lsmola) preload anc cache
-    collect_inventory(:account_keys) { @sas.list_account_keys(storage_acct.name, storage_acct.resource_group) }
+  def instance_managed_disk(disk_location)
+    @indexed_managed_disks ||= managed_disks.index_by { |x| x.id.downcase }
+
+    @indexed_managed_disks[disk_location.downcase]
+  end
+
+  def instance_account_keys(storage_acct)
+    (@indexed_instance_account_keys ||= {})[[storage_acct.name, storage_acct.resource_group]] ||=
+      collect_inventory(:account_keys) { @sas.list_account_keys(storage_acct.name, storage_acct.resource_group) }
+  end
+
+  def instance_storage_accounts(storage_name)
+    @indexes_instance_storage_accounts ||= storage_accounts.index_by { |x| x.name.downcase }
+
+    @indexes_instance_storage_accounts[storage_name.downcase]
   end
 
   def stacks
