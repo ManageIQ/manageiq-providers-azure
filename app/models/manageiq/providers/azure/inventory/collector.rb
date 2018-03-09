@@ -4,7 +4,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
   require_nested :TargetCollection
 
   attr_reader :subscription_id, :stacks_not_changed_cache, :stacks_resources_cache, :stacks_resources_api_cache,
-              :instances_power_state_cache, :record_limit
+              :instances_power_state_cache, :record_limit, :enabled_deployments_caching
 
   # TODO: cleanup later when old refresh is deleted
   include ManageIQ::Providers::Azure::RefreshHelperMethods
@@ -19,6 +19,8 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
     @subscription_id = @config.subscription_id
     @thread_limit    = (options.parallel_thread_limit || 0)
     @record_limit    = (options.targeted_api_collection_threshold || 500).to_i
+
+    @enabled_deployments_caching = options.enabled_deployments_caching.nil? ? true : options.enabled_deployments_caching
 
     # Caches for optimizing fetching resources and templates of stacks
     @stacks_not_changed_cache = {}
@@ -187,7 +189,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
   end
 
   def stacks_resources_advanced_caching(stacks)
-    if true
+    if enabled_deployments_caching
       # Fetch resources for stack, but only the stacks that changed
       results = Parallel.map(stacks.select { |x| !stacks_not_changed_cache[x.id] }, :in_threads => thread_limit) do |stack|
         [stack.id, raw_stack_resources(stack)]
@@ -208,7 +210,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
   end
 
   def stacks_advanced_caching(stacks, refs = nil)
-    if true
+    if enabled_deployments_caching
       db_stacks_timestamps              = {}
       db_stacks_primary_keys            = {}
       db_stacks_primary_keys_to_ems_ref = {}

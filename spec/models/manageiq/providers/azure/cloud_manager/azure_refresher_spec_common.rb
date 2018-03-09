@@ -35,6 +35,15 @@ module AzureRefresherSpecCommon
     }
   ].freeze
 
+
+  GRAPH_REFRESH_ADDITIONAL_SETTINGS = [
+    {
+      :targeted_api_collection_threshold => 0,
+    }, {
+      :targeted_api_collection_threshold => 500,
+    }
+  ].freeze
+
   ALL_REFRESH_SETTINGS = (AzureRefresherSpecCommon::ALL_GRAPH_REFRESH_SETTINGS + AzureRefresherSpecCommon::ALL_OLD_REFRESH_SETTINGS).freeze
 
   MODELS = %i(
@@ -772,6 +781,74 @@ module AzureRefresherSpecCommon
     )
 
     expect(@network_port.device.id).to eql(@floating_ip.vm.id)
+  end
+
+  def assert_lbs_with_vms
+    assert_specific_load_balancers
+    assert_specific_load_balancer_networking
+    assert_specific_load_balancer_listeners
+    assert_specific_load_balancer_health_checks
+
+    assert_counts(
+      :availability_zone                 => 1,
+      :cloud_network                     => 1,
+      :cloud_subnet                      => 1,
+      :disk                              => 2,
+      :ext_management_system             => 2,
+      :flavor                            => 2,
+      :floating_ip                       => 4,
+      :hardware                          => 2,
+      :load_balancer                     => 2,
+      :load_balancer_health_check        => 2,
+      :load_balancer_health_check_member => 2,
+      :load_balancer_listener            => 1,
+      :load_balancer_listener_pool       => 1,
+      :load_balancer_pool                => 1,
+      :load_balancer_pool_member         => 2,
+      :load_balancer_pool_member_pool    => 2,
+      :network                           => 4,
+      :network_port                      => 4,
+      :operating_system                  => 2,
+      :resource_group                    => 1,
+      :security_group                    => 2,
+      :vm                                => 2,
+      :vm_or_template                    => 2
+    )
+  end
+
+  def assert_stack_and_vm_targeted_refresh
+    assert_specific_orchestration_template
+    assert_specific_orchestration_stack
+
+    assert_counts(
+      :availability_zone                 => 1,
+      :cloud_network                     => 1,
+      :cloud_subnet                      => 1,
+      :disk                              => 2,
+      :ext_management_system             => 2,
+      :flavor                            => 1,
+      :floating_ip                       => 1,
+      :hardware                          => 2,
+      :load_balancer                     => 1,
+      :load_balancer_health_check        => 1,
+      :load_balancer_health_check_member => 2,
+      :load_balancer_listener            => 1,
+      :load_balancer_listener_pool       => 1,
+      :load_balancer_pool                => 1,
+      :load_balancer_pool_member         => 2,
+      :load_balancer_pool_member_pool    => 2,
+      :network                           => 2,
+      :network_port                      => 3,
+      :operating_system                  => 2,
+      :orchestration_stack               => 2,
+      :orchestration_stack_output        => 1,
+      :orchestration_stack_parameter     => 29,
+      :orchestration_stack_resource      => 10,
+      :orchestration_template            => 2,
+      :resource_group                    => 1,
+      :vm                                => 2,
+      :vm_or_template                    => 2
+    )
   end
 
   def lb_non_stack_target
