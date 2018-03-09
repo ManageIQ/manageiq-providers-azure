@@ -3,12 +3,11 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
   require_nested :NetworkManager
   require_nested :TargetCollection
 
-  attr_reader :subscription_id, :stacks_not_changed_cache, :stacks_resources_cache, :stacks_resources_api_cache,
-              :instances_power_state_cache, :record_limit, :enabled_deployments_caching
-
   # TODO: cleanup later when old refresh is deleted
   include ManageIQ::Providers::Azure::RefreshHelperMethods
   include Vmdb::Logging
+
+  attr_reader :subscription_id, :stacks_resources_cache
 
   def initialize(manager, _target)
     super
@@ -181,8 +180,9 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
 
   protected
 
-  attr_writer :stacks_not_changed_cache, :stacks_resources_cache, :stacks_resources_api_cache,
-              :instances_power_state_cache
+  attr_reader :record_limit, :enabled_deployments_caching
+  attr_writer :stacks_resources_cache
+  attr_accessor :stacks_not_changed_cache, :stacks_resources_api_cache, :instances_power_state_cache
 
   # Do not use threads in test environment in order to avoid breaking specs.
   #
@@ -192,19 +192,21 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
   end
 
   def stacks_resources_advanced_caching(stacks)
-    if enabled_deployments_caching
-      # Fetch resources for stack, but only the stacks that changed
-      results = collect_inventory_targeted("stacks_resources") do
-        Parallel.map(stacks.select { |x| !stacks_not_changed_cache[x.id] }, :in_threads => thread_limit) do |stack|
-          [stack.id, raw_stack_resources(stack)]
-        end
-      end
+    return if stacks.blank?
 
-      self.stacks_resources_api_cache.merge!(results.to_h)
+    # Fetch resources for stack, but only the stacks that changed
+    results = collect_inventory_targeted("stacks_resources") do
+      Parallel.map(stacks, :in_threads => thread_limit) do |stack|
+        [stack.id, raw_stack_resources(stack)]
+      end
     end
+
+    self.stacks_resources_api_cache.merge!(results.to_h)
   end
 
   def instances_power_state_advanced_caching(instances)
+    return if instances.blank?
+
     if instances_power_state_cache.blank?
       results = collect_inventory_targeted("instance_power_states") do
         Parallel.map(instances, :in_threads => thread_limit) do |instance|
@@ -255,7 +257,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
       end
 
       # Cache resources from the API
-      stacks_resources_advanced_caching(stacks)
+      stacks_resources_advanced_caching(stacks.reject { |x| stacks_not_changed_cache[x.id] })
     end
   end
 

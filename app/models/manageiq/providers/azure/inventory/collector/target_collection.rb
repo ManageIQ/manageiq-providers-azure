@@ -392,9 +392,19 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
     depth.times do
       new_nested = Set.new
       stacks.each do |stack|
-        stack_resources(stack).each do |resource|
-          if add_stack_resource_target(resource.properties.target_resource)
-            new_nested << stack.id
+        if (resources = stacks_resources_cache[stack.id])
+          # If the stack hasn't changed, we load existing resources in batches from our DB, this saves a lot of time
+          # comparing to doing API query for resources per each stack
+          resources.each do |x|
+            if add_stack_resource_target(OpenStruct.new(:id => x[:ems_ref], :resource_type => x[:resource_category]))
+              new_nested << stack.id
+            end
+          end
+        else
+          stack_resources(stack).each do |resource|
+            if add_stack_resource_target(resource.properties.target_resource)
+              new_nested << stack.id
+            end
           end
         end
       end
