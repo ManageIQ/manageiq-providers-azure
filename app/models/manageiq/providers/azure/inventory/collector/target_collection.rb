@@ -135,6 +135,51 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
     []
   end
 
+  def managed_disks
+    refs = references(:managed_disks)
+
+    return [] if refs.blank?
+
+    @managed_disks ||= if refs.size > record_limit
+                         set = Set.new(refs)
+                         super.select do |managed_disk|
+                           set.include?(managed_disk.id)
+                         end
+                       else
+                         collect_inventory_targeted(:managed_disks) do
+                           Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
+                             safe_targeted_request { @sds.get_by_id(ems_ref) }
+                           end
+                         end
+                       end
+  rescue ::Azure::Armrest::Exception => err
+    _log.error("Error Class=#{err.class.name}, Message=#{err.message}")
+    []
+  end
+
+  def storage_accounts
+    refs = references(:storage_accounts)
+
+    return [] if refs.blank?
+
+    @storage_accounts ||= if refs.size > record_limit
+                            super # This is already filtered to used storage_accounts only in full refresh
+                          else
+                            collect_inventory_targeted(:storage_accounts) do
+                              Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
+                                arr            = ems_ref.split("/")
+                                resource_group = arr[-2] # get method just takes resource group name
+                                storage_acc    = arr[-1]
+
+                                safe_targeted_request { @sas.get(storage_acc, resource_group) }
+                              end
+                            end
+                          end
+  rescue ::Azure::Armrest::Exception => err
+    _log.error("Error Class=#{err.class.name}, Message=#{err.message}")
+    []
+  end
+
   def images
     refs = references(:miq_templates).select { |ems_ref| ems_ref.start_with?('http') }
     return [] if refs.blank?
@@ -475,6 +520,21 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
       add_simple_target!(:resource_groups, get_resource_group_ems_ref(instance))
       instance.properties.network_profile.network_interfaces.collect(&:id).each do |network_port_ems_ref|
         add_simple_target!(:network_ports, network_port_ems_ref)
+      end
+
+      disks = instance.properties.storage_profile.data_disks + [instance.properties.storage_profile.os_disk]
+      disks.each do |disk|
+        if instance.managed_disk?
+          add_simple_target!(:managed_disks, disk.managed_disk.id )
+        else
+          disk_location = disk.try(:vhd).try(:uri)
+          if disk_location
+            uri = Addressable::URI.parse(disk_location)
+            storage_name = uri.host.split('.').first
+
+            add_simple_target!(:storage_accounts, "#{get_resource_group_ems_ref(instance)}/#{storage_name}")
+          end
+        end
       end
     end
 

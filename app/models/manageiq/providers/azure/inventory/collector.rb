@@ -28,6 +28,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
     @stacks_resources_cache = {}
     @stacks_resources_api_cache = {}
     @instances_power_state_cache = {}
+    @indexed_instance_account_keys_cache = {}
 
     @resource_to_stack = {}
     @template_uris     = {} # templates need to be download
@@ -58,7 +59,26 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
   end
 
   def storage_accounts
-    @storage_accounts ||= collect_inventory(:storage_accounts) { @sas.list_all }
+    # We want to always limit storage accounts, to avoid loading all account keys in full refresh. Right now we wat to
+    # load just used storage accounts.
+    return if instances.blank?
+
+    used_storage_accounts = instances.map do |instance|
+      disks = instance.properties.storage_profile.data_disks + [instance.properties.storage_profile.os_disk]
+      disks.map do |disk|
+        unless instance.managed_disk?
+          disk_location = disk.try(:vhd).try(:uri)
+          if disk_location
+            uri = Addressable::URI.parse(disk_location)
+            uri.host.split('.').first
+          end
+        end
+      end
+    end.flatten.compact.to_set
+
+    @storage_accounts ||= collect_inventory(:storage_accounts) { @sas.list_all }.select do |x|
+      used_storage_accounts.include?(x.name)
+    end
   end
 
   def stack_resources(deployment)
@@ -102,8 +122,10 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
   end
 
   def instance_account_keys(storage_acct)
-    (@indexed_instance_account_keys ||= {})[[storage_acct.name, storage_acct.resource_group]] ||=
-      collect_inventory(:account_keys) { @sas.list_account_keys(storage_acct.name, storage_acct.resource_group) }
+    instance_account_keys_advanced_caching unless @instance_account_keys_advanced_caching_done
+    @instance_account_keys_advanced_caching_done = true
+
+    indexed_instance_account_keys_cache[[storage_acct.name, storage_acct.resource_group]]
   end
 
   def instance_storage_accounts(storage_name)
@@ -194,7 +216,8 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
 
   attr_reader :record_limit, :enabled_deployments_caching
   attr_writer :stacks_resources_cache
-  attr_accessor :stacks_not_changed_cache, :stacks_resources_api_cache, :instances_power_state_cache
+  attr_accessor :stacks_not_changed_cache, :stacks_resources_api_cache, :instances_power_state_cache,
+                :indexed_instance_account_keys_cache
 
   # Do not use threads in test environment in order to avoid breaking specs.
   #
@@ -271,6 +294,19 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
       # Cache resources from the API
       stacks_resources_advanced_caching(stacks.reject { |x| stacks_not_changed_cache[x.id] })
     end
+  end
+
+  def instance_account_keys_advanced_caching
+    return if storage_accounts.blank?
+
+    acc_keys = Parallel.map(storage_accounts, :in_threads => thread_limit) do |storage_acct|
+      [
+        [storage_acct.name, storage_acct.resource_group],
+        collect_inventory(:account_keys) { @sas.list_account_keys(storage_acct.name, storage_acct.resource_group) }
+      ]
+    end
+
+    indexed_instance_account_keys_cache.merge!(acc_keys.to_h)
   end
 
   def safe_targeted_request
