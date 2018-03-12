@@ -35,7 +35,6 @@ module AzureRefresherSpecCommon
     }
   ].freeze
 
-
   GRAPH_REFRESH_ADDITIONAL_SETTINGS = [
     {
       :targeted_api_collection_threshold => 0,

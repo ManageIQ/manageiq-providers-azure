@@ -236,7 +236,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
       end
     end
 
-    self.stacks_resources_api_cache.merge!(results.to_h)
+    stacks_resources_api_cache.merge!(results.to_h)
   end
 
   def instances_power_state_advanced_caching(instances)

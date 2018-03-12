@@ -525,7 +525,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
       disks = instance.properties.storage_profile.data_disks + [instance.properties.storage_profile.os_disk]
       disks.each do |disk|
         if instance.managed_disk?
-          add_simple_target!(:managed_disks, disk.managed_disk.id )
+          add_simple_target!(:managed_disks, disk.managed_disk.id)
         else
           disk_location = disk.try(:vhd).try(:uri)
           if disk_location

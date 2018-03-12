@@ -58,7 +58,8 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
         2.times do # Run twice to verify that a second run with existing data does not change anything
           refresh_with_cassette(
             [parent_orchestration_stack_target],
-            "_targeted/targeted_api_collection_threshold_500/orchestration_stack_refresh")
+            "_targeted/targeted_api_collection_threshold_500/orchestration_stack_refresh"
+          )
 
           assert_stack_and_vm_targeted_refresh
         end
