@@ -71,6 +71,30 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
           refresh_with_cassette([vm_with_managed_disk_target], "_targeted_scope/vm_with_managed_disk_refresh")
         end
 
+        it "will refresh multiple objects at once" do
+          targets = [
+            vm_with_managed_disk_target,
+            vm_powered_on_target,
+            vm_powered_off_target,
+            non_existent_vm_target,
+            lb_target,
+            non_existent_lb_target,
+            network_port_target,
+            non_existent_network_port_target,
+            cloud_network_target,
+            non_existent_cloud_network_target,
+            security_group_target,
+            non_existent_security_group_target,
+            resource_group_target,
+            non_existent_resource_group_target,
+            non_existent_orchestration_stack_target,
+            flavor_target,
+            non_existent_flavor_target
+          ]
+
+          refresh_with_cassette(targets, "_targeted_scope/multiple_targets_refresh")
+        end
+
         it "will refresh orchestration stack" do
           refresh_with_cassette([parent_orchestration_stack_target], "_targeted_scope/orchestration_stack_refresh")
         end

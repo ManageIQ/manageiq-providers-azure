@@ -31,8 +31,8 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
             @managed_vm        = 'miqazure-linux-managed'
             @device_name       = 'miq-test-rhel1' # Make sure this is running if generating a new cassette.
             @vm_powered_off    = 'miqazure-centos1' # Make sure this is powered off if generating a new cassette.
-            @ip_address        = '52.224.165.15'  # This will change if you had to restart the @device_name.
-            @mismatch_ip       = '52.168.33.118'  # This will change if you had to restart the 'miqmismatch1' VM.
+            @ip_address        = '52.224.165.15' # This will change if you had to restart the @device_name.
+            @mismatch_ip       = '52.168.33.118' # This will change if you had to restart the 'miqmismatch1' VM.
             @managed_os_disk   = "miqazure-linux-managed_OsDisk_1_7b2bdf790a7d4379ace2846d307730cd"
             @managed_data_disk = "miqazure-linux-managed-data-disk"
             @template          = nil
@@ -133,6 +133,71 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
                 :security_group        => 1,
                 :vm                    => 1,
                 :vm_or_template        => 1
+              )
+            end
+          end
+
+          it "will refresh multiple objects at once" do
+            targets = [
+              vm_with_managed_disk_target,
+              vm_powered_on_target,
+              vm_powered_off_target,
+              non_existent_vm_target,
+              lb_target,
+              non_existent_lb_target,
+              network_port_target,
+              non_existent_network_port_target,
+              cloud_network_target,
+              non_existent_cloud_network_target,
+              security_group_target,
+              non_existent_security_group_target,
+              resource_group_target,
+              non_existent_resource_group_target,
+              non_existent_orchestration_stack_target,
+              flavor_target,
+              non_existent_flavor_target
+            ]
+
+            2.times do # Run twice to verify that a second run with existing data does not change anything
+              refresh_with_cassette(targets, vcr_suffix("multiple_targets_refresh"))
+
+              assert_specific_az
+              assert_specific_cloud_network
+              assert_specific_flavor
+
+              assert_specific_disk
+              assert_specific_security_group
+              assert_specific_vm_powered_on
+
+              assert_specific_vm_powered_off
+
+              assert_specific_vm_with_managed_disks
+              assert_specific_managed_disk
+
+              assert_counts(
+                :ext_management_system             => 2,
+                :flavor                            => 1,
+                :availability_zone                 => 1,
+                :vm_or_template                    => 3,
+                :vm                                => 3,
+                :disk                              => 4,
+                :hardware                          => 3,
+                :network                           => 6,
+                :operating_system                  => 3,
+                :security_group                    => 3,
+                :network_port                      => 4,
+                :cloud_network                     => 2,
+                :floating_ip                       => 4,
+                :cloud_subnet                      => 2,
+                :resource_group                    => 2,
+                :load_balancer                     => 1,
+                :load_balancer_pool                => 1,
+                :load_balancer_pool_member         => 2,
+                :load_balancer_pool_member_pool    => 2,
+                :load_balancer_listener            => 1,
+                :load_balancer_listener_pool       => 1,
+                :load_balancer_health_check        => 1,
+                :load_balancer_health_check_member => 2
               )
             end
           end

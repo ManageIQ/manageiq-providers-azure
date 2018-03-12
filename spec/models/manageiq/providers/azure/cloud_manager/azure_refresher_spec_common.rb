@@ -850,6 +850,76 @@ module AzureRefresherSpecCommon
     )
   end
 
+  def network_port_target
+    network_port_id = "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test4/providers/Microsoft.Network/networkInterfaces/miqazure-linux-manag944"
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :network_ports,
+                               :manager_ref => {:ems_ref => network_port_id})
+  end
+
+  def non_existent_network_port_target
+    network_port_id = "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test4/providers/Microsoft.Network/networkInterfaces/non_existent"
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :network_ports,
+                               :manager_ref => {:ems_ref => network_port_id})
+  end
+
+  def cloud_network_target
+    cloud_network_id = "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test2/providers/Microsoft.Network/virtualNetworks/miq-azure-test2"
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :cloud_networks,
+                               :manager_ref => {:ems_ref => cloud_network_id})
+  end
+
+  def non_existent_cloud_network_target
+    cloud_network_id = "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test2/providers/Microsoft.Network/virtualNetworks/non_existent"
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :cloud_networks,
+                               :manager_ref => {:ems_ref => cloud_network_id})
+  end
+
+  def security_group_target
+    security_group_id = "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test4/providers/Microsoft.Network/networkSecurityGroups/miqazure-linux-managed-nsg"
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :security_groups,
+                               :manager_ref => {:ems_ref => security_group_id})
+  end
+
+  def non_existent_security_group_target
+    security_group_id = "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test4/providers/Microsoft.Network/networkSecurityGroups/non_existent"
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :security_groups,
+                               :manager_ref => {:ems_ref => security_group_id})
+  end
+
+  def floating_ip_target
+    floating_ip_id = "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test1/providers/Microsoft.Network/publicIPAddresses/spec0deply1ip"
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :floating_ips,
+                               :manager_ref => {:ems_ref => floating_ip_id})
+  end
+
+  def non_existent_floating_ip_target
+    floating_ip_id = "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test1/providers/Microsoft.Network/publicIPAddresses/non_existent"
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :floating_ips,
+                               :manager_ref => {:ems_ref => floating_ip_id})
+  end
+
+  def resource_group_target
+    resource_group_id = "/subscriptions//#{@ems.subscription}/resourcegroups/miq-azure-test4"
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :resource_groups,
+                               :manager_ref => {:ems_ref => resource_group_id})
+  end
+
+  def non_existent_resource_group_target
+    resource_group_id = "/subscriptions//#{@ems.subscription}/resourcegroups/miq-azure-test4"
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :resource_groups,
+                               :manager_ref => {:ems_ref => resource_group_id})
+  end
+
   def lb_non_stack_target
     lb_resource_id = "/subscriptions/#{@ems.subscription}/"\
                             "resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb1"
@@ -907,8 +977,24 @@ module AzureRefresherSpecCommon
                                :manager_ref => {:ems_ref => vm_resource_id})
   end
 
+  def non_existent_vm_target
+    vm_resource_id = "#{@ems.subscription}\\#{@resource_group_managed_vm}\\microsoft.compute/virtualmachines\\non_existent_vm_that_does_not_exist"
+
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :vms,
+                               :manager_ref => {:ems_ref => vm_resource_id})
+  end
+
   def parent_orchestration_stack_target
     stack_resource_id = "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test1/providers/Microsoft.Resources/deployments/spec-deployment-dont-delete"
+
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :orchestration_stacks,
+                               :manager_ref => {:ems_ref => stack_resource_id})
+  end
+
+  def non_existent_orchestration_stack_target
+    stack_resource_id = "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test1/providers/Microsoft.Resources/deployments/non_existent"
 
     ManagerRefresh::Target.new(:manager     => @ems,
                                :association => :orchestration_stacks,
@@ -936,6 +1022,13 @@ module AzureRefresherSpecCommon
                                :manager_ref => {:ems_ref => lb_resource_id})
   end
 
+  def non_existent_lb_target
+    lb_resource_id = "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/non_existent_lb"
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :load_balancers,
+                               :manager_ref => {:ems_ref => lb_resource_id})
+  end
+
   def template_target
     template_resource_id = "https://miqazuretest14047.blob.core.windows.net/system/"\
                                  "Microsoft.Compute/Images/miq-test-container/"\
@@ -944,5 +1037,29 @@ module AzureRefresherSpecCommon
     ManagerRefresh::Target.new(:manager     => @ems,
                                :association => :miq_templates,
                                :manager_ref => {:ems_ref => template_resource_id})
+  end
+
+  def non_existent_template_target
+    template_resource_id = "https://miqazuretest14047.blob.core.windows.net/system/"\
+                                 "Microsoft.Compute/Images/miq-test-container/"\
+                                 "non_existent_template.vhd"
+
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :miq_templates,
+                               :manager_ref => {:ems_ref => template_resource_id})
+  end
+
+  def flavor_target
+    flavor_resource_name = "basic_a0"
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :flavors,
+                               :manager_ref => {:name => flavor_resource_name})
+  end
+
+  def non_existent_flavor_target
+    flavor_resource_name = "non_existent"
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :flavors,
+                               :manager_ref => {:name => flavor_resource_name})
   end
 end

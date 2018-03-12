@@ -88,7 +88,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
         stacks_advanced_caching(current_stacks, not_fetched_refs)
       end
 
-      refs.map { |x| targeted_stacks_cache[x] }
+      refs.map { |x| targeted_stacks_cache[x] }.compact
     end
   rescue ::Azure::Armrest::Exception => err
     _log.error("Error Class=#{err.class.name}, Message=#{err.message}")
