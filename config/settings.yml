@@ -36,13 +36,33 @@
     # If get_market_images is enabled with no filters, all public images will be added
     # This will cause performance issues during refresh and at places in the UI where images are listed
     :get_market_images: false
+    # Optionally collecting private images [Graph refresh only]
+    :get_private_images: true
     :market_image_urns:
       - MicrosoftWindowsServer:WindowsServer-HUB:2016-Datacenter-HUB:2016.127.20170630
       - OpenLogic:CentOS:7.3:7.3.20170517
       - RedHat:RHEL:7.3:7.3.2017051117
     # Collecting disk information on unmanaged VM's slows down the refresh.
     :get_unmanaged_disk_space: true
+    # Limit of threads we spawn to speed up API queries [Graph refresh only]
     :parallel_thread_limit: 25
+    # Switches refresh to graph refresh on [Graph refresh only]
+    :inventory_object_refresh: false
+    # Switches graph targeted refresh on [massive refresh performance optimization [Graph refresh only]]
+    :allow_targeted_refresh: true
+    # A threshold for fetching all entities from the API, instead of query for 1 entity [Graph refresh only]
+    :targeted_api_collection_threshold: 500
+    # Not fetching resources and templates of deployments unless deployment changed [Graph refresh only]
+    :enabled_deployments_caching: true
+    :inventory_collections:
+      # Strategy for saving, another allowed is :batch, doing batch SQL queries [Graph refresh only]
+      :saver_strategy: :default
+  :azure_network:
+    # Same options as in :azure, applied for a network manager
+    :inventory_object_refresh: false
+    :allow_targeted_refresh: true
+    :inventory_collections:
+      :saver_strategy: :default
 :http_proxy:
   :azure:
     :host:
