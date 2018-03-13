@@ -176,9 +176,9 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
         blob_name = uri.basename
 
         storage_acct = collector.instance_storage_accounts(storage_name)
-        mode = storage_acct.sku.name
+        mode = storage_acct.try(:sku).try(:name)
 
-        if collector.options.get_unmanaged_disk_space && disk_size.nil?
+        if collector.options.get_unmanaged_disk_space && disk_size.nil? && storage_acct.present?
           storage_keys = collector.instance_account_keys(storage_acct)
           storage_key  = storage_keys['key1'] || storage_keys['key2']
           blob_props   = storage_acct.blob_properties(container_name, blob_name, storage_key)
