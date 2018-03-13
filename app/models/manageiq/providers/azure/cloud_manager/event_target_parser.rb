@@ -39,15 +39,15 @@ class ManageIQ::Providers::Azure::CloudManager::EventTargetParser
                       :vms
                     when "Microsoft.Network/loadBalancers"
                       :load_balancers
-                    when /Microsoft.Network\/publicI[Pp]Addresses/
+                    when /Microsoft\.Network\/publicI[Pp]Addresses/
                       :floating_ips
-                    when /Microsoft.Network\/virtual[Nn]etworks/
+                    when /Microsoft\.Network\/virtual[Nn]etworks/
                       :cloud_networks
                     when "Microsoft.Resources/deployments"
                       :orchestration_stacks
                     when "Microsoft.Compute/images"
                       :miq_templates
-                    when /Microsoft.Resources\/subscriptions\/resource[Gg]roups/
+                    when /Microsoft\.Resources\/subscriptions\/resource[Gg]roups/
                       :resource_groups
                     when "Microsoft.Compute/availabilitySets"
                       :__unused
