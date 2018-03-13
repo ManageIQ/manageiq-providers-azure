@@ -136,7 +136,7 @@ describe ManageIQ::Providers::Azure::CloudManager::EventTargetParser do
 
   context "Resource groups" do
     let(:klass) { :resource_groups }
-    let(:expected_ems_ref) { "/subscriptions/#{@ems.subscription.downcase}/resourceGroups/#{resource_group}" }
+    let(:expected_ems_ref) { "/subscriptions/#{@ems.subscription}/resourceGroups/#{resource_group}" }
 
     it_behaves_like "parses_event", "subscriptions_resourceGroups_EndRequest"
     it_behaves_like "parses_event", "subscriptions_resourcegroups_EndRequest"
