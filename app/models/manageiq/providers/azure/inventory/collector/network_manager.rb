@@ -10,4 +10,8 @@ class ManageIQ::Providers::Azure::Inventory::Collector::NetworkManager < ManageI
   def load_balancers
     @load_balancers ||= gather_data_for_this_region(@lbs)
   end
+
+  def network_routers
+    @network_routers = gather_data_for_this_region(@rts)
+  end
 end

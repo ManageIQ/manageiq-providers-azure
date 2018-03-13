@@ -98,6 +98,10 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
     @ip_addresses ||= gather_data_for_this_region(@ips)
   end
 
+  def network_routers
+    @network_routers ||= gather_data_for_this_region(@rts)
+  end
+
   # Create the necessary service classes and lock down their api-version
   # strings using the config/settings.yml from the provider repo. The
   # "to_s" call for the version strings puts the date in the format
@@ -149,6 +153,12 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
   def resource_group_service(config)
     ::Azure::Armrest::ResourceGroupService.new(config).tap do |service|
       service.api_version = Settings.ems.ems_azure.api_versions.resource_group.to_s
+    end
+  end
+
+  def route_table_service(config)
+    ::Azure::Armrest::Network::RouteTableService.new(config).tap do |service|
+      service.api_version = Settings.ems.ems_azure.api_versions.route_table.to_s
     end
   end
 

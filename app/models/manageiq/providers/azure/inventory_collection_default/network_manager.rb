@@ -8,6 +8,18 @@ class ManageIQ::Providers::Azure::InventoryCollectionDefault::NetworkManager < M
       super(attributes.merge!(extra_attributes))
     end
 
+    def network_routers(extra_attributes = {})
+      attributes = {
+        :model_class    => ::ManageIQ::Providers::Azure::NetworkManager::NetworkRouter,
+        :association    => :network_routers,
+        :builder_params => {
+          :ems_id => ->(persister) { persister.manager.try(:network_manager).try(:id) || persister.manager.id },
+        }
+      }
+
+      attributes.merge!(extra_attributes)
+    end
+
     def floating_ips(extra_attributes = {})
       attributes = {
         :model_class => ::ManageIQ::Providers::Azure::NetworkManager::FloatingIp,

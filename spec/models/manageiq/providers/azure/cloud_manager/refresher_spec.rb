@@ -26,7 +26,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
         @managed_vm        = 'miqazure-linux-managed'
         @device_name       = 'miq-test-rhel1' # Make sure this is running if generating a new cassette.
         @ip_address        = '52.224.165.15'  # This will change if you had to restart the @device_name.
-        @mismatch_ip       = '52.168.33.118'  # This will change if you had to restart the 'miqmismatch1' VM.
+        @mismatch_ip       = '13.92.63.10'    # This will change if you had to restart the 'miqmismatch1' VM.
         @managed_os_disk   = "miqazure-linux-managed_OsDisk_1_7b2bdf790a7d4379ace2846d307730cd"
         @managed_data_disk = "miqazure-linux-managed-data-disk"
         @template          = nil
@@ -89,7 +89,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
           it "will perform a full refresh with a plain proxy enabled" do
             allow(VMDB::Util).to receive(:http_proxy_uri).and_return(proxy)
             setup_ems_and_cassette(refresh_settings)
-            expect(OrchestrationTemplate.count).to eql(21)
+            expect(OrchestrationTemplate.count).to eql(26)
             assert_specific_orchestration_template
           end
         end
@@ -101,7 +101,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
 
             allow(VMDB::Util).to receive(:http_proxy_uri).and_return(proxy)
             setup_ems_and_cassette(refresh_settings)
-            expect(OrchestrationTemplate.count).to eql(21)
+            expect(OrchestrationTemplate.count).to eql(26)
             assert_specific_orchestration_template
           end
         end
@@ -131,6 +131,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
           assert_specific_vm_with_managed_disks
           assert_specific_managed_disk
           assert_specific_resource_group
+          assert_specific_router
         end
       end
     end
