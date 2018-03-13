@@ -31,22 +31,32 @@ class ManageIQ::Providers::Azure::CloudManager::EventTargetParser
     resource_id   = event_data.try(:[], "resourceId")
     resource_type = event_data.try(:[], "resourceType").try(:[], "value")
     association   = case resource_type
-                    when "Microsoft.Network/networkSecurityGroups"
+                    when "Microsoft.Network/networkSecurityGroups", "Microsoft.Network/networkSecurityGroups/securityRules"
                       :security_groups
                     when "Microsoft.Network/networkInterfaces"
                       :network_ports
-                    when "Microsoft.Compute/virtualMachines"
+                    when "Microsoft.Compute/virtualMachines", "Microsoft.Authorization/locks"
                       :vms
                     when "Microsoft.Network/loadBalancers"
                       :load_balancers
-                    when "Microsoft.Network/publicIPAddresses"
+                    when /Microsoft.Network\/publicI[Pp]Addresses/
                       :floating_ips
-                    when "Microsoft.Network/virtualNetworks"
+                    when /Microsoft.Network\/virtual[Nn]etworks/
                       :cloud_networks
                     when "Microsoft.Resources/deployments"
                       :orchestration_stacks
                     when "Microsoft.Compute/images"
                       :miq_templates
+                    when /Microsoft.Resources\/subscriptions\/resource[Gg]roups/
+                      :resource_groups
+                    when "Microsoft.Compute/availabilitySets"
+                      :__unused
+                    when "Microsoft.Compute/disks"
+                      :__unused
+                    when "Microsoft.Compute/snapshots"
+                      :__unused
+                    when "Microsoft.Storage/storageAccounts"
+                      :__unused
                     end
 
     add_target(target_collection, association, resource_id) if association && resource_id
@@ -54,7 +64,7 @@ class ManageIQ::Providers::Azure::CloudManager::EventTargetParser
 
   def transform_resource_id(association, resource_id)
     case association
-    when :network_ports, :security_groups, :load_balancers, :floating_ips, :cloud_networks
+    when :network_ports, :security_groups, :load_balancers, :floating_ips, :cloud_networks, :resource_groups, :__unused
       fix_down_cased_resource_groups(resource_id)
     when :orchestration_stacks
       resource_id_for_stack_id(resource_id)
