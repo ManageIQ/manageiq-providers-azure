@@ -95,6 +95,22 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
           refresh_with_cassette(targets, "_targeted_scope/multiple_targets_refresh")
         end
 
+        it "will refresh cloud network" do
+          refresh_with_cassette([cloud_network_target], "_targeted_scope/cloud_network_refresh")
+        end
+
+        it "will refresh resource group target" do
+          refresh_with_cassette([resource_group_target], "_targeted_scope/resource_group_refresh")
+        end
+
+        it "will refresh security group target" do
+          refresh_with_cassette([security_group_target], "_targeted_scope/security_group_refresh")
+        end
+
+        it "will refresh network_port target" do
+          refresh_with_cassette([network_port_target], "_targeted_scope/network_port_refresh")
+        end
+
         it "will refresh orchestration stack" do
           refresh_with_cassette([parent_orchestration_stack_target], "_targeted_scope/orchestration_stack_refresh")
         end

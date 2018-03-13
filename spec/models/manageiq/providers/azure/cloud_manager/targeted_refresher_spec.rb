@@ -202,6 +202,51 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
             end
           end
 
+          it "will refresh cloud network" do
+            2.times do # Run twice to verify that a second run with existing data does not change anything
+              refresh_with_cassette([cloud_network_target], vcr_suffix("cloud_network_refresh"))
+              assert_counts(
+                :cloud_network         => 1,
+                :cloud_subnet          => 1,
+                :ext_management_system => 2
+              )
+            end
+          end
+
+          it "will refresh resource group target" do
+            2.times do # Run twice to verify that a second run with existing data does not change anything
+              refresh_with_cassette([resource_group_target], vcr_suffix("resource_group_refresh"))
+              assert_counts(
+                :resource_group        => 1,
+                :ext_management_system => 2
+              )
+            end
+          end
+
+          it "will refresh security group target" do
+            2.times do # Run twice to verify that a second run with existing data does not change anything
+              refresh_with_cassette([security_group_target], vcr_suffix("security_group_refresh"))
+              assert_counts(
+                :security_group        => 1,
+                :ext_management_system => 2
+              )
+            end
+          end
+
+          it "will refresh network_port target" do
+            2.times do # Run twice to verify that a second run with existing data does not change anything
+              refresh_with_cassette([network_port_target], vcr_suffix("network_port_refresh"))
+              assert_counts(
+                :cloud_network         => 1,
+                :cloud_subnet          => 1,
+                :ext_management_system => 2,
+                :floating_ip           => 1,
+                :network_port          => 1,
+                :security_group        => 1,
+              )
+            end
+          end
+
           it "will refresh orchestration stack" do
             2.times do # Run twice to verify that a second run with existing data does not change anything
               refresh_with_cassette([parent_orchestration_stack_target], vcr_suffix("orchestration_stack_refresh"))
