@@ -1,338 +1,177 @@
 require 'azure-armrest'
-require_relative "azure_refresher_spec_common"
 
 describe ManageIQ::Providers::Azure::CloudManager::EventTargetParser do
-  include AzureRefresherSpecCommon
-
-  before(:each) do
-    refresh_settings = {
-      :inventory_object_refresh => true,
-      :inventory_collections    => {
-        :saver_strategy => :default,
-      },
-    }
-
-    @refresh_settings = refresh_settings.merge(:allow_targeted_refresh => true)
-
-    stub_settings_merge(
-      :ems_refresh => {
-        :azure         => @refresh_settings,
-        :azure_network => @refresh_settings,
-      }
-    )
-  end
+  let(:resource_group) { 'miq-azure-test1' }
 
   before do
     _guid, _server, zone = EvmSpecHelper.create_guid_miq_server_zone
 
     @ems = FactoryGirl.create(:ems_azure_with_vcr_authentication, :zone => zone, :provider_region => 'eastus')
-
-    @resource_group    = 'miq-azure-test1'
-    @managed_vm        = 'miqazure-linux-managed'
-    @device_name       = 'miq-test-rhel1' # Make sure this is running if generating a new cassette.
-    @vm_powered_off    = 'miqazure-centos1' # Make sure this is powered off if generating a new cassette.
-    @ip_address        = '52.224.165.15' # This will change if you had to restart the @device_name.
-    @mismatch_ip       = '52.168.33.118' # This will change if you had to restart the 'miqmismatch1' VM.
-    @managed_os_disk   = "miqazure-linux-managed_OsDisk_1_7b2bdf790a7d4379ace2846d307730cd"
-    @managed_data_disk = "miqazure-linux-managed-data-disk"
-    @template          = nil
-    @avail_zone        = nil
-
-    @resource_group_managed_vm = "miq-azure-test4"
   end
 
-  after do
-    ::Azure::Armrest::Configuration.clear_caches
+  shared_examples "parses_event" do |event_type|
+    subject { described_class.new(create_ems_event(event_type)).parse }
+    let(:expected_references) do
+      [
+        [klass, {:ems_ref => expected_ems_ref}]
+      ]
+    end
+
+    it "parses #{event_type} event" do
+      expect(subject.size).to eq(1)
+      expect(target_references(subject)).to match_array(expected_references)
+    end
   end
 
   context "NetworkPort events" do
-    it "parses networkInterfaces_write_EndRequest event" do
-      event_type = "networkInterfaces_write_EndRequest"
-      ems_event  = create_ems_event(event_type)
+    let(:klass) { :network_ports }
+    let(:expected_ems_ref) { "/subscriptions/#{@ems.subscription}/resourceGroups/#{resource_group}/providers/Microsoft.Network/networkInterfaces/test-vnet-port" }
 
-      parsed_targets = described_class.new(ems_event).parse
-
-      expect(parsed_targets.size).to eq(1)
-      expect(target_references(parsed_targets)).to(
-        match_array(
-          [
-            [:network_ports, {:ems_ref => "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test1/providers/Microsoft.Network/networkInterfaces/rspec-lb-a670"}]
-          ]
-        )
-      )
-
-      assert_target_refreshed_with_right_ems_ref(parsed_targets, event_type)
-    end
-
-    it "parses networkInterfaces_delete_EndRequest event" do
-      event_type = "networkInterfaces_delete_EndRequest"
-      ems_event  = create_ems_event(event_type)
-
-      parsed_targets = described_class.new(ems_event).parse
-
-      expect(parsed_targets.size).to eq(1)
-      expect(target_references(parsed_targets)).to(
-        match_array(
-          [
-            [:network_ports, {:ems_ref => "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test1/providers/Microsoft.Network/networkInterfaces/ladas_test"}]
-          ]
-        )
-      )
-
-      # For some reason, interface is still in the Provider's inventory after this event
-      assert_target_refreshed_with_right_ems_ref(parsed_targets, event_type, true)
-    end
+    it_behaves_like "parses_event", "networkInterfaces_delete_EndRequest"
+    it_behaves_like "parses_event", "networkInterfaces_write_EndRequest"
   end
 
   context "VM events" do
-    it "parses virtualMachines_delete_EndRequest event" do
-      event_type = "virtualMachines_delete_EndRequest"
-      ems_event  = create_ems_event(event_type)
+    let(:klass) { :vms }
+    let(:expected_ems_ref) { "#{@ems.subscription}\\#{resource_group}\\microsoft.compute/virtualmachines\\test-vm" }
 
-      parsed_targets = described_class.new(ems_event).parse
+    it_behaves_like "parses_event", "virtualMachines_deallocate_EndRequest"
+    it_behaves_like "parses_event", "virtualMachines_delete_EndRequest"
+    it_behaves_like "parses_event", "virtualMachines_generalize_EndRequest"
+    it_behaves_like "parses_event", "virtualMachines_restart_EndRequest"
+    it_behaves_like "parses_event", "virtualMachines_start_EndRequest"
+    it_behaves_like "parses_event", "virtualMachines_powerOff_EndRequest"
+    it_behaves_like "parses_event", "virtualMachines_write_EndRequest"
+  end
 
-      expect(parsed_targets.size).to eq(1)
-      expect(target_references(parsed_targets)).to(
-        match_array(
-          [
-            [:vms, {:ems_ref => "#{@ems.subscription}\\miq-azure-test1\\microsoft.compute/virtualmachines\\ladas_test"}]
-          ]
-        )
-      )
+  context "VM lock events" do
+    let(:klass) { :vms }
+    let(:expected_ems_ref) { "#{@ems.subscription}\\#{resource_group}\\microsoft.authorization/locks\\test-lock" }
 
-      assert_target_refreshed_with_right_ems_ref(parsed_targets, event_type, true)
-    end
-
-    it "parses virtualMachines_deallocate_EndRequest event" do
-      event_type = "virtualMachines_deallocate_EndRequest"
-      ems_event  = create_ems_event(event_type)
-
-      parsed_targets = described_class.new(ems_event).parse
-
-      expect(parsed_targets.size).to eq(1)
-      expect(target_references(parsed_targets)).to(
-        match_array(
-          [
-            [:vms, {:ems_ref => "#{@ems.subscription}\\miq-azure-test1\\microsoft.compute/virtualmachines\\miq-test-rhel1"}]
-          ]
-        )
-      )
-
-      assert_target_refreshed_with_right_ems_ref(parsed_targets, event_type)
-    end
-
-    it "parses virtualMachines_restart_EndRequest event" do
-      event_type = "virtualMachines_restart_EndRequest"
-      ems_event  = create_ems_event(event_type)
-
-      parsed_targets = described_class.new(ems_event).parse
-
-      expect(parsed_targets.size).to eq(1)
-      expect(target_references(parsed_targets)).to(
-        match_array(
-          [
-            [:vms, {:ems_ref => "#{@ems.subscription}\\miq-azure-test1\\microsoft.compute/virtualmachines\\miq-test-rhel1"}]
-          ]
-        )
-      )
-
-      assert_target_refreshed_with_right_ems_ref(parsed_targets, event_type)
-    end
-
-    it "parses virtualMachines_start_EndRequest event" do
-      event_type = "virtualMachines_start_EndRequest"
-      ems_event  = create_ems_event(event_type)
-
-      parsed_targets = described_class.new(ems_event).parse
-
-      expect(parsed_targets.size).to eq(1)
-      expect(target_references(parsed_targets)).to(
-        match_array(
-          [
-            [:vms, {:ems_ref => "#{@ems.subscription}\\miq-azure-test1\\microsoft.compute/virtualmachines\\miq-test-rhel1"}]
-          ]
-        )
-      )
-
-      assert_target_refreshed_with_right_ems_ref(parsed_targets, event_type)
-    end
-
-    it "parses virtualMachines_powerOff_EndRequest event" do
-      event_type = "virtualMachines_deallocate_EndRequest"
-      ems_event  = create_ems_event(event_type)
-
-      parsed_targets = described_class.new(ems_event).parse
-
-      expect(parsed_targets.size).to eq(1)
-      expect(target_references(parsed_targets)).to(
-        match_array(
-          [
-            [:vms, {:ems_ref => "#{@ems.subscription}\\miq-azure-test1\\microsoft.compute/virtualmachines\\miq-test-rhel1"}]
-          ]
-        )
-      )
-
-      assert_target_refreshed_with_right_ems_ref(parsed_targets, event_type)
-    end
-
-    it "parses virtualMachines_write_EndRequest event" do
-      event_type = "virtualMachines_write_EndRequest"
-      ems_event  = create_ems_event(event_type)
-
-      parsed_targets = described_class.new(ems_event).parse
-
-      expect(parsed_targets.size).to eq(1)
-      expect(target_references(parsed_targets)).to(
-        match_array(
-          [
-            [:vms, {:ems_ref => "#{@ems.subscription}\\miq-azure-test1\\microsoft.compute/virtualmachines\\miq-test-rhel1"}]
-          ]
-        )
-      )
-
-      assert_target_refreshed_with_right_ems_ref(parsed_targets, event_type)
-    end
+    it_behaves_like "parses_event", "locks_delete_EndRequest"
+    it_behaves_like "parses_event", "locks_write_EndRequest"
   end
 
   context "CloudNetwork events" do
-    it "parses virtualNetworks_write_EndRequest event" do
-      event_type = "virtualNetworks_write_EndRequest"
-      ems_event  = create_ems_event(event_type)
+    let(:klass) { :cloud_networks }
 
-      parsed_targets = described_class.new(ems_event).parse
+    context do
+      let(:expected_ems_ref) { "/subscriptions/#{@ems.subscription}/resourceGroups/#{resource_group}/providers/Microsoft.Network/virtualNetworks/test-vnet" }
 
-      expect(parsed_targets.size).to eq(1)
-      expect(target_references(parsed_targets)).to(
-        match_array(
-          [
-            [:cloud_networks, {:ems_ref => "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test1/providers/Microsoft.Network/virtualNetworks/ladas_test"}]
-          ]
-        )
-      )
+      it_behaves_like "parses_event", "virtualNetworks_delete_EndRequest"
+      it_behaves_like "parses_event", "virtualNetworks_write_EndRequest"
+    end
 
-      assert_target_refreshed_with_right_ems_ref(parsed_targets, event_type)
+    context do
+      let(:expected_ems_ref) { "/subscriptions/#{@ems.subscription}/resourceGroups/#{resource_group}/providers/Microsoft.Network/virtualnetworks/test-vnet" }
+
+      it_behaves_like "parses_event", "virtualnetworks_delete_EndRequest"
+      it_behaves_like "parses_event", "virtualnetworks_write_EndRequest"
+    end
+
+    it_behaves_like "parses_event", "virtualNetworks_subnets_EndRequest" do
+      let(:expected_ems_ref) { "/subscriptions/#{@ems.subscription}/resourceGroups/#{resource_group}/providers/Microsoft.Network/virtualNetworks/test-vnet/subnets/test-vnet-subnet" }
+    end
+
+    it_behaves_like "parses_event", "virtualnetworks_subnets_EndRequest" do
+      let(:expected_ems_ref) { "/subscriptions/#{@ems.subscription}/resourceGroups/#{resource_group}/providers/Microsoft.Network/virtualnetworks/test-vnet/subnets/test-vnet-subnet" }
     end
   end
 
   context "SecurityGroup events" do
-    it "parses networkSecurityGroups_write_EndRequest event" do
-      event_type = "networkSecurityGroups_write_EndRequest"
-      ems_event  = create_ems_event(event_type)
+    let(:klass) { :security_groups }
+    let(:expected_ems_ref) { "/subscriptions/#{@ems.subscription}/resourceGroups/#{resource_group}/providers/Microsoft.Network/networkSecurityGroups/test-nsg" }
 
-      parsed_targets = described_class.new(ems_event).parse
-
-      expect(parsed_targets.size).to eq(1)
-      expect(target_references(parsed_targets)).to(
-        match_array(
-          [
-            [:security_groups, {:ems_ref => "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test1/providers/Microsoft.Network/networkSecurityGroups/ladas_test"}]
-          ]
-        )
-      )
-
-      assert_target_refreshed_with_right_ems_ref(parsed_targets, event_type)
+    it_behaves_like "parses_event", "networkSecurityGroups_delete_EndRequest"
+    it_behaves_like "parses_event", "networkSecurityGroups_write_EndRequest"
+    it_behaves_like "parses_event", "networkSecurityGroups_securityRules_EndRequest" do
+      let(:expected_ems_ref) { "/subscriptions/#{@ems.subscription}/resourceGroups/#{resource_group}/providers/Microsoft.Network/networkSecurityGroups/test-nsg/securityRules/test-rule" }
     end
   end
 
   context "LoadBalancer events" do
-    it "parses loadBalancers_write_EndRequest event" do
-      event_type = "loadBalancers_write_EndRequest"
-      ems_event  = create_ems_event(event_type)
+    let(:klass) { :load_balancers }
+    let(:expected_ems_ref) { "/subscriptions/#{@ems.subscription}/resourceGroups/#{resource_group}/providers/Microsoft.Network/loadBalancers/test-lb" }
 
-      parsed_targets = described_class.new(ems_event).parse
-
-      expect(parsed_targets.size).to eq(1)
-      expect(target_references(parsed_targets)).to(
-        match_array(
-          [
-            [:load_balancers, {:ems_ref => "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb1"}]
-          ]
-        )
-      )
-
-      assert_target_refreshed_with_right_ems_ref(parsed_targets, event_type)
-    end
+    it_behaves_like "parses_event", "loadBalancers_delete_EndRequest"
+    it_behaves_like "parses_event", "loadBalancers_write_EndRequest"
   end
 
   context "OrchestrationStack events" do
-    it "parses deployments_write_EndRequest event" do
-      event_type = "deployments_write_EndRequest"
-      ems_event  = create_ems_event(event_type)
+    let(:klass) { :orchestration_stacks }
+    let(:expected_ems_ref) { "/subscriptions/#{@ems.subscription}/resourceGroups/#{resource_group}/providers/Microsoft.Resources/deployments/Microsoft.LoadBalancer-20180305183523" }
 
-      parsed_targets = described_class.new(ems_event).parse
+    it_behaves_like "parses_event", "deployments_write_EndRequest"
 
-      expect(parsed_targets.size).to eq(1)
-      expect(target_references(parsed_targets)).to(
-        match_array(
-          [
-            [:orchestration_stacks, {:ems_ref => "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test1/providers/Microsoft.Resources/deployments/Microsoft.LoadBalancer-20180305183523"}]
-          ]
-        )
-      )
-
-      assert_target_refreshed_with_right_ems_ref(parsed_targets, event_type)
-    end
+    # TODO: Low priority events, broken resource_id transformation
+    # it_behaves_like "parses_event", "deployments_exportTemplate_EndRequest"
+    # it_behaves_like "parses_event", "deployments_validate_EndRequest"
   end
 
   context "FloatingIp events" do
-    it "parses publicIPAddresses_write_EndRequest event" do
-      event_type = "publicIPAddresses_write_EndRequest"
-      ems_event  = create_ems_event(event_type)
+    let(:klass) { :floating_ips }
 
-      parsed_targets = described_class.new(ems_event).parse
+    context do
+      let(:expected_ems_ref) { "/subscriptions/#{@ems.subscription}/resourceGroups/#{resource_group}/providers/Microsoft.Network/publicIPAddresses/test-ip" }
 
-      expect(parsed_targets.size).to eq(1)
-      expect(target_references(parsed_targets)).to(
-        match_array(
-          [
-            [:floating_ips, {:ems_ref => "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test1/providers/Microsoft.Network/publicIPAddresses/ladas_test"}]
-          ]
-        )
-      )
+      it_behaves_like "parses_event", "publicIPAddresses_delete_EndRequest"
+      it_behaves_like "parses_event", "publicIPAddresses_write_EndRequest"
+    end
 
-      assert_target_refreshed_with_right_ems_ref(parsed_targets, event_type)
+    context do
+      let(:expected_ems_ref) { "/subscriptions/#{@ems.subscription}/resourceGroups/#{resource_group}/providers/Microsoft.Network/publicIpAddresses/test-ip" }
+
+      it_behaves_like "parses_event", "publicIpAddresses_delete_EndRequest"
+      it_behaves_like "parses_event", "publicIpAddresses_write_EndRequest"
     end
   end
 
   context "Image events" do
-    it "parses images_write_EndRequest event" do
-      event_type = "images_write_EndRequest"
-      ems_event  = create_ems_event(event_type)
+    let(:klass) { :miq_templates }
+    let(:expected_ems_ref) { "/subscriptions/#{@ems.subscription.downcase}/resourcegroups/#{resource_group}/providers/microsoft.compute/images/test-img" }
 
-      parsed_targets = described_class.new(ems_event).parse
-
-      expect(parsed_targets.size).to eq(1)
-      expect(target_references(parsed_targets)).to(
-        match_array(
-          [
-            [:miq_templates, {:ems_ref => "/subscriptions/#{@ems.subscription.downcase}/resourcegroups/miq-azure-test1/providers/microsoft.compute/images/ladas_test"}]
-          ]
-        )
-      )
-    end
+    it_behaves_like "parses_event", "images_delete_EndRequest"
+    it_behaves_like "parses_event", "images_write_EndRequest"
   end
 
-  def assert_target_refreshed_with_right_ems_ref(parsed_targets, suffix, expect_to_be_nil = false)
-    # Due to non trivial transformation of ems_ref in several places of refresh parser, lets test actual targeted
-    # refresh leads to having the object in the DB.
-    refresh_with_cassette(parsed_targets, "/#{suffix}")
-    parsed_targets.each do |target|
-      if expect_to_be_nil
-        expect(fetch_record(target)).to be_nil, "Target :#{target.association} with manager_ref: #{target.manager_ref} is supossed to be soft deleted"
-      else
-        expect(fetch_record(target)).not_to be_nil, "Target :#{target.association} with manager_ref: #{target.manager_ref} was not refreshed"
-      end
-    end
+  context "Resource groups" do
+    let(:klass) { :resource_groups }
+    let(:expected_ems_ref) { "/subscriptions/#{@ems.subscription}/resourceGroups/#{resource_group}" }
+
+    it_behaves_like "parses_event", "subscriptions_resourceGroups_EndRequest"
+    it_behaves_like "parses_event", "subscriptions_resourcegroups_EndRequest"
   end
 
-  def fetch_record(target)
-    manager = case target.association
-              when :load_balancers
-                target.manager.network_manager
-              else
-                target.manager
-              end
-    manager.public_send(target.association).find_by(target.manager_ref)
+  context "Disks" do
+    let(:klass) { :__unused }
+    let(:expected_ems_ref) { "/subscriptions/#{@ems.subscription}/resourceGroups/#{resource_group.upcase}/providers/Microsoft.Compute/disks/test-vm_OsDisk_1_3896596a3c8b449b85f9b0e512995d39" }
+
+    it_behaves_like "parses_event", "disks_delete_EndRequest"
+    it_behaves_like "parses_event", "disks_write_EndRequest"
+  end
+
+  context "Snapshots" do
+    let(:klass) { :__unused }
+    let(:expected_ems_ref) { "/subscriptions/#{@ems.subscription}/resourceGroups/#{resource_group}/providers/Microsoft.Compute/snapshots/test-vm_OsDisk_1_3896596a3c8b449b85f9b0e512995d39-snapshot" }
+
+    it_behaves_like "parses_event", "snapshots_delete_EndRequest"
+    it_behaves_like "parses_event", "snapshots_write_EndRequest"
+  end
+
+  context "Storage Accounts" do
+    let(:klass) { :__unused }
+    let(:expected_ems_ref) { "/subscriptions/#{@ems.subscription}/resourceGroups/#{resource_group}/providers/Microsoft.Storage/storageAccounts/test-storageaccount" }
+
+    it_behaves_like "parses_event", "storageAccounts_delete_EndRequest"
+    it_behaves_like "parses_event", "storageAccounts_write_EndRequest"
+  end
+
+  context "Availability Sets" do
+    let(:klass) { :__unused }
+    let(:expected_ems_ref) { "/subscriptions/#{@ems.subscription}/resourceGroups/#{resource_group}/providers/Microsoft.Compute/availabilitySets/test-availset" }
+
+    it_behaves_like "parses_event", "availabilitySets_delete_EndRequest"
+    it_behaves_like "parses_event", "availabilitySets_write_EndRequest"
   end
 
   def target_references(parsed_targets)
