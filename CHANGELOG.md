@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
+## Unreleased as of Sprint 81 ending 2018-03-12
+
+### Added
+- Azure graph refresh event target parser [(#219)](https://github.com/ManageIQ/manageiq-providers-azure/pull/219)
+
+### Fixed
+- Consolidate Azure refresh workers [(#216)](https://github.com/ManageIQ/manageiq-providers-azure/pull/216)
+
+## Gaprindashvili-2 released 2018-03-06
+
+### Fixed
+- Handle possible race conditions for disks, events [(#209)](https://github.com/ManageIQ/manageiq-providers-azure/pull/209)
+
 ## Unreleased as of Sprint 80 ending 2018-02-26
 
 ### Added
@@ -12,7 +25,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 ### Fixed
 - Allow users to choose public or private IP when provisioning multiple VMs [(#210)](https://github.com/ManageIQ/manageiq-providers-azure/pull/210)
-Handle possible race conditions for disks events [(#209)](https://github.com/ManageIQ/manageiq-providers-azure/pull/209)
 
 ## Unreleased as of Sprint 79 ending 2018-02-12
 
@@ -66,8 +78,6 @@ Handle possible race conditions for disks events [(#209)](https://github.com/Man
 - Smart state Snapshot Managed Disk Name 80 Char Limit [(#157)](https://github.com/ManageIQ/manageiq-providers-azure/pull/157)
 - Pass manageiq-smartstate the Resource Group Name not the Object [(#155)](https://github.com/ManageIQ/manageiq-providers-azure/pull/155)
 - Fix exception handing for credential validation on raw_connect [(#161)](https://github.com/ManageIQ/manageiq-providers-azure/pull/161)
-- Correct and update disk information [(#158)](https://github.com/ManageIQ/manageiq-providers-azure/pull/158)
-- Handle possibility of arrays for Network Security Groups [(#180)](https://github.com/ManageIQ/manageiq-providers-azure/pull/180)
 
 ## Unreleased as of Sprint 78 ending 2018-01-29
 
