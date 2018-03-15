@@ -62,7 +62,8 @@ class ManageIQ::Providers::Azure::InventoryCollectionDefault::CloudManager < Man
 
     def orchestration_stacks(extra_attributes = {})
       attributes = {
-        :model_class => ::ManageIQ::Providers::Azure::CloudManager::OrchestrationStack,
+        :model_class    => ::ManageIQ::Providers::Azure::CloudManager::OrchestrationStack,
+        :saver_strategy => :default # TODO(lsmola) can't batch unless we do smart batching
       }
 
       super(attributes.merge!(extra_attributes))

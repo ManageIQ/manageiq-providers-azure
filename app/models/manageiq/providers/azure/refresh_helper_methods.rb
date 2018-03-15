@@ -15,6 +15,20 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
     inventory
   end
 
+  def collect_inventory_targeted(inv_type)
+    collection_name = inv_type.to_s.titleize
+
+    _log.debug("Retrieving Targeted #{collection_name}...")
+
+    inventory = yield
+    inv_count = inventory.blank? ? 0 : inventory.length
+
+    _log.debug("Retrieving Targeted #{collection_name}...Complete - Count [#{inv_count}]")
+    _log.debug("Memory usage: #{'%.02f' % collector_memory_usage} MiB")
+
+    inventory.try(:compact)
+  end
+
   def collector_memory_usage
     require 'miq-process'
     MiqProcess.processInfo[:proportional_set_size].to_f / 1.megabyte

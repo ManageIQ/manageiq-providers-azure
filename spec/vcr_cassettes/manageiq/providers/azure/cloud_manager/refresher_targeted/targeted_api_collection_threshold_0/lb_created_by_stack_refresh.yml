@@ -1,6 +1,62 @@
 ---
 http_interactions:
 - request:
+    method: post
+    uri: https://login.microsoftonline.com/AZURE_TENANT_ID/oauth2/token
+    body:
+      encoding: UTF-8
+      string: grant_type=client_credentials&client_id=AZURE_CLIENT_ID&client_secret=AZURE_CLIENT_SECRET&resource=https%3A%2F%2Fmanagement.azure.com%2F
+    headers:
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.2p198
+      Content-Length:
+      - '186'
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Server:
+      - Microsoft-IIS/10.0
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+      X-Ms-Request-Id:
+      - b8742e01-4d18-4f5d-8a5c-69d1a7f32300
+      P3p:
+      - CP="DSP CUR OTPi IND OTRi ONL FIN"
+      Set-Cookie:
+      - esctx=AQABAAAAAABHh4kmS_aKT5XrjzxRAtHzLAZFSLsja6Is8XkcRY43D07OLuNY5IrZlCRYpFL6-mMnK5a7Ao7bdIp2Jw-GZf5nF9IgNMIDFcRvJ46ZvPRVeQeF-841lzZBJU7wv0E5uBEWhLReb8RI4cvxBQPXonsXCh3MZ9-AVe0gt8J48a-vPyyI4_2tolWAMpl_XU8k2L8gAA;
+        domain=.login.microsoftonline.com; path=/; secure; HttpOnly
+      - stsservicecookie=ests; path=/; secure; HttpOnly
+      - x-ms-gateway-slice=006; path=/; secure; HttpOnly
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Mon, 12 Mar 2018 09:35:04 GMT
+      Content-Length:
+      - '1505'
+    body:
+      encoding: UTF-8
+      string: '{"token_type":"Bearer","expires_in":"3599","ext_expires_in":"0","expires_on":"1520850904","not_before":"1520847004","resource":"https://management.azure.com/","access_token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IlNTUWRoSTFjS3ZoUUVEU0p4RTJnR1lzNDBRMCIsImtpZCI6IlNTUWRoSTFjS3ZoUUVEU0p4RTJnR1lzNDBRMCJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuYXp1cmUuY29tLyIsImlzcyI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0Lzc3ZWNlZmI2LWNmZjAtNGU4ZC1hNDQ2LTc1N2E2OWNiOTQ4NS8iLCJpYXQiOjE1MjA4NDcwMDQsIm5iZiI6MTUyMDg0NzAwNCwiZXhwIjoxNTIwODUwOTA0LCJhaW8iOiJZMk5nWURCbm0vSkw2OTgrb1NBRzBWVmZleTUwQVFBPSIsImFwcGlkIjoiZmMxYzIyMjUtMDY1Zi00YmE4LTgzZDktZDg2NjYyZjU3OGFmIiwiYXBwaWRhY3IiOiIxIiwiZ3JvdXBzIjpbIjQwNzM4OTg2LTNjODItNGNmMS05OWZjLTEzNDU3ZTMzMzJmYyIsIjBkMDE0M2VhLTMzOWUtNDJlMC1hMjRlLWI1YThmYzY5ZmYxNCIsImQ2NWYyZTVkLWZiZmItNDE1My04NmIyLTU5NzliNGU2YjU5MiJdLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC83N2VjZWZiNi1jZmYwLTRlOGQtYTQ0Ni03NTdhNjljYjk0ODUvIiwib2lkIjoiMzA2ZWI0MmEtMzU4NS00YTM3LTk1YjctMzhiYzBlOTgyOGQyIiwic3ViIjoiMzA2ZWI0MmEtMzU4NS00YTM3LTk1YjctMzhiYzBlOTgyOGQyIiwidGlkIjoiNzdlY2VmYjYtY2ZmMC00ZThkLWE0NDYtNzU3YTY5Y2I5NDg1IiwidXRpIjoiQVM1MHVCaE5YVS1LWEduUnBfTWpBQSIsInZlciI6IjEuMCJ9.HeDjjsRC3BJD-1JG4BwI00zAOhlQXsgKF0cawnVlhx6TIT2EoU_K4C0iQdTI0-_BxfjoupVUBDFq1Bw4rZgO1YNT802CyHkNqWDhyxakJdjwfRo1ar55NxHbA2NLHmd_lIbHgC6zk1tgr1_uqAYhk2WDLO1azOkXMFISZ1qi1RroJeoPsyToOLjS8NkRHSIhqk0IEp2DcBjc8FCW6KORvTeOR9jkQdu3AieJ-ofhZj2uK_hmES5DfnsKipN9pPLm8-tcfGmtgmoDhf7KwoA7G1rR4MFl6Reu7i8XthQjvhGQxOJofMwypN1F4aL5_2twBpbrnGRp8UPzMohFsD6coA"}'
+    http_version: 
+  recorded_at: Mon, 12 Mar 2018 09:35:09 GMT
+- request:
     method: get
     uri: https://management.azure.com/subscriptions?api-version=2016-06-01
     body:
@@ -16,7 +72,7 @@ http_interactions:
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IlNTUWRoSTFjS3ZoUUVEU0p4RTJnR1lzNDBRMCIsImtpZCI6IlNTUWRoSTFjS3ZoUUVEU0p4RTJnR1lzNDBRMCJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuYXp1cmUuY29tLyIsImlzcyI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0Lzc3ZWNlZmI2LWNmZjAtNGU4ZC1hNDQ2LTc1N2E2OWNiOTQ4NS8iLCJpYXQiOjE1MjA4NDk5MjQsIm5iZiI6MTUyMDg0OTkyNCwiZXhwIjoxNTIwODUzODI0LCJhaW8iOiJZMk5nWUxCa3Zyb2s5WWZjdGNEWTFkbi94STdlQndBPSIsImFwcGlkIjoiZmMxYzIyMjUtMDY1Zi00YmE4LTgzZDktZDg2NjYyZjU3OGFmIiwiYXBwaWRhY3IiOiIxIiwiZ3JvdXBzIjpbIjQwNzM4OTg2LTNjODItNGNmMS05OWZjLTEzNDU3ZTMzMzJmYyIsIjBkMDE0M2VhLTMzOWUtNDJlMC1hMjRlLWI1YThmYzY5ZmYxNCIsImQ2NWYyZTVkLWZiZmItNDE1My04NmIyLTU5NzliNGU2YjU5MiJdLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC83N2VjZWZiNi1jZmYwLTRlOGQtYTQ0Ni03NTdhNjljYjk0ODUvIiwib2lkIjoiMzA2ZWI0MmEtMzU4NS00YTM3LTk1YjctMzhiYzBlOTgyOGQyIiwic3ViIjoiMzA2ZWI0MmEtMzU4NS00YTM3LTk1YjctMzhiYzBlOTgyOGQyIiwidGlkIjoiNzdlY2VmYjYtY2ZmMC00ZThkLWE0NDYtNzU3YTY5Y2I5NDg1IiwidXRpIjoibDNaYTVkMUk0MC1hSmk3d1hOOGtBQSIsInZlciI6IjEuMCJ9.b1D1rRo_uTAC7qZ8RGdWnzSmuwNKkwpRd_pmHCZnUt5xcaZ6KUwNX04EtD9wwDbjCLIa9NMW7UC6E-zaLIgbC-A7oyW7un8s1Fcy8NqeILga6AD_ozYC2oFv_JkNR9lw-JaTG4Oh0KAmNmecU6nJveldLVzFCpsCII3oSsrPM6xyb85O5H9lSlLLUXzUp2fmsZUIAPg0z3QHhZWlPKre_TimwR-pjzhRtMXtcbZi92Rn0ZacMLqjoGROxmpbcLU_hMnEqhKfMZqzruUteZGaSzdkZbGCqUykr_wt_byjKDVMA2c-8r_HPkEFgzMEndCq_zuuBKoWo2BhFhk-_8YAZQ
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IlNTUWRoSTFjS3ZoUUVEU0p4RTJnR1lzNDBRMCIsImtpZCI6IlNTUWRoSTFjS3ZoUUVEU0p4RTJnR1lzNDBRMCJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuYXp1cmUuY29tLyIsImlzcyI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0Lzc3ZWNlZmI2LWNmZjAtNGU4ZC1hNDQ2LTc1N2E2OWNiOTQ4NS8iLCJpYXQiOjE1MjA4NDcwMDQsIm5iZiI6MTUyMDg0NzAwNCwiZXhwIjoxNTIwODUwOTA0LCJhaW8iOiJZMk5nWURCbm0vSkw2OTgrb1NBRzBWVmZleTUwQVFBPSIsImFwcGlkIjoiZmMxYzIyMjUtMDY1Zi00YmE4LTgzZDktZDg2NjYyZjU3OGFmIiwiYXBwaWRhY3IiOiIxIiwiZ3JvdXBzIjpbIjQwNzM4OTg2LTNjODItNGNmMS05OWZjLTEzNDU3ZTMzMzJmYyIsIjBkMDE0M2VhLTMzOWUtNDJlMC1hMjRlLWI1YThmYzY5ZmYxNCIsImQ2NWYyZTVkLWZiZmItNDE1My04NmIyLTU5NzliNGU2YjU5MiJdLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC83N2VjZWZiNi1jZmYwLTRlOGQtYTQ0Ni03NTdhNjljYjk0ODUvIiwib2lkIjoiMzA2ZWI0MmEtMzU4NS00YTM3LTk1YjctMzhiYzBlOTgyOGQyIiwic3ViIjoiMzA2ZWI0MmEtMzU4NS00YTM3LTk1YjctMzhiYzBlOTgyOGQyIiwidGlkIjoiNzdlY2VmYjYtY2ZmMC00ZThkLWE0NDYtNzU3YTY5Y2I5NDg1IiwidXRpIjoiQVM1MHVCaE5YVS1LWEduUnBfTWpBQSIsInZlciI6IjEuMCJ9.HeDjjsRC3BJD-1JG4BwI00zAOhlQXsgKF0cawnVlhx6TIT2EoU_K4C0iQdTI0-_BxfjoupVUBDFq1Bw4rZgO1YNT802CyHkNqWDhyxakJdjwfRo1ar55NxHbA2NLHmd_lIbHgC6zk1tgr1_uqAYhk2WDLO1azOkXMFISZ1qi1RroJeoPsyToOLjS8NkRHSIhqk0IEp2DcBjc8FCW6KORvTeOR9jkQdu3AieJ-ofhZj2uK_hmES5DfnsKipN9pPLm8-tcfGmtgmoDhf7KwoA7G1rR4MFl6Reu7i8XthQjvhGQxOJofMwypN1F4aL5_2twBpbrnGRp8UPzMohFsD6coA
   response:
     status:
       code: 200
@@ -35,26 +91,26 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Ratelimit-Remaining-Tenant-Reads:
-      - '14997'
+      - '14999'
       X-Ms-Request-Id:
-      - cbbeeb53-f2bb-46d2-b273-886b9a1b8ede
+      - 7f881b7a-542b-4323-89b8-2df29f5694f9
       X-Ms-Correlation-Request-Id:
-      - cbbeeb53-f2bb-46d2-b273-886b9a1b8ede
+      - 7f881b7a-542b-4323-89b8-2df29f5694f9
       X-Ms-Routing-Request-Id:
-      - WESTEUROPE:20180312T102417Z:cbbeeb53-f2bb-46d2-b273-886b9a1b8ede
+      - WESTEUROPE:20180312T093505Z:7f881b7a-542b-4323-89b8-2df29f5694f9
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Mon, 12 Mar 2018 10:24:17 GMT
+      - Mon, 12 Mar 2018 09:35:05 GMT
     body:
       encoding: ASCII-8BIT
       string: '{"value":[{"id":"/subscriptions/7be814a0-2a8a-4798-ac8f-304eda9d56f3","subscriptionId":"7be814a0-2a8a-4798-ac8f-304eda9d56f3","displayName":"New
         Azure Sponsorship","state":"Enabled","subscriptionPolicies":{"locationPlacementId":"Public_2014-09-01","quotaId":"Sponsored_2016-01-01","spendingLimit":"Off"},"authorizationSource":"RoleBased"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID","subscriptionId":"AZURE_SUBSCRIPTION_ID","displayName":"Microsoft
         Azure Sponsorship","state":"Enabled","subscriptionPolicies":{"locationPlacementId":"Public_2014-09-01","quotaId":"PayAsYouGo_2014-09-01","spendingLimit":"Off"},"authorizationSource":"RoleBased"}]}'
     http_version: 
-  recorded_at: Mon, 12 Mar 2018 10:24:22 GMT
+  recorded_at: Mon, 12 Mar 2018 09:35:10 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/providers?api-version=2015-01-01
@@ -71,7 +127,7 @@ http_interactions:
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IlNTUWRoSTFjS3ZoUUVEU0p4RTJnR1lzNDBRMCIsImtpZCI6IlNTUWRoSTFjS3ZoUUVEU0p4RTJnR1lzNDBRMCJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuYXp1cmUuY29tLyIsImlzcyI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0Lzc3ZWNlZmI2LWNmZjAtNGU4ZC1hNDQ2LTc1N2E2OWNiOTQ4NS8iLCJpYXQiOjE1MjA4NDk5MjQsIm5iZiI6MTUyMDg0OTkyNCwiZXhwIjoxNTIwODUzODI0LCJhaW8iOiJZMk5nWUxCa3Zyb2s5WWZjdGNEWTFkbi94STdlQndBPSIsImFwcGlkIjoiZmMxYzIyMjUtMDY1Zi00YmE4LTgzZDktZDg2NjYyZjU3OGFmIiwiYXBwaWRhY3IiOiIxIiwiZ3JvdXBzIjpbIjQwNzM4OTg2LTNjODItNGNmMS05OWZjLTEzNDU3ZTMzMzJmYyIsIjBkMDE0M2VhLTMzOWUtNDJlMC1hMjRlLWI1YThmYzY5ZmYxNCIsImQ2NWYyZTVkLWZiZmItNDE1My04NmIyLTU5NzliNGU2YjU5MiJdLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC83N2VjZWZiNi1jZmYwLTRlOGQtYTQ0Ni03NTdhNjljYjk0ODUvIiwib2lkIjoiMzA2ZWI0MmEtMzU4NS00YTM3LTk1YjctMzhiYzBlOTgyOGQyIiwic3ViIjoiMzA2ZWI0MmEtMzU4NS00YTM3LTk1YjctMzhiYzBlOTgyOGQyIiwidGlkIjoiNzdlY2VmYjYtY2ZmMC00ZThkLWE0NDYtNzU3YTY5Y2I5NDg1IiwidXRpIjoibDNaYTVkMUk0MC1hSmk3d1hOOGtBQSIsInZlciI6IjEuMCJ9.b1D1rRo_uTAC7qZ8RGdWnzSmuwNKkwpRd_pmHCZnUt5xcaZ6KUwNX04EtD9wwDbjCLIa9NMW7UC6E-zaLIgbC-A7oyW7un8s1Fcy8NqeILga6AD_ozYC2oFv_JkNR9lw-JaTG4Oh0KAmNmecU6nJveldLVzFCpsCII3oSsrPM6xyb85O5H9lSlLLUXzUp2fmsZUIAPg0z3QHhZWlPKre_TimwR-pjzhRtMXtcbZi92Rn0ZacMLqjoGROxmpbcLU_hMnEqhKfMZqzruUteZGaSzdkZbGCqUykr_wt_byjKDVMA2c-8r_HPkEFgzMEndCq_zuuBKoWo2BhFhk-_8YAZQ
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IlNTUWRoSTFjS3ZoUUVEU0p4RTJnR1lzNDBRMCIsImtpZCI6IlNTUWRoSTFjS3ZoUUVEU0p4RTJnR1lzNDBRMCJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuYXp1cmUuY29tLyIsImlzcyI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0Lzc3ZWNlZmI2LWNmZjAtNGU4ZC1hNDQ2LTc1N2E2OWNiOTQ4NS8iLCJpYXQiOjE1MjA4NDcwMDQsIm5iZiI6MTUyMDg0NzAwNCwiZXhwIjoxNTIwODUwOTA0LCJhaW8iOiJZMk5nWURCbm0vSkw2OTgrb1NBRzBWVmZleTUwQVFBPSIsImFwcGlkIjoiZmMxYzIyMjUtMDY1Zi00YmE4LTgzZDktZDg2NjYyZjU3OGFmIiwiYXBwaWRhY3IiOiIxIiwiZ3JvdXBzIjpbIjQwNzM4OTg2LTNjODItNGNmMS05OWZjLTEzNDU3ZTMzMzJmYyIsIjBkMDE0M2VhLTMzOWUtNDJlMC1hMjRlLWI1YThmYzY5ZmYxNCIsImQ2NWYyZTVkLWZiZmItNDE1My04NmIyLTU5NzliNGU2YjU5MiJdLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC83N2VjZWZiNi1jZmYwLTRlOGQtYTQ0Ni03NTdhNjljYjk0ODUvIiwib2lkIjoiMzA2ZWI0MmEtMzU4NS00YTM3LTk1YjctMzhiYzBlOTgyOGQyIiwic3ViIjoiMzA2ZWI0MmEtMzU4NS00YTM3LTk1YjctMzhiYzBlOTgyOGQyIiwidGlkIjoiNzdlY2VmYjYtY2ZmMC00ZThkLWE0NDYtNzU3YTY5Y2I5NDg1IiwidXRpIjoiQVM1MHVCaE5YVS1LWEduUnBfTWpBQSIsInZlciI6IjEuMCJ9.HeDjjsRC3BJD-1JG4BwI00zAOhlQXsgKF0cawnVlhx6TIT2EoU_K4C0iQdTI0-_BxfjoupVUBDFq1Bw4rZgO1YNT802CyHkNqWDhyxakJdjwfRo1ar55NxHbA2NLHmd_lIbHgC6zk1tgr1_uqAYhk2WDLO1azOkXMFISZ1qi1RroJeoPsyToOLjS8NkRHSIhqk0IEp2DcBjc8FCW6KORvTeOR9jkQdu3AieJ-ofhZj2uK_hmES5DfnsKipN9pPLm8-tcfGmtgmoDhf7KwoA7G1rR4MFl6Reu7i8XthQjvhGQxOJofMwypN1F4aL5_2twBpbrnGRp8UPzMohFsD6coA
   response:
     status:
       code: 200
@@ -88,19 +144,19 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Ratelimit-Remaining-Subscription-Reads:
-      - '14988'
+      - '14994'
       X-Ms-Request-Id:
-      - fe3532ca-59a2-474e-9094-8a3697b82bef
+      - d1cd95d5-f14e-4623-9c2f-e3c6f7c374e1
       X-Ms-Correlation-Request-Id:
-      - fe3532ca-59a2-474e-9094-8a3697b82bef
+      - d1cd95d5-f14e-4623-9c2f-e3c6f7c374e1
       X-Ms-Routing-Request-Id:
-      - WESTEUROPE:20180312T102419Z:fe3532ca-59a2-474e-9094-8a3697b82bef
+      - WESTEUROPE:20180312T093506Z:d1cd95d5-f14e-4623-9c2f-e3c6f7c374e1
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Mon, 12 Mar 2018 10:24:18 GMT
+      - Mon, 12 Mar 2018 09:35:06 GMT
       Content-Length:
       - '320853'
     body:
@@ -2322,10 +2378,10 @@ http_interactions:
         US"],"apiVersions":["2015-06-15"]},{"resourceType":"operations","locations":[],"apiVersions":["2015-06-15"]},{"resourceType":"listCommunicationPreference","locations":[],"apiVersions":["2015-06-15"]},{"resourceType":"updateCommunicationPreference","locations":[],"apiVersions":["2015-06-15"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/U2uconsult.TheIdentityHub","namespace":"U2uconsult.TheIdentityHub","resourceTypes":[{"resourceType":"services","locations":["West
         Europe"],"apiVersions":["2015-06-15"]},{"resourceType":"operations","locations":[],"apiVersions":["2015-06-15"]},{"resourceType":"listCommunicationPreference","locations":[],"apiVersions":["2015-06-15"]},{"resourceType":"updateCommunicationPreference","locations":[],"apiVersions":["2015-06-15"]}],"registrationState":"NotRegistered"}]}'
     http_version: 
-  recorded_at: Mon, 12 Mar 2018 10:24:23 GMT
+  recorded_at: Mon, 12 Mar 2018 09:35:11 GMT
 - request:
     method: get
-    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb1?api-version=2018-01-01
+    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/spec0deply1lb?api-version=2018-01-01
     body:
       encoding: US-ASCII
       string: ''
@@ -2339,7 +2395,7 @@ http_interactions:
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IlNTUWRoSTFjS3ZoUUVEU0p4RTJnR1lzNDBRMCIsImtpZCI6IlNTUWRoSTFjS3ZoUUVEU0p4RTJnR1lzNDBRMCJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuYXp1cmUuY29tLyIsImlzcyI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0Lzc3ZWNlZmI2LWNmZjAtNGU4ZC1hNDQ2LTc1N2E2OWNiOTQ4NS8iLCJpYXQiOjE1MjA4NDk5MjQsIm5iZiI6MTUyMDg0OTkyNCwiZXhwIjoxNTIwODUzODI0LCJhaW8iOiJZMk5nWUxCa3Zyb2s5WWZjdGNEWTFkbi94STdlQndBPSIsImFwcGlkIjoiZmMxYzIyMjUtMDY1Zi00YmE4LTgzZDktZDg2NjYyZjU3OGFmIiwiYXBwaWRhY3IiOiIxIiwiZ3JvdXBzIjpbIjQwNzM4OTg2LTNjODItNGNmMS05OWZjLTEzNDU3ZTMzMzJmYyIsIjBkMDE0M2VhLTMzOWUtNDJlMC1hMjRlLWI1YThmYzY5ZmYxNCIsImQ2NWYyZTVkLWZiZmItNDE1My04NmIyLTU5NzliNGU2YjU5MiJdLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC83N2VjZWZiNi1jZmYwLTRlOGQtYTQ0Ni03NTdhNjljYjk0ODUvIiwib2lkIjoiMzA2ZWI0MmEtMzU4NS00YTM3LTk1YjctMzhiYzBlOTgyOGQyIiwic3ViIjoiMzA2ZWI0MmEtMzU4NS00YTM3LTk1YjctMzhiYzBlOTgyOGQyIiwidGlkIjoiNzdlY2VmYjYtY2ZmMC00ZThkLWE0NDYtNzU3YTY5Y2I5NDg1IiwidXRpIjoibDNaYTVkMUk0MC1hSmk3d1hOOGtBQSIsInZlciI6IjEuMCJ9.b1D1rRo_uTAC7qZ8RGdWnzSmuwNKkwpRd_pmHCZnUt5xcaZ6KUwNX04EtD9wwDbjCLIa9NMW7UC6E-zaLIgbC-A7oyW7un8s1Fcy8NqeILga6AD_ozYC2oFv_JkNR9lw-JaTG4Oh0KAmNmecU6nJveldLVzFCpsCII3oSsrPM6xyb85O5H9lSlLLUXzUp2fmsZUIAPg0z3QHhZWlPKre_TimwR-pjzhRtMXtcbZi92Rn0ZacMLqjoGROxmpbcLU_hMnEqhKfMZqzruUteZGaSzdkZbGCqUykr_wt_byjKDVMA2c-8r_HPkEFgzMEndCq_zuuBKoWo2BhFhk-_8YAZQ
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IlNTUWRoSTFjS3ZoUUVEU0p4RTJnR1lzNDBRMCIsImtpZCI6IlNTUWRoSTFjS3ZoUUVEU0p4RTJnR1lzNDBRMCJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuYXp1cmUuY29tLyIsImlzcyI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0Lzc3ZWNlZmI2LWNmZjAtNGU4ZC1hNDQ2LTc1N2E2OWNiOTQ4NS8iLCJpYXQiOjE1MjA4NDcwMDQsIm5iZiI6MTUyMDg0NzAwNCwiZXhwIjoxNTIwODUwOTA0LCJhaW8iOiJZMk5nWURCbm0vSkw2OTgrb1NBRzBWVmZleTUwQVFBPSIsImFwcGlkIjoiZmMxYzIyMjUtMDY1Zi00YmE4LTgzZDktZDg2NjYyZjU3OGFmIiwiYXBwaWRhY3IiOiIxIiwiZ3JvdXBzIjpbIjQwNzM4OTg2LTNjODItNGNmMS05OWZjLTEzNDU3ZTMzMzJmYyIsIjBkMDE0M2VhLTMzOWUtNDJlMC1hMjRlLWI1YThmYzY5ZmYxNCIsImQ2NWYyZTVkLWZiZmItNDE1My04NmIyLTU5NzliNGU2YjU5MiJdLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC83N2VjZWZiNi1jZmYwLTRlOGQtYTQ0Ni03NTdhNjljYjk0ODUvIiwib2lkIjoiMzA2ZWI0MmEtMzU4NS00YTM3LTk1YjctMzhiYzBlOTgyOGQyIiwic3ViIjoiMzA2ZWI0MmEtMzU4NS00YTM3LTk1YjctMzhiYzBlOTgyOGQyIiwidGlkIjoiNzdlY2VmYjYtY2ZmMC00ZThkLWE0NDYtNzU3YTY5Y2I5NDg1IiwidXRpIjoiQVM1MHVCaE5YVS1LWEduUnBfTWpBQSIsInZlciI6IjEuMCJ9.HeDjjsRC3BJD-1JG4BwI00zAOhlQXsgKF0cawnVlhx6TIT2EoU_K4C0iQdTI0-_BxfjoupVUBDFq1Bw4rZgO1YNT802CyHkNqWDhyxakJdjwfRo1ar55NxHbA2NLHmd_lIbHgC6zk1tgr1_uqAYhk2WDLO1azOkXMFISZ1qi1RroJeoPsyToOLjS8NkRHSIhqk0IEp2DcBjc8FCW6KORvTeOR9jkQdu3AieJ-ofhZj2uK_hmES5DfnsKipN9pPLm8-tcfGmtgmoDhf7KwoA7G1rR4MFl6Reu7i8XthQjvhGQxOJofMwypN1F4aL5_2twBpbrnGRp8UPzMohFsD6coA
   response:
     status:
       code: 200
@@ -2356,87 +2412,96 @@ http_interactions:
       Expires:
       - "-1"
       Etag:
-      - W/"fcf2a6a6-dd42-4af7-8096-bc40dd8fce67"
+      - W/"92982330-0f29-406e-bba9-ad19198579a5"
       Vary:
       - Accept-Encoding
       X-Ms-Request-Id:
-      - '080de667-081e-4d58-9e94-9e7243d4200e'
+      - 73c6405d-f89c-4e73-9760-c5b53915eb21
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       Server:
       - Microsoft-HTTPAPI/2.0
       - Microsoft-HTTPAPI/2.0
       X-Ms-Ratelimit-Remaining-Subscription-Reads:
-      - '14986'
+      - '14994'
       X-Ms-Correlation-Request-Id:
-      - '093d49ac-c85f-440e-956b-955b6698dd19'
+      - 4072160b-238b-4f8c-bde7-855ec1e9ccc1
       X-Ms-Routing-Request-Id:
-      - WESTEUROPE:20180312T102419Z:093d49ac-c85f-440e-956b-955b6698dd19
+      - WESTEUROPE:20180312T093507Z:4072160b-238b-4f8c-bde7-855ec1e9ccc1
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Mon, 12 Mar 2018 10:24:19 GMT
+      - Mon, 12 Mar 2018 09:35:07 GMT
     body:
       encoding: ASCII-8BIT
-      string: "{\r\n  \"name\": \"rspec-lb1\",\r\n  \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb1\",\r\n
-        \ \"etag\": \"W/\\\"fcf2a6a6-dd42-4af7-8096-bc40dd8fce67\\\"\",\r\n  \"type\":
+      string: "{\r\n  \"name\": \"spec0deply1lb\",\r\n  \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/spec0deply1lb\",\r\n
+        \ \"etag\": \"W/\\\"92982330-0f29-406e-bba9-ad19198579a5\\\"\",\r\n  \"type\":
         \"Microsoft.Network/loadBalancers\",\r\n  \"location\": \"eastus\",\r\n  \"properties\":
-        {\r\n    \"provisioningState\": \"Succeeded\",\r\n    \"resourceGuid\": \"7ab88756-810f-4083-95db-8b05d50e38f2\",\r\n
+        {\r\n    \"provisioningState\": \"Succeeded\",\r\n    \"resourceGuid\": \"8cd72f7c-03bd-4584-abc6-d9ce77ae6202\",\r\n
         \   \"frontendIPConfigurations\": [\r\n      {\r\n        \"name\": \"LoadBalancerFrontEnd\",\r\n
-        \       \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb1/frontendIPConfigurations/LoadBalancerFrontEnd\",\r\n
-        \       \"etag\": \"W/\\\"fcf2a6a6-dd42-4af7-8096-bc40dd8fce67\\\"\",\r\n
+        \       \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/spec0deply1lb/frontendIPConfigurations/LoadBalancerFrontEnd\",\r\n
+        \       \"etag\": \"W/\\\"92982330-0f29-406e-bba9-ad19198579a5\\\"\",\r\n
         \       \"properties\": {\r\n          \"provisioningState\": \"Succeeded\",\r\n
         \         \"privateIPAllocationMethod\": \"Dynamic\",\r\n          \"publicIPAddress\":
-        {\r\n            \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/publicIPAddresses/rspec-lb1-LoadBalancerFrontEnd\"\r\n
+        {\r\n            \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/publicIPAddresses/spec0deply1ip\"\r\n
         \         },\r\n          \"loadBalancingRules\": [\r\n            {\r\n              \"id\":
-        \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb1/loadBalancingRules/rspec-lb1-rule\"\r\n
+        \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/spec0deply1lb/loadBalancingRules/LBRule\"\r\n
         \           }\r\n          ],\r\n          \"inboundNatRules\": [\r\n            {\r\n
-        \             \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb1/inboundNatRules/rspec-lb1-NAT\"\r\n
+        \             \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/spec0deply1lb/inboundNatRules/RDP-VM0\"\r\n
+        \           },\r\n            {\r\n              \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/spec0deply1lb/inboundNatRules/RDP-VM1\"\r\n
         \           }\r\n          ]\r\n        }\r\n      }\r\n    ],\r\n    \"backendAddressPools\":
-        [\r\n      {\r\n        \"name\": \"rspec-lb-pool\",\r\n        \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb1/backendAddressPools/rspec-lb-pool\",\r\n
-        \       \"etag\": \"W/\\\"fcf2a6a6-dd42-4af7-8096-bc40dd8fce67\\\"\",\r\n
+        [\r\n      {\r\n        \"name\": \"BackendPool1\",\r\n        \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/spec0deply1lb/backendAddressPools/BackendPool1\",\r\n
+        \       \"etag\": \"W/\\\"92982330-0f29-406e-bba9-ad19198579a5\\\"\",\r\n
         \       \"properties\": {\r\n          \"provisioningState\": \"Succeeded\",\r\n
         \         \"backendIPConfigurations\": [\r\n            {\r\n              \"id\":
-        \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/networkInterfaces/rspec-lb-a670/ipConfigurations/ipconfig1\"\r\n
-        \           },\r\n            {\r\n              \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/networkInterfaces/rspec-lb-b843/ipConfigurations/ipconfig1\"\r\n
+        \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/networkInterfaces/spec0deply1nic0/ipConfigurations/ipconfig1\"\r\n
+        \           },\r\n            {\r\n              \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/networkInterfaces/spec0deply1nic1/ipConfigurations/ipconfig1\"\r\n
         \           }\r\n          ],\r\n          \"loadBalancingRules\": [\r\n            {\r\n
-        \             \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb1/loadBalancingRules/rspec-lb1-rule\"\r\n
+        \             \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/spec0deply1lb/loadBalancingRules/LBRule\"\r\n
         \           }\r\n          ]\r\n        }\r\n      }\r\n    ],\r\n    \"loadBalancingRules\":
-        [\r\n      {\r\n        \"name\": \"rspec-lb1-rule\",\r\n        \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb1/loadBalancingRules/rspec-lb1-rule\",\r\n
-        \       \"etag\": \"W/\\\"fcf2a6a6-dd42-4af7-8096-bc40dd8fce67\\\"\",\r\n
+        [\r\n      {\r\n        \"name\": \"LBRule\",\r\n        \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/spec0deply1lb/loadBalancingRules/LBRule\",\r\n
+        \       \"etag\": \"W/\\\"92982330-0f29-406e-bba9-ad19198579a5\\\"\",\r\n
         \       \"properties\": {\r\n          \"provisioningState\": \"Succeeded\",\r\n
-        \         \"frontendIPConfiguration\": {\r\n            \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb1/frontendIPConfigurations/LoadBalancerFrontEnd\"\r\n
+        \         \"frontendIPConfiguration\": {\r\n            \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/spec0deply1lb/frontendIPConfigurations/LoadBalancerFrontEnd\"\r\n
         \         },\r\n          \"frontendPort\": 80,\r\n          \"backendPort\":
         80,\r\n          \"enableFloatingIP\": false,\r\n          \"idleTimeoutInMinutes\":
-        4,\r\n          \"protocol\": \"Tcp\",\r\n          \"enableDestinationServiceEndpoint\":
+        5,\r\n          \"protocol\": \"Tcp\",\r\n          \"enableDestinationServiceEndpoint\":
         false,\r\n          \"loadDistribution\": \"Default\",\r\n          \"backendAddressPool\":
-        {\r\n            \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb1/backendAddressPools/rspec-lb-pool\"\r\n
-        \         },\r\n          \"probe\": {\r\n            \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb1/probes/rspec-lb-probe\"\r\n
+        {\r\n            \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/spec0deply1lb/backendAddressPools/BackendPool1\"\r\n
+        \         },\r\n          \"probe\": {\r\n            \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/spec0deply1lb/probes/tcpProbe\"\r\n
         \         }\r\n        }\r\n      }\r\n    ],\r\n    \"probes\": [\r\n      {\r\n
-        \       \"name\": \"rspec-lb-probe\",\r\n        \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb1/probes/rspec-lb-probe\",\r\n
-        \       \"etag\": \"W/\\\"fcf2a6a6-dd42-4af7-8096-bc40dd8fce67\\\"\",\r\n
+        \       \"name\": \"tcpProbe\",\r\n        \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/spec0deply1lb/probes/tcpProbe\",\r\n
+        \       \"etag\": \"W/\\\"92982330-0f29-406e-bba9-ad19198579a5\\\"\",\r\n
         \       \"properties\": {\r\n          \"provisioningState\": \"Succeeded\",\r\n
-        \         \"protocol\": \"Http\",\r\n          \"port\": 80,\r\n          \"requestPath\":
-        \"/\",\r\n          \"intervalInSeconds\": 5,\r\n          \"numberOfProbes\":
-        2,\r\n          \"loadBalancingRules\": [\r\n            {\r\n              \"id\":
-        \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb1/loadBalancingRules/rspec-lb1-rule\"\r\n
+        \         \"protocol\": \"Tcp\",\r\n          \"port\": 80,\r\n          \"intervalInSeconds\":
+        5,\r\n          \"numberOfProbes\": 2,\r\n          \"loadBalancingRules\":
+        [\r\n            {\r\n              \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/spec0deply1lb/loadBalancingRules/LBRule\"\r\n
         \           }\r\n          ]\r\n        }\r\n      }\r\n    ],\r\n    \"inboundNatRules\":
-        [\r\n      {\r\n        \"name\": \"rspec-lb1-NAT\",\r\n        \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb1/inboundNatRules/rspec-lb1-NAT\",\r\n
-        \       \"etag\": \"W/\\\"fcf2a6a6-dd42-4af7-8096-bc40dd8fce67\\\"\",\r\n
+        [\r\n      {\r\n        \"name\": \"RDP-VM0\",\r\n        \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/spec0deply1lb/inboundNatRules/RDP-VM0\",\r\n
+        \       \"etag\": \"W/\\\"92982330-0f29-406e-bba9-ad19198579a5\\\"\",\r\n
         \       \"properties\": {\r\n          \"provisioningState\": \"Succeeded\",\r\n
-        \         \"frontendIPConfiguration\": {\r\n            \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb1/frontendIPConfigurations/LoadBalancerFrontEnd\"\r\n
-        \         },\r\n          \"frontendPort\": 3441,\r\n          \"backendPort\":
+        \         \"frontendIPConfiguration\": {\r\n            \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/spec0deply1lb/frontendIPConfigurations/LoadBalancerFrontEnd\"\r\n
+        \         },\r\n          \"frontendPort\": 50001,\r\n          \"backendPort\":
         3389,\r\n          \"enableFloatingIP\": false,\r\n          \"idleTimeoutInMinutes\":
         4,\r\n          \"protocol\": \"Tcp\",\r\n          \"enableDestinationServiceEndpoint\":
-        false,\r\n          \"backendIPConfiguration\": {\r\n            \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/networkInterfaces/rspec-lb-a670/ipConfigurations/ipconfig1\"\r\n
+        false,\r\n          \"backendIPConfiguration\": {\r\n            \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/networkInterfaces/spec0deply1nic0/ipConfigurations/ipconfig1\"\r\n
+        \         }\r\n        }\r\n      },\r\n      {\r\n        \"name\": \"RDP-VM1\",\r\n
+        \       \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/spec0deply1lb/inboundNatRules/RDP-VM1\",\r\n
+        \       \"etag\": \"W/\\\"92982330-0f29-406e-bba9-ad19198579a5\\\"\",\r\n
+        \       \"properties\": {\r\n          \"provisioningState\": \"Succeeded\",\r\n
+        \         \"frontendIPConfiguration\": {\r\n            \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/spec0deply1lb/frontendIPConfigurations/LoadBalancerFrontEnd\"\r\n
+        \         },\r\n          \"frontendPort\": 50002,\r\n          \"backendPort\":
+        3389,\r\n          \"enableFloatingIP\": false,\r\n          \"idleTimeoutInMinutes\":
+        4,\r\n          \"protocol\": \"Tcp\",\r\n          \"enableDestinationServiceEndpoint\":
+        false,\r\n          \"backendIPConfiguration\": {\r\n            \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/networkInterfaces/spec0deply1nic1/ipConfigurations/ipconfig1\"\r\n
         \         }\r\n        }\r\n      }\r\n    ],\r\n    \"outboundNatRules\":
         [],\r\n    \"inboundNatPools\": []\r\n  },\r\n  \"sku\": {\r\n    \"name\":
         \"Basic\"\r\n  }\r\n}"
     http_version: 
-  recorded_at: Mon, 12 Mar 2018 10:24:24 GMT
+  recorded_at: Mon, 12 Mar 2018 09:35:12 GMT
 - request:
     method: get
-    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb2?api-version=2018-01-01
+    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/publicIPAddresses/spec0deply1ip?api-version=2018-01-01
     body:
       encoding: US-ASCII
       string: ''
@@ -2450,7 +2515,7 @@ http_interactions:
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IlNTUWRoSTFjS3ZoUUVEU0p4RTJnR1lzNDBRMCIsImtpZCI6IlNTUWRoSTFjS3ZoUUVEU0p4RTJnR1lzNDBRMCJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuYXp1cmUuY29tLyIsImlzcyI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0Lzc3ZWNlZmI2LWNmZjAtNGU4ZC1hNDQ2LTc1N2E2OWNiOTQ4NS8iLCJpYXQiOjE1MjA4NDk5MjQsIm5iZiI6MTUyMDg0OTkyNCwiZXhwIjoxNTIwODUzODI0LCJhaW8iOiJZMk5nWUxCa3Zyb2s5WWZjdGNEWTFkbi94STdlQndBPSIsImFwcGlkIjoiZmMxYzIyMjUtMDY1Zi00YmE4LTgzZDktZDg2NjYyZjU3OGFmIiwiYXBwaWRhY3IiOiIxIiwiZ3JvdXBzIjpbIjQwNzM4OTg2LTNjODItNGNmMS05OWZjLTEzNDU3ZTMzMzJmYyIsIjBkMDE0M2VhLTMzOWUtNDJlMC1hMjRlLWI1YThmYzY5ZmYxNCIsImQ2NWYyZTVkLWZiZmItNDE1My04NmIyLTU5NzliNGU2YjU5MiJdLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC83N2VjZWZiNi1jZmYwLTRlOGQtYTQ0Ni03NTdhNjljYjk0ODUvIiwib2lkIjoiMzA2ZWI0MmEtMzU4NS00YTM3LTk1YjctMzhiYzBlOTgyOGQyIiwic3ViIjoiMzA2ZWI0MmEtMzU4NS00YTM3LTk1YjctMzhiYzBlOTgyOGQyIiwidGlkIjoiNzdlY2VmYjYtY2ZmMC00ZThkLWE0NDYtNzU3YTY5Y2I5NDg1IiwidXRpIjoibDNaYTVkMUk0MC1hSmk3d1hOOGtBQSIsInZlciI6IjEuMCJ9.b1D1rRo_uTAC7qZ8RGdWnzSmuwNKkwpRd_pmHCZnUt5xcaZ6KUwNX04EtD9wwDbjCLIa9NMW7UC6E-zaLIgbC-A7oyW7un8s1Fcy8NqeILga6AD_ozYC2oFv_JkNR9lw-JaTG4Oh0KAmNmecU6nJveldLVzFCpsCII3oSsrPM6xyb85O5H9lSlLLUXzUp2fmsZUIAPg0z3QHhZWlPKre_TimwR-pjzhRtMXtcbZi92Rn0ZacMLqjoGROxmpbcLU_hMnEqhKfMZqzruUteZGaSzdkZbGCqUykr_wt_byjKDVMA2c-8r_HPkEFgzMEndCq_zuuBKoWo2BhFhk-_8YAZQ
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IlNTUWRoSTFjS3ZoUUVEU0p4RTJnR1lzNDBRMCIsImtpZCI6IlNTUWRoSTFjS3ZoUUVEU0p4RTJnR1lzNDBRMCJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuYXp1cmUuY29tLyIsImlzcyI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0Lzc3ZWNlZmI2LWNmZjAtNGU4ZC1hNDQ2LTc1N2E2OWNiOTQ4NS8iLCJpYXQiOjE1MjA4NDcwMDQsIm5iZiI6MTUyMDg0NzAwNCwiZXhwIjoxNTIwODUwOTA0LCJhaW8iOiJZMk5nWURCbm0vSkw2OTgrb1NBRzBWVmZleTUwQVFBPSIsImFwcGlkIjoiZmMxYzIyMjUtMDY1Zi00YmE4LTgzZDktZDg2NjYyZjU3OGFmIiwiYXBwaWRhY3IiOiIxIiwiZ3JvdXBzIjpbIjQwNzM4OTg2LTNjODItNGNmMS05OWZjLTEzNDU3ZTMzMzJmYyIsIjBkMDE0M2VhLTMzOWUtNDJlMC1hMjRlLWI1YThmYzY5ZmYxNCIsImQ2NWYyZTVkLWZiZmItNDE1My04NmIyLTU5NzliNGU2YjU5MiJdLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC83N2VjZWZiNi1jZmYwLTRlOGQtYTQ0Ni03NTdhNjljYjk0ODUvIiwib2lkIjoiMzA2ZWI0MmEtMzU4NS00YTM3LTk1YjctMzhiYzBlOTgyOGQyIiwic3ViIjoiMzA2ZWI0MmEtMzU4NS00YTM3LTk1YjctMzhiYzBlOTgyOGQyIiwidGlkIjoiNzdlY2VmYjYtY2ZmMC00ZThkLWE0NDYtNzU3YTY5Y2I5NDg1IiwidXRpIjoiQVM1MHVCaE5YVS1LWEduUnBfTWpBQSIsInZlciI6IjEuMCJ9.HeDjjsRC3BJD-1JG4BwI00zAOhlQXsgKF0cawnVlhx6TIT2EoU_K4C0iQdTI0-_BxfjoupVUBDFq1Bw4rZgO1YNT802CyHkNqWDhyxakJdjwfRo1ar55NxHbA2NLHmd_lIbHgC6zk1tgr1_uqAYhk2WDLO1azOkXMFISZ1qi1RroJeoPsyToOLjS8NkRHSIhqk0IEp2DcBjc8FCW6KORvTeOR9jkQdu3AieJ-ofhZj2uK_hmES5DfnsKipN9pPLm8-tcfGmtgmoDhf7KwoA7G1rR4MFl6Reu7i8XthQjvhGQxOJofMwypN1F4aL5_2twBpbrnGRp8UPzMohFsD6coA
   response:
     status:
       code: 200
@@ -2467,183 +2532,38 @@ http_interactions:
       Expires:
       - "-1"
       Etag:
-      - W/"7a8e5fe7-f777-4435-992b-a54f28c2f28c"
+      - W/"2080997a-38a6-420d-ba86-e9582e1331c7"
       Vary:
       - Accept-Encoding
       X-Ms-Request-Id:
-      - bd22ca22-a01f-4ecf-9230-a4558fb66931
+      - 12afbb44-5581-42c8-b20e-6d33753626a5
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       Server:
       - Microsoft-HTTPAPI/2.0
       - Microsoft-HTTPAPI/2.0
       X-Ms-Ratelimit-Remaining-Subscription-Reads:
-      - '14986'
+      - '14994'
       X-Ms-Correlation-Request-Id:
-      - 19c674a8-c8da-4b5e-8265-5ebc21926459
+      - 2f96b7fa-7846-4d02-aa37-f8dd338bb456
       X-Ms-Routing-Request-Id:
-      - WESTEUROPE:20180312T102420Z:19c674a8-c8da-4b5e-8265-5ebc21926459
+      - WESTEUROPE:20180312T093511Z:2f96b7fa-7846-4d02-aa37-f8dd338bb456
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Mon, 12 Mar 2018 10:24:19 GMT
+      - Mon, 12 Mar 2018 09:35:11 GMT
     body:
       encoding: ASCII-8BIT
-      string: "{\r\n  \"name\": \"rspec-lb2\",\r\n  \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb2\",\r\n
-        \ \"etag\": \"W/\\\"7a8e5fe7-f777-4435-992b-a54f28c2f28c\\\"\",\r\n  \"type\":
-        \"Microsoft.Network/loadBalancers\",\r\n  \"location\": \"eastus\",\r\n  \"properties\":
-        {\r\n    \"provisioningState\": \"Succeeded\",\r\n    \"resourceGuid\": \"e2e30a77-f81b-43fc-9693-08303e43deed\",\r\n
-        \   \"frontendIPConfigurations\": [\r\n      {\r\n        \"name\": \"LoadBalancerFrontEnd\",\r\n
-        \       \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb2/frontendIPConfigurations/LoadBalancerFrontEnd\",\r\n
-        \       \"etag\": \"W/\\\"7a8e5fe7-f777-4435-992b-a54f28c2f28c\\\"\",\r\n
-        \       \"properties\": {\r\n          \"provisioningState\": \"Succeeded\",\r\n
-        \         \"privateIPAllocationMethod\": \"Dynamic\",\r\n          \"publicIPAddress\":
-        {\r\n            \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/publicIPAddresses/rspec-lb2-publicip\"\r\n
-        \         }\r\n        }\r\n      }\r\n    ],\r\n    \"backendAddressPools\":
-        [\r\n      {\r\n        \"name\": \"rspec-lb2-pool\",\r\n        \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb2/backendAddressPools/rspec-lb2-pool\",\r\n
-        \       \"etag\": \"W/\\\"7a8e5fe7-f777-4435-992b-a54f28c2f28c\\\"\",\r\n
-        \       \"properties\": {\r\n          \"provisioningState\": \"Succeeded\"\r\n
-        \       }\r\n      }\r\n    ],\r\n    \"loadBalancingRules\": [],\r\n    \"probes\":
-        [\r\n      {\r\n        \"name\": \"rspec-lb2-probe\",\r\n        \"id\":
-        \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb2/probes/rspec-lb2-probe\",\r\n
-        \       \"etag\": \"W/\\\"7a8e5fe7-f777-4435-992b-a54f28c2f28c\\\"\",\r\n
-        \       \"properties\": {\r\n          \"provisioningState\": \"Succeeded\",\r\n
-        \         \"protocol\": \"Http\",\r\n          \"port\": 80,\r\n          \"requestPath\":
-        \"/\",\r\n          \"intervalInSeconds\": 5,\r\n          \"numberOfProbes\":
-        2\r\n        }\r\n      }\r\n    ],\r\n    \"inboundNatRules\": [],\r\n    \"outboundNatRules\":
-        [],\r\n    \"inboundNatPools\": []\r\n  },\r\n  \"sku\": {\r\n    \"name\":
-        \"Basic\"\r\n  }\r\n}"
-    http_version: 
-  recorded_at: Mon, 12 Mar 2018 10:24:25 GMT
-- request:
-    method: get
-    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/publicIPAddresses/rspec-lb1-LoadBalancerFrontEnd?api-version=2018-01-01
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      User-Agent:
-      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.2p198
-      Content-Type:
-      - application/json
-      Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IlNTUWRoSTFjS3ZoUUVEU0p4RTJnR1lzNDBRMCIsImtpZCI6IlNTUWRoSTFjS3ZoUUVEU0p4RTJnR1lzNDBRMCJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuYXp1cmUuY29tLyIsImlzcyI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0Lzc3ZWNlZmI2LWNmZjAtNGU4ZC1hNDQ2LTc1N2E2OWNiOTQ4NS8iLCJpYXQiOjE1MjA4NDk5MjQsIm5iZiI6MTUyMDg0OTkyNCwiZXhwIjoxNTIwODUzODI0LCJhaW8iOiJZMk5nWUxCa3Zyb2s5WWZjdGNEWTFkbi94STdlQndBPSIsImFwcGlkIjoiZmMxYzIyMjUtMDY1Zi00YmE4LTgzZDktZDg2NjYyZjU3OGFmIiwiYXBwaWRhY3IiOiIxIiwiZ3JvdXBzIjpbIjQwNzM4OTg2LTNjODItNGNmMS05OWZjLTEzNDU3ZTMzMzJmYyIsIjBkMDE0M2VhLTMzOWUtNDJlMC1hMjRlLWI1YThmYzY5ZmYxNCIsImQ2NWYyZTVkLWZiZmItNDE1My04NmIyLTU5NzliNGU2YjU5MiJdLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC83N2VjZWZiNi1jZmYwLTRlOGQtYTQ0Ni03NTdhNjljYjk0ODUvIiwib2lkIjoiMzA2ZWI0MmEtMzU4NS00YTM3LTk1YjctMzhiYzBlOTgyOGQyIiwic3ViIjoiMzA2ZWI0MmEtMzU4NS00YTM3LTk1YjctMzhiYzBlOTgyOGQyIiwidGlkIjoiNzdlY2VmYjYtY2ZmMC00ZThkLWE0NDYtNzU3YTY5Y2I5NDg1IiwidXRpIjoibDNaYTVkMUk0MC1hSmk3d1hOOGtBQSIsInZlciI6IjEuMCJ9.b1D1rRo_uTAC7qZ8RGdWnzSmuwNKkwpRd_pmHCZnUt5xcaZ6KUwNX04EtD9wwDbjCLIa9NMW7UC6E-zaLIgbC-A7oyW7un8s1Fcy8NqeILga6AD_ozYC2oFv_JkNR9lw-JaTG4Oh0KAmNmecU6nJveldLVzFCpsCII3oSsrPM6xyb85O5H9lSlLLUXzUp2fmsZUIAPg0z3QHhZWlPKre_TimwR-pjzhRtMXtcbZi92Rn0ZacMLqjoGROxmpbcLU_hMnEqhKfMZqzruUteZGaSzdkZbGCqUykr_wt_byjKDVMA2c-8r_HPkEFgzMEndCq_zuuBKoWo2BhFhk-_8YAZQ
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Cache-Control:
-      - no-cache
-      Pragma:
-      - no-cache
-      Transfer-Encoding:
-      - chunked
-      Content-Type:
-      - application/json; charset=utf-8
-      Expires:
-      - "-1"
-      Etag:
-      - W/"a38434c8-7b23-4092-b7c6-402238eac0dc"
-      Vary:
-      - Accept-Encoding
-      X-Ms-Request-Id:
-      - 0fd15240-6a1c-4b39-a4f6-aa53fd8591c2
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains
-      Server:
-      - Microsoft-HTTPAPI/2.0
-      - Microsoft-HTTPAPI/2.0
-      X-Ms-Ratelimit-Remaining-Subscription-Reads:
-      - '14986'
-      X-Ms-Correlation-Request-Id:
-      - 5cc03163-922e-41a1-9601-dba2d7cf2a81
-      X-Ms-Routing-Request-Id:
-      - WESTEUROPE:20180312T102421Z:5cc03163-922e-41a1-9601-dba2d7cf2a81
-      X-Content-Type-Options:
-      - nosniff
-      Date:
-      - Mon, 12 Mar 2018 10:24:20 GMT
-    body:
-      encoding: ASCII-8BIT
-      string: "{\r\n  \"name\": \"rspec-lb1-LoadBalancerFrontEnd\",\r\n  \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/publicIPAddresses/rspec-lb1-LoadBalancerFrontEnd\",\r\n
-        \ \"etag\": \"W/\\\"a38434c8-7b23-4092-b7c6-402238eac0dc\\\"\",\r\n  \"location\":
+      string: "{\r\n  \"name\": \"spec0deply1ip\",\r\n  \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/publicIPAddresses/spec0deply1ip\",\r\n
+        \ \"etag\": \"W/\\\"2080997a-38a6-420d-ba86-e9582e1331c7\\\"\",\r\n  \"location\":
         \"eastus\",\r\n  \"properties\": {\r\n    \"provisioningState\": \"Succeeded\",\r\n
-        \   \"resourceGuid\": \"f28e0f25-b372-4edf-97d9-13a9e3b4ba2d\",\r\n    \"ipAddress\":
-        \"40.71.82.83\",\r\n    \"publicIPAddressVersion\": \"IPv4\",\r\n    \"publicIPAllocationMethod\":
-        \"Static\",\r\n    \"idleTimeoutInMinutes\": 4,\r\n    \"ipTags\": [],\r\n
-        \   \"ipConfiguration\": {\r\n      \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb1/frontendIPConfigurations/LoadBalancerFrontEnd\"\r\n
-        \   }\r\n  },\r\n  \"type\": \"Microsoft.Network/publicIPAddresses\",\r\n
-        \ \"sku\": {\r\n    \"name\": \"Basic\"\r\n  }\r\n}"
-    http_version: 
-  recorded_at: Mon, 12 Mar 2018 10:24:25 GMT
-- request:
-    method: get
-    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/publicIPAddresses/rspec-lb2-publicip?api-version=2018-01-01
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      User-Agent:
-      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.2p198
-      Content-Type:
-      - application/json
-      Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IlNTUWRoSTFjS3ZoUUVEU0p4RTJnR1lzNDBRMCIsImtpZCI6IlNTUWRoSTFjS3ZoUUVEU0p4RTJnR1lzNDBRMCJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuYXp1cmUuY29tLyIsImlzcyI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0Lzc3ZWNlZmI2LWNmZjAtNGU4ZC1hNDQ2LTc1N2E2OWNiOTQ4NS8iLCJpYXQiOjE1MjA4NDk5MjQsIm5iZiI6MTUyMDg0OTkyNCwiZXhwIjoxNTIwODUzODI0LCJhaW8iOiJZMk5nWUxCa3Zyb2s5WWZjdGNEWTFkbi94STdlQndBPSIsImFwcGlkIjoiZmMxYzIyMjUtMDY1Zi00YmE4LTgzZDktZDg2NjYyZjU3OGFmIiwiYXBwaWRhY3IiOiIxIiwiZ3JvdXBzIjpbIjQwNzM4OTg2LTNjODItNGNmMS05OWZjLTEzNDU3ZTMzMzJmYyIsIjBkMDE0M2VhLTMzOWUtNDJlMC1hMjRlLWI1YThmYzY5ZmYxNCIsImQ2NWYyZTVkLWZiZmItNDE1My04NmIyLTU5NzliNGU2YjU5MiJdLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC83N2VjZWZiNi1jZmYwLTRlOGQtYTQ0Ni03NTdhNjljYjk0ODUvIiwib2lkIjoiMzA2ZWI0MmEtMzU4NS00YTM3LTk1YjctMzhiYzBlOTgyOGQyIiwic3ViIjoiMzA2ZWI0MmEtMzU4NS00YTM3LTk1YjctMzhiYzBlOTgyOGQyIiwidGlkIjoiNzdlY2VmYjYtY2ZmMC00ZThkLWE0NDYtNzU3YTY5Y2I5NDg1IiwidXRpIjoibDNaYTVkMUk0MC1hSmk3d1hOOGtBQSIsInZlciI6IjEuMCJ9.b1D1rRo_uTAC7qZ8RGdWnzSmuwNKkwpRd_pmHCZnUt5xcaZ6KUwNX04EtD9wwDbjCLIa9NMW7UC6E-zaLIgbC-A7oyW7un8s1Fcy8NqeILga6AD_ozYC2oFv_JkNR9lw-JaTG4Oh0KAmNmecU6nJveldLVzFCpsCII3oSsrPM6xyb85O5H9lSlLLUXzUp2fmsZUIAPg0z3QHhZWlPKre_TimwR-pjzhRtMXtcbZi92Rn0ZacMLqjoGROxmpbcLU_hMnEqhKfMZqzruUteZGaSzdkZbGCqUykr_wt_byjKDVMA2c-8r_HPkEFgzMEndCq_zuuBKoWo2BhFhk-_8YAZQ
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Cache-Control:
-      - no-cache
-      Pragma:
-      - no-cache
-      Transfer-Encoding:
-      - chunked
-      Content-Type:
-      - application/json; charset=utf-8
-      Expires:
-      - "-1"
-      Etag:
-      - W/"cddd97d1-6111-4477-8a00-3dc885237a1d"
-      Vary:
-      - Accept-Encoding
-      X-Ms-Request-Id:
-      - 1403e5b6-8fa0-4cd3-89b1-76b6c4fd805b
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains
-      Server:
-      - Microsoft-HTTPAPI/2.0
-      - Microsoft-HTTPAPI/2.0
-      X-Ms-Ratelimit-Remaining-Subscription-Reads:
-      - '14988'
-      X-Ms-Correlation-Request-Id:
-      - e4a5f369-a742-466f-bd8f-42e17eaaf9c9
-      X-Ms-Routing-Request-Id:
-      - WESTEUROPE:20180312T102421Z:e4a5f369-a742-466f-bd8f-42e17eaaf9c9
-      X-Content-Type-Options:
-      - nosniff
-      Date:
-      - Mon, 12 Mar 2018 10:24:21 GMT
-    body:
-      encoding: ASCII-8BIT
-      string: "{\r\n  \"name\": \"rspec-lb2-publicip\",\r\n  \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/publicIPAddresses/rspec-lb2-publicip\",\r\n
-        \ \"etag\": \"W/\\\"cddd97d1-6111-4477-8a00-3dc885237a1d\\\"\",\r\n  \"location\":
-        \"eastus\",\r\n  \"properties\": {\r\n    \"provisioningState\": \"Succeeded\",\r\n
-        \   \"resourceGuid\": \"83e7257d-ab94-4229-8eb5-4798f37ef28d\",\r\n    \"publicIPAddressVersion\":
+        \   \"resourceGuid\": \"a08b891e-e45a-4970-aefc-f6c996989490\",\r\n    \"publicIPAddressVersion\":
         \"IPv4\",\r\n    \"publicIPAllocationMethod\": \"Dynamic\",\r\n    \"idleTimeoutInMinutes\":
-        4,\r\n    \"ipTags\": [],\r\n    \"ipConfiguration\": {\r\n      \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb2/frontendIPConfigurations/LoadBalancerFrontEnd\"\r\n
+        4,\r\n    \"dnsSettings\": {\r\n      \"domainNameLabel\": \"spec0deply1dns\",\r\n
+        \     \"fqdn\": \"spec0deply1dns.eastus.cloudapp.azure.com\"\r\n    },\r\n
+        \   \"ipTags\": [],\r\n    \"ipConfiguration\": {\r\n      \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/spec0deply1lb/frontendIPConfigurations/LoadBalancerFrontEnd\"\r\n
         \   }\r\n  },\r\n  \"type\": \"Microsoft.Network/publicIPAddresses\",\r\n
         \ \"sku\": {\r\n    \"name\": \"Basic\"\r\n  }\r\n}"
     http_version: 
-  recorded_at: Mon, 12 Mar 2018 10:24:26 GMT
+  recorded_at: Mon, 12 Mar 2018 09:35:15 GMT
 recorded_with: VCR 3.0.3

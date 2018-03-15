@@ -13,7 +13,7 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
     stack_templates
     instances
     managed_images
-    images
+    images if collector.options.get_private_images
     market_images if collector.options.get_market_images
 
     _log.info("#{log_header}...Complete")
@@ -110,7 +110,7 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
   end
 
   def hardware_networks(persister_hardware, instance)
-    collector.get_vm_nics(instance).each do |nic_profile|
+    collector.instance_network_ports(instance).each do |nic_profile|
       nic_profile.properties.ip_configurations.each do |ipconfig|
         hostname        = ipconfig.name
         private_ip_addr = ipconfig.properties.try(:private_ip_address)
@@ -121,7 +121,7 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
         public_ip_obj = ipconfig.properties.try(:public_ip_address)
         next unless public_ip_obj
 
-        ip_profile = collector.ip_addresses.find { |ip| ip.id == public_ip_obj.id }
+        ip_profile = collector.instance_floating_ip(public_ip_obj)
         next unless ip_profile
 
         public_ip_addr = ip_profile.properties.try(:ip_address)
@@ -154,7 +154,7 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
     if instance.managed_disk?
       disk_type     = 'managed'
       disk_location = disk.managed_disk.id
-      managed_disk  = collector.managed_disks.find { |d| d.id.casecmp(disk_location).zero? }
+      managed_disk  = collector.instance_managed_disk(disk_location)
 
       if managed_disk
         disk_size = managed_disk.properties.disk_size_gb.gigabytes
@@ -175,11 +175,11 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
         container_name = File.dirname(uri.path)
         blob_name = uri.basename
 
-        storage_acct = collector.storage_accounts.find { |s| s.name.casecmp(storage_name).zero? }
-        mode = storage_acct.sku.name
+        storage_acct = collector.instance_storage_accounts(storage_name)
+        mode = storage_acct.try(:sku).try(:name)
 
-        if collector.options.get_unmanaged_disk_space && disk_size.nil?
-          storage_keys = collector.account_keys(storage_acct)
+        if collector.options.get_unmanaged_disk_space && disk_size.nil? && storage_acct.present?
+          storage_keys = collector.instance_account_keys(storage_acct)
           storage_key  = storage_keys['key1'] || storage_keys['key2']
           blob_props   = storage_acct.blob_properties(container_name, blob_name, storage_key)
           disk_size    = blob_props.content_length.to_i
@@ -205,15 +205,22 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
       uid  = deployment.id
 
       persister_orchestration_stack = persister.orchestration_stacks.build(
-        :ems_ref                => uid,
-        :name                   => name,
-        :description            => name,
-        :status                 => deployment.properties.provisioning_state,
-        :resource_group         => deployment.resource_group,
-        :orchestration_template => persister.orchestration_templates.lazy_find(uid),
+        :ems_ref        => uid,
+        :name           => name,
+        :description    => name,
+        :status         => deployment.properties.provisioning_state,
+        :finish_time    => deployment.properties.timestamp,
+        :resource_group => deployment.resource_group,
       )
 
-      stack_resources(persister_orchestration_stack, deployment)
+      if (resources = collector.stacks_resources_cache[uid])
+        # If the stack hasn't changed, we load existing resources in batches from our DB, this saves a lot of time
+        # comparing to doing API query for resources per each stack
+        stack_resources_from_cache(persister_orchestration_stack, resources)
+      else
+        stack_resources(persister_orchestration_stack, deployment)
+      end
+
       stack_outputs(persister_orchestration_stack, deployment)
       stack_parameters(persister_orchestration_stack, deployment)
     end
@@ -277,15 +284,30 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
     end
   end
 
+  def stack_resources_from_cache(persister_orchestration_stack, resources)
+    resources.each do |resource|
+      persister_stack_resource = persister.orchestration_stacks_resources.build(
+        resource.merge!(:stack => persister_orchestration_stack)
+      )
+
+      # TODO(lsmola) for release > g, we can use secondary indexes for this
+      persister.stack_resources_secondary_index[persister_stack_resource[:ems_ref].downcase] = persister_stack_resource[:stack]
+    end
+  end
+
   def stack_templates
     collector.stack_templates.each do |template|
-      persister.orchestration_templates.build(
+      persister_orchestration_template = persister.orchestration_templates.build(
         :ems_ref     => template[:uid],
         :name        => template[:name],
         :description => template[:description],
         :content     => template[:content],
         :orderable   => false
       )
+
+      # Assign template to stack here, so we don't need to always load the template
+      persister_orchestration_stack = persister.orchestration_stacks.build(:ems_ref => template[:uid])
+      persister_orchestration_stack[:orchestration_template] = persister_orchestration_template if persister_orchestration_stack
     end
   end
 

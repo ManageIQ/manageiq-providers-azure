@@ -3,31 +3,32 @@ module AzureRefresherSpecCommon
 
   ALL_GRAPH_REFRESH_SETTINGS = [
     {
+      :get_private_images       => true,
       :inventory_object_refresh => true,
       :inventory_collections    => {
         :saver_strategy => :default,
       },
     }, {
-      :inventory_object_refresh => true,
-      :inventory_collections    => {
-        :saver_strategy => :batch,
-        :use_ar_object  => true,
-      },
-    }, {
+      :get_private_images       => true,
       :inventory_object_refresh => true,
       :inventory_collections    => {
         :saver_strategy => :batch,
         :use_ar_object  => false,
       },
-    }, {
-      :inventory_object_saving_strategy => :recursive,
-      :inventory_object_refresh         => true
     }
   ].freeze
 
   ALL_OLD_REFRESH_SETTINGS = [
     {
       :inventory_object_refresh => false
+    }
+  ].freeze
+
+  GRAPH_REFRESH_ADDITIONAL_SETTINGS = [
+    {
+      :targeted_api_collection_threshold => 0,
+    }, {
+      :targeted_api_collection_threshold => 500,
     }
   ].freeze
 
@@ -85,7 +86,7 @@ module AzureRefresherSpecCommon
   end
 
   def serialize_inventory
-    skip_atributes = %w(updated_on last_refresh_date updated_at last_updated)
+    skip_atributes = %w(updated_on last_refresh_date updated_at last_updated finish_time)
     inventory = {}
     AzureRefresherSpecCommon::MODELS.each do |rel|
       inventory[rel] = rel.to_s.classify.constantize.all.collect do |e|
@@ -770,6 +771,144 @@ module AzureRefresherSpecCommon
     expect(@network_port.device.id).to eql(@floating_ip.vm.id)
   end
 
+  def assert_lbs_with_vms
+    assert_specific_load_balancers
+    assert_specific_load_balancer_networking
+    assert_specific_load_balancer_listeners
+    assert_specific_load_balancer_health_checks
+
+    assert_counts(
+      :availability_zone                 => 1,
+      :cloud_network                     => 1,
+      :cloud_subnet                      => 1,
+      :disk                              => 2,
+      :ext_management_system             => 2,
+      :flavor                            => 2,
+      :floating_ip                       => 4,
+      :hardware                          => 2,
+      :load_balancer                     => 2,
+      :load_balancer_health_check        => 2,
+      :load_balancer_health_check_member => 2,
+      :load_balancer_listener            => 1,
+      :load_balancer_listener_pool       => 1,
+      :load_balancer_pool                => 1,
+      :load_balancer_pool_member         => 2,
+      :load_balancer_pool_member_pool    => 2,
+      :network                           => 4,
+      :network_port                      => 4,
+      :operating_system                  => 2,
+      :resource_group                    => 1,
+      :security_group                    => 2,
+      :vm                                => 2,
+      :vm_or_template                    => 2
+    )
+  end
+
+  def assert_stack_and_vm_targeted_refresh
+    assert_specific_orchestration_template
+    assert_specific_orchestration_stack
+
+    assert_counts(
+      :availability_zone                 => 1,
+      :cloud_network                     => 1,
+      :cloud_subnet                      => 1,
+      :disk                              => 2,
+      :ext_management_system             => 2,
+      :flavor                            => 1,
+      :floating_ip                       => 1,
+      :hardware                          => 2,
+      :load_balancer                     => 1,
+      :load_balancer_health_check        => 1,
+      :load_balancer_health_check_member => 2,
+      :load_balancer_listener            => 1,
+      :load_balancer_listener_pool       => 1,
+      :load_balancer_pool                => 1,
+      :load_balancer_pool_member         => 2,
+      :load_balancer_pool_member_pool    => 2,
+      :network                           => 2,
+      :network_port                      => 3,
+      :operating_system                  => 2,
+      :orchestration_stack               => 2,
+      :orchestration_stack_output        => 1,
+      :orchestration_stack_parameter     => 29,
+      :orchestration_stack_resource      => 10,
+      :orchestration_template            => 2,
+      :resource_group                    => 1,
+      :vm                                => 2,
+      :vm_or_template                    => 2
+    )
+  end
+
+  def network_port_target
+    network_port_id = "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test4/providers/Microsoft.Network/networkInterfaces/miqazure-linux-manag944"
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :network_ports,
+                               :manager_ref => {:ems_ref => network_port_id})
+  end
+
+  def non_existent_network_port_target
+    network_port_id = "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test4/providers/Microsoft.Network/networkInterfaces/non_existent"
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :network_ports,
+                               :manager_ref => {:ems_ref => network_port_id})
+  end
+
+  def cloud_network_target
+    cloud_network_id = "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test2/providers/Microsoft.Network/virtualNetworks/miq-azure-test2"
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :cloud_networks,
+                               :manager_ref => {:ems_ref => cloud_network_id})
+  end
+
+  def non_existent_cloud_network_target
+    cloud_network_id = "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test2/providers/Microsoft.Network/virtualNetworks/non_existent"
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :cloud_networks,
+                               :manager_ref => {:ems_ref => cloud_network_id})
+  end
+
+  def security_group_target
+    security_group_id = "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test4/providers/Microsoft.Network/networkSecurityGroups/miqazure-linux-managed-nsg"
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :security_groups,
+                               :manager_ref => {:ems_ref => security_group_id})
+  end
+
+  def non_existent_security_group_target
+    security_group_id = "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test4/providers/Microsoft.Network/networkSecurityGroups/non_existent"
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :security_groups,
+                               :manager_ref => {:ems_ref => security_group_id})
+  end
+
+  def floating_ip_target
+    floating_ip_id = "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test1/providers/Microsoft.Network/publicIPAddresses/spec0deply1ip"
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :floating_ips,
+                               :manager_ref => {:ems_ref => floating_ip_id})
+  end
+
+  def non_existent_floating_ip_target
+    floating_ip_id = "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test1/providers/Microsoft.Network/publicIPAddresses/non_existent"
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :floating_ips,
+                               :manager_ref => {:ems_ref => floating_ip_id})
+  end
+
+  def resource_group_target
+    resource_group_id = "/subscriptions//#{@ems.subscription}/resourcegroups/miq-azure-test4"
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :resource_groups,
+                               :manager_ref => {:ems_ref => resource_group_id})
+  end
+
+  def non_existent_resource_group_target
+    resource_group_id = "/subscriptions//#{@ems.subscription}/resourcegroups/miq-azure-test4"
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :resource_groups,
+                               :manager_ref => {:ems_ref => resource_group_id})
+  end
+
   def lb_non_stack_target
     lb_resource_id = "/subscriptions/#{@ems.subscription}/"\
                             "resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb1"
@@ -827,8 +966,24 @@ module AzureRefresherSpecCommon
                                :manager_ref => {:ems_ref => vm_resource_id})
   end
 
+  def non_existent_vm_target
+    vm_resource_id = "#{@ems.subscription}\\#{@resource_group_managed_vm}\\microsoft.compute/virtualmachines\\non_existent_vm_that_does_not_exist"
+
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :vms,
+                               :manager_ref => {:ems_ref => vm_resource_id})
+  end
+
   def parent_orchestration_stack_target
     stack_resource_id = "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test1/providers/Microsoft.Resources/deployments/spec-deployment-dont-delete"
+
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :orchestration_stacks,
+                               :manager_ref => {:ems_ref => stack_resource_id})
+  end
+
+  def non_existent_orchestration_stack_target
+    stack_resource_id = "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test1/providers/Microsoft.Resources/deployments/non_existent"
 
     ManagerRefresh::Target.new(:manager     => @ems,
                                :association => :orchestration_stacks,
@@ -856,6 +1011,13 @@ module AzureRefresherSpecCommon
                                :manager_ref => {:ems_ref => lb_resource_id})
   end
 
+  def non_existent_lb_target
+    lb_resource_id = "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/non_existent_lb"
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :load_balancers,
+                               :manager_ref => {:ems_ref => lb_resource_id})
+  end
+
   def template_target
     template_resource_id = "https://miqazuretest14047.blob.core.windows.net/system/"\
                                  "Microsoft.Compute/Images/miq-test-container/"\
@@ -864,5 +1026,29 @@ module AzureRefresherSpecCommon
     ManagerRefresh::Target.new(:manager     => @ems,
                                :association => :miq_templates,
                                :manager_ref => {:ems_ref => template_resource_id})
+  end
+
+  def non_existent_template_target
+    template_resource_id = "https://miqazuretest14047.blob.core.windows.net/system/"\
+                                 "Microsoft.Compute/Images/miq-test-container/"\
+                                 "non_existent_template.vhd"
+
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :miq_templates,
+                               :manager_ref => {:ems_ref => template_resource_id})
+  end
+
+  def flavor_target
+    flavor_resource_name = "basic_a0"
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :flavors,
+                               :manager_ref => {:name => flavor_resource_name})
+  end
+
+  def non_existent_flavor_target
+    flavor_resource_name = "non_existent"
+    ManagerRefresh::Target.new(:manager     => @ems,
+                               :association => :flavors,
+                               :manager_ref => {:name => flavor_resource_name})
   end
 end
