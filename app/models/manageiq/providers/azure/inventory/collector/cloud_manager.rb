@@ -1,21 +1,6 @@
 class ManageIQ::Providers::Azure::Inventory::Collector::CloudManager < ManageIQ::Providers::Azure::Inventory::Collector
-  def initialize(_manager, _target)
-    super
-
-    @nis  = network_interface_service(@config)
-    @ips  = ip_address_service(@config)
-    @vmm  = virtual_machine_service(@config)
-    @asm  = availability_set_service(@config)
-    @tds  = template_deployment_service(@config)
-    @rgs  = resource_group_service(@config)
-    @sas  = storage_account_service(@config)
-    @sds  = storage_disk_service(@config)
-    @mis  = managed_image_service(@config)
-    @vmis = virtual_machine_image_service(@config, :location => manager.provider_region)
-  end
-
   def resource_groups
-    collect_inventory(:resource_groups) { @resource_groups ||= @rgs.list(:all => true) }
+    @resource_groups ||= collect_inventory(:resource_groups) { @rgs.list(:all => true) }
   end
 
   def flavors
@@ -34,12 +19,13 @@ class ManageIQ::Providers::Azure::Inventory::Collector::CloudManager < ManageIQ:
     collect_inventory(:availability_zones) { [::Azure::Armrest::BaseModel.new(:name => @ems.name, :id => 'default')] }
   end
 
-  def stacks
-    @stacks_cache ||= collect_inventory(:deployments) { gather_data_for_this_region(@tds, 'list') }
-  end
-
   def instances
-    collect_inventory(:instances) { gather_data_for_this_region(@vmm) }
+    @instances_cache ||= collect_inventory(:instances) { gather_data_for_this_region(@vmm) }
+
+    instances_power_state_advanced_caching(@instances_cache) unless @instances_advanced_caching_done
+    @instances_advanced_caching_done = true
+
+    @instances_cache
   end
 
   # The underlying method that gathers these images is a bit brittle.
