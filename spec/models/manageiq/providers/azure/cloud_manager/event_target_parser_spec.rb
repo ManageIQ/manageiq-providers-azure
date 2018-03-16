@@ -2,6 +2,7 @@ require 'azure-armrest'
 
 describe ManageIQ::Providers::Azure::CloudManager::EventTargetParser do
   let(:resource_group) { 'miq-azure-test1' }
+  let(:event_variant) { }
 
   before do
     _guid, _server, zone = EvmSpecHelper.create_guid_miq_server_zone
@@ -64,6 +65,7 @@ describe ManageIQ::Providers::Azure::CloudManager::EventTargetParser do
 
     context do
       let(:expected_ems_ref) { "/subscriptions/#{@ems.subscription}/resourceGroups/#{resource_group}/providers/Microsoft.Network/virtualnetworks/test-vnet" }
+      let(:event_variant) { :downcase }
 
       it_behaves_like "parses_event", "virtualnetworks_delete_EndRequest"
       it_behaves_like "parses_event", "virtualnetworks_write_EndRequest"
@@ -75,6 +77,7 @@ describe ManageIQ::Providers::Azure::CloudManager::EventTargetParser do
 
     it_behaves_like "parses_event", "virtualnetworks_subnets_EndRequest" do
       let(:expected_ems_ref) { "/subscriptions/#{@ems.subscription}/resourceGroups/#{resource_group}/providers/Microsoft.Network/virtualnetworks/test-vnet/subnets/test-vnet-subnet" }
+      let(:event_variant) { :downcase }
     end
   end
 
@@ -120,6 +123,7 @@ describe ManageIQ::Providers::Azure::CloudManager::EventTargetParser do
 
     context do
       let(:expected_ems_ref) { "/subscriptions/#{@ems.subscription}/resourceGroups/#{resource_group}/providers/Microsoft.Network/publicIpAddresses/test-ip" }
+      let(:event_variant) { :downcase }
 
       it_behaves_like "parses_event", "publicIpAddresses_delete_EndRequest"
       it_behaves_like "parses_event", "publicIpAddresses_write_EndRequest"
@@ -139,7 +143,9 @@ describe ManageIQ::Providers::Azure::CloudManager::EventTargetParser do
     let(:expected_ems_ref) { "/subscriptions/#{@ems.subscription}/resourceGroups/#{resource_group}" }
 
     it_behaves_like "parses_event", "subscriptions_resourceGroups_EndRequest"
-    it_behaves_like "parses_event", "subscriptions_resourcegroups_EndRequest"
+    it_behaves_like "parses_event", "subscriptions_resourcegroups_EndRequest" do
+      let(:event_variant) { :downcase }
+    end
   end
 
   context "Disks" do
@@ -179,6 +185,7 @@ describe ManageIQ::Providers::Azure::CloudManager::EventTargetParser do
   end
 
   def event(path)
+    path += "_#{event_variant}" if event_variant
     event = File.read(File.join(File.dirname(__FILE__), "/event_catcher/event_data/#{path}.json"))
     event.gsub!("AZURE_SUBSCRIPTION_ID", @ems.subscription) # put back the right subscription
     JSON.parse(event)
