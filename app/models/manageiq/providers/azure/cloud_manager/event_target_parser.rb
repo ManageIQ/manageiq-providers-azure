@@ -64,7 +64,7 @@ class ManageIQ::Providers::Azure::CloudManager::EventTargetParser
 
   def transform_resource_id(association, resource_id)
     case association
-    when :network_ports, :security_groups, :load_balancers, :floating_ips, :cloud_networks, :resource_groups, :__unused
+    when :network_ports, :load_balancers, :resource_groups, :__unused
       fix_down_cased_resource_groups(resource_id)
     when :orchestration_stacks
       resource_id_for_stack_id(resource_id)
@@ -72,6 +72,12 @@ class ManageIQ::Providers::Azure::CloudManager::EventTargetParser
       resource_id_for_instance_id(resource_id)
     when :miq_templates
       resource_id.try(:downcase)
+    when :floating_ips
+      resource_id_for_floating_ips(resource_id)
+    when :cloud_networks
+      resource_id_for_cloud_networks(resource_id)
+    when :security_groups
+      resource_id_for_security_groups(resource_id)
     else
       resource_id
     end
@@ -111,6 +117,22 @@ class ManageIQ::Providers::Azure::CloudManager::EventTargetParser
                  resource_group.downcase,
                  "#{type.downcase}/#{sub_type.downcase}",
                  name)
+  end
+
+  def resource_id_for_cloud_networks(id)
+    id.gsub!("virtualnetworks", "virtualNetworks")
+    id = id.split("/subnets/").first
+    fix_down_cased_resource_groups(id)
+  end
+
+  def resource_id_for_floating_ips(id)
+    id.gsub!("publicIpAddresses", "publicIPAddresses")
+    fix_down_cased_resource_groups(id)
+  end
+
+  def resource_id_for_security_groups(id)
+    id = id.split("/securityRules/").first
+    fix_down_cased_resource_groups(id)
   end
 
   def resource_uid(*keys)
