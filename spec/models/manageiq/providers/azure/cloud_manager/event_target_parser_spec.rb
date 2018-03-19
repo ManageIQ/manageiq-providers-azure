@@ -55,29 +55,18 @@ describe ManageIQ::Providers::Azure::CloudManager::EventTargetParser do
 
   context "CloudNetwork events" do
     let(:klass) { :cloud_networks }
+    let(:expected_ems_ref) { "/subscriptions/#{@ems.subscription}/resourceGroups/#{resource_group}/providers/Microsoft.Network/virtualNetworks/test-vnet" }
+
+    it_behaves_like "parses_event", "virtualNetworks_delete_EndRequest"
+    it_behaves_like "parses_event", "virtualNetworks_write_EndRequest"
+    it_behaves_like "parses_event", "virtualNetworks_subnets_EndRequest"
 
     context do
-      let(:expected_ems_ref) { "/subscriptions/#{@ems.subscription}/resourceGroups/#{resource_group}/providers/Microsoft.Network/virtualNetworks/test-vnet" }
-
-      it_behaves_like "parses_event", "virtualNetworks_delete_EndRequest"
-      it_behaves_like "parses_event", "virtualNetworks_write_EndRequest"
-    end
-
-    context do
-      let(:expected_ems_ref) { "/subscriptions/#{@ems.subscription}/resourceGroups/#{resource_group}/providers/Microsoft.Network/virtualnetworks/test-vnet" }
       let(:event_variant) { :downcase }
 
       it_behaves_like "parses_event", "virtualnetworks_delete_EndRequest"
       it_behaves_like "parses_event", "virtualnetworks_write_EndRequest"
-    end
-
-    it_behaves_like "parses_event", "virtualNetworks_subnets_EndRequest" do
-      let(:expected_ems_ref) { "/subscriptions/#{@ems.subscription}/resourceGroups/#{resource_group}/providers/Microsoft.Network/virtualNetworks/test-vnet/subnets/test-vnet-subnet" }
-    end
-
-    it_behaves_like "parses_event", "virtualnetworks_subnets_EndRequest" do
-      let(:expected_ems_ref) { "/subscriptions/#{@ems.subscription}/resourceGroups/#{resource_group}/providers/Microsoft.Network/virtualnetworks/test-vnet/subnets/test-vnet-subnet" }
-      let(:event_variant) { :downcase }
+      it_behaves_like "parses_event", "virtualnetworks_subnets_EndRequest"
     end
   end
 
@@ -87,9 +76,7 @@ describe ManageIQ::Providers::Azure::CloudManager::EventTargetParser do
 
     it_behaves_like "parses_event", "networkSecurityGroups_delete_EndRequest"
     it_behaves_like "parses_event", "networkSecurityGroups_write_EndRequest"
-    it_behaves_like "parses_event", "networkSecurityGroups_securityRules_EndRequest" do
-      let(:expected_ems_ref) { "/subscriptions/#{@ems.subscription}/resourceGroups/#{resource_group}/providers/Microsoft.Network/networkSecurityGroups/test-nsg/securityRules/test-rule" }
-    end
+    it_behaves_like "parses_event", "networkSecurityGroups_securityRules_EndRequest"
   end
 
   context "LoadBalancer events" do
@@ -113,16 +100,12 @@ describe ManageIQ::Providers::Azure::CloudManager::EventTargetParser do
 
   context "FloatingIp events" do
     let(:klass) { :floating_ips }
+    let(:expected_ems_ref) { "/subscriptions/#{@ems.subscription}/resourceGroups/#{resource_group}/providers/Microsoft.Network/publicIPAddresses/test-ip" }
+
+    it_behaves_like "parses_event", "publicIPAddresses_delete_EndRequest"
+    it_behaves_like "parses_event", "publicIPAddresses_write_EndRequest"
 
     context do
-      let(:expected_ems_ref) { "/subscriptions/#{@ems.subscription}/resourceGroups/#{resource_group}/providers/Microsoft.Network/publicIPAddresses/test-ip" }
-
-      it_behaves_like "parses_event", "publicIPAddresses_delete_EndRequest"
-      it_behaves_like "parses_event", "publicIPAddresses_write_EndRequest"
-    end
-
-    context do
-      let(:expected_ems_ref) { "/subscriptions/#{@ems.subscription}/resourceGroups/#{resource_group}/providers/Microsoft.Network/publicIpAddresses/test-ip" }
       let(:event_variant) { :downcase }
 
       it_behaves_like "parses_event", "publicIpAddresses_delete_EndRequest"
