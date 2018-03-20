@@ -226,7 +226,7 @@ class ManageIQ::Providers::Azure::Inventory::Parser::NetworkManager < ManageIQ::
     end
     # Index load_balancer_pool by load_balancer_listener, so we can pools of each listener
     by_load_balancer_listeners = persister.load_balancer_listener_pools.data.each_with_object({}) do |x, obj|
-      obj[x[:load_balancer_listener].try(:[], :ems_ref)] = x[:load_balancer_pool].try(:[], :ems_ref)
+      obj[x[:load_balancer_listener].try(:[], :ems_ref)] = x[:load_balancer_pool].try(:ems_ref)
     end
 
     lb.properties["probes"].each do |health_check|
