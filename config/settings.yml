@@ -42,7 +42,7 @@
       - RedHat:RHEL:7.3:7.3.2017051117
     # Collecting disk information on unmanaged VM's slows down the refresh.
     :get_unmanaged_disk_space: true
-
+    :parallel_thread_limit: 25
 :http_proxy:
   :azure:
     :host:
