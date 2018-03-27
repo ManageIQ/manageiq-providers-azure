@@ -32,7 +32,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
         @device_name       = 'miq-test-rhel1' # Make sure this is running if generating a new cassette.
         @vm_powered_off    = 'miqazure-centos1' # Make sure this is powered off if generating a new cassette.
         @ip_address        = '52.224.165.15' # This will change if you had to restart the @device_name.
-        @mismatch_ip       = '52.168.33.118' # This will change if you had to restart the 'miqmismatch1' VM.
+        @mismatch_ip       = '13.92.63.10'   # This will change if you had to restart the 'miqmismatch1' VM.
         @managed_os_disk   = "miqazure-linux-managed_OsDisk_1_7b2bdf790a7d4379ace2846d307730cd"
         @managed_data_disk = "miqazure-linux-managed-data-disk"
         @template          = nil

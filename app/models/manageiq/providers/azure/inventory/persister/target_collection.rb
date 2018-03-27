@@ -26,7 +26,7 @@ class ManageIQ::Providers::Azure::Inventory::Persister::TargetCollection < Manag
     # Top level models with direct references for Network
     add_inventory_collections_with_references(
       network,
-      %i(network_ports floating_ips cloud_networks security_groups load_balancers),
+      %i(network_ports floating_ips cloud_networks security_groups load_balancers network_routers),
       :parent => manager.network_manager
     )
 

@@ -39,6 +39,10 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
     []
   end
 
+  def network_routers
+    [] # TODO add targeted refresh
+  end
+
   def flavors
     refs = name_references(:flavors)
 

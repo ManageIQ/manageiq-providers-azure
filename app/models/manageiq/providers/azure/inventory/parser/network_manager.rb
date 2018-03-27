@@ -11,6 +11,7 @@ class ManageIQ::Providers::Azure::Inventory::Parser::NetworkManager < ManageIQ::
     network_ports
     load_balancers
     floating_ips
+    network_routers
 
     _log.info("#{log_header}...Complete")
   end
@@ -86,7 +87,30 @@ class ManageIQ::Providers::Azure::Inventory::Parser::NetworkManager < ManageIQ::
         :cidr              => subnet.properties.address_prefix,
         :cloud_network     => persister_cloud_networks,
         :availability_zone => persister.availability_zones.lazy_find('default'),
+        :network_router    => persister.network_routers.lazy_find(subnet.properties.try(:route_table).try(:id))
       )
+    end
+  end
+
+  def network_routers
+    collector.network_routers.each do |router|
+      persister.network_routers.build(
+        :ems_ref          => router.id,
+        :name             => router.name,
+        :type             => ManageIQ::Providers::Azure::NetworkManager::NetworkRouter.name,
+        :status           => router.properties.try(:subnets) ? 'active' : 'inactive',
+        :extra_attributes => { :routes => get_route_attributes(router) }
+      )
+    end
+  end
+
+  def get_route_attributes(router)
+    router.properties.routes.map do |route|
+      {
+        'Name'           => route.name,
+        'Resource Group' => route.resource_group,
+        'CIDR'           => route.properties.address_prefix
+      }
     end
   end
 

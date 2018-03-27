@@ -118,7 +118,7 @@ module AzureRefresherSpecCommon
   def expected_table_counts
     {
       :ext_management_system             => 2,
-      :flavor                            => 156,
+      :flavor                            => 166,
       :availability_zone                 => 1,
       :vm_or_template                    => 14,
       :vm                                => 13,
@@ -129,16 +129,16 @@ module AzureRefresherSpecCommon
       :network                           => 23,
       :operating_system                  => 13,
       :relationship                      => 0,
-      :orchestration_template            => 21,
-      :orchestration_stack               => 23,
-      :orchestration_stack_parameter     => 233,
+      :orchestration_template            => 26,
+      :orchestration_stack               => 29,
+      :orchestration_stack_parameter     => 261,
       :orchestration_stack_output        => 11,
-      :orchestration_stack_resource      => 84,
+      :orchestration_stack_resource      => 90,
       :security_group                    => 13,
-      :network_port                      => 16,
+      :network_port                      => 17,
       :cloud_network                     => 6,
       :floating_ip                       => 13,
-      :network_router                    => 0,
+      :network_router                    => 1,
       :cloud_subnet                      => 6,
       :resource_group                    => 4,
       :load_balancer                     => 3,
@@ -181,7 +181,7 @@ module AzureRefresherSpecCommon
     expect(@ems.miq_templates.size).to eq(expected_table_counts[:miq_template])
 
     expect(@ems.orchestration_stacks.size).to eql(expected_table_counts[:orchestration_stack])
-    expect(@ems.direct_orchestration_stacks.size).to eql(22)
+    expect(@ems.direct_orchestration_stacks.size).to eql(28)
   end
 
   def assert_specific_load_balancers
@@ -288,6 +288,17 @@ module AzureRefresherSpecCommon
     expect(@health_check.load_balancer_health_check_members.count).to eq 2
     expect(@health_check.load_balancer_pool_members.count).to eq 2
     expect(@lb_no_members.load_balancer_health_checks.count).to eq 1
+  end
+
+  def assert_specific_router
+    router = ManageIQ::Providers::Azure::NetworkManager::NetworkRouter.where(:name => 'miq-azure-routetabletest').first
+
+    expect(router).to have_attributes(
+      :name             => 'miq-azure-routetabletest',
+      :status           => 'inactive',
+      :type             => 'ManageIQ::Providers::Azure::NetworkManager::NetworkRouter',
+      :extra_attributes => {:routes => [{"Name" => "route1", "Resource Group" => "miq-azure-test4", "CIDR" => "10.1.0.0/16"}]}
+    )
   end
 
   def assert_specific_security_group
@@ -479,7 +490,7 @@ module AzureRefresherSpecCommon
 
     expect(disk).to have_attributes(
       :location => "https://miqazuretest18686.blob.core.windows.net/vhds/miq-test-rhel12016218112243.vhd",
-      :size     => 32212255232 # 30gb, approx
+      :size     => 32_212_255_232 # 30gb, approx
     )
   end
 
