@@ -18,6 +18,7 @@ class ManageIQ::Providers::Azure::NetworkManager::RefreshParser
     @nis               = network_interface_service(@config)
     @nsg               = network_security_group_service(@config)
     @lbs               = load_balancer_service(@config)
+    @rts               = route_table_service(@config)
     @options           = options || {}
     @data              = {}
     @data_index        = {}
@@ -28,6 +29,7 @@ class ManageIQ::Providers::Azure::NetworkManager::RefreshParser
     log_header = "Collecting data for EMS : [#{@ems.name}] id: [#{@ems.id}]"
 
     _log.info("#{log_header}...")
+    get_network_routers
     get_security_groups
     get_cloud_networks
     get_network_ports
@@ -101,6 +103,10 @@ class ManageIQ::Providers::Azure::NetworkManager::RefreshParser
 
   def get_floating_ips
     process_collection(floating_ips, :floating_ips) { |n| parse_floating_ip(n) }
+  end
+
+  def get_network_routers
+    process_collection(network_routers, :network_routers) { |n| parse_network_router(n) }
   end
 
   def get_load_balancers
@@ -255,6 +261,7 @@ class ManageIQ::Providers::Azure::NetworkManager::RefreshParser
       :name              => subnet.name,
       :cidr              => subnet.properties.address_prefix,
       :availability_zone => parent_manager_fetch_path(:availability_zones, 'default'),
+      :network_router    => @data_index.fetch_path(:network_routers, subnet.properties.try(:route_table).try(:id))
     }
     return uid, new_result
   end
@@ -425,6 +432,30 @@ class ManageIQ::Providers::Azure::NetworkManager::RefreshParser
       :address      => network_port.properties.try(:private_ip_address),
       :cloud_subnet => @data_index.fetch_path(:cloud_subnets, network_port.properties.try(:subnet).try(:id))
     }
+  end
+
+  def parse_network_router(router)
+    uid = router.id
+
+    result = {
+      :ems_ref          => router.id,
+      :name             => router.name,
+      :type             => self.class.network_router_type,
+      :status           => router.properties.try(:subnets) ? 'active' : 'inactive',
+      :extra_attributes => { :routes => get_route_attributes(router) }
+    }
+
+    return uid, result
+  end
+
+  def get_route_attributes(router)
+    router.properties.routes.map do |route|
+      {
+        'Name'           => route.name,
+        'Resource Group' => route.resource_group,
+        'CIDR'           => route.properties.address_prefix
+      }
+    end
   end
 
   def parse_network_port(network_port)

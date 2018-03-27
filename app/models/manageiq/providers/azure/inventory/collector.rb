@@ -49,6 +49,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
     @vns = virtual_network_service(@config)
     @nsg = network_security_group_service(@config)
     @lbs = load_balancer_service(@config)
+    @rts = route_table_service(@config)
   end
 
   ##############################################################
@@ -97,6 +98,10 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
 
   def network_ports
     @network_interfaces ||= collect_inventory(:network_ports) { gather_data_for_this_region(@nis) }
+  end
+
+  def network_routers
+    @network_routers ||= collect_inventory(:network_routers) { gather_data_for_this_region(@rts) }
   end
 
   def floating_ips
