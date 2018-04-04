@@ -17,6 +17,10 @@ describe ManageIQ::Providers::Azure::CloudManager do
     expect(described_class.description).to eq('Azure')
   end
 
+  it ".default_blacklisted_event_names" do
+    expect(described_class.default_blacklisted_event_names).to eq(Settings.ems.ems_azure.blacklisted_event_names)
+  end
+
   it "does not create orphaned network_manager" do
     # When the cloud_manager is destroyed during a refresh the there will still be an instance
     # of the cloud_manager in the refresh worker. After the refresh we will try to save the cloud_manager
