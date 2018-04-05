@@ -16,7 +16,11 @@
       :template_deployment: 2017-08-01
       :virtual_machine: 2017-12-01
       :virtual_network: 2017-11-01
-    :blacklisted_event_names: []
+    :blacklisted_event_names:
+      - storageAccounts_listKeys_BeginRequest
+      - storageAccounts_listKeys_EndRequest
+      - deployments_exportTemplate_BeginRequest
+      - deployments_exportTemplate_EndRequest
     :event_handling:
       :event_groups:
         :addition:

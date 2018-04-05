@@ -59,10 +59,7 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
   end
 
   def self.default_blacklisted_event_names
-    %w(
-      storageAccounts_listKeys_BeginRequest
-      storageAccounts_listKeys_EndRequest
-    )
+    Settings.ems.ems_azure.blacklisted_event_names
   end
 
   def self.api_allowed_attributes
