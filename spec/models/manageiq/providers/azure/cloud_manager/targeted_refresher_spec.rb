@@ -10,7 +10,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
         context "with additional settings #{additional_settings}" do
           before(:each) do
             @refresh_settings = refresh_settings.merge(:allow_targeted_refresh => true)
-            @refresh_settings.merge(additional_settings)
+            @refresh_settings.merge!(additional_settings)
 
             @sub_path = "targeted_api_collection_threshold_#{additional_settings[:targeted_api_collection_threshold]}/"
 
