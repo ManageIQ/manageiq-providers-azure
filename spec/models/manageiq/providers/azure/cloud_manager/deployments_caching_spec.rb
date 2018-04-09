@@ -10,14 +10,14 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
       :get_private_images          => true,
       :inventory_object_refresh    => true,
       :inventory_collections       => {
-        :saver_strategy => :default,
+        :saver_strategy => "default",
       },
     }, {
       :enabled_deployments_caching => false,
       :get_private_images          => true,
       :inventory_object_refresh    => true,
       :inventory_collections       => {
-        :saver_strategy => :default,
+        :saver_strategy => "default",
       },
     }
   ].each do |refresh_settings|

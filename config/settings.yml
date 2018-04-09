@@ -60,14 +60,14 @@
     # Not fetching resources and templates of deployments unless deployment changed [Graph refresh only]
     :enabled_deployments_caching: true
     :inventory_collections:
-      # Strategy for saving, another allowed is :batch, doing batch SQL queries [Graph refresh only]
-      :saver_strategy: :default
+      # Strategy for saving, another allowed is batch, doing batch SQL queries [Graph refresh only]
+      :saver_strategy: default
   :azure_network:
     # Same options as in :azure, applied for a network manager
     :inventory_object_refresh: false
     :allow_targeted_refresh: true
     :inventory_collections:
-      :saver_strategy: :default
+      :saver_strategy: default
 :http_proxy:
   :azure:
     :host:
