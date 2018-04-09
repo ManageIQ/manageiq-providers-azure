@@ -83,7 +83,7 @@ module ManageIQ::Providers::Azure::ManagerMixin
       config = raw_connect(clientid, clientkey, azure_tenant_id, subscription)
 
       azure_res = ::Azure::Armrest::ResourceService.new(config)
-      azure_res.api_version = Settings.ems.ems_azure.api_versions.resource.to_s
+      azure_res.api_version = Settings.ems.ems_azure.api_versions.resource
 
       azure_res.list_locations.each do |region|
         next if known_ems_regions.include?(region.name)
