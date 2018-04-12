@@ -22,18 +22,18 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
 
     return [] if refs.blank?
 
-    if refs.size > record_limit
-      set = Set.new(refs)
-      collect_inventory(:resource_groups) { @resource_groups ||= @rgs.list(:all => true) }.select do |resource_group|
-        set.include?(resource_group.id.downcase)
-      end
-    else
-      collect_inventory_targeted(:resource_groups) do
-        Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
-          safe_targeted_request { @rgs.get(File.basename(ems_ref)) }
-        end
-      end
-    end
+    @resource_groups ||= if refs.size > record_limit
+                           set = Set.new(refs)
+                           collect_inventory(:resource_groups) { @rgs.list(:all => true) }.select do |resource_group|
+                             set.include?(resource_group.id.downcase)
+                           end
+                         else
+                           collect_inventory_targeted(:resource_groups) do
+                             Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
+                               safe_targeted_request { @rgs.get(File.basename(ems_ref)) }
+                             end
+                           end
+                         end
   rescue ::Azure::Armrest::Exception => err
     _log.error("Error Class=#{err.class.name}, Message=#{err.message}")
     []
