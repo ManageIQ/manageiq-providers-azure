@@ -23,9 +23,9 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
     return [] if refs.blank?
 
     @resource_groups ||= if refs.size > record_limit
-                           set = Set.new(refs)
+                           set = Set.new(refs.map { |x| File.basename(x) })
                            collect_inventory(:resource_groups) { @rgs.list(:all => true) }.select do |resource_group|
-                             set.include?(resource_group.id.downcase)
+                             set.include?(File.basename(resource_group.id.downcase))
                            end
                          else
                            collect_inventory_targeted(:resource_groups) do
