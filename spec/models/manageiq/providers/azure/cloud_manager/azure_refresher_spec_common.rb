@@ -907,14 +907,14 @@ module AzureRefresherSpecCommon
   end
 
   def resource_group_target
-    resource_group_id = "/subscriptions//#{@ems.subscription}/resourcegroups/miq-azure-test4"
+    resource_group_id = "/subscriptions/#{@ems.subscription}/resourcegroups/miq-azure-test1"
     ManagerRefresh::Target.new(:manager     => @ems,
                                :association => :resource_groups,
                                :manager_ref => {:ems_ref => resource_group_id})
   end
 
   def non_existent_resource_group_target
-    resource_group_id = "/subscriptions//#{@ems.subscription}/resourcegroups/miq-azure-test4"
+    resource_group_id = "/subscriptions/#{@ems.subscription}/resourcegroups/miq-azure-test4"
     ManagerRefresh::Target.new(:manager     => @ems,
                                :association => :resource_groups,
                                :manager_ref => {:ems_ref => resource_group_id})
