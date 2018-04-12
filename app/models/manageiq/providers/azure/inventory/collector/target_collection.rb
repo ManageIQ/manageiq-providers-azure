@@ -22,15 +22,17 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
 
     return [] if refs.blank?
 
+    refs = refs.map { |x| File.basename(x) }.uniq
+
     @resource_groups ||= if refs.size > record_limit
-                           set = Set.new(refs.map { |x| File.basename(x) })
+                           set = Set.new(refs)
                            collect_inventory(:resource_groups) { @rgs.list(:all => true) }.select do |resource_group|
                              set.include?(File.basename(resource_group.id.downcase))
                            end
                          else
                            collect_inventory_targeted(:resource_groups) do
-                             Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
-                               safe_targeted_request { @rgs.get(File.basename(ems_ref)) }
+                             Parallel.map(refs, :in_threads => thread_limit) do |ref|
+                               safe_targeted_request { @rgs.get(ref) }
                              end
                            end
                          end
