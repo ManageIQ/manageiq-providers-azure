@@ -22,6 +22,18 @@ describe ManageIQ::Providers::Azure::RefreshHelperMethods do
     end
   end
 
+  context "build_image_name" do
+    it "removes ./ from image names" do
+      image = FactoryGirl.create(:azure_image, :name => './foo', :location => 'westus', :vendor => 'azure')
+      expect(@ems_azure.build_image_name(image)).to eql('foo')
+    end
+
+    it "does not affect images that do not have a ./ in them" do
+      image = FactoryGirl.create(:azure_image, :name => 'foo', :location => 'westus', :vendor => 'azure')
+      expect(@ems_azure.build_image_name(image)).to eql('foo')
+    end
+  end
+
   context "gather_data_for_region" do
     it "requires a service name" do
       expect { @ems_azure.gather_data_for_this_region }.to raise_error(ArgumentError)

@@ -449,7 +449,8 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
 
   def build_image_name(image)
     # Strip the .vhd and Azure GUID extension, but retain path and base name.
-    File.join(File.dirname(image.name), File.basename(File.basename(image.name, '.*'), '.*'))
+    path = File.join(File.dirname(image.name), File.basename(File.basename(image.name, '.*'), '.*'))
+    Pathname.new(path).cleanpath.to_s
   end
 
   def build_image_description(image)
