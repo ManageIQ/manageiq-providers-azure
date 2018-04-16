@@ -32,6 +32,7 @@ module ManageIQ::Providers
         @template_uris     = {} # templates need to be download
         @template_refs     = {} # templates need to be retrieved from VMDB
         @template_directs  = {} # templates contents already got by API
+        @label_tag_mapping = ContainerLabelTagMapping.cache
       end
 
       def ems_inv_to_hashes
@@ -226,6 +227,8 @@ module ManageIQ::Providers
         # unified under the NetworkManager
         hardware_network_info = get_hardware_network_info(instance)
 
+        labels = parse_labels(instance.try(:tags) || {})
+
         new_result = {
           :type                => 'ManageIQ::Providers::Azure::CloudManager::Vm',
           :uid_ems             => uid,
@@ -238,6 +241,8 @@ module ManageIQ::Providers
           :location            => instance.location,
           :orchestration_stack => @data_index.fetch_path(:orchestration_stacks, @resource_to_stack[uid]),
           :availability_zone   => @data_index.fetch_path(:availability_zones, 'default'),
+          :labels              => labels,
+          :tags                => map_labels('VmAzure', labels),
           :hardware            => {
             :disks    => [], # Filled in later conditionally on flavor
             :networks => hardware_network_info
@@ -599,6 +604,21 @@ module ManageIQ::Providers
           end
           stack.delete(:children)
         end
+      end
+
+      def parse_labels(tags)
+        tags.map do |tag_name, tag_value|
+          {
+            :name    => tag_name,
+            :value   => tag_value,
+            :source  => 'azure',
+            :section => 'labels',
+          }
+        end
+      end
+
+      def map_labels(model_name, labels)
+        ContainerLabelTagMapping.map_labels(@label_tag_mapping, model_name, labels)
       end
     end
   end
