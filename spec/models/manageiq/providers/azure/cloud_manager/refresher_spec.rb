@@ -21,6 +21,11 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
     @template          = nil
     @avail_zone        = nil
 
+    FactoryGirl.create(:tag_mapping_with_category,
+                       :labeled_resource_type => 'VmAzure',
+                       :label_name            => 'Shutdown',
+                       :category_name         => 'azure:vm:shutdown')
+
     cred = {
       :userid   => @client_id,
       :password => @client_key
@@ -426,8 +431,13 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
     expect(vm.availability_zone).to eql(@avail_zone)
     expect(vm.flavor).to eql(@flavor)
     expect(vm.operating_system.product_name).to eql("RHEL 7.2")
-    expect(vm.custom_attributes.size).to eql(0)
+    expect(vm.custom_attributes.size).to eql(1)
     expect(vm.snapshots.size).to eql(0)
+
+    aggregate_failures do
+      expect(vm.labels.pluck(:name, :value).to_h).to eq('Shutdown' => 'true')
+      expect(vm.tags.pluck(:name)).to eq(%w(/managed/azure:vm:shutdown/true))
+    end
 
     assert_specific_vm_powered_on_hardware(vm)
   end
@@ -523,8 +533,13 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
     expect(v.cloud_network).to eql(cloud_network)
     expect(v.cloud_subnet).to eql(cloud_subnet)
     expect(v.operating_system.product_name).to eql('CentOS 7.1')
-    expect(v.custom_attributes.size).to eql(0)
+    expect(v.custom_attributes.size).to eql(1)
     expect(v.snapshots.size).to eql(0)
+
+    aggregate_failures do
+      expect(v.labels.pluck(:name, :value).to_h).to eq('Shutdown' => 'true')
+      expect(v.tags.pluck(:name)).to eq(%w(/managed/azure:vm:shutdown/true))
+    end
 
     assert_specific_vm_powered_off_hardware(v)
   end
