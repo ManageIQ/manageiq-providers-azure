@@ -394,7 +394,7 @@ module AzureRefresherSpecCommon
     expect(vm_subnet.floating_ips.size).to be >= 1
   end
 
-  def assert_specific_vm_powered_on
+  def assert_specific_vm_powered_on(is_old_refresh = false)
     vm = ManageIQ::Providers::Azure::CloudManager::Vm.where(
       :name => @device_name, :raw_power_state => "VM running"
     ).first
@@ -429,8 +429,15 @@ module AzureRefresherSpecCommon
     expect(vm.availability_zone).to eql(@avail_zone)
     expect(vm.flavor).to eql(@flavor)
     expect(vm.operating_system.product_name).to eql("RHEL 7.2")
-    expect(vm.custom_attributes.size).to eql(0)
+    expect(vm.custom_attributes.size).to eql(is_old_refresh ? 1 : 0)
     expect(vm.snapshots.size).to eql(0)
+
+    if is_old_refresh
+      aggregate_failures do
+        expect(vm.labels.pluck(:name, :value).to_h).to eq('Shutdown' => 'true')
+        expect(vm.tags.pluck(:name)).to eq(%w(/managed/azure:vm:shutdown/true))
+      end
+    end
 
     assert_specific_vm_powered_on_hardware(vm)
   end
@@ -524,7 +531,7 @@ module AzureRefresherSpecCommon
     expect(vm_mismatch.resource_group).to eql(mismatch_group)
   end
 
-  def assert_specific_vm_powered_off
+  def assert_specific_vm_powered_off(is_old_refresh = false)
     vm_name = 'miqazure-centos1'
 
     v = ManageIQ::Providers::Azure::CloudManager::Vm.where(
@@ -545,8 +552,15 @@ module AzureRefresherSpecCommon
     expect(v.cloud_network).to eql(cloud_network)
     expect(v.cloud_subnet).to eql(cloud_subnet)
     expect(v.operating_system.product_name).to eql('CentOS 7.1')
-    expect(v.custom_attributes.size).to eql(0)
+    expect(v.custom_attributes.size).to eql(is_old_refresh ? 1 : 0)
     expect(v.snapshots.size).to eql(0)
+
+    if is_old_refresh
+      aggregate_failures do
+        expect(v.labels.pluck(:name, :value).to_h).to eq('Shutdown' => 'true')
+        expect(v.tags.pluck(:name)).to eq(%w(/managed/azure:vm:shutdown/true))
+      end
+    end
 
     assert_specific_vm_powered_off_hardware(v)
   end
