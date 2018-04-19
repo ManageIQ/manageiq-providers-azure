@@ -76,6 +76,30 @@ module AzureRefresherSpecCommon
     @ems.reload
   end
 
+  def define_shared_variables
+    _guid, _server, zone = EvmSpecHelper.create_guid_miq_server_zone
+
+    @ems = FactoryGirl.create(:ems_azure_with_vcr_authentication, :zone => zone, :provider_region => 'eastus')
+
+    @resource_group    = 'miq-azure-test1'
+    @managed_vm        = 'miqazure-linux-managed'
+    @device_name       = 'miq-test-rhel1' # Make sure this is running if generating a new cassette.
+    @vm_powered_off    = 'miqazure-centos1' # Make sure this is powered off if generating a new cassette.
+    @ip_address        = '52.224.165.15'  # This will change if you had to restart the @device_name.
+    @mismatch_ip       = '13.92.63.10'    # This will change if you had to restart the 'miqmismatch1' VM.
+    @managed_os_disk   = "miqazure-linux-managed_OsDisk_1_7b2bdf790a7d4379ace2846d307730cd"
+    @managed_data_disk = "miqazure-linux-managed-data-disk"
+    @template          = nil
+    @avail_zone        = nil
+
+    @resource_group_managed_vm = "miq-azure-test4"
+
+    FactoryGirl.create(:tag_mapping_with_category,
+                       :labeled_resource_type => 'VmAzure',
+                       :label_name            => 'Shutdown',
+                       :category_name         => 'azure:vm:shutdown')
+  end
+
   def stub_with_current_settings(current_settings)
     stub_settings_merge(
       :ems_refresh => {
@@ -394,7 +418,7 @@ module AzureRefresherSpecCommon
     expect(vm_subnet.floating_ips.size).to be >= 1
   end
 
-  def assert_specific_vm_powered_on(is_old_refresh = false)
+  def assert_specific_vm_powered_on
     vm = ManageIQ::Providers::Azure::CloudManager::Vm.where(
       :name => @device_name, :raw_power_state => "VM running"
     ).first
@@ -429,14 +453,12 @@ module AzureRefresherSpecCommon
     expect(vm.availability_zone).to eql(@avail_zone)
     expect(vm.flavor).to eql(@flavor)
     expect(vm.operating_system.product_name).to eql("RHEL 7.2")
-    expect(vm.custom_attributes.size).to eql(is_old_refresh ? 1 : 0)
+    expect(vm.custom_attributes.size).to eql(1)
     expect(vm.snapshots.size).to eql(0)
 
-    if is_old_refresh
-      aggregate_failures do
-        expect(vm.labels.pluck(:name, :value).to_h).to eq('Shutdown' => 'true')
-        expect(vm.tags.pluck(:name)).to eq(%w(/managed/azure:vm:shutdown/true))
-      end
+    aggregate_failures do
+      expect(vm.labels.pluck(:name, :value).to_h).to eq('Shutdown' => 'true')
+      expect(vm.tags.pluck(:name)).to eq(%w(/managed/azure:vm:shutdown/true))
     end
 
     assert_specific_vm_powered_on_hardware(vm)
@@ -531,7 +553,7 @@ module AzureRefresherSpecCommon
     expect(vm_mismatch.resource_group).to eql(mismatch_group)
   end
 
-  def assert_specific_vm_powered_off(is_old_refresh = false)
+  def assert_specific_vm_powered_off
     vm_name = 'miqazure-centos1'
 
     v = ManageIQ::Providers::Azure::CloudManager::Vm.where(
@@ -552,14 +574,12 @@ module AzureRefresherSpecCommon
     expect(v.cloud_network).to eql(cloud_network)
     expect(v.cloud_subnet).to eql(cloud_subnet)
     expect(v.operating_system.product_name).to eql('CentOS 7.1')
-    expect(v.custom_attributes.size).to eql(is_old_refresh ? 1 : 0)
+    expect(v.custom_attributes.size).to eql(1)
     expect(v.snapshots.size).to eql(0)
 
-    if is_old_refresh
-      aggregate_failures do
-        expect(v.labels.pluck(:name, :value).to_h).to eq('Shutdown' => 'true')
-        expect(v.tags.pluck(:name)).to eq(%w(/managed/azure:vm:shutdown/true))
-      end
+    aggregate_failures do
+      expect(v.labels.pluck(:name, :value).to_h).to eq('Shutdown' => 'true')
+      expect(v.tags.pluck(:name)).to eq(%w(/managed/azure:vm:shutdown/true))
     end
 
     assert_specific_vm_powered_off_hardware(v)
