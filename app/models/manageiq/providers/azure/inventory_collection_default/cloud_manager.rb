@@ -60,6 +60,51 @@ class ManageIQ::Providers::Azure::InventoryCollectionDefault::CloudManager < Man
       super(attributes.merge!(extra_attributes))
     end
 
+    def vm_and_template_labels(extra_attributes = {})
+      attributes = {
+        :model_class                  => CustomAttribute,
+        :association                  => :vm_and_template_labels,
+        :manager_ref                  => %i(resource name),
+        :parent_inventory_collections => %i(vms miq_templates),
+        :inventory_object_attributes  => %i(
+          resource
+          section
+          name
+          value
+          source
+        )
+      }
+
+      attributes[:targeted_arel] = lambda do |inventory_collection|
+        manager_uuids = inventory_collection.parent_inventory_collections.collect(&:manager_uuids).map(&:to_a).flatten
+        inventory_collection.parent.vm_and_template_labels.where(
+          'vms' => {:ems_ref => manager_uuids}
+        )
+      end
+
+      attributes.merge!(extra_attributes)
+    end
+
+    def vm_and_template_taggings(extra_attributes = {})
+      attributes = {
+        :model_class                  => Tagging,
+        :association                  => :vm_and_template_taggings,
+        :manager_ref                  => %i(taggable tag),
+        :inventory_object_attributes  => %i(taggable tag),
+        :parent_inventory_collections => %i(vms miq_templates),
+      }
+
+      attributes[:targeted_arel] = lambda do |inventory_collection|
+        manager_uuids = inventory_collection.parent_inventory_collections.collect(&:manager_uuids).map(&:to_a).flatten
+        ems = inventory_collection.parent
+        ems.vm_and_template_taggings.where(
+          'taggable_id' => ems.vms_and_templates.where(:ems_ref => manager_uuids)
+        )
+      end
+
+      attributes.merge!(extra_attributes)
+    end
+
     def orchestration_stacks(extra_attributes = {})
       attributes = {
         :model_class    => ::ManageIQ::Providers::Azure::CloudManager::OrchestrationStack,

@@ -3,7 +3,7 @@ class ManageIQ::Providers::Azure::Inventory::Persister::CloudManager < ManageIQ:
     add_inventory_collections(
       cloud,
       %i(vms miq_templates hardwares operating_systems networks disks availability_zones
-         resource_groups
+         resource_groups vm_and_template_labels vm_and_template_taggings
          flavors key_pairs orchestration_stacks orchestration_stacks_resources
          orchestration_stacks_outputs orchestration_stacks_parameters orchestration_templates)
     )
