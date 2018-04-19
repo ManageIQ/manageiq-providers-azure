@@ -24,6 +24,14 @@ class ManageIQ::Providers::Azure::Inventory::Persister < ManagerRefresh::Invento
     initialize_inventory_collections
   end
 
+  def tag_mapper
+    unless defined? @tag_mapper
+      @tag_mapper = ContainerLabelTagMapping.mapper
+      collections[:tags_to_resolve] = @tag_mapper.tags_to_resolve_collection
+    end
+    @tag_mapper
+  end
+
   protected
 
   def cloud
