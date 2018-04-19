@@ -16,7 +16,7 @@ class ManageIQ::Providers::Azure::Inventory::Persister::TargetCollection < Manag
     # Child models with references in the Parent InventoryCollections for Cloud
     add_inventory_collections(
       cloud,
-      %i(hardwares operating_systems networks disks
+      %i(hardwares operating_systems networks disks vm_and_template_labels vm_and_template_taggings
          orchestration_stacks_resources orchestration_stacks_outputs orchestration_stacks_parameters)
     )
 

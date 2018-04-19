@@ -86,6 +86,9 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
 
       instance_hardware(persister_instance, instance, series)
       instance_operating_system(persister_instance, instance)
+
+      vm_and_template_labels(persister_instance, instance['tags'] || [])
+      vm_and_template_taggings(persister_instance, map_labels('VmAzure', instance['tags'] || []))
     end
   end
 
@@ -197,6 +200,36 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
       :disk_type       => disk_type,
       :mode            => mode
     )
+  end
+
+  def vm_and_template_labels(resource, tags)
+    tags.each do |tag|
+      persister
+        .vm_and_template_labels
+        .find_or_build_by(
+          :resource => resource,
+          :name     => tag.first,
+        )
+        .assign_attributes(
+          :section => 'labels',
+          :source  => 'azure',
+          :value   => tag.second,
+        )
+    end
+  end
+
+  # Returns array of InventoryObject<Tag>.
+  def map_labels(model_name, labels)
+    label_hashes = labels.collect do |tag|
+      { :name => tag.first, :value => tag.second }
+    end
+    persister.tag_mapper.map_labels(model_name, label_hashes)
+  end
+
+  def vm_and_template_taggings(resource, tags_inventory_objects)
+    tags_inventory_objects.each do |tag|
+      persister.vm_and_template_taggings.build(:taggable => resource, :tag => tag)
+    end
   end
 
   def stacks
