@@ -20,7 +20,7 @@ describe ManageIQ::Providers::Azure::CloudManager::EventCatcher::Runner do
       end
 
       it "vm ref" do
-        expect(catcher.parse_vm_ref(event)).to eq "12345\\rg1\\microsoft.compute/virtualmachines\\TestVm"
+        expect(catcher.parse_vm_ref(event)).to eq "12345/rg1/microsoft.compute/virtualmachines/TestVm"
       end
     end
   end

@@ -598,7 +598,7 @@ module ManageIQ::Providers
           :uid_ems            => uid,
           :ems_ref            => uid,
           :name               => image.name,
-          :description        => "#{image.resource_group}\\#{image.name}",
+          :description        => "#{image.resource_group}/#{image.name}",
           :location           => @ems.provider_region,
           :vendor             => 'azure',
           :raw_power_state    => 'never',
@@ -669,7 +669,7 @@ module ManageIQ::Providers
 
       def build_image_description(image)
         # Description is a concatenation of resource group and storage account
-        "#{image.storage_account.resource_group}\\#{image.storage_account.name}"
+        "#{image.storage_account.resource_group}/#{image.storage_account.name}"
       end
 
       # Remap from children to parent

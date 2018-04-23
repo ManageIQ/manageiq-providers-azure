@@ -131,7 +131,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
                          else
                            collect_inventory_targeted(:instances) do
                              Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
-                               _subscription_id, group, _provider, _service, name = ems_ref.tr("\\", '/').split('/')
+                               _subscription_id, group, _provider, _service, name = ems_ref.split('/')
                                safe_targeted_request { @vmm.get(name, group) }
                              end
                            end

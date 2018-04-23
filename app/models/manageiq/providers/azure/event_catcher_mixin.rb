@@ -30,6 +30,6 @@ module ManageIQ::Providers::Azure::EventCatcherMixin
     object_class,
     object_name = event["resourceId"].split("/")
 
-    [subscription_id, resource_group.downcase, "#{provider.downcase}\/#{object_class.downcase}", object_name].join("\\")
+    [subscription_id, resource_group.downcase, provider.downcase, object_class.downcase, object_name].join("/")
   end
 end
