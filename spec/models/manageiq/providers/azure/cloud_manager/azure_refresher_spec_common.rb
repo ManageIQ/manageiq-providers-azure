@@ -422,7 +422,7 @@ module AzureRefresherSpecCommon
     vm = ManageIQ::Providers::Azure::CloudManager::Vm.where(
       :name => @device_name, :raw_power_state => "VM running"
     ).first
-    vm_resource_id = "#{@ems.subscription}\\#{@resource_group}\\microsoft.compute/virtualmachines\\#{@device_name}"
+    vm_resource_id = "#{@ems.subscription}/#{@resource_group}/microsoft.compute/virtualmachines/#{@device_name}"
 
     expect(vm).to have_attributes(
       :template              => false,
@@ -587,7 +587,7 @@ module AzureRefresherSpecCommon
 
   def assert_specific_vm_powered_off_attributes(v)
     name = 'miqazure-centos1'
-    vm_resource_id = "#{@ems.subscription}\\#{@resource_group}\\microsoft.compute/virtualmachines\\#{name}"
+    vm_resource_id = "#{@ems.subscription}/#{@resource_group}/microsoft.compute/virtualmachines/#{name}"
 
     expect(v).to have_attributes(
       :template              => false,
@@ -728,7 +728,7 @@ module AzureRefresherSpecCommon
       :value   => "deploy1admin",
       :ems_ref => "/subscriptions/#{@ems.subscription}/resourceGroups"\
                       "/miq-azure-test1/providers/Microsoft.Resources"\
-                      "/deployments/spec-nested-deployment-dont-delete\\adminUsername"
+                      "/deployments/spec-nested-deployment-dont-delete/adminUsername"
     )
   end
 
@@ -759,7 +759,7 @@ module AzureRefresherSpecCommon
       :description => "siteUri",
       :ems_ref     => "/subscriptions/#{@ems.subscription}/resourceGroups"\
     "/miq-azure-test1/providers/Microsoft.Resources"\
-    "/deployments/spec-deployment-dont-delete\\siteUri"
+    "/deployments/spec-deployment-dont-delete/siteUri"
     )
   end
 
@@ -975,12 +975,12 @@ module AzureRefresherSpecCommon
   end
 
   def lbs_vms_targets
-    vm_resource_id1 = "#{@ems.subscription}\\miq-azure-test1\\microsoft.compute/virtualmachines\\rspec-lb-a"
+    vm_resource_id1 = "#{@ems.subscription}/miq-azure-test1/microsoft.compute/virtualmachines/rspec-lb-a"
     vm_target1      = ManagerRefresh::Target.new(:manager     => @ems,
                                                  :association => :vms,
                                                  :manager_ref => {:ems_ref => vm_resource_id1})
 
-    vm_resource_id2 = "#{@ems.subscription}\\miq-azure-test1\\microsoft.compute/virtualmachines\\rspec-lb-b"
+    vm_resource_id2 = "#{@ems.subscription}/miq-azure-test1/microsoft.compute/virtualmachines/rspec-lb-b"
     vm_target2      = ManagerRefresh::Target.new(:manager     => @ems,
                                                  :association => :vms,
                                                  :manager_ref => {:ems_ref => vm_resource_id2})
@@ -988,7 +988,7 @@ module AzureRefresherSpecCommon
   end
 
   def vm_powered_on_target
-    vm_resource_id = "#{@ems.subscription}\\#{@resource_group}\\microsoft.compute/virtualmachines\\#{@device_name}"
+    vm_resource_id = "#{@ems.subscription}/#{@resource_group}/microsoft.compute/virtualmachines/#{@device_name}"
 
     ManagerRefresh::Target.new(:manager     => @ems,
                                :association => :vms,
@@ -996,7 +996,7 @@ module AzureRefresherSpecCommon
   end
 
   def vm_powered_off_target
-    vm_resource_id = "#{@ems.subscription}\\#{@resource_group}\\microsoft.compute/virtualmachines\\#{@vm_powered_off}"
+    vm_resource_id = "#{@ems.subscription}/#{@resource_group}/microsoft.compute/virtualmachines/#{@vm_powered_off}"
 
     ManagerRefresh::Target.new(:manager     => @ems,
                                :association => :vms,
@@ -1004,7 +1004,7 @@ module AzureRefresherSpecCommon
   end
 
   def vm_with_managed_disk_target
-    vm_resource_id = "#{@ems.subscription}\\#{@resource_group_managed_vm}\\microsoft.compute/virtualmachines\\#{@managed_vm}"
+    vm_resource_id = "#{@ems.subscription}/#{@resource_group_managed_vm}/microsoft.compute/virtualmachines/#{@managed_vm}"
 
     ManagerRefresh::Target.new(:manager     => @ems,
                                :association => :vms,
@@ -1012,7 +1012,7 @@ module AzureRefresherSpecCommon
   end
 
   def non_existent_vm_target
-    vm_resource_id = "#{@ems.subscription}\\#{@resource_group_managed_vm}\\microsoft.compute/virtualmachines\\non_existent_vm_that_does_not_exist"
+    vm_resource_id = "#{@ems.subscription}/#{@resource_group_managed_vm}/microsoft.compute/virtualmachines/non_existent_vm_that_does_not_exist"
 
     ManagerRefresh::Target.new(:manager     => @ems,
                                :association => :vms,
@@ -1036,14 +1036,14 @@ module AzureRefresherSpecCommon
   end
 
   def child_orchestration_stack_vm_target
-    vm_resource_id = "#{@ems.subscription}\\miq-azure-test1\\microsoft.compute/virtualmachines\\spec0deply1vm0"
+    vm_resource_id = "#{@ems.subscription}/miq-azure-test1/microsoft.compute/virtualmachines/spec0deply1vm0"
     ManagerRefresh::Target.new(:manager     => @ems,
                                :association => :vms,
                                :manager_ref => {:ems_ref => vm_resource_id})
   end
 
   def child_orchestration_stack_vm_target2
-    vm_resource_id2 = "#{@ems.subscription}\\miq-azure-test1\\microsoft.compute/virtualmachines\\spec0deply1vm1"
+    vm_resource_id2 = "#{@ems.subscription}/miq-azure-test1/microsoft.compute/virtualmachines/spec0deply1vm1"
     ManagerRefresh::Target.new(:manager     => @ems,
                                :association => :vms,
                                :manager_ref => {:ems_ref => vm_resource_id2})
