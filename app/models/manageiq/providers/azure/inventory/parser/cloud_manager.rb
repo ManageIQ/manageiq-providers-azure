@@ -60,7 +60,7 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
 
   def instances
     collector.instances.each do |instance|
-      uid = resource_uid(collector.subscription_id,
+      uid = File.join(collector.subscription_id,
                          instance.resource_group.downcase,
                          instance.type.downcase,
                          instance.name)
@@ -270,7 +270,7 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
     return [] if raw_parameters.blank?
 
     raw_parameters.each do |param_key, param_obj|
-      uid = resource_uid(deployment.id, param_key)
+      uid = File.join(deployment.id, param_key)
       persister.orchestration_stacks_parameters.build(
         :stack   => persister_orchestration_stack,
         :ems_ref => uid,
@@ -285,7 +285,7 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
     return [] if raw_outputs.blank?
 
     raw_outputs.each do |output_key, output_obj|
-      uid = resource_uid(deployment.id, output_key)
+      uid = File.join(deployment.id, output_key)
       persister.orchestration_stacks_outputs.build(
         :stack       => persister_orchestration_stack,
         :ems_ref     => uid,

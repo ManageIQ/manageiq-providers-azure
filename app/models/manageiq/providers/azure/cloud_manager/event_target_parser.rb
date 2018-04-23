@@ -113,10 +113,7 @@ class ManageIQ::Providers::Azure::CloudManager::EventTargetParser
   def resource_id_for_instance_id(id)
     return nil unless id
     _, _, guid, _, resource_group, _, type, sub_type, name = id.split("/")
-    resource_uid(guid,
-                 resource_group.downcase,
-                 "#{type.downcase}/#{sub_type.downcase}",
-                 name)
+    File.join(guid, resource_group.downcase, "#{type.downcase}/#{sub_type.downcase}", name)
   end
 
   def resource_id_for_cloud_networks(id)
@@ -133,10 +130,6 @@ class ManageIQ::Providers::Azure::CloudManager::EventTargetParser
   def resource_id_for_security_groups(id)
     id = id.split("/securityRules/").first
     fix_down_cased_resource_groups(id)
-  end
-
-  def resource_uid(*keys)
-    keys.join('\\')
   end
 
   def standard_uid(*keys)
