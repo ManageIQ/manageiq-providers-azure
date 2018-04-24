@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
+## Unreleased as of Sprint 84 ending 2018-04-26
+
+### Added
+- Azure labels and tag mapping support for a new refresh [(#229)](https://github.com/ManageIQ/manageiq-providers-azure/pull/229)
+
 ## Unreleased as of Sprint 82 ending 2018-03-26
 
 ### Added
