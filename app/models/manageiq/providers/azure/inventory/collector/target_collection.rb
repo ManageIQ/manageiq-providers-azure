@@ -599,6 +599,6 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
     # the id string like this is suboptimal
     return nil unless id
     _, _, guid, _, resource_group, _, type, sub_type, name = id.split("/")
-    File.join(guid, resource_group.downcase, "#{type.downcase}/#{sub_type.downcase}", name)
+    File.join(guid, resource_group.downcase, type.downcase, sub_type.downcase, name)
   end
 end
