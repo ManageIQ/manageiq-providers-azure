@@ -34,7 +34,7 @@ describe ManageIQ::Providers::Azure::CloudManager::EventTargetParser do
 
   context "VM events" do
     let(:klass) { :vms }
-    let(:expected_ems_ref) { "#{@ems.subscription}\\#{resource_group}\\microsoft.compute/virtualmachines\\test-vm" }
+    let(:expected_ems_ref) { "#{@ems.subscription}/#{resource_group}/microsoft.compute/virtualmachines/test-vm" }
 
     it_behaves_like "parses_event", "virtualMachines_deallocate_EndRequest"
     it_behaves_like "parses_event", "virtualMachines_delete_EndRequest"
@@ -47,7 +47,7 @@ describe ManageIQ::Providers::Azure::CloudManager::EventTargetParser do
 
   context "VM lock events" do
     let(:klass) { :vms }
-    let(:expected_ems_ref) { "#{@ems.subscription}\\#{resource_group}\\microsoft.authorization/locks\\test-lock" }
+    let(:expected_ems_ref) { "#{@ems.subscription}/#{resource_group}/microsoft.authorization/locks/test-lock" }
 
     it_behaves_like "parses_event", "locks_delete_EndRequest"
     it_behaves_like "parses_event", "locks_write_EndRequest"

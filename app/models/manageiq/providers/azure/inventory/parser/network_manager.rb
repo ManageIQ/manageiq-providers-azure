@@ -351,7 +351,7 @@ class ManageIQ::Providers::Azure::Inventory::Parser::NetworkManager < ManageIQ::
     # the id string like this is suboptimal
     return nil unless id
     _, _, guid, _, resource_group, _, type, sub_type, name = id.split("/")
-    resource_uid(guid,
+    File.join(guid,
                  resource_group.downcase,
                  "#{type.downcase}/#{sub_type.downcase}",
                  name)

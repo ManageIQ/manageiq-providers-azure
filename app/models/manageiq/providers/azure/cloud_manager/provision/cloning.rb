@@ -10,7 +10,7 @@ module ManageIQ::Providers::Azure::CloudManager::Provision::Cloning
   end
 
   def find_destination_in_vmdb(vm_uid_hash)
-    ems_ref = vm_uid_hash.values.join("\\")
+    ems_ref = vm_uid_hash.values.join("/")
     ManageIQ::Providers::Azure::CloudManager::Vm.find_by("lower(ems_ref) = ?", ems_ref.downcase)
   end
 
@@ -122,11 +122,11 @@ module ManageIQ::Providers::Azure::CloudManager::Provision::Cloning
   end
 
   def storage_account_resource_group
-    source.description.split("\\").first
+    source.description.split("/").first
   end
 
   def storage_account_name
-    source.description.split("\\")[1]
+    source.description.split("/")[1]
   end
 
   def associated_nic

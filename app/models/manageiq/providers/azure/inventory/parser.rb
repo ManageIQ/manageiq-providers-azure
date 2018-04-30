@@ -5,9 +5,4 @@ class ManageIQ::Providers::Azure::Inventory::Parser < ManagerRefresh::Inventory:
   include Vmdb::Logging
 
   TYPE_DEPLOYMENT = "microsoft.resources/deployments".freeze
-
-  # Compose an id string combining some existing keys
-  def resource_uid(*keys)
-    keys.join('\\')
-  end
 end

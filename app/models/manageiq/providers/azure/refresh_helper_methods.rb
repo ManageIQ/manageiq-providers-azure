@@ -46,11 +46,6 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
     end
   end
 
-  # Compose an id string combining some existing keys
-  def resource_uid(*keys)
-    keys.join('\\')
-  end
-
   # For those resources without a location, default to the location of
   # their resource group.
   #

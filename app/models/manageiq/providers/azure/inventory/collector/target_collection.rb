@@ -121,7 +121,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
     @instances_cache ||= if refs.size > record_limit
                            set = Set.new(refs)
                            collect_inventory(:instances) { gather_data_for_this_region(@vmm) }.select do |instance|
-                             uid = resource_uid(subscription_id,
+                             uid = File.join(subscription_id,
                                                 instance.resource_group.downcase,
                                                 instance.type.downcase,
                                                 instance.name)
@@ -131,7 +131,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
                          else
                            collect_inventory_targeted(:instances) do
                              Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
-                               _subscription_id, group, _provider, _service, name = ems_ref.tr("\\", '/').split('/')
+                               _subscription_id, group, _provider, _service, name = ems_ref.split('/')
                                safe_targeted_request { @vmm.get(name, group) }
                              end
                            end
@@ -594,19 +594,11 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
     target.add_target(:association => association, :manager_ref => {:ems_ref => ems_ref})
   end
 
-  # Compose an id string combining some existing keys
-  def resource_uid(*keys)
-    keys.join('\\')
-  end
-
   def resource_id_for_instance_id(id)
     # TODO(lsmola) we really need to get rid of the building our own emf_ref, it makes crosslinking impossible, parsing
     # the id string like this is suboptimal
     return nil unless id
     _, _, guid, _, resource_group, _, type, sub_type, name = id.split("/")
-    resource_uid(guid,
-                 resource_group.downcase,
-                 "#{type.downcase}/#{sub_type.downcase}",
-                 name)
+    File.join(guid, resource_group.downcase, type.downcase, sub_type.downcase, name)
   end
 end

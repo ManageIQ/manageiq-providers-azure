@@ -255,7 +255,7 @@ module ManageIQ::Providers
       end
 
       def parse_instance(instance)
-        uid = resource_uid(@subscription_id,
+        uid = File.join(@subscription_id,
                            instance.resource_group.downcase,
                            instance.type.downcase,
                            instance.name)
@@ -418,7 +418,7 @@ module ManageIQ::Providers
 
       def parse_stack(deployment)
         name = deployment.name
-        uid = resource_uid(@subscription_id,
+        uid = File.join(@subscription_id,
                            deployment.resource_group.downcase,
                            TYPE_DEPLOYMENT,
                            name)
@@ -503,7 +503,7 @@ module ManageIQ::Providers
         stack_id = deployment.id
         get_stack_parameters(stack_id, raw_parameters)
         raw_parameters.collect do |param_key, _val|
-          @data_index.fetch_path(:orchestration_stack_parameters, resource_uid(stack_id, param_key))
+          @data_index.fetch_path(:orchestration_stack_parameters, File.join(stack_id, param_key))
         end
       end
 
@@ -514,14 +514,14 @@ module ManageIQ::Providers
         stack_id = deployment.id
         get_stack_outputs(stack_id, raw_outputs)
         raw_outputs.collect do |output_key, _val|
-          @data_index.fetch_path(:orchestration_stack_outputs, resource_uid(stack_id, output_key))
+          @data_index.fetch_path(:orchestration_stack_outputs, File.join(stack_id, output_key))
         end
       end
 
       def stack_resources(deployment)
         group = deployment.resource_group
         name = deployment.name
-        stack_uid = resource_uid(@subscription_id, group.downcase, TYPE_DEPLOYMENT, name)
+        stack_uid = File.join(@subscription_id, group.downcase, TYPE_DEPLOYMENT, name)
 
         raw_resources = get_stack_resources(name, group)
 
@@ -529,7 +529,7 @@ module ManageIQ::Providers
         resources = raw_resources.collect do |resource|
           resource_type = resource.properties.target_resource.resource_type
           resource_name = resource.properties.target_resource.resource_name
-          uid = resource_uid(@subscription_id, group.downcase, resource_type.downcase, resource_name)
+          uid = File.join(@subscription_id, group.downcase, resource_type.downcase, resource_name)
           @resource_to_stack[uid] = stack_uid
           child_stacks << uid if resource_type.downcase == TYPE_DEPLOYMENT
           @data_index.fetch_path(:orchestration_stack_resources, uid)
@@ -550,7 +550,7 @@ module ManageIQ::Providers
       end
 
       def parse_stack_parameter(param_key, param_obj, stack_id)
-        uid = resource_uid(stack_id, param_key)
+        uid = File.join(stack_id, param_key)
         new_result = {
           :ems_ref => uid,
           :name    => param_key,
@@ -560,7 +560,7 @@ module ManageIQ::Providers
       end
 
       def parse_stack_output(output_key, output_obj, stack_id)
-        uid = resource_uid(stack_id, output_key)
+        uid = File.join(stack_id, output_key)
         new_result = {
           :ems_ref     => uid,
           :key         => output_key,
@@ -583,7 +583,7 @@ module ManageIQ::Providers
           :resource_status_reason => status_message || status_code,
           :last_updated           => resource.properties.timestamp
         }
-        uid = resource_uid(@subscription_id, group.downcase, new_result[:resource_category].downcase, new_result[:name])
+        uid = File.join(@subscription_id, group.downcase, new_result[:resource_category].downcase, new_result[:name])
         return uid, new_result
       end
 
@@ -598,7 +598,7 @@ module ManageIQ::Providers
           :uid_ems            => uid,
           :ems_ref            => uid,
           :name               => image.name,
-          :description        => "#{image.resource_group}\\#{image.name}",
+          :description        => "#{image.resource_group}/#{image.name}",
           :location           => @ems.provider_region,
           :vendor             => 'azure',
           :raw_power_state    => 'never',
@@ -669,7 +669,7 @@ module ManageIQ::Providers
 
       def build_image_description(image)
         # Description is a concatenation of resource group and storage account
-        "#{image.storage_account.resource_group}\\#{image.storage_account.name}"
+        "#{image.storage_account.resource_group}/#{image.storage_account.name}"
       end
 
       # Remap from children to parent
