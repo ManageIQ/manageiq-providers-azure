@@ -60,19 +60,18 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
   end
 
   def storage_accounts
-    # We want to always limit storage accounts, to avoid loading all account keys in full refresh. Right now we wat to
+    # We want to always limit storage accounts, to avoid loading all account keys in full refresh. Right now we want to
     # load just used storage accounts.
     return if instances.blank?
 
     used_storage_accounts = instances.map do |instance|
       disks = instance.properties.storage_profile.data_disks + [instance.properties.storage_profile.os_disk]
       disks.map do |disk|
-        unless instance.managed_disk?
-          disk_location = disk.try(:vhd).try(:uri)
-          if disk_location
-            uri = Addressable::URI.parse(disk_location)
-            uri.host.split('.').first
-          end
+        next if instance.managed_disk?
+        disk_location = disk.try(:vhd).try(:uri)
+        if disk_location
+          uri = Addressable::URI.parse(disk_location)
+          uri.host.split('.').first
         end
       end
     end.flatten.compact.to_set

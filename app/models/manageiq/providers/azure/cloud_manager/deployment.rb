@@ -2,7 +2,7 @@ module ManageIQ::Providers::Azure::CloudManager::Deployment
   extend ActiveSupport::Concern
 
   def deployment_failed?(deployment)
-    deployment.properties.provisioning_state.casecmp('failed') == 0
+    deployment.properties.provisioning_state.casecmp('failed').zero?
   end
 
   # Azure deployment does not contain failure reason. The actual reasons exist in the operations.
@@ -11,7 +11,7 @@ module ManageIQ::Providers::Azure::CloudManager::Deployment
   def deployment_failure_reason(deployment_operations)
     deployment_operations.each do |operation|
       message = operation_status_message(operation)
-      return message unless message.blank?
+      return message if message.present?
     end
     nil
   end

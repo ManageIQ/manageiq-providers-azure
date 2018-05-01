@@ -4,7 +4,7 @@ module ManageIQ::Providers
       include ManageIQ::Providers::Azure::RefreshHelperMethods
       include Vmdb::Logging
 
-      TYPE_DEPLOYMENT = "microsoft.resources/deployments"
+      TYPE_DEPLOYMENT = "microsoft.resources/deployments".freeze
 
       def self.ems_inv_to_hashes(ems, options = Config::Options.new)
         new(ems, options).ems_inv_to_hashes
@@ -161,7 +161,7 @@ module ManageIQ::Providers
         end
 
         # link stacks to templates, convert raw_template to template
-        Hash(@data_index[:orchestration_stacks]).each do |_stack_uid, stack|
+        Hash(@data_index[:orchestration_stacks]).each_value do |stack|
           raw_template = stack[:orchestration_template]
           stack[:orchestration_template] = @data_index.fetch_path(:orchestration_templates, raw_template[:uid])
         end
@@ -255,10 +255,12 @@ module ManageIQ::Providers
       end
 
       def parse_instance(instance)
-        uid = File.join(@subscription_id,
-                           instance.resource_group.downcase,
-                           instance.type.downcase,
-                           instance.name)
+        uid = File.join(
+          @subscription_id,
+          instance.resource_group.downcase,
+          instance.type.downcase,
+          instance.name
+        )
         series_name = instance.properties.hardware_profile.vm_size.downcase
         series      = @data_index.fetch_path(:flavors, series_name)
 
@@ -418,25 +420,23 @@ module ManageIQ::Providers
 
       def parse_stack(deployment)
         name = deployment.name
-        uid = File.join(@subscription_id,
-                           deployment.resource_group.downcase,
-                           TYPE_DEPLOYMENT,
-                           name)
+        uid = File.join(@subscription_id, deployment.resource_group.downcase, TYPE_DEPLOYMENT, name)
         child_stacks, resources = stack_resources(deployment)
-        new_result = {
-          :type           => ManageIQ::Providers::Azure::CloudManager::OrchestrationStack.name,
-          :ems_ref        => deployment.id,
-          :name           => name,
-          :description    => name,
-          :status         => deployment.properties.provisioning_state,
-          :children       => child_stacks,
-          :resources      => resources,
-          :outputs        => stack_outputs(deployment),
-          :parameters     => stack_parameters(deployment),
-          :resource_group => deployment.resource_group,
 
+        new_result = {
+          :type                   => ManageIQ::Providers::Azure::CloudManager::OrchestrationStack.name,
+          :ems_ref                => deployment.id,
+          :name                   => name,
+          :description            => name,
+          :status                 => deployment.properties.provisioning_state,
+          :children               => child_stacks,
+          :resources              => resources,
+          :outputs                => stack_outputs(deployment),
+          :parameters             => stack_parameters(deployment),
+          :resource_group         => deployment.resource_group,
           :orchestration_template => stack_template_hash(deployment)
         }
+
         return uid, new_result
       end
 

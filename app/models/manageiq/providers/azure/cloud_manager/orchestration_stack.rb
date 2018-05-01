@@ -66,7 +66,7 @@ class ManageIQ::Providers::Azure::CloudManager::OrchestrationStack < ManageIQ::P
             _("%{name} does not exist on %{management}") % {:name => name, :management => ext_management_system.name}
     end
 
-    _log.error "stack=[#{name}], error: #{err}"
+    _log.error("stack=[#{name}], error: #{err}")
     raise MiqException::MiqOrchestrationStatusError, err.to_s, err.backtrace
   end
 

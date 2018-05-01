@@ -30,7 +30,7 @@ module ManageIQ::Providers::Azure::CloudManager::VmOrTemplateShared::Scanning
     end
 
     ost.scanTime = Time.now.utc unless ost.scanTime
-    armrest      = ext_management_system.connect 
+    armrest      = ext_management_system.connect
 
     begin
       miq_vm = MiqAzureVm.new(armrest, vm_args)

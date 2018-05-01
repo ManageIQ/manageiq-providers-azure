@@ -61,9 +61,9 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
   def instances
     collector.instances.each do |instance|
       uid = File.join(collector.subscription_id,
-                         instance.resource_group.downcase,
-                         instance.type.downcase,
-                         instance.name)
+                      instance.resource_group.downcase,
+                      instance.type.downcase,
+                      instance.name)
 
       # TODO(lsmola) we have a non lazy dependency, can we remove that?
       series = persister.flavors.find(instance.properties.hardware_profile.vm_size.downcase)

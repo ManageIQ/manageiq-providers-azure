@@ -15,7 +15,6 @@ module ManageIQ::Providers::Azure::ManagerMixin
 
   module ClassMethods
     def raw_connect(client_id, client_key, azure_tenant_id, subscription, proxy_uri = nil, provider_region = nil)
-
       require 'azure-armrest'
 
       if subscription.blank?
@@ -87,7 +86,7 @@ module ManageIQ::Providers::Azure::ManagerMixin
 
       azure_res.list_locations.each do |region|
         next if known_ems_regions.include?(region.name)
-        next if vms_in_region(azure_res, region.name).count == 0 # instances
+        next if vms_in_region(azure_res, region.name).count.zero? # instances
         # TODO: Check if images are == 0 and if so then skip
         new_emses << create_discovered_region(region.name, clientid, clientkey, azure_tenant_id, subscription, all_ems_names)
       end
@@ -97,7 +96,7 @@ module ManageIQ::Providers::Azure::ManagerMixin
         new_emses << create_discovered_region("eastus", clientid, clientkey, azure_tenant_id, subscription, all_ems_names)
       end
 
-      EmsRefresh.queue_refresh(new_emses) unless new_emses.blank?
+      EmsRefresh.queue_refresh(new_emses) if new_emses.present?
 
       new_emses
     end

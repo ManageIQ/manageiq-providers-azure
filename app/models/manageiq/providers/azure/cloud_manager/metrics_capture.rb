@@ -44,7 +44,7 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
   COUNTER_NAMES = COUNTER_INFO.flat_map { |i| i[:native_counters] }.uniq.to_set.freeze
 
   VIM_STYLE_COUNTERS = {
-    "cpu_usage_rate_average"      => {
+    "cpu_usage_rate_average"     => {
       :counter_key           => "cpu_usage_rate_average",
       :instance              => "",
       :capture_interval      => "20",
@@ -53,7 +53,7 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
       :unit_key              => "percent",
       :capture_interval_name => "realtime"
     },
-    "mem_usage_absolute_average"  => {
+    "mem_usage_absolute_average" => {
       :counter_key           => "mem_usage_absolute_average",
       :instance              => "",
       :capture_interval      => "20",
@@ -62,7 +62,7 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
       :unit_key              => "percent",
       :capture_interval_name => "realtime"
     },
-    "net_usage_rate_average"      => {
+    "net_usage_rate_average"     => {
       :counter_key           => "net_usage_rate_average",
       :instance              => "",
       :capture_interval      => "20",
@@ -71,7 +71,7 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
       :unit_key              => "kilobytespersecond",
       :capture_interval_name => "realtime"
     },
-    "disk_usage_rate_average"     => {
+    "disk_usage_rate_average"    => {
       :counter_key           => "disk_usage_rate_average",
       :instance              => "",
       :capture_interval      => "20",
@@ -120,7 +120,7 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
   end
 
   def perf_capture_data_azure(metrics_conn, storage_conn, start_time, end_time)
-    start_time -= 1.minutes # Get one extra minute so we can build the 20-second intermediate values
+    start_time -= 1.minute # Get one extra minute so we can build the 20-second intermediate values
 
     counters                = get_counters(metrics_conn)
     metrics_by_counter_name = metrics_by_counter_name(storage_conn, counters, start_time, end_time)

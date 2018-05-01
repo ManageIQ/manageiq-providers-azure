@@ -55,7 +55,7 @@ module ManageIQ::Providers::Azure::CloudManager::VmOrTemplateShared
                  end
   end
 
-  delegate :managed_disk?, to: :vm_object
+  delegate :managed_disk?, :to => :vm_object
 
   def managed_image?
     return false unless ems_ref =~ /^\/subscriptions\//i
