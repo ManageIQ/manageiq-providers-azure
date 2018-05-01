@@ -13,7 +13,7 @@ class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Runner <
     event_monitor_handle.each_batch do |events|
       event_monitor_running
       _log.debug("#{log_prefix} Received events #{events.collect { |e| parse_event_type(e) }}")
-      @queue.enq events
+      @queue.enq(events)
       sleep_poll_normal
     end
   ensure
@@ -22,9 +22,9 @@ class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Runner <
 
   def process_event(event)
     if filtered?(event)
-      _log.debug "#{log_prefix} Skipping filtered Azure event #{parse_event_type(event)} for #{event["resourceId"]}"
+      _log.debug("#{log_prefix} Skipping filtered Azure event #{parse_event_type(event)} for #{event["resourceId"]}")
     else
-      _log.info "#{log_prefix} Caught event #{parse_event_type(event)} for #{event["resourceId"]}"
+      _log.info("#{log_prefix} Caught event #{parse_event_type(event)} for #{event["resourceId"]}")
       event_hash = ManageIQ::Providers::Azure::CloudManager::EventParser.event_to_hash(event, @cfg[:ems_id])
       EmsEvent.add_queue('add', @cfg[:ems_id], event_hash)
     end

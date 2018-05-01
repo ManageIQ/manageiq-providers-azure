@@ -42,7 +42,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
   end
 
   def network_routers
-    [] # TODO add targeted refresh
+    [] # TODO: add targeted refresh
   end
 
   def flavors
@@ -122,9 +122,9 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
                            set = Set.new(refs)
                            collect_inventory(:instances) { gather_data_for_this_region(@vmm) }.select do |instance|
                              uid = File.join(subscription_id,
-                                                instance.resource_group.downcase,
-                                                instance.type.downcase,
-                                                instance.name)
+                                             instance.resource_group.downcase,
+                                             instance.type.downcase,
+                                             instance.name)
 
                              set.include?(uid)
                            end

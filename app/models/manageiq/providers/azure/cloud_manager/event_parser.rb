@@ -11,7 +11,7 @@ module ManageIQ::Providers::Azure::CloudManager::EventParser
     event_hash = {
       :source     => "AZURE",
       :timestamp  => event["eventTimestamp"],
-      :message    => event["description"].blank? ? nil : event["description"],
+      :message    => event["description"].presence,
       :ems_id     => ems_id,
       :event_type => event_type,
       :full_data  => event

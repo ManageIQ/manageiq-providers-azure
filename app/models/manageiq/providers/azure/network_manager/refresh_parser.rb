@@ -57,14 +57,11 @@ class ManageIQ::Providers::Azure::NetworkManager::RefreshParser
   end
 
   def resource_id_for_instance_id(id)
-    # TODO(lsmola) we really need to get rid of the building our own emf_ref, it makes crosslinking impossible, parsing
+    # TODO: (lsmola) we really need to get rid of the building our own emf_ref, it makes crosslinking impossible, parsing
     # the id string like this is suboptimal
     return nil unless id
     _, _, guid, _, resource_group, _, type, sub_type, name = id.split("/")
-    File.join(guid,
-                 resource_group.downcase,
-                 "#{type.downcase}/#{sub_type.downcase}",
-                 name)
+    File.join(guid, resource_group.downcase, type.downcase, sub_type.downcase, name)
   end
 
   def floating_ips
@@ -313,7 +310,7 @@ class ManageIQ::Providers::Azure::NetworkManager::RefreshParser
     if rule.properties.respond_to?(:destination_port_range)
       rule.properties.destination_port_range.split('-').first.to_i
     elsif rule.properties.respond_to?(:destination_port_ranges)
-      rule.properties.destination_port_ranges.flat_map{ |e| e.split('-') }.map(&:to_i).min
+      rule.properties.destination_port_ranges.flat_map { |e| e.split('-') }.map(&:to_i).min
     else
       nil # Old api-version
     end
@@ -323,7 +320,7 @@ class ManageIQ::Providers::Azure::NetworkManager::RefreshParser
     if rule.properties.respond_to?(:destination_port_range)
       rule.properties.destination_port_range.split('-').last.to_i
     elsif rule.properties.respond_to?(:destination_port_ranges)
-      rule.properties.destination_port_ranges.flat_map{ |e| e.split('-') }.map(&:to_i).max
+      rule.properties.destination_port_ranges.flat_map { |e| e.split('-') }.map(&:to_i).max
     else
       nil # Old api-version
     end

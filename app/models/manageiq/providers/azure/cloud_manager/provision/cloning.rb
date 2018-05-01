@@ -62,27 +62,27 @@ module ManageIQ::Providers::Azure::CloudManager::Provision::Cloning
     end
 
     cloud_options =
-    {
-      :name       => dest_name,
-      :location   => source.location,
-      :properties => {
-        :hardwareProfile => {
-          :vmSize => instance_type.name
-        },
-        :osProfile       => {
-          :adminUserName => options[:root_username],
-          :adminPassword => root_password,
-          :computerName  => dest_hostname
-        },
-        :storageProfile  => {
-          :osDisk        => {
-            :createOption => 'FromImage',
-            :caching      => 'ReadWrite',
-            :osType       => os
+      {
+        :name       => dest_name,
+        :location   => source.location,
+        :properties => {
+          :hardwareProfile => {
+            :vmSize => instance_type.name
+          },
+          :osProfile       => {
+            :adminUserName => options[:root_username],
+            :adminPassword => root_password,
+            :computerName  => dest_hostname
+          },
+          :storageProfile  => {
+            :osDisk => {
+              :createOption => 'FromImage',
+              :caching      => 'ReadWrite',
+              :osType       => os
+            }
           }
         }
       }
-    }
 
     # The -1 value is set in ProvisionWorkflow to distinguish between the
     # desire for a new Public IP address vs a private IP.
@@ -113,8 +113,7 @@ module ManageIQ::Providers::Azure::CloudManager::Provision::Cloning
 
   def log_clone_options(clone_options)
     dump_obj(clone_options, "#{_log.prefix} Clone Options: ", $log, :info)
-    dump_obj(options, "#{_log.prefix} Prov Options:  ", $log, :info, :protected =>
-    {:path => workflow_class.encrypted_options_field_regs})
+    dump_obj(options, "#{_log.prefix} Prov Options:  ", $log, :info, :protected => {:path => workflow_class.encrypted_options_field_regs})
   end
 
   def region
