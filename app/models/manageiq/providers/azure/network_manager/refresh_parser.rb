@@ -361,7 +361,7 @@ class ManageIQ::Providers::Azure::NetworkManager::RefreshParser
   end
 
   def floating_ip_network_port_id(ip)
-    # TODO(lsmola) NetworkManager, we need to model ems_ref in model CloudSubnetNetworkPort and relate floating
+    # TODO: (lsmola) NetworkManager, we need to model ems_ref in model CloudSubnetNetworkPort and relate floating
     # ip to that model
     # For now cutting last 2 / from the id, to get just the id of the network_port. ID looks like:
     # /subscriptions/{guid}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkInterfaces/vm1nic1/ipConfigurations/ip1
@@ -468,9 +468,9 @@ class ManageIQ::Providers::Azure::NetworkManager::RefreshParser
     vm_id  = resource_id_for_instance_id(network_port.properties.try(:virtual_machine).try(:id))
     device = parent_manager_fetch_path(:vms, vm_id)
 
-    security_groups = [@data_index.fetch_path(
-      :security_groups,
-      network_port.properties.try(:network_security_group).try(:id))].compact
+    security_groups = [
+      @data_index.fetch_path(:security_groups, network_port.properties.try(:network_security_group).try(:id))
+    ].compact
 
     new_result = {
       :type                       => self.class.network_port_type,

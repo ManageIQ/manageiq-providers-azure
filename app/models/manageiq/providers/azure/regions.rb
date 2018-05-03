@@ -139,8 +139,8 @@ module ManageIQ
       # disabled regions.
       #
       def self.regions
-        additional_regions = Hash(Settings.ems.ems_azure.try!(:additional_regions)).stringify_keys
-        disabled_regions   = Array(Settings.ems.ems_azure.try!(:disabled_regions))
+        additional_regions = Hash(Settings.ems.ems_azure&.additional_regions).stringify_keys
+        disabled_regions   = Array(Settings.ems.ems_azure&.disabled_regions)
 
         REGIONS.merge(additional_regions).except(*disabled_regions)
       end

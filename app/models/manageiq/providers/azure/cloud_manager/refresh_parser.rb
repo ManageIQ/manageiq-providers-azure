@@ -198,22 +198,22 @@ module ManageIQ::Providers
       def get_market_images
         urns = @options.market_image_urns
 
-        if urns
-          images = urns.collect do |urn|
-            publisher, offer, sku, version = urn.split(':')
+        images = if urns
+                   urns.collect do |urn|
+                     publisher, offer, sku, version = urn.split(':')
 
-            ::Azure::Armrest::VirtualMachineImage.new(
-              :location  => @ems.provider_region,
-              :publisher => publisher,
-              :offer     => offer,
-              :sku       => sku,
-              :version   => version,
-              :id        => urn
-            )
-          end
-        else
-          images = gather_data_for_this_region(@vmis)
-        end
+                     ::Azure::Armrest::VirtualMachineImage.new(
+                       :location  => @ems.provider_region,
+                       :publisher => publisher,
+                       :offer     => offer,
+                       :sku       => sku,
+                       :version   => version,
+                       :id        => urn
+                     )
+                   end
+                 else
+                   gather_data_for_this_region(@vmis)
+                 end
 
         process_collection(images, :vms) { |image| parse_market_image(image) }
       end
@@ -302,7 +302,7 @@ module ManageIQ::Providers
       def power_status(instance)
         view = @vmm.get_instance_view(instance.name, instance.resource_group)
         status = view.statuses.find { |s| s.code =~ %r{^PowerState/} }
-        status.display_status if status
+        status&.display_status
       rescue ::Azure::Armrest::NotFoundException
         'off' # Possible race condition caused by retirement deletion.
       end
@@ -316,7 +316,7 @@ module ManageIQ::Providers
       # Find both OS and SKU if possible, otherwise just the OS type.
       def guest_os(instance)
         image_reference = instance.properties.storage_profile.try(:image_reference)
-        if image_reference && image_reference.try(:offer)
+        if image_reference&.try(:offer)
           "#{image_reference.offer} #{image_reference.sku.tr('-', ' ')}"
         else
           instance.properties.storage_profile.os_disk.os_type
@@ -491,7 +491,7 @@ module ManageIQ::Providers
 
         body = RestClient::Request.execute(options).body
         JSON.parse(body).to_s # normalize to remove white spaces
-      rescue => e
+      rescue StandardError => e
         _log.error("Failed to download Azure template #{uri}. Reason: #{e.inspect}")
         nil
       end
