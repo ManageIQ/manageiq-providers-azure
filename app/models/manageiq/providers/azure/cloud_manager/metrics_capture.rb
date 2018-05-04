@@ -135,7 +135,7 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
     counter_values_by_ts = {}
     COUNTER_INFO.each do |i|
       timestamps = i[:native_counters].flat_map do |c|
-        metrics_by_counter_name[c].keys unless metrics_by_counter_name[c].nil?
+        metrics_by_counter_name[c]&.keys
       end.uniq.compact.sort
 
       timestamps.each_cons(2) do |last_ts, ts|
@@ -186,7 +186,9 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
 
     fields = 'Timestamp,TIMESTAMP,Average'
 
-    storage_account.table_data(table_name, storage_key,
+    storage_account.table_data(
+      table_name,
+      storage_key,
       :filter => filter,
       :select => fields,
       :all    => true

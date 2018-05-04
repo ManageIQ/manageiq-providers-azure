@@ -63,7 +63,7 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
   end
 
   def self.api_allowed_attributes
-    %w[azure_tenant_id].freeze
+    %w(azure_tenant_id).freeze
   end
 
   def blacklisted_provider_types
@@ -86,38 +86,38 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
 
   def vm_start(vm, _options = {})
     vm.start
-  rescue => err
+  rescue StandardError => err
     _log.error("vm=[#{vm.name}], error: #{err}")
   end
 
   def vm_stop(vm, _options = {})
     vm.stop
-  rescue => err
+  rescue StandardError => err
     _log.error("vm=[#{vm.name}], error: #{err}")
   end
 
   def vm_suspend(vm, _options = {})
     vm.suspend
-  rescue => err
+  rescue StandardError => err
     _log.error("vm=[#{vm.name}], error: #{err}")
   end
 
   def vm_destroy(vm, _options = {})
     vm.vm_destroy
-  rescue => err
+  rescue StandardError => err
     _log.error("vm=[#{vm.name}], error: #{err}")
   end
 
   def vm_restart(vm, _options = {})
     # TODO: switch to vm.restart
     vm.raw_restart
-  rescue => err
+  rescue StandardError => err
     _log.error("vm=[#{vm.name}], error: #{err}")
   end
 
   def vm_reboot_guest(vm, _options = {})
     vm.reboot_guest
-  rescue => err
+  rescue StandardError => err
     _log.error("vm=[#{vm.name}], error: #{err}")
   end
 
@@ -155,7 +155,7 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
           _log.debug("Snapshot creation state = #{snap_state}")
           return ssa_snap_name if snap_state =~ /succe/i
         end
-      rescue => err
+      rescue StandardError => err
         _log.error("vm=[#{vm.name}], error: #{err}")
         _log.debug { err.backtrace.join("\n") }
         raise "Error #{err} creating SSA Snapshot #{ssa_snap_name}"
@@ -175,7 +175,7 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
         _log.debug("Snapshot creation state = #{snap_state}")
         return snapshot_info[:x_ms_snapshot] if snap_state =~ /succe/i
       end
-    rescue => err
+    rescue StandardError => err
       _log.error("vm=[#{vm.name}], error:#{err}")
       _log.debug { err.backtrace.join("\n") }
       raise "Error #{err} creating SSA Snapshot for #{vm.name}"
@@ -195,7 +195,7 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
     snap_svc = snapshot_service(@connection)
     _log.debug("vm=[#{vm.name}] deleting SSA snapshot #{vm.ssa_snap_name}")
     snap_svc.delete(vm.ssa_snap_name, vm.resource_group.name)
-  rescue => err
+  rescue StandardError => err
     _log.error("vm=[#{vm.name}], error: #{err} deleting SSA snapshot #{vm.ssa_snap_name}")
     _log.debug { err.backtrace.join("\n") }
   end
@@ -209,7 +209,7 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
     begin
       snap_opts = { :date => options[:snMor] }
       vm.storage_acct.delete_blob(vm.container, vm.blob, vm.key, snap_opts)
-    rescue => err
+    rescue StandardError => err
       _log.error("vm=[#{vm.name}], error:#{err} deleting SSA snapshot with date #{options[:snMor]}")
       _log.debug { err.backtrace.join("\n") }
     end

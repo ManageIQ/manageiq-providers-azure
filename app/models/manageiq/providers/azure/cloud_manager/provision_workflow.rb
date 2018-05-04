@@ -36,14 +36,14 @@ class ManageIQ::Providers::Azure::CloudManager::ProvisionWorkflow < ManageIQ::Pr
     end
   end
 
+  def self.provider_model
+    ManageIQ::Providers::Azure::CloudManager
+  end
+
   private
 
   def dialog_name_from_automate(message = 'get_dialog_name')
     super(message, {'platform' => 'azure'})
-  end
-
-  def self.provider_model
-    ManageIQ::Providers::Azure::CloudManager
   end
 
   def dialog_field_visibility_service

@@ -13,8 +13,8 @@ class ManageIQ::Providers::Azure::CloudManager::OrchestrationStack < ManageIQ::P
     orchestration_manager.with_provider_connection do |configure|
       Azure::Armrest::TemplateDeploymentService.new(configure).create(stack_name, resource_group, create_options).id
     end
-  rescue => err
-    _log.error "stack=[#{stack_name}], error: #{err}"
+  rescue StandardError => err
+    _log.error("stack=[#{stack_name}], error: #{err}")
     raise MiqException::MiqOrchestrationProvisionError, err.to_s, err.backtrace
   end
 
@@ -37,8 +37,8 @@ class ManageIQ::Providers::Azure::CloudManager::OrchestrationStack < ManageIQ::P
     ext_management_system.with_provider_connection do |configure|
       Azure::Armrest::TemplateDeploymentService.new(configure).create(name, resource_group, create_options)
     end
-  rescue => err
-    _log.error "stack=[#{name}], error: #{err}"
+  rescue StandardError => err
+    _log.error("stack=[#{name}], error: #{err}")
     raise MiqException::MiqOrchestrationUpdateError, err.to_s, err.backtrace
   end
 
@@ -46,8 +46,8 @@ class ManageIQ::Providers::Azure::CloudManager::OrchestrationStack < ManageIQ::P
     ext_management_system.with_provider_connection do |configure|
       Azure::Armrest::TemplateDeploymentService.new(configure).delete_associated_resources(name, resource_group)
     end
-  rescue => err
-    _log.error "stack=[#{name}], error: #{err}"
+  rescue StandardError => err
+    _log.error("stack=[#{name}], error: #{err}")
     raise MiqException::MiqOrchestrationDeleteError, err.to_s, err.backtrace
   end
 
@@ -60,7 +60,7 @@ class ManageIQ::Providers::Azure::CloudManager::OrchestrationStack < ManageIQ::P
       end
       Status.new(deployment.properties.provisioning_state, fail_reason)
     end
-  rescue => err
+  rescue StandardError => err
     if err.to_s =~ /[D|d]eployment.+ could not be found/
       raise MiqException::MiqOrchestrationStackNotExistError,
             _("%{name} does not exist on %{management}") % {:name => name, :management => ext_management_system.name}

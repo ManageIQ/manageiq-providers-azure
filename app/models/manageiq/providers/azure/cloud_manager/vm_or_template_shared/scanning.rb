@@ -36,7 +36,7 @@ module ManageIQ::Providers::Azure::CloudManager::VmOrTemplateShared::Scanning
       miq_vm = MiqAzureVm.new(armrest, vm_args)
       scan_via_miq_vm(miq_vm, ost)
     ensure
-      miq_vm.unmount if miq_vm
+      miq_vm&.unmount
     end
   end
 
