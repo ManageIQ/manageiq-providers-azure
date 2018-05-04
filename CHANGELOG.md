@@ -5,7 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
-## Gaprindashvili-2
+## Gaprindashvili-3
+
+### Added
+- Azure graph refresh targeted [(#217)](https://github.com/ManageIQ/manageiq-providers-azure/pull/217)
+- Azure graph refresh event target parser [(#219)](https://github.com/ManageIQ/manageiq-providers-azure/pull/219)
+- Optimize API collections [(#220)](https://github.com/ManageIQ/manageiq-providers-azure/pull/220)
+- Add router collection to refresh parser [(#224)](https://github.com/ManageIQ/manageiq-providers-azure/pull/224)
+
+### Fixed
+- Treat securestring case insentive [(#206)](https://github.com/ManageIQ/manageiq-providers-azure/pull/206)
+- Allow users to choose public or private IP when provisioning multiple VMs [(#210)](https://github.com/ManageIQ/manageiq-providers-azure/pull/210)
+- Consolidate Azure refresh workers [(#216)](https://github.com/ManageIQ/manageiq-providers-azure/pull/216)
+- Fix case-sensitive events ems_ref parsing [(#225)](https://github.com/ManageIQ/manageiq-providers-azure/pull/225)
+- Only create new Public IP if one cannot be found [(#195)](https://github.com/ManageIQ/manageiq-providers-azure/pull/195)
+
+## Gaprindashvili-2 - Released 2018-03-07
 
 ### Fixed
 - Handle possible race conditions for disks, events [(#209)](https://github.com/ManageIQ/manageiq-providers-azure/pull/209)
