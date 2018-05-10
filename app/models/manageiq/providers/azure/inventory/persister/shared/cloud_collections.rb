@@ -66,7 +66,7 @@ module ManageIQ::Providers::Azure::Inventory::Persister::Shared::CloudCollection
 
   # Missing in amazon
   def add_resource_groups
-    add_collection(cloud, :resource_groups, {}, {:auto_object_attributes => false}) do |builder|
+    add_collection(cloud, :resource_groups, {}, {:auto_inventory_attributes => false}) do |builder|
       builder.add_properties(:model_class => ::ManageIQ::Providers::Azure::ResourceGroup)
 
       builder.add_builder_params(:ems_id => manager.id)
@@ -134,7 +134,7 @@ module ManageIQ::Providers::Azure::Inventory::Persister::Shared::CloudCollection
 
   # TODO: mslemr - same as amazon!
   def add_vm_and_miq_template_ancestry
-    add_collection(cloud, :vm_and_miq_template_ancestry, {}, {:auto_object_attributes => false, :auto_model_class => false, :without_model_class => true}) do |builder|
+    add_collection(cloud, :vm_and_miq_template_ancestry, {}, {:auto_inventory_attributes => false, :auto_model_class => false, :without_model_class => true}) do |builder|
       builder.add_dependency_attributes(
         :vms           => [collections[:vms]],
         :miq_templates => [collections[:miq_templates]]
@@ -144,7 +144,7 @@ module ManageIQ::Providers::Azure::Inventory::Persister::Shared::CloudCollection
 
   # TODO: mslemr - same as amazon!
   def add_orchestration_stack_ancestry
-    add_collection(cloud, :orchestration_stack_ancestry, {}, {:auto_object_attributes => false, :auto_model_class => false, :without_model_class => true}) do |builder|
+    add_collection(cloud, :orchestration_stack_ancestry, {}, {:auto_inventory_attributes => false, :auto_model_class => false, :without_model_class => true}) do |builder|
       builder.add_dependency_attributes(
         :orchestration_stacks           => [collections[:orchestration_stacks]],
         :orchestration_stacks_resources => [collections[:orchestration_stacks_resources]]
