@@ -94,6 +94,25 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
             end
           end
 
+          it "will reconnect powered off VM" do
+            existing_ref = "#{@ems.subscription}/miq-azure-test1/microsoft.compute/virtualmachines/miqazure-centos1"
+            vm_oldest    = FactoryGirl.create(:vm_azure, :ems_ref => existing_ref, :uid_ems => existing_ref)
+            FactoryGirl.create(:vm_azure, :ems_ref => existing_ref, :uid_ems => existing_ref)
+
+            2.times do # Run twice to verify that a second run with existing data does not change anything
+              refresh_with_cassette([vm_powered_off_target], vcr_suffix("powered_off_vm_refresh"))
+
+              assert_specific_az
+              assert_specific_flavor
+              assert_specific_vm_powered_off
+
+              expect(Vm.count).to eq(2)
+              expect(@ems.vms.count).to eq(1)
+              # We will reconnect the oldest one
+              expect(@ems.vms.first.id).to eq(vm_oldest.id)
+            end
+          end
+
           it "will refresh VM with managed disk" do
             2.times do # Run twice to verify that a second run with existing data does not change anything
               refresh_with_cassette([vm_with_managed_disk_target], vcr_suffix("vm_with_managed_disk_refresh"))
