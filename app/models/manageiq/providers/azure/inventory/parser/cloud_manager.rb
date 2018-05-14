@@ -70,12 +70,15 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
 
       rg_ems_ref = collector.get_resource_group_ems_ref(instance)
 
+      # We want to archive VMs with no status
+      next if (status = collector.power_status(instance)).blank?
+
       persister_instance = persister.vms.build(
         :uid_ems             => uid,
         :ems_ref             => uid,
         :name                => instance.name,
         :vendor              => "azure",
-        :raw_power_state     => collector.power_status(instance),
+        :raw_power_state     => status,
         :flavor              => series,
         :location            => instance.location,
         # TODO(lsmola) for release > g, we can use secondary indexes for this as
