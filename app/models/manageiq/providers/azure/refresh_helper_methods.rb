@@ -151,6 +151,12 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
     end
   end
 
+  def resource_provider_service(config)
+    ::Azure::Armrest::ResourceProviderService.new(config).tap do |service|
+      service.api_version = Settings.ems.ems_azure.api_versions.resource_provider
+    end
+  end
+
   def route_table_service(config)
     ::Azure::Armrest::Network::RouteTableService.new(config).tap do |service|
       service.api_version = Settings.ems.ems_azure.api_versions.route_table

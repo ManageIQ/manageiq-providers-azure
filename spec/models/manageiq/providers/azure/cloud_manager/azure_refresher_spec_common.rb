@@ -142,7 +142,7 @@ module AzureRefresherSpecCommon
   def expected_table_counts
     {
       :ext_management_system             => 2,
-      :flavor                            => 166,
+      :flavor                            => 192,
       :availability_zone                 => 1,
       :vm_or_template                    => 14,
       :vm                                => 13,

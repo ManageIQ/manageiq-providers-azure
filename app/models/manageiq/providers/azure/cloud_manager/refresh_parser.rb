@@ -25,6 +25,7 @@ module ManageIQ::Providers
         @sas               = storage_account_service(@config)
         @sds               = storage_disk_service(@config)
         @mis               = managed_image_service(@config)
+        @rps               = resource_provider_service(@config)
         @vmis              = virtual_machine_image_service(@config, :location => @ems.provider_region)
         @options           = options || {}
         @data              = {}
@@ -60,7 +61,7 @@ module ManageIQ::Providers
       private
 
       def get_managed_disks
-        @managed_disks ||= @sds.list_all
+        @managed_disks ||= @rps.supported?('disks') ? @sds.list_all : []
       end
 
       def get_unmanaged_storage
@@ -185,6 +186,7 @@ module ManageIQ::Providers
       end
 
       def get_managed_images
+        return [] unless @rps.supported?('images')
         images = collect_inventory(:managed_images) { gather_data_for_this_region(@mis) }
         process_collection(images, :vms) { |image| parse_managed_image(image) }
       end
