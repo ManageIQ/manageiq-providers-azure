@@ -1,6 +1,8 @@
 # TODO: Separate collection from parsing (perhaps collecting in parallel a la RHEVM)
 
 class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Providers::Azure::Inventory::Parser
+  include ManageIQ::Providers::Azure::RefreshHelperMethods
+
   def parse
     log_header = "Collecting data for EMS : [#{collector.manager.name}] id: [#{collector.manager.id}]"
 
@@ -445,12 +447,6 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
     else
       resource.properties.status_message.to_s
     end
-  end
-
-  def build_image_name(image)
-    # Strip the .vhd and Azure GUID extension, but retain path and base name.
-    path = File.join(File.dirname(image.name), File.basename(File.basename(image.name, '.*'), '.*'))
-    Pathname.new(path).cleanpath.to_s
   end
 
   def build_image_description(image)
