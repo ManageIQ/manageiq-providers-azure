@@ -9,6 +9,14 @@ module ManageIQ
           :name        => "australiaeast",
           :description => _("Australia East"),
         },
+        "australiacentral"   => {
+          :name        => "australiacentral",
+          :description => _("Australia Central"),
+        },
+        "australiacentral2"  => {
+          :name        => "australiacentral2",
+          :description => _("Australia Central 2"),
+        },
         "australiasoutheast" => {
           :name        => "australiasoutheast",
           :description => _("Australia Southeast"),
@@ -44,6 +52,14 @@ module ManageIQ
         "eastus2"            => {
           :name        => "eastus2",
           :description => _("East US 2"),
+        },
+        "francecentral"      => {
+          :name        => "francecentral",
+          :description => _("France Central"),
+        },
+        "francesouth"        => {
+          :name        => "francesouth",
+          :description => _("France South"),
         },
         "germanycentral"     => {
           :name        => "germanycentral",
@@ -83,7 +99,7 @@ module ManageIQ
         },
         "southeastasia"      => {
           :name        => "southeastasia",
-          :description => _("South East Asia"),
+          :description => _("Southeast Asia"),
         },
         "southindia"         => {
           :name        => "southindia",
