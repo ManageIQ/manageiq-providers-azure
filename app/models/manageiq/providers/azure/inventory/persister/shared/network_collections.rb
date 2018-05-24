@@ -1,19 +1,6 @@
 module ManageIQ::Providers::Azure::Inventory::Persister::Shared::NetworkCollections
   extend ActiveSupport::Concern
 
-  # Builder class for Network
-  # TODO: move to core
-  def network
-    ::ManagerRefresh::InventoryCollection::Builder::NetworkManager
-  end
-
-  # TODO: extract parent (this way won't work)
-  # def shared_options
-  #   options = super
-  #   options[:parent] = manager.network_manager if targeted?
-  #   options
-  # end
-
   def initialize_network_inventory_collections
     %i(cloud_networks
        security_groups

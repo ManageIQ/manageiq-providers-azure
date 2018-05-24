@@ -1,12 +1,6 @@
 module ManageIQ::Providers::Azure::Inventory::Persister::Shared::CloudCollections
   extend ActiveSupport::Concern
 
-  # Builder class for Cloud
-  # TODO (mslemr) shared with amazon (maybe with all providers)
-  def cloud
-    ::ManagerRefresh::InventoryCollection::Builder::CloudManager
-  end
-
   # TODO: almost same as amazon
   def initialize_cloud_inventory_collections
     %i(vms
