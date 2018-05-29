@@ -7,9 +7,9 @@ describe ManageIQ::Providers::Azure::Regions do
     # You can get these by running Azure::Armrest::ArmrestService#list_locations
     def azure_regions
       %w(
-        australiaeast australiasoutheast brazilsouth canadacentral canadaeast
-        centralindia centralus eastasia eastus eastus2
-        germanycentral germanynortheast japaneast japanwest koreacentral
+        australiacentral australiacentral2 australiaeast australiasoutheast brazilsouth
+        canadacentral canadaeast centralindia centralus eastasia eastus eastus2
+        francecentral francesouth germanycentral germanynortheast japaneast japanwest koreacentral
         koreasouth northcentralus northeurope southcentralus southeastasia
         southindia uksouth ukwest usgovarizona usgoviowa usgovtexas usgovvirginia
         westcentralus westeurope westindia westus westus2
