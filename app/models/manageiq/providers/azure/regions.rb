@@ -65,9 +65,17 @@ module ManageIQ
           :name        => "germanycentral",
           :description => _("Germany Central"),
         },
+        "germanynorth"       => {
+          :name        => "germanynorth",
+          :description => _("Germany North"),
+        },
         "germanynortheast"   => {
           :name        => "germanynortheast",
           :description => _("Germany Northeast"),
+        },
+        "germanywestcentral" => {
+          :name        => "germanywestcentral",
+          :description => _("Germany West Central"),
         },
         "japaneast"          => {
           :name        => "japaneast",
