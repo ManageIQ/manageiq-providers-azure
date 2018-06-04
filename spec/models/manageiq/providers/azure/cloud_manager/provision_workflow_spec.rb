@@ -205,6 +205,12 @@ describe ManageIQ::Providers::Azure::CloudManager::ProvisionWorkflow do
     end
   end
 
+  context "#supports_sysprep?" do
+    it "returns the expected boolean value" do
+      expect(workflow.supports_sysprep?).to eql(true)
+    end
+  end
+
   describe "#make_request" do
     let(:alt_user) { FactoryGirl.create(:user_with_group) }
     it "creates and update a request" do
