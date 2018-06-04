@@ -36,6 +36,10 @@ class ManageIQ::Providers::Azure::CloudManager::ProvisionWorkflow < ManageIQ::Pr
     end
   end
 
+  def supports_sysprep?
+    true
+  end
+
   def self.provider_model
     ManageIQ::Providers::Azure::CloudManager
   end
