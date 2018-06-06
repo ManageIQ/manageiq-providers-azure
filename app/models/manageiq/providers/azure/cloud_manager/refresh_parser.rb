@@ -662,11 +662,6 @@ module ManageIQ::Providers
         return uid, new_result
       end
 
-      def build_image_name(image)
-        # Strip the .vhd and Azure GUID extension, but retain path and base name.
-        File.join(File.dirname(image.name), File.basename(File.basename(image.name, '.*'), '.*'))
-      end
-
       def build_image_description(image)
         # Description is a concatenation of resource group and storage account
         "#{image.storage_account.resource_group}/#{image.storage_account.name}"

@@ -34,6 +34,13 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
     MiqProcess.processInfo[:proportional_set_size].to_f / 1.megabyte
   end
 
+  # Strip the .vhd and Azure GUID extension, but retain path and base name.
+  #
+  def build_image_name(image)
+    path = File.join(File.dirname(image.name), File.basename(File.basename(image.name, '.*'), '.*'))
+    Pathname.new(path).cleanpath.to_s
+  end
+
   def process_collection(collection, key, store_in_data = true)
     @data[key] ||= [] if store_in_data
 
