@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
+## Gaprindashvili-3 - Released 2018-05-15
+
+### Added
+- Azure graph refresh targeted [(#217)](https://github.com/ManageIQ/manageiq-providers-azure/pull/217)
+- Azure graph refresh event target parser [(#219)](https://github.com/ManageIQ/manageiq-providers-azure/pull/219)
+- Optimize API collections [(#220)](https://github.com/ManageIQ/manageiq-providers-azure/pull/220)
+- Add router collection to refresh parser [(#224)](https://github.com/ManageIQ/manageiq-providers-azure/pull/224)
+
+### Fixed
+- Treat securestring case insentive [(#206)](https://github.com/ManageIQ/manageiq-providers-azure/pull/206)
+- Allow users to choose public or private IP when provisioning multiple VMs [(#210)](https://github.com/ManageIQ/manageiq-providers-azure/pull/210)
+- Consolidate Azure refresh workers [(#216)](https://github.com/ManageIQ/manageiq-providers-azure/pull/216)
+- Fix case-sensitive events ems_ref parsing [(#225)](https://github.com/ManageIQ/manageiq-providers-azure/pull/225)
+- Only create new Public IP if one cannot be found [(#195)](https://github.com/ManageIQ/manageiq-providers-azure/pull/195)
+
 ## Unreleased as of Sprint 84 ending 2018-04-23
 
 ### Added
@@ -13,19 +28,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 ## Unreleased as of Sprint 82 ending 2018-03-26
 
 ### Added
-- Optimize API collections [(#220)](https://github.com/ManageIQ/manageiq-providers-azure/pull/220)
 - Azure events targeted [(#222)](https://github.com/ManageIQ/manageiq-providers-azure/pull/222)
-
-### Fixed
-- Fix case-sensitive events ems_ref parsing [(#225)](https://github.com/ManageIQ/manageiq-providers-azure/pull/225)
-
-## Unreleased as of Sprint 81 ending 2018-03-12
-
-### Added
-- Azure graph refresh event target parser [(#219)](https://github.com/ManageIQ/manageiq-providers-azure/pull/219)
-
-### Fixed
-- Consolidate Azure refresh workers [(#216)](https://github.com/ManageIQ/manageiq-providers-azure/pull/216)
 
 ## Gaprindashvili-2 released 2018-03-06
 
@@ -36,14 +39,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 ### Added
 - Added azure_tenant_id to API_ALLOWED_ATTRIBUTES [(#198)](https://github.com/ManageIQ/manageiq-providers-azure/pull/198)
-
-### Fixed
-- Allow users to choose public or private IP when provisioning multiple VMs [(#210)](https://github.com/ManageIQ/manageiq-providers-azure/pull/210)
-
-## Unreleased as of Sprint 79 ending 2018-02-12
-
-### Fixed
-- Treat securestring case insentive [(#206)](https://github.com/ManageIQ/manageiq-providers-azure/pull/206)
 
 ## Gaprindashvili-1 - Released 2018-01-31
 
@@ -98,9 +93,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 ### Added
 - Migrate model display names from locale/en.yml to plugin [(#200)](https://github.com/ManageIQ/manageiq-providers-azure/pull/200)
 - Update api-version string settings [(#186)](https://github.com/ManageIQ/manageiq-providers-azure/pull/186)
-
-### Fixed
-- Only create new Public IP if one cannot be found [(#195)](https://github.com/ManageIQ/manageiq-providers-azure/pull/195)
 
 ## Unreleased as of Sprint 75 ending 2017-12-11
 
