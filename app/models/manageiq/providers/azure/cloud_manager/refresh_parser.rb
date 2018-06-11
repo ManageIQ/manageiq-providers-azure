@@ -239,8 +239,8 @@ module ManageIQ::Providers
           :cpus           => s.number_of_cores, # where are the virtual CPUs??
           :cpu_cores      => s.number_of_cores,
           :memory         => s.memory_in_mb.megabytes,
-          :root_disk_size => s.os_disk_size_in_mb * 1024,
-          :swap_disk_size => s.resource_disk_size_in_mb * 1024
+          :root_disk_size => s.os_disk_size_in_mb.megabytes,
+          :swap_disk_size => s.resource_disk_size_in_mb.megabytes
         }
         return uid, new_result
       end
