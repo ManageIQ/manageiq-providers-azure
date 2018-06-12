@@ -367,8 +367,8 @@ module AzureRefresherSpecCommon
       :supports_hvm             => nil,
       :supports_paravirtual     => nil,
       :block_storage_based_only => nil,
-      :root_disk_size           => 1023.megabytes,
-      :swap_disk_size           => 20.megabytes
+      :root_disk_size           => 1_047_552.megabytes,
+      :swap_disk_size           => 20_480.megabytes
     )
 
     expect(@flavor.ext_management_system).to eq(@ems)
@@ -472,7 +472,7 @@ module AzureRefresherSpecCommon
       :annotation          => nil,
       :cpu_sockets         => 1,
       :memory_mb           => 768,
-      :disk_capacity       => 1043.megabyte,
+      :disk_capacity       => 1_047_552.megabyte + 20_480.megabyte,
       :bitness             => nil,
       :virtualization_type => nil
     )
@@ -623,7 +623,7 @@ module AzureRefresherSpecCommon
       :annotation         => nil,
       :cpu_sockets        => 1,
       :memory_mb          => 768,
-      :disk_capacity      => 1043.megabytes,
+      :disk_capacity      => 1_047_552.megabytes + 20_480.megabytes,
       :bitness            => nil
     )
 

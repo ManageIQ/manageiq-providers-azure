@@ -42,8 +42,8 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
         :cpus           => flavor.number_of_cores, # where are the virtual CPUs??
         :cpu_cores      => flavor.number_of_cores,
         :memory         => flavor.memory_in_mb.megabytes,
-        :root_disk_size => flavor.os_disk_size_in_mb * 1024,
-        :swap_disk_size => flavor.resource_disk_size_in_mb * 1024,
+        :root_disk_size => flavor.os_disk_size_in_mb.megabytes,
+        :swap_disk_size => flavor.resource_disk_size_in_mb.megabytes,
         :enabled        => true
       )
     end
