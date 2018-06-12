@@ -1,4 +1,4 @@
-module ManageIQ::Providers::Azure::Inventory::Persister::Shared::CloudCollections
+module ManageIQ::Providers::Azure::Inventory::Persister::Definitions::CloudCollections
   extend ActiveSupport::Concern
 
   # TODO: almost same as amazon

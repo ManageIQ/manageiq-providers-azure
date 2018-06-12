@@ -34,14 +34,19 @@ class ManageIQ::Providers::Azure::Inventory::Persister < ManagerRefresh::Invento
 
   protected
 
+  def parent
+    manager.presence
+  end
+
   def strategy
     nil
   end
 
   def shared_options
     {
+      :parent   => parent,
       :strategy => strategy,
-      :targeted => targeted?,
+      :targeted => targeted?
     }
   end
 end

@@ -1,6 +1,6 @@
 class ManageIQ::Providers::Azure::Inventory::Persister::NetworkManager < ManageIQ::Providers::Azure::Inventory::Persister
-  include ManageIQ::Providers::Azure::Inventory::Persister::Shared::CloudCollections
-  include ManageIQ::Providers::Azure::Inventory::Persister::Shared::NetworkCollections
+  include ManageIQ::Providers::Azure::Inventory::Persister::Definitions::CloudCollections
+  include ManageIQ::Providers::Azure::Inventory::Persister::Definitions::NetworkCollections
 
   def initialize_inventory_collections
     initialize_network_inventory_collections

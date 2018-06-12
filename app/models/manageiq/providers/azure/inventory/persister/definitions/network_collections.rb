@@ -1,4 +1,4 @@
-module ManageIQ::Providers::Azure::Inventory::Persister::Shared::NetworkCollections
+module ManageIQ::Providers::Azure::Inventory::Persister::Definitions::NetworkCollections
   extend ActiveSupport::Concern
 
   def initialize_network_inventory_collections
