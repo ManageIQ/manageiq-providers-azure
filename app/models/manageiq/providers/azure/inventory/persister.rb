@@ -9,7 +9,7 @@ class ManageIQ::Providers::Azure::Inventory::Persister < ManagerRefresh::Invento
 
   # @param manager [ManageIQ::Providers::BaseManager] A manager object
   # @param target [Object] A refresh Target object
-  # @param target [ManagerRefresh::Inventory::Collector] A Collector object
+  # @param collector [ManagerRefresh::Inventory::Collector] A Collector object
   def initialize(manager, target = nil, collector = nil)
     @manager   = manager
     @target    = target
@@ -34,16 +34,8 @@ class ManageIQ::Providers::Azure::Inventory::Persister < ManagerRefresh::Invento
 
   protected
 
-  def cloud
-    ManageIQ::Providers::Azure::InventoryCollectionDefault::CloudManager
-  end
-
-  def network
-    ManageIQ::Providers::Azure::InventoryCollectionDefault::NetworkManager
-  end
-
-  def targeted
-    false
+  def parent
+    manager.presence
   end
 
   def strategy
@@ -51,11 +43,10 @@ class ManageIQ::Providers::Azure::Inventory::Persister < ManagerRefresh::Invento
   end
 
   def shared_options
-    settings_options = options[:inventory_collections].try(:to_hash) || {}
-
-    settings_options.merge(
+    {
+      :parent   => parent,
       :strategy => strategy,
-      :targeted => targeted,
-    )
+      :targeted => targeted?
+    }
   end
 end
