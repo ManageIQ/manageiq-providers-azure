@@ -49,9 +49,9 @@ module ManageIQ::Providers
         get_availability_zones
         get_stacks
         get_stack_templates
-        get_instances
-        get_managed_images
         get_images
+        get_managed_images
+        get_instances
         get_market_images if @options.get_market_images
         _log.info("#{log_header}...Complete")
 
@@ -287,6 +287,7 @@ module ManageIQ::Providers
           :orchestration_stack => @data_index.fetch_path(:orchestration_stacks, @resource_to_stack[uid]),
           :availability_zone   => @data_index.fetch_path(:availability_zones, 'default'),
           :resource_group      => @data_index.fetch_path(:resource_groups, rg_ems_ref),
+          :parent_vm           => determine_instance_parent(instance),
           :labels              => labels,
           :tags                => map_labels('VmAzure', labels),
           :hardware            => {
@@ -689,6 +690,16 @@ module ManageIQ::Providers
             :section => 'labels',
           }
         end
+      end
+
+      def determine_instance_parent(instance)
+        if instance.managed_disk?
+          parent_ref = instance.properties.storage_profile.try(:image_reference).try(:id)
+        else
+          parent_ref = instance.properties.storage_profile.try(:os_disk).try(:image).try(:uri)
+        end
+
+        parent_ref ? @data_index.fetch_path(:vms, parent_ref) : nil
       end
 
       delegate :map_labels, :to => :@tag_mapper
