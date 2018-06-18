@@ -633,6 +633,7 @@ module ManageIQ::Providers
             :raw_power_state    => 'never',
             :template           => true,
             :publicly_available => true,
+            :version            => image.version,
             :hardware           => {
               :bitness  => 64,
               :guest_os => 'unknown'
@@ -690,16 +691,6 @@ module ManageIQ::Providers
             :section => 'labels',
           }
         end
-      end
-
-      def determine_instance_parent(instance)
-        if instance.managed_disk?
-          parent_ref = instance.properties.storage_profile.try(:image_reference).try(:id)
-        else
-          parent_ref = instance.properties.storage_profile.try(:os_disk).try(:image).try(:uri)
-        end
-
-        parent_ref ? @data_index.fetch_path(:vms, parent_ref) : nil
       end
 
       delegate :map_labels, :to => :@tag_mapper

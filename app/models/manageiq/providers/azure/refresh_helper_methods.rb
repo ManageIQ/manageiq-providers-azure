@@ -41,6 +41,16 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
     Pathname.new(path).cleanpath.to_s
   end
 
+  def determine_instance_parent(instance)
+    if instance.managed_disk?
+      parent_ref = instance.properties.storage_profile.try(:image_reference).try(:id)
+    else
+      parent_ref = instance.properties.storage_profile.try(:os_disk).try(:image).try(:uri)
+    end
+
+    parent_ref ? @data_index.fetch_path(:vms, parent_ref) : nil
+  end
+
   def process_collection(collection, key, store_in_data = true)
     @data[key] ||= [] if store_in_data
 
