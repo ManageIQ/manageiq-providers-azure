@@ -633,6 +633,20 @@ module AzureRefresherSpecCommon
     expect(v.hardware.networks.size).to eql(2)
   end
 
+  def assert_specific_parent
+    template_resource_id = "https://miqazuretest14047.blob.core.windows.net/system/"\
+                               "Microsoft.Compute/Images/miq-test-container/"\
+                               "test-win2k12-img-osDisk.e17a95b0-f4fb-4196-93c5-0c8be7d5c536.vhd"
+
+    vm_resource_id = "2586c64b-38b4-4527-a140-012d49dfc02c/miq-azure-test4/"\
+                        "microsoft.compute/virtualmachines/dbergerprov1"
+
+    vm = ManageIQ::Providers::Azure::CloudManager::Vm.find_by(:ems_ref => vm_resource_id)
+    template = ManageIQ::Providers::Azure::CloudManager::Template.find_by(:ems_ref => template_resource_id)
+
+    expect(vm.parent).to eql(template)
+  end
+
   def assert_specific_template
     template_resource_id = "https://miqazuretest14047.blob.core.windows.net/system/"\
                                "Microsoft.Compute/Images/miq-test-container/"\

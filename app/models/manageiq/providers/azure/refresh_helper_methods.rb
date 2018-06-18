@@ -41,6 +41,9 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
     Pathname.new(path).cleanpath.to_s
   end
 
+  # Return the parent image for the given instance, if possible. Note that we
+  # cannot currently find the parent if it is a marketplace image.
+  #
   def determine_instance_parent(instance)
     if instance.managed_disk?
       parent_ref = instance.properties.storage_profile.try(:image_reference).try(:id)
