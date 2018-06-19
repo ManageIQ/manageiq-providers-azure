@@ -287,7 +287,7 @@ module ManageIQ::Providers
           :orchestration_stack => @data_index.fetch_path(:orchestration_stacks, @resource_to_stack[uid]),
           :availability_zone   => @data_index.fetch_path(:availability_zones, 'default'),
           :resource_group      => @data_index.fetch_path(:resource_groups, rg_ems_ref),
-          :parent_vm           => determine_instance_parent(instance),
+          :parent_vm           => @data_index.fetch_path(:vms, parent_ems_ref(instance)),
           :labels              => labels,
           :tags                => map_labels('VmAzure', labels),
           :hardware            => {
