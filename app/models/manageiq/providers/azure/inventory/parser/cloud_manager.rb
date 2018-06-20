@@ -71,6 +71,7 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
       series = persister.flavors.find(instance.properties.hardware_profile.vm_size.downcase)
 
       rg_ems_ref = collector.get_resource_group_ems_ref(instance)
+      parent_ref = collector.parent_ems_ref(instance)
 
       # We want to archive VMs with no status
       next if (status = collector.power_status(instance)).blank?
@@ -83,6 +84,7 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
         :raw_power_state     => status,
         :flavor              => series,
         :location            => instance.location,
+        :parent              => persister.vms.lazy_find(parent_ref),
         # TODO(lsmola) for release > g, we can use secondary indexes for this as
         :orchestration_stack => persister.stack_resources_secondary_index[instance.id.downcase],
         :availability_zone   => persister.availability_zones.lazy_find('default'),
