@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
+## Unreleased as of Sprint 88 ending 2018-06-18
+
+### Added
+- Add display name for flavor [(#265)](https://github.com/ManageIQ/manageiq-providers-azure/pull/265)
+
+### Fixed
+- Fix root disk size swap disk size [(#264)](https://github.com/ManageIQ/manageiq-providers-azure/pull/264)
+- Handle providers that may not support managed images or disks [(#257)](https://github.com/ManageIQ/manageiq-providers-azure/pull/257)
+
 ## Gaprindashvili-3 - Released 2018-05-15
 
 ### Added
