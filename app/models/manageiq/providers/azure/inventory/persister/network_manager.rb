@@ -20,11 +20,5 @@ class ManageIQ::Providers::Azure::Inventory::Persister::NetworkManager < ManageI
         )
       end
     end
-
-    # TODO: Not in amazon
-    # add_orchestration_stacks(
-    #   :parent   => manager.parent_manager,
-    #   :strategy => :local_db_cache_all
-    # )
   end
 end
