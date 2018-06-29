@@ -43,14 +43,14 @@ module ManageIQ::Providers::Azure::ManagerMixin
       require 'azure-armrest'
       yield
     rescue ArgumentError => err
-      raise MiqException::MiqInvalidCredentialsError, _("Incorrect credentials - #{err.message}")
+      raise MiqException::MiqInvalidCredentialsError, _("Incorrect credentials - %{error_message}") % {:error_message => err.message}
     rescue ::Azure::Armrest::UnauthorizedException, ::Azure::Armrest::BadRequestException
       raise MiqException::MiqInvalidCredentialsError, _("Incorrect credentials - check your Azure Client ID and Client Key")
     rescue MiqException::MiqInvalidCredentialsError
       raise # Raise before falling into catch-all block below
     rescue StandardError => err
       _log.error("Error Class=#{err.class.name}, Message=#{err.message}, Backtrace=#{err.backtrace}")
-      raise MiqException::MiqInvalidCredentialsError, _("Unexpected response returned from system: #{err.message}")
+      raise MiqException::MiqInvalidCredentialsError, _("Unexpected response returned from system: %{error_message}") % {:error_message => err.message}
     end
 
     def environment_for(region)
