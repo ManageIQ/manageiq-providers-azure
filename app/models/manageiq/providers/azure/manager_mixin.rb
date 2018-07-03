@@ -6,7 +6,8 @@ module ManageIQ::Providers::Azure::ManagerMixin
 
     client_id  = options[:user] || authentication_userid(options[:auth_type])
     client_key = options[:pass] || authentication_password(options[:auth_type])
-    self.class.raw_connect(client_id, client_key, azure_tenant_id, subscription, options[:proxy_uri] || http_proxy_uri, provider_region)
+
+    self.class.raw_connect(client_id, client_key, azure_tenant_id, subscription, options[:proxy_uri] || http_proxy_uri, provider_region, default_endpoint)
   end
 
   def verify_credentials(_auth_type = nil, options = {})
@@ -14,7 +15,7 @@ module ManageIQ::Providers::Azure::ManagerMixin
   end
 
   module ClassMethods
-    def raw_connect(client_id, client_key, azure_tenant_id, subscription, proxy_uri = nil, provider_region = nil)
+    def raw_connect(client_id, client_key, azure_tenant_id, subscription, proxy_uri = nil, provider_region = nil, endpoint = nil)
       require 'azure-armrest'
 
       if subscription.blank?
@@ -23,6 +24,18 @@ module ManageIQ::Providers::Azure::ManagerMixin
 
       if provider_region.blank?
         $azure_log.warn("No region selected. Validating credentials against public environment.")
+      end
+
+      endpoint_url = endpoint.respond_to?(:url) ? endpoint.url : endpoint.to_s
+
+      if endpoint_url.present?
+        begin
+          environment = ::Azure::Armrest::Environment.discover(:url => endpoint_url, :proxy => proxy_uri)
+        rescue SocketError
+          raise MiqException::MiqUnreachableError, _("Invalid endpoint")
+        end
+      else
+        environment = environment_for(provider_region)
       end
 
       ::Azure::Armrest::Configuration.log = $azure_log
@@ -34,7 +47,7 @@ module ManageIQ::Providers::Azure::ManagerMixin
           :tenant_id       => azure_tenant_id,
           :subscription_id => subscription,
           :proxy           => proxy_uri,
-          :environment     => environment_for(provider_region)
+          :environment     => environment
         )
       end
     end
