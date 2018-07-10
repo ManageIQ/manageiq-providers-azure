@@ -116,56 +116,78 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
   end
 
   # Create the necessary service classes and lock down their api-version
-  # strings using the config/settings.yml from the provider repo. The
-  # "to_s" call for the version strings puts the date in the format
-  # that we need, i.e. "YYYY-MM-DD".
+  # strings using the config/settings.yml from the provider repo.
+
+  def cached_resource_provider_service(config)
+    @cached_resource_provider_service ||= resource_provider_service(config)
+  end
+
+  # If the api-version string set in settings.yml is invalid, a warning
+  # will be issued, and it will default to the most recent valid string.
   #
+  def valid_api_version(config, service, name)
+    valid_api_versions = cached_resource_provider_service(config).list_api_versions(service.provider)
+    config_api_version = Settings.ems.ems_azure.api_versions[name]
+
+    if valid_api_versions.include?(config_api_version)
+      config_api_version
+    else
+      valid_version_string = valid_api_versions.first
+
+      message = "Invalid api-version setting of '#{config_api_version}' for " \
+        "#{service.provider}/#{service.service_name} for EMS #{@ems.name}; " \
+        "using '#{valid_version_string}' instead."
+
+      _log.warn(message)
+      valid_version_string
+    end
+  end
 
   def availability_set_service(config)
     ::Azure::Armrest::AvailabilitySetService.new(config).tap do |service|
-      service.api_version = Settings.ems.ems_azure.api_versions.availability_set
+      service.api_version = valid_api_version(config, service, 'availability_set')
     end
   end
 
   def ip_address_service(config)
     ::Azure::Armrest::Network::IpAddressService.new(config).tap do |service|
-      service.api_version = Settings.ems.ems_azure.api_versions.ip_address
+      service.api_version = valid_api_version(config, service, 'ip_address')
     end
   end
 
   def load_balancer_service(config)
     ::Azure::Armrest::Network::LoadBalancerService.new(config).tap do |service|
-      service.api_version = Settings.ems.ems_azure.api_versions.load_balancer
+      service.api_version = valid_api_version(config, service, 'load_balancer')
     end
   end
 
   def managed_image_service(config)
     ::Azure::Armrest::Storage::ImageService.new(config).tap do |service|
-      service.api_version = Settings.ems.ems_azure.api_versions.managed_image
+      service.api_version = valid_api_version(config, service, 'managed_image')
     end
   end
 
   def virtual_machine_image_service(config, options = {})
     ::Azure::Armrest::VirtualMachineImageService.new(config, options).tap do |service|
-      service.api_version = Settings.ems.ems_azure.api_versions.managed_image
+      service.api_version = valid_api_version(config, service, 'managed_image')
     end
   end
 
   def network_interface_service(config)
     ::Azure::Armrest::Network::NetworkInterfaceService.new(config).tap do |service|
-      service.api_version = Settings.ems.ems_azure.api_versions.network_interface
+      service.api_version = valid_api_version(config, service, 'network_interface')
     end
   end
 
   def network_security_group_service(config)
     ::Azure::Armrest::Network::NetworkSecurityGroupService.new(config).tap do |service|
-      service.api_version = Settings.ems.ems_azure.api_versions.network_security_group
+      service.api_version = valid_api_version(config, service, 'network_security_group')
     end
   end
 
   def resource_group_service(config)
     ::Azure::Armrest::ResourceGroupService.new(config).tap do |service|
-      service.api_version = Settings.ems.ems_azure.api_versions.resource_group
+      service.api_version = valid_api_version(config, service, 'resource_group')
     end
   end
 
@@ -177,37 +199,37 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
 
   def route_table_service(config)
     ::Azure::Armrest::Network::RouteTableService.new(config).tap do |service|
-      service.api_version = Settings.ems.ems_azure.api_versions.route_table
+      service.api_version = valid_api_version(config, service, 'route_table')
     end
   end
 
   def template_deployment_service(config)
     ::Azure::Armrest::TemplateDeploymentService.new(config).tap do |service|
-      service.api_version = Settings.ems.ems_azure.api_versions.template_deployment
+      service.api_version = valid_api_version(config, service, 'template_deployment')
     end
   end
 
   def storage_disk_service(config)
     ::Azure::Armrest::Storage::DiskService.new(config).tap do |service|
-      service.api_version = Settings.ems.ems_azure.api_versions.storage_disk
+      service.api_version = valid_api_version(config, service, 'storage_disk')
     end
   end
 
   def storage_account_service(config)
     ::Azure::Armrest::StorageAccountService.new(config).tap do |service|
-      service.api_version = Settings.ems.ems_azure.api_versions.storage_account
+      service.api_version = valid_api_version(config, service, 'storage_account')
     end
   end
 
   def virtual_machine_service(config)
     ::Azure::Armrest::VirtualMachineService.new(config).tap do |service|
-      service.api_version = Settings.ems.ems_azure.api_versions.virtual_machine
+      service.api_version = valid_api_version(config, service, 'virtual_machine')
     end
   end
 
   def virtual_network_service(config)
     ::Azure::Armrest::Network::VirtualNetworkService.new(config).tap do |service|
-      service.api_version = Settings.ems.ems_azure.api_versions.virtual_network
+      service.api_version = valid_api_version(config, service, 'virtual_network')
     end
   end
 end
