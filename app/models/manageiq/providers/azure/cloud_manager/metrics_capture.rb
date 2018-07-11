@@ -199,7 +199,7 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
     ems = target.ext_management_system
 
     unless ems.insights?
-      _log.info("Metrics not supported for region: " + _("[#{ems.provider_region}]"))
+      _log.info("Metrics not supported for region: " + "[#{ems.provider_region}]")
       return []
     end
 
