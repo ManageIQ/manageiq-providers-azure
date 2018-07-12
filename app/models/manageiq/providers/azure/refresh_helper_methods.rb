@@ -126,7 +126,7 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
   # will be issued, and it will default to the most recent valid string.
   #
   def valid_api_version(config, service, name)
-    valid_api_versions = cached_resource_provider_service(config).list_api_versions(service.provider)
+    valid_api_versions = cached_resource_provider_service(config).list_api_versions(service.provider, service.service_name)
     config_api_version = Settings.ems.ems_azure.api_versions[name]
 
     if valid_api_versions.include?(config_api_version)
