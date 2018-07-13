@@ -350,13 +350,10 @@ module AzureRefresherSpecCommon
   end
 
   def assert_specific_flavor
-    @flavor_not_found = ManageIQ::Providers::Azure::CloudManager::Flavor.where(:name => "Basic_A0").first
-    expect(@flavor_not_found).to eq(nil)
-
-    @flavor = ManageIQ::Providers::Azure::CloudManager::Flavor.where(:name => "basic_a0").first
+    @flavor = ManageIQ::Providers::Azure::CloudManager::Flavor.where(:ems_ref => "basic_a0").first
 
     expect(@flavor).to have_attributes(
-      :name                     => "basic_a0",
+      :name                     => "Basic_A0",
       :description              => nil,
       :enabled                  => true,
       :cpus                     => 1,
@@ -1084,16 +1081,16 @@ module AzureRefresherSpecCommon
   end
 
   def flavor_target
-    flavor_resource_name = "basic_a0"
+    flavor_resource_id = "basic_a0"
     ManagerRefresh::Target.new(:manager     => @ems,
                                :association => :flavors,
-                               :manager_ref => {:name => flavor_resource_name})
+                               :manager_ref => {:ems_ref => flavor_resource_id})
   end
 
   def non_existent_flavor_target
-    flavor_resource_name = "non_existent"
+    flavor_resource_id = "non_existent"
     ManagerRefresh::Target.new(:manager     => @ems,
                                :association => :flavors,
-                               :manager_ref => {:name => flavor_resource_name})
+                               :manager_ref => {:ems_ref => flavor_resource_id})
   end
 end

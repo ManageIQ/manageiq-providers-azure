@@ -46,13 +46,13 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
   end
 
   def flavors
-    refs = name_references(:flavors)
+    refs = references(:flavors)
 
     return [] if refs.blank?
     set = Set.new(refs)
 
     collect_inventory_targeted(:series) { @vmm.series(@ems.provider_region) }.select do |flavor|
-      set.include?(flavor.name.downcase)
+      set.include?(flavor.name.downcase) # ems_ref is downcased flavor name
     end
   rescue ::Azure::Armrest::Exception => err
     _log.error("Error Class=#{err.class.name}, Message=#{err.message}")
@@ -521,7 +521,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
   def infer_related_vm_ems_refs_api!
     instances.each do |instance|
       # TODO(lsmola) add API scanning
-      target.add_target(:association => :flavors, :manager_ref => {:name => instance.properties.hardware_profile.vm_size.downcase})
+      target.add_target(:association => :flavors, :manager_ref => {:ems_ref => instance.properties.hardware_profile.vm_size.downcase})
       add_simple_target!(:availability_zones, 'default')
       add_simple_target!(:resource_groups, get_resource_group_ems_ref(instance))
       instance.properties.network_profile.network_interfaces.collect(&:id).each do |network_port_ems_ref|

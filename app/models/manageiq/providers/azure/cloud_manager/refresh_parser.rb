@@ -230,18 +230,20 @@ module ManageIQ::Providers
         return uid, new_result
       end
 
-      def parse_series(s)
-        name = uid = s.name.downcase
+      def parse_series(series)
+        uid = series.name.downcase
+
         new_result = {
-          :type           => "ManageIQ::Providers::Azure::CloudManager::Flavor",
+          :type           => ManageIQ::Providers::Azure::CloudManager::Flavor.name,
           :ems_ref        => uid,
-          :name           => name,
-          :cpus           => s.number_of_cores, # where are the virtual CPUs??
-          :cpu_cores      => s.number_of_cores,
-          :memory         => s.memory_in_mb.megabytes,
-          :root_disk_size => s.os_disk_size_in_mb.megabytes,
-          :swap_disk_size => s.resource_disk_size_in_mb.megabytes
+          :name           => series.name,
+          :cpus           => series.number_of_cores,
+          :cpu_cores      => series.number_of_cores,
+          :memory         => series.memory_in_mb.megabytes,
+          :root_disk_size => series.os_disk_size_in_mb.megabytes,
+          :swap_disk_size => series.resource_disk_size_in_mb.megabytes
         }
+
         return uid, new_result
       end
 
