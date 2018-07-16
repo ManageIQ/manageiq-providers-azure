@@ -98,7 +98,7 @@ describe ManageIQ::Providers::Azure::CloudManager do
       end
       it "handles unknown error" do
         allow(Azure::Armrest::Configuration).to receive(:new).and_raise(StandardError)
-        expect { @e.verify_credentials }.to raise_error(MiqException::MiqInvalidCredentialsError, /Unexpected response returned*/)
+        expect { @e.verify_credentials }.to raise_error(StandardError, /Unexpected response returned*/)
       end
 
       it "handles incorrect password" do
