@@ -84,7 +84,7 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
         :raw_power_state     => status,
         :flavor              => series,
         :location            => instance.location,
-        :parent              => persister.miq_templates.lazy_find(parent_ref),
+        :genealogy_parent    => persister.miq_templates.lazy_find(parent_ref),
         # TODO(lsmola) for release > g, we can use secondary indexes for this as
         :orchestration_stack => persister.stack_resources_secondary_index[instance.id.downcase],
         :availability_zone   => persister.availability_zones.lazy_find('default'),
