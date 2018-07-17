@@ -41,6 +41,17 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
     Pathname.new(path).cleanpath.to_s
   end
 
+  # Return the parent image for the given instance, if possible. Note that we
+  # cannot currently find the parent if it is a marketplace image.
+  #
+  def parent_ems_ref(instance)
+    if instance.managed_disk?
+      instance.properties.storage_profile.try(:image_reference).try(:id)
+    else
+      instance.properties.storage_profile.try(:os_disk).try(:image).try(:uri)
+    end
+  end
+
   def process_collection(collection, key, store_in_data = true)
     @data[key] ||= [] if store_in_data
 

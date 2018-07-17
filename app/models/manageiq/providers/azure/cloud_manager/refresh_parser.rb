@@ -49,9 +49,9 @@ module ManageIQ::Providers
         get_availability_zones
         get_stacks
         get_stack_templates
-        get_instances
-        get_managed_images
         get_images
+        get_managed_images
+        get_instances
         get_market_images if @options.get_market_images
         _log.info("#{log_header}...Complete")
 
@@ -289,6 +289,7 @@ module ManageIQ::Providers
           :orchestration_stack => @data_index.fetch_path(:orchestration_stacks, @resource_to_stack[uid]),
           :availability_zone   => @data_index.fetch_path(:availability_zones, 'default'),
           :resource_group      => @data_index.fetch_path(:resource_groups, rg_ems_ref),
+          :parent_vm           => @data_index.fetch_path(:vms, parent_ems_ref(instance)),
           :labels              => labels,
           :tags                => map_labels('VmAzure', labels),
           :hardware            => {
@@ -634,6 +635,7 @@ module ManageIQ::Providers
             :raw_power_state    => 'never',
             :template           => true,
             :publicly_available => true,
+            :version            => image.version,
             :hardware           => {
               :bitness  => 64,
               :guest_os => 'unknown'
