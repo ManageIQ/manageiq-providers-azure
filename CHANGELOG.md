@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
+## Unreleased as of Sprint 90 ending 2018-07-16
+
+### Added
+- Update series name to work with Azure stack [(#272)](https://github.com/ManageIQ/manageiq-providers-azure/pull/272)
+- Persister: optimized InventoryCollection definitions [(#271)](https://github.com/ManageIQ/manageiq-providers-azure/pull/271)
+
+### Fixed
+- Don't use #{} inside gettext strings [(#273)](https://github.com/ManageIQ/manageiq-providers-azure/pull/273)
+
 ## Unreleased as of Sprint 88 ending 2018-06-18
 
 ### Added
