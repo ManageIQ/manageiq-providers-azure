@@ -10,9 +10,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 ### Added
 - Update series name to work with Azure stack [(#272)](https://github.com/ManageIQ/manageiq-providers-azure/pull/272)
 - Persister: optimized InventoryCollection definitions [(#271)](https://github.com/ManageIQ/manageiq-providers-azure/pull/271)
+- Set parent for VM's where possible [(#267)](https://github.com/ManageIQ/manageiq-providers-azure/pull/267)
 
 ### Fixed
 - Don't use #{} inside gettext strings [(#273)](https://github.com/ManageIQ/manageiq-providers-azure/pull/273)
+- Default to StandardError if a connection cannot be made [(#278)](https://github.com/ManageIQ/manageiq-providers-azure/pull/278)
 
 ## Unreleased as of Sprint 88 ending 2018-06-18
 
