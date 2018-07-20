@@ -22,17 +22,21 @@ describe ManageIQ::Providers::Azure::RefreshHelperMethods do
       allow(@ems_azure.cached_resource_provider_service(configuration)) { resource_provider_service }
       allow(virtual_machine_service).to receive(:service_name).and_return('virtualMachines')
       allow(virtual_machine_service).to receive(:provider).and_return('Microsoft.Compute')
+      @valid_list = ['2018-06-01', '2018-04-01', '2017-12-01', '2017-03-30']
     end
 
     it "returns the settings value if valid" do
-      valid_list = ['2018-06-01', '2018-04-01', '2017-12-01', '2017-03-30']
       allow(@ems_azure.cached_resource_provider_service(configuration)).to receive(:supported?).and_return(true)
-      allow(@ems_azure.cached_resource_provider_service(configuration)).to receive(:list_api_versions).and_return(valid_list)
+      allow(@ems_azure.cached_resource_provider_service(configuration)).to receive(:list_api_versions).and_return(@valid_list)
       expect(@ems_azure.valid_api_version(configuration, virtual_machine_service, :virtual_machine)).to eql('2017-12-01')
     end
 
-    #it "returns a valid value if the settings value is invalid" do
-    #end
+    it "returns a valid value if the settings value is invalid" do
+      allow(Settings.ems.ems_azure.api_versions).to receive(:[]).with(:virtual_machine).and_return('2001-01-01')
+      allow(@ems_azure.cached_resource_provider_service(configuration)).to receive(:supported?).and_return(true)
+      allow(@ems_azure.cached_resource_provider_service(configuration)).to receive(:list_api_versions).and_return(@valid_list)
+      expect(@ems_azure.valid_api_version(configuration, virtual_machine_service, :virtual_machine)).to eql('2018-06-01')
+    end
 
     #it "returns the settings value if the service is unsupported" do
     #end
