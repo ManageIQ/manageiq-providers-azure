@@ -32,14 +32,17 @@ describe ManageIQ::Providers::Azure::RefreshHelperMethods do
     end
 
     it "returns a valid value if the settings value is invalid" do
-      allow(Settings.ems.ems_azure.api_versions).to receive(:[]).with(:virtual_machine).and_return('2001-01-01')
+      allow(Settings.ems.ems_azure.api_versions).to receive(:[]).with(:virtual_machine).and_return('2018-01-01')
       allow(@ems_azure.cached_resource_provider_service(configuration)).to receive(:supported?).and_return(true)
       allow(@ems_azure.cached_resource_provider_service(configuration)).to receive(:list_api_versions).and_return(@valid_list)
       expect(@ems_azure.valid_api_version(configuration, virtual_machine_service, :virtual_machine)).to eql('2018-06-01')
     end
 
-    #it "returns the settings value if the service is unsupported" do
-    #end
+    it "returns the settings value if the service is unsupported" do
+      allow(Settings.ems.ems_azure.api_versions).to receive(:[]).with(:virtual_machine).and_return('2018-01-01')
+      allow(@ems_azure.cached_resource_provider_service(configuration)).to receive(:supported?).and_return(false)
+      expect(@ems_azure.valid_api_version(configuration, virtual_machine_service, :virtual_machine)).to eql('2018-01-01')
+    end
   end
 
   context "get_resource_group_ems_ref" do
