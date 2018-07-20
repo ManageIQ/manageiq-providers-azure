@@ -76,6 +76,52 @@ describe ManageIQ::Providers::Azure::CloudManager do
         @e.connect
       end
 
+      it "with http_proxy_uri" do
+        proxy = 'http://www.foo.bar'
+        allow(@e).to receive(:http_proxy_uri).and_return(proxy)
+
+        expect(described_class).to receive(:raw_connect) do |_id, _key, _tenant, _sub, http_proxy_uri|
+          expect(http_proxy_uri).to eq(proxy)
+        end
+
+        @e.connect
+      end
+
+      it "with provider_region" do
+        expect(described_class).to receive(:raw_connect) do |_id, _key, _tenant, _sub, _proxy, provider_region|
+          expect(provider_region).to eq("westus2")
+        end
+
+        @e.provider_region = "westus2"
+        @e.connect
+      end
+
+      it "with endpoint" do
+        endpoint = Endpoint.new(:url => 'http://www.foo.bar', :hostname => 'www.foo.bar', :path => '/')
+        allow(@e).to receive(:default_endpoint).and_return(endpoint)
+
+        expect(described_class).to receive(:raw_connect) do |_id, _key, _tenant, _sub, _proxy, _region, default_endpoint|
+          expect(default_endpoint.url).to eq('http://www.foo.bar')
+          expect(default_endpoint.hostname).to eq('www.foo.bar')
+          expect(default_endpoint.path).to eq('/')
+        end
+
+        @e.connect
+      end
+
+      it "with endpoint and path" do
+        endpoint = Endpoint.new(:url => 'http://www.foo.bar/some/path', :hostname => 'www.foo.bar', :path => '/some/path')
+        allow(@e).to receive(:default_endpoint).and_return(endpoint)
+
+        expect(described_class).to receive(:raw_connect) do |_id, _key, _tenant, _sub, _proxy, _region, default_endpoint|
+          expect(default_endpoint.url).to eq('http://www.foo.bar/some/path')
+          expect(default_endpoint.hostname).to eq('www.foo.bar')
+          expect(default_endpoint.path).to eq('/some/path')
+        end
+
+        @e.connect
+      end
+
       it "without subscription id" do
         expect(described_class).to receive(:raw_connect) do |clientid, clientkey, azure_tenant_id, subscription|
           expect(clientid).to eq("klmnopqrst")
@@ -108,6 +154,12 @@ describe ManageIQ::Providers::Azure::CloudManager do
       it "handles incorrect password" do
         allow(Azure::Armrest::Configuration).to receive(:new).and_raise(Azure::Armrest::UnauthorizedException.new(nil, nil, nil))
         expect { @e.verify_credentials }.to raise_error(MiqException::MiqInvalidCredentialsError, /Incorrect credentials*/)
+      end
+
+      it "handles invalid endpoint" do
+        allow(@e).to receive(:default_endpoint).and_return(Endpoint.new(:url => 'https://www.foo.bar', :path => '/'))
+        allow(Azure::Armrest::Environment).to receive(:discover).and_raise(SocketError)
+        expect { @e.verify_credentials }.to raise_error(MiqException::MiqUnreachableError, /Invalid endpoint*/)
       end
     end
   end
