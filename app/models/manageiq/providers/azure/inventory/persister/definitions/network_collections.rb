@@ -30,7 +30,7 @@ module ManageIQ::Providers::Azure::Inventory::Persister::Definitions::NetworkCol
 
   # TODO: Builder params
   def add_cloud_subnets
-    add_collection(network, :cloud_subnets, :builder_params => nil) do |builder|
+    add_collection(network, :cloud_subnets, :default_values => nil) do |builder|
       builder.add_properties(:parent_inventory_collections => %i(cloud_networks))
 
       builder.add_targeted_arel(
