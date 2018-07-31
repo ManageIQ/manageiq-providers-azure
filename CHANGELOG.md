@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
+## Unreleased as of Sprint 91 ending 2018-07-30
+
+### Added
+- Enable graph refresh by default [(#280)](https://github.com/ManageIQ/manageiq-providers-azure/pull/280)
+- Add support for custom endpoint [(#274)](https://github.com/ManageIQ/manageiq-providers-azure/pull/274)
+
 ## Unreleased as of Sprint 90 ending 2018-07-16
 
 ### Added
