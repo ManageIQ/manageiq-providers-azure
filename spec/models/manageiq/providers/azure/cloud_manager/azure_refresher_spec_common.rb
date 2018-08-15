@@ -86,6 +86,7 @@ module AzureRefresherSpecCommon
     @security_group = 'miq-nsg-eastus1'
     @rhel_east      = 'miq-vm-rhel2-mismatch'
     @rhel_public_ip = 'miq-nic-eastus3'
+    @unmanaged_disk = 'miq-vm-centos1-disk'
 
     #@vm_powered_off    = 'miqazure-centos1' # Make sure this is powered off if generating a new cassette.
     #@ip_address        = '52.224.165.15'  # This will change if you had to restart the @device_name.
@@ -515,11 +516,12 @@ module AzureRefresherSpecCommon
   end
 
   def assert_specific_disk
-    disk = Disk.where(:device_name => @device_name).first
+    uri  = "https://miqunmanagedeastus.blob.core.windows.net/vhds/#{@unmanaged_disk}.vhd"
+    disk = Disk.find_by(:device_name => @unmanaged_disk)
 
     expect(disk).to have_attributes(
-      :location => "https://miqazuretest18686.blob.core.windows.net/vhds/miq-test-rhel12016218112243.vhd",
-      :size     => 32_212_255_232 # 30gb, approx
+      :location => uri,
+      :size     => 32_212_254_720 # 30gb, approx
     )
   end
 

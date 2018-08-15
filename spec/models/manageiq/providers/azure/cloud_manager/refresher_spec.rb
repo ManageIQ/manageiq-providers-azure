@@ -108,7 +108,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
           assert_specific_az
           #assert_specific_cloud_network
           assert_specific_flavor
-          #assert_specific_disk
+          assert_specific_disk
           assert_specific_security_group
           #assert_specific_vm_powered_on
           #assert_specific_vm_powered_off
