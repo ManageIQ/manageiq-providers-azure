@@ -81,10 +81,11 @@ module AzureRefresherSpecCommon
 
     @ems = FactoryGirl.create(:ems_azure_with_vcr_authentication, :zone => zone, :provider_region => 'eastus')
 
-    #@resource_group    = 'miq-azure-test1'
-    #@managed_vm        = 'miqazure-linux-managed'
-    @ubuntu_east        = 'miq-vm-ubuntu1-eastus'
-    @security_group     = 'miq-nsg-eastus1'
+    @resource_group = 'miq-testrg-vms-eastus'
+    @rhel_east      = 'miq-vm-rhel2-mismatch'
+    @ubuntu_east    = 'miq-vm-ubuntu1-eastus'
+    @security_group = 'miq-nsg-eastus1'
+
     #@vm_powered_off    = 'miqazure-centos1' # Make sure this is powered off if generating a new cassette.
     #@ip_address        = '52.224.165.15'  # This will change if you had to restart the @device_name.
     #@mismatch_ip       = '13.92.63.10'    # This will change if you had to restart the 'miqmismatch1' VM.
@@ -165,7 +166,7 @@ module AzureRefresherSpecCommon
       :floating_ip                       => 13,
       :network_router                    => 1,
       :cloud_subnet                      => 6,
-      :resource_group                    => 4,
+      :resource_group                    => 8,
       :load_balancer                     => 3,
       :load_balancer_pool                => @refresh_settings[:inventory_object_refresh] ? 2 : 3,
       :load_balancer_pool_member         => 4,
@@ -536,19 +537,14 @@ module AzureRefresherSpecCommon
   end
 
   def assert_specific_resource_group
-    vm_managed   = Vm.find_by(:name => @managed_vm)
-    vm_unmanaged = Vm.find_by(:name => @device_name)
+    vm_same_region = Vm.find_by(:name => @ubuntu_east)
+    vm_diff_region = Vm.find_by(:name => @rhel_east)
 
-    # VM in eastus, resource group in westus
-    vm_mismatch  = Vm.find_by(:name => 'miqmismatch2')
+    group_same_region = ResourceGroup.find_by(:name => 'miq-testrg-vms-eastus')
+    group_diff_region = ResourceGroup.find_by(:name => 'miq-testrg-vms-westus')
 
-    managed_group = ResourceGroup.find_by(:name => 'miq-azure-test4')
-    unmanaged_group = ResourceGroup.find_by(:name => 'miq-azure-test1')
-    mismatch_group = ResourceGroup.find_by(:name => 'miq-azure-test3')
-
-    expect(vm_managed.resource_group).to eql(managed_group)
-    expect(vm_unmanaged.resource_group).to eql(unmanaged_group)
-    expect(vm_mismatch.resource_group).to eql(mismatch_group)
+    expect(vm_same_region.resource_group).to eql(group_same_region)
+    expect(vm_diff_region.resource_group).to eql(group_diff_region)
   end
 
   def assert_specific_vm_powered_off
