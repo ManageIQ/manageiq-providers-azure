@@ -111,7 +111,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
           assert_specific_disk
           assert_specific_security_group
           #assert_specific_vm_powered_on
-          #assert_specific_vm_powered_off
+          assert_specific_vm_powered_off
           #assert_specific_template
           #assert_specific_orchestration_template
           #assert_specific_orchestration_stack

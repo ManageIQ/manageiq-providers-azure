@@ -84,9 +84,10 @@ module AzureRefresherSpecCommon
     @vm_resource_group      = 'miq-testrg-vms-eastus'
     @network_resource_group = 'miq-testrg-networking-eastus'
     @ubuntu_east            = 'miq-vm-ubuntu1-eastus'
-    @security_group         = 'miq-nsg-eastus1'
+    @centos_east            = 'miq-vm-centos1-eastus'
     @rhel_east              = 'miq-vm-rhel2-mismatch'
-    @rhel_public_ip         = 'miq-nic-eastus3'
+    @security_group         = 'miq-nsg-eastus1'
+    @centos_public_ip       = 'miq-publicip-eastus2'
     @unmanaged_disk         = 'miq-vm-centos1-disk'
     @cloud_network          = 'miq-virtual-network-eastus'
 
@@ -555,49 +556,52 @@ module AzureRefresherSpecCommon
   end
 
   def assert_specific_vm_powered_off
-    vm_name = 'miqazure-centos1'
-
-    v = ManageIQ::Providers::Azure::CloudManager::Vm.where(
-      :name            => vm_name,
+    vm = ManageIQ::Providers::Azure::CloudManager::Vm.find_by(
+      :name            => @centos_east,
       :raw_power_state => 'VM deallocated'
-    ).first
+    )
 
-    az1           = ManageIQ::Providers::Azure::CloudManager::AvailabilityZone.first
-    floating_ip   = ManageIQ::Providers::Azure::NetworkManager::FloatingIp.where(:address => "miqazure-centos1").first
-    cloud_network = ManageIQ::Providers::Azure::NetworkManager::CloudNetwork.where(:name => "miq-azure-test1").first
-    cloud_subnet  = cloud_network.cloud_subnets.first
+    availability_zone = ManageIQ::Providers::Azure::CloudManager::AvailabilityZone.first
+    floating_ip       = ManageIQ::Providers::Azure::NetworkManager::FloatingIp.find_by(:address => @centos_public_ip)
+    cloud_network     = ManageIQ::Providers::Azure::NetworkManager::CloudNetwork.find_by(:name => @cloud_network)
+    cloud_subnet      = cloud_network.cloud_subnets.first
 
-    assert_specific_vm_powered_off_attributes(v)
+    assert_specific_vm_powered_off_attributes(vm)
 
-    expect(v.ext_management_system).to eql(@ems)
-    expect(v.availability_zone).to eql(az1)
-    expect(v.floating_ip).to eql(floating_ip)
-    expect(v.cloud_network).to eql(cloud_network)
-    expect(v.cloud_subnet).to eql(cloud_subnet)
-    expect(v.operating_system.product_name).to eql('CentOS 7.1')
-    expect(v.custom_attributes.size).to eql(1)
-    expect(v.snapshots.size).to eql(0)
+    expect(vm.ext_management_system).to eql(@ems)
+    expect(vm.availability_zone).to eql(availability_zone)
+    expect(vm.floating_ip).to eql(floating_ip)
+    expect(vm.cloud_network).to eql(cloud_network)
+    expect(vm.cloud_subnet).to eql(cloud_subnet)
+    expect(vm.operating_system.product_name).to eql('CentOS 7.3')
+    expect(vm.custom_attributes.size).to eql(3)
+    expect(vm.snapshots.size).to eql(0)
+
+    labels = {
+      'creator' => 'dberger',
+      'owner'   => 'cfme',
+      'specs'   => 'true'
+    }
 
     aggregate_failures do
-      expect(v.labels.pluck(:name, :value).to_h).to eq('Shutdown' => 'true')
-      expect(v.tags.pluck(:name)).to eq(%w(/managed/azure:vm:shutdown/true))
+      expect(vm.labels.pluck(:name, :value).to_h).to eq(labels)
+      #expect(vm.tags.pluck(:name)).to eq(%w(/managed/azure:vm:shutdown/true))
     end
 
-    assert_specific_vm_powered_off_hardware(v)
+    assert_specific_vm_powered_off_hardware(vm)
   end
 
-  def assert_specific_vm_powered_off_attributes(v)
-    name = 'miqazure-centos1'
-    vm_resource_id = "#{@ems.subscription}/#{@vm_resource_group}/microsoft.compute/virtualmachines/#{name}"
+  def assert_specific_vm_powered_off_attributes(vm)
+    vm_resource_id = "#{@ems.subscription}/#{@vm_resource_group}/microsoft.compute/virtualmachines/#{@centos_east}"
 
-    expect(v).to have_attributes(
+    expect(vm).to have_attributes(
       :template              => false,
       :ems_ref               => vm_resource_id,
       :ems_ref_obj           => nil,
       :uid_ems               => vm_resource_id,
-      :vendor                => "azure",
-      :power_state           => "off",
-      :location              => "eastus",
+      :vendor                => 'azure',
+      :power_state           => 'off',
+      :location              => 'eastus',
       :tools_status          => nil,
       :boot_time             => nil,
       :standby_action        => nil,
@@ -616,22 +620,22 @@ module AzureRefresherSpecCommon
     )
   end
 
-  def assert_specific_vm_powered_off_hardware(v)
-    expect(v.hardware).to have_attributes(
+  def assert_specific_vm_powered_off_hardware(vm)
+    expect(vm.hardware).to have_attributes(
       :guest_os           => nil,
       :guest_os_full_name => nil,
       :bios               => nil,
       :annotation         => nil,
       :cpu_sockets        => 1,
-      :memory_mb          => 768,
-      :disk_capacity      => 1_047_552.megabytes + 20_480.megabytes,
+      :memory_mb          => 1024,
+      :disk_capacity      => 1_100_585_369_600,
       :bitness            => nil
     )
 
-    expect(v.hardware.disks.size).to eql(1)
-    expect(v.hardware.guest_devices.size).to eql(0)
-    expect(v.hardware.nics.size).to eql(0)
-    expect(v.hardware.networks.size).to eql(2)
+    expect(vm.hardware.disks.size).to eql(1)
+    expect(vm.hardware.guest_devices.size).to eql(0)
+    expect(vm.hardware.nics.size).to eql(0)
+    expect(vm.hardware.networks.size).to eql(2)
   end
 
   def assert_specific_parent
