@@ -53,12 +53,27 @@ eval "az network public-ip create -n miq-publicip-westus2 -g miq-testrg-networki
 eval "az network public-ip create -n miq-publicip-westus3 -g miq-testrg-networking-westus -l westus --tags ${tags}"
 
 # Build network security groups
+
 eval "az network nsg create -n miq-nsg-eastus1 -g miq-testrg-networking-eastus -l eastus --tags ${tags}"
 eval "az network nsg create -n miq-nsg-eastus2 -g miq-testrg-networking-eastus -l eastus --tags ${tags}"
 eval "az network nsg create -n miq-nsg-eastus3 -g miq-testrg-networking-eastus -l eastus --tags ${tags}"
 eval "az network nsg create -n miq-nsg-westus1 -g miq-testrg-networking-westus -l westus --tags ${tags}"
 eval "az network nsg create -n miq-nsg-westus2 -g miq-testrg-networking-westus -l westus --tags ${tags}"
 eval "az network nsg create -n miq-nsg-westus3 -g miq-testrg-networking-westus -l westus --tags ${tags}"
+
+# Add some rules to one of the security groups
+
+eval "az network nsg rule create -n inbound1 --nsg-name miq-nsg-eastus1 \
+        -g miq-testrg-networking-eastus --direction Inbound \
+        --destination-port-range 22 --priority 1000 --protocol Tcp"
+
+eval "az network nsg rule create -n inbound2 --nsg-name miq-nsg-eastus1 \
+        -g miq-testrg-networking-eastus --direction Inbound --priority 100 \
+        --destination-port-range 80 --protocol Tcp --source-port-range 80"
+
+eval "az network nsg rule create -n inbound3 --nsg-name miq-nsg-eastus1 \
+        -g miq-testrg-networking-eastus --direction Inbound --priority 100 \
+        --destination-port-range 443 --protocol Tcp --source-port-range 443"
 
 # Build NIC's. All NIC's should be in one of the two networking resource groups.
 
