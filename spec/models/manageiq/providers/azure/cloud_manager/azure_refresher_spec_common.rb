@@ -82,9 +82,10 @@ module AzureRefresherSpecCommon
     @ems = FactoryGirl.create(:ems_azure_with_vcr_authentication, :zone => zone, :provider_region => 'eastus')
 
     @resource_group = 'miq-testrg-vms-eastus'
-    @rhel_east      = 'miq-vm-rhel2-mismatch'
     @ubuntu_east    = 'miq-vm-ubuntu1-eastus'
     @security_group = 'miq-nsg-eastus1'
+    @rhel_east      = 'miq-vm-rhel2-mismatch'
+    @rhel_public_ip = 'miq-nic-eastus3'
 
     #@vm_powered_off    = 'miqazure-centos1' # Make sure this is powered off if generating a new cassette.
     #@ip_address        = '52.224.165.15'  # This will change if you had to restart the @device_name.
@@ -794,34 +795,34 @@ module AzureRefresherSpecCommon
   end
 
   def assert_specific_nic_and_ip
-    nic_group = 'miq-azure-test1' # EastUS
-    ip_group  = 'miq-azure-test4' # Also EastUS
-    nic_name  = 'miqmismatch1'
+    res_group = 'miq-testrg-networking-eastus'
+    nic_name  = 'miq-nic-eastus1'
+    ip_name   = 'miq-publicip-eastus1'
 
     ems_ref_nic = "/subscriptions/#{@ems.subscription}/resourceGroups"\
-                   "/#{nic_group}/providers/Microsoft.Network"\
-                   "/networkInterfaces/miqmismatch1"
+                   "/#{res_group}/providers/Microsoft.Network"\
+                   "/networkInterfaces/#{nic_name}"
 
     ems_ref_ip = "/subscriptions/#{@ems.subscription}/resourceGroups"\
-                   "/#{ip_group}/providers/Microsoft.Network"\
-                   "/publicIPAddresses/miqmismatch1"
+                   "/#{res_group}/providers/Microsoft.Network"\
+                   "/publicIPAddresses/#{ip_name}"
 
-    @network_port = ManageIQ::Providers::Azure::NetworkManager::NetworkPort.where(:ems_ref => ems_ref_nic).first
-    @floating_ip  = ManageIQ::Providers::Azure::NetworkManager::FloatingIp.where(:ems_ref => ems_ref_ip).first
+    network_port = ManageIQ::Providers::Azure::NetworkManager::NetworkPort.find_by(:ems_ref => ems_ref_nic)
+    floating_ip  = ManageIQ::Providers::Azure::NetworkManager::FloatingIp.find_by(:ems_ref => ems_ref_ip)
 
-    expect(@network_port).to have_attributes(
+    expect(network_port).to have_attributes(
       :status  => 'Succeeded',
       :name    => nic_name,
       :ems_ref => ems_ref_nic
     )
 
-    expect(@floating_ip).to have_attributes(
+    expect(floating_ip).to have_attributes(
       :status  => 'Succeeded',
-      :address => @mismatch_ip,
+      :address => ip_name,
       :ems_ref => ems_ref_ip,
     )
 
-    expect(@network_port.device.id).to eql(@floating_ip.vm.id)
+    expect(network_port.device.id).to eql(floating_ip.vm.id)
   end
 
   def assert_lbs_with_vms
