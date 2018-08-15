@@ -162,9 +162,9 @@ module AzureRefresherSpecCommon
       :orchestration_stack_output        => 11,
       :orchestration_stack_resource      => 90,
       :security_group                    => 3,
-      :network_port                      => 17,
+      :network_port                      => 3,
       :cloud_network                     => 6,
-      :floating_ip                       => 13,
+      :floating_ip                       => 3,
       :network_router                    => 1,
       :cloud_subnet                      => 6,
       :resource_group                    => 8,
@@ -200,9 +200,9 @@ module AzureRefresherSpecCommon
     expect(@ems.availability_zones.size).to eql(expected_table_counts[:availability_zone])
     #expect(@ems.vms_and_templates.size).to eql(expected_table_counts[:vm_or_template])
     expect(@ems.security_groups.size).to eql(expected_table_counts[:security_group])
-    #expect(@ems.network_ports.size).to eql(expected_table_counts[:network_port])
+    expect(@ems.network_ports.size).to eql(expected_table_counts[:network_port])
     #expect(@ems.cloud_networks.size).to eql(expected_table_counts[:cloud_network])
-    #expect(@ems.floating_ips.size).to eql(expected_table_counts[:floating_ip])
+    expect(@ems.floating_ips.size).to eql(expected_table_counts[:floating_ip])
     #expect(@ems.network_routers.size).to eql(expected_table_counts[:network_router])
     #expect(@ems.cloud_subnets.size).to eql(expected_table_counts[:cloud_subnet])
     #expect(@ems.miq_templates.size).to eq(expected_table_counts[:miq_template])
