@@ -81,12 +81,14 @@ module AzureRefresherSpecCommon
 
     @ems = FactoryGirl.create(:ems_azure_with_vcr_authentication, :zone => zone, :provider_region => 'eastus')
 
-    @resource_group = 'miq-testrg-vms-eastus'
-    @ubuntu_east    = 'miq-vm-ubuntu1-eastus'
-    @security_group = 'miq-nsg-eastus1'
-    @rhel_east      = 'miq-vm-rhel2-mismatch'
-    @rhel_public_ip = 'miq-nic-eastus3'
-    @unmanaged_disk = 'miq-vm-centos1-disk'
+    @vm_resource_group      = 'miq-testrg-vms-eastus'
+    @network_resource_group = 'miq-testrg-networking-eastus'
+    @ubuntu_east            = 'miq-vm-ubuntu1-eastus'
+    @security_group         = 'miq-nsg-eastus1'
+    @rhel_east              = 'miq-vm-rhel2-mismatch'
+    @rhel_public_ip         = 'miq-nic-eastus3'
+    @unmanaged_disk         = 'miq-vm-centos1-disk'
+    @cloud_network          = 'miq-virtual-network-eastus'
 
     #@vm_powered_off    = 'miqazure-centos1' # Make sure this is powered off if generating a new cassette.
     #@ip_address        = '52.224.165.15'  # This will change if you had to restart the @device_name.
@@ -381,38 +383,40 @@ module AzureRefresherSpecCommon
   end
 
   def assert_specific_cloud_network
-    name = 'miq-azure-test1'
-
     cn_resource_id = "/subscriptions/#{@ems.subscription}"\
-                         "/resourceGroups/#{@resource_group}/providers/Microsoft.Network"\
-                         "/virtualNetworks/#{@resource_group}"
+                         "/resourceGroups/#{@network_resource_group}/providers/Microsoft.Network"\
+                         "/virtualNetworks/#{@cloud_network}"
 
-    @cn = CloudNetwork.where(:name => name).first
-    @avail_zone = ManageIQ::Providers::Azure::CloudManager::AvailabilityZone.first
+    cloud_network = CloudNetwork.find_by(:name => @cloud_network)
+    availability_zone = ManageIQ::Providers::Azure::CloudManager::AvailabilityZone.first
 
-    expect(@cn).to have_attributes(
-      :name    => name,
+    expect(cloud_network).to have_attributes(
+      :name    => @cloud_network,
       :ems_ref => cn_resource_id,
-      :cidr    => "10.16.0.0/16",
+      :cidr    => '192.168.0.0/24',
       :status  => nil,
       :enabled => true
     )
-    expect(@cn.vms.size).to be >= 1
-    expect(@cn.network_ports.size).to be >= 1
 
-    vm = @cn.vms.where(:name => @device_name).first
+    expect(cloud_network.vms.size).to be >= 1
+    expect(cloud_network.network_ports.size).to be >= 1
+
+    vm = cloud_network.vms.find_by(:name => @ubuntu_east)
     expect(vm.cloud_networks.size).to be >= 1
 
-    expect(@cn.cloud_subnets.size).to eq(1)
-    @subnet = @cn.cloud_subnets.where(:name => "default").first
-    expect(@subnet).to have_attributes(
-      :name              => "default",
+    expect(cloud_network.cloud_subnets.size).to eq(1)
+
+    subnet = cloud_network.cloud_subnets.find_by(:name => 'default')
+
+    expect(subnet).to have_attributes(
+      :name              => 'default',
       :ems_ref           => "#{cn_resource_id}/subnets/default",
-      :cidr              => "10.16.0.0/24",
-      :availability_zone => @avail_zone
+      :cidr              => '192.168.0.0/24',
+      :availability_zone => availability_zone
     )
 
-    vm_subnet = @subnet.vms.where(:name => @device_name).first
+    vm_subnet = subnet.vms.find_by(:name => @ubuntu_east)
+
     expect(vm_subnet.cloud_subnets.size).to be >= 1
     expect(vm_subnet.network_ports.size).to be >= 1
     expect(vm_subnet.security_groups.size).to be >= 1
@@ -423,7 +427,7 @@ module AzureRefresherSpecCommon
     vm = ManageIQ::Providers::Azure::CloudManager::Vm.where(
       :name => @device_name, :raw_power_state => "VM running"
     ).first
-    vm_resource_id = "#{@ems.subscription}/#{@resource_group}/microsoft.compute/virtualmachines/#{@device_name}"
+    vm_resource_id = "#{@ems.subscription}/#{@vm_resource_group}/microsoft.compute/virtualmachines/#{@device_name}"
 
     expect(vm).to have_attributes(
       :template              => false,
@@ -484,7 +488,7 @@ module AzureRefresherSpecCommon
       :address => @ip_address
     ).first
     cloud_network = ManageIQ::Providers::Azure::NetworkManager::CloudNetwork.where(
-      :name => @resource_group
+      :name => @network_resource_group
     ).first
     cloud_subnet = cloud_network.cloud_subnets.first
     expect(v.floating_ip).to eql(floating_ip)
@@ -584,7 +588,7 @@ module AzureRefresherSpecCommon
 
   def assert_specific_vm_powered_off_attributes(v)
     name = 'miqazure-centos1'
-    vm_resource_id = "#{@ems.subscription}/#{@resource_group}/microsoft.compute/virtualmachines/#{name}"
+    vm_resource_id = "#{@ems.subscription}/#{@vm_resource_group}/microsoft.compute/virtualmachines/#{name}"
 
     expect(v).to have_attributes(
       :template              => false,
@@ -999,7 +1003,7 @@ module AzureRefresherSpecCommon
   end
 
   def vm_powered_on_target
-    vm_resource_id = "#{@ems.subscription}/#{@resource_group}/microsoft.compute/virtualmachines/#{@device_name}"
+    vm_resource_id = "#{@ems.subscription}/#{@vm_resource_group}/microsoft.compute/virtualmachines/#{@device_name}"
 
     ManagerRefresh::Target.new(:manager     => @ems,
                                :association => :vms,
@@ -1007,7 +1011,7 @@ module AzureRefresherSpecCommon
   end
 
   def vm_powered_off_target
-    vm_resource_id = "#{@ems.subscription}/#{@resource_group}/microsoft.compute/virtualmachines/#{@vm_powered_off}"
+    vm_resource_id = "#{@ems.subscription}/#{@vm_resource_group}/microsoft.compute/virtualmachines/#{@vm_powered_off}"
 
     ManagerRefresh::Target.new(:manager     => @ems,
                                :association => :vms,
