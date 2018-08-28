@@ -1,4 +1,4 @@
-class ManageIQ::Providers::Azure::Inventory < ManagerRefresh::Inventory
+class ManageIQ::Providers::Azure::Inventory < ManageIQ::Providers::Inventory
   require_nested :Collector
   require_nested :Parser
   require_nested :Persister
