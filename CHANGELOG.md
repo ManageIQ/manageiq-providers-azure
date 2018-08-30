@@ -5,7 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
-## Gaprindashvili-3
+## Gaprindashvili-5
+
+### Fixed
+- Default to StandardError if a connection cannot be made [(#278)](https://github.com/ManageIQ/manageiq-providers-azure/pull/278)
+
+## Gaprindashvili-3 - Released 2018-05-15
 
 ### Added
 - Azure graph refresh targeted [(#217)](https://github.com/ManageIQ/manageiq-providers-azure/pull/217)
