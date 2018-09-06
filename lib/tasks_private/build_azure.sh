@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# Assumes that you've registered the various services you need beforehand,
-# and that you've run 'az login' to establish your credentials already.
+## This script assumes that you've registered the various services you need beforehand,
+## and that you've run 'az login' to establish your credentials already.
 
 tags="owner=cfme creator=$USER specs=true";
 
-# Delete everything first
+## Delete everything first
 #eval "az group delete -n miq-testrg-vms-eastus -y"
 #eval "az group delete -n miq-testrg-vms-westus -y"
 #eval "az group delete -n miq-testrg-storage-eastus -y"
@@ -15,7 +15,7 @@ tags="owner=cfme creator=$USER specs=true";
 #eval "az group delete -n miq-testrg-misc-eastus -y"
 #eval "az group delete -n miq-testrg-misc-westus -y"
 
-# Start with the resource groups
+## Start with the resource groups
 
 #eval "az group create -n miq-testrg-misc-eastus -l eastus --tags ${tags}";
 #eval "az group create -n miq-testrg-misc-westus -l westus --tags ${tags}";
@@ -26,21 +26,20 @@ tags="owner=cfme creator=$USER specs=true";
 #eval "az group create -n miq-testrg-vms-eastus -l eastus --tags ${tags}";
 #eval "az group create -n miq-testrg-vms-westus -l westus --tags ${tags}";
 
-# Build unmanaged storage accounts
+## Build unmanaged storage accounts
 
 #eval "az storage account create -n miqunmanagedeastus -g miq-testrg-storage-eastus -l eastus --tags ${tags}"
 #eval "az storage account create -n miqunmanagedwestus -g miq-testrg-storage-westus -l westus --tags ${tags}"
 #eval "az storage account create -n miqdiagnosticseastus -g miq-testrg-storage-eastus -l eastus --tags ${tags}"
 #eval "az storage account create -n miqdiagnosticswestus -g miq-testrg-storage-westus -l westus --tags ${tags}"
 
-# Build two virtual networks, one per region. All NIC's (and thus IP's)
-# should be attached to one of these two networks.
+## Build two virtual networks, one per region. All NIC's (and thus IP's) should be attached to one of these two networks.
 
 #eval "az network vnet create -n miq-virtual-network-eastus -g miq-testrg-networking-eastus \
 #        -l eastus --address-prefixes 192.168.0.0/24 --subnet-name default --tags ${tags}"
 
 #eval "az network vnet create -n miq-virtual-network-westus -g miq-testrg-networking-westus \
-#        -l westus --address-prefixes 192.168.0.0/24 --subnet-name default --tags ${tags}"
+#        -l westus --address-prefixes 192.168.0.1/24 --subnet-name default --tags ${tags}"
 
 # Build Public IP addresses. All Public IP's should be in one of the two networking resource groups.
 
@@ -67,7 +66,7 @@ tags="owner=cfme creator=$USER specs=true";
 #eval "az network nsg create -n miq-nsg-westus2 -g miq-testrg-networking-westus -l westus --tags ${tags}"
 #eval "az network nsg create -n miq-nsg-westus3 -g miq-testrg-networking-westus -l westus --tags ${tags}"
 
-# Add some rules to one of the security groups
+## Add some rules to one of the security groups
 
 #eval "az network nsg rule create -n inbound1 --nsg-name miq-nsg-eastus1 \
 #        -g miq-testrg-networking-eastus --direction Inbound \
@@ -78,23 +77,22 @@ tags="owner=cfme creator=$USER specs=true";
 #        --destination-port-range 80 --protocol Tcp --source-port-range 80"
 
 #eval "az network nsg rule create -n inbound3 --nsg-name miq-nsg-eastus1 \
-#        -g miq-testrg-networking-eastus --direction Inbound --priority 100 \
+#        -g miq-testrg-networking-eastus --direction Inbound --priority 120 \
 #        --destination-port-range 443 --protocol Tcp --source-port-range 443"
 
+#eval "az network nsg rule create -n inbound4 --nsg-name miq-nsg-westus1 \
+#        -g miq-testrg-networking-westus --direction Inbound \
+#        --destination-port-range 22 --priority 1000 --protocol Tcp"
 
-#eval "az network nsg rule create -n inbound1 --nsg-name miq-nsg-westus1 \
+#eval "az network nsg rule create -n inbound5 --nsg-name miq-nsg-westus1 \
 #        -g miq-testrg-networking-westus --direction Inbound --priority 100 \
+#        --destination-port-range 80 --protocol Tcp --source-port-range 80"
+
+#eval "az network nsg rule create -n inbound6 --nsg-name miq-nsg-westus1 \
+#        -g miq-testrg-networking-westus --direction Inbound --priority 120 \
 #        --destination-port-range 443 --protocol Tcp --source-port-range 443"
 
-#eval "az network nsg rule create -n inbound2 --nsg-name miq-nsg-westus1 \
-#        -g miq-testrg-networking-westus --direction Inbound --priority 100 \
-#        --destination-port-range 443 --protocol Tcp --source-port-range 443"
-
-#eval "az network nsg rule create -n inbound3 --nsg-name miq-nsg-westus1 \
-#        -g miq-testrg-networking-westus --direction Inbound --priority 100 \
-#        --destination-port-range 443 --protocol Tcp --source-port-range 443"
-
-# Build NIC's. All NIC's should be in one of the two networking resource groups.
+## Build NIC's. All NIC's should be in one of the two networking resource groups.
 
 #eval "az network nic create -n miq-nic-eastus1 -g miq-testrg-networking-eastus -l eastus \
 #       --public-ip-address miq-publicip-eastus1 --vnet-name miq-virtual-network-eastus \
@@ -144,12 +142,12 @@ tags="owner=cfme creator=$USER specs=true";
 #       --public-ip-address miq-publicip-westus6 --vnet-name miq-virtual-network-westus \
 #       --subnet default --tags ${tags}"
 
-# Build two availability sets
+## Build two availability sets
 
 #eval "az vm availability-set create -n miq-availability-set-eastus -g miq-testrg-vms-eastus -l eastus --tags ${tags}"
 #eval "az vm availability-set create -n miq-availability-set-westus -g miq-testrg-vms-westus -l westus --tags ${tags}"
 
-# Build managed disks
+## Build managed disks
 
 #eval "az disk create -n miq-managed-disk-eastus -g miq-testrg-storage-eastus -l eastus \
 #       --size-gb 16 --sku Standard_LRS --tags ${tags}"
@@ -157,10 +155,10 @@ tags="owner=cfme creator=$USER specs=true";
 #eval "az disk create -n miq-managed-disk-westus -g miq-testrg-storage-westus -l westus \
 #       --size-gb 16 --sku Standard_LRS --tags ${tags}"
 
-#eval "az disk create -n data-disk1-eastus -g miq-testrg-storage-eastus -l eastus --sku Standard_LRS -z 1 --tags ${tags}"
-#eval "az disk create -n data-disk1-westus -g miq-testrg-storage-westus -l westus --sku Standard_LRS -z 1 --tags ${tags}"
+#eval "az disk create -n miq-data-disk1-eastus -g miq-testrg-storage-eastus -l eastus --sku Standard_LRS -z 1 --tags ${tags}"
+#eval "az disk create -n miq-data-disk1-westus -g miq-testrg-storage-westus -l westus --sku Standard_LRS -z 1 --tags ${tags}"
 
-# Have to do this since it's in a different resource group
+## We have to do this first since it's in a different resource group
 
 #nic_eastus1="$(az network nic show -n miq-nic-eastus1 -g miq-testrg-networking-eastus --query id)"
 #nic_eastus2="$(az network nic show -n miq-nic-eastus2 -g miq-testrg-networking-eastus --query id)"
@@ -174,7 +172,7 @@ nic_eastus6="$(az network nic show -n miq-nic-eastus6 -g miq-testrg-networking-e
 #nic_westus3="$(az network nic show -n miq-nic-westus3 -g miq-testrg-networking-westus --query id)"
 #nic_westus4="$(az network nic show -n miq-nic-westus4 -g miq-testrg-networking-westus --query id)"
 #nic_westus5="$(az network nic show -n miq-nic-westus5 -g miq-testrg-networking-westus --query id)"
-nic_westus6="$(az network nic show -n miq-nic-westus6 -g miq-testrg-networking-westus --query id)"
+#nic_westus6="$(az network nic show -n miq-nic-westus6 -g miq-testrg-networking-westus --query id)"
 
 #storage_eastus="$(az storage account show -n miqunmanagedeastus -g miq-testrg-storage-eastus --query id)"
 #storage_westus="$(az storage account show -n miqunmanagedwestus -g miq-testrg-storage-westus --query id)"
@@ -205,7 +203,7 @@ nic_westus6="$(az network nic show -n miq-nic-westus6 -g miq-testrg-networking-w
 #       --use-unmanaged-disk --nics ${nic_westus2} --storage-account ${storage_westus} \
 #       --os-disk-name miq-vm-centos2-disk --boot-diagnostics-storage miqdiagnosticswestus"
 
-# Managed
+## Managed
 
 #eval "az vm create -n miq-vm-sles1-eastus -g miq-testrg-vms-eastus -l eastus \
 #       --admin-username ${USER} --admin-password Smartvm12345 \
@@ -231,17 +229,18 @@ nic_westus6="$(az network nic show -n miq-nic-westus6 -g miq-testrg-networking-w
 #       --boot-diagnostics-storage miqdiagnosticswestus \
 #       --os-disk-name miq-os-win2k12-2-disk"
 
-# Used for capture
+## VM's used for capture
 
 #eval "az vm create -n miq-linux-gen-east -g miq-testrg-vms-eastus -l eastus \
 #       --nics ${nic_eastus6} --os-disk-name miq-linuximg-disk \
 #       --authentication-type ssh --ssh-key-value ~/.ssh/id_rsa.pub \
 #       --image UbuntuLTS --size Basic_A0 --tags ${tags}"
 
-#data_disk1_eastus="$(az disk show -n data-disk1-eastus -g miq-testrg-storage-eastus --query id)"
-#data_disk1_westus="$(az disk show -n data-disk1-westus -g miq-testrg-storage-westus --query id)"
+#data_disk1_eastus="$(az disk show -n miq-data-disk1-eastus -g miq-testrg-storage-eastus --query id)"
+#data_disk1_westus="$(az disk show -n miq-data-disk1-westus -g miq-testrg-storage-westus --query id)"
 
-# These VM's are deliberately set in a resource group with a different location
+## These VM's are deliberately set in a resource group with a different location
+
 #eval "az vm create -n miq-vm-rhel1-mismatch -g miq-testrg-vms-eastus -l westus \
 #       --admin-username ${USER} --admin-password Smartvm12345 \
 #       --image RHEL --size Basic_A0 --tags ${tags} --nics ${nic_westus3} \
@@ -254,7 +253,7 @@ nic_westus6="$(az network nic show -n miq-nic-westus6 -g miq-testrg-networking-w
 #       --boot-diagnostics-storage miqdiagnosticseastus \
 #       --os-disk-name miq-os-disk-rhel2 --attach-data-disks ${data_disk1_eastus}"
 
-# Generalize the VM and create an image.
+## Generalize the VM and create an image.
 
 #linux_ip="$(az vm list-ip-addresses -n miq-linux-gen-east -g miq-testrg-vms-eastus --query [0].virtualMachine.network.publicIpAddresses[0].ipAddress -o tsv)"
 
@@ -265,4 +264,9 @@ nic_westus6="$(az network nic show -n miq-nic-westus6 -g miq-testrg-networking-w
 
 #eval "az vm deallocate -n miq-linux-gen-east -g miq-testrg-vms-eastus"
 #eval "az vm generalize -n miq-linux-gen-east -g miq-testrg-vms-eastus"
-#eval "az image create -n miq-linux-img-east -g miq-testrg-vms-eastus --source miq-linux-gen-east"
+#eval "az image create  -n miq-linux-img-east -g miq-testrg-vms-eastus --source miq-linux-gen-east"
+
+## Deallocate all the VM's to avoid incurring charges
+
+#eval "az vm deallocate --ids $(az vm list -g miq-testrg-vms-eastus --query '[].id' -o tsv)"
+#eval "az vm deallocate --ids $(az vm list -g miq-testrg-vms-westus --query '[].id' -o tsv)"
