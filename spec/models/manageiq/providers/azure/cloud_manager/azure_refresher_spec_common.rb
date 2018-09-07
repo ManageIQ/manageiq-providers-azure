@@ -90,12 +90,13 @@ module AzureRefresherSpecCommon
     @centos_public_ip       = 'miq-publicip-eastus2'
     @unmanaged_disk         = 'miq-vm-centos1-disk'
     @cloud_network          = 'miq-virtual-network-eastus'
+    @managed_vm             = 'miq-vm-sles1-eastus'
+    @managed_os_disk        = 'miq-vm-sles1-disk'
+    @managed_data_disk      = 'miq-data-disk-eastus1'
 
     #@vm_powered_off    = 'miqazure-centos1' # Make sure this is powered off if generating a new cassette.
     #@ip_address        = '52.224.165.15'  # This will change if you had to restart the @device_name.
     #@mismatch_ip       = '13.92.63.10'    # This will change if you had to restart the 'miqmismatch1' VM.
-    #@managed_os_disk   = "miqazure-linux-managed_OsDisk_1_7b2bdf790a7d4379ace2846d307730cd"
-    #@managed_data_disk = "miqazure-linux-managed-data-disk"
     #@template          = nil
     #@avail_zone        = nil
 
@@ -166,9 +167,9 @@ module AzureRefresherSpecCommon
       :orchestration_stack_output        => 11,
       :orchestration_stack_resource      => 90,
       :security_group                    => 3,
-      :network_port                      => 3,
+      :network_port                      => 6,
       :cloud_network                     => 6,
-      :floating_ip                       => 3,
+      :floating_ip                       => 6,
       :network_router                    => 1,
       :cloud_subnet                      => 6,
       :resource_group                    => 8,
@@ -204,7 +205,7 @@ module AzureRefresherSpecCommon
     expect(@ems.availability_zones.size).to eql(expected_table_counts[:availability_zone])
     #expect(@ems.vms_and_templates.size).to eql(expected_table_counts[:vm_or_template])
     expect(@ems.security_groups.size).to eql(expected_table_counts[:security_group])
-    expect(@ems.network_ports.size).to eql(expected_table_counts[:network_port])
+    #expect(@ems.network_ports.size).to eql(expected_table_counts[:network_port])
     #expect(@ems.cloud_networks.size).to eql(expected_table_counts[:cloud_network])
     expect(@ems.floating_ips.size).to eql(expected_table_counts[:floating_ip])
     #expect(@ems.network_routers.size).to eql(expected_table_counts[:network_router])
@@ -341,9 +342,9 @@ module AzureRefresherSpecCommon
     )
 
     expected_firewall_rules = [
-      {:host_protocol => "TCP", :direction => "Inbound", :port => 22,  :end_port => 22,  :source_ip_range => "*"},
-      {:host_protocol => "TCP", :direction => "Inbound", :port => 80,  :end_port => 80,  :source_ip_range => "*"},
-      {:host_protocol => "TCP", :direction => "Inbound", :port => 443, :end_port => 443, :source_ip_range => "*"}
+      {:host_protocol => 'TCP', :direction => 'Inbound', :port => 22,  :end_port => 22,  :source_ip_range => '*'},
+      {:host_protocol => 'TCP', :direction => 'Inbound', :port => 80,  :end_port => 80,  :source_ip_range => '*'},
+      {:host_protocol => 'TCP', :direction => 'Inbound', :port => 443, :end_port => 443, :source_ip_range => '*'}
     ]
 
     expect(sg.firewall_rules.size).to eq(3)
@@ -357,10 +358,10 @@ module AzureRefresherSpecCommon
   end
 
   def assert_specific_flavor
-    @flavor = ManageIQ::Providers::Azure::CloudManager::Flavor.where(:ems_ref => "basic_a0").first
+    @flavor = ManageIQ::Providers::Azure::CloudManager::Flavor.where(:ems_ref => 'basic_a0').first
 
     expect(@flavor).to have_attributes(
-      :name                     => "Basic_A0",
+      :name                     => 'Basic_A0',
       :description              => nil,
       :enabled                  => true,
       :cpus                     => 1,
@@ -539,9 +540,9 @@ module AzureRefresherSpecCommon
   def assert_specific_managed_disk
     disk = Disk.find_by(:device_name => @managed_os_disk)
     expect(disk.location).to eql("/subscriptions/#{@ems.subscription}/resourceGroups/"\
-                                      "MIQ-AZURE-TEST4/providers/Microsoft.Compute/disks/"\
-                                      "miqazure-linux-managed_OsDisk_1_7b2bdf790a7d4379ace2846d307730cd")
-    expect(disk.size).to eql(32.gigabytes)
+                                   "#{@vm_resource_group.upcase}/providers/Microsoft.Compute/disks/"\
+                                   "#{@managed_os_disk}")
+    expect(disk.size).to eql(30.gigabytes)
   end
 
   def assert_specific_resource_group
@@ -890,7 +891,7 @@ module AzureRefresherSpecCommon
       :load_balancer_pool_member         => 2,
       :load_balancer_pool_member_pool    => 2,
       :network                           => 2,
-      :network_port                      => 3,
+      :network_port                      => 6,
       :operating_system                  => 2,
       :orchestration_stack               => 2,
       :orchestration_stack_output        => 1,
