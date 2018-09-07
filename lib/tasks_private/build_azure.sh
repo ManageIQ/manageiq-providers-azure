@@ -155,22 +155,24 @@ tags="owner=cfme creator=$USER specs=true";
 #eval "az disk create -n miq-managed-disk-westus -g miq-testrg-storage-westus -l westus \
 #       --size-gb 16 --sku Standard_LRS --tags ${tags}"
 
-#eval "az disk create -n miq-data-disk1-eastus -g miq-testrg-storage-eastus -l eastus --sku Standard_LRS -z 1 --tags ${tags}"
-#eval "az disk create -n miq-data-disk1-westus -g miq-testrg-storage-westus -l westus --sku Standard_LRS -z 1 --tags ${tags}"
+eval "az disk create -n miq-data-disk-eastus1 -g miq-testrg-storage-eastus -l eastus --sku Standard_LRS -z 1 --tags ${tags}"
+eval "az disk create -n miq-data-disk-eastus2 -g miq-testrg-storage-eastus -l eastus --sku Standard_LRS -z 1 --tags ${tags}"
+eval "az disk create -n miq-data-disk-westus1 -g miq-testrg-storage-westus -l westus --sku Standard_LRS -z 1 --tags ${tags}"
+eval "az disk create -n miq-data-disk-westus2 -g miq-testrg-storage-westus -l westus --sku Standard_LRS -z 1 --tags ${tags}"
 
 ## We have to do this first since it's in a different resource group
 
 #nic_eastus1="$(az network nic show -n miq-nic-eastus1 -g miq-testrg-networking-eastus --query id)"
 #nic_eastus2="$(az network nic show -n miq-nic-eastus2 -g miq-testrg-networking-eastus --query id)"
-#nic_eastus3="$(az network nic show -n miq-nic-eastus3 -g miq-testrg-networking-eastus --query id)"
-#nic_eastus4="$(az network nic show -n miq-nic-eastus4 -g miq-testrg-networking-eastus --query id)"
+nic_eastus3="$(az network nic show -n miq-nic-eastus3 -g miq-testrg-networking-eastus --query id)"
+nic_eastus4="$(az network nic show -n miq-nic-eastus4 -g miq-testrg-networking-eastus --query id)"
 #nic_eastus5="$(az network nic show -n miq-nic-eastus5 -g miq-testrg-networking-eastus --query id)"
-nic_eastus6="$(az network nic show -n miq-nic-eastus6 -g miq-testrg-networking-eastus --query id)"
+#nic_eastus6="$(az network nic show -n miq-nic-eastus6 -g miq-testrg-networking-eastus --query id)"
 
 #nic_westus1="$(az network nic show -n miq-nic-westus1 -g miq-testrg-networking-westus --query id)"
 #nic_westus2="$(az network nic show -n miq-nic-westus2 -g miq-testrg-networking-westus --query id)"
-#nic_westus3="$(az network nic show -n miq-nic-westus3 -g miq-testrg-networking-westus --query id)"
-#nic_westus4="$(az network nic show -n miq-nic-westus4 -g miq-testrg-networking-westus --query id)"
+nic_westus3="$(az network nic show -n miq-nic-westus3 -g miq-testrg-networking-westus --query id)"
+nic_westus4="$(az network nic show -n miq-nic-westus4 -g miq-testrg-networking-westus --query id)"
 #nic_westus5="$(az network nic show -n miq-nic-westus5 -g miq-testrg-networking-westus --query id)"
 #nic_westus6="$(az network nic show -n miq-nic-westus6 -g miq-testrg-networking-westus --query id)"
 
@@ -205,15 +207,22 @@ nic_eastus6="$(az network nic show -n miq-nic-eastus6 -g miq-testrg-networking-e
 
 ## Managed
 
+data_disk_eastus1="$(az disk show -n miq-data-disk-eastus1 -g miq-testrg-storage-eastus --query id)"
+data_disk_eastus2="$(az disk show -n miq-data-disk-eastus2 -g miq-testrg-storage-eastus --query id)"
+data_disk_westus1="$(az disk show -n miq-data-disk-westus1 -g miq-testrg-storage-westus --query id)"
+data_disk_westus2="$(az disk show -n miq-data-disk-westus2 -g miq-testrg-storage-westus --query id)"
+
 #eval "az vm create -n miq-vm-sles1-eastus -g miq-testrg-vms-eastus -l eastus \
 #       --admin-username ${USER} --admin-password Smartvm12345 \
 #       --image SLES --size Standard_A0 --tags ${tags} --nics ${nic_eastus4} \
-#       --os-disk-name miq-vm-sles1-disk --boot-diagnostics-storage miqdiagnosticseastus"
+#       --os-disk-name miq-vm-sles1-disk --boot-diagnostics-storage miqdiagnosticseastus \
+#       --attach-data-disks ${data_disk_eastus1}"
 
 #eval "az vm create -n miq-vm-sles2-westus -g miq-testrg-vms-westus -l westus \
 #       --admin-username ${USER} --admin-password Smartvm12345 \
 #       --image SLES --size Standard_A0 --tags ${tags} --nics ${nic_westus4} \
-#       --os-disk-name miq-vm-sles2-disk --boot-diagnostics-storage miqdiagnosticswestus"
+#       --os-disk-name miq-vm-sles2-disk --boot-diagnostics-storage miqdiagnosticswestus \
+#       --attach-data-disks ${data_disk_westus1}"
 
 #eval "az vm create -n miq-vm-win-east -g miq-testrg-vms-eastus -l eastus \
 #       --admin-username ${USER} --admin-password Smartvm12345 \
@@ -236,22 +245,20 @@ nic_eastus6="$(az network nic show -n miq-nic-eastus6 -g miq-testrg-networking-e
 #       --authentication-type ssh --ssh-key-value ~/.ssh/id_rsa.pub \
 #       --image UbuntuLTS --size Basic_A0 --tags ${tags}"
 
-#data_disk1_eastus="$(az disk show -n miq-data-disk1-eastus -g miq-testrg-storage-eastus --query id)"
-#data_disk1_westus="$(az disk show -n miq-data-disk1-westus -g miq-testrg-storage-westus --query id)"
 
 ## These VM's are deliberately set in a resource group with a different location
 
-#eval "az vm create -n miq-vm-rhel1-mismatch -g miq-testrg-vms-eastus -l westus \
-#       --admin-username ${USER} --admin-password Smartvm12345 \
-#       --image RHEL --size Basic_A0 --tags ${tags} --nics ${nic_westus3} \
-#       --boot-diagnostics-storage miqdiagnosticswestus \
-#       --os-disk-name miq-os-disk-rhel1 --attach-data-disks ${data_disk1_westus}"
+eval "az vm create -n miq-vm-rhel1-mismatch -g miq-testrg-vms-eastus -l westus \
+       --admin-username ${USER} --admin-password Smartvm12345 \
+       --image RHEL --size Basic_A0 --tags ${tags} --nics ${nic_westus3} \
+       --boot-diagnostics-storage miqdiagnosticswestus \
+       --os-disk-name miq-os-disk-rhel1 --attach-data-disks ${data_disk_westus2}"
 
-#eval "az vm create -n miq-vm-rhel2-mismatch -g miq-testrg-vms-westus -l eastus \
-#       --admin-username ${USER} --admin-password Smartvm12345 \
-#       --image RHEL --size Basic_A0 --tags ${tags} --nics ${nic_eastus3} \
-#       --boot-diagnostics-storage miqdiagnosticseastus \
-#       --os-disk-name miq-os-disk-rhel2 --attach-data-disks ${data_disk1_eastus}"
+eval "az vm create -n miq-vm-rhel2-mismatch -g miq-testrg-vms-westus -l eastus \
+       --admin-username ${USER} --admin-password Smartvm12345 \
+       --image RHEL --size Basic_A0 --tags ${tags} --nics ${nic_eastus3} \
+       --boot-diagnostics-storage miqdiagnosticseastus \
+       --os-disk-name miq-os-disk-rhel2 --attach-data-disks ${data_disk_eastus2}"
 
 ## Generalize the VM and create an image.
 
