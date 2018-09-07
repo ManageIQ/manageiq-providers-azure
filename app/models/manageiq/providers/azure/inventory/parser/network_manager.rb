@@ -59,7 +59,7 @@ class ManageIQ::Providers::Azure::Inventory::Parser::NetworkManager < ManageIQ::
 
       manager.orchestration_stacks_resources.find_each do |resource|
         persister.stack_resources_secondary_index[resource[:ems_ref].downcase] ||=
-          ManagerRefresh::ApplicationRecordReference.new(OrchestrationStack, resource.stack_id)
+          InventoryRefresh::ApplicationRecordReference.new(OrchestrationStack, resource.stack_id)
       end
     end
 
