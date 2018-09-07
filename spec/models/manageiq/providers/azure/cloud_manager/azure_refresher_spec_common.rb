@@ -93,6 +93,7 @@ module AzureRefresherSpecCommon
     @managed_vm             = 'miq-vm-sles1-eastus'
     @managed_os_disk        = 'miq-vm-sles1-disk'
     @managed_data_disk      = 'miq-data-disk-eastus1'
+    @route_table            = 'miq-route-table-eastus1'
 
     #@vm_powered_off    = 'miqazure-centos1' # Make sure this is powered off if generating a new cassette.
     #@ip_address        = '52.224.165.15'  # This will change if you had to restart the @device_name.
@@ -323,13 +324,15 @@ module AzureRefresherSpecCommon
   end
 
   def assert_specific_router
-    router = ManageIQ::Providers::Azure::NetworkManager::NetworkRouter.where(:name => 'miq-azure-routetabletest').first
+    router = ManageIQ::Providers::Azure::NetworkManager::NetworkRouter.where(:name => @route_table).first
 
     expect(router).to have_attributes(
-      :name             => 'miq-azure-routetabletest',
+      :name             => @route_table,
       :status           => 'inactive',
       :type             => 'ManageIQ::Providers::Azure::NetworkManager::NetworkRouter',
-      :extra_attributes => {:routes => [{"Name" => "route1", "Resource Group" => "miq-azure-test4", "CIDR" => "10.1.0.0/16"}]}
+      :extra_attributes => {:routes =>
+        [{'Name' => 'miq-route-eastus1', 'Resource Group' => @network_resource_group, 'CIDR' => '192.168.0.0/16'}]
+      }
     )
   end
 

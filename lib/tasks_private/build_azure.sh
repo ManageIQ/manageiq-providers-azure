@@ -39,7 +39,7 @@ tags="owner=cfme creator=$USER specs=true";
 #        -l eastus --address-prefixes 192.168.0.0/24 --subnet-name default --tags ${tags}"
 
 #eval "az network vnet create -n miq-virtual-network-westus -g miq-testrg-networking-westus \
-#        -l westus --address-prefixes 192.168.0.1/24 --subnet-name default --tags ${tags}"
+#        -l westus --address-prefixes 192.168.0.0/24 --subnet-name default --tags ${tags}"
 
 # Build Public IP addresses. All Public IP's should be in one of the two networking resource groups.
 
@@ -147,6 +147,17 @@ tags="owner=cfme creator=$USER specs=true";
 #eval "az vm availability-set create -n miq-availability-set-eastus -g miq-testrg-vms-eastus -l eastus --tags ${tags}"
 #eval "az vm availability-set create -n miq-availability-set-westus -g miq-testrg-vms-westus -l westus --tags ${tags}"
 
+## Build two route tables and one route for each
+
+#eval "az network route-table create -n miq-route-table-eastus1 -g miq-testrg-networking-eastus --tags ${tags}"
+#eval "az network route-table create -n miq-route-table-westus1 -g miq-testrg-networking-westus --tags ${tags}"
+
+#eval "az network route-table route create -n miq-route-eastus1 -g miq-testrg-networking-eastus \
+#        --route-table-name miq-route-table-eastus1 --next-hop-type VnetLocal --address-prefix 192.168.0.0/16"
+
+#eval "az network route-table route create -n miq-route-westus1 -g miq-testrg-networking-westus \
+#        --route-table-name miq-route-table-westus1 --next-hop-type VnetLocal --address-prefix 192.168.0.0/16"
+
 ## Build managed disks
 
 #eval "az disk create -n miq-managed-disk-eastus -g miq-testrg-storage-eastus -l eastus \
@@ -155,31 +166,31 @@ tags="owner=cfme creator=$USER specs=true";
 #eval "az disk create -n miq-managed-disk-westus -g miq-testrg-storage-westus -l westus \
 #       --size-gb 16 --sku Standard_LRS --tags ${tags}"
 
-eval "az disk create -n miq-data-disk-eastus1 -g miq-testrg-storage-eastus -l eastus --sku Standard_LRS -z 1 --tags ${tags}"
-eval "az disk create -n miq-data-disk-eastus2 -g miq-testrg-storage-eastus -l eastus --sku Standard_LRS -z 1 --tags ${tags}"
-eval "az disk create -n miq-data-disk-westus1 -g miq-testrg-storage-westus -l westus --sku Standard_LRS -z 1 --tags ${tags}"
-eval "az disk create -n miq-data-disk-westus2 -g miq-testrg-storage-westus -l westus --sku Standard_LRS -z 1 --tags ${tags}"
+#eval "az disk create -n miq-data-disk-eastus1 -g miq-testrg-storage-eastus -l eastus --sku Standard_LRS -z 1 --tags ${tags}"
+#eval "az disk create -n miq-data-disk-eastus2 -g miq-testrg-storage-eastus -l eastus --sku Standard_LRS -z 1 --tags ${tags}"
+#eval "az disk create -n miq-data-disk-westus1 -g miq-testrg-storage-westus -l westus --sku Standard_LRS -z 1 --tags ${tags}"
+#eval "az disk create -n miq-data-disk-westus2 -g miq-testrg-storage-westus -l westus --sku Standard_LRS -z 1 --tags ${tags}"
 
 ## We have to do this first since it's in a different resource group
 
 #nic_eastus1="$(az network nic show -n miq-nic-eastus1 -g miq-testrg-networking-eastus --query id)"
 #nic_eastus2="$(az network nic show -n miq-nic-eastus2 -g miq-testrg-networking-eastus --query id)"
-nic_eastus3="$(az network nic show -n miq-nic-eastus3 -g miq-testrg-networking-eastus --query id)"
-nic_eastus4="$(az network nic show -n miq-nic-eastus4 -g miq-testrg-networking-eastus --query id)"
+#nic_eastus3="$(az network nic show -n miq-nic-eastus3 -g miq-testrg-networking-eastus --query id)"
+#nic_eastus4="$(az network nic show -n miq-nic-eastus4 -g miq-testrg-networking-eastus --query id)"
 #nic_eastus5="$(az network nic show -n miq-nic-eastus5 -g miq-testrg-networking-eastus --query id)"
 #nic_eastus6="$(az network nic show -n miq-nic-eastus6 -g miq-testrg-networking-eastus --query id)"
 
 #nic_westus1="$(az network nic show -n miq-nic-westus1 -g miq-testrg-networking-westus --query id)"
 #nic_westus2="$(az network nic show -n miq-nic-westus2 -g miq-testrg-networking-westus --query id)"
-nic_westus3="$(az network nic show -n miq-nic-westus3 -g miq-testrg-networking-westus --query id)"
-nic_westus4="$(az network nic show -n miq-nic-westus4 -g miq-testrg-networking-westus --query id)"
+#nic_westus3="$(az network nic show -n miq-nic-westus3 -g miq-testrg-networking-westus --query id)"
+#nic_westus4="$(az network nic show -n miq-nic-westus4 -g miq-testrg-networking-westus --query id)"
 #nic_westus5="$(az network nic show -n miq-nic-westus5 -g miq-testrg-networking-westus --query id)"
 #nic_westus6="$(az network nic show -n miq-nic-westus6 -g miq-testrg-networking-westus --query id)"
 
 #storage_eastus="$(az storage account show -n miqunmanagedeastus -g miq-testrg-storage-eastus --query id)"
 #storage_westus="$(az storage account show -n miqunmanagedwestus -g miq-testrg-storage-westus --query id)"
 
-# Unmanaged
+## Unmanaged VM's
 
 #eval "az vm create -n miq-vm-ubuntu1-eastus -g miq-testrg-vms-eastus -l eastus \
 #       --admin-username ${USER} --admin-password Smartvm12345 \
@@ -207,10 +218,10 @@ nic_westus4="$(az network nic show -n miq-nic-westus4 -g miq-testrg-networking-w
 
 ## Managed
 
-data_disk_eastus1="$(az disk show -n miq-data-disk-eastus1 -g miq-testrg-storage-eastus --query id)"
-data_disk_eastus2="$(az disk show -n miq-data-disk-eastus2 -g miq-testrg-storage-eastus --query id)"
-data_disk_westus1="$(az disk show -n miq-data-disk-westus1 -g miq-testrg-storage-westus --query id)"
-data_disk_westus2="$(az disk show -n miq-data-disk-westus2 -g miq-testrg-storage-westus --query id)"
+#data_disk_eastus1="$(az disk show -n miq-data-disk-eastus1 -g miq-testrg-storage-eastus --query id)"
+#data_disk_eastus2="$(az disk show -n miq-data-disk-eastus2 -g miq-testrg-storage-eastus --query id)"
+#data_disk_westus1="$(az disk show -n miq-data-disk-westus1 -g miq-testrg-storage-westus --query id)"
+#data_disk_westus2="$(az disk show -n miq-data-disk-westus2 -g miq-testrg-storage-westus --query id)"
 
 #eval "az vm create -n miq-vm-sles1-eastus -g miq-testrg-vms-eastus -l eastus \
 #       --admin-username ${USER} --admin-password Smartvm12345 \
@@ -245,20 +256,19 @@ data_disk_westus2="$(az disk show -n miq-data-disk-westus2 -g miq-testrg-storage
 #       --authentication-type ssh --ssh-key-value ~/.ssh/id_rsa.pub \
 #       --image UbuntuLTS --size Basic_A0 --tags ${tags}"
 
-
 ## These VM's are deliberately set in a resource group with a different location
 
-eval "az vm create -n miq-vm-rhel1-mismatch -g miq-testrg-vms-eastus -l westus \
-       --admin-username ${USER} --admin-password Smartvm12345 \
-       --image RHEL --size Basic_A0 --tags ${tags} --nics ${nic_westus3} \
-       --boot-diagnostics-storage miqdiagnosticswestus \
-       --os-disk-name miq-os-disk-rhel1 --attach-data-disks ${data_disk_westus2}"
+#eval "az vm create -n miq-vm-rhel1-mismatch -g miq-testrg-vms-eastus -l westus \
+#       --admin-username ${USER} --admin-password Smartvm12345 \
+#       --image RHEL --size Basic_A0 --tags ${tags} --nics ${nic_westus3} \
+#       --boot-diagnostics-storage miqdiagnosticswestus \
+#       --os-disk-name miq-os-disk-rhel1 --attach-data-disks ${data_disk_westus2}"
 
-eval "az vm create -n miq-vm-rhel2-mismatch -g miq-testrg-vms-westus -l eastus \
-       --admin-username ${USER} --admin-password Smartvm12345 \
-       --image RHEL --size Basic_A0 --tags ${tags} --nics ${nic_eastus3} \
-       --boot-diagnostics-storage miqdiagnosticseastus \
-       --os-disk-name miq-os-disk-rhel2 --attach-data-disks ${data_disk_eastus2}"
+#eval "az vm create -n miq-vm-rhel2-mismatch -g miq-testrg-vms-westus -l eastus \
+#       --admin-username ${USER} --admin-password Smartvm12345 \
+#       --image RHEL --size Basic_A0 --tags ${tags} --nics ${nic_eastus3} \
+#       --boot-diagnostics-storage miqdiagnosticseastus \
+#       --os-disk-name miq-os-disk-rhel2 --attach-data-disks ${data_disk_eastus2}"
 
 ## Generalize the VM and create an image.
 
