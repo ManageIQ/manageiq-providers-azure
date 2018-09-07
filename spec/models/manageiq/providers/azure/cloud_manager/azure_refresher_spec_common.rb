@@ -540,7 +540,7 @@ module AzureRefresherSpecCommon
   def assert_specific_managed_disk
     disk = Disk.find_by(:device_name => @managed_os_disk)
     expect(disk.location).to eql("/subscriptions/#{@ems.subscription}/resourceGroups/"\
-                                   "#{@vm_resource_group.upcase}/providers/Microsoft.Compute/disks/"\
+                                   "#{@vm_resource_group}/providers/Microsoft.Compute/disks/"\
                                    "#{@managed_os_disk}")
     expect(disk.size).to eql(30.gigabytes)
   end
