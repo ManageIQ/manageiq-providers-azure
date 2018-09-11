@@ -33,13 +33,46 @@ tags="owner=cfme creator=$USER specs=true";
 #eval "az storage account create -n miqdiagnosticseastus -g miq-testrg-storage-eastus -l eastus --tags ${tags}"
 #eval "az storage account create -n miqdiagnosticswestus -g miq-testrg-storage-westus -l westus --tags ${tags}"
 
-## Build two virtual networks, one per region. All NIC's (and thus IP's) should be attached to one of these two networks.
+## Build virtual networks, one per region. All NIC/IP should be attached to one of these networks.
 
 #eval "az network vnet create -n miq-virtual-network-eastus -g miq-testrg-networking-eastus \
 #        -l eastus --address-prefixes 192.168.0.0/24 --subnet-name default --tags ${tags}"
 
 #eval "az network vnet create -n miq-virtual-network-westus -g miq-testrg-networking-westus \
-#        -l westus --address-prefixes 192.168.0.0/24 --subnet-name default --tags ${tags}"
+#        -l westus --address-prefixes 192.168.0.1/24 --subnet-name default --tags ${tags}"
+
+#eval "az network vnet create -n miq-virtual-network-lb-eastus -g miq-testrg-networking-eastus --tags ${tags}"
+#eval "az network vnet create -n miq-virtual-network-lb-westus -g miq-testrg-networking-westus --tags ${tags}"
+
+## Build load balancer and associated resources
+
+#eval "az network lb create -n miq-lb-eastus1 -g miq-testrg-networking-eastus \
+#        --backend-pool-name miq-backend-pool-eastus1 --vnet-name miq-virtual-network-lb-eastus \
+#        --subnet default --tags ${tags}"
+
+#eval "az network lb create -n miq-lb-westus1 -g miq-testrg-networking-westus \
+#        --backend-pool-name miq-backend-pool-westus1 --vnet-name miq-virtual-network-lb-westus \
+#        --subnet default --tags ${tags}"
+
+#eval "az network lb probe create -n miq-probe-eastus -g miq-testrg-networking-eastus \
+#        --lb-name miq-lb-eastus1 --port 80 --protocol Http --interval 30 \
+#        --path / --threshold 2"
+
+#eval "az network lb probe create -n miq-probe-westus -g miq-testrg-networking-westus \
+#        --lb-name miq-lb-westus1 --port 80 --protocol Http --interval 30 \
+#        --path / --threshold 2"
+
+#eval "az network lb rule create --frontend-port 80 --backend-port 80 --lb-name miq-lb-eastus1 \
+#       -n miq-lb-rule-eastus1 -g miq-testrg-networking-eastus --protocol Tcp --probe miq-probe-eastus"
+
+#eval "az network lb rule create --frontend-port 80 --backend-port 80 --lb-name miq-lb-westus1 \
+#       -n miq-lb-rule-westus1 -g miq-testrg-networking-westus --protocol Tcp --probe miq-probe-westus"
+
+#eval "az network lb inbound-nat-rule create -n miq-lb-inbound-nat-rule-eastus -g miq-testrg-networking-eastus \
+#        --lb-name miq-lb-eastus1 --backend-port 3389 --frontend-port 3441 --protocol Tcp"
+
+#eval "az network lb inbound-nat-rule create -n miq-lb-inbound-nat-rule-westus -g miq-testrg-networking-westus \
+#        --lb-name miq-lb-westus1 --backend-port 3389 --frontend-port 3441 --protocol Tcp"
 
 # Build Public IP addresses. All Public IP's should be in one of the two networking resource groups.
 
