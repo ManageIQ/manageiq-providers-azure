@@ -82,6 +82,7 @@ tags="owner=cfme creator=$USER specs=true";
 #eval "az network public-ip create -n miq-publicip-eastus4 -g miq-testrg-networking-eastus -l eastus --tags ${tags}"
 #eval "az network public-ip create -n miq-publicip-eastus5 -g miq-testrg-networking-eastus -l eastus --tags ${tags}"
 #eval "az network public-ip create -n miq-publicip-eastus6 -g miq-testrg-networking-eastus -l eastus --tags ${tags}"
+#eval "az network public-ip create -n miq-publicip-eastus7 -g miq-testrg-networking-eastus -l eastus --tags ${tags}"
 
 #eval "az network public-ip create -n miq-publicip-westus1 -g miq-testrg-networking-westus -l westus --tags ${tags}"
 #eval "az network public-ip create -n miq-publicip-westus2 -g miq-testrg-networking-westus -l westus --tags ${tags}"
@@ -89,6 +90,7 @@ tags="owner=cfme creator=$USER specs=true";
 #eval "az network public-ip create -n miq-publicip-westus4 -g miq-testrg-networking-westus -l westus --tags ${tags}"
 #eval "az network public-ip create -n miq-publicip-westus5 -g miq-testrg-networking-westus -l westus --tags ${tags}"
 #eval "az network public-ip create -n miq-publicip-westus6 -g miq-testrg-networking-westus -l westus --tags ${tags}"
+#eval "az network public-ip create -n miq-publicip-westus7 -g miq-testrg-networking-westus -l westus --tags ${tags}"
 
 # Build network security groups
 
@@ -151,6 +153,10 @@ tags="owner=cfme creator=$USER specs=true";
 #       --public-ip-address miq-publicip-eastus6 --vnet-name miq-virtual-network-eastus \
 #       --subnet default --tags ${tags}"
 
+#eval "az network nic create -n miq-nic-eastus7 -g miq-testrg-networking-eastus -l eastus \
+#       --public-ip-address miq-publicip-eastus7 --vnet-name miq-virtual-network-eastus \
+#       --subnet default --tags ${tags}"
+
 #eval "az network nic create -n miq-nic-westus1 -g miq-testrg-networking-westus -l westus \
 #       --public-ip-address miq-publicip-westus1 --vnet-name miq-virtual-network-westus \
 #       --subnet default --network-security-group miq-nsg-westus1 --tags ${tags}"
@@ -173,6 +179,10 @@ tags="owner=cfme creator=$USER specs=true";
 
 #eval "az network nic create -n miq-nic-westus6 -g miq-testrg-networking-westus -l westus \
 #       --public-ip-address miq-publicip-westus6 --vnet-name miq-virtual-network-westus \
+#       --subnet default --tags ${tags}"
+
+#eval "az network nic create -n miq-nic-westus7 -g miq-testrg-networking-westus -l westus \
+#       --public-ip-address miq-publicip-westus7 --vnet-name miq-virtual-network-westus \
 #       --subnet default --tags ${tags}"
 
 ## Build two availability sets
@@ -212,6 +222,7 @@ tags="owner=cfme creator=$USER specs=true";
 #nic_eastus4="$(az network nic show -n miq-nic-eastus4 -g miq-testrg-networking-eastus --query id)"
 #nic_eastus5="$(az network nic show -n miq-nic-eastus5 -g miq-testrg-networking-eastus --query id)"
 #nic_eastus6="$(az network nic show -n miq-nic-eastus6 -g miq-testrg-networking-eastus --query id)"
+#nic_eastus7="$(az network nic show -n miq-nic-eastus7 -g miq-testrg-networking-eastus --query id)"
 
 #nic_westus1="$(az network nic show -n miq-nic-westus1 -g miq-testrg-networking-westus --query id)"
 #nic_westus2="$(az network nic show -n miq-nic-westus2 -g miq-testrg-networking-westus --query id)"
@@ -219,6 +230,7 @@ tags="owner=cfme creator=$USER specs=true";
 #nic_westus4="$(az network nic show -n miq-nic-westus4 -g miq-testrg-networking-westus --query id)"
 #nic_westus5="$(az network nic show -n miq-nic-westus5 -g miq-testrg-networking-westus --query id)"
 #nic_westus6="$(az network nic show -n miq-nic-westus6 -g miq-testrg-networking-westus --query id)"
+#nic_westus7="$(az network nic show -n miq-nic-westus7 -g miq-testrg-networking-westus --query id)"
 
 #storage_eastus="$(az storage account show -n miqunmanagedeastus -g miq-testrg-storage-eastus --query id)"
 #storage_westus="$(az storage account show -n miqunmanagedwestus -g miq-testrg-storage-westus --query id)"
@@ -315,6 +327,12 @@ tags="owner=cfme creator=$USER specs=true";
 #eval "az vm deallocate -n miq-linux-gen-east -g miq-testrg-vms-eastus"
 #eval "az vm generalize -n miq-linux-gen-east -g miq-testrg-vms-eastus"
 #eval "az image create  -n miq-linux-img-east -g miq-testrg-vms-eastus --source miq-linux-gen-east"
+
+## Create a VM from our custom image
+
+#eval "az vm create -n miq-vm-from-image-eastus1 -g miq-testrg-vms-eastus -l eastus \
+#      --admin-username ${USER} --admin-password Smartvm12345 --tags ${tags} \
+#      --image miq-linux-img-east --nics ${nic_eastus7} --os-disk-name miq-os-disk-image1"
 
 ## Deallocate all the VM's to avoid incurring charges
 
