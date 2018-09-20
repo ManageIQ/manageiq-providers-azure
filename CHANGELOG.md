@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
+## Unreleased as of Sprint 94 ending 2018-09-10
+
+### Added
+- Add plugin display name [(#283)](https://github.com/ManageIQ/manageiq-providers-azure/pull/283)
+
+## Gaprindashvili-5 - Released 2018-09-07
+
+### Fixed
+- Default to StandardError if a connection cannot be made [(#278)](https://github.com/ManageIQ/manageiq-providers-azure/pull/278)
+
 ## Unreleased as of Sprint 91 ending 2018-07-30
 
 ### Added
@@ -20,7 +30,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 ### Fixed
 - Don't use #{} inside gettext strings [(#273)](https://github.com/ManageIQ/manageiq-providers-azure/pull/273)
-- Default to StandardError if a connection cannot be made [(#278)](https://github.com/ManageIQ/manageiq-providers-azure/pull/278)
 
 ## Unreleased as of Sprint 88 ending 2018-06-18
 
