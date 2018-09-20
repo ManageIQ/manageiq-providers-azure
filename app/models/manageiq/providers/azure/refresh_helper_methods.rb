@@ -46,7 +46,7 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
   #
   def parent_ems_ref(instance)
     if instance.managed_disk?
-      instance.properties.storage_profile.try(:image_reference).try(:id)
+      instance.properties.storage_profile.try(:image_reference).try(:id).try(:downcase)
     else
       instance.properties.storage_profile.try(:os_disk).try(:image).try(:uri)
     end
