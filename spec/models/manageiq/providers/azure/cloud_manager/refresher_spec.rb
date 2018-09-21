@@ -124,7 +124,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
           assert_specific_managed_disk
           assert_specific_resource_group
           assert_specific_router
-          #assert_specific_parent
+          assert_specific_parent
         end
       end
     end

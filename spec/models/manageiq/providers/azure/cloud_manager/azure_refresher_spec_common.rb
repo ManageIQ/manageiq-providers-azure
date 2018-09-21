@@ -94,6 +94,8 @@ module AzureRefresherSpecCommon
     @managed_os_disk        = 'miq-vm-sles1-disk'
     @managed_data_disk      = 'miq-data-disk-eastus1'
     @route_table            = 'miq-route-table-eastus1'
+    @vm_from_image          = 'miq-vm-from-image-eastus1'
+    @image_name             = 'miq-linux-img-east'
 
     #@vm_powered_off    = 'miqazure-centos1' # Make sure this is powered off if generating a new cassette.
     #@ip_address        = '52.224.165.15'  # This will change if you had to restart the @device_name.
@@ -151,7 +153,7 @@ module AzureRefresherSpecCommon
   def expected_table_counts
     {
       :ext_management_system             => 2,
-      :flavor                            => 192,
+      :flavor                            => 194,
       :availability_zone                 => 1,
       :vm_or_template                    => 14,
       :vm                                => 13,
@@ -170,7 +172,7 @@ module AzureRefresherSpecCommon
       :security_group                    => 3,
       :network_port                      => 6,
       :cloud_network                     => 6,
-      :floating_ip                       => 6,
+      :floating_ip                       => 8,
       :network_router                    => 1,
       :cloud_subnet                      => 6,
       :resource_group                    => 8,
@@ -643,12 +645,10 @@ module AzureRefresherSpecCommon
   end
 
   def assert_specific_parent
-    template_resource_id = "https://miqazuretest14047.blob.core.windows.net/system/"\
-                               "Microsoft.Compute/Images/miq-test-container/"\
-                               "test-win2k12-img-osDisk.e17a95b0-f4fb-4196-93c5-0c8be7d5c536.vhd"
+    template_resource_id = "/subscriptions/#{@ems.subscription}/resourcegroups/#{@vm_resource_group}"\
+                           "/providers/microsoft.compute/images/#{@image_name}"
 
-    vm_resource_id = "#{@ems.subscription}/miq-azure-test4/"\
-                        "microsoft.compute/virtualmachines/dbergerprov1"
+    vm_resource_id = "#{@ems.subscription}/#{@vm_resource_group}/microsoft.compute/virtualmachines/#{@vm_from_image}"
 
     vm = ManageIQ::Providers::Azure::CloudManager::Vm.find_by(:ems_ref => vm_resource_id)
     template = ManageIQ::Providers::Azure::CloudManager::Template.find_by(:ems_ref => template_resource_id)
