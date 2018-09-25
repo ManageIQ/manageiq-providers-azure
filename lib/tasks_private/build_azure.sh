@@ -4,6 +4,8 @@
 ## and that you've run 'az login' to establish your credentials already.
 
 tags="owner=cfme creator=$USER specs=true";
+location1="eastus"
+location2="westus"
 
 ## Delete everything first
 #eval "az group delete -n miq-testrg-vms-eastus -y"
@@ -17,173 +19,215 @@ tags="owner=cfme creator=$USER specs=true";
 
 ## Start with the resource groups
 
-#eval "az group create -n miq-testrg-misc-eastus -l eastus --tags ${tags}";
-#eval "az group create -n miq-testrg-misc-westus -l westus --tags ${tags}";
-#eval "az group create -n miq-testrg-networking-eastus -l eastus --tags ${tags}";
-#eval "az group create -n miq-testrg-networking-westus -l westus --tags ${tags}";
-#eval "az group create -n miq-testrg-storage-eastus -l eastus --tags ${tags}";
-#eval "az group create -n miq-testrg-storage-westus -l westus --tags ${tags}";
-#eval "az group create -n miq-testrg-vms-eastus -l eastus --tags ${tags}";
-#eval "az group create -n miq-testrg-vms-westus -l westus --tags ${tags}";
+misc_group1="miq-misc-eastus"
+misc_group2="miq-misc-westus"
+network_group1="miq-networking-eastus"
+network_group2="miq-networking-westus"
+storage_group1="miq-storage-eastus"
+storage_group2="miq-storage-westus"
+vm_group1="miq-vms-eastus"
+vm_group2="miq-vms-westus"
+
+#eval "az group create -n ${misc_group1} -l ${location1} --tags ${tags}";
+#eval "az group create -n ${misc_group2} -l ${location2} --tags ${tags}";
+#eval "az group create -n ${network_group1} -l ${location1} --tags ${tags}";
+#eval "az group create -n ${network_group2} -l ${location2} --tags ${tags}";
+#eval "az group create -n ${storage_group1} -l ${location1} --tags ${tags}";
+#eval "az group create -n ${storage_group2} -l ${location2} --tags ${tags}";
+#eval "az group create -n ${vm_group1} -l ${location1} --tags ${tags}";
+#eval "az group create -n ${vm_group2} -l ${location2} --tags ${tags}";
 
 ## Build unmanaged storage accounts
 
-#eval "az storage account create -n miqunmanagedeastus -g miq-testrg-storage-eastus -l eastus --tags ${tags}"
-#eval "az storage account create -n miqunmanagedwestus -g miq-testrg-storage-westus -l westus --tags ${tags}"
-#eval "az storage account create -n miqdiagnosticseastus -g miq-testrg-storage-eastus -l eastus --tags ${tags}"
-#eval "az storage account create -n miqdiagnosticswestus -g miq-testrg-storage-westus -l westus --tags ${tags}"
+storage1="miqunmanagedeastus"
+storage2="miqunmanagedwestus"
+diagnostics1="miqdiagnosticseastus"
+diagnostics2="miqdiagnosticswestus"
+
+#eval "az storage account create -n ${storage1} -g ${storage_group1} -l ${location1} --tags ${tags}"
+#eval "az storage account create -n ${storage2} -g ${storage_group2} -l ${location2} --tags ${tags}"
+#eval "az storage account create -n ${diagnostics1} -g ${storage_group1} -l ${location1} --tags ${tags}"
+#eval "az storage account create -n ${diagnostics2} -g ${storage_group2} -l ${location2} --tags ${tags}"
 
 ## Build virtual networks, one per region. All NIC/IP should be attached to one of these networks.
 
-#eval "az network vnet create -n miq-virtual-network-eastus -g miq-testrg-networking-eastus \
-#        -l eastus --address-prefixes 192.168.0.0/24 --subnet-name default --tags ${tags}"
+vnet1="miq-vnet-eastus"
+vnet2="miq-vnet-westus"
+subnet="default"
 
-#eval "az network vnet create -n miq-virtual-network-westus -g miq-testrg-networking-westus \
-#        -l westus --address-prefixes 192.168.0.1/24 --subnet-name default --tags ${tags}"
+#eval "az network vnet create \
+#        --name ${vnet1} \
+#        --resource-group ${network_group1} \
+#        --location ${location1} \
+#        --address-prefixes 10.0.0.0/16 \
+#        --subnet-name ${subnet} \
+#        --tags ${tags}"
 
-#eval "az network vnet create -n miq-virtual-network-lb-eastus -g miq-testrg-networking-eastus --tags ${tags}"
-#eval "az network vnet create -n miq-virtual-network-lb-westus -g miq-testrg-networking-westus --tags ${tags}"
+#eval "az network vnet create \
+#        --name ${vnet2} \
+#        --resource-group ${network_group2} \
+#        --location ${location2} \
+#        --address-prefixes 10.0.0.0/16 \
+#        --subnet-name ${subnet} \
+#        --tags ${tags}"
 
-## Build load balancer and associated resources
+## Build Public IP addresses. All Public IP's should be in one of the two networking resource groups.
+publicip_east1="miq-publicip-eastus1"
+publicip_east2="miq-publicip-eastus2"
+publicip_east3="miq-publicip-eastus3"
+publicip_east4="miq-publicip-eastus4"
+publicip_east5="miq-publicip-eastus5"
+publicip_east6="miq-publicip-eastus6"
+publicip_east7="miq-publicip-eastus7"
 
-#eval "az network lb create -n miq-lb-eastus1 -g miq-testrg-networking-eastus \
-#        --backend-pool-name miq-backend-pool-eastus1 --vnet-name miq-virtual-network-lb-eastus \
-#        --subnet default --tags ${tags}"
+#eval "az network public-ip create -n ${publicip_east1} -g ${network_group1} -l ${location1} --tags ${tags}"
+#eval "az network public-ip create -n ${publicip_east2} -g ${network_group1} -l ${location1} --tags ${tags}"
+#eval "az network public-ip create -n ${publicip_east3} -g ${network_group1} -l ${location1} --tags ${tags}"
+#eval "az network public-ip create -n ${publicip_east4} -g ${network_group1} -l ${location1} --tags ${tags}"
+#eval "az network public-ip create -n ${publicip_east5} -g ${network_group1} -l ${location1} --tags ${tags}"
+#eval "az network public-ip create -n ${publicip_east6} -g ${network_group1} -l ${location1} --tags ${tags}"
+#eval "az network public-ip create -n ${publicip_east7} -g ${network_group1} -l ${location1} --tags ${tags}"
 
-#eval "az network lb create -n miq-lb-westus1 -g miq-testrg-networking-westus \
-#        --backend-pool-name miq-backend-pool-westus1 --vnet-name miq-virtual-network-lb-westus \
-#        --subnet default --tags ${tags}"
+publicip_west1="miq-publicip-westus1"
+publicip_west2="miq-publicip-westus2"
+publicip_west3="miq-publicip-westus3"
+publicip_west4="miq-publicip-westus4"
+publicip_west5="miq-publicip-westus5"
+publicip_west6="miq-publicip-westus6"
+publicip_west7="miq-publicip-westus7"
 
-#eval "az network lb probe create -n miq-probe-eastus -g miq-testrg-networking-eastus \
-#        --lb-name miq-lb-eastus1 --port 80 --protocol Http --interval 30 \
-#        --path / --threshold 2"
-
-#eval "az network lb probe create -n miq-probe-westus -g miq-testrg-networking-westus \
-#        --lb-name miq-lb-westus1 --port 80 --protocol Http --interval 30 \
-#        --path / --threshold 2"
-
-#eval "az network lb rule create --frontend-port 80 --backend-port 80 --lb-name miq-lb-eastus1 \
-#       -n miq-lb-rule-eastus1 -g miq-testrg-networking-eastus --protocol Tcp --probe miq-probe-eastus"
-
-#eval "az network lb rule create --frontend-port 80 --backend-port 80 --lb-name miq-lb-westus1 \
-#       -n miq-lb-rule-westus1 -g miq-testrg-networking-westus --protocol Tcp --probe miq-probe-westus"
-
-#eval "az network lb inbound-nat-rule create -n miq-lb-inbound-nat-rule-eastus -g miq-testrg-networking-eastus \
-#        --lb-name miq-lb-eastus1 --backend-port 3389 --frontend-port 3441 --protocol Tcp"
-
-#eval "az network lb inbound-nat-rule create -n miq-lb-inbound-nat-rule-westus -g miq-testrg-networking-westus \
-#        --lb-name miq-lb-westus1 --backend-port 3389 --frontend-port 3441 --protocol Tcp"
-
-# Build Public IP addresses. All Public IP's should be in one of the two networking resource groups.
-
-#eval "az network public-ip create -n miq-publicip-eastus1 -g miq-testrg-networking-eastus -l eastus --tags ${tags}"
-#eval "az network public-ip create -n miq-publicip-eastus2 -g miq-testrg-networking-eastus -l eastus --tags ${tags}"
-#eval "az network public-ip create -n miq-publicip-eastus3 -g miq-testrg-networking-eastus -l eastus --tags ${tags}"
-#eval "az network public-ip create -n miq-publicip-eastus4 -g miq-testrg-networking-eastus -l eastus --tags ${tags}"
-#eval "az network public-ip create -n miq-publicip-eastus5 -g miq-testrg-networking-eastus -l eastus --tags ${tags}"
-#eval "az network public-ip create -n miq-publicip-eastus6 -g miq-testrg-networking-eastus -l eastus --tags ${tags}"
-#eval "az network public-ip create -n miq-publicip-eastus7 -g miq-testrg-networking-eastus -l eastus --tags ${tags}"
-
-#eval "az network public-ip create -n miq-publicip-westus1 -g miq-testrg-networking-westus -l westus --tags ${tags}"
-#eval "az network public-ip create -n miq-publicip-westus2 -g miq-testrg-networking-westus -l westus --tags ${tags}"
-#eval "az network public-ip create -n miq-publicip-westus3 -g miq-testrg-networking-westus -l westus --tags ${tags}"
-#eval "az network public-ip create -n miq-publicip-westus4 -g miq-testrg-networking-westus -l westus --tags ${tags}"
-#eval "az network public-ip create -n miq-publicip-westus5 -g miq-testrg-networking-westus -l westus --tags ${tags}"
-#eval "az network public-ip create -n miq-publicip-westus6 -g miq-testrg-networking-westus -l westus --tags ${tags}"
-#eval "az network public-ip create -n miq-publicip-westus7 -g miq-testrg-networking-westus -l westus --tags ${tags}"
+#eval "az network public-ip create -n ${publicip_west1} -g ${network_group2} -l ${location2} --tags ${tags}"
+#eval "az network public-ip create -n ${publicip_west2} -g ${network_group2} -l ${location2} --tags ${tags}"
+#eval "az network public-ip create -n ${publicip_west3} -g ${network_group2} -l ${location2} --tags ${tags}"
+#eval "az network public-ip create -n ${publicip_west4} -g ${network_group2} -l ${location2} --tags ${tags}"
+#eval "az network public-ip create -n ${publicip_west5} -g ${network_group2} -l ${location2} --tags ${tags}"
+#eval "az network public-ip create -n ${publicip_west6} -g ${network_group2} -l ${location2} --tags ${tags}"
+#eval "az network public-ip create -n ${publicip_west7} -g ${network_group2} -l ${location2} --tags ${tags}"
 
 # Build network security groups
 
-#eval "az network nsg create -n miq-nsg-eastus1 -g miq-testrg-networking-eastus -l eastus --tags ${tags}"
-#eval "az network nsg create -n miq-nsg-eastus2 -g miq-testrg-networking-eastus -l eastus --tags ${tags}"
-#eval "az network nsg create -n miq-nsg-eastus3 -g miq-testrg-networking-eastus -l eastus --tags ${tags}"
-#eval "az network nsg create -n miq-nsg-westus1 -g miq-testrg-networking-westus -l westus --tags ${tags}"
-#eval "az network nsg create -n miq-nsg-westus2 -g miq-testrg-networking-westus -l westus --tags ${tags}"
-#eval "az network nsg create -n miq-nsg-westus3 -g miq-testrg-networking-westus -l westus --tags ${tags}"
+nsg_east1="miq-nsg-eastus1"
+nsg_east2="miq-nsg-eastus2"
+nsg_east3="miq-nsg-eastus3"
 
-## Add some rules to one of the security groups
+#eval "az network nsg create -n ${nsg_east1} -g ${network_group1} -l ${location1} --tags ${tags}"
+#eval "az network nsg create -n ${nsg_east2} -g ${network_group1} -l ${location1} --tags ${tags}"
+#eval "az network nsg create -n ${nsg_east3} -g ${network_group1} -l ${location1} --tags ${tags}"
 
-#eval "az network nsg rule create -n inbound1 --nsg-name miq-nsg-eastus1 \
-#        -g miq-testrg-networking-eastus --direction Inbound \
+nsg_west1="miq-nsg-westus1"
+nsg_west2="miq-nsg-westus2"
+nsg_west3="miq-nsg-westus3"
+
+#eval "az network nsg create -n ${nsg_west1} -g ${network_group2} -l ${location2} --tags ${tags}"
+#eval "az network nsg create -n ${nsg_west2} -g ${network_group2} -l ${location2} --tags ${tags}"
+#eval "az network nsg create -n ${nsg_west3} -g ${network_group2} -l ${location2} --tags ${tags}"
+
+## Add some rules to some of the security groups
+
+nsg_rule1="inbound1"
+nsg_rule2="inbound2"
+nsg_rule3="inbound3"
+nsg_rule4="inbound4"
+nsg_rule5="inbound5"
+nsg_rule6="inbound6"
+
+#eval "az network nsg rule create -n ${nsg_rule1} --nsg-name ${nsg_east1} \
+#        -g ${network_group1} --direction Inbound \
 #        --destination-port-range 22 --priority 1000 --protocol Tcp"
 
-#eval "az network nsg rule create -n inbound2 --nsg-name miq-nsg-eastus1 \
-#        -g miq-testrg-networking-eastus --direction Inbound --priority 100 \
+#eval "az network nsg rule create -n ${nsg_rule2} --nsg-name ${nsg_east1} \
+#        -g ${network_group1} --direction Inbound --priority 100 \
 #        --destination-port-range 80 --protocol Tcp --source-port-range 80"
 
-#eval "az network nsg rule create -n inbound3 --nsg-name miq-nsg-eastus1 \
-#        -g miq-testrg-networking-eastus --direction Inbound --priority 120 \
+#eval "az network nsg rule create -n ${nsg_rule3} --nsg-name ${nsg_east1} \
+#        -g ${network_group1} --direction Inbound --priority 120 \
 #        --destination-port-range 443 --protocol Tcp --source-port-range 443"
 
-#eval "az network nsg rule create -n inbound4 --nsg-name miq-nsg-westus1 \
-#        -g miq-testrg-networking-westus --direction Inbound \
+#eval "az network nsg rule create -n ${nsg_rule4} --nsg-name ${nsg_west1} \
+#        -g ${network_group2} --direction Inbound \
 #        --destination-port-range 22 --priority 1000 --protocol Tcp"
 
-#eval "az network nsg rule create -n inbound5 --nsg-name miq-nsg-westus1 \
-#        -g miq-testrg-networking-westus --direction Inbound --priority 100 \
+#eval "az network nsg rule create -n ${nsg_rule5} --nsg-name ${nsg_west1} \
+#        -g ${network_group2} --direction Inbound --priority 100 \
 #        --destination-port-range 80 --protocol Tcp --source-port-range 80"
 
-#eval "az network nsg rule create -n inbound6 --nsg-name miq-nsg-westus1 \
-#        -g miq-testrg-networking-westus --direction Inbound --priority 120 \
+#eval "az network nsg rule create -n ${nsg_rule6} --nsg-name ${nsg_west1} \
+#        -g ${network_group2} --direction Inbound --priority 120 \
 #        --destination-port-range 443 --protocol Tcp --source-port-range 443"
 
 ## Build NIC's. All NIC's should be in one of the two networking resource groups.
 
-#eval "az network nic create -n miq-nic-eastus1 -g miq-testrg-networking-eastus -l eastus \
-#       --public-ip-address miq-publicip-eastus1 --vnet-name miq-virtual-network-eastus \
-#       --subnet default --network-security-group miq-nsg-eastus1 --tags ${tags}"
+nic_east1="miq-nic-eastus1"
+nic_east2="miq-nic-eastus2"
+nic_east3="miq-nic-eastus3"
+nic_east4="miq-nic-eastus4"
+nic_east5="miq-nic-eastus5"
+nic_east6="miq-nic-eastus6"
+nic_east7="miq-nic-eastus7"
 
-#eval "az network nic create -n miq-nic-eastus2 -g miq-testrg-networking-eastus -l eastus \
-#       --public-ip-address miq-publicip-eastus2 --vnet-name miq-virtual-network-eastus \
-#       --subnet default --tags ${tags}"
+#eval "az network nic create -n ${nic_east1} -g ${network_group1} -l ${location1} \
+#       --public-ip-address ${publicip_east1} --vnet-name ${vnet1} \
+#       --subnet ${subnet} --network-security-group ${nsg_east1} --tags ${tags}"
 
-#eval "az network nic create -n miq-nic-eastus3 -g miq-testrg-networking-eastus -l eastus \
-#       --public-ip-address miq-publicip-eastus3 --vnet-name miq-virtual-network-eastus \
-#       --subnet default --network-security-group miq-nsg-eastus3 --tags ${tags}"
+#eval "az network nic create -n ${nic_east2} -g ${network_group1} -l ${location1} \
+#       --public-ip-address ${publicip_east2} --vnet-name ${vnet1} \
+#       --subnet ${subnet} --tags ${tags}"
 
-#eval "az network nic create -n miq-nic-eastus4 -g miq-testrg-networking-eastus -l eastus \
-#       --public-ip-address miq-publicip-eastus4 --vnet-name miq-virtual-network-eastus \
-#       --subnet default --tags ${tags}"
+#eval "az network nic create -n ${nic_east3} -g ${network_group1} -l ${location1} \
+#       --public-ip-address ${publicip_east3} --vnet-name ${vnet1} \
+#       --subnet ${subnet} --network-security-group ${nsg_east3} --tags ${tags}"
 
-#eval "az network nic create -n miq-nic-eastus5 -g miq-testrg-networking-eastus -l eastus \
-#       --public-ip-address miq-publicip-eastus5 --vnet-name miq-virtual-network-eastus \
-#       --subnet default --tags ${tags}"
+#eval "az network nic create -n ${nic_east4} -g ${network_group1} -l ${location1} \
+#       --public-ip-address ${publicip_east4} --vnet-name ${vnet1} \
+#       --subnet ${subnet} --tags ${tags}"
 
-#eval "az network nic create -n miq-nic-eastus6 -g miq-testrg-networking-eastus -l eastus \
-#       --public-ip-address miq-publicip-eastus6 --vnet-name miq-virtual-network-eastus \
-#       --subnet default --tags ${tags}"
+#eval "az network nic create -n ${nic_east5} -g ${network_group1} -l ${location1} \
+#       --public-ip-address ${publicip_east5} --vnet-name ${vnet1} \
+#       --subnet ${subnet} --tags ${tags}"
 
-#eval "az network nic create -n miq-nic-eastus7 -g miq-testrg-networking-eastus -l eastus \
-#       --public-ip-address miq-publicip-eastus7 --vnet-name miq-virtual-network-eastus \
-#       --subnet default --tags ${tags}"
+#eval "az network nic create -n ${nic_east6} -g ${network_group1} -l ${location1} \
+#       --public-ip-address ${publicip_east6} --vnet-name ${vnet1} \
+#       --subnet ${subnet} --tags ${tags}"
 
-#eval "az network nic create -n miq-nic-westus1 -g miq-testrg-networking-westus -l westus \
-#       --public-ip-address miq-publicip-westus1 --vnet-name miq-virtual-network-westus \
-#       --subnet default --network-security-group miq-nsg-westus1 --tags ${tags}"
+#eval "az network nic create -n ${nic_east7} -g ${network_group1} -l ${location1} \
+#       --public-ip-address ${publicip_east7} --vnet-name ${vnet1} \
+#       --subnet ${subnet} --tags ${tags}"
 
-#eval "az network nic create -n miq-nic-westus2 -g miq-testrg-networking-westus -l westus \
-#       --public-ip-address miq-publicip-westus2 --vnet-name miq-virtual-network-westus \
-#       --subnet default --tags ${tags}"
+nic_west1="miq-nic-westus1"
+nic_west2="miq-nic-westus2"
+nic_west3="miq-nic-westus3"
+nic_west4="miq-nic-westus4"
+nic_west5="miq-nic-westus5"
+nic_west6="miq-nic-westus6"
+nic_west7="miq-nic-westus7"
 
-#eval "az network nic create -n miq-nic-westus3 -g miq-testrg-networking-westus -l westus \
-#       --public-ip-address miq-publicip-westus3 --vnet-name miq-virtual-network-westus \
-#       --subnet default --network-security-group miq-nsg-westus3 --tags ${tags}"
+#eval "az network nic create -n ${nic_west1} -g ${network_group2} -l ${location2} \
+#       --public-ip-address ${publicip_west1} --vnet-name ${vnet2} \
+#       --subnet ${subnet} --network-security-group ${nsg_west1} --tags ${tags}"
 
-#eval "az network nic create -n miq-nic-westus4 -g miq-testrg-networking-westus -l westus \
-#       --public-ip-address miq-publicip-westus4 --vnet-name miq-virtual-network-westus \
-#       --subnet default --tags ${tags}"
+#eval "az network nic create -n ${nic_west2} -g ${network_group2} -l ${location2} \
+#       --public-ip-address ${publicip_west2} --vnet-name ${vnet2} \
+#       --subnet ${subnet} --tags ${tags}"
 
-#eval "az network nic create -n miq-nic-westus5 -g miq-testrg-networking-westus -l westus \
-#       --public-ip-address miq-publicip-westus5 --vnet-name miq-virtual-network-westus \
-#       --subnet default --tags ${tags}"
+#eval "az network nic create -n ${nic_west3} -g ${network_group2} -l ${location2} \
+#       --public-ip-address ${publicip_west3} --vnet-name ${vnet2} \
+#       --subnet ${subnet} --network-security-group ${nsg_west3} --tags ${tags}"
 
-#eval "az network nic create -n miq-nic-westus6 -g miq-testrg-networking-westus -l westus \
-#       --public-ip-address miq-publicip-westus6 --vnet-name miq-virtual-network-westus \
-#       --subnet default --tags ${tags}"
+#eval "az network nic create -n ${nic_west4} -g ${network_group2} -l ${location2} \
+#       --public-ip-address ${publicip_west4} --vnet-name ${vnet2} \
+#       --subnet ${subnet} --tags ${tags}"
 
-#eval "az network nic create -n miq-nic-westus7 -g miq-testrg-networking-westus -l westus \
-#       --public-ip-address miq-publicip-westus7 --vnet-name miq-virtual-network-westus \
-#       --subnet default --tags ${tags}"
+#eval "az network nic create -n ${nic_west5} -g ${network_group2} -l ${location2} \
+#       --public-ip-address ${publicip_west5} --vnet-name ${vnet2} \
+#       --subnet ${subnet} --tags ${tags}"
+
+#eval "az network nic create -n ${nic_west6} -g ${network_group2} -l ${location2} \
+#       --public-ip-address ${publicip_west6} --vnet-name ${vnet2} \
+#       --subnet ${subnet} --tags ${tags}"
+
+#eval "az network nic create -n ${nic_west7} -g ${network_group2} -l ${location2} \
+#       --public-ip-address ${publicip_west7} --vnet-name ${vnet2} \
+#       --subnet ${subnet} --tags ${tags}"
 
 ## Build two availability sets
 
@@ -192,27 +236,40 @@ tags="owner=cfme creator=$USER specs=true";
 
 ## Build two route tables and one route for each
 
-#eval "az network route-table create -n miq-route-table-eastus1 -g miq-testrg-networking-eastus --tags ${tags}"
-#eval "az network route-table create -n miq-route-table-westus1 -g miq-testrg-networking-westus --tags ${tags}"
+route1="miq-route-eastus1"
+route2="miq-route-westus1"
+route_table1="miq-route-table-eastus1"
+route_table2="miq-route-table-westus1"
 
-#eval "az network route-table route create -n miq-route-eastus1 -g miq-testrg-networking-eastus \
-#        --route-table-name miq-route-table-eastus1 --next-hop-type VnetLocal --address-prefix 192.168.0.0/16"
+#eval "az network route-table create -n ${route_table1} -g ${network_group1} --tags ${tags}"
+#eval "az network route-table create -n ${route_table2} -g ${network_group2} --tags ${tags}"
 
-#eval "az network route-table route create -n miq-route-westus1 -g miq-testrg-networking-westus \
-#        --route-table-name miq-route-table-westus1 --next-hop-type VnetLocal --address-prefix 192.168.0.0/16"
+#eval "az network route-table route create -n ${route1} -g ${network_group1} \
+#        --route-table-name ${route_table1} --next-hop-type VnetLocal --address-prefix 10.0.0.0/16"
+
+#eval "az network route-table route create -n ${route2} -g ${network_group2} \
+#        --route-table-name ${route_table2} --next-hop-type VnetLocal --address-prefix 10.0.0.0/16"
 
 ## Build managed disks
 
-#eval "az disk create -n miq-managed-disk-eastus -g miq-testrg-storage-eastus -l eastus \
+disk_east1="miq-managed-disk-eastus1"
+disk_west1="miq-managed-disk-westus1"
+
+data_disk_east1="miq-data-disk-eastus1"
+data_disk_east2="miq-data-disk-eastus2"
+data_disk_west1="miq-data-disk-westus1"
+data_disk_west2="miq-data-disk-westus2"
+
+#eval "az disk create -n ${disk_east1} -g ${storage_group1} -l ${location1} \
 #       --size-gb 16 --sku Standard_LRS --tags ${tags}"
 
-#eval "az disk create -n miq-managed-disk-westus -g miq-testrg-storage-westus -l westus \
+#eval "az disk create -n ${disk_west1} -g ${storage_group2} -l ${location2} \
 #       --size-gb 16 --sku Standard_LRS --tags ${tags}"
 
-#eval "az disk create -n miq-data-disk-eastus1 -g miq-testrg-storage-eastus -l eastus --sku Standard_LRS -z 1 --tags ${tags}"
-#eval "az disk create -n miq-data-disk-eastus2 -g miq-testrg-storage-eastus -l eastus --sku Standard_LRS -z 1 --tags ${tags}"
-#eval "az disk create -n miq-data-disk-westus1 -g miq-testrg-storage-westus -l westus --sku Standard_LRS -z 1 --tags ${tags}"
-#eval "az disk create -n miq-data-disk-westus2 -g miq-testrg-storage-westus -l westus --sku Standard_LRS -z 1 --tags ${tags}"
+#eval "az disk create -n ${data_disk_east1} -g ${storage_group1} -l ${location1} --sku Standard_LRS -z 1 --tags ${tags}"
+#eval "az disk create -n ${data_disk_east2} -g ${storage_group1} -l ${location1} --sku Standard_LRS -z 1 --tags ${tags}"
+#eval "az disk create -n ${data_disk_west1} -g ${storage_group2} -l ${location2} --sku Standard_LRS -z 1 --tags ${tags}"
+#eval "az disk create -n ${data_disk_west2} -g ${storage_group2} -l ${location2} --sku Standard_LRS -z 1 --tags ${tags}"
 
 ## We have to do this first since it's in a different resource group
 
