@@ -1,75 +1,168 @@
 #!/bin/bash
 
 tags="owner=cfme creator=$USER specs=true";
-group="miq-networking-eastus"
-vnet="miq-vnet-lb"
-pubip="miq-publicip-lb"
-lb="miq-lb"
-location="eastus"
-frontend="miq-frontend-pool"
-backend="miq-backend-pool"
-probe="miq-lb-health-probe"
-lb_rule="miq-lb-rule"
-subnet="miq-subnet-eastus"
-nsg="miq-nsg-lb-eastus"
-nsg_rule="miq-nsg-rule-eastus"
-nic1="miq-nic1-lb"
-nic2="miq-nic2-lb"
-av_set="miq-availability-set-lb-eastus"
 passwd="Smartvm12345"
+
+group1="miq-lb-eastus"
+group2="miq-lb-westus"
+
+vnet1="miq-vnet-lb-eastus"
+vnet2="miq-vnet-lb-westus"
+
+pubip1="miq-publicip-lb-eastus"
+pubip2="miq-publicip-lb-westus"
+
+lb1="miq-lb-eastus"
+lb2="miq-lb-westus"
+
+location1="eastus"
+location2="westus"
+
+frontend1="miq-frontend-pool1"
+frontend2="miq-frontend-pool2"
+
+backend1="miq-backend-pool1"
+backend2="miq-backend-pool2"
+
+probe1="miq-lb-health-probe1"
+probe2="miq-lb-health-probe2"
+
+lb_rule1="miq-lb-rule1"
+lb_rule2="miq-lb-rule2"
+
+subnet1="miq-subnet-eastus"
+subnet2="miq-subnet-westus"
+
+nsg1="miq-nsg-lb-eastus"
+nsg2="miq-nsg-lb-westus"
+
+nsg_rule1="miq-nsg-rule-eastus"
+nsg_rule2="miq-nsg-rule-westus"
+
+nic1="miq-nic1-lb-eastus"
+nic2="miq-nic2-lb-eastus"
+nic3="miq-nic1-lb-westus"
+nic4="miq-nic2-lb-westus"
+
+av_set1="miq-availability-set-lb-eastus"
+av_set2="miq-availability-set-lb-westus"
+
 vm1="miq-vm1-lb-eastus"
 vm2="miq-vm2-lb-eastus"
+vm3="miq-vm1-lb-westus"
+vm4="miq-vm2-lb-westus"
 
-eval "az group create -n ${group} -l eastus --tags ${tags}";
+## Resource Groups
+
+eval "az group create -n ${group1} -l ${location1} --tags ${tags}";
+eval "az group create -n ${group2} -l ${location2} --tags ${tags}";
+
+## Public IPs
 
 eval "az network public-ip create \
-        --name ${pubip} \
-        --resource-group ${group} \
-        --location ${location} \
+        --name ${pubip1} \
+        --resource-group ${group1} \
+        --location ${location1} \
+        --tags ${tags}"
+
+eval "az network public-ip create \
+        --name ${pubip2} \
+        --resource-group ${group2} \
+        --location ${location2} \
+        --tags ${tags}"
+
+## Load Balancers
+
+eval "az network lb create \
+        --name ${lb1} \
+        --resource-group ${group1} \
+        --public-ip-address ${pubip1} \
+        --frontend-ip-name ${frontend1} \
+        --backend-pool-name ${backend1} \
         --tags ${tags}"
 
 eval "az network lb create \
-        --name ${lb} \
-        --resource-group ${group} \
-        --public-ip-address ${pubip} \
-        --frontend-ip-name ${frontend} \
-        --backend-pool-name ${backend} \
+        --name ${lb2} \
+        --resource-group ${group2} \
+        --public-ip-address ${pubip2} \
+        --frontend-ip-name ${frontend2} \
+        --backend-pool-name ${backend2} \
         --tags ${tags}"
 
+## Load Balancer Probes
+
 eval "az network lb probe create \
-        --name ${probe} \
-        --resource-group ${group} \
-        --lb-name ${lb} \
+        --name ${probe1} \
+        --resource-group ${group1} \
+        --lb-name ${lb1} \
         --protocol tcp \
         --port 80"
 
+eval "az network lb probe create \
+        --name ${probe2} \
+        --resource-group ${group2} \
+        --lb-name ${lb2} \
+        --protocol tcp \
+        --port 80"
+
+## Load Balancer Rules
+
 eval "az network lb rule create \
-        --name ${lb_rule} \
-        --resource-group ${group} \
-        --lb-name ${lb} \
+        --name ${lb_rule1} \
+        --resource-group ${group1} \
+        --lb-name ${lb1} \
         --protocol tcp \
         --frontend-port 80 \
         --backend-port 80 \
-        --frontend-ip-name ${frontend} \
-        --backend-pool-name ${backend} \
-        --probe-name ${probe}"
+        --frontend-ip-name ${frontend1} \
+        --backend-pool-name ${backend1} \
+        --probe-name ${probe1}"
+
+eval "az network lb rule create \
+        --name ${lb_rule2} \
+        --resource-group ${group2} \
+        --lb-name ${lb2} \
+        --protocol tcp \
+        --frontend-port 80 \
+        --backend-port 80 \
+        --frontend-ip-name ${frontend2} \
+        --backend-pool-name ${backend2} \
+        --probe-name ${probe2}"
+
+## Virtual Networks
 
 eval "az network vnet create \
-        --name ${vnet} \
-        --resource-group ${group} \
-        --location ${location} \
-        --subnet-name ${subnet} \
+        --name ${vnet1} \
+        --resource-group ${group1} \
+        --location ${location1} \
+        --subnet-name ${subnet1} \
+        --tags ${tags}"
+
+eval "az network vnet create \
+        --name ${vnet2} \
+        --resource-group ${group2} \
+        --location ${location2} \
+        --subnet-name ${subnet2} \
+        --tags ${tags}"
+
+## Network Security Groups
+
+eval "az network nsg create \
+        --name ${nsg1} \
+        --resource-group ${group1} \
         --tags ${tags}"
 
 eval "az network nsg create \
-        --name ${nsg} \
-        --resource-group ${group} \
+        --name ${nsg2} \
+        --resource-group ${group2} \
         --tags ${tags}"
 
+## Network Security Group Rules
+
 eval "az network nsg rule create \
-        --name ${nsg_rule} \
-        --resource-group ${group} \
-        --nsg-name ${nsg} \
+        --name ${nsg_rule1} \
+        --resource-group ${group1} \
+        --nsg-name ${nsg1} \
         --protocol tcp \
         --direction inbound \
         --source-address-prefix '*' \
@@ -79,37 +172,78 @@ eval "az network nsg rule create \
         --access allow \
         --priority 200"
 
+eval "az network nsg rule create \
+        --name ${nsg_rule2} \
+        --resource-group ${group2} \
+        --nsg-name ${nsg2} \
+        --protocol tcp \
+        --direction inbound \
+        --source-address-prefix '*' \
+        --source-port-range '*' \
+        --destination-address-prefix '*' \
+        --destination-port-range 80 \
+        --access allow \
+        --priority 200"
+
+## NICs
+
 eval "az network nic create \
         --name ${nic1} \
-        --resource-group ${group} \
-        --vnet-name ${vnet} \
-        --subnet ${subnet} \
-        --network-security-group ${nsg} \
-        --lb-name ${lb} \
-        --lb-address-pools ${backend}"
+        --resource-group ${group1} \
+        --vnet-name ${vnet1} \
+        --subnet ${subnet1} \
+        --network-security-group ${nsg1} \
+        --lb-name ${lb1} \
+        --lb-address-pools ${backend1}"
 
 eval "az network nic create \
         --name ${nic2} \
-        --resource-group ${group} \
-        --vnet-name ${vnet} \
-        --subnet ${subnet} \
-        --network-security-group ${nsg} \
-        --lb-name ${lb} \
-        --lb-address-pools ${backend}"
+        --resource-group ${group1} \
+        --vnet-name ${vnet1} \
+        --subnet ${subnet1} \
+        --network-security-group ${nsg1} \
+        --lb-name ${lb1} \
+        --lb-address-pools ${backend1}"
+
+eval "az network nic create \
+        --name ${nic3} \
+        --resource-group ${group2} \
+        --vnet-name ${vnet2} \
+        --subnet ${subnet2} \
+        --network-security-group ${nsg2} \
+        --lb-name ${lb2} \
+        --lb-address-pools ${backend2}"
+
+eval "az network nic create \
+        --name ${nic4} \
+        --resource-group ${group2} \
+        --vnet-name ${vnet2} \
+        --subnet ${subnet2} \
+        --network-security-group ${nsg2} \
+        --lb-name ${lb2} \
+        --lb-address-pools ${backend2}"
+
+## Availability Set
 
 eval "az vm availability-set create \
-        --name ${av_set} \
-        --resource-group ${group}"
+        --name ${av_set1} \
+        --resource-group ${group1}"
 
-## Note: cannot use "basic" sizes for load balancers.
+eval "az vm availability-set create \
+        --name ${av_set2} \
+        --resource-group ${group2}"
+
+## Virtual Machines
+
+## Note: cannot use "basic" sizes for load balancing VMs.
 
 eval "az vm create \
         --name ${vm1} \
-        --resource-group ${group} \
-        --availability-set ${av_set} \
+        --resource-group ${group1} \
+        --availability-set ${av_set1} \
         --nics ${nic1} \
         --image UbuntuLTS \
-        --location ${location} \
+        --location ${location1} \
         --admin-username ${USER} \
         --admin-password ${passwd} \
         --size Standard_A0 \
@@ -118,11 +252,37 @@ eval "az vm create \
 
 eval "az vm create \
         --name ${vm2} \
-        --resource-group ${group} \
-        --availability-set ${av_set} \
+        --resource-group ${group1} \
+        --availability-set ${av_set1} \
         --nics ${nic2} \
         --image UbuntuLTS \
-        --location ${location} \
+        --location ${location1} \
+        --admin-username ${USER} \
+        --admin-password ${passwd} \
+        --size Standard_A0 \
+        --os-disk-name miq-vm-lb-disk2 \
+        --tags ${tags}"
+
+eval "az vm create \
+        --name ${vm3} \
+        --resource-group ${group2} \
+        --availability-set ${av_set2} \
+        --nics ${nic3} \
+        --image UbuntuLTS \
+        --location ${location1} \
+        --admin-username ${USER} \
+        --admin-password ${passwd} \
+        --size Standard_A0 \
+        --os-disk-name miq-vm-lb-disk1 \
+        --tags ${tags}"
+
+eval "az vm create \
+        --name ${vm4} \
+        --resource-group ${group2} \
+        --availability-set ${av_set2} \
+        --nics ${nic4} \
+        --image UbuntuLTS \
+        --location ${location2} \
         --admin-username ${USER} \
         --admin-password ${passwd} \
         --size Standard_A0 \
