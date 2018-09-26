@@ -81,15 +81,15 @@ module AzureRefresherSpecCommon
 
     @ems = FactoryGirl.create(:ems_azure_with_vcr_authentication, :zone => zone, :provider_region => 'eastus')
 
-    @vm_resource_group      = 'miq-testrg-vms-eastus'
-    @network_resource_group = 'miq-testrg-networking-eastus'
+    @vm_resource_group      = 'miq-vms-eastus'
+    @network_resource_group = 'miq-networking-eastus'
     @ubuntu_east            = 'miq-vm-ubuntu1-eastus'
     @centos_east            = 'miq-vm-centos1-eastus'
     @rhel_east              = 'miq-vm-rhel2-mismatch'
     @security_group         = 'miq-nsg-eastus1'
     @centos_public_ip       = 'miq-publicip-eastus2'
-    @unmanaged_disk         = 'miq-vm-centos1-disk'
-    @cloud_network          = 'miq-virtual-network-eastus'
+    @unmanaged_disk         = 'miq-vm-centos-disk1'
+    @cloud_network          = 'miq-vnet-eastus'
     @managed_vm             = 'miq-vm-sles1-eastus'
     @managed_os_disk        = 'miq-vm-sles1-disk'
     @managed_data_disk      = 'miq-data-disk-eastus1'
@@ -153,7 +153,7 @@ module AzureRefresherSpecCommon
   def expected_table_counts
     {
       :ext_management_system             => 2,
-      :flavor                            => 194,
+      :flavor                            => 192,
       :availability_zone                 => 1,
       :vm_or_template                    => 14,
       :vm                                => 13,
@@ -169,7 +169,7 @@ module AzureRefresherSpecCommon
       :orchestration_stack_parameter     => 261,
       :orchestration_stack_output        => 11,
       :orchestration_stack_resource      => 90,
-      :security_group                    => 3,
+      :security_group                    => 4,
       :network_port                      => 6,
       :cloud_network                     => 6,
       :floating_ip                       => 8,
@@ -333,7 +333,7 @@ module AzureRefresherSpecCommon
       :status           => 'inactive',
       :type             => 'ManageIQ::Providers::Azure::NetworkManager::NetworkRouter',
       :extra_attributes => {:routes =>
-        [{'Name' => 'miq-route-eastus1', 'Resource Group' => @network_resource_group, 'CIDR' => '192.168.0.0/16'}]
+        [{'Name' => 'miq-route-eastus1', 'Resource Group' => @network_resource_group, 'CIDR' => '10.0.0.0/16'}]
       }
     )
   end
@@ -343,7 +343,7 @@ module AzureRefresherSpecCommon
 
     expect(sg).to have_attributes(
       :name        => @security_group,
-      :description => 'miq-testrg-networking-eastus-eastus'
+      :description => 'miq-networking-eastus-eastus'
     )
 
     expected_firewall_rules = [
@@ -400,7 +400,7 @@ module AzureRefresherSpecCommon
     expect(cloud_network).to have_attributes(
       :name    => @cloud_network,
       :ems_ref => cn_resource_id,
-      :cidr    => '192.168.0.0/24',
+      :cidr    => '10.0.0.0/16',
       :status  => nil,
       :enabled => true
     )
@@ -418,7 +418,7 @@ module AzureRefresherSpecCommon
     expect(subnet).to have_attributes(
       :name              => 'default',
       :ems_ref           => "#{cn_resource_id}/subnets/default",
-      :cidr              => '192.168.0.0/24',
+      :cidr              => '10.0.0.0/24',
       :availability_zone => availability_zone
     )
 
@@ -554,8 +554,8 @@ module AzureRefresherSpecCommon
     vm_same_region = Vm.find_by(:name => @ubuntu_east)
     vm_diff_region = Vm.find_by(:name => @rhel_east)
 
-    group_same_region = ResourceGroup.find_by(:name => 'miq-testrg-vms-eastus')
-    group_diff_region = ResourceGroup.find_by(:name => 'miq-testrg-vms-westus')
+    group_same_region = ResourceGroup.find_by(:name => 'miq-vms-eastus')
+    group_diff_region = ResourceGroup.find_by(:name => 'miq-vms-westus')
 
     expect(vm_same_region.resource_group).to eql(group_same_region)
     expect(vm_diff_region.resource_group).to eql(group_diff_region)
@@ -809,7 +809,7 @@ module AzureRefresherSpecCommon
   end
 
   def assert_specific_nic_and_ip
-    res_group = 'miq-testrg-networking-eastus'
+    res_group = 'miq-networking-eastus'
     nic_name  = 'miq-nic-eastus1'
     ip_name   = 'miq-publicip-eastus1'
 
