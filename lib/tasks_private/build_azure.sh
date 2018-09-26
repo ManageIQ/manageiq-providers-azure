@@ -8,16 +8,6 @@ passwd="Smartvm12345"
 location1="eastus"
 location2="westus"
 
-## Delete everything first
-eval "az group delete -n miq-testrg-vms-eastus -y"
-eval "az group delete -n miq-testrg-vms-westus -y"
-eval "az group delete -n miq-testrg-storage-eastus -y"
-eval "az group delete -n miq-testrg-storage-westus -y"
-eval "az group delete -n miq-testrg-networking-eastus -y"
-eval "az group delete -n miq-testrg-networking-westus -y"
-eval "az group delete -n miq-testrg-misc-eastus -y"
-eval "az group delete -n miq-testrg-misc-westus -y"
-
 ## Start with the resource groups
 
 misc_group1="miq-misc-eastus"
@@ -28,6 +18,19 @@ storage_group1="miq-storage-eastus"
 storage_group2="miq-storage-westus"
 vm_group1="miq-vms-eastus"
 vm_group2="miq-vms-westus"
+
+## Delete everything first, in this order
+
+eval "az group delete -n ${vm_group1} -y"
+eval "az group delete -n ${vm_group2} -y"
+eval "az group delete -n ${storage_group1} -y"
+eval "az group delete -n ${storage_group2} -y"
+eval "az group delete -n ${network_group1} -y"
+eval "az group delete -n ${network_group2} -y"
+eval "az group delete -n ${misc_group1} -y"
+eval "az group delete -n ${misc_group2} -y"
+
+## Recreate the resource groups
 
 eval "az group create -n ${misc_group1} -l ${location1} --tags ${tags}";
 eval "az group create -n ${misc_group2} -l ${location2} --tags ${tags}";
