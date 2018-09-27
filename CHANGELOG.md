@@ -5,40 +5,38 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
-## Unreleased as of Sprint 94 ending 2018-09-10
+## Hammer Beta-1
 
 ### Added
 - Add plugin display name [(#283)](https://github.com/ManageIQ/manageiq-providers-azure/pull/283)
+- Add plugin display name [(#283)](https://github.com/ManageIQ/manageiq-providers-azure/pull/283)
+- Enable graph refresh by default [(#280)](https://github.com/ManageIQ/manageiq-providers-azure/pull/280)
+- Add support for custom endpoint [(#274)](https://github.com/ManageIQ/manageiq-providers-azure/pull/274)
+- Update series name to work with Azure stack [(#272)](https://github.com/ManageIQ/manageiq-providers-azure/pull/272)
+- Persister: optimized InventoryCollection definitions [(#271)](https://github.com/ManageIQ/manageiq-providers-azure/pull/271)
+- Set parent for VM's where possible [(#267)](https://github.com/ManageIQ/manageiq-providers-azure/pull/267)
+- Add display name for flavor [(#265)](https://github.com/ManageIQ/manageiq-providers-azure/pull/265)
+- Azure labels and tag mapping support for a new refresh [(#229)](https://github.com/ManageIQ/manageiq-providers-azure/pull/229)
+- Azure events targeted [(#222)](https://github.com/ManageIQ/manageiq-providers-azure/pull/222)
+- Added azure_tenant_id to API_ALLOWED_ATTRIBUTES [(#198)](https://github.com/ManageIQ/manageiq-providers-azure/pull/198)
+- Migrate model display names from locale/en.yml to plugin [(#200)](https://github.com/ManageIQ/manageiq-providers-azure/pull/200)
+- Update api-version string settings [(#186)](https://github.com/ManageIQ/manageiq-providers-azure/pull/186)
+- Select only the event fields that we need [(#171)](https://github.com/ManageIQ/manageiq-providers-azure/pull/171)
+- Pass resource group as a string to the instance delete method [(#148)](https://github.com/ManageIQ/manageiq-providers-azure/pull/148)
+
+### Fixed
+- Fix parent association in graph refresh [(#291)](https://github.com/ManageIQ/manageiq-providers-azure/pull/291)
+- Don't use #{} inside gettext strings [(#273)](https://github.com/ManageIQ/manageiq-providers-azure/pull/273)
+- Fix root disk size swap disk size [(#264)](https://github.com/ManageIQ/manageiq-providers-azure/pull/264)
+- Handle providers that may not support managed images or disks [(#257)](https://github.com/ManageIQ/manageiq-providers-azure/pull/257)
+- Add resourceProviderName to list of collected event fields [(#182)](https://github.com/ManageIQ/manageiq-providers-azure/pull/182)
+- Set the location property of managed disks to ensure disk saving [(#143)](https://github.com/ManageIQ/manageiq-providers-azure/pull/143)
+- Always collect all resource groups [(#142)](https://github.com/ManageIQ/manageiq-providers-azure/pull/142)
 
 ## Gaprindashvili-5 - Released 2018-09-07
 
 ### Fixed
 - Default to StandardError if a connection cannot be made [(#278)](https://github.com/ManageIQ/manageiq-providers-azure/pull/278)
-
-## Unreleased as of Sprint 91 ending 2018-07-30
-
-### Added
-- Enable graph refresh by default [(#280)](https://github.com/ManageIQ/manageiq-providers-azure/pull/280)
-- Add support for custom endpoint [(#274)](https://github.com/ManageIQ/manageiq-providers-azure/pull/274)
-
-## Unreleased as of Sprint 90 ending 2018-07-16
-
-### Added
-- Update series name to work with Azure stack [(#272)](https://github.com/ManageIQ/manageiq-providers-azure/pull/272)
-- Persister: optimized InventoryCollection definitions [(#271)](https://github.com/ManageIQ/manageiq-providers-azure/pull/271)
-- Set parent for VM's where possible [(#267)](https://github.com/ManageIQ/manageiq-providers-azure/pull/267)
-
-### Fixed
-- Don't use #{} inside gettext strings [(#273)](https://github.com/ManageIQ/manageiq-providers-azure/pull/273)
-
-## Unreleased as of Sprint 88 ending 2018-06-18
-
-### Added
-- Add display name for flavor [(#265)](https://github.com/ManageIQ/manageiq-providers-azure/pull/265)
-
-### Fixed
-- Fix root disk size swap disk size [(#264)](https://github.com/ManageIQ/manageiq-providers-azure/pull/264)
-- Handle providers that may not support managed images or disks [(#257)](https://github.com/ManageIQ/manageiq-providers-azure/pull/257)
 
 ## Gaprindashvili-3 - Released 2018-05-15
 
@@ -55,25 +53,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - Fix case-sensitive events ems_ref parsing [(#225)](https://github.com/ManageIQ/manageiq-providers-azure/pull/225)
 - Only create new Public IP if one cannot be found [(#195)](https://github.com/ManageIQ/manageiq-providers-azure/pull/195)
 
-## Unreleased as of Sprint 84 ending 2018-04-23
-
-### Added
-- Azure labels and tag mapping support for a new refresh [(#229)](https://github.com/ManageIQ/manageiq-providers-azure/pull/229)
-
-## Unreleased as of Sprint 82 ending 2018-03-26
-
-### Added
-- Azure events targeted [(#222)](https://github.com/ManageIQ/manageiq-providers-azure/pull/222)
-
 ## Gaprindashvili-2 released 2018-03-06
 
 ### Fixed
 - Handle possible race conditions for disks, events [(#209)](https://github.com/ManageIQ/manageiq-providers-azure/pull/209)
-
-## Unreleased as of Sprint 80 ending 2018-02-26
-
-### Added
-- Added azure_tenant_id to API_ALLOWED_ATTRIBUTES [(#198)](https://github.com/ManageIQ/manageiq-providers-azure/pull/198)
 
 ## Gaprindashvili-1 - Released 2018-01-31
 
@@ -122,29 +105,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - Smart state Snapshot Managed Disk Name 80 Char Limit [(#157)](https://github.com/ManageIQ/manageiq-providers-azure/pull/157)
 - Pass manageiq-smartstate the Resource Group Name not the Object [(#155)](https://github.com/ManageIQ/manageiq-providers-azure/pull/155)
 - Fix exception handing for credential validation on raw_connect [(#161)](https://github.com/ManageIQ/manageiq-providers-azure/pull/161)
-
-## Unreleased as of Sprint 78 ending 2018-01-29
-
-### Added
-- Migrate model display names from locale/en.yml to plugin [(#200)](https://github.com/ManageIQ/manageiq-providers-azure/pull/200)
-- Update api-version string settings [(#186)](https://github.com/ManageIQ/manageiq-providers-azure/pull/186)
-
-## Unreleased as of Sprint 75 ending 2017-12-11
-
-### Added
-- Select only the event fields that we need [(#171)](https://github.com/ManageIQ/manageiq-providers-azure/pull/171)
-
-### Fixed
-- Add resourceProviderName to list of collected event fields [(#182)](https://github.com/ManageIQ/manageiq-providers-azure/pull/182)
-
-## Unreleased as of Sprint 72 ending 2017-10-30
-
-### Added
-- Pass resource group as a string to the instance delete method [(#148)](https://github.com/ManageIQ/manageiq-providers-azure/pull/148)
-
-### Fixed
-- Set the location property of managed disks to ensure disk saving [(#143)](https://github.com/ManageIQ/manageiq-providers-azure/pull/143)
-- Always collect all resource groups [(#142)](https://github.com/ManageIQ/manageiq-providers-azure/pull/142)
 
 ## Fine-3
 
