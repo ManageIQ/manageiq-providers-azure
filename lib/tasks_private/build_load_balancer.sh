@@ -21,6 +21,7 @@ pubip2="miq-publicip-lb-westus"
 
 lb1="miq-lb-eastus"
 lb2="miq-lb-westus"
+lb3="miq-lb-eastus2"
 
 location1="eastus"
 location2="westus"
@@ -98,21 +99,27 @@ eval "az network lb create \
         --backend-pool-name ${backend2} \
         --tags ${tags}"
 
+eval "az network lb create -n ${lb3} -g ${$network_group1}"
+
 ## Load Balancer Probes
 
 eval "az network lb probe create \
         --name ${probe1} \
         --resource-group ${network_group1} \
         --lb-name ${lb1} \
-        --protocol tcp \
-        --port 80"
+        --protocol Http \
+        --port 80 \
+        --interval 15 \
+        --path /"
 
 eval "az network lb probe create \
         --name ${probe2} \
         --resource-group ${network_group2} \
         --lb-name ${lb2} \
-        --protocol tcp \
-        --port 80"
+        --protocol Http \
+        --port 80 \
+        --interval 15 \
+        --path /"
 
 ## Load Balancer Rules
 
