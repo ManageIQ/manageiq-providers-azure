@@ -96,6 +96,12 @@ module AzureRefresherSpecCommon
     @route_table            = 'miq-route-table-eastus1'
     @vm_from_image          = 'miq-vm-from-image-eastus1'
     @image_name             = 'miq-linux-img-east'
+    @load_balancer          = 'miq-lb-eastus'
+    @load_balancer_no_mem   = 'miq-lb-eastus2'
+    @backend_pool           = 'miq-backend-pool1'
+    @vm_lb1                 = 'miq-vm-lb1-eastus'
+    @vm_lb2                 = 'miq-vm-lb2-eastus'
+    @lb_ip_address          = '40.87.68.28' # This will change if backend pool was restarted.
 
     #@vm_powered_off    = 'miqazure-centos1' # Make sure this is powered off if generating a new cassette.
     #@ip_address        = '52.224.165.15'  # This will change if you had to restart the @device_name.
@@ -172,7 +178,7 @@ module AzureRefresherSpecCommon
       :security_group                    => 4,
       :network_port                      => 6,
       :cloud_network                     => 6,
-      :floating_ip                       => 8,
+      :floating_ip                       => 9,
       :network_router                    => 1,
       :cloud_subnet                      => 6,
       :resource_group                    => 8,
@@ -220,109 +226,114 @@ module AzureRefresherSpecCommon
   end
 
   def assert_specific_load_balancers
-    lb_ems_ref      = "/subscriptions/#{@ems.subscription}/"\
-                          "resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb1"
+    lb_ems_ref = "/subscriptions/#{@ems.subscription}/resourceGroups/#{@network_resource_group}"\
+                   "/providers/Microsoft.Network/loadBalancers/#{@load_balancer}"
 
-    lb_pool_ems_ref = "/subscriptions/#{@ems.subscription}/"\
-                          "resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/"\
-                          "rspec-lb1/backendAddressPools/rspec-lb-pool"
+    lb_pool_ems_ref = "/subscriptions/#{@ems.subscription}/resourceGroups/#{@network_resource_group}"\
+                        "/providers/Microsoft.Network/loadBalancers/#{@load_balancer}/backendAddressPools/#{@backend_pool}"
 
-    @lb = ManageIQ::Providers::Azure::NetworkManager::LoadBalancer.where(
-      :name    => "rspec-lb1"
-    ).first
-    @lb_no_members = ManageIQ::Providers::Azure::NetworkManager::LoadBalancer.where(
-      :name    => "rspec-lb2"
-    ).first
-    @pool = ManageIQ::Providers::Azure::NetworkManager::LoadBalancerPool.where(
-      :ems_ref => lb_pool_ems_ref
-    ).first
+    lb = ManageIQ::Providers::Azure::NetworkManager::LoadBalancer.find_by(:name => @load_balancer)
 
-    expect(@lb).to have_attributes(
-      "ems_ref"         => lb_ems_ref,
-      "name"            => "rspec-lb1",
-      "description"     => nil,
-      "cloud_tenant_id" => nil,
-      "type"            => "ManageIQ::Providers::Azure::NetworkManager::LoadBalancer"
+    lb_no_members = ManageIQ::Providers::Azure::NetworkManager::LoadBalancer.find_by(:name => @load_balancer_no_mem)
+
+    pool = ManageIQ::Providers::Azure::NetworkManager::LoadBalancerPool.find_by(:ems_ref => lb_pool_ems_ref)
+
+    expect(lb).to have_attributes(
+      'ems_ref'         => lb_ems_ref,
+      'name'            => @load_balancer,
+      'description'     => nil,
+      'cloud_tenant_id' => nil,
+      'type'            => 'ManageIQ::Providers::Azure::NetworkManager::LoadBalancer'
     )
 
-    expect(@lb.ext_management_system).to eq(@ems.network_manager)
-    expect(@lb.vms.count).to eq 2
-    expect(@lb.load_balancer_pools.first).to eq(@pool)
-    expect(@lb.load_balancer_pool_members.count).to eq 2
-    expect(@lb.load_balancer_pool_members.first.ext_management_system).to eq @ems.network_manager
-    expect(@lb.vms.first.ext_management_system).to eq @ems
-    expect(@lb.vms.collect(&:name).sort).to match_array ["rspec-lb-a", "rspec-lb-b"]
-    expect(@lb_no_members.load_balancer_pool_members.count).to eq 0
+    expect(lb.ext_management_system).to eq(@ems.network_manager)
+    expect(lb.vms.count).to eq(2)
+    expect(lb.load_balancer_pools.first).to eq(pool)
+    expect(lb.load_balancer_pool_members.count).to eq(2)
+    expect(lb.load_balancer_pool_members.first.ext_management_system).to eq(@ems.network_manager)
+    expect(lb.vms.first.ext_management_system).to eq(@ems)
+    expect(lb.vms.collect(&:name).sort).to match_array(['miq-vm1-lb-eastus', 'miq-vm2-lb-eastus'])
+    expect(lb_no_members.load_balancer_pool_members.count).to eq(0)
   end
 
   def assert_specific_load_balancer_networking
-    floating_ip = FloatingIp.where(:address => "40.71.82.83").first
+    lb = ManageIQ::Providers::Azure::NetworkManager::LoadBalancer.find_by(:name => @load_balancer)
+    floating_ip = FloatingIp.find_by(:address => @lb_ip_address)
 
-    expect(@lb).to eq floating_ip.network_port.device
+    expect(lb).to eq(floating_ip.network_port.device)
   end
 
   def assert_specific_load_balancer_listeners
-    lb_listener_ems_ref      = "/subscriptions/#{@ems.subscription}/resourceGroups/"\
-                                   "miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb1/"\
-                                   "loadBalancingRules/rspec-lb1-rule"
+    lb_listener_ems_ref = "/subscriptions/#{@ems.subscription}/resourceGroups/#{@network_resource_group}"\
+                            "/providers/Microsoft.Network/loadBalancers/#{@load_balancer}"\
+                            "/loadBalancingRules/miq-lb-rule1"
 
-    lb_pool_member_1_ems_ref = "/subscriptions/#{@ems.subscription}/resourceGroups/"\
-                                   "miq-azure-test1/providers/Microsoft.Network/networkInterfaces/rspec-lb-a670/"\
-                                   "ipConfigurations/ipconfig1"
+    lb_pool_ems_ref = "/subscriptions/#{@ems.subscription}/resourceGroups/#{@network_resource_group}"\
+                        "/providers/Microsoft.Network/loadBalancers/#{@load_balancer}/backendAddressPools/#{@backend_pool}"
 
-    lb_pool_member_2_ems_ref = "/subscriptions/#{@ems.subscription}/resourceGroups/"\
-                                   "miq-azure-test1/providers/Microsoft.Network/networkInterfaces/rspec-lb-b843/"\
-                                   "ipConfigurations/ipconfig1"
+    lb_pool_member_1_ems_ref = "/subscriptions/#{@ems.subscription}/resourceGroups/#{@network_resource_group}"\
+                                 "/providers/Microsoft.Network/networkInterfaces/miq-nic1-lb-eastus"\
+                                 "/ipConfigurations/ipconfig1"
 
-    @listener = ManageIQ::Providers::Azure::NetworkManager::LoadBalancerListener.where(
-      :ems_ref => lb_listener_ems_ref
-    ).first
+    lb_pool_member_2_ems_ref = "/subscriptions/#{@ems.subscription}/resourceGroups/#{@network_resource_group}"\
+                                 "/providers/Microsoft.Network/networkInterfaces/miq-nic2-lb-eastus"\
+                                 "/ipConfigurations/ipconfig1"
 
-    expect(@listener).to have_attributes(
-      "ems_ref"                  => lb_listener_ems_ref,
-      "name"                     => nil,
-      "description"              => nil,
-      "load_balancer_protocol"   => "Tcp",
-      "load_balancer_port_range" => 80...81,
-      "instance_protocol"        => "Tcp",
-      "instance_port_range"      => 80...81,
-      "cloud_tenant_id"          => nil,
-      "type"                     => "ManageIQ::Providers::Azure::NetworkManager::LoadBalancerListener"
+    lb = ManageIQ::Providers::Azure::NetworkManager::LoadBalancer.find_by(:name => @load_balancer)
+    listener = ManageIQ::Providers::Azure::NetworkManager::LoadBalancerListener.find_by(:ems_ref => lb_listener_ems_ref)
+    pool = ManageIQ::Providers::Azure::NetworkManager::LoadBalancerPool.find_by(:ems_ref => lb_pool_ems_ref)
+    lb_no_members = ManageIQ::Providers::Azure::NetworkManager::LoadBalancer.find_by(:name => @load_balancer_no_mem)
+
+    expect(listener).to have_attributes(
+      'ems_ref'                  => lb_listener_ems_ref,
+      'name'                     => nil,
+      'description'              => nil,
+      'load_balancer_protocol'   => 'Tcp',
+      'load_balancer_port_range' => 80...81,
+      'instance_protocol'        => 'Tcp',
+      'instance_port_range'      => 80...81,
+      'cloud_tenant_id'          => nil,
+      'type'                     => 'ManageIQ::Providers::Azure::NetworkManager::LoadBalancerListener'
     )
-    expect(@listener.ext_management_system).to eq(@ems.network_manager)
-    expect(@lb.load_balancer_listeners).to eq [@listener]
-    expect(@listener.load_balancer_pools).to eq([@pool])
-    expect(@listener.load_balancer_pool_members.collect(&:ems_ref).sort)
+
+    expect(listener.ext_management_system).to eq(@ems.network_manager)
+    expect(lb.load_balancer_listeners).to eq [listener]
+    expect(listener.load_balancer_pools).to eq([pool])
+    expect(listener.load_balancer_pool_members.collect(&:ems_ref).sort)
       .to match_array [lb_pool_member_1_ems_ref, lb_pool_member_2_ems_ref]
 
-    expect(@listener.vms.collect(&:name).sort).to match_array ["rspec-lb-a", "rspec-lb-b"]
-    expect(@lb_no_members.load_balancer_listeners.count).to eq 0
+    expect(listener.vms.collect(&:name).sort).to match_array(['miq-vm1-lb-eastus', 'miq-vm2-lb-eastus'])
+    expect(lb_no_members.load_balancer_listeners.count).to eq(0)
   end
 
   def assert_specific_load_balancer_health_checks
-    health_check_ems_ref = "/subscriptions/#{@ems.subscription}/resourceGroups/"\
-                               "miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb1/"\
-                               "probes/rspec-lb-probe"
+    health_check_ems_ref = "/subscriptions/#{@ems.subscription}/resourceGroups/#{@network_resource_group}"\
+                             "/providers/Microsoft.Network/loadBalancers/#{@load_balancer}"\
+                             "/probes/miq-lb-health-probe1"
 
-    @health_check = ManageIQ::Providers::Azure::NetworkManager::LoadBalancerHealthCheck.where(
-      :ems_ref => health_check_ems_ref
-    ).first
+    lb_listener_ems_ref = "/subscriptions/#{@ems.subscription}/resourceGroups/#{@network_resource_group}"\
+                            "/providers/Microsoft.Network/loadBalancers/#{@load_balancer}"\
+                            "/loadBalancingRules/miq-lb-rule1"
 
-    expect(@health_check).to have_attributes(
-      "ems_ref"         => health_check_ems_ref,
-      "name"            => nil,
-      "protocol"        => "Http",
-      "port"            => 80,
-      "url_path"        => "/",
-      "interval"        => 5,
-      "cloud_tenant_id" => nil,
-      "type"            => "ManageIQ::Providers::Azure::NetworkManager::LoadBalancerHealthCheck"
+    health_check = ManageIQ::Providers::Azure::NetworkManager::LoadBalancerHealthCheck.find_by(:ems_ref => health_check_ems_ref)
+    lb_no_members = ManageIQ::Providers::Azure::NetworkManager::LoadBalancer.find_by(:name => @load_balancer_no_mem)
+    listener = ManageIQ::Providers::Azure::NetworkManager::LoadBalancerListener.find_by(:ems_ref => lb_listener_ems_ref)
+
+    expect(health_check).to have_attributes(
+      'ems_ref'         => health_check_ems_ref,
+      'name'            => nil,
+      'protocol'        => 'Http',
+      'port'            => 80,
+      'url_path'        => '/',
+      'interval'        => 5,
+      'cloud_tenant_id' => nil,
+      'type'            => 'ManageIQ::Providers::Azure::NetworkManager::LoadBalancerHealthCheck'
     )
-    expect(@listener.load_balancer_health_checks.first).to eq @health_check
-    expect(@health_check.load_balancer).to eq @lb
-    expect(@health_check.load_balancer_health_check_members.count).to eq 2
-    expect(@health_check.load_balancer_pool_members.count).to eq 2
-    expect(@lb_no_members.load_balancer_health_checks.count).to eq 1
+    expect(listener.load_balancer_health_checks.first).to eq(health_check)
+    expect(health_check.load_balancer).to eq(lb)
+    expect(health_check.load_balancer_health_check_members.count).to eq(2)
+    expect(health_check.load_balancer_pool_members.count).to eq(2)
+    expect(lb_no_members.load_balancer_health_checks.count).to eq(1)
   end
 
   def assert_specific_router
