@@ -673,16 +673,16 @@ module AzureRefresherSpecCommon
                                "Microsoft.Compute/Images/miq-test-container/"\
                                "test-win2k12-img-osDisk.e17a95b0-f4fb-4196-93c5-0c8be7d5c536.vhd"
 
-    @template = ManageIQ::Providers::Azure::CloudManager::Template.find_by(:ems_ref => template_resource_id)
+    template = ManageIQ::Providers::Azure::CloudManager::Template.find_by(:ems_ref => template_resource_id)
 
-    expect(@template).to have_attributes(
+    expect(template).to have_attributes(
       :template              => true,
       :ems_ref               => template_resource_id,
       :ems_ref_obj           => nil,
       :uid_ems               => template_resource_id,
-      :vendor                => "azure",
-      :power_state           => "never",
-      :location              => "eastus",
+      :vendor                => 'azure',
+      :power_state           => 'never',
+      :location              => 'eastus',
       :tools_status          => nil,
       :boot_time             => nil,
       :standby_action        => nil,
@@ -700,13 +700,13 @@ module AzureRefresherSpecCommon
       :cpu_shares_level      => nil
     )
 
-    expect(@template.ext_management_system).to eq(@ems)
-    expect(@template.operating_system).to eq(nil)
-    expect(@template.custom_attributes.size).to eq(0)
-    expect(@template.snapshots.size).to eq(0)
+    expect(template.ext_management_system).to eq(@ems)
+    expect(template.operating_system).to eq(nil)
+    expect(template.custom_attributes.size).to eq(0)
+    expect(template.snapshots.size).to eq(0)
 
-    expect(@template.hardware).to have_attributes(
-      :guest_os            => "windows_generic",
+    expect(template.hardware).to have_attributes(
+      :guest_os            => 'windows_generic',
       :guest_os_full_name  => nil,
       :bios                => nil,
       :annotation          => nil,
@@ -717,10 +717,10 @@ module AzureRefresherSpecCommon
       :root_device_type    => nil
     )
 
-    expect(@template.hardware.disks.size).to eq(0)
-    expect(@template.hardware.guest_devices.size).to eq(0)
-    expect(@template.hardware.nics.size).to eq(0)
-    expect(@template.hardware.networks.size).to eq(0)
+    expect(template.hardware.disks.size).to eq(0)
+    expect(template.hardware.guest_devices.size).to eq(0)
+    expect(template.hardware.nics.size).to eq(0)
+    expect(template.hardware.networks.size).to eq(0)
   end
 
   def assert_specific_orchestration_template
