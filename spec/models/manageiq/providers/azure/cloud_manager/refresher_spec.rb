@@ -116,10 +116,10 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
           #assert_specific_orchestration_template
           #assert_specific_orchestration_stack
           assert_specific_nic_and_ip
-          #assert_specific_load_balancers
-          #assert_specific_load_balancer_networking
-          #assert_specific_load_balancer_listeners
-          #assert_specific_load_balancer_health_checks
+          assert_specific_load_balancers
+          assert_specific_load_balancer_networking
+          assert_specific_load_balancer_listeners
+          assert_specific_load_balancer_health_checks
           assert_specific_vm_with_managed_disks
           assert_specific_managed_disk
           assert_specific_resource_group
