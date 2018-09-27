@@ -315,6 +315,7 @@ module AzureRefresherSpecCommon
                             "/providers/Microsoft.Network/loadBalancers/#{@load_balancer}"\
                             "/loadBalancingRules/miq-lb-rule1"
 
+    lb = ManageIQ::Providers::Azure::NetworkManager::LoadBalancer.find_by(:name => @load_balancer)
     health_check = ManageIQ::Providers::Azure::NetworkManager::LoadBalancerHealthCheck.find_by(:ems_ref => health_check_ems_ref)
     lb_no_members = ManageIQ::Providers::Azure::NetworkManager::LoadBalancer.find_by(:name => @load_balancer_no_mem)
     listener = ManageIQ::Providers::Azure::NetworkManager::LoadBalancerListener.find_by(:ems_ref => lb_listener_ems_ref)
@@ -325,7 +326,7 @@ module AzureRefresherSpecCommon
       'protocol'        => 'Http',
       'port'            => 80,
       'url_path'        => '/',
-      'interval'        => 5,
+      'interval'        => 15,
       'cloud_tenant_id' => nil,
       'type'            => 'ManageIQ::Providers::Azure::NetworkManager::LoadBalancerHealthCheck'
     )

@@ -34,6 +34,8 @@ backend2="miq-backend-pool2"
 
 probe1="miq-lb-health-probe1"
 probe2="miq-lb-health-probe2"
+probe3="miq-lb-health-probe3"
+probe4="miq-lb-health-probe4"
 
 lb_rule1="miq-lb-rule1"
 lb_rule2="miq-lb-rule2"
@@ -120,6 +122,22 @@ eval "az network lb probe create \
         --port 80 \
         --interval 15 \
         --path /"
+
+eval "az network lb probe create \
+        --name ${probe3} \
+        --resource-group ${network_group1} \
+        --lb-name ${lb1} \
+        --protocol Tcp \
+        --port 80 \
+        --interval 5"
+
+eval "az network lb probe create \
+        --name ${probe4} \
+        --resource-group ${network_group1} \
+        --lb-name ${lb3} \
+        --protocol Tcp \
+        --port 80 \
+        --interval 5"
 
 ## Load Balancer Rules
 
