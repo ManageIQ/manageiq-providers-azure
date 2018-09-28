@@ -7,6 +7,7 @@ tags="owner=cfme creator=$USER specs=true";
 passwd="Smartvm12345"
 location1="eastus"
 location2="westus"
+script_dir=$(dirname $BASH_SOURCE)
 
 ## Start with the resource groups
 
@@ -20,7 +21,6 @@ vm_group1="miq-vms-eastus"
 vm_group2="miq-vms-westus"
 
 ## Delete everything first, in this order
-
 eval "az group delete -n ${vm_group1} -y"
 eval "az group delete -n ${vm_group2} -y"
 eval "az group delete -n ${storage_group1} -y"
@@ -75,7 +75,7 @@ eval "az network vnet create \
         --subnet-name ${subnet} \
         --tags ${tags}"
 
-## Build Public IP addresses. All Public IP's should be in one of the two networking resource groups.
+## Build Public IP addresses. All Public IPs should be in one of the two networking resource groups.
 publicip_east1="miq-publicip-eastus1"
 publicip_east2="miq-publicip-eastus2"
 publicip_east3="miq-publicip-eastus3"
@@ -159,7 +159,7 @@ eval "az network nsg rule create -n ${nsg_rule6} --nsg-name ${nsg_west1} \
         -g ${network_group2} --direction Inbound --priority 120 \
         --destination-port-range 443 --protocol Tcp --source-port-range 443"
 
-## Build NIC's. All NIC's should be in one of the two networking resource groups.
+## Build NICs. All NICs should be in one of the two networking resource groups.
 
 nic_east1="miq-nic-eastus1"
 nic_east2="miq-nic-eastus2"
@@ -233,11 +233,6 @@ eval "az network nic create -n ${nic_west7} -g ${network_group2} -l ${location2}
        --public-ip-address ${publicip_west7} --vnet-name ${vnet2} \
        --subnet ${subnet} --tags ${tags}"
 
-## Build two availability sets
-
-#eval "az vm availability-set create -n miq-availability-set-eastus -g miq-testrg-vms-eastus -l eastus --tags ${tags}"
-#eval "az vm availability-set create -n miq-availability-set-westus -g miq-testrg-vms-westus -l westus --tags ${tags}"
-
 ## Build two route tables and one route for each
 
 route1="miq-route-eastus1"
@@ -275,7 +270,7 @@ eval "az disk create -n ${data_disk_east2} -g ${storage_group1} -l ${location1} 
 eval "az disk create -n ${data_disk_west1} -g ${storage_group2} -l ${location2} --sku Standard_LRS -z 1 --tags ${tags}"
 eval "az disk create -n ${data_disk_west2} -g ${storage_group2} -l ${location2} --sku Standard_LRS -z 1 --tags ${tags}"
 
-## We have to do this first since it's in a different resource group
+## We have to do this first since it is in a different resource group
 
 nic_east_id1="$(az network nic show -n ${nic_east1} -g ${network_group1} --query id)"
 nic_east_id2="$(az network nic show -n ${nic_east2} -g ${network_group1} --query id)"
@@ -296,7 +291,7 @@ nic_west_id7="$(az network nic show -n ${nic_west7} -g ${network_group2} --query
 storage_east_id="$(az storage account show -n ${storage1} -g ${storage_group1} --query id)"
 storage_west_id="$(az storage account show -n ${storage2} -g ${storage_group2} --query id)"
 
-## Unmanaged VM's
+## Unmanaged VMs
 
 vm_east1="miq-vm-ubuntu1-eastus"
 vm_east2="miq-vm-centos1-eastus"
@@ -367,7 +362,7 @@ eval "az vm create -n ${vm_windows2} -g ${vm_group2} -l ${location2} \
        --boot-diagnostics-storage ${diagnostics2} \
        --os-disk-name miq-os-win2k12-2-disk"
 
-## These VM's are deliberately set in a resource group with a different location
+## These VMs are deliberately set in a resource group with a different location
 
 vm_rhel1="miq-vm-rhel1-mismatch"
 vm_rhel2="miq-vm-rhel2-mismatch"
@@ -384,7 +379,7 @@ eval "az vm create -n ${vm_rhel2} -g ${vm_group2} -l ${location1} \
        --boot-diagnostics-storage miqdiagnosticseastus \
        --os-disk-name miq-os-disk-rhel2 --attach-data-disks ${data_disk_east_id2}"
 
-## VM's used for capture
+## VMs used for capture
 
 vm_general1="miq-linux-gen-east"
 vm_image1="miq-linux-img-east"
@@ -413,7 +408,28 @@ eval "az vm create -n miq-vm-from-image-eastus1 -g ${vm_group1} -l ${location1} 
       --admin-username ${USER} --admin-password ${passwd} --tags ${tags} \
       --image ${vm_image1} --nics ${nic_east_id7} --os-disk-name miq-os-disk-image1"
 
-## Deallocate all the VM's to avoid incurring charges
+## Upload a couple orchestration templates (deployments). These do not create any resources.
+
+deployment1="miq-template-eastus"
+deployment2="miq-template-westus"
+template_file_east="${script_dir}/../../spec/fixtures/orchestration_templates/deployment_east.json"
+parameter_file_east="${script_dir}/../../spec/fixtures/orchestration_templates/parameters_east.json"
+template_file_west="${script_dir}/../../spec/fixtures/orchestration_templates/deployment_west.json"
+parameter_file_west="${script_dir}/../../spec/fixtures/orchestration_templates/parameters_west.json"
+
+eval "az group deployment create \
+        --name ${deployment1} \
+        --resource-group ${misc_group1} \
+        --template-file ${template_file_east} \
+        --parameters ${parameter_file_east}"
+
+eval "az group deployment create \
+        --name ${deployment2} \
+        --resource-group ${misc_group2} \
+        --template-file ${template_file_west} \
+        --parameters ${parameter_file_west}"
+        
+## Deallocate all the VMs to avoid incurring charges
 
 eval "az vm deallocate --ids $(az vm list -g ${vm_group1} --query '[].id' -o tsv)"
 eval "az vm deallocate --ids $(az vm list -g ${vm_group2} --query '[].id' -o tsv)"
