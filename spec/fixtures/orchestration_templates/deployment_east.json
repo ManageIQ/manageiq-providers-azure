@@ -32,6 +32,26 @@
       "name": "[parameters('networkSecurityGroupName')]",
       "apiVersion": "2018-08-01",
       "location": "[parameters('location')]"
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "name": "miq-nested-template",
+      "apiVersion": "2018-08-01",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.Compute/availabilitySets",
+              "name": "miq-availability-set-deployment-nested",
+              "apiVersion": "2018-10-01",
+              "location": "[parameters('location')]"
+            }
+          ]
+        }
+      }
     }
   ],
   "outputs": {

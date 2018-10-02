@@ -6,10 +6,10 @@
       "value": "eastus"
     },
     "networkSecurityGroupName": {
-      "value": "miq-nsg-template"
+      "value": "miq-nsg-deployment-eastus"
     },
     "availabilitySetName": {
-      "value": "miq-availability-set-template"
+      "value": "miq-availability-set-deployment-eastus"
     },
     "adminUsername": {
       "value": "miq-admin-username"
