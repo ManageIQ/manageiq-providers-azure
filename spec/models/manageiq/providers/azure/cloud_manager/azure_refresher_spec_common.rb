@@ -102,6 +102,7 @@ module AzureRefresherSpecCommon
     @vm_lb1                 = 'miq-vm-lb1-eastus'
     @vm_lb2                 = 'miq-vm-lb2-eastus'
     @lb_ip_address          = '40.87.68.28' # This will change if backend pool was restarted.
+    @orch_template          = 'miq-template-eastus'
 
     #@vm_powered_off    = 'miqazure-centos1' # Make sure this is powered off if generating a new cassette.
     #@ip_address        = '52.224.165.15'  # This will change if you had to restart the @device_name.
@@ -724,15 +725,12 @@ module AzureRefresherSpecCommon
   end
 
   def assert_specific_orchestration_template
-    @orch_template = ManageIQ::Providers::Azure::CloudManager::OrchestrationTemplate.find_by(
-      :name => "spec-nested-deployment-dont-delete"
-    )
-    expect(@orch_template).to have_attributes(
-      :md5 => "05e28d9332a3b60def5fbd66ac031a7d"
-    )
-    expect(@orch_template.description).to eql('contentVersion: 1.0.0.0')
-    expect(@orch_template.content).to start_with("{\"$schema\":\"http://schema.management.azure.com"\
-          "/schemas/2015-01-01/deploymentTemplate.json\"")
+    template = ManageIQ::Providers::Azure::CloudManager::OrchestrationTemplate.find_by(:name => @orch_template)
+
+    expect(template).to have_attributes(:md5 => '814bf1a0958e737696029c991d134423')
+    expect(template.description).to start_with('contentVersion:')
+    expect(template.content).to start_with("{\"$schema\":\"https://schema.management.azure.com"\
+          "/schemas/2015-01-01/deploymentTemplate.json")
   end
 
   def assert_specific_orchestration_stack
