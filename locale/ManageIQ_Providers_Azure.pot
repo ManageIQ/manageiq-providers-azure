@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ManageIQ_Providers_Azure 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-11 12:15+0200\n"
-"PO-Revision-Date: 2018-07-11 12:15+0200\n"
+"POT-Creation-Date: 2018-10-03 14:34+0200\n"
+"PO-Revision-Date: 2018-10-03 14:34+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -36,6 +36,10 @@ msgstr ""
 
 #: ../app/models/manageiq/providers/azure/regions.rb:22
 msgid "Australia Southeast"
+msgstr ""
+
+#: ../lib/manageiq/providers/azure/engine.rb:9
+msgid "Azure Provider"
 msgstr ""
 
 #: ../app/models/manageiq/providers/azure/cloud_manager/orchestration_template.rb:50
@@ -124,15 +128,15 @@ msgstr ""
 msgid "Germany West Central"
 msgstr ""
 
-#: ../app/models/manageiq/providers/azure/manager_mixin.rb:46
+#: ../app/models/manageiq/providers/azure/manager_mixin.rb:59
 msgid "Incorrect credentials - %{error_message}"
 msgstr ""
 
-#: ../app/models/manageiq/providers/azure/manager_mixin.rb:48
+#: ../app/models/manageiq/providers/azure/manager_mixin.rb:61
 msgid "Incorrect credentials - check your Azure Client ID and Client Key"
 msgstr ""
 
-#: ../app/models/manageiq/providers/azure/manager_mixin.rb:21
+#: ../app/models/manageiq/providers/azure/manager_mixin.rb:22
 msgid "Incorrect credentials - check your Azure Subscription ID"
 msgstr ""
 
@@ -141,6 +145,10 @@ msgid "Instance (Microsoft Azure)"
 msgid_plural "Instances (Microsoft Azure)"
 msgstr[0] ""
 msgstr[1] ""
+
+#: ../app/models/manageiq/providers/azure/manager_mixin.rb:35
+msgid "Invalid endpoint"
+msgstr ""
 
 #: ../app/models/manageiq/providers/azure/regions.rb:82
 msgid "Japan East"
@@ -242,7 +250,7 @@ msgstr ""
 msgid "US Gov Virginia"
 msgstr ""
 
-#: ../app/models/manageiq/providers/azure/manager_mixin.rb:53
+#: ../app/models/manageiq/providers/azure/manager_mixin.rb:66
 msgid "Unexpected response returned from system: %{error_message}"
 msgstr ""
 
