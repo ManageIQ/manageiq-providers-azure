@@ -1,4 +1,3 @@
-=begin
 require 'azure-armrest'
 require_relative "azure_refresher_spec_common"
 
@@ -40,12 +39,12 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
             2.times do # Run twice to verify that a second run with existing data does not change anything
               refresh_with_cassette([vm_powered_on_target], vcr_suffix("powered_on_vm_refresh"))
 
-              #assert_specific_az
-              #assert_specific_cloud_network
-              #assert_specific_flavor
-              #assert_specific_disk
-              #assert_specific_security_group
-              #assert_specific_vm_powered_on
+              assert_specific_az
+              assert_specific_cloud_network
+              assert_specific_flavor
+              assert_specific_disk
+              assert_specific_security_group
+              assert_specific_vm_powered_on
 
               assert_counts(
                 :availability_zone     => 1,
@@ -167,18 +166,18 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
             2.times do # Run twice to verify that a second run with existing data does not change anything
               refresh_with_cassette(targets, vcr_suffix("multiple_targets_refresh"))
 
-              #assert_specific_az
-              #assert_specific_cloud_network
-              #assert_specific_flavor
+              assert_specific_az
+              assert_specific_cloud_network
+              assert_specific_flavor
 
-              #assert_specific_disk
-              #assert_specific_security_group
-              #assert_specific_vm_powered_on
+              assert_specific_disk
+              assert_specific_security_group
+              assert_specific_vm_powered_on
 
-              #assert_specific_vm_powered_off
+              assert_specific_vm_powered_off
 
-              #assert_specific_vm_with_managed_disks
-              #assert_specific_managed_disk
+              assert_specific_vm_with_managed_disks
+              assert_specific_managed_disk
 
               assert_counts(
                 :ext_management_system             => 2,
@@ -390,4 +389,3 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
     end
   end
 end
-=end
