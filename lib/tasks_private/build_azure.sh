@@ -408,7 +408,7 @@ eval "az vm create -n miq-vm-from-image-eastus1 -g ${vm_group1} -l ${location1} 
       --admin-username ${USER} --admin-password ${passwd} --tags ${tags} \
       --image ${vm_image1} --nics ${nic_east_id7} --os-disk-name miq-os-disk-image1"
 
-## Upload a couple orchestration templates (deployments). These do not create any resources.
+## Upload a couple orchestration templates (deployments).
 
 deployment1="miq-template-eastus"
 deployment2="miq-template-westus"
