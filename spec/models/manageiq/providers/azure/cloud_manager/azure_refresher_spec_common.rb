@@ -1,3 +1,5 @@
+require 'etc'
+
 module AzureRefresherSpecCommon
   extend ActiveSupport::Concern
 
@@ -84,8 +86,8 @@ module AzureRefresherSpecCommon
     @vm_resource_group      = 'miq-vms-eastus'
     @network_resource_group = 'miq-networking-eastus'
     @misc_group             = 'miq-misc-eastus'
-    @ubuntu_east            = 'miq-vm-ubuntu1-eastus'
-    @centos_east            = 'miq-vm-centos1-eastus'
+    @ubuntu_east            = 'miq-vm-ubuntu1-eastus' # Power on before regenerating cassettes
+    @centos_east            = 'miq-vm-centos1-eastus' # Power off before regenerating cassettes
     @rhel_east              = 'miq-vm-rhel2-mismatch'
     @security_group         = 'miq-nsg-eastus1'
     @centos_public_ip       = 'miq-publicip-eastus2'
@@ -100,18 +102,12 @@ module AzureRefresherSpecCommon
     @load_balancer          = 'miq-lb-eastus'
     @load_balancer_no_mem   = 'miq-lb-eastus2'
     @backend_pool           = 'miq-backend-pool1'
-    @vm_lb1                 = 'miq-vm-lb1-eastus'
-    @vm_lb2                 = 'miq-vm-lb2-eastus'
-    @lb_ip_address          = '40.87.68.28' # This will change if backend pool was restarted.
-    @orch_template          = 'miq-template-eastus'
-
-    #@vm_powered_off    = 'miqazure-centos1' # Make sure this is powered off if generating a new cassette.
-    #@ip_address        = '52.224.165.15'  # This will change if you had to restart the @device_name.
-    #@mismatch_ip       = '13.92.63.10'    # This will change if you had to restart the 'miqmismatch1' VM.
-    #@template          = nil
-    #@avail_zone        = nil
-
-    #@resource_group_managed_vm = "miq-azure-test4"
+    @vm_lb1                 = 'miq-vm1-lb-eastus'
+    @vm_lb2                 = 'miq-vm2-lb-eastus'
+    @lb_ip_address          = '40.87.126.130' # Update after restart
+    @ubuntu_ip_address      = '40.114.91.146' # Update after restart
+    @orch_template          = 'miq-deployment-eastus'
+    @creator                = Etc.getlogin
 
     FactoryGirl.create(:tag_mapping_with_category,
                        :labeled_resource_type => 'VmAzure',
@@ -161,7 +157,7 @@ module AzureRefresherSpecCommon
   def expected_table_counts
     {
       :ext_management_system             => 2,
-      :flavor                            => 192,
+      :flavor                            => 196,
       :availability_zone                 => 1,
       :vm_or_template                    => 14,
       :vm                                => 13,
@@ -177,7 +173,7 @@ module AzureRefresherSpecCommon
       :orchestration_stack_parameter     => 261,
       :orchestration_stack_output        => 11,
       :orchestration_stack_resource      => 90,
-      :security_group                    => 4,
+      :security_group                    => 5,
       :network_port                      => 6,
       :cloud_network                     => 6,
       :floating_ip                       => 9,
@@ -377,9 +373,9 @@ module AzureRefresherSpecCommon
   end
 
   def assert_specific_flavor
-    @flavor = ManageIQ::Providers::Azure::CloudManager::Flavor.where(:ems_ref => 'basic_a0').first
+    flavor = ManageIQ::Providers::Azure::CloudManager::Flavor.find_by(:ems_ref => 'basic_a0')
 
-    expect(@flavor).to have_attributes(
+    expect(flavor).to have_attributes(
       :name                     => 'Basic_A0',
       :description              => nil,
       :enabled                  => true,
@@ -395,12 +391,12 @@ module AzureRefresherSpecCommon
       :swap_disk_size           => 20_480.megabytes
     )
 
-    expect(@flavor.ext_management_system).to eq(@ems)
+    expect(flavor.ext_management_system).to eq(@ems)
   end
 
   def assert_specific_az
-    @avail_zone = ManageIQ::Providers::Azure::CloudManager::AvailabilityZone.first
-    expect(@avail_zone).to have_attributes(:name => @ems.name)
+    avail_zone = ManageIQ::Providers::Azure::CloudManager::AvailabilityZone.first
+    expect(avail_zone).to have_attributes(:name => @ems.name)
   end
 
   def assert_specific_cloud_network
@@ -445,19 +441,21 @@ module AzureRefresherSpecCommon
   end
 
   def assert_specific_vm_powered_on
-    vm = ManageIQ::Providers::Azure::CloudManager::Vm.where(
-      :name => @device_name, :raw_power_state => "VM running"
-    ).first
-    vm_resource_id = "#{@ems.subscription}/#{@vm_resource_group}/microsoft.compute/virtualmachines/#{@device_name}"
+    vm = ManageIQ::Providers::Azure::CloudManager::Vm.find_by(:name => @ubuntu_east)
+    avail_zone = ManageIQ::Providers::Azure::CloudManager::AvailabilityZone.first
+    flavor = ManageIQ::Providers::Azure::CloudManager::Flavor.find_by(:ems_ref => 'standard_b1s')
+
+    vm_resource_id = "#{@ems.subscription}/#{@vm_resource_group}/microsoft.compute/virtualmachines/#{@ubuntu_east}"
 
     expect(vm).to have_attributes(
       :template              => false,
       :ems_ref               => vm_resource_id,
       :ems_ref_obj           => nil,
       :uid_ems               => vm_resource_id,
-      :vendor                => "azure",
-      :power_state           => "on",
-      :location              => "eastus",
+      :vendor                => 'azure',
+      :power_state           => 'on',
+      :raw_power_state       => 'VM running',
+      :location              => 'eastus',
       :tools_status          => nil,
       :boot_time             => nil,
       :standby_action        => nil,
@@ -476,15 +474,15 @@ module AzureRefresherSpecCommon
     )
 
     expect(vm.ext_management_system).to eql(@ems)
-    expect(vm.availability_zone).to eql(@avail_zone)
-    expect(vm.flavor).to eql(@flavor)
-    expect(vm.operating_system.product_name).to eql("RHEL 7.2")
-    expect(vm.custom_attributes.size).to eql(1)
+    expect(vm.availability_zone).to eql(avail_zone)
+    expect(vm.flavor).to eql(flavor)
+    expect(vm.operating_system.product_name).to eql('UbuntuServer 16.04 LTS')
+    expect(vm.custom_attributes.size).to eql(3)
     expect(vm.snapshots.size).to eql(0)
 
     aggregate_failures do
-      expect(vm.labels.pluck(:name, :value).to_h).to eq('Shutdown' => 'true')
-      expect(vm.tags.pluck(:name)).to eq(%w(/managed/azure:vm:shutdown/true))
+      expect(vm.labels.pluck(:name, :value).to_h).to eq({'creator'=> @creator, 'specs' => 'true', 'owner' => 'cfme'})
+      #expect(vm.tags.pluck(:name)).to eq(%w(/managed/azure:vm:shutdown/true))
     end
 
     assert_specific_vm_powered_on_hardware(vm)
@@ -497,20 +495,18 @@ module AzureRefresherSpecCommon
       :bios                => nil,
       :annotation          => nil,
       :cpu_sockets         => 1,
-      :memory_mb           => 768,
-      :disk_capacity       => 1_047_552.megabyte + 20_480.megabyte,
+      :memory_mb           => 1024,
+      :disk_capacity       => 1025.gigabytes,
       :bitness             => nil,
       :virtualization_type => nil
     )
 
     expect(v.hardware.guest_devices.size).to eql(0)
     expect(v.hardware.nics.size).to eql(0)
-    floating_ip = ManageIQ::Providers::Azure::NetworkManager::FloatingIp.where(
-      :address => @ip_address
-    ).first
-    cloud_network = ManageIQ::Providers::Azure::NetworkManager::CloudNetwork.where(
-      :name => @network_resource_group
-    ).first
+
+    floating_ip = ManageIQ::Providers::Azure::NetworkManager::FloatingIp.find_by(:address => @ubuntu_ip_address)
+    cloud_network = ManageIQ::Providers::Azure::NetworkManager::CloudNetwork.find_by(:name => @cloud_network)
+
     cloud_subnet = cloud_network.cloud_subnets.first
     expect(v.floating_ip).to eql(floating_ip)
     expect(v.floating_ips.first).to eql(floating_ip)
@@ -528,15 +524,15 @@ module AzureRefresherSpecCommon
     expect(v.hardware.networks.size).to eql(2)
     network = v.hardware.networks.where(:description => "public").first
     expect(network).to have_attributes(
-      :description => "public",
-      :ipaddress   => @ip_address,
-      :hostname    => "ipconfig1"
+      :description => 'public',
+      :ipaddress   => @ubuntu_ip_address,
+      :hostname    => 'ipconfig1'
     )
     network = v.hardware.networks.where(:description => "private").first
     expect(network).to have_attributes(
-      :description => "private",
-      :ipaddress   => "10.16.0.4",
-      :hostname    => "ipconfig1"
+      :description => 'private',
+      :ipaddress   => '10.0.0.4',
+      :hostname    => 'ipconfig1'
     )
   end
 
@@ -582,7 +578,7 @@ module AzureRefresherSpecCommon
     )
 
     availability_zone = ManageIQ::Providers::Azure::CloudManager::AvailabilityZone.first
-    floating_ip       = ManageIQ::Providers::Azure::NetworkManager::FloatingIp.find_by(:address => @centos_public_ip)
+    floating_ip       = ManageIQ::Providers::Azure::NetworkManager::FloatingIp.find_by(:name => @centos_public_ip)
     cloud_network     = ManageIQ::Providers::Azure::NetworkManager::CloudNetwork.find_by(:name => @cloud_network)
     cloud_subnet      = cloud_network.cloud_subnets.first
 
@@ -728,7 +724,7 @@ module AzureRefresherSpecCommon
   def assert_specific_orchestration_template
     template = ManageIQ::Providers::Azure::CloudManager::OrchestrationTemplate.find_by(:name => @orch_template)
 
-    expect(template).to have_attributes(:md5 => '814bf1a0958e737696029c991d134423')
+    expect(template.name).to eql(@orch_template)
     expect(template.description).to start_with('contentVersion:')
     expect(template.content).to start_with("{\"$schema\":\"https://schema.management.azure.com"\
           "/schemas/2015-01-01/deploymentTemplate.json")
@@ -746,15 +742,15 @@ module AzureRefresherSpecCommon
     )
 
     assert_specific_orchestration_stack_parameters
-    #assert_specific_orchestration_stack_resources
-    #assert_specific_orchestration_stack_outputs
-    #assert_specific_orchestration_stack_associations
+    assert_specific_orchestration_stack_resources
+    assert_specific_orchestration_stack_outputs
+    assert_specific_orchestration_stack_associations
   end
 
   def assert_specific_orchestration_stack_parameters
     orch_stack = ManageIQ::Providers::Azure::CloudManager::OrchestrationStack.find_by(:name => @orch_template)
     parameters = orch_stack.parameters.order('ems_ref')
-    expect(parameters.size).to eq(4)
+    expect(parameters.size).to eq(5)
 
     admin_param = parameters.find { |param| param.name == 'adminUsername' }
 
@@ -766,56 +762,56 @@ module AzureRefresherSpecCommon
   end
 
   def assert_specific_orchestration_stack_resources
-    resources = @orch_stack.resources.order("ems_ref")
-    expect(resources.size).to eq(9)
+    orch_stack = ManageIQ::Providers::Azure::CloudManager::OrchestrationStack.find_by(:name => @orch_template)
+    resources = orch_stack.resources.order('ems_ref')
+    expect(resources.size).to eq(4)
+    name = 'miq-availability-set-deployment-eastus'
 
-    # assert one of the resource models
-    expect(resources.find { |r| r.name == 'spec0deply1as' }).to have_attributes(
-      :logical_resource       => "spec0deply1as",
-      :physical_resource      => "a2495990-63ae-4ea3-8904-866b7e01ec18",
-      :resource_category      => "Microsoft.Compute/availabilitySets",
-      :resource_status        => "Succeeded",
-      :resource_status_reason => "OK",
-      :ems_ref                => "/subscriptions/#{@ems.subscription}/resourceGroups"\
-                                     "/miq-azure-test1/providers/Microsoft.Compute/availabilitySets/spec0deply1as"
+    availability_set = resources.find { |res| res.name == name }
+
+    expect(availability_set).to have_attributes(
+      :logical_resource       => name,
+      :resource_category      => 'Microsoft.Compute/availabilitySets',
+      :resource_status        => 'Succeeded',
+      :resource_status_reason => 'OK',
+      :ems_ref                => "/subscriptions/#{@ems.subscription}/resourceGroups/#{@misc_group}"\
+                                   "/providers/Microsoft.Compute/availabilitySets/#{name}"
     )
   end
 
   def assert_specific_orchestration_stack_outputs
-    outputs = ManageIQ::Providers::Azure::CloudManager::OrchestrationStack.find_by(
-      :name => "spec-deployment-dont-delete"
-    ).outputs
-    expect(outputs.size).to eq(1)
-    expect(outputs[0]).to have_attributes(
-      :key         => "siteUri",
-      :value       => "hard-coded output for test",
-      :description => "siteUri",
-      :ems_ref     => "/subscriptions/#{@ems.subscription}/resourceGroups"\
-    "/miq-azure-test1/providers/Microsoft.Resources"\
-    "/deployments/spec-deployment-dont-delete/siteUri"
+    outputs = ManageIQ::Providers::Azure::CloudManager::OrchestrationStack.find_by(:name => @orch_template).outputs
+
+    expect(outputs.size).to eq(2)
+    expect(outputs.first).to have_attributes(
+      :key         => 'networkSecurityGroupName',
+      :value       => 'miq-nsg-deployment-eastus',
+      :description => 'networkSecurityGroupName',
+      :ems_ref     => "/subscriptions/#{@ems.subscription}/resourceGroups/#{@misc_group}"\
+                        "/providers/Microsoft.Resources/deployments/#{@orch_template}/networkSecurityGroupName"
     )
   end
 
   def assert_specific_orchestration_stack_associations
+    child_template_name = 'miq-nested-template'
+    child_template = ManageIQ::Providers::Azure::CloudManager::OrchestrationTemplate.find_by(:name => child_template_name)
+    child_stack = ManageIQ::Providers::Azure::CloudManager::OrchestrationStack.find_by(:name => child_template.name)
+
     # orchestration stack belongs to a provider
-    expect(@orch_stack.ext_management_system).to eql(@ems)
+    expect(child_stack.ext_management_system).to eql(@ems)
 
     # orchestration stack belongs to an orchestration template
-    expect(@orch_stack.orchestration_template).to eql(@orch_template)
+    expect(child_stack.orchestration_template).to eql(child_template)
 
     # orchestration stack can be nested
-    parent_stack = ManageIQ::Providers::Azure::CloudManager::OrchestrationStack.find_by(
-      :name => "spec-deployment-dont-delete"
-    )
-    expect(@orch_stack.parent).to eql(parent_stack)
+    parent_stack = ManageIQ::Providers::Azure::CloudManager::OrchestrationStack.find_by(:name => @orch_template)
 
-    # orchestration stack can have vms
-    vm = ManageIQ::Providers::Azure::CloudManager::Vm.find_by(:name => "spec0deply1vm1")
-    expect(vm.orchestration_stack).to eql(@orch_stack)
+    expect(child_stack.parent).to eql(parent_stack)
+    expect(parent_stack.children).to include(child_stack)
 
     # orchestration stack can have cloud networks
-    cloud_network = CloudNetwork.find_by(:name => 'spec0deply1vnet')
-    expect(cloud_network.orchestration_stack).to eql(@orch_stack)
+    cloud_network = CloudNetwork.find_by(:name => 'miq-vnet-deployment-eastus')
+    expect(cloud_network.orchestration_stack).to eql(parent_stack)
   end
 
   def assert_specific_nic_and_ip
