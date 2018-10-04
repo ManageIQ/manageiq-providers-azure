@@ -667,17 +667,16 @@ module AzureRefresherSpecCommon
   end
 
   def assert_specific_template
-    template_resource_id = "https://miqazuretest14047.blob.core.windows.net/system/"\
-                               "Microsoft.Compute/Images/miq-test-container/"\
-                               "test-win2k12-img-osDisk.e17a95b0-f4fb-4196-93c5-0c8be7d5c536.vhd"
+    template_ems_ref = "/subscriptions/#{@ems.subscription}/resourcegroups/#{@vm_resource_group}"\
+                         "/providers/microsoft.compute/images/#{@image_name}"
 
-    template = ManageIQ::Providers::Azure::CloudManager::Template.find_by(:ems_ref => template_resource_id)
+    template = ManageIQ::Providers::Azure::CloudManager::Template.find_by(:ems_ref => template_ems_ref)
 
     expect(template).to have_attributes(
       :template              => true,
-      :ems_ref               => template_resource_id,
+      :ems_ref               => template_ems_ref,
       :ems_ref_obj           => nil,
-      :uid_ems               => template_resource_id,
+      :uid_ems               => template_ems_ref,
       :vendor                => 'azure',
       :power_state           => 'never',
       :location              => 'eastus',
@@ -699,12 +698,12 @@ module AzureRefresherSpecCommon
     )
 
     expect(template.ext_management_system).to eq(@ems)
-    expect(template.operating_system).to eq(nil)
+    expect(template.operating_system.product_name).to eq('Linux')
     expect(template.custom_attributes.size).to eq(0)
     expect(template.snapshots.size).to eq(0)
 
     expect(template.hardware).to have_attributes(
-      :guest_os            => 'windows_generic',
+      :guest_os            => 'linux_generic',
       :guest_os_full_name  => nil,
       :bios                => nil,
       :annotation          => nil,
