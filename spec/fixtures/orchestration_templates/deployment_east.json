@@ -11,6 +11,9 @@
     "adminUsername": {
       "type": "string"
     },
+    "virtualNetworkName": {
+      "type": "string"
+    },
     "location": {
       "type": "string",
       "defaultValue": "eastus"
@@ -32,6 +35,25 @@
       "name": "[parameters('networkSecurityGroupName')]",
       "apiVersion": "2018-08-01",
       "location": "[parameters('location')]"
+    },
+    {
+      "type": "Microsoft.Network/virtualNetworks",
+      "name": "[parameters('virtualNetworkName')]",
+      "apiVersion": "2018-08-01",
+      "location": "[parameters('location')]",
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [ "10.0.0.0/16" ]
+        },
+        "subnets": [
+          {
+            "name": "default",
+            "properties": {
+              "addressPrefix": "10.0.0.0/24"
+            }
+          }
+        ]
+      }
     },
     {
       "type": "Microsoft.Resources/deployments",

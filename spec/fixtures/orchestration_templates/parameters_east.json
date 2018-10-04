@@ -13,6 +13,9 @@
     },
     "adminUsername": {
       "value": "miq-admin-username"
+    },
+    "virtualNetworkName": {
+      "value": "miq-vnet-deployment-eastus"
     }
   }
 }
