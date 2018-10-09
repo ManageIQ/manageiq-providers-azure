@@ -17,13 +17,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n>1;\n"
 "\n"
 
-msgid "\"Incorrect credentials - #{err.message}\""
-msgstr ""
-
-msgid "\"Unexpected response returned from system: #{err.message}\""
-msgstr ""
-
 msgid "%{name} does not exist on %{management}"
+msgstr ""
+
+msgid "Australia Central"
+msgstr ""
+
+msgid "Australia Central 2"
 msgstr ""
 
 msgid "Australia East"
@@ -31,6 +31,14 @@ msgstr ""
 
 msgid "Australia Southeast"
 msgstr ""
+
+msgid "Azure Provider"
+msgstr ""
+
+msgid "Azure Template"
+msgid_plural "Azure Templates"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Brazil South"
 msgstr ""
@@ -47,6 +55,21 @@ msgstr ""
 msgid "Central US"
 msgstr ""
 
+msgid "Cloud Network (Microsoft Azure)"
+msgid_plural "Cloud Networks (Microsoft Azure)"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Cloud Provider (Microsoft Azure)"
+msgid_plural "Cloud Providers (Microsoft Azure)"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Cloud Subnet (Microsoft Azure)"
+msgid_plural "Cloud Subnets (Microsoft Azure)"
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "East Asia"
 msgstr ""
 
@@ -56,10 +79,44 @@ msgstr ""
 msgid "East US 2"
 msgstr ""
 
+msgid "Flavor (Microsoft Azure)"
+msgid_plural "Flavors (Microsoft Azure)"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "France Central"
+msgstr ""
+
+msgid "France South"
+msgstr ""
+
+msgid "Germany Central"
+msgstr ""
+
+msgid "Germany North"
+msgstr ""
+
+msgid "Germany Northeast"
+msgstr ""
+
+msgid "Germany West Central"
+msgstr ""
+
+msgid "Incorrect credentials - %{error_message}"
+msgstr ""
+
 msgid "Incorrect credentials - check your Azure Client ID and Client Key"
 msgstr ""
 
 msgid "Incorrect credentials - check your Azure Subscription ID"
+msgstr ""
+
+msgid "Instance (Microsoft Azure)"
+msgid_plural "Instances (Microsoft Azure)"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Invalid endpoint"
 msgstr ""
 
 msgid "Japan East"
@@ -67,6 +124,27 @@ msgstr ""
 
 msgid "Japan West"
 msgstr ""
+
+msgid "Korea Central"
+msgstr ""
+
+msgid "Korea South"
+msgstr ""
+
+msgid "Load Balancer (Microsoft Azure)"
+msgid_plural "Load Balancers (Microsoft Azure)"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Network Manager (Microsoft Azure)"
+msgid_plural "Network Managers (Microsoft Azure)"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Network Port (Microsoft Azure)"
+msgid_plural "Network Ports (Microsoft Azure)"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "No credentials defined"
 msgstr ""
@@ -77,25 +155,48 @@ msgstr ""
 msgid "North Europe"
 msgstr ""
 
+msgid "Orchestration Stack (Microsoft Azure)"
+msgid_plural "Orchestration Stacks (Microsoft Azure)"
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Pause Operation"
 msgstr ""
 
 msgid "South Central US"
 msgstr ""
 
-msgid "South East Asia"
+msgid "South India"
 msgstr ""
 
-msgid "South India"
+msgid "Southeast Asia"
 msgstr ""
 
 msgid "The VM is not powered on"
 msgstr ""
 
+msgid "Timeline not supported for this region"
+msgstr ""
+
+msgid "UK South"
+msgstr ""
+
+msgid "UK West"
+msgstr ""
+
+msgid "US Gov Arizona"
+msgstr ""
+
 msgid "US Gov Iowa"
 msgstr ""
 
+msgid "US Gov Texas"
+msgstr ""
+
 msgid "US Gov Virginia"
+msgstr ""
+
+msgid "Unexpected response returned from system: %{error_message}"
 msgstr ""
 
 msgid "VM has no %{table}, unable to destroy VM"
