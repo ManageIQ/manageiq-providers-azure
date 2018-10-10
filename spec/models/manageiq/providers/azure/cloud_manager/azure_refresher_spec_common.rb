@@ -104,9 +104,9 @@ module AzureRefresherSpecCommon
     @backend_pool           = 'miq-backend-pool1'
     @vm_lb1                 = 'miq-vm1-lb-eastus'
     @vm_lb2                 = 'miq-vm2-lb-eastus'
-    @lb_ip_address          = '40.87.126.130' # Update after restart
-    @ubuntu_ip_address      = '40.114.91.146' # Update after restart
-    @orch_template          = 'miq-deployment-eastus'
+    @lb_ip_address          = '40.76.218.17' # Update after restart
+    @ubuntu_ip_address      = '40.114.95.228' # Update after restart
+    @orch_template          = 'miq-template-eastus'
     @creator                = Etc.getlogin
 
     FactoryGirl.create(:tag_mapping_with_category,
@@ -178,13 +178,13 @@ module AzureRefresherSpecCommon
       :network_port                      => 11,
       :network_router                    => 1,
       :operating_system                  => 10,
-      :orchestration_stack               => 21,
-      :orchestration_stack_output        => 4,
-      :orchestration_stack_parameter     => 27,
-      :orchestration_stack_resource      => 25,
-      :orchestration_template            => 15,
+      :orchestration_stack               => 20,
+      :orchestration_stack_output        => 2,
+      :orchestration_stack_parameter     => 29,
+      :orchestration_stack_resource      => 23,
+      :orchestration_template            => 13,
       :relationship                      => 2,
-      :resource_group                    => 10,
+      :resource_group                    => 9,
       :security_group                    => 5,
       :vm                                => 9,
       :vm_or_template                    => 10,
@@ -780,14 +780,15 @@ module AzureRefresherSpecCommon
 
   def assert_specific_orchestration_stack_outputs
     outputs = ManageIQ::Providers::Azure::CloudManager::OrchestrationStack.find_by(:name => @orch_template).outputs
+    name = 'availabilitySetName'
 
     expect(outputs.size).to eq(2)
     expect(outputs.first).to have_attributes(
-      :key         => 'networkSecurityGroupName',
-      :value       => 'miq-nsg-deployment-eastus',
-      :description => 'networkSecurityGroupName',
+      :key         => name,
+      :value       => 'miq-availability-set-deployment-eastus',
+      :description => name,
       :ems_ref     => "/subscriptions/#{@ems.subscription}/resourceGroups/#{@misc_group}"\
-                        "/providers/Microsoft.Resources/deployments/#{@orch_template}/networkSecurityGroupName"
+                        "/providers/Microsoft.Resources/deployments/#{@orch_template}/#{name}"
     )
   end
 
