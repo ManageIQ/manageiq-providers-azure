@@ -178,13 +178,13 @@ module AzureRefresherSpecCommon
       :network_port                      => 11,
       :network_router                    => 1,
       :operating_system                  => 10,
-      :orchestration_stack               => 20,
+      :orchestration_stack               => 12,
       :orchestration_stack_output        => 2,
-      :orchestration_stack_parameter     => 29,
-      :orchestration_stack_resource      => 23,
-      :orchestration_template            => 13,
+      :orchestration_stack_parameter     => 13,
+      :orchestration_stack_resource      => 15,
+      :orchestration_template            => 12,
       :relationship                      => 2,
-      :resource_group                    => 9,
+      :resource_group                    => 8,
       :security_group                    => 5,
       :vm                                => 9,
       :vm_or_template                    => 10,
@@ -220,7 +220,7 @@ module AzureRefresherSpecCommon
     expect(@ems.miq_templates.size).to eq(expected_table_counts[:miq_template])
 
     expect(@ems.orchestration_stacks.size).to eql(expected_table_counts[:orchestration_stack])
-    expect(@ems.direct_orchestration_stacks.size).to eql(19)
+    expect(@ems.direct_orchestration_stacks.size).to eql(11)
   end
 
   def assert_specific_load_balancers

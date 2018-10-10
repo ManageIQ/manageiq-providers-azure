@@ -75,7 +75,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
           it "will perform a full refresh with a plain proxy enabled" do
             allow(VMDB::Util).to receive(:http_proxy_uri).and_return(proxy)
             setup_ems_and_cassette(refresh_settings)
-            expect(OrchestrationTemplate.count).to eql(13)
+            expect(OrchestrationTemplate.count).to eql(12)
             assert_specific_orchestration_template
           end
         end
@@ -87,7 +87,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
 
             allow(VMDB::Util).to receive(:http_proxy_uri).and_return(proxy)
             setup_ems_and_cassette(refresh_settings)
-            expect(OrchestrationTemplate.count).to eql(13)
+            expect(OrchestrationTemplate.count).to eql(12)
             assert_specific_orchestration_template
           end
         end
