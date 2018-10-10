@@ -24,7 +24,9 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
 
           before do
             define_shared_variables
-            @mismatch_ip = '52.168.33.118'
+            @mismatch_ip = '23.96.82.94'
+            @vm_resource_group = 'miq-vms-eastus'
+            @vm_centos = 'miq-vm-centos1-eastus'
           end
 
           after do
@@ -95,7 +97,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
           end
 
           it "will reconnect powered off VM" do
-            existing_ref = "#{@ems.subscription}/miq-azure-test1/microsoft.compute/virtualmachines/miqazure-centos1"
+            existing_ref = "#{@ems.subscription}/#{@vm_resource_group}/microsoft.compute/virtualmachines/#{@vm_centos}"
             vm_oldest    = FactoryGirl.create(:vm_azure, :ems_ref => existing_ref, :uid_ems => existing_ref)
             FactoryGirl.create(:vm_azure, :ems_ref => existing_ref, :uid_ems => existing_ref)
 
