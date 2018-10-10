@@ -14,7 +14,7 @@ http_interactions:
       User-Agent:
       - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
       Content-Length:
-      - '197'
+      - '181'
       Content-Type:
       - application/x-www-form-urlencoded
   response:
@@ -37,21 +37,21 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       X-Ms-Request-Id:
-      - 29568484-cb2b-4342-b8bf-7161c7e71800
+      - cf133615-9dbc-4b5b-99b4-0436dd792b00
       P3p:
       - CP="DSP CUR OTPi IND OTRi ONL FIN"
       Set-Cookie:
       - stsservicecookie=ests; path=/; secure; HttpOnly
-      - x-ms-gateway-slice=014; path=/; secure; HttpOnly
+      - x-ms-gateway-slice=011; path=/; secure; HttpOnly
       Date:
-      - Wed, 10 Oct 2018 13:52:10 GMT
+      - Wed, 10 Oct 2018 20:16:22 GMT
       Content-Length:
       - '1351'
     body:
       encoding: UTF-8
-      string: '{"token_type":"Bearer","expires_in":"3600","ext_expires_in":"0","expires_on":"1539183131","not_before":"1539179231","resource":"https://management.core.windows.net/","access_token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MTc5MjMxLCJuYmYiOjE1MzkxNzkyMzEsImV4cCI6MTUzOTE4MzEzMSwiYWlvIjoiNDJSZ1lQaTZmWUc5VDNqRjJnalgrRWRGeFQwdkFRPT0iLCJhcHBpZCI6ImE1NDFhYmRlLWRkZDEtNDgyNC05YjQ2LTM5NTFmYjFjMmZiZCIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiJiM2UyMGZhNi01MGM4LTQyZGEtYTZiMy03NzBjYjEyNWRkYzkiLCJzdWIiOiJiM2UyMGZhNi01MGM4LTQyZGEtYTZiMy03NzBjYjEyNWRkYzkiLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoSVJXS1N2TFFrTzR2M0ZoeC1jWUFBIiwidmVyIjoiMS4wIn0.LOzvfh59V_Ze25Y751zNMDd84NAfFhUzOvwYGp8GNVCbRV2B2B9Wq3kTZfEKwL_y9xS2VX2tNjpuTE722y1-d3mDRHl2Wy8MV4rOJ5GQR7Sm03dlylE7EycsdkdKoAdg6B_aIiIS3a3dOirOFSCNFpGpX8wJBqi8ocHlbj-EvGc5kJIo8Np8O71aBDUgUbHM3E9C-YrFNW8ne8hd9JsWpYro4SwBB9VNXykItK1sMC0YLGcsfj2Axc6MWWVtlGP1otzhXVi9AuSXPkcW-Wy9SVmr07DLmfceQU5WcuVZrLrW6j7XaCLzhdFsdC_tkpl2K52O3q0JsGsrXYEZKjs86w"}'
+      string: '{"token_type":"Bearer","expires_in":"3600","ext_expires_in":"0","expires_on":"1539206182","not_before":"1539202282","resource":"https://management.core.windows.net/","access_token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMjgyLCJuYmYiOjE1MzkyMDIyODIsImV4cCI6MTUzOTIwNjE4MiwiYWlvIjoiNDJSZ1lEaXk4dkRiL3c2Q0I5Y3A5VjRKcnhCdkJ3QT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJGVFlUejd5ZFcwdVp0QVEyM1hrckFBIiwidmVyIjoiMS4wIn0.XlM-vPEqa9fCP-y2BMwa0yiMO1_C19oYJWkDlJrfYNZkXrdtR9wrRCK0pWgBXpU1ROxmz6WrHY6nvxh2TQfhtcvYyX_vS9JNwf7tVG0oezvsiXJEC8Qm2z33UMwu9CH4S_WDmRXy5lK0lSN-q4cyvoxESIEIJrbck95b9QfTopv0m6J3eJDF-1vjOk1tHI8BqA-wz6rTJVS84t94m9bP3D-0nuRBdPSSfvg_lONpHrAMCXftorv6orJ175rDptV7KNwoDnVy_-GIGpLLemr2QDvVbRKS5JIsvTqPpCUjLABsBv8za8P1U--c1ehtD1XtlzR939lIOd9k8HtGoBA-kw"}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 13:52:11 GMT
+  recorded_at: Wed, 10 Oct 2018 20:16:22 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions?api-version=2016-06-01
@@ -68,7 +68,7 @@ http_interactions:
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MTc5MjMxLCJuYmYiOjE1MzkxNzkyMzEsImV4cCI6MTUzOTE4MzEzMSwiYWlvIjoiNDJSZ1lQaTZmWUc5VDNqRjJnalgrRWRGeFQwdkFRPT0iLCJhcHBpZCI6ImE1NDFhYmRlLWRkZDEtNDgyNC05YjQ2LTM5NTFmYjFjMmZiZCIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiJiM2UyMGZhNi01MGM4LTQyZGEtYTZiMy03NzBjYjEyNWRkYzkiLCJzdWIiOiJiM2UyMGZhNi01MGM4LTQyZGEtYTZiMy03NzBjYjEyNWRkYzkiLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoSVJXS1N2TFFrTzR2M0ZoeC1jWUFBIiwidmVyIjoiMS4wIn0.LOzvfh59V_Ze25Y751zNMDd84NAfFhUzOvwYGp8GNVCbRV2B2B9Wq3kTZfEKwL_y9xS2VX2tNjpuTE722y1-d3mDRHl2Wy8MV4rOJ5GQR7Sm03dlylE7EycsdkdKoAdg6B_aIiIS3a3dOirOFSCNFpGpX8wJBqi8ocHlbj-EvGc5kJIo8Np8O71aBDUgUbHM3E9C-YrFNW8ne8hd9JsWpYro4SwBB9VNXykItK1sMC0YLGcsfj2Axc6MWWVtlGP1otzhXVi9AuSXPkcW-Wy9SVmr07DLmfceQU5WcuVZrLrW6j7XaCLzhdFsdC_tkpl2K52O3q0JsGsrXYEZKjs86w
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMjgyLCJuYmYiOjE1MzkyMDIyODIsImV4cCI6MTUzOTIwNjE4MiwiYWlvIjoiNDJSZ1lEaXk4dkRiL3c2Q0I5Y3A5VjRKcnhCdkJ3QT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJGVFlUejd5ZFcwdVp0QVEyM1hrckFBIiwidmVyIjoiMS4wIn0.XlM-vPEqa9fCP-y2BMwa0yiMO1_C19oYJWkDlJrfYNZkXrdtR9wrRCK0pWgBXpU1ROxmz6WrHY6nvxh2TQfhtcvYyX_vS9JNwf7tVG0oezvsiXJEC8Qm2z33UMwu9CH4S_WDmRXy5lK0lSN-q4cyvoxESIEIJrbck95b9QfTopv0m6J3eJDF-1vjOk1tHI8BqA-wz6rTJVS84t94m9bP3D-0nuRBdPSSfvg_lONpHrAMCXftorv6orJ175rDptV7KNwoDnVy_-GIGpLLemr2QDvVbRKS5JIsvTqPpCUjLABsBv8za8P1U--c1ehtD1XtlzR939lIOd9k8HtGoBA-kw
   response:
     status:
       code: 200
@@ -89,22 +89,22 @@ http_interactions:
       X-Ms-Ratelimit-Remaining-Tenant-Reads:
       - '11999'
       X-Ms-Request-Id:
-      - c719ad56-1d37-47bb-b14f-578bccb34b0f
+      - cee9ce01-5f6f-44bd-9479-a98aae642474
       X-Ms-Correlation-Request-Id:
-      - c719ad56-1d37-47bb-b14f-578bccb34b0f
+      - cee9ce01-5f6f-44bd-9479-a98aae642474
       X-Ms-Routing-Request-Id:
-      - WESTCENTRALUS:20181010T135211Z:c719ad56-1d37-47bb-b14f-578bccb34b0f
+      - CENTRALUS:20181010T201623Z:cee9ce01-5f6f-44bd-9479-a98aae642474
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 13:52:11 GMT
+      - Wed, 10 Oct 2018 20:16:22 GMT
     body:
       encoding: ASCII-8BIT
       string: '{"value":[{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID","subscriptionId":"AZURE_SUBSCRIPTION_ID","displayName":"Pay-As-You-Go","state":"Enabled","subscriptionPolicies":{"locationPlacementId":"Public_2014-09-01","quotaId":"PayAsYouGo_2014-09-01","spendingLimit":"Off"},"authorizationSource":"RoleBased"}]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 13:52:11 GMT
+  recorded_at: Wed, 10 Oct 2018 20:16:23 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/providers?api-version=2015-01-01
@@ -121,7 +121,7 @@ http_interactions:
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MTc5MjMxLCJuYmYiOjE1MzkxNzkyMzEsImV4cCI6MTUzOTE4MzEzMSwiYWlvIjoiNDJSZ1lQaTZmWUc5VDNqRjJnalgrRWRGeFQwdkFRPT0iLCJhcHBpZCI6ImE1NDFhYmRlLWRkZDEtNDgyNC05YjQ2LTM5NTFmYjFjMmZiZCIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiJiM2UyMGZhNi01MGM4LTQyZGEtYTZiMy03NzBjYjEyNWRkYzkiLCJzdWIiOiJiM2UyMGZhNi01MGM4LTQyZGEtYTZiMy03NzBjYjEyNWRkYzkiLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoSVJXS1N2TFFrTzR2M0ZoeC1jWUFBIiwidmVyIjoiMS4wIn0.LOzvfh59V_Ze25Y751zNMDd84NAfFhUzOvwYGp8GNVCbRV2B2B9Wq3kTZfEKwL_y9xS2VX2tNjpuTE722y1-d3mDRHl2Wy8MV4rOJ5GQR7Sm03dlylE7EycsdkdKoAdg6B_aIiIS3a3dOirOFSCNFpGpX8wJBqi8ocHlbj-EvGc5kJIo8Np8O71aBDUgUbHM3E9C-YrFNW8ne8hd9JsWpYro4SwBB9VNXykItK1sMC0YLGcsfj2Axc6MWWVtlGP1otzhXVi9AuSXPkcW-Wy9SVmr07DLmfceQU5WcuVZrLrW6j7XaCLzhdFsdC_tkpl2K52O3q0JsGsrXYEZKjs86w
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMjgyLCJuYmYiOjE1MzkyMDIyODIsImV4cCI6MTUzOTIwNjE4MiwiYWlvIjoiNDJSZ1lEaXk4dkRiL3c2Q0I5Y3A5VjRKcnhCdkJ3QT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJGVFlUejd5ZFcwdVp0QVEyM1hrckFBIiwidmVyIjoiMS4wIn0.XlM-vPEqa9fCP-y2BMwa0yiMO1_C19oYJWkDlJrfYNZkXrdtR9wrRCK0pWgBXpU1ROxmz6WrHY6nvxh2TQfhtcvYyX_vS9JNwf7tVG0oezvsiXJEC8Qm2z33UMwu9CH4S_WDmRXy5lK0lSN-q4cyvoxESIEIJrbck95b9QfTopv0m6J3eJDF-1vjOk1tHI8BqA-wz6rTJVS84t94m9bP3D-0nuRBdPSSfvg_lONpHrAMCXftorv6orJ175rDptV7KNwoDnVy_-GIGpLLemr2QDvVbRKS5JIsvTqPpCUjLABsBv8za8P1U--c1ehtD1XtlzR939lIOd9k8HtGoBA-kw
   response:
     status:
       code: 200
@@ -138,21 +138,21 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Ratelimit-Remaining-Subscription-Reads:
-      - '11995'
+      - '11997'
       X-Ms-Request-Id:
-      - d4e26c0e-1149-4b9f-a1fb-9e59e998039b
+      - 82bdf616-b4d1-413c-9198-b219436de5e6
       X-Ms-Correlation-Request-Id:
-      - d4e26c0e-1149-4b9f-a1fb-9e59e998039b
+      - 82bdf616-b4d1-413c-9198-b219436de5e6
       X-Ms-Routing-Request-Id:
-      - WESTCENTRALUS:20181010T135212Z:d4e26c0e-1149-4b9f-a1fb-9e59e998039b
+      - CENTRALUS:20181010T201625Z:82bdf616-b4d1-413c-9198-b219436de5e6
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 13:52:12 GMT
+      - Wed, 10 Oct 2018 20:16:24 GMT
       Content-Length:
-      - '439115'
+      - '439167'
     body:
       encoding: ASCII-8BIT
       string: '{"value":[{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.Compute","namespace":"Microsoft.Compute","authorizations":[{"applicationId":"60e6cd67-9c8c-4951-9b3c-23c25a2169af","roleDefinitionId":"e4770acb-272e-4dc8-87f3-12f44a612224"},{"applicationId":"a303894e-f1d8-4a37-bf10-67aa654a0596","roleDefinitionId":"903ac751-8ad5-4e5a-bfc2-5e49f450a241"},{"applicationId":"a8b6bf88-1d1a-4626-b040-9a729ea93c65","roleDefinitionId":"45c8267c-80ba-4b96-9a43-115b8f49fccd"},{"applicationId":"184909ca-69f1-4368-a6a7-c558ee6eb0bd","roleDefinitionId":"45c8267c-80ba-4b96-9a43-115b8f49fccd"},{"applicationId":"5e5e43d4-54da-4211-86a4-c6e7f3715801","roleDefinitionId":"ffcd6e5b-8772-457d-bb17-89703c03428f"}],"resourceTypes":[{"resourceType":"availabilitySets","locations":["East
@@ -3117,17 +3117,17 @@ http_interactions:
         US","East US","Japan West","Japan East","East Asia","East US 2","North Central
         US","South Central US","Brazil South","Australia East","Australia Southeast","West
         India","Central India","South India","Canada Central","Canada East","West
-        Central US","UK West","UK South","West US 2","France Central"],"apiVersions":["2018-02-01","2017-08-01","2016-09-01","2016-03-01","2015-08-01","2015-07-01","2015-06-01","2015-05-01","2015-04-01","2015-02-01","2014-11-01","2014-06-01","2014-04-01"]},{"resourceType":"hostingEnvironments/workerPools","locations":["Central
+        Central US","UK West","UK South","West US 2","France Central"],"apiVersions":["2018-08-01","2018-02-01","2017-08-01","2016-09-01","2016-03-01","2015-08-01","2015-07-01","2015-06-01","2015-05-01","2015-04-01","2015-02-01","2014-11-01","2014-06-01","2014-04-01"]},{"resourceType":"hostingEnvironments/workerPools","locations":["Central
         US","North Europe","West Europe","Southeast Asia","Korea Central","Korea South","West
         US","East US","Japan West","Japan East","East Asia","East US 2","North Central
         US","South Central US","Brazil South","Australia East","Australia Southeast","West
         India","Central India","South India","Canada Central","Canada East","West
-        Central US","UK West","UK South","West US 2","France Central"],"apiVersions":["2018-02-01","2017-08-01","2016-09-01","2016-03-01","2015-08-01","2015-07-01","2015-06-01","2015-05-01","2015-04-01","2015-02-01","2014-11-01","2014-06-01","2014-04-01"]},{"resourceType":"hostingEnvironments/metrics","locations":["Central
+        Central US","UK West","UK South","West US 2","France Central"],"apiVersions":["2018-08-01","2018-02-01","2017-08-01","2016-09-01","2016-03-01","2015-08-01","2015-07-01","2015-06-01","2015-05-01","2015-04-01","2015-02-01","2014-11-01","2014-06-01","2014-04-01"]},{"resourceType":"hostingEnvironments/metrics","locations":["Central
         US","North Europe","West Europe","Southeast Asia","Korea Central","Korea South","West
         US","East US","Japan West","Japan East","East Asia","East US 2","North Central
         US","South Central US","Brazil South","Australia East","Australia Southeast","West
         India","Central India","South India","Canada Central","Canada East","West
-        Central US","UK West","UK South","West US 2","France Central"],"apiVersions":["2014-04-01"]},{"resourceType":"hostingEnvironments/metricDefinitions","locations":[],"apiVersions":["2014-04-01"]},{"resourceType":"hostingEnvironments/multiRolePools/metrics","locations":[],"apiVersions":["2014-04-01"]},{"resourceType":"hostingEnvironments/multiRolePools/metricDefinitions","locations":[],"apiVersions":["2014-04-01"]},{"resourceType":"hostingEnvironments/workerPools/metrics","locations":[],"apiVersions":["2014-04-01"]},{"resourceType":"hostingEnvironments/workerPools/metricDefinitions","locations":[],"apiVersions":["2014-04-01"]},{"resourceType":"hostingEnvironments/multiRolePools/instances","locations":[],"apiVersions":["2018-02-01","2017-08-01","2016-09-01","2016-03-01","2015-08-01","2015-07-01","2015-06-01","2015-05-01","2015-04-01","2015-02-01","2014-11-01","2014-06-01","2014-04-01-preview","2014-04-01"]},{"resourceType":"hostingEnvironments/multiRolePools/instances/metrics","locations":[],"apiVersions":["2014-04-01"]},{"resourceType":"hostingEnvironments/multiRolePools/instances/metricDefinitions","locations":[],"apiVersions":["2014-04-01"]},{"resourceType":"hostingEnvironments/workerPools/instances","locations":[],"apiVersions":["2018-02-01","2017-08-01","2016-09-01","2016-03-01","2015-08-01","2015-07-01","2015-06-01","2015-05-01","2015-04-01","2015-02-01","2014-11-01","2014-06-01","2014-04-01-preview","2014-04-01"]},{"resourceType":"hostingEnvironments/workerPools/instances/metrics","locations":[],"apiVersions":["2014-04-01"]},{"resourceType":"hostingEnvironments/workerPools/instances/metricDefinitions","locations":[],"apiVersions":["2014-04-01"]},{"resourceType":"deploymentLocations","locations":[],"apiVersions":["2018-02-01","2016-03-01","2015-08-01","2015-07-01","2015-06-01","2015-05-01","2015-04-01","2015-02-01","2014-11-01","2014-06-01","2014-04-01-preview","2014-04-01"]},{"resourceType":"functions","locations":["Central
+        Central US","UK West","UK South","West US 2","France Central"],"apiVersions":["2014-04-01"]},{"resourceType":"hostingEnvironments/metricDefinitions","locations":[],"apiVersions":["2014-04-01"]},{"resourceType":"hostingEnvironments/multiRolePools/metrics","locations":[],"apiVersions":["2014-04-01"]},{"resourceType":"hostingEnvironments/multiRolePools/metricDefinitions","locations":[],"apiVersions":["2014-04-01"]},{"resourceType":"hostingEnvironments/workerPools/metrics","locations":[],"apiVersions":["2014-04-01"]},{"resourceType":"hostingEnvironments/workerPools/metricDefinitions","locations":[],"apiVersions":["2014-04-01"]},{"resourceType":"hostingEnvironments/multiRolePools/instances","locations":[],"apiVersions":["2018-08-01","2018-02-01","2017-08-01","2016-09-01","2016-03-01","2015-08-01","2015-07-01","2015-06-01","2015-05-01","2015-04-01","2015-02-01","2014-11-01","2014-06-01","2014-04-01-preview","2014-04-01"]},{"resourceType":"hostingEnvironments/multiRolePools/instances/metrics","locations":[],"apiVersions":["2014-04-01"]},{"resourceType":"hostingEnvironments/multiRolePools/instances/metricDefinitions","locations":[],"apiVersions":["2014-04-01"]},{"resourceType":"hostingEnvironments/workerPools/instances","locations":[],"apiVersions":["2018-08-01","2018-02-01","2017-08-01","2016-09-01","2016-03-01","2015-08-01","2015-07-01","2015-06-01","2015-05-01","2015-04-01","2015-02-01","2014-11-01","2014-06-01","2014-04-01-preview","2014-04-01"]},{"resourceType":"hostingEnvironments/workerPools/instances/metrics","locations":[],"apiVersions":["2014-04-01"]},{"resourceType":"hostingEnvironments/workerPools/instances/metricDefinitions","locations":[],"apiVersions":["2014-04-01"]},{"resourceType":"deploymentLocations","locations":[],"apiVersions":["2018-02-01","2016-03-01","2015-08-01","2015-07-01","2015-06-01","2015-05-01","2015-04-01","2015-02-01","2014-11-01","2014-06-01","2014-04-01-preview","2014-04-01"]},{"resourceType":"functions","locations":["Central
         US","North Europe","West Europe","Southeast Asia","Korea Central","Korea South","West
         US","East US","Japan West","Japan East","East Asia","East US 2","North Central
         US","South Central US","Brazil South","Australia East","Australia Southeast","West
@@ -3235,7 +3235,7 @@ http_interactions:
         US"],"apiVersions":["2015-06-15"]},{"resourceType":"operations","locations":[],"apiVersions":["2015-06-15"]},{"resourceType":"listCommunicationPreference","locations":[],"apiVersions":["2015-06-15"]},{"resourceType":"updateCommunicationPreference","locations":[],"apiVersions":["2015-06-15"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/U2uconsult.TheIdentityHub","namespace":"U2uconsult.TheIdentityHub","resourceTypes":[{"resourceType":"services","locations":["West
         Europe"],"apiVersions":["2015-06-15"]},{"resourceType":"operations","locations":[],"apiVersions":["2015-06-15"]},{"resourceType":"listCommunicationPreference","locations":[],"apiVersions":["2015-06-15"]},{"resourceType":"updateCommunicationPreference","locations":[],"apiVersions":["2015-06-15"]}],"registrationState":"NotRegistered"}]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 13:52:12 GMT
+  recorded_at: Wed, 10 Oct 2018 20:16:25 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb1?api-version=2018-08-01
@@ -3252,11 +3252,11 @@ http_interactions:
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MTc5MjMxLCJuYmYiOjE1MzkxNzkyMzEsImV4cCI6MTUzOTE4MzEzMSwiYWlvIjoiNDJSZ1lQaTZmWUc5VDNqRjJnalgrRWRGeFQwdkFRPT0iLCJhcHBpZCI6ImE1NDFhYmRlLWRkZDEtNDgyNC05YjQ2LTM5NTFmYjFjMmZiZCIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiJiM2UyMGZhNi01MGM4LTQyZGEtYTZiMy03NzBjYjEyNWRkYzkiLCJzdWIiOiJiM2UyMGZhNi01MGM4LTQyZGEtYTZiMy03NzBjYjEyNWRkYzkiLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoSVJXS1N2TFFrTzR2M0ZoeC1jWUFBIiwidmVyIjoiMS4wIn0.LOzvfh59V_Ze25Y751zNMDd84NAfFhUzOvwYGp8GNVCbRV2B2B9Wq3kTZfEKwL_y9xS2VX2tNjpuTE722y1-d3mDRHl2Wy8MV4rOJ5GQR7Sm03dlylE7EycsdkdKoAdg6B_aIiIS3a3dOirOFSCNFpGpX8wJBqi8ocHlbj-EvGc5kJIo8Np8O71aBDUgUbHM3E9C-YrFNW8ne8hd9JsWpYro4SwBB9VNXykItK1sMC0YLGcsfj2Axc6MWWVtlGP1otzhXVi9AuSXPkcW-Wy9SVmr07DLmfceQU5WcuVZrLrW6j7XaCLzhdFsdC_tkpl2K52O3q0JsGsrXYEZKjs86w
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMjgyLCJuYmYiOjE1MzkyMDIyODIsImV4cCI6MTUzOTIwNjE4MiwiYWlvIjoiNDJSZ1lEaXk4dkRiL3c2Q0I5Y3A5VjRKcnhCdkJ3QT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJGVFlUejd5ZFcwdVp0QVEyM1hrckFBIiwidmVyIjoiMS4wIn0.XlM-vPEqa9fCP-y2BMwa0yiMO1_C19oYJWkDlJrfYNZkXrdtR9wrRCK0pWgBXpU1ROxmz6WrHY6nvxh2TQfhtcvYyX_vS9JNwf7tVG0oezvsiXJEC8Qm2z33UMwu9CH4S_WDmRXy5lK0lSN-q4cyvoxESIEIJrbck95b9QfTopv0m6J3eJDF-1vjOk1tHI8BqA-wz6rTJVS84t94m9bP3D-0nuRBdPSSfvg_lONpHrAMCXftorv6orJ175rDptV7KNwoDnVy_-GIGpLLemr2QDvVbRKS5JIsvTqPpCUjLABsBv8za8P1U--c1ehtD1XtlzR939lIOd9k8HtGoBA-kw
   response:
     status:
-      code: 404
-      message: Not Found
+      code: 403
+      message: Forbidden
     headers:
       Cache-Control:
       - no-cache
@@ -3269,25 +3269,28 @@ http_interactions:
       X-Ms-Failure-Cause:
       - gateway
       X-Ms-Request-Id:
-      - 706bfb09-ae30-4602-a61e-803b85b556ef
+      - 943d320e-e286-430b-891a-a4bf1c5679d0
       X-Ms-Correlation-Request-Id:
-      - 706bfb09-ae30-4602-a61e-803b85b556ef
+      - 943d320e-e286-430b-891a-a4bf1c5679d0
       X-Ms-Routing-Request-Id:
-      - WESTCENTRALUS:20181010T135213Z:706bfb09-ae30-4602-a61e-803b85b556ef
+      - CENTRALUS:20181010T201626Z:943d320e-e286-430b-891a-a4bf1c5679d0
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 13:52:13 GMT
+      - Wed, 10 Oct 2018 20:16:25 GMT
+      Connection:
+      - close
       Content-Length:
-      - '107'
+      - '390'
     body:
       encoding: UTF-8
-      string: '{"error":{"code":"ResourceGroupNotFound","message":"Resource group
-        ''miq-azure-test1'' could not be found."}}'
+      string: '{"error":{"code":"AuthorizationFailed","message":"The client ''1c294ded-b630-48b2-b7f3-e9e5d4e8ee77''
+        with object id ''1c294ded-b630-48b2-b7f3-e9e5d4e8ee77'' does not have authorization
+        to perform action ''Microsoft.Network/loadBalancers/read'' over scope ''/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb1''."}}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 13:52:13 GMT
+  recorded_at: Wed, 10 Oct 2018 20:16:26 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb2?api-version=2018-08-01
@@ -3304,11 +3307,11 @@ http_interactions:
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MTc5MjMxLCJuYmYiOjE1MzkxNzkyMzEsImV4cCI6MTUzOTE4MzEzMSwiYWlvIjoiNDJSZ1lQaTZmWUc5VDNqRjJnalgrRWRGeFQwdkFRPT0iLCJhcHBpZCI6ImE1NDFhYmRlLWRkZDEtNDgyNC05YjQ2LTM5NTFmYjFjMmZiZCIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiJiM2UyMGZhNi01MGM4LTQyZGEtYTZiMy03NzBjYjEyNWRkYzkiLCJzdWIiOiJiM2UyMGZhNi01MGM4LTQyZGEtYTZiMy03NzBjYjEyNWRkYzkiLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoSVJXS1N2TFFrTzR2M0ZoeC1jWUFBIiwidmVyIjoiMS4wIn0.LOzvfh59V_Ze25Y751zNMDd84NAfFhUzOvwYGp8GNVCbRV2B2B9Wq3kTZfEKwL_y9xS2VX2tNjpuTE722y1-d3mDRHl2Wy8MV4rOJ5GQR7Sm03dlylE7EycsdkdKoAdg6B_aIiIS3a3dOirOFSCNFpGpX8wJBqi8ocHlbj-EvGc5kJIo8Np8O71aBDUgUbHM3E9C-YrFNW8ne8hd9JsWpYro4SwBB9VNXykItK1sMC0YLGcsfj2Axc6MWWVtlGP1otzhXVi9AuSXPkcW-Wy9SVmr07DLmfceQU5WcuVZrLrW6j7XaCLzhdFsdC_tkpl2K52O3q0JsGsrXYEZKjs86w
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMjgyLCJuYmYiOjE1MzkyMDIyODIsImV4cCI6MTUzOTIwNjE4MiwiYWlvIjoiNDJSZ1lEaXk4dkRiL3c2Q0I5Y3A5VjRKcnhCdkJ3QT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJGVFlUejd5ZFcwdVp0QVEyM1hrckFBIiwidmVyIjoiMS4wIn0.XlM-vPEqa9fCP-y2BMwa0yiMO1_C19oYJWkDlJrfYNZkXrdtR9wrRCK0pWgBXpU1ROxmz6WrHY6nvxh2TQfhtcvYyX_vS9JNwf7tVG0oezvsiXJEC8Qm2z33UMwu9CH4S_WDmRXy5lK0lSN-q4cyvoxESIEIJrbck95b9QfTopv0m6J3eJDF-1vjOk1tHI8BqA-wz6rTJVS84t94m9bP3D-0nuRBdPSSfvg_lONpHrAMCXftorv6orJ175rDptV7KNwoDnVy_-GIGpLLemr2QDvVbRKS5JIsvTqPpCUjLABsBv8za8P1U--c1ehtD1XtlzR939lIOd9k8HtGoBA-kw
   response:
     status:
-      code: 404
-      message: Not Found
+      code: 403
+      message: Forbidden
     headers:
       Cache-Control:
       - no-cache
@@ -3321,25 +3324,28 @@ http_interactions:
       X-Ms-Failure-Cause:
       - gateway
       X-Ms-Request-Id:
-      - 88e912f9-9c25-4375-bc97-fd1bd6231e93
+      - 1fdfba77-b76a-453a-b79a-e5ae30d680ac
       X-Ms-Correlation-Request-Id:
-      - 88e912f9-9c25-4375-bc97-fd1bd6231e93
+      - 1fdfba77-b76a-453a-b79a-e5ae30d680ac
       X-Ms-Routing-Request-Id:
-      - WESTCENTRALUS:20181010T135213Z:88e912f9-9c25-4375-bc97-fd1bd6231e93
+      - CENTRALUS:20181010T201626Z:1fdfba77-b76a-453a-b79a-e5ae30d680ac
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 13:52:13 GMT
+      - Wed, 10 Oct 2018 20:16:26 GMT
+      Connection:
+      - close
       Content-Length:
-      - '107'
+      - '390'
     body:
       encoding: UTF-8
-      string: '{"error":{"code":"ResourceGroupNotFound","message":"Resource group
-        ''miq-azure-test1'' could not be found."}}'
+      string: '{"error":{"code":"AuthorizationFailed","message":"The client ''1c294ded-b630-48b2-b7f3-e9e5d4e8ee77''
+        with object id ''1c294ded-b630-48b2-b7f3-e9e5d4e8ee77'' does not have authorization
+        to perform action ''Microsoft.Network/loadBalancers/read'' over scope ''/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb2''."}}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 13:52:13 GMT
+  recorded_at: Wed, 10 Oct 2018 20:16:26 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Compute/virtualMachines/rspec-lb-a?api-version=2017-12-01
@@ -3356,11 +3362,11 @@ http_interactions:
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MTc5MjMxLCJuYmYiOjE1MzkxNzkyMzEsImV4cCI6MTUzOTE4MzEzMSwiYWlvIjoiNDJSZ1lQaTZmWUc5VDNqRjJnalgrRWRGeFQwdkFRPT0iLCJhcHBpZCI6ImE1NDFhYmRlLWRkZDEtNDgyNC05YjQ2LTM5NTFmYjFjMmZiZCIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiJiM2UyMGZhNi01MGM4LTQyZGEtYTZiMy03NzBjYjEyNWRkYzkiLCJzdWIiOiJiM2UyMGZhNi01MGM4LTQyZGEtYTZiMy03NzBjYjEyNWRkYzkiLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoSVJXS1N2TFFrTzR2M0ZoeC1jWUFBIiwidmVyIjoiMS4wIn0.LOzvfh59V_Ze25Y751zNMDd84NAfFhUzOvwYGp8GNVCbRV2B2B9Wq3kTZfEKwL_y9xS2VX2tNjpuTE722y1-d3mDRHl2Wy8MV4rOJ5GQR7Sm03dlylE7EycsdkdKoAdg6B_aIiIS3a3dOirOFSCNFpGpX8wJBqi8ocHlbj-EvGc5kJIo8Np8O71aBDUgUbHM3E9C-YrFNW8ne8hd9JsWpYro4SwBB9VNXykItK1sMC0YLGcsfj2Axc6MWWVtlGP1otzhXVi9AuSXPkcW-Wy9SVmr07DLmfceQU5WcuVZrLrW6j7XaCLzhdFsdC_tkpl2K52O3q0JsGsrXYEZKjs86w
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMjgyLCJuYmYiOjE1MzkyMDIyODIsImV4cCI6MTUzOTIwNjE4MiwiYWlvIjoiNDJSZ1lEaXk4dkRiL3c2Q0I5Y3A5VjRKcnhCdkJ3QT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJGVFlUejd5ZFcwdVp0QVEyM1hrckFBIiwidmVyIjoiMS4wIn0.XlM-vPEqa9fCP-y2BMwa0yiMO1_C19oYJWkDlJrfYNZkXrdtR9wrRCK0pWgBXpU1ROxmz6WrHY6nvxh2TQfhtcvYyX_vS9JNwf7tVG0oezvsiXJEC8Qm2z33UMwu9CH4S_WDmRXy5lK0lSN-q4cyvoxESIEIJrbck95b9QfTopv0m6J3eJDF-1vjOk1tHI8BqA-wz6rTJVS84t94m9bP3D-0nuRBdPSSfvg_lONpHrAMCXftorv6orJ175rDptV7KNwoDnVy_-GIGpLLemr2QDvVbRKS5JIsvTqPpCUjLABsBv8za8P1U--c1ehtD1XtlzR939lIOd9k8HtGoBA-kw
   response:
     status:
-      code: 404
-      message: Not Found
+      code: 403
+      message: Forbidden
     headers:
       Cache-Control:
       - no-cache
@@ -3373,25 +3379,28 @@ http_interactions:
       X-Ms-Failure-Cause:
       - gateway
       X-Ms-Request-Id:
-      - fb4e0c75-3577-4ec5-9e2a-b5181ad35569
+      - ca9bb4b9-f090-4890-a041-eec9239802c9
       X-Ms-Correlation-Request-Id:
-      - fb4e0c75-3577-4ec5-9e2a-b5181ad35569
+      - ca9bb4b9-f090-4890-a041-eec9239802c9
       X-Ms-Routing-Request-Id:
-      - WESTCENTRALUS:20181010T135213Z:fb4e0c75-3577-4ec5-9e2a-b5181ad35569
+      - CENTRALUS:20181010T201627Z:ca9bb4b9-f090-4890-a041-eec9239802c9
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 13:52:13 GMT
+      - Wed, 10 Oct 2018 20:16:26 GMT
+      Connection:
+      - close
       Content-Length:
-      - '107'
+      - '395'
     body:
       encoding: UTF-8
-      string: '{"error":{"code":"ResourceGroupNotFound","message":"Resource group
-        ''miq-azure-test1'' could not be found."}}'
+      string: '{"error":{"code":"AuthorizationFailed","message":"The client ''1c294ded-b630-48b2-b7f3-e9e5d4e8ee77''
+        with object id ''1c294ded-b630-48b2-b7f3-e9e5d4e8ee77'' does not have authorization
+        to perform action ''Microsoft.Compute/virtualMachines/read'' over scope ''/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Compute/virtualMachines/rspec-lb-a''."}}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 13:52:13 GMT
+  recorded_at: Wed, 10 Oct 2018 20:16:27 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Compute/virtualMachines/rspec-lb-b?api-version=2017-12-01
@@ -3408,11 +3417,11 @@ http_interactions:
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MTc5MjMxLCJuYmYiOjE1MzkxNzkyMzEsImV4cCI6MTUzOTE4MzEzMSwiYWlvIjoiNDJSZ1lQaTZmWUc5VDNqRjJnalgrRWRGeFQwdkFRPT0iLCJhcHBpZCI6ImE1NDFhYmRlLWRkZDEtNDgyNC05YjQ2LTM5NTFmYjFjMmZiZCIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiJiM2UyMGZhNi01MGM4LTQyZGEtYTZiMy03NzBjYjEyNWRkYzkiLCJzdWIiOiJiM2UyMGZhNi01MGM4LTQyZGEtYTZiMy03NzBjYjEyNWRkYzkiLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoSVJXS1N2TFFrTzR2M0ZoeC1jWUFBIiwidmVyIjoiMS4wIn0.LOzvfh59V_Ze25Y751zNMDd84NAfFhUzOvwYGp8GNVCbRV2B2B9Wq3kTZfEKwL_y9xS2VX2tNjpuTE722y1-d3mDRHl2Wy8MV4rOJ5GQR7Sm03dlylE7EycsdkdKoAdg6B_aIiIS3a3dOirOFSCNFpGpX8wJBqi8ocHlbj-EvGc5kJIo8Np8O71aBDUgUbHM3E9C-YrFNW8ne8hd9JsWpYro4SwBB9VNXykItK1sMC0YLGcsfj2Axc6MWWVtlGP1otzhXVi9AuSXPkcW-Wy9SVmr07DLmfceQU5WcuVZrLrW6j7XaCLzhdFsdC_tkpl2K52O3q0JsGsrXYEZKjs86w
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMjgyLCJuYmYiOjE1MzkyMDIyODIsImV4cCI6MTUzOTIwNjE4MiwiYWlvIjoiNDJSZ1lEaXk4dkRiL3c2Q0I5Y3A5VjRKcnhCdkJ3QT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJGVFlUejd5ZFcwdVp0QVEyM1hrckFBIiwidmVyIjoiMS4wIn0.XlM-vPEqa9fCP-y2BMwa0yiMO1_C19oYJWkDlJrfYNZkXrdtR9wrRCK0pWgBXpU1ROxmz6WrHY6nvxh2TQfhtcvYyX_vS9JNwf7tVG0oezvsiXJEC8Qm2z33UMwu9CH4S_WDmRXy5lK0lSN-q4cyvoxESIEIJrbck95b9QfTopv0m6J3eJDF-1vjOk1tHI8BqA-wz6rTJVS84t94m9bP3D-0nuRBdPSSfvg_lONpHrAMCXftorv6orJ175rDptV7KNwoDnVy_-GIGpLLemr2QDvVbRKS5JIsvTqPpCUjLABsBv8za8P1U--c1ehtD1XtlzR939lIOd9k8HtGoBA-kw
   response:
     status:
-      code: 404
-      message: Not Found
+      code: 403
+      message: Forbidden
     headers:
       Cache-Control:
       - no-cache
@@ -3425,23 +3434,26 @@ http_interactions:
       X-Ms-Failure-Cause:
       - gateway
       X-Ms-Request-Id:
-      - 28b086c0-935f-4f9b-ae0a-28d54bd8ee34
+      - bbc9256d-cec5-4743-a300-f9c0daf4ad3b
       X-Ms-Correlation-Request-Id:
-      - 28b086c0-935f-4f9b-ae0a-28d54bd8ee34
+      - bbc9256d-cec5-4743-a300-f9c0daf4ad3b
       X-Ms-Routing-Request-Id:
-      - WESTCENTRALUS:20181010T135213Z:28b086c0-935f-4f9b-ae0a-28d54bd8ee34
+      - CENTRALUS:20181010T201627Z:bbc9256d-cec5-4743-a300-f9c0daf4ad3b
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 13:52:13 GMT
+      - Wed, 10 Oct 2018 20:16:27 GMT
+      Connection:
+      - close
       Content-Length:
-      - '107'
+      - '395'
     body:
       encoding: UTF-8
-      string: '{"error":{"code":"ResourceGroupNotFound","message":"Resource group
-        ''miq-azure-test1'' could not be found."}}'
+      string: '{"error":{"code":"AuthorizationFailed","message":"The client ''1c294ded-b630-48b2-b7f3-e9e5d4e8ee77''
+        with object id ''1c294ded-b630-48b2-b7f3-e9e5d4e8ee77'' does not have authorization
+        to perform action ''Microsoft.Compute/virtualMachines/read'' over scope ''/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Compute/virtualMachines/rspec-lb-b''."}}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 13:52:13 GMT
+  recorded_at: Wed, 10 Oct 2018 20:16:27 GMT
 recorded_with: VCR 3.0.3
