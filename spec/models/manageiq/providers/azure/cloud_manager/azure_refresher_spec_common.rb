@@ -112,6 +112,7 @@ module AzureRefresherSpecCommon
 
     @vm_powered_on = @ubuntu_east
     @vm_powered_off = @centos_east
+    @disk_powered_on = 'miq-vm-ubuntu-disk1'
 
     FactoryGirl.create(:tag_mapping_with_category,
                        :labeled_resource_type => 'VmAzure',
@@ -377,22 +378,22 @@ module AzureRefresherSpecCommon
   end
 
   def assert_specific_flavor
-    flavor = ManageIQ::Providers::Azure::CloudManager::Flavor.find_by(:ems_ref => 'basic_a0')
+    flavor = ManageIQ::Providers::Azure::CloudManager::Flavor.find_by(:ems_ref => 'standard_b1s')
 
     expect(flavor).to have_attributes(
-      :name                     => 'Basic_A0',
+      :name                     => 'Standard_B1s',
       :description              => nil,
       :enabled                  => true,
       :cpus                     => 1,
       :cpu_cores                => 1,
-      :memory                   => 768.megabytes,
+      :memory                   => 1024.megabytes,
       :supports_32_bit          => nil,
       :supports_64_bit          => nil,
       :supports_hvm             => nil,
       :supports_paravirtual     => nil,
       :block_storage_based_only => nil,
-      :root_disk_size           => 1_047_552.megabytes,
-      :swap_disk_size           => 20_480.megabytes
+      :root_disk_size           => 1047552.megabytes,
+      :swap_disk_size           => 2048.megabytes
     )
 
     expect(flavor.ext_management_system).to eq(@ems)
@@ -541,8 +542,9 @@ module AzureRefresherSpecCommon
   end
 
   def assert_specific_disk
-    uri  = "https://miqunmanagedeastus.blob.core.windows.net/vhds/#{@unmanaged_disk}.vhd"
-    disk = Disk.find_by(:device_name => @unmanaged_disk)
+    uri  = "https://miqunmanagedeastus.blob.core.windows.net/vhds/#{@disk_powered_on}.vhd"
+    disk = Disk.find_by(:device_name => @disk_powered_on)
+
 
     expect(disk).to have_attributes(
       :location => uri,
