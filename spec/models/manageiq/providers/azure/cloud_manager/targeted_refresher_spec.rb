@@ -96,7 +96,6 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
             end
           end
 
-=begin
           it "will reconnect powered off VM" do
             existing_ref = "#{@ems.subscription}/#{@vm_resource_group}/microsoft.compute/virtualmachines/#{@vm_centos}"
             vm_oldest    = FactoryGirl.create(:vm_azure, :ems_ref => existing_ref, :uid_ems => existing_ref)
@@ -105,27 +104,25 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
             2.times do # Run twice to verify that a second run with existing data does not change anything
               refresh_with_cassette([vm_powered_off_target], vcr_suffix("powered_off_vm_refresh"))
 
-              #assert_specific_az
-              #assert_specific_flavor
-              #assert_specific_vm_powered_off
+              assert_specific_az
+              assert_specific_flavor
+              assert_specific_vm_powered_off
 
-              #expect(Vm.count).to eq(2)
-              #expect(@ems.vms.count).to eq(1)
+              expect(Vm.count).to eq(2)
+              expect(@ems.vms.count).to eq(1)
               # We will reconnect the oldest one
-              #expect(@ems.vms.first.id).to eq(vm_oldest.id)
+              expect(@ems.vms.first.id).to eq(vm_oldest.id)
             end
           end
-=end
 
-=begin
           it "will refresh VM with managed disk" do
             2.times do # Run twice to verify that a second run with existing data does not change anything
               refresh_with_cassette([vm_with_managed_disk_target], vcr_suffix("vm_with_managed_disk_refresh"))
 
-              #assert_specific_az
-              #assert_specific_flavor
-              #assert_specific_vm_with_managed_disks
-              #assert_specific_managed_disk
+              assert_specific_az
+              assert_specific_flavor(true)
+              assert_specific_vm_with_managed_disks
+              assert_specific_managed_disk
 
               assert_counts(
                 :availability_zone     => 1,
@@ -140,13 +137,12 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
                 :network_port          => 1,
                 :operating_system      => 1,
                 :resource_group        => 1,
-                :security_group        => 1,
+                :security_group        => 0,
                 :vm                    => 1,
                 :vm_or_template        => 1
               )
             end
           end
-=end
 
 =begin
           it "will refresh multiple objects at once" do
