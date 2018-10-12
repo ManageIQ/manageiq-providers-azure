@@ -23,6 +23,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - Update api-version string settings [(#186)](https://github.com/ManageIQ/manageiq-providers-azure/pull/186)
 - Select only the event fields that we need [(#171)](https://github.com/ManageIQ/manageiq-providers-azure/pull/171)
 - Pass resource group as a string to the instance delete method [(#148)](https://github.com/ManageIQ/manageiq-providers-azure/pull/148)
+- Update i18n catalog for hammer [(#294)](https://github.com/ManageIQ/manageiq-providers-azure/pull/294)
 
 ### Fixed
 - Fix parent association in graph refresh [(#291)](https://github.com/ManageIQ/manageiq-providers-azure/pull/291)
