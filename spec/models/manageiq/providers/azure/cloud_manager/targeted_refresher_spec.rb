@@ -144,7 +144,6 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
             end
           end
 
-=begin
           it "will refresh multiple objects at once" do
             targets = [
               vm_with_managed_disk_target,
@@ -184,7 +183,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
 
               assert_counts(
                 :ext_management_system             => 2,
-                :flavor                            => 1,
+                :flavor                            => 3,
                 :availability_zone                 => 1,
                 :vm_or_template                    => 3,
                 :vm                                => 3,
@@ -192,11 +191,11 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
                 :hardware                          => 3,
                 :network                           => 6,
                 :operating_system                  => 3,
-                :security_group                    => 3,
+                :security_group                    => 1,
                 :network_port                      => 4,
-                :cloud_network                     => 2,
+                :cloud_network                     => 1,
                 :floating_ip                       => 4,
-                :cloud_subnet                      => 2,
+                :cloud_subnet                      => 1,
                 :resource_group                    => 2,
                 :load_balancer                     => 1,
                 :load_balancer_pool                => 1,
@@ -204,14 +203,12 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
                 :load_balancer_pool_member_pool    => 2,
                 :load_balancer_listener            => 1,
                 :load_balancer_listener_pool       => 1,
-                :load_balancer_health_check        => 1,
+                :load_balancer_health_check        => 2,
                 :load_balancer_health_check_member => 2
               )
             end
           end
-=end
 
-=begin
           it "will refresh cloud network" do
             2.times do # Run twice to verify that a second run with existing data does not change anything
               refresh_with_cassette([cloud_network_target], vcr_suffix("cloud_network_refresh"))
@@ -222,9 +219,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
               )
             end
           end
-=end
 
-=begin
           it "will refresh resource group target" do
             2.times do # Run twice to verify that a second run with existing data does not change anything
               refresh_with_cassette([resource_group_target], vcr_suffix("resource_group_refresh"))
@@ -234,9 +229,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
               )
             end
           end
-=end
 
-=begin
           it "will refresh security group target" do
             2.times do # Run twice to verify that a second run with existing data does not change anything
               refresh_with_cassette([security_group_target], vcr_suffix("security_group_refresh"))
@@ -246,9 +239,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
               )
             end
           end
-=end
 
-=begin
           it "will refresh network_port target" do
             2.times do # Run twice to verify that a second run with existing data does not change anything
               refresh_with_cassette([network_port_target], vcr_suffix("network_port_refresh"))
@@ -262,7 +253,6 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
               )
             end
           end
-=end
 
 =begin
           it "will refresh orchestration stack" do
