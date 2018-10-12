@@ -377,23 +377,35 @@ module AzureRefresherSpecCommon
     end
   end
 
-  def assert_specific_flavor
-    flavor = ManageIQ::Providers::Azure::CloudManager::Flavor.find_by(:ems_ref => 'standard_b1s')
+  def assert_specific_flavor(managed = false)
+    if managed
+      flavor = ManageIQ::Providers::Azure::CloudManager::Flavor.find_by(:ems_ref => 'standard_a0')
+      name = 'Standard_A0'
+      memory = 768.megabytes
+      root_disk_size = 1047552.megabytes
+      swap_disk_size = 20480.megabytes
+    else
+      flavor = ManageIQ::Providers::Azure::CloudManager::Flavor.find_by(:ems_ref => 'standard_b1s')
+      name = 'Standard_B1s'
+      memory = 1024.megabytes
+      root_disk_size = 1047552.megabytes
+      swap_disk_size = 2048.megabytes
+    end
 
     expect(flavor).to have_attributes(
-      :name                     => 'Standard_B1s',
+      :name                     => name,
       :description              => nil,
       :enabled                  => true,
       :cpus                     => 1,
       :cpu_cores                => 1,
-      :memory                   => 1024.megabytes,
+      :memory                   => memory,
       :supports_32_bit          => nil,
       :supports_64_bit          => nil,
       :supports_hvm             => nil,
       :supports_paravirtual     => nil,
       :block_storage_based_only => nil,
-      :root_disk_size           => 1047552.megabytes,
-      :swap_disk_size           => 2048.megabytes
+      :root_disk_size           => root_disk_size,
+      :swap_disk_size           => swap_disk_size
     )
 
     expect(flavor.ext_management_system).to eq(@ems)
@@ -560,9 +572,9 @@ module AzureRefresherSpecCommon
 
   def assert_specific_managed_disk
     disk = Disk.find_by(:device_name => @managed_os_disk)
-    expect(disk.location).to eql("/subscriptions/#{@ems.subscription}/resourceGroups/"\
+    expect(disk.location.downcase).to eql("/subscriptions/#{@ems.subscription}/resourceGroups/"\
                                    "#{@vm_group}/providers/Microsoft.Compute/disks/"\
-                                   "#{@managed_os_disk}")
+                                   "#{@managed_os_disk}".downcase)
     expect(disk.size).to eql(30.gigabytes)
   end
 
