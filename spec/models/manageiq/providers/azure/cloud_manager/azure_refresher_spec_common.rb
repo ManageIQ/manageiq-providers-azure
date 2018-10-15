@@ -1011,7 +1011,7 @@ module AzureRefresherSpecCommon
 
   def lb_non_stack_target2
     lb_resource_id2 = "/subscriptions/#{@ems.subscription}/"\
-                            "resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/miq-lb-eastus2"
+                            "resourceGroups/#{@network_group}/providers/Microsoft.Network/loadBalancers/miq-lb-eastus2"
     InventoryRefresh::Target.new(:manager     => @ems,
                                  :association => :load_balancers,
                                  :manager_ref => {:ems_ref => lb_resource_id2})
