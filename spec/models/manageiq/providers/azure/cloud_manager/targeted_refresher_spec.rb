@@ -324,7 +324,6 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
           end
 =end
 
-=begin
           it "will refresh LoadBalancer" do
             2.times do # Run twice to verify that a second run with existing data does not change anything
               refresh_with_cassette([lb_non_stack_target], vcr_suffix("lb_refresh"))
@@ -333,7 +332,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
                 :ext_management_system             => 2,
                 :floating_ip                       => 1,
                 :load_balancer                     => 1,
-                :load_balancer_health_check        => 1,
+                :load_balancer_health_check        => 2,
                 :load_balancer_health_check_member => 2,
                 :load_balancer_listener            => 1,
                 :load_balancer_listener_pool       => 1,
@@ -344,9 +343,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
               )
             end
           end
-=end
 
-=begin
           it "will refresh LoadBalancer with Vms refreshed before" do
             # Refresh Vms first
             2.times do # Run twice to verify that a second run with existing data does not change anything
@@ -359,14 +356,14 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
                 :cloud_subnet          => 1,
                 :disk                  => 2,
                 :ext_management_system => 2,
-                :flavor                => 2,
-                :floating_ip           => 2,
+                :flavor                => 1,
+                :floating_ip           => 0,
                 :hardware              => 2,
-                :network               => 4,
+                :network               => 2,
                 :network_port          => 2,
                 :operating_system      => 2,
                 :resource_group        => 1,
-                :security_group        => 2,
+                :security_group        => 1,
                 :vm                    => 2,
                 :vm_or_template        => 2
               )
@@ -379,9 +376,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
               assert_lbs_with_vms
             end
           end
-=end
 
-=begin
           it "will refresh LoadBalancer with Vms" do
             2.times do # Run twice to verify that a second run with existing data does not change anything
               refresh_with_cassette(lbs_targets + lbs_vms_targets, vcr_suffix("lb_with_vms_refresh"))
@@ -389,7 +384,6 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
               assert_lbs_with_vms
             end
           end
-=end
 
           it "will refresh Template" do
             2.times do # Run twice to verify that a second run with existing data does not change anything
