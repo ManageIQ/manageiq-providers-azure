@@ -391,7 +391,6 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
           end
 =end
 
-=begin
           it "will refresh Template" do
             2.times do # Run twice to verify that a second run with existing data does not change anything
               refresh_with_cassette([template_target], vcr_suffix("template_refresh"))
@@ -399,7 +398,6 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
               assert_specific_template
             end
           end
-=end
 
           def vcr_suffix(suffix)
             "_targeted/#{@sub_path}#{suffix}"
