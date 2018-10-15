@@ -302,7 +302,6 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
           end
 =end
 
-=begin
           it "will refresh LoadBalancer created by stack" do
             2.times do # Run twice to verify that a second run with existing data does not change anything
               refresh_with_cassette([lb_target], vcr_suffix("lb_created_by_stack_refresh"))
@@ -311,7 +310,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
                 :ext_management_system             => 2,
                 :floating_ip                       => 1,
                 :load_balancer                     => 1,
-                :load_balancer_health_check        => 1,
+                :load_balancer_health_check        => 2,
                 :load_balancer_health_check_member => 2,
                 :load_balancer_listener            => 1,
                 :load_balancer_listener_pool       => 1,
@@ -322,7 +321,6 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
               )
             end
           end
-=end
 
           it "will refresh LoadBalancer" do
             2.times do # Run twice to verify that a second run with existing data does not change anything
