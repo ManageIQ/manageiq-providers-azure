@@ -254,7 +254,6 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
             end
           end
 
-=begin
           it "will refresh orchestration stack" do
             2.times do # Run twice to verify that a second run with existing data does not change anything
               refresh_with_cassette([parent_orchestration_stack_target], vcr_suffix("orchestration_stack_refresh"))
@@ -262,7 +261,6 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
               assert_stack_and_vm_targeted_refresh
             end
           end
-=end
 
 =begin
           it "will refresh orchestration stack followed by Vm refresh" do
