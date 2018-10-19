@@ -1,58 +1,6 @@
 ---
 http_interactions:
 - request:
-    method: post
-    uri: https://login.microsoftonline.com/AZURE_TENANT_ID/oauth2/token
-    body:
-      encoding: UTF-8
-      string: grant_type=client_credentials&client_id=AZURE_CLIENT_ID&client_secret=AZURE_CLIENT_SECRET&resource=https%3A%2F%2Fmanagement.core.windows.net%2F
-    headers:
-      Accept:
-      - "*/*"
-      Accept-Encoding:
-      - gzip, deflate
-      User-Agent:
-      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
-      Content-Length:
-      - '181'
-      Content-Type:
-      - application/x-www-form-urlencoded
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Cache-Control:
-      - no-cache, no-store
-      Pragma:
-      - no-cache
-      Content-Type:
-      - application/json; charset=utf-8
-      Expires:
-      - "-1"
-      Server:
-      - Microsoft-IIS/10.0
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains
-      X-Content-Type-Options:
-      - nosniff
-      X-Ms-Request-Id:
-      - 85d47b5a-55ae-4d9e-acca-094aabcf0f01
-      P3p:
-      - CP="DSP CUR OTPi IND OTRi ONL FIN"
-      Set-Cookie:
-      - stsservicecookie=ests; path=/; secure; HttpOnly
-      - x-ms-gateway-slice=013; path=/; secure; HttpOnly
-      Date:
-      - Tue, 16 Oct 2018 15:05:27 GMT
-      Content-Length:
-      - '1351'
-    body:
-      encoding: UTF-8
-      string: '{"token_type":"Bearer","expires_in":"3600","ext_expires_in":"0","expires_on":"1539705927","not_before":"1539702027","resource":"https://management.core.windows.net/","access_token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAyMDI3LCJuYmYiOjE1Mzk3MDIwMjcsImV4cCI6MTUzOTcwNTkyNywiYWlvIjoiNDJSZ1lGQisvR3loOHVGM3lsK3VLVTdrbS8va0Z3QT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJXbnZVaGE1Vm5rMnN5Z2xLcTg4UEFRIiwidmVyIjoiMS4wIn0.LVo7AbYZCJ2gNuGzx9mJzHTcElzs8WtRmsbcsUmvvQVdUaandF0sQlKgVgx2X66OMIYR5Eh0VVxGt52Qg0RoMMcP_vNjiyMVH97WQACqV5S6qS4dqKVNNizjP9cgdROP6h-AONs4K6wqTRCNRXgdmZ-3aHbbDV3Bvx49rI6uc8thrDqs_I6qIdchCnePoF9-P84WGSnSO_buR6kFdskGOUapIrgn2L8jx627W4HN5uX_vS5zKJpKOikGozEO51JgEz8pbayjF2p0xjQuOj73GkTxCMV3dWZEhx11DAGQNR1kd2Y4RGijI8yAQM7FzTIKkbz8sa8KnpmbNZ8GDDGe3A"}'
-    http_version: 
-  recorded_at: Tue, 16 Oct 2018 15:05:37 GMT
-- request:
     method: get
     uri: https://management.azure.com/subscriptions?api-version=2016-06-01
     body:
@@ -68,7 +16,7 @@ http_interactions:
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAyMDI3LCJuYmYiOjE1Mzk3MDIwMjcsImV4cCI6MTUzOTcwNTkyNywiYWlvIjoiNDJSZ1lGQisvR3loOHVGM3lsK3VLVTdrbS8va0Z3QT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJXbnZVaGE1Vm5rMnN5Z2xLcTg4UEFRIiwidmVyIjoiMS4wIn0.LVo7AbYZCJ2gNuGzx9mJzHTcElzs8WtRmsbcsUmvvQVdUaandF0sQlKgVgx2X66OMIYR5Eh0VVxGt52Qg0RoMMcP_vNjiyMVH97WQACqV5S6qS4dqKVNNizjP9cgdROP6h-AONs4K6wqTRCNRXgdmZ-3aHbbDV3Bvx49rI6uc8thrDqs_I6qIdchCnePoF9-P84WGSnSO_buR6kFdskGOUapIrgn2L8jx627W4HN5uX_vS5zKJpKOikGozEO51JgEz8pbayjF2p0xjQuOj73GkTxCMV3dWZEhx11DAGQNR1kd2Y4RGijI8yAQM7FzTIKkbz8sa8KnpmbNZ8GDDGe3A
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxOTI0LCJuYmYiOjE1Mzk3MDE5MjQsImV4cCI6MTUzOTcwNTgyNCwiYWlvIjoiNDJSZ1lEQVdFcGVyVEZmWmNsbFBqNVU1TCtJZ0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJZbnNTQWxlOTZrMjFtQU1KQmdBUUFRIiwidmVyIjoiMS4wIn0.RztuWtoSOGR6OrATyE0l4y_AciofeDfjiqakOMzEjf0pMe92yiLvjUbQ8O5p6cmDRfqcvo-mVFsgmoFZrfG_8NtBCLhZ-cpPGHrwHtcPyXlqn2O07BVEiGilYJJlWd8w6UmniL76TJ5rpvsgvf20BmCwP8AtZdSzb1DIpT8cekYRrSFnkd1lEkqkcCq1YY70KaLQdhcI9OuVc0BBTxulMVzh88XCuu8i-uFe9bfotIChJ_Qvk8fj9drhE1tbTvBj-KNgDsucEd_lVW5t9qCSEbVihwP4zfrQBRgOjp2txfEE6rZA9wAZYtfP6lbQwg_iMVeozB188gqs-cBnXuCI4A
   response:
     status:
       code: 200
@@ -89,22 +37,22 @@ http_interactions:
       X-Ms-Ratelimit-Remaining-Tenant-Reads:
       - '11999'
       X-Ms-Request-Id:
-      - '00222578-d2e8-4e6f-bcb4-36c180b72573'
+      - '0295bcc6-26e6-4465-86a2-0414628e7a6f'
       X-Ms-Correlation-Request-Id:
-      - '00222578-d2e8-4e6f-bcb4-36c180b72573'
+      - '0295bcc6-26e6-4465-86a2-0414628e7a6f'
       X-Ms-Routing-Request-Id:
-      - WESTCENTRALUS:20181016T150527Z:00222578-d2e8-4e6f-bcb4-36c180b72573
+      - WESTCENTRALUS:20181016T150402Z:0295bcc6-26e6-4465-86a2-0414628e7a6f
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Tue, 16 Oct 2018 15:05:27 GMT
+      - Tue, 16 Oct 2018 15:04:02 GMT
     body:
       encoding: ASCII-8BIT
       string: '{"value":[{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID","subscriptionId":"AZURE_SUBSCRIPTION_ID","displayName":"Pay-As-You-Go","state":"Enabled","subscriptionPolicies":{"locationPlacementId":"Public_2014-09-01","quotaId":"PayAsYouGo_2014-09-01","spendingLimit":"Off"},"authorizationSource":"RoleBased"}]}'
     http_version: 
-  recorded_at: Tue, 16 Oct 2018 15:05:37 GMT
+  recorded_at: Tue, 16 Oct 2018 15:04:13 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/providers?api-version=2015-01-01
@@ -121,7 +69,7 @@ http_interactions:
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAyMDI3LCJuYmYiOjE1Mzk3MDIwMjcsImV4cCI6MTUzOTcwNTkyNywiYWlvIjoiNDJSZ1lGQisvR3loOHVGM3lsK3VLVTdrbS8va0Z3QT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJXbnZVaGE1Vm5rMnN5Z2xLcTg4UEFRIiwidmVyIjoiMS4wIn0.LVo7AbYZCJ2gNuGzx9mJzHTcElzs8WtRmsbcsUmvvQVdUaandF0sQlKgVgx2X66OMIYR5Eh0VVxGt52Qg0RoMMcP_vNjiyMVH97WQACqV5S6qS4dqKVNNizjP9cgdROP6h-AONs4K6wqTRCNRXgdmZ-3aHbbDV3Bvx49rI6uc8thrDqs_I6qIdchCnePoF9-P84WGSnSO_buR6kFdskGOUapIrgn2L8jx627W4HN5uX_vS5zKJpKOikGozEO51JgEz8pbayjF2p0xjQuOj73GkTxCMV3dWZEhx11DAGQNR1kd2Y4RGijI8yAQM7FzTIKkbz8sa8KnpmbNZ8GDDGe3A
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxOTI0LCJuYmYiOjE1Mzk3MDE5MjQsImV4cCI6MTUzOTcwNTgyNCwiYWlvIjoiNDJSZ1lEQVdFcGVyVEZmWmNsbFBqNVU1TCtJZ0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJZbnNTQWxlOTZrMjFtQU1KQmdBUUFRIiwidmVyIjoiMS4wIn0.RztuWtoSOGR6OrATyE0l4y_AciofeDfjiqakOMzEjf0pMe92yiLvjUbQ8O5p6cmDRfqcvo-mVFsgmoFZrfG_8NtBCLhZ-cpPGHrwHtcPyXlqn2O07BVEiGilYJJlWd8w6UmniL76TJ5rpvsgvf20BmCwP8AtZdSzb1DIpT8cekYRrSFnkd1lEkqkcCq1YY70KaLQdhcI9OuVc0BBTxulMVzh88XCuu8i-uFe9bfotIChJ_Qvk8fj9drhE1tbTvBj-KNgDsucEd_lVW5t9qCSEbVihwP4zfrQBRgOjp2txfEE6rZA9wAZYtfP6lbQwg_iMVeozB188gqs-cBnXuCI4A
   response:
     status:
       code: 200
@@ -138,19 +86,19 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Ratelimit-Remaining-Subscription-Reads:
-      - '11972'
+      - '11975'
       X-Ms-Request-Id:
-      - e20036bc-ba9c-4e13-bd7c-05c07c676d0d
+      - b145d4b6-eaa3-4b1d-9c56-eb48c07b25d0
       X-Ms-Correlation-Request-Id:
-      - e20036bc-ba9c-4e13-bd7c-05c07c676d0d
+      - b145d4b6-eaa3-4b1d-9c56-eb48c07b25d0
       X-Ms-Routing-Request-Id:
-      - WESTCENTRALUS:20181016T150528Z:e20036bc-ba9c-4e13-bd7c-05c07c676d0d
+      - WESTCENTRALUS:20181016T150404Z:b145d4b6-eaa3-4b1d-9c56-eb48c07b25d0
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Tue, 16 Oct 2018 15:05:27 GMT
+      - Tue, 16 Oct 2018 15:04:03 GMT
       Content-Length:
       - '441087'
     body:
@@ -3252,10 +3200,10 @@ http_interactions:
         US"],"apiVersions":["2015-06-15"]},{"resourceType":"operations","locations":[],"apiVersions":["2015-06-15"]},{"resourceType":"listCommunicationPreference","locations":[],"apiVersions":["2015-06-15"]},{"resourceType":"updateCommunicationPreference","locations":[],"apiVersions":["2015-06-15"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/U2uconsult.TheIdentityHub","namespace":"U2uconsult.TheIdentityHub","resourceTypes":[{"resourceType":"services","locations":["West
         Europe"],"apiVersions":["2015-06-15"]},{"resourceType":"operations","locations":[],"apiVersions":["2015-06-15"]},{"resourceType":"listCommunicationPreference","locations":[],"apiVersions":["2015-06-15"]},{"resourceType":"updateCommunicationPreference","locations":[],"apiVersions":["2015-06-15"]}],"registrationState":"NotRegistered"}]}'
     http_version: 
-  recorded_at: Tue, 16 Oct 2018 15:05:39 GMT
+  recorded_at: Tue, 16 Oct 2018 15:04:14 GMT
 - request:
     method: get
-    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.Network/loadBalancers?api-version=2017-11-01
+    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus?api-version=2018-08-01
     body:
       encoding: US-ASCII
       string: ''
@@ -3269,7 +3217,7 @@ http_interactions:
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAyMDI3LCJuYmYiOjE1Mzk3MDIwMjcsImV4cCI6MTUzOTcwNTkyNywiYWlvIjoiNDJSZ1lGQisvR3loOHVGM3lsK3VLVTdrbS8va0Z3QT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJXbnZVaGE1Vm5rMnN5Z2xLcTg4UEFRIiwidmVyIjoiMS4wIn0.LVo7AbYZCJ2gNuGzx9mJzHTcElzs8WtRmsbcsUmvvQVdUaandF0sQlKgVgx2X66OMIYR5Eh0VVxGt52Qg0RoMMcP_vNjiyMVH97WQACqV5S6qS4dqKVNNizjP9cgdROP6h-AONs4K6wqTRCNRXgdmZ-3aHbbDV3Bvx49rI6uc8thrDqs_I6qIdchCnePoF9-P84WGSnSO_buR6kFdskGOUapIrgn2L8jx627W4HN5uX_vS5zKJpKOikGozEO51JgEz8pbayjF2p0xjQuOj73GkTxCMV3dWZEhx11DAGQNR1kd2Y4RGijI8yAQM7FzTIKkbz8sa8KnpmbNZ8GDDGe3A
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxOTI0LCJuYmYiOjE1Mzk3MDE5MjQsImV4cCI6MTUzOTcwNTgyNCwiYWlvIjoiNDJSZ1lEQVdFcGVyVEZmWmNsbFBqNVU1TCtJZ0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJZbnNTQWxlOTZrMjFtQU1KQmdBUUFRIiwidmVyIjoiMS4wIn0.RztuWtoSOGR6OrATyE0l4y_AciofeDfjiqakOMzEjf0pMe92yiLvjUbQ8O5p6cmDRfqcvo-mVFsgmoFZrfG_8NtBCLhZ-cpPGHrwHtcPyXlqn2O07BVEiGilYJJlWd8w6UmniL76TJ5rpvsgvf20BmCwP8AtZdSzb1DIpT8cekYRrSFnkd1lEkqkcCq1YY70KaLQdhcI9OuVc0BBTxulMVzh88XCuu8i-uFe9bfotIChJ_Qvk8fj9drhE1tbTvBj-KNgDsucEd_lVW5t9qCSEbVihwP4zfrQBRgOjp2txfEE6rZA9wAZYtfP6lbQwg_iMVeozB188gqs-cBnXuCI4A
   response:
     status:
       code: 200
@@ -3279,34 +3227,97 @@ http_interactions:
       - no-cache
       Pragma:
       - no-cache
+      Transfer-Encoding:
+      - chunked
       Content-Type:
       - application/json; charset=utf-8
       Expires:
       - "-1"
+      Etag:
+      - W/"dfcca4a1-57ac-4556-9474-30ac824bad84"
       Vary:
       - Accept-Encoding
       X-Ms-Request-Id:
-      - f20a18aa-26d0-42e8-88bc-c1ad0c15600f
+      - '029bbbe2-2692-41cd-ba04-73bfd35355d2'
       X-Ms-Correlation-Request-Id:
-      - f20a18aa-26d0-42e8-88bc-c1ad0c15600f
-      X-Ms-Routing-Request-Id:
-      - WESTCENTRALUS:20181016T150529Z:f20a18aa-26d0-42e8-88bc-c1ad0c15600f
+      - 469f160c-491d-48b0-89af-2d4fde17ff63
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
+      Server:
+      - Microsoft-HTTPAPI/2.0
+      - Microsoft-HTTPAPI/2.0
+      X-Ms-Ratelimit-Remaining-Subscription-Reads:
+      - '11974'
+      X-Ms-Routing-Request-Id:
+      - WESTCENTRALUS:20181016T150404Z:469f160c-491d-48b0-89af-2d4fde17ff63
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Tue, 16 Oct 2018 15:05:29 GMT
-      Content-Length:
-      - '10967'
+      - Tue, 16 Oct 2018 15:04:04 GMT
     body:
       encoding: ASCII-8BIT
-      string: '{"value":[{"name":"miq-lb-westus","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/loadBalancers/miq-lb-westus","etag":"W/\"c0b9f5f8-b925-4c3b-8f40-478ecd0a1575\"","type":"Microsoft.Network/loadBalancers","location":"westus","tags":{"owner":"cfme","creator":"dberger","specs":"true"},"properties":{"provisioningState":"Succeeded","resourceGuid":"3339ce25-1a25-4682-9125-86aa22e732af","frontendIPConfigurations":[{"name":"miq-frontend-pool2","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/loadBalancers/miq-lb-westus/frontendIPConfigurations/miq-frontend-pool2","etag":"W/\"c0b9f5f8-b925-4c3b-8f40-478ecd0a1575\"","type":"Microsoft.Network/loadBalancers/frontendIPConfigurations","properties":{"provisioningState":"Succeeded","privateIPAllocationMethod":"Dynamic","publicIPAddress":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/publicIPAddresses/miq-publicip-lb-westus"},"loadBalancingRules":[{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/loadBalancers/miq-lb-westus/loadBalancingRules/miq-lb-rule2"}]}}],"backendAddressPools":[{"name":"miq-backend-pool2","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/loadBalancers/miq-lb-westus/backendAddressPools/miq-backend-pool2","etag":"W/\"c0b9f5f8-b925-4c3b-8f40-478ecd0a1575\"","properties":{"provisioningState":"Succeeded","backendIPConfigurations":[{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/networkInterfaces/miq-nic3-lb-westus/ipConfigurations/ipconfig1"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/networkInterfaces/miq-nic4-lb-westus/ipConfigurations/ipconfig1"}],"loadBalancingRules":[{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/loadBalancers/miq-lb-westus/loadBalancingRules/miq-lb-rule2"}]},"type":"Microsoft.Network/loadBalancers/backendAddressPools"}],"loadBalancingRules":[{"name":"miq-lb-rule2","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/loadBalancers/miq-lb-westus/loadBalancingRules/miq-lb-rule2","etag":"W/\"c0b9f5f8-b925-4c3b-8f40-478ecd0a1575\"","type":"Microsoft.Network/loadBalancers/loadBalancingRules","properties":{"provisioningState":"Succeeded","frontendIPConfiguration":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/loadBalancers/miq-lb-westus/frontendIPConfigurations/miq-frontend-pool2"},"frontendPort":80,"backendPort":80,"enableFloatingIP":false,"idleTimeoutInMinutes":4,"protocol":"Tcp","enableDestinationServiceEndpoint":false,"loadDistribution":"Default","backendAddressPool":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/loadBalancers/miq-lb-westus/backendAddressPools/miq-backend-pool2"},"probe":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/loadBalancers/miq-lb-westus/probes/miq-lb-health-probe2"}}}],"probes":[{"name":"miq-lb-health-probe2","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/loadBalancers/miq-lb-westus/probes/miq-lb-health-probe2","etag":"W/\"c0b9f5f8-b925-4c3b-8f40-478ecd0a1575\"","properties":{"provisioningState":"Succeeded","protocol":"Http","port":80,"requestPath":"/","intervalInSeconds":15,"numberOfProbes":2,"loadBalancingRules":[{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/loadBalancers/miq-lb-westus/loadBalancingRules/miq-lb-rule2"}]},"type":"Microsoft.Network/loadBalancers/probes"}],"inboundNatRules":[],"inboundNatPools":[]},"sku":{"name":"Basic","tier":"Regional"}},{"name":"miq-lb-eastus","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus","etag":"W/\"dfcca4a1-57ac-4556-9474-30ac824bad84\"","type":"Microsoft.Network/loadBalancers","location":"eastus","tags":{"owner":"cfme","creator":"dberger","specs":"true"},"properties":{"provisioningState":"Succeeded","resourceGuid":"9d0c9e39-d9a0-45ea-b340-d97f3e3c078b","frontendIPConfigurations":[{"name":"miq-frontend-pool1","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus/frontendIPConfigurations/miq-frontend-pool1","etag":"W/\"dfcca4a1-57ac-4556-9474-30ac824bad84\"","type":"Microsoft.Network/loadBalancers/frontendIPConfigurations","properties":{"provisioningState":"Succeeded","privateIPAllocationMethod":"Dynamic","publicIPAddress":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/publicIPAddresses/miq-publicip-lb-eastus"},"loadBalancingRules":[{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus/loadBalancingRules/miq-lb-rule1"}]}}],"backendAddressPools":[{"name":"miq-backend-pool1","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus/backendAddressPools/miq-backend-pool1","etag":"W/\"dfcca4a1-57ac-4556-9474-30ac824bad84\"","properties":{"provisioningState":"Succeeded","backendIPConfigurations":[{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic1-lb-eastus/ipConfigurations/ipconfig1"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic2-lb-eastus/ipConfigurations/ipconfig1"}],"loadBalancingRules":[{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus/loadBalancingRules/miq-lb-rule1"}]},"type":"Microsoft.Network/loadBalancers/backendAddressPools"}],"loadBalancingRules":[{"name":"miq-lb-rule1","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus/loadBalancingRules/miq-lb-rule1","etag":"W/\"dfcca4a1-57ac-4556-9474-30ac824bad84\"","type":"Microsoft.Network/loadBalancers/loadBalancingRules","properties":{"provisioningState":"Succeeded","frontendIPConfiguration":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus/frontendIPConfigurations/miq-frontend-pool1"},"frontendPort":80,"backendPort":80,"enableFloatingIP":false,"idleTimeoutInMinutes":4,"protocol":"Tcp","enableDestinationServiceEndpoint":false,"loadDistribution":"Default","backendAddressPool":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus/backendAddressPools/miq-backend-pool1"},"probe":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus/probes/miq-lb-health-probe1"}}}],"probes":[{"name":"miq-lb-health-probe1","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus/probes/miq-lb-health-probe1","etag":"W/\"dfcca4a1-57ac-4556-9474-30ac824bad84\"","properties":{"provisioningState":"Succeeded","protocol":"Http","port":80,"requestPath":"/","intervalInSeconds":15,"numberOfProbes":2,"loadBalancingRules":[{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus/loadBalancingRules/miq-lb-rule1"}]},"type":"Microsoft.Network/loadBalancers/probes"},{"name":"miq-lb-health-probe3","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus/probes/miq-lb-health-probe3","etag":"W/\"dfcca4a1-57ac-4556-9474-30ac824bad84\"","properties":{"provisioningState":"Succeeded","protocol":"Tcp","port":80,"intervalInSeconds":5,"numberOfProbes":2},"type":"Microsoft.Network/loadBalancers/probes"}],"inboundNatRules":[],"inboundNatPools":[]},"sku":{"name":"Basic","tier":"Regional"}},{"name":"miq-lb-eastus2","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus2","etag":"W/\"9c91350d-bd29-4e29-b0cb-647fab384801\"","type":"Microsoft.Network/loadBalancers","location":"eastus","tags":{},"properties":{"provisioningState":"Succeeded","resourceGuid":"9fa2306c-706c-49f5-bf67-0c05535facc7","frontendIPConfigurations":[{"name":"LoadBalancerFrontEnd","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus2/frontendIPConfigurations/LoadBalancerFrontEnd","etag":"W/\"9c91350d-bd29-4e29-b0cb-647fab384801\"","type":"Microsoft.Network/loadBalancers/frontendIPConfigurations","properties":{"provisioningState":"Succeeded","privateIPAllocationMethod":"Dynamic","publicIPAddress":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/publicIPAddresses/PublicIPmiq-lb-eastus2"}}}],"backendAddressPools":[{"name":"miq-lb-eastus2bepool","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus2/backendAddressPools/miq-lb-eastus2bepool","etag":"W/\"9c91350d-bd29-4e29-b0cb-647fab384801\"","properties":{"provisioningState":"Succeeded"},"type":"Microsoft.Network/loadBalancers/backendAddressPools"}],"loadBalancingRules":[],"probes":[{"name":"miq-lb-health-probe4","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus2/probes/miq-lb-health-probe4","etag":"W/\"9c91350d-bd29-4e29-b0cb-647fab384801\"","properties":{"provisioningState":"Succeeded","protocol":"Tcp","port":80,"intervalInSeconds":5,"numberOfProbes":2},"type":"Microsoft.Network/loadBalancers/probes"}],"inboundNatRules":[],"inboundNatPools":[]},"sku":{"name":"Basic","tier":"Regional"}}]}'
+      string: "{\r\n  \"name\": \"miq-lb-eastus\",\r\n  \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus\",\r\n
+        \ \"etag\": \"W/\\\"dfcca4a1-57ac-4556-9474-30ac824bad84\\\"\",\r\n  \"type\":
+        \"Microsoft.Network/loadBalancers\",\r\n  \"location\": \"eastus\",\r\n  \"tags\":
+        {\r\n    \"owner\": \"cfme\",\r\n    \"creator\": \"dberger\",\r\n    \"specs\":
+        \"true\"\r\n  },\r\n  \"properties\": {\r\n    \"provisioningState\": \"Succeeded\",\r\n
+        \   \"resourceGuid\": \"9d0c9e39-d9a0-45ea-b340-d97f3e3c078b\",\r\n    \"frontendIPConfigurations\":
+        [\r\n      {\r\n        \"name\": \"miq-frontend-pool1\",\r\n        \"id\":
+        \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus/frontendIPConfigurations/miq-frontend-pool1\",\r\n
+        \       \"etag\": \"W/\\\"dfcca4a1-57ac-4556-9474-30ac824bad84\\\"\",\r\n
+        \       \"type\": \"Microsoft.Network/loadBalancers/frontendIPConfigurations\",\r\n
+        \       \"properties\": {\r\n          \"provisioningState\": \"Succeeded\",\r\n
+        \         \"privateIPAllocationMethod\": \"Dynamic\",\r\n          \"publicIPAddress\":
+        {\r\n            \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/publicIPAddresses/miq-publicip-lb-eastus\"\r\n
+        \         },\r\n          \"loadBalancingRules\": [\r\n            {\r\n              \"id\":
+        \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus/loadBalancingRules/miq-lb-rule1\"\r\n
+        \           }\r\n          ]\r\n        }\r\n      }\r\n    ],\r\n    \"backendAddressPools\":
+        [\r\n      {\r\n        \"name\": \"miq-backend-pool1\",\r\n        \"id\":
+        \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus/backendAddressPools/miq-backend-pool1\",\r\n
+        \       \"etag\": \"W/\\\"dfcca4a1-57ac-4556-9474-30ac824bad84\\\"\",\r\n
+        \       \"properties\": {\r\n          \"provisioningState\": \"Succeeded\",\r\n
+        \         \"backendIPConfigurations\": [\r\n            {\r\n              \"id\":
+        \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic1-lb-eastus/ipConfigurations/ipconfig1\"\r\n
+        \           },\r\n            {\r\n              \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic2-lb-eastus/ipConfigurations/ipconfig1\"\r\n
+        \           }\r\n          ],\r\n          \"loadBalancingRules\": [\r\n            {\r\n
+        \             \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus/loadBalancingRules/miq-lb-rule1\"\r\n
+        \           }\r\n          ]\r\n        },\r\n        \"type\": \"Microsoft.Network/loadBalancers/backendAddressPools\"\r\n
+        \     }\r\n    ],\r\n    \"loadBalancingRules\": [\r\n      {\r\n        \"name\":
+        \"miq-lb-rule1\",\r\n        \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus/loadBalancingRules/miq-lb-rule1\",\r\n
+        \       \"etag\": \"W/\\\"dfcca4a1-57ac-4556-9474-30ac824bad84\\\"\",\r\n
+        \       \"type\": \"Microsoft.Network/loadBalancers/loadBalancingRules\",\r\n
+        \       \"properties\": {\r\n          \"provisioningState\": \"Succeeded\",\r\n
+        \         \"frontendIPConfiguration\": {\r\n            \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus/frontendIPConfigurations/miq-frontend-pool1\"\r\n
+        \         },\r\n          \"frontendPort\": 80,\r\n          \"backendPort\":
+        80,\r\n          \"enableFloatingIP\": false,\r\n          \"idleTimeoutInMinutes\":
+        4,\r\n          \"protocol\": \"Tcp\",\r\n          \"enableDestinationServiceEndpoint\":
+        false,\r\n          \"enableTcpReset\": false,\r\n          \"loadDistribution\":
+        \"Default\",\r\n          \"backendAddressPool\": {\r\n            \"id\":
+        \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus/backendAddressPools/miq-backend-pool1\"\r\n
+        \         },\r\n          \"probe\": {\r\n            \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus/probes/miq-lb-health-probe1\"\r\n
+        \         }\r\n        }\r\n      }\r\n    ],\r\n    \"probes\": [\r\n      {\r\n
+        \       \"name\": \"miq-lb-health-probe1\",\r\n        \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus/probes/miq-lb-health-probe1\",\r\n
+        \       \"etag\": \"W/\\\"dfcca4a1-57ac-4556-9474-30ac824bad84\\\"\",\r\n
+        \       \"properties\": {\r\n          \"provisioningState\": \"Succeeded\",\r\n
+        \         \"protocol\": \"Http\",\r\n          \"port\": 80,\r\n          \"requestPath\":
+        \"/\",\r\n          \"intervalInSeconds\": 15,\r\n          \"numberOfProbes\":
+        2,\r\n          \"loadBalancingRules\": [\r\n            {\r\n              \"id\":
+        \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus/loadBalancingRules/miq-lb-rule1\"\r\n
+        \           }\r\n          ]\r\n        },\r\n        \"type\": \"Microsoft.Network/loadBalancers/probes\"\r\n
+        \     },\r\n      {\r\n        \"name\": \"miq-lb-health-probe3\",\r\n        \"id\":
+        \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus/probes/miq-lb-health-probe3\",\r\n
+        \       \"etag\": \"W/\\\"dfcca4a1-57ac-4556-9474-30ac824bad84\\\"\",\r\n
+        \       \"properties\": {\r\n          \"provisioningState\": \"Succeeded\",\r\n
+        \         \"protocol\": \"Tcp\",\r\n          \"port\": 80,\r\n          \"intervalInSeconds\":
+        5,\r\n          \"numberOfProbes\": 2\r\n        },\r\n        \"type\": \"Microsoft.Network/loadBalancers/probes\"\r\n
+        \     }\r\n    ],\r\n    \"inboundNatRules\": [],\r\n    \"outboundRules\":
+        [],\r\n    \"inboundNatPools\": []\r\n  },\r\n  \"sku\": {\r\n    \"name\":
+        \"Basic\",\r\n    \"tier\": \"Regional\"\r\n  }\r\n}"
     http_version: 
-  recorded_at: Tue, 16 Oct 2018 15:05:40 GMT
+  recorded_at: Tue, 16 Oct 2018 15:04:15 GMT
 - request:
     method: get
-    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.Network/networkInterfaces?api-version=2017-11-01
+    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus2?api-version=2018-08-01
     body:
       encoding: US-ASCII
       string: ''
@@ -3320,7 +3331,7 @@ http_interactions:
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAyMDI3LCJuYmYiOjE1Mzk3MDIwMjcsImV4cCI6MTUzOTcwNTkyNywiYWlvIjoiNDJSZ1lGQisvR3loOHVGM3lsK3VLVTdrbS8va0Z3QT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJXbnZVaGE1Vm5rMnN5Z2xLcTg4UEFRIiwidmVyIjoiMS4wIn0.LVo7AbYZCJ2gNuGzx9mJzHTcElzs8WtRmsbcsUmvvQVdUaandF0sQlKgVgx2X66OMIYR5Eh0VVxGt52Qg0RoMMcP_vNjiyMVH97WQACqV5S6qS4dqKVNNizjP9cgdROP6h-AONs4K6wqTRCNRXgdmZ-3aHbbDV3Bvx49rI6uc8thrDqs_I6qIdchCnePoF9-P84WGSnSO_buR6kFdskGOUapIrgn2L8jx627W4HN5uX_vS5zKJpKOikGozEO51JgEz8pbayjF2p0xjQuOj73GkTxCMV3dWZEhx11DAGQNR1kd2Y4RGijI8yAQM7FzTIKkbz8sa8KnpmbNZ8GDDGe3A
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxOTI0LCJuYmYiOjE1Mzk3MDE5MjQsImV4cCI6MTUzOTcwNTgyNCwiYWlvIjoiNDJSZ1lEQVdFcGVyVEZmWmNsbFBqNVU1TCtJZ0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJZbnNTQWxlOTZrMjFtQU1KQmdBUUFRIiwidmVyIjoiMS4wIn0.RztuWtoSOGR6OrATyE0l4y_AciofeDfjiqakOMzEjf0pMe92yiLvjUbQ8O5p6cmDRfqcvo-mVFsgmoFZrfG_8NtBCLhZ-cpPGHrwHtcPyXlqn2O07BVEiGilYJJlWd8w6UmniL76TJ5rpvsgvf20BmCwP8AtZdSzb1DIpT8cekYRrSFnkd1lEkqkcCq1YY70KaLQdhcI9OuVc0BBTxulMVzh88XCuu8i-uFe9bfotIChJ_Qvk8fj9drhE1tbTvBj-KNgDsucEd_lVW5t9qCSEbVihwP4zfrQBRgOjp2txfEE6rZA9wAZYtfP6lbQwg_iMVeozB188gqs-cBnXuCI4A
   response:
     status:
       code: 200
@@ -3330,34 +3341,68 @@ http_interactions:
       - no-cache
       Pragma:
       - no-cache
+      Transfer-Encoding:
+      - chunked
       Content-Type:
       - application/json; charset=utf-8
       Expires:
       - "-1"
+      Etag:
+      - W/"9c91350d-bd29-4e29-b0cb-647fab384801"
       Vary:
       - Accept-Encoding
       X-Ms-Request-Id:
-      - 7ac280ac-6c07-422c-a1c5-46209341e940
+      - b695de3f-e88e-4d81-9c51-db617e7202e4
       X-Ms-Correlation-Request-Id:
-      - 7ac280ac-6c07-422c-a1c5-46209341e940
-      X-Ms-Routing-Request-Id:
-      - WESTCENTRALUS:20181016T150530Z:7ac280ac-6c07-422c-a1c5-46209341e940
+      - 351bc822-1a5d-482d-94d9-032e63748d80
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
+      Server:
+      - Microsoft-HTTPAPI/2.0
+      - Microsoft-HTTPAPI/2.0
+      X-Ms-Ratelimit-Remaining-Subscription-Reads:
+      - '11977'
+      X-Ms-Routing-Request-Id:
+      - WESTCENTRALUS:20181016T150404Z:351bc822-1a5d-482d-94d9-032e63748d80
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Tue, 16 Oct 2018 15:05:30 GMT
-      Content-Length:
-      - '31974'
+      - Tue, 16 Oct 2018 15:04:04 GMT
     body:
       encoding: ASCII-8BIT
-      string: '{"value":[{"name":"miq-nic-westus1","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/networkInterfaces/miq-nic-westus1","etag":"W/\"46335d31-0845-4044-96dc-3be45088b3c2\"","location":"westus","tags":{"owner":"cfme","creator":"dberger","specs":"true"},"properties":{"provisioningState":"Succeeded","resourceGuid":"44f4c8b2-b743-48d5-9447-00419f3cd85d","ipConfigurations":[{"name":"ipconfig1","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/networkInterfaces/miq-nic-westus1/ipConfigurations/ipconfig1","etag":"W/\"46335d31-0845-4044-96dc-3be45088b3c2\"","type":"Microsoft.Network/networkInterfaces/ipConfigurations","properties":{"provisioningState":"Succeeded","privateIPAddress":"10.0.0.4","privateIPAllocationMethod":"Dynamic","publicIPAddress":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/publicIPAddresses/miq-publicip-westus1"},"subnet":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/virtualNetworks/miq-vnet-westus/subnets/default"},"primary":true,"privateIPAddressVersion":"IPv4","isInUseWithService":false}}],"dnsSettings":{"dnsServers":[],"appliedDnsServers":[]},"enableAcceleratedNetworking":false,"enableIPForwarding":false,"networkSecurityGroup":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/networkSecurityGroups/miq-nsg-westus1"},"primary":true,"virtualMachine":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-westus/providers/Microsoft.Compute/virtualMachines/miq-vm-ubuntu2-westus"}},"type":"Microsoft.Network/networkInterfaces"},{"name":"miq-nic-westus2","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/networkInterfaces/miq-nic-westus2","etag":"W/\"7d639610-b1ce-4312-87a4-f6a61d190e56\"","location":"westus","tags":{"owner":"cfme","creator":"dberger","specs":"true"},"properties":{"provisioningState":"Succeeded","resourceGuid":"d2b117b2-91ce-4cc4-9d97-a77fdb1312a6","ipConfigurations":[{"name":"ipconfig1","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/networkInterfaces/miq-nic-westus2/ipConfigurations/ipconfig1","etag":"W/\"7d639610-b1ce-4312-87a4-f6a61d190e56\"","type":"Microsoft.Network/networkInterfaces/ipConfigurations","properties":{"provisioningState":"Succeeded","privateIPAddress":"10.0.0.5","privateIPAllocationMethod":"Dynamic","publicIPAddress":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/publicIPAddresses/miq-publicip-westus2"},"subnet":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/virtualNetworks/miq-vnet-westus/subnets/default"},"primary":true,"privateIPAddressVersion":"IPv4","isInUseWithService":false}}],"dnsSettings":{"dnsServers":[],"appliedDnsServers":[]},"enableAcceleratedNetworking":false,"enableIPForwarding":false,"primary":true,"virtualMachine":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-westus/providers/Microsoft.Compute/virtualMachines/miq-vm-centos2-westus"}},"type":"Microsoft.Network/networkInterfaces"},{"name":"miq-nic-westus3","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/networkInterfaces/miq-nic-westus3","etag":"W/\"3ba0a5cb-0d1f-42da-ac86-275532a4ca21\"","location":"westus","tags":{"owner":"cfme","creator":"dberger","specs":"true"},"properties":{"provisioningState":"Succeeded","resourceGuid":"6b574005-df6f-4b1c-9f9a-1d93a87bfae9","ipConfigurations":[{"name":"ipconfig1","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/networkInterfaces/miq-nic-westus3/ipConfigurations/ipconfig1","etag":"W/\"3ba0a5cb-0d1f-42da-ac86-275532a4ca21\"","type":"Microsoft.Network/networkInterfaces/ipConfigurations","properties":{"provisioningState":"Succeeded","privateIPAddress":"10.0.0.6","privateIPAllocationMethod":"Dynamic","publicIPAddress":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/publicIPAddresses/miq-publicip-westus3"},"subnet":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/virtualNetworks/miq-vnet-westus/subnets/default"},"primary":true,"privateIPAddressVersion":"IPv4","isInUseWithService":false}}],"dnsSettings":{"dnsServers":[],"appliedDnsServers":[],"internalDomainNameSuffix":"bbvsf3seyfferpsytceusgc2kh.dx.internal.cloudapp.net"},"macAddress":"00-0D-3A-37-24-FB","enableAcceleratedNetworking":false,"enableIPForwarding":false,"networkSecurityGroup":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/networkSecurityGroups/miq-nsg-westus3"},"primary":true,"virtualMachine":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-eastus/providers/Microsoft.Compute/virtualMachines/miq-vm-rhel1-mismatch"}},"type":"Microsoft.Network/networkInterfaces"},{"name":"miq-nic-westus4","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/networkInterfaces/miq-nic-westus4","etag":"W/\"af97d5f0-bfab-40b2-8bb4-b731dbccf58b\"","location":"westus","tags":{"owner":"cfme","creator":"dberger","specs":"true"},"properties":{"provisioningState":"Succeeded","resourceGuid":"9a20d430-76c3-40b5-9369-6227011276ab","ipConfigurations":[{"name":"ipconfig1","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/networkInterfaces/miq-nic-westus4/ipConfigurations/ipconfig1","etag":"W/\"af97d5f0-bfab-40b2-8bb4-b731dbccf58b\"","type":"Microsoft.Network/networkInterfaces/ipConfigurations","properties":{"provisioningState":"Succeeded","privateIPAddress":"10.0.0.7","privateIPAllocationMethod":"Dynamic","publicIPAddress":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/publicIPAddresses/miq-publicip-westus4"},"subnet":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/virtualNetworks/miq-vnet-westus/subnets/default"},"primary":true,"privateIPAddressVersion":"IPv4","isInUseWithService":false}}],"dnsSettings":{"dnsServers":[],"appliedDnsServers":[]},"enableAcceleratedNetworking":false,"enableIPForwarding":false,"primary":true,"virtualMachine":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-westus/providers/Microsoft.Compute/virtualMachines/miq-vm-sles2-westus"}},"type":"Microsoft.Network/networkInterfaces"},{"name":"miq-nic-westus5","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/networkInterfaces/miq-nic-westus5","etag":"W/\"830f6836-2956-4de1-b980-21d3fac92d14\"","location":"westus","tags":{"owner":"cfme","creator":"dberger","specs":"true"},"properties":{"provisioningState":"Succeeded","resourceGuid":"3ad894e6-f743-4b38-af67-107b359f6269","ipConfigurations":[{"name":"ipconfig1","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/networkInterfaces/miq-nic-westus5/ipConfigurations/ipconfig1","etag":"W/\"830f6836-2956-4de1-b980-21d3fac92d14\"","type":"Microsoft.Network/networkInterfaces/ipConfigurations","properties":{"provisioningState":"Succeeded","privateIPAddress":"10.0.0.8","privateIPAllocationMethod":"Dynamic","publicIPAddress":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/publicIPAddresses/miq-publicip-westus5"},"subnet":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/virtualNetworks/miq-vnet-westus/subnets/default"},"primary":true,"privateIPAddressVersion":"IPv4","isInUseWithService":false}}],"dnsSettings":{"dnsServers":[],"appliedDnsServers":[]},"enableAcceleratedNetworking":false,"enableIPForwarding":false,"primary":true,"virtualMachine":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-westus/providers/Microsoft.Compute/virtualMachines/miq-vm-win-west"}},"type":"Microsoft.Network/networkInterfaces"},{"name":"miq-nic-westus6","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/networkInterfaces/miq-nic-westus6","etag":"W/\"d6978e97-cc86-4460-8a67-f4202014f15f\"","location":"westus","tags":{"owner":"cfme","creator":"dberger","specs":"true"},"properties":{"provisioningState":"Succeeded","resourceGuid":"dca35bcc-8217-4b90-a875-b83f358cc38b","ipConfigurations":[{"name":"ipconfig1","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/networkInterfaces/miq-nic-westus6/ipConfigurations/ipconfig1","etag":"W/\"d6978e97-cc86-4460-8a67-f4202014f15f\"","type":"Microsoft.Network/networkInterfaces/ipConfigurations","properties":{"provisioningState":"Succeeded","privateIPAddress":"10.0.0.9","privateIPAllocationMethod":"Dynamic","publicIPAddress":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/publicIPAddresses/miq-publicip-westus6"},"subnet":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/virtualNetworks/miq-vnet-westus/subnets/default"},"primary":true,"privateIPAddressVersion":"IPv4","isInUseWithService":false}}],"dnsSettings":{"dnsServers":[],"appliedDnsServers":[],"internalDomainNameSuffix":"bbvsf3seyfferpsytceusgc2kh.dx.internal.cloudapp.net"},"enableAcceleratedNetworking":false,"enableIPForwarding":false},"type":"Microsoft.Network/networkInterfaces"},{"name":"miq-nic-westus7","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/networkInterfaces/miq-nic-westus7","etag":"W/\"8a56d039-b215-4a41-8216-00b944578b2c\"","location":"westus","tags":{"owner":"cfme","creator":"dberger","specs":"true"},"properties":{"provisioningState":"Succeeded","resourceGuid":"b0568f46-7fb0-408e-bf82-aba4f48cbf74","ipConfigurations":[{"name":"ipconfig1","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/networkInterfaces/miq-nic-westus7/ipConfigurations/ipconfig1","etag":"W/\"8a56d039-b215-4a41-8216-00b944578b2c\"","type":"Microsoft.Network/networkInterfaces/ipConfigurations","properties":{"provisioningState":"Succeeded","privateIPAddress":"10.0.0.10","privateIPAllocationMethod":"Dynamic","publicIPAddress":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/publicIPAddresses/miq-publicip-westus7"},"subnet":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/virtualNetworks/miq-vnet-westus/subnets/default"},"primary":true,"privateIPAddressVersion":"IPv4","isInUseWithService":false}}],"dnsSettings":{"dnsServers":[],"appliedDnsServers":[],"internalDomainNameSuffix":"bbvsf3seyfferpsytceusgc2kh.dx.internal.cloudapp.net"},"enableAcceleratedNetworking":false,"enableIPForwarding":false},"type":"Microsoft.Network/networkInterfaces"},{"name":"miq-nic3-lb-westus","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/networkInterfaces/miq-nic3-lb-westus","etag":"W/\"80dc56db-300f-4079-8700-680ed15bf31e\"","location":"westus","properties":{"provisioningState":"Succeeded","resourceGuid":"6960f890-a8c0-4ae2-8d25-f0d12b281080","ipConfigurations":[{"name":"ipconfig1","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/networkInterfaces/miq-nic3-lb-westus/ipConfigurations/ipconfig1","etag":"W/\"80dc56db-300f-4079-8700-680ed15bf31e\"","type":"Microsoft.Network/networkInterfaces/ipConfigurations","properties":{"provisioningState":"Succeeded","privateIPAddress":"10.0.0.4","privateIPAllocationMethod":"Dynamic","subnet":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/virtualNetworks/miq-vnet-lb-westus/subnets/miq-subnet-westus"},"primary":true,"privateIPAddressVersion":"IPv4","loadBalancerBackendAddressPools":[{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/loadBalancers/miq-lb-westus/backendAddressPools/miq-backend-pool2"}],"isInUseWithService":false}}],"dnsSettings":{"dnsServers":[],"appliedDnsServers":[]},"enableAcceleratedNetworking":false,"enableIPForwarding":false,"networkSecurityGroup":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/networkSecurityGroups/miq-nsg-lb-westus"},"primary":true,"virtualMachine":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-westus/providers/Microsoft.Compute/virtualMachines/miq-vm1-lb-westus"}},"type":"Microsoft.Network/networkInterfaces"},{"name":"miq-nic4-lb-westus","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/networkInterfaces/miq-nic4-lb-westus","etag":"W/\"6c313acd-9604-4ee9-8254-26aeae479113\"","location":"westus","properties":{"provisioningState":"Succeeded","resourceGuid":"9836429c-affc-4535-8009-06815f8c88ff","ipConfigurations":[{"name":"ipconfig1","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/networkInterfaces/miq-nic4-lb-westus/ipConfigurations/ipconfig1","etag":"W/\"6c313acd-9604-4ee9-8254-26aeae479113\"","type":"Microsoft.Network/networkInterfaces/ipConfigurations","properties":{"provisioningState":"Succeeded","privateIPAddress":"10.0.0.5","privateIPAllocationMethod":"Dynamic","subnet":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/virtualNetworks/miq-vnet-lb-westus/subnets/miq-subnet-westus"},"primary":true,"privateIPAddressVersion":"IPv4","loadBalancerBackendAddressPools":[{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/loadBalancers/miq-lb-westus/backendAddressPools/miq-backend-pool2"}],"isInUseWithService":false}}],"dnsSettings":{"dnsServers":[],"appliedDnsServers":[]},"enableAcceleratedNetworking":false,"enableIPForwarding":false,"networkSecurityGroup":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/networkSecurityGroups/miq-nsg-lb-westus"},"primary":true,"virtualMachine":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-westus/providers/Microsoft.Compute/virtualMachines/miq-vm2-lb-westus"}},"type":"Microsoft.Network/networkInterfaces"},{"name":"miq-nic-eastus1","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic-eastus1","etag":"W/\"d6d2a2b5-b83e-4e68-89b1-e2e2826909e5\"","location":"eastus","tags":{"owner":"cfme","creator":"dberger","specs":"true"},"properties":{"provisioningState":"Succeeded","resourceGuid":"cba61892-78b4-4baf-990f-962dbf7bacaf","ipConfigurations":[{"name":"ipconfig1","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic-eastus1/ipConfigurations/ipconfig1","etag":"W/\"d6d2a2b5-b83e-4e68-89b1-e2e2826909e5\"","type":"Microsoft.Network/networkInterfaces/ipConfigurations","properties":{"provisioningState":"Succeeded","privateIPAddress":"10.0.0.4","privateIPAllocationMethod":"Dynamic","publicIPAddress":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/publicIPAddresses/miq-publicip-eastus1"},"subnet":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/virtualNetworks/miq-vnet-eastus/subnets/default"},"primary":true,"privateIPAddressVersion":"IPv4","isInUseWithService":false}}],"dnsSettings":{"dnsServers":[],"appliedDnsServers":[],"internalDomainNameSuffix":"gb1pmafzdjduxppskepc132yrf.bx.internal.cloudapp.net"},"macAddress":"00-0D-3A-4D-CA-6B","enableAcceleratedNetworking":false,"enableIPForwarding":false,"networkSecurityGroup":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkSecurityGroups/miq-nsg-eastus1"},"primary":true,"virtualMachine":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-eastus/providers/Microsoft.Compute/virtualMachines/miq-vm-ubuntu1-eastus"}},"type":"Microsoft.Network/networkInterfaces"},{"name":"miq-nic-eastus2","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic-eastus2","etag":"W/\"c168ee85-8469-49eb-af1c-e6e53bdd53b3\"","location":"eastus","tags":{"owner":"cfme","creator":"dberger","specs":"true"},"properties":{"provisioningState":"Succeeded","resourceGuid":"1a5f391c-4771-4186-afd7-c73e70a50c6d","ipConfigurations":[{"name":"ipconfig1","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic-eastus2/ipConfigurations/ipconfig1","etag":"W/\"c168ee85-8469-49eb-af1c-e6e53bdd53b3\"","type":"Microsoft.Network/networkInterfaces/ipConfigurations","properties":{"provisioningState":"Succeeded","privateIPAddress":"10.0.0.5","privateIPAllocationMethod":"Dynamic","publicIPAddress":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/publicIPAddresses/miq-publicip-eastus2"},"subnet":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/virtualNetworks/miq-vnet-eastus/subnets/default"},"primary":true,"privateIPAddressVersion":"IPv4","isInUseWithService":false}}],"dnsSettings":{"dnsServers":[],"appliedDnsServers":[]},"enableAcceleratedNetworking":false,"enableIPForwarding":false,"primary":true,"virtualMachine":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-eastus/providers/Microsoft.Compute/virtualMachines/miq-vm-centos1-eastus"}},"type":"Microsoft.Network/networkInterfaces"},{"name":"miq-nic-eastus3","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic-eastus3","etag":"W/\"fe322e76-4d27-4787-86b3-a0214e26fd05\"","location":"eastus","tags":{"owner":"cfme","creator":"dberger","specs":"true"},"properties":{"provisioningState":"Succeeded","resourceGuid":"5fd84996-35a3-4b2b-99b1-80fd40e89c58","ipConfigurations":[{"name":"ipconfig1","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic-eastus3/ipConfigurations/ipconfig1","etag":"W/\"fe322e76-4d27-4787-86b3-a0214e26fd05\"","type":"Microsoft.Network/networkInterfaces/ipConfigurations","properties":{"provisioningState":"Succeeded","privateIPAddress":"10.0.0.6","privateIPAllocationMethod":"Dynamic","publicIPAddress":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/publicIPAddresses/miq-publicip-eastus3"},"subnet":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/virtualNetworks/miq-vnet-eastus/subnets/default"},"primary":true,"privateIPAddressVersion":"IPv4","isInUseWithService":false}}],"dnsSettings":{"dnsServers":[],"appliedDnsServers":[],"internalDomainNameSuffix":"gb1pmafzdjduxppskepc132yrf.bx.internal.cloudapp.net"},"macAddress":"00-0D-3A-4E-C7-40","enableAcceleratedNetworking":false,"enableIPForwarding":false,"networkSecurityGroup":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkSecurityGroups/miq-nsg-eastus3"},"primary":true,"virtualMachine":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-westus/providers/Microsoft.Compute/virtualMachines/miq-vm-rhel2-mismatch"}},"type":"Microsoft.Network/networkInterfaces"},{"name":"miq-nic-eastus4","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic-eastus4","etag":"W/\"303fa895-5ca7-4179-9695-7b3af38239e8\"","location":"eastus","tags":{"owner":"cfme","creator":"dberger","specs":"true"},"properties":{"provisioningState":"Succeeded","resourceGuid":"d0825aa3-727b-450e-b58e-d8646ccdbb6b","ipConfigurations":[{"name":"ipconfig1","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic-eastus4/ipConfigurations/ipconfig1","etag":"W/\"303fa895-5ca7-4179-9695-7b3af38239e8\"","type":"Microsoft.Network/networkInterfaces/ipConfigurations","properties":{"provisioningState":"Succeeded","privateIPAddress":"10.0.0.7","privateIPAllocationMethod":"Dynamic","publicIPAddress":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/publicIPAddresses/miq-publicip-eastus4"},"subnet":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/virtualNetworks/miq-vnet-eastus/subnets/default"},"primary":true,"privateIPAddressVersion":"IPv4","isInUseWithService":false}}],"dnsSettings":{"dnsServers":[],"appliedDnsServers":[],"internalDomainNameSuffix":"gb1pmafzdjduxppskepc132yrf.bx.internal.cloudapp.net"},"macAddress":"00-0D-3A-1E-15-5F","enableAcceleratedNetworking":false,"enableIPForwarding":false,"primary":true,"virtualMachine":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-eastus/providers/Microsoft.Compute/virtualMachines/miq-vm-sles1-eastus"}},"type":"Microsoft.Network/networkInterfaces"},{"name":"miq-nic-eastus5","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic-eastus5","etag":"W/\"be51e561-3d8a-43ec-89f7-e0f835d18bb2\"","location":"eastus","tags":{"owner":"cfme","creator":"dberger","specs":"true"},"properties":{"provisioningState":"Succeeded","resourceGuid":"8702eccb-c5a1-423b-8617-27f3975691bd","ipConfigurations":[{"name":"ipconfig1","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic-eastus5/ipConfigurations/ipconfig1","etag":"W/\"be51e561-3d8a-43ec-89f7-e0f835d18bb2\"","type":"Microsoft.Network/networkInterfaces/ipConfigurations","properties":{"provisioningState":"Succeeded","privateIPAddress":"10.0.0.8","privateIPAllocationMethod":"Dynamic","publicIPAddress":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/publicIPAddresses/miq-publicip-eastus5"},"subnet":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/virtualNetworks/miq-vnet-eastus/subnets/default"},"primary":true,"privateIPAddressVersion":"IPv4","isInUseWithService":false}}],"dnsSettings":{"dnsServers":[],"appliedDnsServers":[]},"enableAcceleratedNetworking":false,"enableIPForwarding":false,"primary":true,"virtualMachine":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-eastus/providers/Microsoft.Compute/virtualMachines/miq-vm-win-east"}},"type":"Microsoft.Network/networkInterfaces"},{"name":"miq-nic-eastus6","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic-eastus6","etag":"W/\"fdd57f1a-7960-491d-8b99-12b58813917d\"","location":"eastus","tags":{"owner":"cfme","creator":"dberger","specs":"true"},"properties":{"provisioningState":"Succeeded","resourceGuid":"d3d7d41c-eb25-4e41-881e-003c3455b029","ipConfigurations":[{"name":"ipconfig1","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic-eastus6/ipConfigurations/ipconfig1","etag":"W/\"fdd57f1a-7960-491d-8b99-12b58813917d\"","type":"Microsoft.Network/networkInterfaces/ipConfigurations","properties":{"provisioningState":"Succeeded","privateIPAddress":"10.0.0.9","privateIPAllocationMethod":"Dynamic","publicIPAddress":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/publicIPAddresses/miq-publicip-eastus6"},"subnet":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/virtualNetworks/miq-vnet-eastus/subnets/default"},"primary":true,"privateIPAddressVersion":"IPv4","isInUseWithService":false}}],"dnsSettings":{"dnsServers":[],"appliedDnsServers":[]},"enableAcceleratedNetworking":false,"enableIPForwarding":false,"primary":true,"virtualMachine":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-eastus/providers/Microsoft.Compute/virtualMachines/miq-linux-gen-east"}},"type":"Microsoft.Network/networkInterfaces"},{"name":"miq-nic-eastus7","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic-eastus7","etag":"W/\"51e5a58d-9605-49d0-aca3-67b0456357b4\"","location":"eastus","tags":{"owner":"cfme","creator":"dberger","specs":"true"},"properties":{"provisioningState":"Succeeded","resourceGuid":"cf03a7cb-7ce2-4bf4-adc0-31b58193b99f","ipConfigurations":[{"name":"ipconfig1","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic-eastus7/ipConfigurations/ipconfig1","etag":"W/\"51e5a58d-9605-49d0-aca3-67b0456357b4\"","type":"Microsoft.Network/networkInterfaces/ipConfigurations","properties":{"provisioningState":"Succeeded","privateIPAddress":"10.0.0.10","privateIPAllocationMethod":"Dynamic","publicIPAddress":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/publicIPAddresses/miq-publicip-eastus7"},"subnet":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/virtualNetworks/miq-vnet-eastus/subnets/default"},"primary":true,"privateIPAddressVersion":"IPv4","isInUseWithService":false}}],"dnsSettings":{"dnsServers":[],"appliedDnsServers":[]},"enableAcceleratedNetworking":false,"enableIPForwarding":false,"primary":true,"virtualMachine":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-eastus/providers/Microsoft.Compute/virtualMachines/miq-vm-from-image-eastus1"}},"type":"Microsoft.Network/networkInterfaces"},{"name":"miq-nic1-lb-eastus","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic1-lb-eastus","etag":"W/\"fe86b7a7-4323-414d-a43f-b002cc0a224f\"","location":"eastus","properties":{"provisioningState":"Succeeded","resourceGuid":"e7d37cd4-5b81-40c0-95ca-cf079b3c1d59","ipConfigurations":[{"name":"ipconfig1","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic1-lb-eastus/ipConfigurations/ipconfig1","etag":"W/\"fe86b7a7-4323-414d-a43f-b002cc0a224f\"","type":"Microsoft.Network/networkInterfaces/ipConfigurations","properties":{"provisioningState":"Succeeded","privateIPAddress":"10.0.0.4","privateIPAllocationMethod":"Dynamic","subnet":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/virtualNetworks/miq-vnet-lb-eastus/subnets/miq-subnet-eastus"},"primary":true,"privateIPAddressVersion":"IPv4","loadBalancerBackendAddressPools":[{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus/backendAddressPools/miq-backend-pool1"}],"isInUseWithService":false}}],"dnsSettings":{"dnsServers":[],"appliedDnsServers":[],"internalDomainNameSuffix":"fbd2r4qiyf0upczcci0bu2nvsc.bx.internal.cloudapp.net"},"macAddress":"00-0D-3A-1B-E8-E2","enableAcceleratedNetworking":false,"enableIPForwarding":false,"networkSecurityGroup":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkSecurityGroups/miq-nsg-lb-eastus"},"primary":true,"virtualMachine":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-eastus/providers/Microsoft.Compute/virtualMachines/miq-vm1-lb-eastus"}},"type":"Microsoft.Network/networkInterfaces"},{"name":"miq-nic2-lb-eastus","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic2-lb-eastus","etag":"W/\"45486a36-0ddb-424b-bd37-ba49eeb8231d\"","location":"eastus","properties":{"provisioningState":"Succeeded","resourceGuid":"b89f9a17-2dcc-469f-a443-73b26d5f1431","ipConfigurations":[{"name":"ipconfig1","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic2-lb-eastus/ipConfigurations/ipconfig1","etag":"W/\"45486a36-0ddb-424b-bd37-ba49eeb8231d\"","type":"Microsoft.Network/networkInterfaces/ipConfigurations","properties":{"provisioningState":"Succeeded","privateIPAddress":"10.0.0.5","privateIPAllocationMethod":"Dynamic","subnet":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/virtualNetworks/miq-vnet-lb-eastus/subnets/miq-subnet-eastus"},"primary":true,"privateIPAddressVersion":"IPv4","loadBalancerBackendAddressPools":[{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus/backendAddressPools/miq-backend-pool1"}],"isInUseWithService":false}}],"dnsSettings":{"dnsServers":[],"appliedDnsServers":[],"internalDomainNameSuffix":"fbd2r4qiyf0upczcci0bu2nvsc.bx.internal.cloudapp.net"},"macAddress":"00-0D-3A-1E-46-A8","enableAcceleratedNetworking":false,"enableIPForwarding":false,"networkSecurityGroup":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkSecurityGroups/miq-nsg-lb-eastus"},"primary":true,"virtualMachine":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-eastus/providers/Microsoft.Compute/virtualMachines/miq-vm2-lb-eastus"}},"type":"Microsoft.Network/networkInterfaces"}]}'
+      string: "{\r\n  \"name\": \"miq-lb-eastus2\",\r\n  \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus2\",\r\n
+        \ \"etag\": \"W/\\\"9c91350d-bd29-4e29-b0cb-647fab384801\\\"\",\r\n  \"type\":
+        \"Microsoft.Network/loadBalancers\",\r\n  \"location\": \"eastus\",\r\n  \"tags\":
+        {},\r\n  \"properties\": {\r\n    \"provisioningState\": \"Succeeded\",\r\n
+        \   \"resourceGuid\": \"9fa2306c-706c-49f5-bf67-0c05535facc7\",\r\n    \"frontendIPConfigurations\":
+        [\r\n      {\r\n        \"name\": \"LoadBalancerFrontEnd\",\r\n        \"id\":
+        \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus2/frontendIPConfigurations/LoadBalancerFrontEnd\",\r\n
+        \       \"etag\": \"W/\\\"9c91350d-bd29-4e29-b0cb-647fab384801\\\"\",\r\n
+        \       \"type\": \"Microsoft.Network/loadBalancers/frontendIPConfigurations\",\r\n
+        \       \"properties\": {\r\n          \"provisioningState\": \"Succeeded\",\r\n
+        \         \"privateIPAllocationMethod\": \"Dynamic\",\r\n          \"publicIPAddress\":
+        {\r\n            \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/publicIPAddresses/PublicIPmiq-lb-eastus2\"\r\n
+        \         }\r\n        }\r\n      }\r\n    ],\r\n    \"backendAddressPools\":
+        [\r\n      {\r\n        \"name\": \"miq-lb-eastus2bepool\",\r\n        \"id\":
+        \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus2/backendAddressPools/miq-lb-eastus2bepool\",\r\n
+        \       \"etag\": \"W/\\\"9c91350d-bd29-4e29-b0cb-647fab384801\\\"\",\r\n
+        \       \"properties\": {\r\n          \"provisioningState\": \"Succeeded\"\r\n
+        \       },\r\n        \"type\": \"Microsoft.Network/loadBalancers/backendAddressPools\"\r\n
+        \     }\r\n    ],\r\n    \"loadBalancingRules\": [],\r\n    \"probes\": [\r\n
+        \     {\r\n        \"name\": \"miq-lb-health-probe4\",\r\n        \"id\":
+        \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus2/probes/miq-lb-health-probe4\",\r\n
+        \       \"etag\": \"W/\\\"9c91350d-bd29-4e29-b0cb-647fab384801\\\"\",\r\n
+        \       \"properties\": {\r\n          \"provisioningState\": \"Succeeded\",\r\n
+        \         \"protocol\": \"Tcp\",\r\n          \"port\": 80,\r\n          \"intervalInSeconds\":
+        5,\r\n          \"numberOfProbes\": 2\r\n        },\r\n        \"type\": \"Microsoft.Network/loadBalancers/probes\"\r\n
+        \     }\r\n    ],\r\n    \"inboundNatRules\": [],\r\n    \"outboundRules\":
+        [],\r\n    \"inboundNatPools\": []\r\n  },\r\n  \"sku\": {\r\n    \"name\":
+        \"Basic\",\r\n    \"tier\": \"Regional\"\r\n  }\r\n}"
     http_version: 
-  recorded_at: Tue, 16 Oct 2018 15:05:41 GMT
+  recorded_at: Tue, 16 Oct 2018 15:04:15 GMT
 - request:
     method: get
-    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.Network/publicIPAddresses?api-version=2017-11-01
+    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/publicIPAddresses/miq-publicip-lb-eastus?api-version=2018-08-01
     body:
       encoding: US-ASCII
       string: ''
@@ -3371,7 +3416,7 @@ http_interactions:
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAyMDI3LCJuYmYiOjE1Mzk3MDIwMjcsImV4cCI6MTUzOTcwNTkyNywiYWlvIjoiNDJSZ1lGQisvR3loOHVGM3lsK3VLVTdrbS8va0Z3QT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJXbnZVaGE1Vm5rMnN5Z2xLcTg4UEFRIiwidmVyIjoiMS4wIn0.LVo7AbYZCJ2gNuGzx9mJzHTcElzs8WtRmsbcsUmvvQVdUaandF0sQlKgVgx2X66OMIYR5Eh0VVxGt52Qg0RoMMcP_vNjiyMVH97WQACqV5S6qS4dqKVNNizjP9cgdROP6h-AONs4K6wqTRCNRXgdmZ-3aHbbDV3Bvx49rI6uc8thrDqs_I6qIdchCnePoF9-P84WGSnSO_buR6kFdskGOUapIrgn2L8jx627W4HN5uX_vS5zKJpKOikGozEO51JgEz8pbayjF2p0xjQuOj73GkTxCMV3dWZEhx11DAGQNR1kd2Y4RGijI8yAQM7FzTIKkbz8sa8KnpmbNZ8GDDGe3A
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxOTI0LCJuYmYiOjE1Mzk3MDE5MjQsImV4cCI6MTUzOTcwNTgyNCwiYWlvIjoiNDJSZ1lEQVdFcGVyVEZmWmNsbFBqNVU1TCtJZ0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJZbnNTQWxlOTZrMjFtQU1KQmdBUUFRIiwidmVyIjoiMS4wIn0.RztuWtoSOGR6OrATyE0l4y_AciofeDfjiqakOMzEjf0pMe92yiLvjUbQ8O5p6cmDRfqcvo-mVFsgmoFZrfG_8NtBCLhZ-cpPGHrwHtcPyXlqn2O07BVEiGilYJJlWd8w6UmniL76TJ5rpvsgvf20BmCwP8AtZdSzb1DIpT8cekYRrSFnkd1lEkqkcCq1YY70KaLQdhcI9OuVc0BBTxulMVzh88XCuu8i-uFe9bfotIChJ_Qvk8fj9drhE1tbTvBj-KNgDsucEd_lVW5t9qCSEbVihwP4zfrQBRgOjp2txfEE6rZA9wAZYtfP6lbQwg_iMVeozB188gqs-cBnXuCI4A
   response:
     status:
       code: 200
@@ -3381,29 +3426,113 @@ http_interactions:
       - no-cache
       Pragma:
       - no-cache
+      Transfer-Encoding:
+      - chunked
       Content-Type:
       - application/json; charset=utf-8
       Expires:
       - "-1"
+      Etag:
+      - W/"d398b6bb-c237-42aa-b1d8-3c51c9c91d3d"
       Vary:
       - Accept-Encoding
       X-Ms-Request-Id:
-      - bb1dfddf-2770-421e-ac1a-1c8baa32f127
+      - 13e75e54-f992-4f8b-b420-b5c5853cdc49
       X-Ms-Correlation-Request-Id:
-      - bb1dfddf-2770-421e-ac1a-1c8baa32f127
-      X-Ms-Routing-Request-Id:
-      - WESTCENTRALUS:20181016T150531Z:bb1dfddf-2770-421e-ac1a-1c8baa32f127
+      - 389b2249-0edb-46cf-b210-800129b04f07
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
+      Server:
+      - Microsoft-HTTPAPI/2.0
+      - Microsoft-HTTPAPI/2.0
+      X-Ms-Ratelimit-Remaining-Subscription-Reads:
+      - '11971'
+      X-Ms-Routing-Request-Id:
+      - WESTCENTRALUS:20181016T150405Z:389b2249-0edb-46cf-b210-800129b04f07
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Tue, 16 Oct 2018 15:05:31 GMT
-      Content-Length:
-      - '14153'
+      - Tue, 16 Oct 2018 15:04:05 GMT
     body:
       encoding: ASCII-8BIT
-      string: '{"value":[{"name":"miq-publicip-lb-westus","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/publicIPAddresses/miq-publicip-lb-westus","etag":"W/\"605f95e3-6abf-440d-ae84-b5d4f8911b4d\"","location":"westus","tags":{"owner":"cfme","creator":"dberger","specs":"true"},"properties":{"provisioningState":"Succeeded","resourceGuid":"ec4531b8-cd82-4592-ba40-6972bdf4f589","publicIPAddressVersion":"IPv4","publicIPAllocationMethod":"Dynamic","idleTimeoutInMinutes":4,"ipTags":[],"ipConfiguration":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/loadBalancers/miq-lb-westus/frontendIPConfigurations/miq-frontend-pool2"}},"type":"Microsoft.Network/publicIPAddresses","sku":{"name":"Basic","tier":"Regional"}},{"name":"miq-publicip-westus1","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/publicIPAddresses/miq-publicip-westus1","etag":"W/\"fd9e8e1f-d1de-4e30-955a-3fb4af803233\"","location":"westus","tags":{"owner":"cfme","creator":"dberger","specs":"true"},"properties":{"provisioningState":"Succeeded","resourceGuid":"900fec5e-3022-4384-b5f2-43dd4b4b5c5a","publicIPAddressVersion":"IPv4","publicIPAllocationMethod":"Dynamic","idleTimeoutInMinutes":4,"ipTags":[],"ipConfiguration":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/networkInterfaces/miq-nic-westus1/ipConfigurations/ipconfig1"}},"type":"Microsoft.Network/publicIPAddresses","sku":{"name":"Basic","tier":"Regional"}},{"name":"miq-publicip-westus2","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/publicIPAddresses/miq-publicip-westus2","etag":"W/\"75397b34-f6c0-48cb-82da-572d520cc21e\"","location":"westus","tags":{"owner":"cfme","creator":"dberger","specs":"true"},"properties":{"provisioningState":"Succeeded","resourceGuid":"0caae42e-b001-4424-b91c-277438867d9b","publicIPAddressVersion":"IPv4","publicIPAllocationMethod":"Dynamic","idleTimeoutInMinutes":4,"ipTags":[],"ipConfiguration":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/networkInterfaces/miq-nic-westus2/ipConfigurations/ipconfig1"}},"type":"Microsoft.Network/publicIPAddresses","sku":{"name":"Basic","tier":"Regional"}},{"name":"miq-publicip-westus3","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/publicIPAddresses/miq-publicip-westus3","etag":"W/\"417ad20b-4a5a-4baa-8cd8-875c131aba17\"","location":"westus","tags":{"owner":"cfme","creator":"dberger","specs":"true"},"properties":{"provisioningState":"Succeeded","resourceGuid":"f17b2cba-5745-4695-8e30-5b6f469af3c1","ipAddress":"40.78.51.248","publicIPAddressVersion":"IPv4","publicIPAllocationMethod":"Dynamic","idleTimeoutInMinutes":4,"ipTags":[],"ipConfiguration":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/networkInterfaces/miq-nic-westus3/ipConfigurations/ipconfig1"}},"type":"Microsoft.Network/publicIPAddresses","sku":{"name":"Basic","tier":"Regional"}},{"name":"miq-publicip-westus4","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/publicIPAddresses/miq-publicip-westus4","etag":"W/\"e74365a9-7506-4f4e-a185-90a398d5d5ea\"","location":"westus","tags":{"owner":"cfme","creator":"dberger","specs":"true"},"properties":{"provisioningState":"Succeeded","resourceGuid":"e144f37f-397f-4f89-9f2c-45665d6bad5a","publicIPAddressVersion":"IPv4","publicIPAllocationMethod":"Dynamic","idleTimeoutInMinutes":4,"ipTags":[],"ipConfiguration":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/networkInterfaces/miq-nic-westus4/ipConfigurations/ipconfig1"}},"type":"Microsoft.Network/publicIPAddresses","sku":{"name":"Basic","tier":"Regional"}},{"name":"miq-publicip-westus5","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/publicIPAddresses/miq-publicip-westus5","etag":"W/\"9e3780de-3d78-4170-bafd-b873668666e2\"","location":"westus","tags":{"owner":"cfme","creator":"dberger","specs":"true"},"properties":{"provisioningState":"Succeeded","resourceGuid":"84e80751-2a79-4a53-9671-f2eb788237ba","publicIPAddressVersion":"IPv4","publicIPAllocationMethod":"Dynamic","idleTimeoutInMinutes":4,"ipTags":[],"ipConfiguration":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/networkInterfaces/miq-nic-westus5/ipConfigurations/ipconfig1"}},"type":"Microsoft.Network/publicIPAddresses","sku":{"name":"Basic","tier":"Regional"}},{"name":"miq-publicip-westus6","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/publicIPAddresses/miq-publicip-westus6","etag":"W/\"7a7aaedf-1c83-49a1-9d69-591c40f95cde\"","location":"westus","tags":{"owner":"cfme","creator":"dberger","specs":"true"},"properties":{"provisioningState":"Succeeded","resourceGuid":"b7e18476-5054-41ea-ae3e-aaa3320f243a","publicIPAddressVersion":"IPv4","publicIPAllocationMethod":"Dynamic","idleTimeoutInMinutes":4,"ipTags":[],"ipConfiguration":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/networkInterfaces/miq-nic-westus6/ipConfigurations/ipconfig1"}},"type":"Microsoft.Network/publicIPAddresses","sku":{"name":"Basic","tier":"Regional"}},{"name":"miq-publicip-westus7","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/publicIPAddresses/miq-publicip-westus7","etag":"W/\"46f045a1-49a1-4c75-b232-c0b6a17e38d7\"","location":"westus","tags":{"owner":"cfme","creator":"dberger","specs":"true"},"properties":{"provisioningState":"Succeeded","resourceGuid":"f04336e0-4069-43c6-8aa3-06b731e90386","publicIPAddressVersion":"IPv4","publicIPAllocationMethod":"Dynamic","idleTimeoutInMinutes":4,"ipTags":[],"ipConfiguration":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-westus/providers/Microsoft.Network/networkInterfaces/miq-nic-westus7/ipConfigurations/ipconfig1"}},"type":"Microsoft.Network/publicIPAddresses","sku":{"name":"Basic","tier":"Regional"}},{"name":"miq-publicip-eastus1","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/publicIPAddresses/miq-publicip-eastus1","etag":"W/\"e9a78395-3b2f-4a47-ab18-2c63f7287fde\"","location":"eastus","tags":{"owner":"cfme","creator":"dberger","specs":"true"},"properties":{"provisioningState":"Succeeded","resourceGuid":"f25d9948-5b23-47ff-b973-36917aeaac9f","ipAddress":"40.114.95.228","publicIPAddressVersion":"IPv4","publicIPAllocationMethod":"Dynamic","idleTimeoutInMinutes":4,"ipTags":[],"ipConfiguration":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic-eastus1/ipConfigurations/ipconfig1"}},"type":"Microsoft.Network/publicIPAddresses","sku":{"name":"Basic","tier":"Regional"}},{"name":"miq-publicip-eastus2","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/publicIPAddresses/miq-publicip-eastus2","etag":"W/\"ac5120c4-7760-4ba5-8467-9a3e890e43df\"","location":"eastus","tags":{"owner":"cfme","creator":"dberger","specs":"true"},"properties":{"provisioningState":"Succeeded","resourceGuid":"651d1a52-f1c7-4152-8112-b107c8c64306","publicIPAddressVersion":"IPv4","publicIPAllocationMethod":"Dynamic","idleTimeoutInMinutes":4,"ipTags":[],"ipConfiguration":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic-eastus2/ipConfigurations/ipconfig1"}},"type":"Microsoft.Network/publicIPAddresses","sku":{"name":"Basic","tier":"Regional"}},{"name":"miq-publicip-eastus3","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/publicIPAddresses/miq-publicip-eastus3","etag":"W/\"2e411a3a-6476-4fae-93c9-b0c51829c99b\"","location":"eastus","tags":{"owner":"cfme","creator":"dberger","specs":"true"},"properties":{"provisioningState":"Succeeded","resourceGuid":"ad7a44a9-bbbc-4801-86a8-cc2c61c734cd","ipAddress":"23.96.82.94","publicIPAddressVersion":"IPv4","publicIPAllocationMethod":"Dynamic","idleTimeoutInMinutes":4,"ipTags":[],"ipConfiguration":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic-eastus3/ipConfigurations/ipconfig1"}},"type":"Microsoft.Network/publicIPAddresses","sku":{"name":"Basic","tier":"Regional"}},{"name":"miq-publicip-eastus4","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/publicIPAddresses/miq-publicip-eastus4","etag":"W/\"d626bf5e-8853-463b-a86d-df4032588a52\"","location":"eastus","tags":{"owner":"cfme","creator":"dberger","specs":"true"},"properties":{"provisioningState":"Succeeded","resourceGuid":"ef23027c-445e-4b0b-ab8d-7266ecb2d68b","ipAddress":"40.117.93.61","publicIPAddressVersion":"IPv4","publicIPAllocationMethod":"Dynamic","idleTimeoutInMinutes":4,"ipTags":[],"ipConfiguration":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic-eastus4/ipConfigurations/ipconfig1"}},"type":"Microsoft.Network/publicIPAddresses","sku":{"name":"Basic","tier":"Regional"}},{"name":"miq-publicip-eastus5","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/publicIPAddresses/miq-publicip-eastus5","etag":"W/\"786b9d7e-03e8-4243-a9a5-496abf28ea1b\"","location":"eastus","tags":{"owner":"cfme","creator":"dberger","specs":"true"},"properties":{"provisioningState":"Succeeded","resourceGuid":"4110de17-2bd5-4210-b295-1e33ab19ab7b","publicIPAddressVersion":"IPv4","publicIPAllocationMethod":"Dynamic","idleTimeoutInMinutes":4,"ipTags":[],"ipConfiguration":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic-eastus5/ipConfigurations/ipconfig1"}},"type":"Microsoft.Network/publicIPAddresses","sku":{"name":"Basic","tier":"Regional"}},{"name":"miq-publicip-eastus6","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/publicIPAddresses/miq-publicip-eastus6","etag":"W/\"67da37ea-7222-4812-9e6d-90b4947ab66e\"","location":"eastus","tags":{"owner":"cfme","creator":"dberger","specs":"true"},"properties":{"provisioningState":"Succeeded","resourceGuid":"08e7027b-a756-47bd-b145-f3737af042e8","publicIPAddressVersion":"IPv4","publicIPAllocationMethod":"Dynamic","idleTimeoutInMinutes":4,"ipTags":[],"ipConfiguration":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic-eastus6/ipConfigurations/ipconfig1"}},"type":"Microsoft.Network/publicIPAddresses","sku":{"name":"Basic","tier":"Regional"}},{"name":"miq-publicip-eastus7","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/publicIPAddresses/miq-publicip-eastus7","etag":"W/\"13ceac30-5d7d-48d5-b4f5-ca008d9cf24d\"","location":"eastus","tags":{"owner":"cfme","creator":"dberger","specs":"true"},"properties":{"provisioningState":"Succeeded","resourceGuid":"13aa0a19-cb56-43d1-8f17-d14e58e08637","publicIPAddressVersion":"IPv4","publicIPAllocationMethod":"Dynamic","idleTimeoutInMinutes":4,"ipTags":[],"ipConfiguration":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic-eastus7/ipConfigurations/ipconfig1"}},"type":"Microsoft.Network/publicIPAddresses","sku":{"name":"Basic","tier":"Regional"}},{"name":"miq-publicip-lb-eastus","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/publicIPAddresses/miq-publicip-lb-eastus","etag":"W/\"d398b6bb-c237-42aa-b1d8-3c51c9c91d3d\"","location":"eastus","tags":{"owner":"cfme","creator":"dberger","specs":"true"},"properties":{"provisioningState":"Succeeded","resourceGuid":"a83176f9-8b6b-407c-ab24-390a9574405a","ipAddress":"40.76.218.17","publicIPAddressVersion":"IPv4","publicIPAllocationMethod":"Dynamic","idleTimeoutInMinutes":4,"ipTags":[],"ipConfiguration":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus/frontendIPConfigurations/miq-frontend-pool1"}},"type":"Microsoft.Network/publicIPAddresses","sku":{"name":"Basic","tier":"Regional"}},{"name":"PublicIPmiq-lb-eastus2","id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/publicIPAddresses/PublicIPmiq-lb-eastus2","etag":"W/\"0b06e253-9395-428a-8d1c-6f099ce707ae\"","location":"eastus","tags":{},"properties":{"provisioningState":"Succeeded","resourceGuid":"5407f0ff-f589-467b-9e74-f59d51029f44","publicIPAddressVersion":"IPv4","publicIPAllocationMethod":"Dynamic","idleTimeoutInMinutes":4,"ipTags":[],"ipConfiguration":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus2/frontendIPConfigurations/LoadBalancerFrontEnd"}},"type":"Microsoft.Network/publicIPAddresses","sku":{"name":"Basic","tier":"Regional"}}]}'
+      string: "{\r\n  \"name\": \"miq-publicip-lb-eastus\",\r\n  \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/publicIPAddresses/miq-publicip-lb-eastus\",\r\n
+        \ \"etag\": \"W/\\\"d398b6bb-c237-42aa-b1d8-3c51c9c91d3d\\\"\",\r\n  \"location\":
+        \"eastus\",\r\n  \"tags\": {\r\n    \"owner\": \"cfme\",\r\n    \"creator\":
+        \"dberger\",\r\n    \"specs\": \"true\"\r\n  },\r\n  \"properties\": {\r\n
+        \   \"provisioningState\": \"Succeeded\",\r\n    \"resourceGuid\": \"a83176f9-8b6b-407c-ab24-390a9574405a\",\r\n
+        \   \"ipAddress\": \"40.76.218.17\",\r\n    \"publicIPAddressVersion\": \"IPv4\",\r\n
+        \   \"publicIPAllocationMethod\": \"Dynamic\",\r\n    \"idleTimeoutInMinutes\":
+        4,\r\n    \"ipTags\": [],\r\n    \"ipConfiguration\": {\r\n      \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus/frontendIPConfigurations/miq-frontend-pool1\"\r\n
+        \   }\r\n  },\r\n  \"type\": \"Microsoft.Network/publicIPAddresses\",\r\n
+        \ \"sku\": {\r\n    \"name\": \"Basic\",\r\n    \"tier\": \"Regional\"\r\n
+        \ }\r\n}"
     http_version: 
-  recorded_at: Tue, 16 Oct 2018 15:05:42 GMT
+  recorded_at: Tue, 16 Oct 2018 15:04:15 GMT
+- request:
+    method: get
+    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/publicIPAddresses/PublicIPmiq-lb-eastus2?api-version=2018-08-01
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxOTI0LCJuYmYiOjE1Mzk3MDE5MjQsImV4cCI6MTUzOTcwNTgyNCwiYWlvIjoiNDJSZ1lEQVdFcGVyVEZmWmNsbFBqNVU1TCtJZ0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJZbnNTQWxlOTZrMjFtQU1KQmdBUUFRIiwidmVyIjoiMS4wIn0.RztuWtoSOGR6OrATyE0l4y_AciofeDfjiqakOMzEjf0pMe92yiLvjUbQ8O5p6cmDRfqcvo-mVFsgmoFZrfG_8NtBCLhZ-cpPGHrwHtcPyXlqn2O07BVEiGilYJJlWd8w6UmniL76TJ5rpvsgvf20BmCwP8AtZdSzb1DIpT8cekYRrSFnkd1lEkqkcCq1YY70KaLQdhcI9OuVc0BBTxulMVzh88XCuu8i-uFe9bfotIChJ_Qvk8fj9drhE1tbTvBj-KNgDsucEd_lVW5t9qCSEbVihwP4zfrQBRgOjp2txfEE6rZA9wAZYtfP6lbQwg_iMVeozB188gqs-cBnXuCI4A
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Etag:
+      - W/"0b06e253-9395-428a-8d1c-6f099ce707ae"
+      Vary:
+      - Accept-Encoding
+      X-Ms-Request-Id:
+      - b4f6473b-41c8-4c12-91e8-e074e8ecacb6
+      X-Ms-Correlation-Request-Id:
+      - dc496071-cdcf-4d5c-aea9-ff4435b4bb1b
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      Server:
+      - Microsoft-HTTPAPI/2.0
+      - Microsoft-HTTPAPI/2.0
+      X-Ms-Ratelimit-Remaining-Subscription-Reads:
+      - '11977'
+      X-Ms-Routing-Request-Id:
+      - WESTCENTRALUS:20181016T150405Z:dc496071-cdcf-4d5c-aea9-ff4435b4bb1b
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Tue, 16 Oct 2018 15:04:05 GMT
+    body:
+      encoding: ASCII-8BIT
+      string: "{\r\n  \"name\": \"PublicIPmiq-lb-eastus2\",\r\n  \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/publicIPAddresses/PublicIPmiq-lb-eastus2\",\r\n
+        \ \"etag\": \"W/\\\"0b06e253-9395-428a-8d1c-6f099ce707ae\\\"\",\r\n  \"location\":
+        \"eastus\",\r\n  \"tags\": {},\r\n  \"properties\": {\r\n    \"provisioningState\":
+        \"Succeeded\",\r\n    \"resourceGuid\": \"5407f0ff-f589-467b-9e74-f59d51029f44\",\r\n
+        \   \"publicIPAddressVersion\": \"IPv4\",\r\n    \"publicIPAllocationMethod\":
+        \"Dynamic\",\r\n    \"idleTimeoutInMinutes\": 4,\r\n    \"ipTags\": [],\r\n
+        \   \"ipConfiguration\": {\r\n      \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus2/frontendIPConfigurations/LoadBalancerFrontEnd\"\r\n
+        \   }\r\n  },\r\n  \"type\": \"Microsoft.Network/publicIPAddresses\",\r\n
+        \ \"sku\": {\r\n    \"name\": \"Basic\",\r\n    \"tier\": \"Regional\"\r\n
+        \ }\r\n}"
+    http_version: 
+  recorded_at: Tue, 16 Oct 2018 15:04:16 GMT
 recorded_with: VCR 3.0.3

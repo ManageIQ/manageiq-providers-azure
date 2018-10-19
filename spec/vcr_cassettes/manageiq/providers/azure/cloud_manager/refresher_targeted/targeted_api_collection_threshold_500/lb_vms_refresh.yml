@@ -12,7 +12,7 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Length:
       - '181'
       Content-Type:
@@ -37,21 +37,21 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       X-Ms-Request-Id:
-      - '084a30f1-2e01-41ee-8566-9e9086712800'
+      - 02127b62-bd57-4dea-b598-030906001001
       P3p:
       - CP="DSP CUR OTPi IND OTRi ONL FIN"
       Set-Cookie:
       - stsservicecookie=ests; path=/; secure; HttpOnly
-      - x-ms-gateway-slice=002; path=/; secure; HttpOnly
+      - x-ms-gateway-slice=014; path=/; secure; HttpOnly
       Date:
-      - Wed, 10 Oct 2018 20:15:49 GMT
+      - Tue, 16 Oct 2018 15:03:43 GMT
       Content-Length:
       - '1351'
     body:
       encoding: UTF-8
-      string: '{"token_type":"Bearer","expires_in":"3600","ext_expires_in":"0","expires_on":"1539206150","not_before":"1539202250","resource":"https://management.core.windows.net/","access_token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMjUwLCJuYmYiOjE1MzkyMDIyNTAsImV4cCI6MTUzOTIwNjE1MCwiYWlvIjoiNDJSZ1lHaDFFMXpUdDZ5d3pHckgxNGdGTlZFR0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiI4VEJLQ0FFdTdrR0ZacDZRaG5Fb0FBIiwidmVyIjoiMS4wIn0.YCbWEdkQImUmq7afLCqQJXZqhPMypj6fKuAgxDhMNx78Wf4O-jm0ub8cuoIs7G1kQxrD0kTmbC985nQatBI_X2MZbWPkieGmPYpwSDwB8dQUsLgJc0Uu-Vh0P848Ofce9g3r689DQX5Fq00N0W0KeqKeA_9q8dDjTwzzDntxCuK-po2X0xOh7fAKJ1j1xsIyInkPv2l7jXG-_0twDNb29shafE1kMMUAEKC1THa6_ulWnmI05j4OLXJG3t5w4o_dTIkfPpr2KjhB2ApCEiGsF50xs9VFuvrBrnvjaYvK5dsnmC4efQkS-WSuftVsSaBmqzOf8n0zVZOVNUj52hCkhA"}'
+      string: '{"token_type":"Bearer","expires_in":"3599","ext_expires_in":"0","expires_on":"1539705824","not_before":"1539701924","resource":"https://management.core.windows.net/","access_token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxOTI0LCJuYmYiOjE1Mzk3MDE5MjQsImV4cCI6MTUzOTcwNTgyNCwiYWlvIjoiNDJSZ1lEQVdFcGVyVEZmWmNsbFBqNVU1TCtJZ0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJZbnNTQWxlOTZrMjFtQU1KQmdBUUFRIiwidmVyIjoiMS4wIn0.RztuWtoSOGR6OrATyE0l4y_AciofeDfjiqakOMzEjf0pMe92yiLvjUbQ8O5p6cmDRfqcvo-mVFsgmoFZrfG_8NtBCLhZ-cpPGHrwHtcPyXlqn2O07BVEiGilYJJlWd8w6UmniL76TJ5rpvsgvf20BmCwP8AtZdSzb1DIpT8cekYRrSFnkd1lEkqkcCq1YY70KaLQdhcI9OuVc0BBTxulMVzh88XCuu8i-uFe9bfotIChJ_Qvk8fj9drhE1tbTvBj-KNgDsucEd_lVW5t9qCSEbVihwP4zfrQBRgOjp2txfEE6rZA9wAZYtfP6lbQwg_iMVeozB188gqs-cBnXuCI4A"}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:15:50 GMT
+  recorded_at: Tue, 16 Oct 2018 15:03:54 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions?api-version=2016-06-01
@@ -64,11 +64,11 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMjUwLCJuYmYiOjE1MzkyMDIyNTAsImV4cCI6MTUzOTIwNjE1MCwiYWlvIjoiNDJSZ1lHaDFFMXpUdDZ5d3pHckgxNGdGTlZFR0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiI4VEJLQ0FFdTdrR0ZacDZRaG5Fb0FBIiwidmVyIjoiMS4wIn0.YCbWEdkQImUmq7afLCqQJXZqhPMypj6fKuAgxDhMNx78Wf4O-jm0ub8cuoIs7G1kQxrD0kTmbC985nQatBI_X2MZbWPkieGmPYpwSDwB8dQUsLgJc0Uu-Vh0P848Ofce9g3r689DQX5Fq00N0W0KeqKeA_9q8dDjTwzzDntxCuK-po2X0xOh7fAKJ1j1xsIyInkPv2l7jXG-_0twDNb29shafE1kMMUAEKC1THa6_ulWnmI05j4OLXJG3t5w4o_dTIkfPpr2KjhB2ApCEiGsF50xs9VFuvrBrnvjaYvK5dsnmC4efQkS-WSuftVsSaBmqzOf8n0zVZOVNUj52hCkhA
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxOTI0LCJuYmYiOjE1Mzk3MDE5MjQsImV4cCI6MTUzOTcwNTgyNCwiYWlvIjoiNDJSZ1lEQVdFcGVyVEZmWmNsbFBqNVU1TCtJZ0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJZbnNTQWxlOTZrMjFtQU1KQmdBUUFRIiwidmVyIjoiMS4wIn0.RztuWtoSOGR6OrATyE0l4y_AciofeDfjiqakOMzEjf0pMe92yiLvjUbQ8O5p6cmDRfqcvo-mVFsgmoFZrfG_8NtBCLhZ-cpPGHrwHtcPyXlqn2O07BVEiGilYJJlWd8w6UmniL76TJ5rpvsgvf20BmCwP8AtZdSzb1DIpT8cekYRrSFnkd1lEkqkcCq1YY70KaLQdhcI9OuVc0BBTxulMVzh88XCuu8i-uFe9bfotIChJ_Qvk8fj9drhE1tbTvBj-KNgDsucEd_lVW5t9qCSEbVihwP4zfrQBRgOjp2txfEE6rZA9wAZYtfP6lbQwg_iMVeozB188gqs-cBnXuCI4A
   response:
     status:
       code: 200
@@ -87,24 +87,24 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Ratelimit-Remaining-Tenant-Reads:
-      - '11999'
+      - '11997'
       X-Ms-Request-Id:
-      - f6694ba1-d29e-4fa0-89bc-4fcf394b26e4
+      - 98e5714c-c8c7-472d-ac85-e358c1196329
       X-Ms-Correlation-Request-Id:
-      - f6694ba1-d29e-4fa0-89bc-4fcf394b26e4
+      - 98e5714c-c8c7-472d-ac85-e358c1196329
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201550Z:f6694ba1-d29e-4fa0-89bc-4fcf394b26e4
+      - WESTCENTRALUS:20181016T150344Z:98e5714c-c8c7-472d-ac85-e358c1196329
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:15:50 GMT
+      - Tue, 16 Oct 2018 15:03:43 GMT
     body:
       encoding: ASCII-8BIT
       string: '{"value":[{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID","subscriptionId":"AZURE_SUBSCRIPTION_ID","displayName":"Pay-As-You-Go","state":"Enabled","subscriptionPolicies":{"locationPlacementId":"Public_2014-09-01","quotaId":"PayAsYouGo_2014-09-01","spendingLimit":"Off"},"authorizationSource":"RoleBased"}]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:15:50 GMT
+  recorded_at: Tue, 16 Oct 2018 15:03:54 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/providers?api-version=2015-01-01
@@ -117,11 +117,11 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMjUwLCJuYmYiOjE1MzkyMDIyNTAsImV4cCI6MTUzOTIwNjE1MCwiYWlvIjoiNDJSZ1lHaDFFMXpUdDZ5d3pHckgxNGdGTlZFR0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiI4VEJLQ0FFdTdrR0ZacDZRaG5Fb0FBIiwidmVyIjoiMS4wIn0.YCbWEdkQImUmq7afLCqQJXZqhPMypj6fKuAgxDhMNx78Wf4O-jm0ub8cuoIs7G1kQxrD0kTmbC985nQatBI_X2MZbWPkieGmPYpwSDwB8dQUsLgJc0Uu-Vh0P848Ofce9g3r689DQX5Fq00N0W0KeqKeA_9q8dDjTwzzDntxCuK-po2X0xOh7fAKJ1j1xsIyInkPv2l7jXG-_0twDNb29shafE1kMMUAEKC1THa6_ulWnmI05j4OLXJG3t5w4o_dTIkfPpr2KjhB2ApCEiGsF50xs9VFuvrBrnvjaYvK5dsnmC4efQkS-WSuftVsSaBmqzOf8n0zVZOVNUj52hCkhA
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxOTI0LCJuYmYiOjE1Mzk3MDE5MjQsImV4cCI6MTUzOTcwNTgyNCwiYWlvIjoiNDJSZ1lEQVdFcGVyVEZmWmNsbFBqNVU1TCtJZ0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJZbnNTQWxlOTZrMjFtQU1KQmdBUUFRIiwidmVyIjoiMS4wIn0.RztuWtoSOGR6OrATyE0l4y_AciofeDfjiqakOMzEjf0pMe92yiLvjUbQ8O5p6cmDRfqcvo-mVFsgmoFZrfG_8NtBCLhZ-cpPGHrwHtcPyXlqn2O07BVEiGilYJJlWd8w6UmniL76TJ5rpvsgvf20BmCwP8AtZdSzb1DIpT8cekYRrSFnkd1lEkqkcCq1YY70KaLQdhcI9OuVc0BBTxulMVzh88XCuu8i-uFe9bfotIChJ_Qvk8fj9drhE1tbTvBj-KNgDsucEd_lVW5t9qCSEbVihwP4zfrQBRgOjp2txfEE6rZA9wAZYtfP6lbQwg_iMVeozB188gqs-cBnXuCI4A
   response:
     status:
       code: 200
@@ -138,21 +138,21 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Ratelimit-Remaining-Subscription-Reads:
-      - '11995'
+      - '11972'
       X-Ms-Request-Id:
-      - 3aef19db-0be4-4c03-bdf4-82626d3d0193
+      - 30e73ef2-6e3a-4bcb-a833-49f5f1c2a8e3
       X-Ms-Correlation-Request-Id:
-      - 3aef19db-0be4-4c03-bdf4-82626d3d0193
+      - 30e73ef2-6e3a-4bcb-a833-49f5f1c2a8e3
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201552Z:3aef19db-0be4-4c03-bdf4-82626d3d0193
+      - WESTCENTRALUS:20181016T150345Z:30e73ef2-6e3a-4bcb-a833-49f5f1c2a8e3
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:15:52 GMT
+      - Tue, 16 Oct 2018 15:03:44 GMT
       Content-Length:
-      - '439167'
+      - '441087'
     body:
       encoding: ASCII-8BIT
       string: '{"value":[{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.Compute","namespace":"Microsoft.Compute","authorizations":[{"applicationId":"60e6cd67-9c8c-4951-9b3c-23c25a2169af","roleDefinitionId":"e4770acb-272e-4dc8-87f3-12f44a612224"},{"applicationId":"a303894e-f1d8-4a37-bf10-67aa654a0596","roleDefinitionId":"903ac751-8ad5-4e5a-bfc2-5e49f450a241"},{"applicationId":"a8b6bf88-1d1a-4626-b040-9a729ea93c65","roleDefinitionId":"45c8267c-80ba-4b96-9a43-115b8f49fccd"},{"applicationId":"184909ca-69f1-4368-a6a7-c558ee6eb0bd","roleDefinitionId":"45c8267c-80ba-4b96-9a43-115b8f49fccd"},{"applicationId":"5e5e43d4-54da-4211-86a4-c6e7f3715801","roleDefinitionId":"ffcd6e5b-8772-457d-bb17-89703c03428f"}],"resourceTypes":[{"resourceType":"availabilitySets","locations":["East
@@ -893,10 +893,15 @@ http_interactions:
         Central US","South Central US","West Central US","Central US"],"apiVersions":["2018-08-01-preview"]},{"resourceType":"billingAccounts/billingProfiles/products","locations":["North
         Central US","South Central US","West Central US","Central US"],"apiVersions":["2018-08-01-preview"]},{"resourceType":"billingAccounts/products","locations":["North
         Central US","South Central US","West Central US","Central US"],"apiVersions":["2018-08-01-preview"]},{"resourceType":"operations","locations":["Central
-        US"],"apiVersions":["2018-03-01-preview","2017-04-24-preview","2017-02-27-preview"]}],"registrationState":"Registered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.BingMaps","namespace":"Microsoft.BingMaps","resourceTypes":[{"resourceType":"mapApis","locations":["West
+        US"],"apiVersions":["2018-03-01-preview","2017-04-24-preview","2017-02-27-preview"]},{"resourceType":"billingAccounts/projects/initiateImportRequest","locations":["North
+        Central US","South Central US","West Central US","Central US"],"apiVersions":["2018-08-01-preview"]},{"resourceType":"billingAccounts/projects/importRequests","locations":["North
+        Central US","South Central US","West Central US","Central US"],"apiVersions":["2018-08-01-preview"]},{"resourceType":"importRequests/acceptImportRequest","locations":["North
+        Central US","South Central US","West Central US","Central US"],"apiVersions":["2018-08-01-preview"]},{"resourceType":"importRequests","locations":["North
+        Central US","South Central US","West Central US","Central US"],"apiVersions":["2018-08-01-preview"]},{"resourceType":"importRequests/declineImportRequest","locations":["North
+        Central US","South Central US","West Central US","Central US"],"apiVersions":["2018-08-01-preview"]}],"registrationState":"Registered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.BingMaps","namespace":"Microsoft.BingMaps","resourceTypes":[{"resourceType":"mapApis","locations":["West
         US"],"apiVersions":["2016-08-18","2015-07-02"]},{"resourceType":"operations","locations":[],"apiVersions":["2016-08-18","2015-07-02"]},{"resourceType":"listCommunicationPreference","locations":[],"apiVersions":["2016-08-18","2015-07-02"]},{"resourceType":"updateCommunicationPreference","locations":[],"apiVersions":["2016-08-18","2015-07-02"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.BizTalkServices","namespace":"Microsoft.BizTalkServices","resourceTypes":[{"resourceType":"BizTalk","locations":["East
         US","West US","North Europe","West Europe","Southeast Asia","East Asia","North
-        Central US","Japan West","Japan East","South Central US"],"apiVersions":["2014-04-01-preview"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.Blueprint","namespace":"Microsoft.Blueprint","authorizations":[{"applicationId":"f71766dc-90d9-4b7d-bd9d-4499c4331c3f","roleDefinitionId":"cb180127-cf6d-4672-9e75-e29a487f9658"}],"resourceTypes":[{"resourceType":"blueprints","locations":[],"apiVersions":["2017-11-11-preview","2017-11-11-alpha"]},{"resourceType":"blueprints/artifacts","locations":[],"apiVersions":["2017-11-11-preview","2017-11-11-alpha"]},{"resourceType":"blueprints/versions","locations":[],"apiVersions":["2017-11-11-preview","2017-11-11-alpha"]},{"resourceType":"blueprints/versions/artifacts","locations":[],"apiVersions":["2017-11-11-preview","2017-11-11-alpha"]},{"resourceType":"blueprintAssignments","locations":[],"apiVersions":["2017-11-11-preview","2017-11-11-alpha"]},{"resourceType":"blueprintAssignments/operations","locations":[],"apiVersions":["2017-11-11-preview","2017-11-11-alpha"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.BotService","namespace":"Microsoft.BotService","authorization":{"applicationId":"f3723d34-6ff5-4ceb-a148-d99dcd2511fc","roleDefinitionId":"71213c26-43ed-41d8-9905-3c12971517a3"},"resourceTypes":[{"resourceType":"botServices","locations":["Global"],"apiVersions":["2018-07-12","2017-12-01"]},{"resourceType":"botServices/channels","locations":["Global"],"apiVersions":["2018-07-12","2017-12-01"]},{"resourceType":"botServices/connections","locations":["Global"],"apiVersions":["2018-07-12","2017-12-01"]},{"resourceType":"listAuthServiceProviders","locations":["Global"],"apiVersions":["2018-07-12","2017-12-01"]},{"resourceType":"checkNameAvailability","locations":["Global"],"apiVersions":["2018-07-12","2017-12-01"]},{"resourceType":"operations","locations":["Global"],"apiVersions":["2018-07-12","2017-12-01"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.Cache","namespace":"Microsoft.Cache","authorization":{"applicationId":"96231a05-34ce-4eb4-aa6a-70759cbb5e83","roleDefinitionId":"4f731528-ba85-45c7-acfb-cd0a9b3cf31b"},"resourceTypes":[{"resourceType":"Redis","locations":["North
+        Central US","Japan West","Japan East","South Central US"],"apiVersions":["2014-04-01-preview"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.Blueprint","namespace":"Microsoft.Blueprint","authorizations":[{"applicationId":"f71766dc-90d9-4b7d-bd9d-4499c4331c3f","roleDefinitionId":"cb180127-cf6d-4672-9e75-e29a487f9658"}],"resourceTypes":[{"resourceType":"blueprints","locations":[],"apiVersions":["2017-11-11-preview","2017-11-11-alpha"]},{"resourceType":"blueprints/artifacts","locations":[],"apiVersions":["2017-11-11-preview","2017-11-11-alpha"]},{"resourceType":"blueprints/versions","locations":[],"apiVersions":["2017-11-11-preview","2017-11-11-alpha"]},{"resourceType":"blueprints/versions/artifacts","locations":[],"apiVersions":["2017-11-11-preview","2017-11-11-alpha"]},{"resourceType":"blueprintAssignments","locations":[],"apiVersions":["2017-11-11-preview","2017-11-11-alpha"]},{"resourceType":"blueprintAssignments/operations","locations":[],"apiVersions":["2017-11-11-preview","2017-11-11-alpha"]},{"resourceType":"operations","locations":[],"apiVersions":["2017-11-11-preview","2017-11-11-alpha"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.BotService","namespace":"Microsoft.BotService","authorization":{"applicationId":"f3723d34-6ff5-4ceb-a148-d99dcd2511fc","roleDefinitionId":"71213c26-43ed-41d8-9905-3c12971517a3"},"resourceTypes":[{"resourceType":"botServices","locations":["Global"],"apiVersions":["2018-07-12","2017-12-01"]},{"resourceType":"botServices/channels","locations":["Global"],"apiVersions":["2018-07-12","2017-12-01"]},{"resourceType":"botServices/connections","locations":["Global"],"apiVersions":["2018-07-12","2017-12-01"]},{"resourceType":"listAuthServiceProviders","locations":["Global"],"apiVersions":["2018-07-12","2017-12-01"]},{"resourceType":"checkNameAvailability","locations":["Global"],"apiVersions":["2018-07-12","2017-12-01"]},{"resourceType":"operations","locations":["Global"],"apiVersions":["2018-07-12","2017-12-01"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.Cache","namespace":"Microsoft.Cache","authorization":{"applicationId":"96231a05-34ce-4eb4-aa6a-70759cbb5e83","roleDefinitionId":"4f731528-ba85-45c7-acfb-cd0a9b3cf31b"},"resourceTypes":[{"resourceType":"Redis","locations":["North
         Central US","South Central US","Central US","West Europe","North Europe","West
         US","East US","East US 2","Japan East","Japan West","Brazil South","Southeast
         Asia","East Asia","Australia East","Australia Southeast","Central India","West
@@ -1555,30 +1560,35 @@ http_interactions:
         Central","Canada East","Brazil South","South Central US","Korea South","Korea
         Central"],"apiVersions":["2018-01-15-preview"]},{"resourceType":"ProvisioningServices","locations":["East
         US","West US","West Europe","North Europe","Southeast Asia","East Asia"],"apiVersions":["2018-01-22","2017-11-15","2017-08-21-preview"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.DevTestLab","namespace":"Microsoft.DevTestLab","authorization":{"applicationId":"1a14be2a-e903-4cec-99cf-b2e209259a0f","roleDefinitionId":"8f2de81a-b9aa-49d8-b24c-11814d3ab525","managedByRoleDefinitionId":"8f2de81a-b9aa-49d8-b24c-11814d3ab525"},"resourceTypes":[{"resourceType":"labs","locations":["West
-        Central US","Japan East","West US","Australia Southeast","Canada Central","Central
-        India","Central US","East Asia","Korea Central","North Europe","South Central
-        US","UK West","West India","Australia East","Brazil South","Canada East","East
-        US","East US 2","Japan West","Korea South","North Central US","South India","Southeast
+        Central US","Japan East","West US","Australia Central","Australia Southeast","Canada
+        Central","Central India","Central US","East Asia","France Central","Korea
+        Central","North Europe","South Central US","UK West","West India","Australia
+        Central 2","Australia East","Brazil South","Canada East","East US","East US
+        2","France South","Japan West","Korea South","North Central US","South India","Southeast
         Asia","UK South","West Europe","West US 2"],"apiVersions":["2018-10-15-preview","2017-04-26-preview","2016-05-15","2015-05-21-preview"]},{"resourceType":"schedules","locations":["West
-        Central US","Japan East","West US","Australia Southeast","Canada Central","Central
-        India","Central US","East Asia","Korea Central","North Europe","South Central
-        US","UK West","West India","Australia East","Brazil South","Canada East","East
-        US","East US 2","Japan West","Korea South","North Central US","South India","Southeast
+        Central US","Japan East","West US","Australia Central","Australia Southeast","Canada
+        Central","Central India","Central US","East Asia","France Central","Korea
+        Central","North Europe","South Central US","UK West","West India","Australia
+        Central 2","Australia East","Brazil South","Canada East","East US","East US
+        2","France South","Japan West","Korea South","North Central US","South India","Southeast
         Asia","UK South","West Europe","West US 2"],"apiVersions":["2018-10-15-preview","2017-04-26-preview","2016-05-15","2015-05-21-preview"]},{"resourceType":"labs/virtualMachines","locations":["West
-        Central US","Japan East","West US","Australia Southeast","Canada Central","Central
-        India","Central US","East Asia","Korea Central","North Europe","South Central
-        US","UK West","West India","Australia East","Brazil South","Canada East","East
-        US","East US 2","Japan West","Korea South","North Central US","South India","Southeast
+        Central US","Japan East","West US","Australia Central","Australia Southeast","Canada
+        Central","Central India","Central US","East Asia","France Central","Korea
+        Central","North Europe","South Central US","UK West","West India","Australia
+        Central 2","Australia East","Brazil South","Canada East","East US","East US
+        2","France South","Japan West","Korea South","North Central US","South India","Southeast
         Asia","UK South","West Europe","West US 2"],"apiVersions":["2018-10-15-preview","2017-04-26-preview","2016-05-15","2015-05-21-preview"]},{"resourceType":"labs/serviceRunners","locations":["West
-        Central US","Japan East","West US","Australia Southeast","Canada Central","Central
-        India","Central US","East Asia","Korea Central","North Europe","South Central
-        US","UK West","West India","Australia East","Brazil South","Canada East","East
-        US","East US 2","Japan West","Korea South","North Central US","South India","Southeast
+        Central US","Japan East","West US","Australia Central","Australia Southeast","Canada
+        Central","Central India","Central US","East Asia","France Central","Korea
+        Central","North Europe","South Central US","UK West","West India","Australia
+        Central 2","Australia East","Brazil South","Canada East","East US","East US
+        2","France South","Japan West","Korea South","North Central US","South India","Southeast
         Asia","UK South","West Europe","West US 2"],"apiVersions":["2018-10-15-preview","2017-04-26-preview","2016-05-15"]},{"resourceType":"operations","locations":[],"apiVersions":["2018-10-15-preview","2017-04-26-preview","2016-05-15","2015-05-21-preview"]},{"resourceType":"locations","locations":[],"apiVersions":["2018-10-15-preview","2017-04-26-preview","2016-05-15","2015-05-21-preview"]},{"resourceType":"locations/operations","locations":["West
-        Central US","Japan East","West US","Australia Southeast","Canada Central","Central
-        India","Central US","East Asia","Korea Central","North Europe","South Central
-        US","UK West","West India","Australia East","Brazil South","Canada East","East
-        US","East US 2","Japan West","Korea South","North Central US","South India","Southeast
+        Central US","Japan East","West US","Australia Central","Australia Southeast","Canada
+        Central","Central India","Central US","East Asia","France Central","Korea
+        Central","North Europe","South Central US","UK West","West India","Australia
+        Central 2","Australia East","Brazil South","Canada East","East US","East US
+        2","France South","Japan West","Korea South","North Central US","South India","Southeast
         Asia","UK South","West Europe","West US 2"],"apiVersions":["2018-10-15-preview","2017-04-26-preview","2016-05-15","2015-05-21-preview"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.DocumentDB","namespace":"Microsoft.DocumentDB","authorizations":[{"applicationId":"57c0fc58-a83a-41d0-8ae9-08952659bdfd","roleDefinitionId":"FFFD5CF5-FFD3-4B24-B0E2-0715ADD4C282"}],"resourceTypes":[{"resourceType":"databaseAccounts","locations":["Australia
         East","Australia Southeast","Canada Central","Canada East","Central India","Central
         US","East Asia","East US","East US 2","France Central","Japan East","Japan
@@ -1749,27 +1759,34 @@ http_interactions:
         US"],"apiVersions":["2018-07-01-preview"]},{"resourceType":"diagnosticSettings","locations":[],"apiVersions":["2018-07-01-preview"]},{"resourceType":"diagnosticSettingsCategories","locations":[],"apiVersions":["2018-07-01-preview"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.IoTCentral","namespace":"Microsoft.IoTCentral","authorizations":[{"applicationId":"9edfcdd9-0bc5-4bd4-b287-c3afc716aac7"}],"resourceTypes":[{"resourceType":"IoTApps","locations":["West
         Europe","West US","East US 2","North Europe","East US"],"apiVersions":["2018-09-01","2017-07-01-privatepreview"]},{"resourceType":"checkNameAvailability","locations":["West
         Europe","West US","East US 2","North Europe","East US"],"apiVersions":["2018-09-01","2017-07-01-privatepreview"]},{"resourceType":"operations","locations":["West
-        Europe","West US","East US 2","North Europe","East US"],"apiVersions":["2018-09-01","2017-07-01-privatepreview"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.IoTSpaces","namespace":"Microsoft.IoTSpaces","authorizations":[{"applicationId":"0b07f429-9f4b-4714-9392-cc5e8e80c8b0"}],"resourceTypes":[{"resourceType":"operations","locations":[],"apiVersions":["2017-10-01-preview"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.Kusto","namespace":"Microsoft.Kusto","authorizations":[{"applicationId":"2746ea77-4702-4b45-80ca-3c97e680e8b7","roleDefinitionId":"dd9d4347-f397-45f2-b538-85f21c90037c"}],"resourceTypes":[{"resourceType":"clusters","locations":["Central
+        Europe","West US","East US 2","North Europe","East US"],"apiVersions":["2018-09-01","2017-07-01-privatepreview"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.IoTSpaces","namespace":"Microsoft.IoTSpaces","authorizations":[{"applicationId":"0b07f429-9f4b-4714-9392-cc5e8e80c8b0"}],"resourceTypes":[{"resourceType":"checkNameAvailability","locations":["North
+        Europe","Australia East","West US 2","East US"],"apiVersions":["2017-10-01-preview"]},{"resourceType":"Graph","locations":["North
+        Europe","Australia East","West US 2","East US"],"apiVersions":["2017-10-01-preview"]},{"resourceType":"operations","locations":[],"apiVersions":["2017-10-01-preview"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.Kusto","namespace":"Microsoft.Kusto","authorizations":[{"applicationId":"2746ea77-4702-4b45-80ca-3c97e680e8b7","roleDefinitionId":"dd9d4347-f397-45f2-b538-85f21c90037c"}],"resourceTypes":[{"resourceType":"clusters","locations":["Central
         US","West Europe","North Europe","East US 2","West US","Southeast Asia","East
         US","West US 2","South Central US","North Central US","East Asia","Japan East","Canada
         Central","UK South","Australia East","Brazil South","Japan West","South India","Central
-        India","West India","Canada East","Korea Central","France Central"],"apiVersions":["2018-09-07-preview"]},{"resourceType":"clusters/databases","locations":["Central
+        India","West India","Canada East","Korea Central","France Central","UK West","Korea
+        South","France South","Australia Southeast"],"apiVersions":["2018-09-07-preview"]},{"resourceType":"clusters/databases","locations":["Central
         US","West Europe","North Europe","East US 2","West US","Southeast Asia","East
         US","West US 2","South Central US","North Central US","East Asia","Japan East","Canada
         Central","UK South","Australia East","Brazil South","Japan West","South India","Central
-        India","West India","Canada East","Korea Central","France Central"],"apiVersions":["2018-09-07-preview","2017-09-07-privatepreview"]},{"resourceType":"clusters/databases/eventhubconnections","locations":["Central
+        India","West India","Canada East","Korea Central","France Central","UK West","Korea
+        South","France South","Australia Southeast"],"apiVersions":["2018-09-07-preview","2017-09-07-privatepreview"]},{"resourceType":"clusters/databases/eventhubconnections","locations":["Central
         US","West Europe","North Europe","East US 2","West US","Southeast Asia","East
         US","West US 2","South Central US","North Central US","East Asia","Japan East","Canada
         Central","UK South","Australia East","Brazil South","Japan West","South India","Central
-        India","West India","Canada East","Korea Central","France Central"],"apiVersions":["2018-09-07-preview"]},{"resourceType":"locations/operationResults","locations":["Central
+        India","West India","Canada East","Korea Central","France Central","UK West","Korea
+        South","France South","Australia Southeast"],"apiVersions":["2018-09-07-preview"]},{"resourceType":"locations/operationResults","locations":["Central
         US","West Europe","North Europe","East US 2","West US","Southeast Asia","East
         US","West US 2","South Central US","North Central US","East Asia","Japan East","Canada
         Central","UK South","Australia East","Brazil South","Japan West","South India","Central
-        India","West India","Canada East","Korea Central","France Central"],"apiVersions":["2018-09-07-preview","2017-09-07-privatepreview"]},{"resourceType":"locations","locations":[],"apiVersions":["2018-09-07-preview","2017-09-07-privatepreview"]},{"resourceType":"locations/checkNameAvailability","locations":["Central
+        India","West India","Canada East","Korea Central","France Central","UK West","Korea
+        South","France South","Australia Southeast"],"apiVersions":["2018-09-07-preview","2017-09-07-privatepreview"]},{"resourceType":"locations","locations":[],"apiVersions":["2018-09-07-preview","2017-09-07-privatepreview"]},{"resourceType":"locations/checkNameAvailability","locations":["Central
         US","West Europe","North Europe","East US 2","West US","Southeast Asia","East
         US","West US 2","South Central US","North Central US","East Asia","Japan East","Canada
         Central","UK South","Australia East","Brazil South","Japan West","South India","Central
-        India","West India","Canada East","Korea Central","France Central"],"apiVersions":["2018-09-07-preview"]},{"resourceType":"operations","locations":[],"apiVersions":["2018-09-07-preview","2017-09-07-privatepreview"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.LabServices","namespace":"Microsoft.LabServices","authorization":{"applicationId":"1a14be2a-e903-4cec-99cf-b2e209259a0f","roleDefinitionId":"8f2de81a-b9aa-49d8-b24c-11814d3ab525","managedByRoleDefinitionId":"8f2de81a-b9aa-49d8-b24c-11814d3ab525"},"resourceTypes":[{"resourceType":"labaccounts","locations":["Australia
+        India","West India","Canada East","Korea Central","France Central","UK West","Korea
+        South","France South","Australia Southeast"],"apiVersions":["2018-09-07-preview"]},{"resourceType":"operations","locations":[],"apiVersions":["2018-09-07-preview","2017-09-07-privatepreview"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.LabServices","namespace":"Microsoft.LabServices","authorization":{"applicationId":"1a14be2a-e903-4cec-99cf-b2e209259a0f","roleDefinitionId":"8f2de81a-b9aa-49d8-b24c-11814d3ab525","managedByRoleDefinitionId":"8f2de81a-b9aa-49d8-b24c-11814d3ab525"},"resourceTypes":[{"resourceType":"labaccounts","locations":["Australia
         East","Australia Southeast","Brazil South","Canada Central","Canada East","Central
         India","Central US","East Asia","East US","East US 2","Japan East","Japan
         West","Korea Central","Korea South","North Central US","North Europe","South
@@ -3235,10 +3252,10 @@ http_interactions:
         US"],"apiVersions":["2015-06-15"]},{"resourceType":"operations","locations":[],"apiVersions":["2015-06-15"]},{"resourceType":"listCommunicationPreference","locations":[],"apiVersions":["2015-06-15"]},{"resourceType":"updateCommunicationPreference","locations":[],"apiVersions":["2015-06-15"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/U2uconsult.TheIdentityHub","namespace":"U2uconsult.TheIdentityHub","resourceTypes":[{"resourceType":"services","locations":["West
         Europe"],"apiVersions":["2015-06-15"]},{"resourceType":"operations","locations":[],"apiVersions":["2015-06-15"]},{"resourceType":"listCommunicationPreference","locations":[],"apiVersions":["2015-06-15"]},{"resourceType":"updateCommunicationPreference","locations":[],"apiVersions":["2015-06-15"]}],"registrationState":"NotRegistered"}]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:15:52 GMT
+  recorded_at: Tue, 16 Oct 2018 15:03:56 GMT
 - request:
     method: get
-    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Compute/virtualMachines/rspec-lb-a?api-version=2017-12-01
+    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-eastus/providers/Microsoft.Compute/virtualMachines/miq-vm1-lb-eastus?api-version=2017-12-01
     body:
       encoding: US-ASCII
       string: ''
@@ -3248,52 +3265,76 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMjUwLCJuYmYiOjE1MzkyMDIyNTAsImV4cCI6MTUzOTIwNjE1MCwiYWlvIjoiNDJSZ1lHaDFFMXpUdDZ5d3pHckgxNGdGTlZFR0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiI4VEJLQ0FFdTdrR0ZacDZRaG5Fb0FBIiwidmVyIjoiMS4wIn0.YCbWEdkQImUmq7afLCqQJXZqhPMypj6fKuAgxDhMNx78Wf4O-jm0ub8cuoIs7G1kQxrD0kTmbC985nQatBI_X2MZbWPkieGmPYpwSDwB8dQUsLgJc0Uu-Vh0P848Ofce9g3r689DQX5Fq00N0W0KeqKeA_9q8dDjTwzzDntxCuK-po2X0xOh7fAKJ1j1xsIyInkPv2l7jXG-_0twDNb29shafE1kMMUAEKC1THa6_ulWnmI05j4OLXJG3t5w4o_dTIkfPpr2KjhB2ApCEiGsF50xs9VFuvrBrnvjaYvK5dsnmC4efQkS-WSuftVsSaBmqzOf8n0zVZOVNUj52hCkhA
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxOTI0LCJuYmYiOjE1Mzk3MDE5MjQsImV4cCI6MTUzOTcwNTgyNCwiYWlvIjoiNDJSZ1lEQVdFcGVyVEZmWmNsbFBqNVU1TCtJZ0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJZbnNTQWxlOTZrMjFtQU1KQmdBUUFRIiwidmVyIjoiMS4wIn0.RztuWtoSOGR6OrATyE0l4y_AciofeDfjiqakOMzEjf0pMe92yiLvjUbQ8O5p6cmDRfqcvo-mVFsgmoFZrfG_8NtBCLhZ-cpPGHrwHtcPyXlqn2O07BVEiGilYJJlWd8w6UmniL76TJ5rpvsgvf20BmCwP8AtZdSzb1DIpT8cekYRrSFnkd1lEkqkcCq1YY70KaLQdhcI9OuVc0BBTxulMVzh88XCuu8i-uFe9bfotIChJ_Qvk8fj9drhE1tbTvBj-KNgDsucEd_lVW5t9qCSEbVihwP4zfrQBRgOjp2txfEE6rZA9wAZYtfP6lbQwg_iMVeozB188gqs-cBnXuCI4A
   response:
     status:
-      code: 403
-      message: Forbidden
+      code: 200
+      message: OK
     headers:
       Cache-Control:
       - no-cache
       Pragma:
       - no-cache
+      Transfer-Encoding:
+      - chunked
       Content-Type:
       - application/json; charset=utf-8
       Expires:
       - "-1"
-      X-Ms-Failure-Cause:
-      - gateway
-      X-Ms-Request-Id:
-      - 3d820d68-f2a3-42be-9b7b-8d86b448ea30
-      X-Ms-Correlation-Request-Id:
-      - 3d820d68-f2a3-42be-9b7b-8d86b448ea30
-      X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201553Z:3d820d68-f2a3-42be-9b7b-8d86b448ea30
+      Vary:
+      - Accept-Encoding
+      X-Ms-Ratelimit-Remaining-Resource:
+      - Microsoft.Compute/LowCostGet3Min;3979,Microsoft.Compute/LowCostGet30Min;31935
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
+      X-Ms-Served-By:
+      - fbf429d0-1e4d-4cf8-a77f-c27bdc52db8d_131836464171809609
+      X-Ms-Request-Id:
+      - ae4cdc15-d38f-4760-b0ad-8bc4d3bc3db1
+      Server:
+      - Microsoft-HTTPAPI/2.0
+      - Microsoft-HTTPAPI/2.0
+      X-Ms-Ratelimit-Remaining-Subscription-Reads:
+      - '11976'
+      X-Ms-Correlation-Request-Id:
+      - b84ab717-a6df-4612-a129-cdead69b0b18
+      X-Ms-Routing-Request-Id:
+      - WESTCENTRALUS:20181016T150346Z:b84ab717-a6df-4612-a129-cdead69b0b18
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:15:53 GMT
-      Connection:
-      - close
-      Content-Length:
-      - '395'
+      - Tue, 16 Oct 2018 15:03:46 GMT
     body:
-      encoding: UTF-8
-      string: '{"error":{"code":"AuthorizationFailed","message":"The client ''1c294ded-b630-48b2-b7f3-e9e5d4e8ee77''
-        with object id ''1c294ded-b630-48b2-b7f3-e9e5d4e8ee77'' does not have authorization
-        to perform action ''Microsoft.Compute/virtualMachines/read'' over scope ''/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Compute/virtualMachines/rspec-lb-a''."}}'
+      encoding: ASCII-8BIT
+      string: "{\r\n  \"properties\": {\r\n    \"vmId\": \"eb53c011-3273-4dd0-b47a-bfe1cd9ea086\",\r\n
+        \   \"availabilitySet\": {\r\n      \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-eastus/providers/Microsoft.Compute/availabilitySets/MIQ-AVAILABILITY-SET-LB-EASTUS\"\r\n
+        \   },\r\n    \"hardwareProfile\": {\r\n      \"vmSize\": \"Standard_A0\"\r\n
+        \   },\r\n    \"storageProfile\": {\r\n      \"imageReference\": {\r\n        \"publisher\":
+        \"Canonical\",\r\n        \"offer\": \"UbuntuServer\",\r\n        \"sku\":
+        \"16.04-LTS\",\r\n        \"version\": \"latest\"\r\n      },\r\n      \"osDisk\":
+        {\r\n        \"osType\": \"Linux\",\r\n        \"name\": \"miq-vm-lb-disk1\",\r\n
+        \       \"createOption\": \"FromImage\",\r\n        \"caching\": \"ReadWrite\",\r\n
+        \       \"managedDisk\": {\r\n          \"storageAccountType\": \"Standard_LRS\",\r\n
+        \         \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-eastus/providers/Microsoft.Compute/disks/miq-vm-lb-disk1\"\r\n
+        \       },\r\n        \"diskSizeGB\": 30\r\n      },\r\n      \"dataDisks\":
+        []\r\n    },\r\n    \"osProfile\": {\r\n      \"computerName\": \"miq-vm1-lb-eastus\",\r\n
+        \     \"adminUsername\": \"dberger\",\r\n      \"linuxConfiguration\": {\r\n
+        \       \"disablePasswordAuthentication\": false\r\n      },\r\n      \"secrets\":
+        []\r\n    },\r\n    \"networkProfile\": {\"networkInterfaces\":[{\"id\":\"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic1-lb-eastus\",\"properties\":{\"primary\":true}}]},\r\n
+        \   \"provisioningState\": \"Succeeded\"\r\n  },\r\n  \"type\": \"Microsoft.Compute/virtualMachines\",\r\n
+        \ \"location\": \"eastus\",\r\n  \"tags\": {\r\n    \"owner\": \"cfme\",\r\n
+        \   \"creator\": \"dberger\",\r\n    \"specs\": \"true\"\r\n  },\r\n  \"id\":
+        \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-eastus/providers/Microsoft.Compute/virtualMachines/miq-vm1-lb-eastus\",\r\n
+        \ \"name\": \"miq-vm1-lb-eastus\"\r\n}"
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:15:53 GMT
+  recorded_at: Tue, 16 Oct 2018 15:03:57 GMT
 - request:
     method: get
-    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Compute/virtualMachines/rspec-lb-b?api-version=2017-12-01
+    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-eastus/providers/Microsoft.Compute/virtualMachines/miq-vm2-lb-eastus?api-version=2017-12-01
     body:
       encoding: US-ASCII
       string: ''
@@ -3303,15 +3344,406 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMjUwLCJuYmYiOjE1MzkyMDIyNTAsImV4cCI6MTUzOTIwNjE1MCwiYWlvIjoiNDJSZ1lHaDFFMXpUdDZ5d3pHckgxNGdGTlZFR0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiI4VEJLQ0FFdTdrR0ZacDZRaG5Fb0FBIiwidmVyIjoiMS4wIn0.YCbWEdkQImUmq7afLCqQJXZqhPMypj6fKuAgxDhMNx78Wf4O-jm0ub8cuoIs7G1kQxrD0kTmbC985nQatBI_X2MZbWPkieGmPYpwSDwB8dQUsLgJc0Uu-Vh0P848Ofce9g3r689DQX5Fq00N0W0KeqKeA_9q8dDjTwzzDntxCuK-po2X0xOh7fAKJ1j1xsIyInkPv2l7jXG-_0twDNb29shafE1kMMUAEKC1THa6_ulWnmI05j4OLXJG3t5w4o_dTIkfPpr2KjhB2ApCEiGsF50xs9VFuvrBrnvjaYvK5dsnmC4efQkS-WSuftVsSaBmqzOf8n0zVZOVNUj52hCkhA
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxOTI0LCJuYmYiOjE1Mzk3MDE5MjQsImV4cCI6MTUzOTcwNTgyNCwiYWlvIjoiNDJSZ1lEQVdFcGVyVEZmWmNsbFBqNVU1TCtJZ0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJZbnNTQWxlOTZrMjFtQU1KQmdBUUFRIiwidmVyIjoiMS4wIn0.RztuWtoSOGR6OrATyE0l4y_AciofeDfjiqakOMzEjf0pMe92yiLvjUbQ8O5p6cmDRfqcvo-mVFsgmoFZrfG_8NtBCLhZ-cpPGHrwHtcPyXlqn2O07BVEiGilYJJlWd8w6UmniL76TJ5rpvsgvf20BmCwP8AtZdSzb1DIpT8cekYRrSFnkd1lEkqkcCq1YY70KaLQdhcI9OuVc0BBTxulMVzh88XCuu8i-uFe9bfotIChJ_Qvk8fj9drhE1tbTvBj-KNgDsucEd_lVW5t9qCSEbVihwP4zfrQBRgOjp2txfEE6rZA9wAZYtfP6lbQwg_iMVeozB188gqs-cBnXuCI4A
   response:
     status:
-      code: 403
-      message: Forbidden
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Vary:
+      - Accept-Encoding
+      X-Ms-Ratelimit-Remaining-Resource:
+      - Microsoft.Compute/LowCostGet3Min;3978,Microsoft.Compute/LowCostGet30Min;31934
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Ms-Served-By:
+      - fbf429d0-1e4d-4cf8-a77f-c27bdc52db8d_131836464171809609
+      X-Ms-Request-Id:
+      - 6483d62d-0e41-4272-bb61-734b46891321
+      Server:
+      - Microsoft-HTTPAPI/2.0
+      - Microsoft-HTTPAPI/2.0
+      X-Ms-Ratelimit-Remaining-Subscription-Reads:
+      - '11979'
+      X-Ms-Correlation-Request-Id:
+      - 539a82ef-b4a6-4b61-bdef-be4961fee492
+      X-Ms-Routing-Request-Id:
+      - WESTCENTRALUS:20181016T150347Z:539a82ef-b4a6-4b61-bdef-be4961fee492
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Tue, 16 Oct 2018 15:03:46 GMT
+    body:
+      encoding: ASCII-8BIT
+      string: "{\r\n  \"properties\": {\r\n    \"vmId\": \"42dd1998-f3a1-4cbf-a983-68acc7a0d724\",\r\n
+        \   \"availabilitySet\": {\r\n      \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-eastus/providers/Microsoft.Compute/availabilitySets/MIQ-AVAILABILITY-SET-LB-EASTUS\"\r\n
+        \   },\r\n    \"hardwareProfile\": {\r\n      \"vmSize\": \"Standard_A0\"\r\n
+        \   },\r\n    \"storageProfile\": {\r\n      \"imageReference\": {\r\n        \"publisher\":
+        \"Canonical\",\r\n        \"offer\": \"UbuntuServer\",\r\n        \"sku\":
+        \"16.04-LTS\",\r\n        \"version\": \"latest\"\r\n      },\r\n      \"osDisk\":
+        {\r\n        \"osType\": \"Linux\",\r\n        \"name\": \"miq-vm-lb-disk2\",\r\n
+        \       \"createOption\": \"FromImage\",\r\n        \"caching\": \"ReadWrite\",\r\n
+        \       \"managedDisk\": {\r\n          \"storageAccountType\": \"Standard_LRS\",\r\n
+        \         \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-eastus/providers/Microsoft.Compute/disks/miq-vm-lb-disk2\"\r\n
+        \       },\r\n        \"diskSizeGB\": 30\r\n      },\r\n      \"dataDisks\":
+        []\r\n    },\r\n    \"osProfile\": {\r\n      \"computerName\": \"miq-vm2-lb-eastus\",\r\n
+        \     \"adminUsername\": \"dberger\",\r\n      \"linuxConfiguration\": {\r\n
+        \       \"disablePasswordAuthentication\": false\r\n      },\r\n      \"secrets\":
+        []\r\n    },\r\n    \"networkProfile\": {\"networkInterfaces\":[{\"id\":\"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic2-lb-eastus\",\"properties\":{\"primary\":true}}]},\r\n
+        \   \"provisioningState\": \"Succeeded\"\r\n  },\r\n  \"type\": \"Microsoft.Compute/virtualMachines\",\r\n
+        \ \"location\": \"eastus\",\r\n  \"tags\": {\r\n    \"owner\": \"cfme\",\r\n
+        \   \"creator\": \"dberger\",\r\n    \"specs\": \"true\"\r\n  },\r\n  \"id\":
+        \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-eastus/providers/Microsoft.Compute/virtualMachines/miq-vm2-lb-eastus\",\r\n
+        \ \"name\": \"miq-vm2-lb-eastus\"\r\n}"
+    http_version: 
+  recorded_at: Tue, 16 Oct 2018 15:03:57 GMT
+- request:
+    method: get
+    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic1-lb-eastus?api-version=2018-08-01
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxOTI0LCJuYmYiOjE1Mzk3MDE5MjQsImV4cCI6MTUzOTcwNTgyNCwiYWlvIjoiNDJSZ1lEQVdFcGVyVEZmWmNsbFBqNVU1TCtJZ0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJZbnNTQWxlOTZrMjFtQU1KQmdBUUFRIiwidmVyIjoiMS4wIn0.RztuWtoSOGR6OrATyE0l4y_AciofeDfjiqakOMzEjf0pMe92yiLvjUbQ8O5p6cmDRfqcvo-mVFsgmoFZrfG_8NtBCLhZ-cpPGHrwHtcPyXlqn2O07BVEiGilYJJlWd8w6UmniL76TJ5rpvsgvf20BmCwP8AtZdSzb1DIpT8cekYRrSFnkd1lEkqkcCq1YY70KaLQdhcI9OuVc0BBTxulMVzh88XCuu8i-uFe9bfotIChJ_Qvk8fj9drhE1tbTvBj-KNgDsucEd_lVW5t9qCSEbVihwP4zfrQBRgOjp2txfEE6rZA9wAZYtfP6lbQwg_iMVeozB188gqs-cBnXuCI4A
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Etag:
+      - W/"fe86b7a7-4323-414d-a43f-b002cc0a224f"
+      Vary:
+      - Accept-Encoding
+      X-Ms-Request-Id:
+      - dfd3fe73-a345-4307-a6e2-2dd84f18ae7c
+      X-Ms-Correlation-Request-Id:
+      - 66bc2bd8-9721-48cb-aec6-ad23c693d8e9
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      Server:
+      - Microsoft-HTTPAPI/2.0
+      - Microsoft-HTTPAPI/2.0
+      X-Ms-Ratelimit-Remaining-Subscription-Reads:
+      - '11973'
+      X-Ms-Routing-Request-Id:
+      - WESTCENTRALUS:20181016T150347Z:66bc2bd8-9721-48cb-aec6-ad23c693d8e9
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Tue, 16 Oct 2018 15:03:47 GMT
+    body:
+      encoding: ASCII-8BIT
+      string: "{\r\n  \"name\": \"miq-nic1-lb-eastus\",\r\n  \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic1-lb-eastus\",\r\n
+        \ \"etag\": \"W/\\\"fe86b7a7-4323-414d-a43f-b002cc0a224f\\\"\",\r\n  \"location\":
+        \"eastus\",\r\n  \"properties\": {\r\n    \"provisioningState\": \"Succeeded\",\r\n
+        \   \"resourceGuid\": \"e7d37cd4-5b81-40c0-95ca-cf079b3c1d59\",\r\n    \"ipConfigurations\":
+        [\r\n      {\r\n        \"name\": \"ipconfig1\",\r\n        \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic1-lb-eastus/ipConfigurations/ipconfig1\",\r\n
+        \       \"etag\": \"W/\\\"fe86b7a7-4323-414d-a43f-b002cc0a224f\\\"\",\r\n
+        \       \"type\": \"Microsoft.Network/networkInterfaces/ipConfigurations\",\r\n
+        \       \"properties\": {\r\n          \"provisioningState\": \"Succeeded\",\r\n
+        \         \"privateIPAddress\": \"10.0.0.4\",\r\n          \"privateIPAllocationMethod\":
+        \"Dynamic\",\r\n          \"subnet\": {\r\n            \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/virtualNetworks/miq-vnet-lb-eastus/subnets/miq-subnet-eastus\"\r\n
+        \         },\r\n          \"primary\": true,\r\n          \"privateIPAddressVersion\":
+        \"IPv4\",\r\n          \"loadBalancerBackendAddressPools\": [\r\n            {\r\n
+        \             \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus/backendAddressPools/miq-backend-pool1\"\r\n
+        \           }\r\n          ],\r\n          \"isInUseWithService\": false\r\n
+        \       }\r\n      }\r\n    ],\r\n    \"dnsSettings\": {\r\n      \"dnsServers\":
+        [],\r\n      \"appliedDnsServers\": [],\r\n      \"internalDomainNameSuffix\":
+        \"fbd2r4qiyf0upczcci0bu2nvsc.bx.internal.cloudapp.net\"\r\n    },\r\n    \"macAddress\":
+        \"00-0D-3A-1B-E8-E2\",\r\n    \"enableAcceleratedNetworking\": false,\r\n
+        \   \"enableIPForwarding\": false,\r\n    \"networkSecurityGroup\": {\r\n
+        \     \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkSecurityGroups/miq-nsg-lb-eastus\"\r\n
+        \   },\r\n    \"primary\": true,\r\n    \"virtualMachine\": {\r\n      \"id\":
+        \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-eastus/providers/Microsoft.Compute/virtualMachines/miq-vm1-lb-eastus\"\r\n
+        \   },\r\n    \"hostedWorkloads\": [],\r\n    \"tapConfigurations\": []\r\n
+        \ },\r\n  \"type\": \"Microsoft.Network/networkInterfaces\"\r\n}"
+    http_version: 
+  recorded_at: Tue, 16 Oct 2018 15:03:57 GMT
+- request:
+    method: get
+    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic2-lb-eastus?api-version=2018-08-01
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxOTI0LCJuYmYiOjE1Mzk3MDE5MjQsImV4cCI6MTUzOTcwNTgyNCwiYWlvIjoiNDJSZ1lEQVdFcGVyVEZmWmNsbFBqNVU1TCtJZ0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJZbnNTQWxlOTZrMjFtQU1KQmdBUUFRIiwidmVyIjoiMS4wIn0.RztuWtoSOGR6OrATyE0l4y_AciofeDfjiqakOMzEjf0pMe92yiLvjUbQ8O5p6cmDRfqcvo-mVFsgmoFZrfG_8NtBCLhZ-cpPGHrwHtcPyXlqn2O07BVEiGilYJJlWd8w6UmniL76TJ5rpvsgvf20BmCwP8AtZdSzb1DIpT8cekYRrSFnkd1lEkqkcCq1YY70KaLQdhcI9OuVc0BBTxulMVzh88XCuu8i-uFe9bfotIChJ_Qvk8fj9drhE1tbTvBj-KNgDsucEd_lVW5t9qCSEbVihwP4zfrQBRgOjp2txfEE6rZA9wAZYtfP6lbQwg_iMVeozB188gqs-cBnXuCI4A
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Etag:
+      - W/"45486a36-0ddb-424b-bd37-ba49eeb8231d"
+      Vary:
+      - Accept-Encoding
+      X-Ms-Request-Id:
+      - ccc23f24-cc82-462f-b0b4-a4351e9315e0
+      X-Ms-Correlation-Request-Id:
+      - 3612b657-ade9-435d-81c1-43b001f67476
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      Server:
+      - Microsoft-HTTPAPI/2.0
+      - Microsoft-HTTPAPI/2.0
+      X-Ms-Ratelimit-Remaining-Subscription-Reads:
+      - '11979'
+      X-Ms-Routing-Request-Id:
+      - WESTCENTRALUS:20181016T150347Z:3612b657-ade9-435d-81c1-43b001f67476
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Tue, 16 Oct 2018 15:03:47 GMT
+    body:
+      encoding: ASCII-8BIT
+      string: "{\r\n  \"name\": \"miq-nic2-lb-eastus\",\r\n  \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic2-lb-eastus\",\r\n
+        \ \"etag\": \"W/\\\"45486a36-0ddb-424b-bd37-ba49eeb8231d\\\"\",\r\n  \"location\":
+        \"eastus\",\r\n  \"properties\": {\r\n    \"provisioningState\": \"Succeeded\",\r\n
+        \   \"resourceGuid\": \"b89f9a17-2dcc-469f-a443-73b26d5f1431\",\r\n    \"ipConfigurations\":
+        [\r\n      {\r\n        \"name\": \"ipconfig1\",\r\n        \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic2-lb-eastus/ipConfigurations/ipconfig1\",\r\n
+        \       \"etag\": \"W/\\\"45486a36-0ddb-424b-bd37-ba49eeb8231d\\\"\",\r\n
+        \       \"type\": \"Microsoft.Network/networkInterfaces/ipConfigurations\",\r\n
+        \       \"properties\": {\r\n          \"provisioningState\": \"Succeeded\",\r\n
+        \         \"privateIPAddress\": \"10.0.0.5\",\r\n          \"privateIPAllocationMethod\":
+        \"Dynamic\",\r\n          \"subnet\": {\r\n            \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/virtualNetworks/miq-vnet-lb-eastus/subnets/miq-subnet-eastus\"\r\n
+        \         },\r\n          \"primary\": true,\r\n          \"privateIPAddressVersion\":
+        \"IPv4\",\r\n          \"loadBalancerBackendAddressPools\": [\r\n            {\r\n
+        \             \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/loadBalancers/miq-lb-eastus/backendAddressPools/miq-backend-pool1\"\r\n
+        \           }\r\n          ],\r\n          \"isInUseWithService\": false\r\n
+        \       }\r\n      }\r\n    ],\r\n    \"dnsSettings\": {\r\n      \"dnsServers\":
+        [],\r\n      \"appliedDnsServers\": [],\r\n      \"internalDomainNameSuffix\":
+        \"fbd2r4qiyf0upczcci0bu2nvsc.bx.internal.cloudapp.net\"\r\n    },\r\n    \"macAddress\":
+        \"00-0D-3A-1E-46-A8\",\r\n    \"enableAcceleratedNetworking\": false,\r\n
+        \   \"enableIPForwarding\": false,\r\n    \"networkSecurityGroup\": {\r\n
+        \     \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkSecurityGroups/miq-nsg-lb-eastus\"\r\n
+        \   },\r\n    \"primary\": true,\r\n    \"virtualMachine\": {\r\n      \"id\":
+        \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-eastus/providers/Microsoft.Compute/virtualMachines/miq-vm2-lb-eastus\"\r\n
+        \   },\r\n    \"hostedWorkloads\": [],\r\n    \"tapConfigurations\": []\r\n
+        \ },\r\n  \"type\": \"Microsoft.Network/networkInterfaces\"\r\n}"
+    http_version: 
+  recorded_at: Tue, 16 Oct 2018 15:03:58 GMT
+- request:
+    method: get
+    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-eastus/providers/Microsoft.Compute/virtualMachines/miq-vm1-lb-eastus/instanceView?api-version=2017-12-01
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxOTI0LCJuYmYiOjE1Mzk3MDE5MjQsImV4cCI6MTUzOTcwNTgyNCwiYWlvIjoiNDJSZ1lEQVdFcGVyVEZmWmNsbFBqNVU1TCtJZ0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJZbnNTQWxlOTZrMjFtQU1KQmdBUUFRIiwidmVyIjoiMS4wIn0.RztuWtoSOGR6OrATyE0l4y_AciofeDfjiqakOMzEjf0pMe92yiLvjUbQ8O5p6cmDRfqcvo-mVFsgmoFZrfG_8NtBCLhZ-cpPGHrwHtcPyXlqn2O07BVEiGilYJJlWd8w6UmniL76TJ5rpvsgvf20BmCwP8AtZdSzb1DIpT8cekYRrSFnkd1lEkqkcCq1YY70KaLQdhcI9OuVc0BBTxulMVzh88XCuu8i-uFe9bfotIChJ_Qvk8fj9drhE1tbTvBj-KNgDsucEd_lVW5t9qCSEbVihwP4zfrQBRgOjp2txfEE6rZA9wAZYtfP6lbQwg_iMVeozB188gqs-cBnXuCI4A
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Vary:
+      - Accept-Encoding
+      X-Ms-Ratelimit-Remaining-Resource:
+      - Microsoft.Compute/LowCostGet3Min;3977,Microsoft.Compute/LowCostGet30Min;31933
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Ms-Served-By:
+      - fbf429d0-1e4d-4cf8-a77f-c27bdc52db8d_131836464171809609
+      X-Ms-Request-Id:
+      - e3f7d286-a54a-4042-ba02-8b7e6b2b8d87
+      Server:
+      - Microsoft-HTTPAPI/2.0
+      - Microsoft-HTTPAPI/2.0
+      X-Ms-Ratelimit-Remaining-Subscription-Reads:
+      - '11977'
+      X-Ms-Correlation-Request-Id:
+      - 42e4bf89-03ff-40f3-b4ef-c0d24d49f4d3
+      X-Ms-Routing-Request-Id:
+      - WESTCENTRALUS:20181016T150358Z:42e4bf89-03ff-40f3-b4ef-c0d24d49f4d3
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Tue, 16 Oct 2018 15:03:58 GMT
+    body:
+      encoding: ASCII-8BIT
+      string: "{\r\n  \"platformUpdateDomain\": 0,\r\n  \"platformFaultDomain\": 0,\r\n
+        \ \"computerName\": \"miq-vm1-lb-eastus\",\r\n  \"osName\": \"ubuntu\",\r\n
+        \ \"osVersion\": \"16.04\",\r\n  \"vmAgent\": {\r\n    \"vmAgentVersion\":
+        \"2.2.32.2\",\r\n    \"statuses\": [\r\n      {\r\n        \"code\": \"ProvisioningState/succeeded\",\r\n
+        \       \"level\": \"Info\",\r\n        \"displayStatus\": \"Ready\",\r\n
+        \       \"message\": \"Guest Agent is running\",\r\n        \"time\": \"2018-10-16T15:03:45+00:00\"\r\n
+        \     }\r\n    ],\r\n    \"extensionHandlers\": []\r\n  },\r\n  \"disks\":
+        [\r\n    {\r\n      \"name\": \"miq-vm-lb-disk1\",\r\n      \"statuses\":
+        [\r\n        {\r\n          \"code\": \"ProvisioningState/succeeded\",\r\n
+        \         \"level\": \"Info\",\r\n          \"displayStatus\": \"Provisioning
+        succeeded\",\r\n          \"time\": \"2018-10-09T19:48:08.4569956+00:00\"\r\n
+        \       }\r\n      ]\r\n    }\r\n  ],\r\n  \"statuses\": [\r\n    {\r\n      \"code\":
+        \"ProvisioningState/succeeded\",\r\n      \"level\": \"Info\",\r\n      \"displayStatus\":
+        \"Provisioning succeeded\",\r\n      \"time\": \"2018-10-09T19:49:50.0940491+00:00\"\r\n
+        \   },\r\n    {\r\n      \"code\": \"PowerState/running\",\r\n      \"level\":
+        \"Info\",\r\n      \"displayStatus\": \"VM running\"\r\n    }\r\n  ]\r\n}"
+    http_version: 
+  recorded_at: Tue, 16 Oct 2018 15:04:09 GMT
+- request:
+    method: get
+    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-eastus/providers/Microsoft.Compute/virtualMachines/miq-vm2-lb-eastus/instanceView?api-version=2017-12-01
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxOTI0LCJuYmYiOjE1Mzk3MDE5MjQsImV4cCI6MTUzOTcwNTgyNCwiYWlvIjoiNDJSZ1lEQVdFcGVyVEZmWmNsbFBqNVU1TCtJZ0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJZbnNTQWxlOTZrMjFtQU1KQmdBUUFRIiwidmVyIjoiMS4wIn0.RztuWtoSOGR6OrATyE0l4y_AciofeDfjiqakOMzEjf0pMe92yiLvjUbQ8O5p6cmDRfqcvo-mVFsgmoFZrfG_8NtBCLhZ-cpPGHrwHtcPyXlqn2O07BVEiGilYJJlWd8w6UmniL76TJ5rpvsgvf20BmCwP8AtZdSzb1DIpT8cekYRrSFnkd1lEkqkcCq1YY70KaLQdhcI9OuVc0BBTxulMVzh88XCuu8i-uFe9bfotIChJ_Qvk8fj9drhE1tbTvBj-KNgDsucEd_lVW5t9qCSEbVihwP4zfrQBRgOjp2txfEE6rZA9wAZYtfP6lbQwg_iMVeozB188gqs-cBnXuCI4A
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Vary:
+      - Accept-Encoding
+      X-Ms-Ratelimit-Remaining-Resource:
+      - Microsoft.Compute/LowCostGet3Min;3976,Microsoft.Compute/LowCostGet30Min;31932
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Ms-Served-By:
+      - fbf429d0-1e4d-4cf8-a77f-c27bdc52db8d_131836464171809609
+      X-Ms-Request-Id:
+      - dd49392d-9582-4fe0-b215-2d739668ce1c
+      Server:
+      - Microsoft-HTTPAPI/2.0
+      - Microsoft-HTTPAPI/2.0
+      X-Ms-Ratelimit-Remaining-Subscription-Reads:
+      - '11976'
+      X-Ms-Correlation-Request-Id:
+      - 6385fa0c-23b0-4532-8b24-574fb191853f
+      X-Ms-Routing-Request-Id:
+      - WESTCENTRALUS:20181016T150359Z:6385fa0c-23b0-4532-8b24-574fb191853f
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Tue, 16 Oct 2018 15:03:58 GMT
+    body:
+      encoding: ASCII-8BIT
+      string: "{\r\n  \"platformUpdateDomain\": 1,\r\n  \"platformFaultDomain\": 1,\r\n
+        \ \"computerName\": \"miq-vm2-lb-eastus\",\r\n  \"osName\": \"ubuntu\",\r\n
+        \ \"osVersion\": \"16.04\",\r\n  \"vmAgent\": {\r\n    \"vmAgentVersion\":
+        \"2.2.32.2\",\r\n    \"statuses\": [\r\n      {\r\n        \"code\": \"ProvisioningState/succeeded\",\r\n
+        \       \"level\": \"Info\",\r\n        \"displayStatus\": \"Ready\",\r\n
+        \       \"message\": \"Guest Agent is running\",\r\n        \"time\": \"2018-10-16T15:03:57+00:00\"\r\n
+        \     }\r\n    ],\r\n    \"extensionHandlers\": []\r\n  },\r\n  \"disks\":
+        [\r\n    {\r\n      \"name\": \"miq-vm-lb-disk2\",\r\n      \"statuses\":
+        [\r\n        {\r\n          \"code\": \"ProvisioningState/succeeded\",\r\n
+        \         \"level\": \"Info\",\r\n          \"displayStatus\": \"Provisioning
+        succeeded\",\r\n          \"time\": \"2018-10-09T19:50:48.5944927+00:00\"\r\n
+        \       }\r\n      ]\r\n    }\r\n  ],\r\n  \"statuses\": [\r\n    {\r\n      \"code\":
+        \"ProvisioningState/succeeded\",\r\n      \"level\": \"Info\",\r\n      \"displayStatus\":
+        \"Provisioning succeeded\",\r\n      \"time\": \"2018-10-09T19:52:20.891538+00:00\"\r\n
+        \   },\r\n    {\r\n      \"code\": \"PowerState/running\",\r\n      \"level\":
+        \"Info\",\r\n      \"displayStatus\": \"VM running\"\r\n    }\r\n  ]\r\n}"
+    http_version: 
+  recorded_at: Tue, 16 Oct 2018 15:04:09 GMT
+- request:
+    method: get
+    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourcegroups/miq-vms-eastus?api-version=2017-08-01
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxOTI0LCJuYmYiOjE1Mzk3MDE5MjQsImV4cCI6MTUzOTcwNTgyNCwiYWlvIjoiNDJSZ1lEQVdFcGVyVEZmWmNsbFBqNVU1TCtJZ0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJZbnNTQWxlOTZrMjFtQU1KQmdBUUFRIiwidmVyIjoiMS4wIn0.RztuWtoSOGR6OrATyE0l4y_AciofeDfjiqakOMzEjf0pMe92yiLvjUbQ8O5p6cmDRfqcvo-mVFsgmoFZrfG_8NtBCLhZ-cpPGHrwHtcPyXlqn2O07BVEiGilYJJlWd8w6UmniL76TJ5rpvsgvf20BmCwP8AtZdSzb1DIpT8cekYRrSFnkd1lEkqkcCq1YY70KaLQdhcI9OuVc0BBTxulMVzh88XCuu8i-uFe9bfotIChJ_Qvk8fj9drhE1tbTvBj-KNgDsucEd_lVW5t9qCSEbVihwP4zfrQBRgOjp2txfEE6rZA9wAZYtfP6lbQwg_iMVeozB188gqs-cBnXuCI4A
+  response:
+    status:
+      code: 200
+      message: OK
     headers:
       Cache-Control:
       - no-cache
@@ -3321,29 +3753,1039 @@ http_interactions:
       - application/json; charset=utf-8
       Expires:
       - "-1"
-      X-Ms-Failure-Cause:
-      - gateway
+      Vary:
+      - Accept-Encoding
+      X-Ms-Ratelimit-Remaining-Subscription-Reads:
+      - '11975'
       X-Ms-Request-Id:
-      - 3b6a26e3-0a3a-45f8-875a-e02664b86235
+      - ac440b83-c1ab-4276-8e7f-edceeae468bf
       X-Ms-Correlation-Request-Id:
-      - 3b6a26e3-0a3a-45f8-875a-e02664b86235
+      - ac440b83-c1ab-4276-8e7f-edceeae468bf
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201553Z:3b6a26e3-0a3a-45f8-875a-e02664b86235
+      - WESTCENTRALUS:20181016T150359Z:ac440b83-c1ab-4276-8e7f-edceeae468bf
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:15:53 GMT
-      Connection:
-      - close
+      - Tue, 16 Oct 2018 15:03:59 GMT
       Content-Length:
-      - '395'
+      - '240'
     body:
-      encoding: UTF-8
-      string: '{"error":{"code":"AuthorizationFailed","message":"The client ''1c294ded-b630-48b2-b7f3-e9e5d4e8ee77''
-        with object id ''1c294ded-b630-48b2-b7f3-e9e5d4e8ee77'' does not have authorization
-        to perform action ''Microsoft.Compute/virtualMachines/read'' over scope ''/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Compute/virtualMachines/rspec-lb-b''."}}'
+      encoding: ASCII-8BIT
+      string: '{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-eastus","name":"miq-vms-eastus","location":"eastus","tags":{"owner":"cfme","creator":"dberger","specs":"true"},"properties":{"provisioningState":"Succeeded"}}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:15:54 GMT
+  recorded_at: Tue, 16 Oct 2018 15:04:10 GMT
+- request:
+    method: get
+    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.Compute/locations/eastus/vmSizes?api-version=2018-10-01
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxOTI0LCJuYmYiOjE1Mzk3MDE5MjQsImV4cCI6MTUzOTcwNTgyNCwiYWlvIjoiNDJSZ1lEQVdFcGVyVEZmWmNsbFBqNVU1TCtJZ0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJZbnNTQWxlOTZrMjFtQU1KQmdBUUFRIiwidmVyIjoiMS4wIn0.RztuWtoSOGR6OrATyE0l4y_AciofeDfjiqakOMzEjf0pMe92yiLvjUbQ8O5p6cmDRfqcvo-mVFsgmoFZrfG_8NtBCLhZ-cpPGHrwHtcPyXlqn2O07BVEiGilYJJlWd8w6UmniL76TJ5rpvsgvf20BmCwP8AtZdSzb1DIpT8cekYRrSFnkd1lEkqkcCq1YY70KaLQdhcI9OuVc0BBTxulMVzh88XCuu8i-uFe9bfotIChJ_Qvk8fj9drhE1tbTvBj-KNgDsucEd_lVW5t9qCSEbVihwP4zfrQBRgOjp2txfEE6rZA9wAZYtfP6lbQwg_iMVeozB188gqs-cBnXuCI4A
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Vary:
+      - Accept-Encoding
+      X-Ms-Ratelimit-Remaining-Resource:
+      - Microsoft.Compute/GetSubscriptionInfo3Min;415
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Ms-Served-By:
+      - fbf429d0-1e4d-4cf8-a77f-c27bdc52db8d_131836464171809609
+      X-Ms-Request-Id:
+      - d8b2350d-da8d-4913-b8d7-75c037a4fbf2
+      Server:
+      - Microsoft-HTTPAPI/2.0
+      - Microsoft-HTTPAPI/2.0
+      X-Ms-Ratelimit-Remaining-Subscription-Reads:
+      - '11978'
+      X-Ms-Correlation-Request-Id:
+      - 54a6e2ea-91c1-4ead-9229-a4fd50bc9d43
+      X-Ms-Routing-Request-Id:
+      - WESTCENTRALUS:20181016T150359Z:54a6e2ea-91c1-4ead-9229-a4fd50bc9d43
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Tue, 16 Oct 2018 15:03:59 GMT
+    body:
+      encoding: ASCII-8BIT
+      string: "{\r\n  \"value\": [\r\n    {\r\n      \"name\": \"Standard_B1ms\",\r\n
+        \     \"numberOfCores\": 1,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        4096,\r\n      \"memoryInMB\": 2048,\r\n      \"maxDataDiskCount\": 2\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_B1s\",\r\n      \"numberOfCores\":
+        1,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        2048,\r\n      \"memoryInMB\": 1024,\r\n      \"maxDataDiskCount\": 2\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_B2ms\",\r\n      \"numberOfCores\":
+        2,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        16384,\r\n      \"memoryInMB\": 8192,\r\n      \"maxDataDiskCount\": 4\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_B2s\",\r\n      \"numberOfCores\":
+        2,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        8192,\r\n      \"memoryInMB\": 4096,\r\n      \"maxDataDiskCount\": 4\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_B4ms\",\r\n      \"numberOfCores\":
+        4,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        32768,\r\n      \"memoryInMB\": 16384,\r\n      \"maxDataDiskCount\": 8\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_B8ms\",\r\n      \"numberOfCores\":
+        8,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        65536,\r\n      \"memoryInMB\": 32768,\r\n      \"maxDataDiskCount\": 16\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_DS1_v2\",\r\n      \"numberOfCores\":
+        1,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        7168,\r\n      \"memoryInMB\": 3584,\r\n      \"maxDataDiskCount\": 4\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_DS2_v2\",\r\n      \"numberOfCores\":
+        2,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        14336,\r\n      \"memoryInMB\": 7168,\r\n      \"maxDataDiskCount\": 8\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_DS3_v2\",\r\n      \"numberOfCores\":
+        4,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        28672,\r\n      \"memoryInMB\": 14336,\r\n      \"maxDataDiskCount\": 16\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_DS4_v2\",\r\n      \"numberOfCores\":
+        8,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        57344,\r\n      \"memoryInMB\": 28672,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_DS5_v2\",\r\n      \"numberOfCores\":
+        16,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        114688,\r\n      \"memoryInMB\": 57344,\r\n      \"maxDataDiskCount\": 64\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_DS11-1_v2\",\r\n      \"numberOfCores\":
+        2,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        28672,\r\n      \"memoryInMB\": 14336,\r\n      \"maxDataDiskCount\": 8\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_DS11_v2\",\r\n      \"numberOfCores\":
+        2,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        28672,\r\n      \"memoryInMB\": 14336,\r\n      \"maxDataDiskCount\": 8\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_DS12-1_v2\",\r\n      \"numberOfCores\":
+        4,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        57344,\r\n      \"memoryInMB\": 28672,\r\n      \"maxDataDiskCount\": 16\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_DS12-2_v2\",\r\n      \"numberOfCores\":
+        4,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        57344,\r\n      \"memoryInMB\": 28672,\r\n      \"maxDataDiskCount\": 16\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_DS12_v2\",\r\n      \"numberOfCores\":
+        4,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        57344,\r\n      \"memoryInMB\": 28672,\r\n      \"maxDataDiskCount\": 16\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_DS13-2_v2\",\r\n      \"numberOfCores\":
+        8,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        114688,\r\n      \"memoryInMB\": 57344,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_DS13-4_v2\",\r\n      \"numberOfCores\":
+        8,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        114688,\r\n      \"memoryInMB\": 57344,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_DS13_v2\",\r\n      \"numberOfCores\":
+        8,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        114688,\r\n      \"memoryInMB\": 57344,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_DS14-4_v2\",\r\n      \"numberOfCores\":
+        16,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        229376,\r\n      \"memoryInMB\": 114688,\r\n      \"maxDataDiskCount\": 64\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_DS14-8_v2\",\r\n      \"numberOfCores\":
+        16,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        229376,\r\n      \"memoryInMB\": 114688,\r\n      \"maxDataDiskCount\": 64\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_DS14_v2\",\r\n      \"numberOfCores\":
+        16,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        229376,\r\n      \"memoryInMB\": 114688,\r\n      \"maxDataDiskCount\": 64\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_DS15_v2\",\r\n      \"numberOfCores\":
+        20,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        286720,\r\n      \"memoryInMB\": 143360,\r\n      \"maxDataDiskCount\": 64\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_DS2_v2_Promo\",\r\n      \"numberOfCores\":
+        2,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        14336,\r\n      \"memoryInMB\": 7168,\r\n      \"maxDataDiskCount\": 8\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_DS3_v2_Promo\",\r\n      \"numberOfCores\":
+        4,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        28672,\r\n      \"memoryInMB\": 14336,\r\n      \"maxDataDiskCount\": 16\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_DS4_v2_Promo\",\r\n      \"numberOfCores\":
+        8,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        57344,\r\n      \"memoryInMB\": 28672,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_DS5_v2_Promo\",\r\n      \"numberOfCores\":
+        16,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        114688,\r\n      \"memoryInMB\": 57344,\r\n      \"maxDataDiskCount\": 64\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_DS11_v2_Promo\",\r\n      \"numberOfCores\":
+        2,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        28672,\r\n      \"memoryInMB\": 14336,\r\n      \"maxDataDiskCount\": 8\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_DS12_v2_Promo\",\r\n      \"numberOfCores\":
+        4,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        57344,\r\n      \"memoryInMB\": 28672,\r\n      \"maxDataDiskCount\": 16\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_DS13_v2_Promo\",\r\n      \"numberOfCores\":
+        8,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        114688,\r\n      \"memoryInMB\": 57344,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_DS14_v2_Promo\",\r\n      \"numberOfCores\":
+        16,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        229376,\r\n      \"memoryInMB\": 114688,\r\n      \"maxDataDiskCount\": 64\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_F1s\",\r\n      \"numberOfCores\":
+        1,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        4096,\r\n      \"memoryInMB\": 2048,\r\n      \"maxDataDiskCount\": 4\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_F2s\",\r\n      \"numberOfCores\":
+        2,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        8192,\r\n      \"memoryInMB\": 4096,\r\n      \"maxDataDiskCount\": 8\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_F4s\",\r\n      \"numberOfCores\":
+        4,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        16384,\r\n      \"memoryInMB\": 8192,\r\n      \"maxDataDiskCount\": 16\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_F8s\",\r\n      \"numberOfCores\":
+        8,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        32768,\r\n      \"memoryInMB\": 16384,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_F16s\",\r\n      \"numberOfCores\":
+        16,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        65536,\r\n      \"memoryInMB\": 32768,\r\n      \"maxDataDiskCount\": 64\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_D2s_v3\",\r\n      \"numberOfCores\":
+        2,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        16384,\r\n      \"memoryInMB\": 8192,\r\n      \"maxDataDiskCount\": 4\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_D4s_v3\",\r\n      \"numberOfCores\":
+        4,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        32768,\r\n      \"memoryInMB\": 16384,\r\n      \"maxDataDiskCount\": 8\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_D8s_v3\",\r\n      \"numberOfCores\":
+        8,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        65536,\r\n      \"memoryInMB\": 32768,\r\n      \"maxDataDiskCount\": 16\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_D16s_v3\",\r\n      \"numberOfCores\":
+        16,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        131072,\r\n      \"memoryInMB\": 65536,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_D32s_v3\",\r\n      \"numberOfCores\":
+        32,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        262144,\r\n      \"memoryInMB\": 131072,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_A0\",\r\n      \"numberOfCores\":
+        1,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        20480,\r\n      \"memoryInMB\": 768,\r\n      \"maxDataDiskCount\": 1\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_A1\",\r\n      \"numberOfCores\":
+        1,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        71680,\r\n      \"memoryInMB\": 1792,\r\n      \"maxDataDiskCount\": 2\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_A2\",\r\n      \"numberOfCores\":
+        2,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        138240,\r\n      \"memoryInMB\": 3584,\r\n      \"maxDataDiskCount\": 4\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_A3\",\r\n      \"numberOfCores\":
+        4,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        291840,\r\n      \"memoryInMB\": 7168,\r\n      \"maxDataDiskCount\": 8\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_A5\",\r\n      \"numberOfCores\":
+        2,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        138240,\r\n      \"memoryInMB\": 14336,\r\n      \"maxDataDiskCount\": 4\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_A4\",\r\n      \"numberOfCores\":
+        8,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        619520,\r\n      \"memoryInMB\": 14336,\r\n      \"maxDataDiskCount\": 16\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_A6\",\r\n      \"numberOfCores\":
+        4,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        291840,\r\n      \"memoryInMB\": 28672,\r\n      \"maxDataDiskCount\": 8\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_A7\",\r\n      \"numberOfCores\":
+        8,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        619520,\r\n      \"memoryInMB\": 57344,\r\n      \"maxDataDiskCount\": 16\r\n
+        \   },\r\n    {\r\n      \"name\": \"Basic_A0\",\r\n      \"numberOfCores\":
+        1,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        20480,\r\n      \"memoryInMB\": 768,\r\n      \"maxDataDiskCount\": 1\r\n
+        \   },\r\n    {\r\n      \"name\": \"Basic_A1\",\r\n      \"numberOfCores\":
+        1,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        40960,\r\n      \"memoryInMB\": 1792,\r\n      \"maxDataDiskCount\": 2\r\n
+        \   },\r\n    {\r\n      \"name\": \"Basic_A2\",\r\n      \"numberOfCores\":
+        2,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        61440,\r\n      \"memoryInMB\": 3584,\r\n      \"maxDataDiskCount\": 4\r\n
+        \   },\r\n    {\r\n      \"name\": \"Basic_A3\",\r\n      \"numberOfCores\":
+        4,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        122880,\r\n      \"memoryInMB\": 7168,\r\n      \"maxDataDiskCount\": 8\r\n
+        \   },\r\n    {\r\n      \"name\": \"Basic_A4\",\r\n      \"numberOfCores\":
+        8,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        245760,\r\n      \"memoryInMB\": 14336,\r\n      \"maxDataDiskCount\": 16\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_D1_v2\",\r\n      \"numberOfCores\":
+        1,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        51200,\r\n      \"memoryInMB\": 3584,\r\n      \"maxDataDiskCount\": 4\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_D2_v2\",\r\n      \"numberOfCores\":
+        2,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        102400,\r\n      \"memoryInMB\": 7168,\r\n      \"maxDataDiskCount\": 8\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_D3_v2\",\r\n      \"numberOfCores\":
+        4,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        204800,\r\n      \"memoryInMB\": 14336,\r\n      \"maxDataDiskCount\": 16\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_D4_v2\",\r\n      \"numberOfCores\":
+        8,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        409600,\r\n      \"memoryInMB\": 28672,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_D5_v2\",\r\n      \"numberOfCores\":
+        16,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        819200,\r\n      \"memoryInMB\": 57344,\r\n      \"maxDataDiskCount\": 64\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_D11_v2\",\r\n      \"numberOfCores\":
+        2,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        102400,\r\n      \"memoryInMB\": 14336,\r\n      \"maxDataDiskCount\": 8\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_D12_v2\",\r\n      \"numberOfCores\":
+        4,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        204800,\r\n      \"memoryInMB\": 28672,\r\n      \"maxDataDiskCount\": 16\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_D13_v2\",\r\n      \"numberOfCores\":
+        8,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        409600,\r\n      \"memoryInMB\": 57344,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_D14_v2\",\r\n      \"numberOfCores\":
+        16,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        819200,\r\n      \"memoryInMB\": 114688,\r\n      \"maxDataDiskCount\": 64\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_D15_v2\",\r\n      \"numberOfCores\":
+        20,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        286720,\r\n      \"memoryInMB\": 143360,\r\n      \"maxDataDiskCount\": 64\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_D2_v2_Promo\",\r\n      \"numberOfCores\":
+        2,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        102400,\r\n      \"memoryInMB\": 7168,\r\n      \"maxDataDiskCount\": 8\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_D3_v2_Promo\",\r\n      \"numberOfCores\":
+        4,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        204800,\r\n      \"memoryInMB\": 14336,\r\n      \"maxDataDiskCount\": 16\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_D4_v2_Promo\",\r\n      \"numberOfCores\":
+        8,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        409600,\r\n      \"memoryInMB\": 28672,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_D5_v2_Promo\",\r\n      \"numberOfCores\":
+        16,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        819200,\r\n      \"memoryInMB\": 57344,\r\n      \"maxDataDiskCount\": 64\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_D11_v2_Promo\",\r\n      \"numberOfCores\":
+        2,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        102400,\r\n      \"memoryInMB\": 14336,\r\n      \"maxDataDiskCount\": 8\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_D12_v2_Promo\",\r\n      \"numberOfCores\":
+        4,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        204800,\r\n      \"memoryInMB\": 28672,\r\n      \"maxDataDiskCount\": 16\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_D13_v2_Promo\",\r\n      \"numberOfCores\":
+        8,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        409600,\r\n      \"memoryInMB\": 57344,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_D14_v2_Promo\",\r\n      \"numberOfCores\":
+        16,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        819200,\r\n      \"memoryInMB\": 114688,\r\n      \"maxDataDiskCount\": 64\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_F1\",\r\n      \"numberOfCores\":
+        1,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        16384,\r\n      \"memoryInMB\": 2048,\r\n      \"maxDataDiskCount\": 4\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_F2\",\r\n      \"numberOfCores\":
+        2,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        32768,\r\n      \"memoryInMB\": 4096,\r\n      \"maxDataDiskCount\": 8\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_F4\",\r\n      \"numberOfCores\":
+        4,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        65536,\r\n      \"memoryInMB\": 8192,\r\n      \"maxDataDiskCount\": 16\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_F8\",\r\n      \"numberOfCores\":
+        8,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        131072,\r\n      \"memoryInMB\": 16384,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_F16\",\r\n      \"numberOfCores\":
+        16,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        262144,\r\n      \"memoryInMB\": 32768,\r\n      \"maxDataDiskCount\": 64\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_A1_v2\",\r\n      \"numberOfCores\":
+        1,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        10240,\r\n      \"memoryInMB\": 2048,\r\n      \"maxDataDiskCount\": 2\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_A2m_v2\",\r\n      \"numberOfCores\":
+        2,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        20480,\r\n      \"memoryInMB\": 16384,\r\n      \"maxDataDiskCount\": 4\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_A2_v2\",\r\n      \"numberOfCores\":
+        2,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        20480,\r\n      \"memoryInMB\": 4096,\r\n      \"maxDataDiskCount\": 4\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_A4m_v2\",\r\n      \"numberOfCores\":
+        4,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        40960,\r\n      \"memoryInMB\": 32768,\r\n      \"maxDataDiskCount\": 8\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_A4_v2\",\r\n      \"numberOfCores\":
+        4,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        40960,\r\n      \"memoryInMB\": 8192,\r\n      \"maxDataDiskCount\": 8\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_A8m_v2\",\r\n      \"numberOfCores\":
+        8,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        81920,\r\n      \"memoryInMB\": 65536,\r\n      \"maxDataDiskCount\": 16\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_A8_v2\",\r\n      \"numberOfCores\":
+        8,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        81920,\r\n      \"memoryInMB\": 16384,\r\n      \"maxDataDiskCount\": 16\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_D2_v3\",\r\n      \"numberOfCores\":
+        2,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        51200,\r\n      \"memoryInMB\": 8192,\r\n      \"maxDataDiskCount\": 4\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_D4_v3\",\r\n      \"numberOfCores\":
+        4,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        102400,\r\n      \"memoryInMB\": 16384,\r\n      \"maxDataDiskCount\": 8\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_D8_v3\",\r\n      \"numberOfCores\":
+        8,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        204800,\r\n      \"memoryInMB\": 32768,\r\n      \"maxDataDiskCount\": 16\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_D16_v3\",\r\n      \"numberOfCores\":
+        16,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        409600,\r\n      \"memoryInMB\": 65636,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_D32_v3\",\r\n      \"numberOfCores\":
+        32,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        819200,\r\n      \"memoryInMB\": 131072,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_D64_v3\",\r\n      \"numberOfCores\":
+        64,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        1638400,\r\n      \"memoryInMB\": 262144,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_D64s_v3\",\r\n      \"numberOfCores\":
+        64,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        524288,\r\n      \"memoryInMB\": 262144,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_E2_v3\",\r\n      \"numberOfCores\":
+        2,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        51200,\r\n      \"memoryInMB\": 16384,\r\n      \"maxDataDiskCount\": 4\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_E4_v3\",\r\n      \"numberOfCores\":
+        4,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        102400,\r\n      \"memoryInMB\": 32768,\r\n      \"maxDataDiskCount\": 8\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_E8_v3\",\r\n      \"numberOfCores\":
+        8,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        204800,\r\n      \"memoryInMB\": 65536,\r\n      \"maxDataDiskCount\": 16\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_E16_v3\",\r\n      \"numberOfCores\":
+        16,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        409600,\r\n      \"memoryInMB\": 131072,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_E20_v3\",\r\n      \"numberOfCores\":
+        20,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        512000,\r\n      \"memoryInMB\": 163840,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_E32_v3\",\r\n      \"numberOfCores\":
+        32,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        819200,\r\n      \"memoryInMB\": 262144,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_E64i_v3\",\r\n      \"numberOfCores\":
+        64,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        1638400,\r\n      \"memoryInMB\": 442368,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_E64_v3\",\r\n      \"numberOfCores\":
+        64,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        1638400,\r\n      \"memoryInMB\": 442368,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_E2s_v3\",\r\n      \"numberOfCores\":
+        2,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        32768,\r\n      \"memoryInMB\": 16384,\r\n      \"maxDataDiskCount\": 4\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_E4-2s_v3\",\r\n      \"numberOfCores\":
+        4,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        65536,\r\n      \"memoryInMB\": 32768,\r\n      \"maxDataDiskCount\": 8\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_E4s_v3\",\r\n      \"numberOfCores\":
+        4,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        65536,\r\n      \"memoryInMB\": 32768,\r\n      \"maxDataDiskCount\": 8\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_E8-2s_v3\",\r\n      \"numberOfCores\":
+        8,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        131072,\r\n      \"memoryInMB\": 65536,\r\n      \"maxDataDiskCount\": 16\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_E8-4s_v3\",\r\n      \"numberOfCores\":
+        8,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        131072,\r\n      \"memoryInMB\": 65536,\r\n      \"maxDataDiskCount\": 16\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_E8s_v3\",\r\n      \"numberOfCores\":
+        8,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        131072,\r\n      \"memoryInMB\": 65536,\r\n      \"maxDataDiskCount\": 16\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_E16-4s_v3\",\r\n      \"numberOfCores\":
+        16,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        262144,\r\n      \"memoryInMB\": 131072,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_E16-8s_v3\",\r\n      \"numberOfCores\":
+        16,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        262144,\r\n      \"memoryInMB\": 131072,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_E16s_v3\",\r\n      \"numberOfCores\":
+        16,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        262144,\r\n      \"memoryInMB\": 131072,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_E20s_v3\",\r\n      \"numberOfCores\":
+        20,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        327680,\r\n      \"memoryInMB\": 163840,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_E32-8s_v3\",\r\n      \"numberOfCores\":
+        32,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        524288,\r\n      \"memoryInMB\": 262144,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_E32-16s_v3\",\r\n      \"numberOfCores\":
+        32,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        524288,\r\n      \"memoryInMB\": 262144,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_E32s_v3\",\r\n      \"numberOfCores\":
+        32,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        524288,\r\n      \"memoryInMB\": 262144,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_E64-16s_v3\",\r\n      \"numberOfCores\":
+        64,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        884736,\r\n      \"memoryInMB\": 442368,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_E64-32s_v3\",\r\n      \"numberOfCores\":
+        64,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        884736,\r\n      \"memoryInMB\": 442368,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_E64is_v3\",\r\n      \"numberOfCores\":
+        64,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        884736,\r\n      \"memoryInMB\": 442368,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_E64s_v3\",\r\n      \"numberOfCores\":
+        64,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        884736,\r\n      \"memoryInMB\": 442368,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_H8\",\r\n      \"numberOfCores\":
+        8,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        1024000,\r\n      \"memoryInMB\": 57344,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_H16\",\r\n      \"numberOfCores\":
+        16,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        2048000,\r\n      \"memoryInMB\": 114688,\r\n      \"maxDataDiskCount\": 64\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_H8m\",\r\n      \"numberOfCores\":
+        8,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        1024000,\r\n      \"memoryInMB\": 114688,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_H16m\",\r\n      \"numberOfCores\":
+        16,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        2048000,\r\n      \"memoryInMB\": 229376,\r\n      \"maxDataDiskCount\": 64\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_H16r\",\r\n      \"numberOfCores\":
+        16,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        2048000,\r\n      \"memoryInMB\": 114688,\r\n      \"maxDataDiskCount\": 64\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_H16mr\",\r\n      \"numberOfCores\":
+        16,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        2048000,\r\n      \"memoryInMB\": 229376,\r\n      \"maxDataDiskCount\": 64\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_D1\",\r\n      \"numberOfCores\":
+        1,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        51200,\r\n      \"memoryInMB\": 3584,\r\n      \"maxDataDiskCount\": 4\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_D2\",\r\n      \"numberOfCores\":
+        2,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        102400,\r\n      \"memoryInMB\": 7168,\r\n      \"maxDataDiskCount\": 8\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_D3\",\r\n      \"numberOfCores\":
+        4,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        204800,\r\n      \"memoryInMB\": 14336,\r\n      \"maxDataDiskCount\": 16\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_D4\",\r\n      \"numberOfCores\":
+        8,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        409600,\r\n      \"memoryInMB\": 28672,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_D11\",\r\n      \"numberOfCores\":
+        2,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        102400,\r\n      \"memoryInMB\": 14336,\r\n      \"maxDataDiskCount\": 8\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_D12\",\r\n      \"numberOfCores\":
+        4,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        204800,\r\n      \"memoryInMB\": 28672,\r\n      \"maxDataDiskCount\": 16\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_D13\",\r\n      \"numberOfCores\":
+        8,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        409600,\r\n      \"memoryInMB\": 57344,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_D14\",\r\n      \"numberOfCores\":
+        16,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        819200,\r\n      \"memoryInMB\": 114688,\r\n      \"maxDataDiskCount\": 64\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_NV6\",\r\n      \"numberOfCores\":
+        6,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        389120,\r\n      \"memoryInMB\": 57344,\r\n      \"maxDataDiskCount\": 24\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_NV12\",\r\n      \"numberOfCores\":
+        12,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        696320,\r\n      \"memoryInMB\": 114688,\r\n      \"maxDataDiskCount\": 48\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_NV24\",\r\n      \"numberOfCores\":
+        24,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        1474560,\r\n      \"memoryInMB\": 229376,\r\n      \"maxDataDiskCount\": 64\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_NC6s_v2\",\r\n      \"numberOfCores\":
+        6,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        344064,\r\n      \"memoryInMB\": 114688,\r\n      \"maxDataDiskCount\": 12\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_NC12s_v2\",\r\n      \"numberOfCores\":
+        12,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        688128,\r\n      \"memoryInMB\": 229376,\r\n      \"maxDataDiskCount\": 24\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_NC24rs_v2\",\r\n      \"numberOfCores\":
+        24,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        1376256,\r\n      \"memoryInMB\": 458752,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_NC24s_v2\",\r\n      \"numberOfCores\":
+        24,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        1376256,\r\n      \"memoryInMB\": 458752,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_NC6\",\r\n      \"numberOfCores\":
+        6,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        389120,\r\n      \"memoryInMB\": 57344,\r\n      \"maxDataDiskCount\": 24\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_NC12\",\r\n      \"numberOfCores\":
+        12,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        696320,\r\n      \"memoryInMB\": 114688,\r\n      \"maxDataDiskCount\": 48\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_NC24\",\r\n      \"numberOfCores\":
+        24,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        1474560,\r\n      \"memoryInMB\": 229376,\r\n      \"maxDataDiskCount\": 64\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_NC24r\",\r\n      \"numberOfCores\":
+        24,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        1474560,\r\n      \"memoryInMB\": 229376,\r\n      \"maxDataDiskCount\": 64\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_F2s_v2\",\r\n      \"numberOfCores\":
+        2,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        16384,\r\n      \"memoryInMB\": 4096,\r\n      \"maxDataDiskCount\": 4\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_F4s_v2\",\r\n      \"numberOfCores\":
+        4,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        32768,\r\n      \"memoryInMB\": 8192,\r\n      \"maxDataDiskCount\": 8\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_F8s_v2\",\r\n      \"numberOfCores\":
+        8,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        65536,\r\n      \"memoryInMB\": 16384,\r\n      \"maxDataDiskCount\": 16\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_F16s_v2\",\r\n      \"numberOfCores\":
+        16,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        131072,\r\n      \"memoryInMB\": 32768,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_F32s_v2\",\r\n      \"numberOfCores\":
+        32,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        262144,\r\n      \"memoryInMB\": 65536,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_F64s_v2\",\r\n      \"numberOfCores\":
+        64,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        524288,\r\n      \"memoryInMB\": 131072,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_F72s_v2\",\r\n      \"numberOfCores\":
+        72,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        589824,\r\n      \"memoryInMB\": 147456,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_DS1\",\r\n      \"numberOfCores\":
+        1,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        7168,\r\n      \"memoryInMB\": 3584,\r\n      \"maxDataDiskCount\": 4\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_DS2\",\r\n      \"numberOfCores\":
+        2,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        14336,\r\n      \"memoryInMB\": 7168,\r\n      \"maxDataDiskCount\": 8\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_DS3\",\r\n      \"numberOfCores\":
+        4,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        28672,\r\n      \"memoryInMB\": 14336,\r\n      \"maxDataDiskCount\": 16\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_DS4\",\r\n      \"numberOfCores\":
+        8,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        57344,\r\n      \"memoryInMB\": 28672,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_DS11\",\r\n      \"numberOfCores\":
+        2,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        28672,\r\n      \"memoryInMB\": 14336,\r\n      \"maxDataDiskCount\": 8\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_DS12\",\r\n      \"numberOfCores\":
+        4,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        57344,\r\n      \"memoryInMB\": 28672,\r\n      \"maxDataDiskCount\": 16\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_DS13\",\r\n      \"numberOfCores\":
+        8,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        114688,\r\n      \"memoryInMB\": 57344,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_DS14\",\r\n      \"numberOfCores\":
+        16,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        229376,\r\n      \"memoryInMB\": 114688,\r\n      \"maxDataDiskCount\": 64\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_ND6s\",\r\n      \"numberOfCores\":
+        6,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        344064,\r\n      \"memoryInMB\": 114688,\r\n      \"maxDataDiskCount\": 12\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_ND12s\",\r\n      \"numberOfCores\":
+        12,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        688128,\r\n      \"memoryInMB\": 229376,\r\n      \"maxDataDiskCount\": 24\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_ND24rs\",\r\n      \"numberOfCores\":
+        24,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        1376256,\r\n      \"memoryInMB\": 458752,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_ND24s\",\r\n      \"numberOfCores\":
+        24,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        1376256,\r\n      \"memoryInMB\": 458752,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_DC2s\",\r\n      \"numberOfCores\":
+        2,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        102400,\r\n      \"memoryInMB\": 8192,\r\n      \"maxDataDiskCount\": 2\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_DC4s\",\r\n      \"numberOfCores\":
+        4,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        204800,\r\n      \"memoryInMB\": 16384,\r\n      \"maxDataDiskCount\": 4\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_NC6s_v3\",\r\n      \"numberOfCores\":
+        6,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        344064,\r\n      \"memoryInMB\": 114688,\r\n      \"maxDataDiskCount\": 12\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_NC12s_v3\",\r\n      \"numberOfCores\":
+        12,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        688128,\r\n      \"memoryInMB\": 229376,\r\n      \"maxDataDiskCount\": 24\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_NC24rs_v3\",\r\n      \"numberOfCores\":
+        24,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        1376256,\r\n      \"memoryInMB\": 458752,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_NC24s_v3\",\r\n      \"numberOfCores\":
+        24,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        1376256,\r\n      \"memoryInMB\": 458752,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_L8s_v2\",\r\n      \"numberOfCores\":
+        8,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        1811981,\r\n      \"memoryInMB\": 65536,\r\n      \"maxDataDiskCount\": 16\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_L16s_v2\",\r\n      \"numberOfCores\":
+        16,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        3623962,\r\n      \"memoryInMB\": 131072,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_A8\",\r\n      \"numberOfCores\":
+        8,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        391168,\r\n      \"memoryInMB\": 57344,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_A9\",\r\n      \"numberOfCores\":
+        16,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        391168,\r\n      \"memoryInMB\": 114688,\r\n      \"maxDataDiskCount\": 64\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_A10\",\r\n      \"numberOfCores\":
+        8,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        391168,\r\n      \"memoryInMB\": 57344,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_A11\",\r\n      \"numberOfCores\":
+        16,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        391168,\r\n      \"memoryInMB\": 114688,\r\n      \"maxDataDiskCount\": 64\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_M8-2ms\",\r\n      \"numberOfCores\":
+        8,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        256000,\r\n      \"memoryInMB\": 224000,\r\n      \"maxDataDiskCount\": 8\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_M8-4ms\",\r\n      \"numberOfCores\":
+        8,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        256000,\r\n      \"memoryInMB\": 224000,\r\n      \"maxDataDiskCount\": 8\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_M8ms\",\r\n      \"numberOfCores\":
+        8,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        256000,\r\n      \"memoryInMB\": 224000,\r\n      \"maxDataDiskCount\": 8\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_M16-4ms\",\r\n      \"numberOfCores\":
+        16,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        512000,\r\n      \"memoryInMB\": 448000,\r\n      \"maxDataDiskCount\": 16\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_M16-8ms\",\r\n      \"numberOfCores\":
+        16,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        512000,\r\n      \"memoryInMB\": 448000,\r\n      \"maxDataDiskCount\": 16\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_M16ms\",\r\n      \"numberOfCores\":
+        16,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        512000,\r\n      \"memoryInMB\": 448000,\r\n      \"maxDataDiskCount\": 16\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_M32-8ms\",\r\n      \"numberOfCores\":
+        32,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        1024000,\r\n      \"memoryInMB\": 896000,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_M32-16ms\",\r\n      \"numberOfCores\":
+        32,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        1024000,\r\n      \"memoryInMB\": 896000,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_M32ls\",\r\n      \"numberOfCores\":
+        32,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        1024000,\r\n      \"memoryInMB\": 262144,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_M32ms\",\r\n      \"numberOfCores\":
+        32,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        1024000,\r\n      \"memoryInMB\": 896000,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_M32ts\",\r\n      \"numberOfCores\":
+        32,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        1024000,\r\n      \"memoryInMB\": 196608,\r\n      \"maxDataDiskCount\": 32\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_M64-16ms\",\r\n      \"numberOfCores\":
+        64,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        2048000,\r\n      \"memoryInMB\": 1792000,\r\n      \"maxDataDiskCount\":
+        64\r\n    },\r\n    {\r\n      \"name\": \"Standard_M64-32ms\",\r\n      \"numberOfCores\":
+        64,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        2048000,\r\n      \"memoryInMB\": 1792000,\r\n      \"maxDataDiskCount\":
+        64\r\n    },\r\n    {\r\n      \"name\": \"Standard_M64ls\",\r\n      \"numberOfCores\":
+        64,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        2048000,\r\n      \"memoryInMB\": 524288,\r\n      \"maxDataDiskCount\": 64\r\n
+        \   },\r\n    {\r\n      \"name\": \"Standard_M64ms\",\r\n      \"numberOfCores\":
+        64,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        2048000,\r\n      \"memoryInMB\": 1792000,\r\n      \"maxDataDiskCount\":
+        64\r\n    },\r\n    {\r\n      \"name\": \"Standard_M64s\",\r\n      \"numberOfCores\":
+        64,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        2048000,\r\n      \"memoryInMB\": 1024000,\r\n      \"maxDataDiskCount\":
+        64\r\n    },\r\n    {\r\n      \"name\": \"Standard_M128-32ms\",\r\n      \"numberOfCores\":
+        128,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        4096000,\r\n      \"memoryInMB\": 3891200,\r\n      \"maxDataDiskCount\":
+        64\r\n    },\r\n    {\r\n      \"name\": \"Standard_M128-64ms\",\r\n      \"numberOfCores\":
+        128,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        4096000,\r\n      \"memoryInMB\": 3891200,\r\n      \"maxDataDiskCount\":
+        64\r\n    },\r\n    {\r\n      \"name\": \"Standard_M128ms\",\r\n      \"numberOfCores\":
+        128,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        4096000,\r\n      \"memoryInMB\": 3891200,\r\n      \"maxDataDiskCount\":
+        64\r\n    },\r\n    {\r\n      \"name\": \"Standard_M128s\",\r\n      \"numberOfCores\":
+        128,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        4096000,\r\n      \"memoryInMB\": 2048000,\r\n      \"maxDataDiskCount\":
+        64\r\n    },\r\n    {\r\n      \"name\": \"Standard_M64\",\r\n      \"numberOfCores\":
+        64,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        8192000,\r\n      \"memoryInMB\": 1024000,\r\n      \"maxDataDiskCount\":
+        64\r\n    },\r\n    {\r\n      \"name\": \"Standard_M64m\",\r\n      \"numberOfCores\":
+        64,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        8192000,\r\n      \"memoryInMB\": 1792000,\r\n      \"maxDataDiskCount\":
+        64\r\n    },\r\n    {\r\n      \"name\": \"Standard_M128\",\r\n      \"numberOfCores\":
+        128,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        16384000,\r\n      \"memoryInMB\": 2048000,\r\n      \"maxDataDiskCount\":
+        64\r\n    },\r\n    {\r\n      \"name\": \"Standard_M128m\",\r\n      \"numberOfCores\":
+        128,\r\n      \"osDiskSizeInMB\": 1047552,\r\n      \"resourceDiskSizeInMB\":
+        16384000,\r\n      \"memoryInMB\": 3891200,\r\n      \"maxDataDiskCount\":
+        64\r\n    }\r\n  ]\r\n}"
+    http_version: 
+  recorded_at: Tue, 16 Oct 2018 15:04:10 GMT
+- request:
+    method: get
+    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-eastus/providers/Microsoft.Compute/disks/miq-vm-lb-disk1?api-version=2018-06-01
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxOTI0LCJuYmYiOjE1Mzk3MDE5MjQsImV4cCI6MTUzOTcwNTgyNCwiYWlvIjoiNDJSZ1lEQVdFcGVyVEZmWmNsbFBqNVU1TCtJZ0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJZbnNTQWxlOTZrMjFtQU1KQmdBUUFRIiwidmVyIjoiMS4wIn0.RztuWtoSOGR6OrATyE0l4y_AciofeDfjiqakOMzEjf0pMe92yiLvjUbQ8O5p6cmDRfqcvo-mVFsgmoFZrfG_8NtBCLhZ-cpPGHrwHtcPyXlqn2O07BVEiGilYJJlWd8w6UmniL76TJ5rpvsgvf20BmCwP8AtZdSzb1DIpT8cekYRrSFnkd1lEkqkcCq1YY70KaLQdhcI9OuVc0BBTxulMVzh88XCuu8i-uFe9bfotIChJ_Qvk8fj9drhE1tbTvBj-KNgDsucEd_lVW5t9qCSEbVihwP4zfrQBRgOjp2txfEE6rZA9wAZYtfP6lbQwg_iMVeozB188gqs-cBnXuCI4A
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Vary:
+      - Accept-Encoding
+      X-Ms-Ratelimit-Remaining-Resource:
+      - Microsoft.Compute/LowCostGet3Min;4995,Microsoft.Compute/LowCostGet30Min;19995
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Ms-Served-By:
+      - bc31ca99-8d6a-40ca-adcc-8b09c5329aa7_131835774260356756
+      X-Ms-Request-Id:
+      - 427c7547-0fcc-4fb2-9e5e-b6480ec5e9c4
+      X-Ms-Ratelimit-Remaining-Subscription-Reads:
+      - '11972'
+      Server:
+      - Microsoft-HTTPAPI/2.0
+      - Microsoft-HTTPAPI/2.0
+      X-Ms-Correlation-Request-Id:
+      - 4614f159-a9b5-471e-88ad-250b6ee10756
+      X-Ms-Routing-Request-Id:
+      - WESTCENTRALUS:20181016T150400Z:4614f159-a9b5-471e-88ad-250b6ee10756
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Tue, 16 Oct 2018 15:03:59 GMT
+    body:
+      encoding: ASCII-8BIT
+      string: "{\r\n  \"managedBy\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-eastus/providers/Microsoft.Compute/virtualMachines/miq-vm1-lb-eastus\",\r\n
+        \ \"sku\": {\r\n    \"name\": \"Standard_LRS\",\r\n    \"tier\": \"Standard\"\r\n
+        \ },\r\n  \"properties\": {\r\n    \"osType\": \"Linux\",\r\n    \"creationData\":
+        {\r\n      \"createOption\": \"FromImage\",\r\n      \"imageReference\": {\r\n
+        \       \"id\": \"/Subscriptions/AZURE_SUBSCRIPTION_ID/Providers/Microsoft.Compute/Locations/eastus/Publishers/Canonical/ArtifactTypes/VMImage/Offers/UbuntuServer/Skus/16.04-LTS/Versions/16.04.201810040\"\r\n
+        \     }\r\n    },\r\n    \"diskSizeGB\": 30,\r\n    \"timeCreated\": \"2018-10-09T19:48:06.543317+00:00\",\r\n
+        \   \"provisioningState\": \"Succeeded\",\r\n    \"diskState\": \"Attached\"\r\n
+        \ },\r\n  \"type\": \"Microsoft.Compute/disks\",\r\n  \"location\": \"eastus\",\r\n
+        \ \"tags\": {\r\n    \"owner\": \"cfme\",\r\n    \"creator\": \"dberger\",\r\n
+        \   \"specs\": \"true\"\r\n  },\r\n  \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-eastus/providers/Microsoft.Compute/disks/miq-vm-lb-disk1\",\r\n
+        \ \"name\": \"miq-vm-lb-disk1\"\r\n}"
+    http_version: 
+  recorded_at: Tue, 16 Oct 2018 15:04:10 GMT
+- request:
+    method: get
+    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-eastus/providers/Microsoft.Compute/disks/miq-vm-lb-disk2?api-version=2018-06-01
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxOTI0LCJuYmYiOjE1Mzk3MDE5MjQsImV4cCI6MTUzOTcwNTgyNCwiYWlvIjoiNDJSZ1lEQVdFcGVyVEZmWmNsbFBqNVU1TCtJZ0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJZbnNTQWxlOTZrMjFtQU1KQmdBUUFRIiwidmVyIjoiMS4wIn0.RztuWtoSOGR6OrATyE0l4y_AciofeDfjiqakOMzEjf0pMe92yiLvjUbQ8O5p6cmDRfqcvo-mVFsgmoFZrfG_8NtBCLhZ-cpPGHrwHtcPyXlqn2O07BVEiGilYJJlWd8w6UmniL76TJ5rpvsgvf20BmCwP8AtZdSzb1DIpT8cekYRrSFnkd1lEkqkcCq1YY70KaLQdhcI9OuVc0BBTxulMVzh88XCuu8i-uFe9bfotIChJ_Qvk8fj9drhE1tbTvBj-KNgDsucEd_lVW5t9qCSEbVihwP4zfrQBRgOjp2txfEE6rZA9wAZYtfP6lbQwg_iMVeozB188gqs-cBnXuCI4A
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Vary:
+      - Accept-Encoding
+      X-Ms-Ratelimit-Remaining-Resource:
+      - Microsoft.Compute/LowCostGet3Min;4994,Microsoft.Compute/LowCostGet30Min;19994
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Ms-Served-By:
+      - bc31ca99-8d6a-40ca-adcc-8b09c5329aa7_131835774260356756
+      X-Ms-Request-Id:
+      - 8971cee6-7800-427d-b2c1-07063d65a4ba
+      Server:
+      - Microsoft-HTTPAPI/2.0
+      - Microsoft-HTTPAPI/2.0
+      X-Ms-Ratelimit-Remaining-Subscription-Reads:
+      - '11978'
+      X-Ms-Correlation-Request-Id:
+      - 00a5299f-4949-4bfb-a5ef-317103414011
+      X-Ms-Routing-Request-Id:
+      - WESTCENTRALUS:20181016T150400Z:00a5299f-4949-4bfb-a5ef-317103414011
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Tue, 16 Oct 2018 15:04:00 GMT
+    body:
+      encoding: ASCII-8BIT
+      string: "{\r\n  \"managedBy\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-eastus/providers/Microsoft.Compute/virtualMachines/miq-vm2-lb-eastus\",\r\n
+        \ \"sku\": {\r\n    \"name\": \"Standard_LRS\",\r\n    \"tier\": \"Standard\"\r\n
+        \ },\r\n  \"properties\": {\r\n    \"osType\": \"Linux\",\r\n    \"creationData\":
+        {\r\n      \"createOption\": \"FromImage\",\r\n      \"imageReference\": {\r\n
+        \       \"id\": \"/Subscriptions/AZURE_SUBSCRIPTION_ID/Providers/Microsoft.Compute/Locations/eastus/Publishers/Canonical/ArtifactTypes/VMImage/Offers/UbuntuServer/Skus/16.04-LTS/Versions/16.04.201810040\"\r\n
+        \     }\r\n    },\r\n    \"diskSizeGB\": 30,\r\n    \"timeCreated\": \"2018-10-09T19:50:16.0010732+00:00\",\r\n
+        \   \"provisioningState\": \"Succeeded\",\r\n    \"diskState\": \"Attached\"\r\n
+        \ },\r\n  \"type\": \"Microsoft.Compute/disks\",\r\n  \"location\": \"eastus\",\r\n
+        \ \"tags\": {\r\n    \"owner\": \"cfme\",\r\n    \"creator\": \"dberger\",\r\n
+        \   \"specs\": \"true\"\r\n  },\r\n  \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-eastus/providers/Microsoft.Compute/disks/miq-vm-lb-disk2\",\r\n
+        \ \"name\": \"miq-vm-lb-disk2\"\r\n}"
+    http_version: 
+  recorded_at: Tue, 16 Oct 2018 15:04:11 GMT
+- request:
+    method: get
+    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkSecurityGroups/miq-nsg-lb-eastus?api-version=2018-08-01
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxOTI0LCJuYmYiOjE1Mzk3MDE5MjQsImV4cCI6MTUzOTcwNTgyNCwiYWlvIjoiNDJSZ1lEQVdFcGVyVEZmWmNsbFBqNVU1TCtJZ0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJZbnNTQWxlOTZrMjFtQU1KQmdBUUFRIiwidmVyIjoiMS4wIn0.RztuWtoSOGR6OrATyE0l4y_AciofeDfjiqakOMzEjf0pMe92yiLvjUbQ8O5p6cmDRfqcvo-mVFsgmoFZrfG_8NtBCLhZ-cpPGHrwHtcPyXlqn2O07BVEiGilYJJlWd8w6UmniL76TJ5rpvsgvf20BmCwP8AtZdSzb1DIpT8cekYRrSFnkd1lEkqkcCq1YY70KaLQdhcI9OuVc0BBTxulMVzh88XCuu8i-uFe9bfotIChJ_Qvk8fj9drhE1tbTvBj-KNgDsucEd_lVW5t9qCSEbVihwP4zfrQBRgOjp2txfEE6rZA9wAZYtfP6lbQwg_iMVeozB188gqs-cBnXuCI4A
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Etag:
+      - W/"edd3c5a8-bcb9-421c-a05f-4f439706c806"
+      Vary:
+      - Accept-Encoding
+      X-Ms-Request-Id:
+      - e5d572b0-9437-4ae2-9c5d-ef63fb98f13b
+      X-Ms-Correlation-Request-Id:
+      - f558c53d-d999-4ade-91d6-2c60d4a41a00
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      Server:
+      - Microsoft-HTTPAPI/2.0
+      - Microsoft-HTTPAPI/2.0
+      X-Ms-Ratelimit-Remaining-Subscription-Reads:
+      - '11974'
+      X-Ms-Routing-Request-Id:
+      - WESTCENTRALUS:20181016T150400Z:f558c53d-d999-4ade-91d6-2c60d4a41a00
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Tue, 16 Oct 2018 15:04:00 GMT
+    body:
+      encoding: ASCII-8BIT
+      string: "{\r\n  \"name\": \"miq-nsg-lb-eastus\",\r\n  \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkSecurityGroups/miq-nsg-lb-eastus\",\r\n
+        \ \"etag\": \"W/\\\"edd3c5a8-bcb9-421c-a05f-4f439706c806\\\"\",\r\n  \"type\":
+        \"Microsoft.Network/networkSecurityGroups\",\r\n  \"location\": \"eastus\",\r\n
+        \ \"tags\": {\r\n    \"owner\": \"cfme\",\r\n    \"creator\": \"dberger\",\r\n
+        \   \"specs\": \"true\"\r\n  },\r\n  \"properties\": {\r\n    \"provisioningState\":
+        \"Succeeded\",\r\n    \"resourceGuid\": \"ccedffcb-9f07-4338-a386-938e2989246f\",\r\n
+        \   \"securityRules\": [\r\n      {\r\n        \"name\": \"miq-nsg-rule-eastus\",\r\n
+        \       \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkSecurityGroups/miq-nsg-lb-eastus/securityRules/miq-nsg-rule-eastus\",\r\n
+        \       \"etag\": \"W/\\\"edd3c5a8-bcb9-421c-a05f-4f439706c806\\\"\",\r\n
+        \       \"type\": \"Microsoft.Network/networkSecurityGroups/securityRules\",\r\n
+        \       \"properties\": {\r\n          \"provisioningState\": \"Succeeded\",\r\n
+        \         \"protocol\": \"Tcp\",\r\n          \"sourcePortRange\": \"*\",\r\n
+        \         \"destinationPortRange\": \"80\",\r\n          \"sourceAddressPrefix\":
+        \"*\",\r\n          \"destinationAddressPrefix\": \"*\",\r\n          \"access\":
+        \"Allow\",\r\n          \"priority\": 200,\r\n          \"direction\": \"Inbound\",\r\n
+        \         \"sourcePortRanges\": [],\r\n          \"destinationPortRanges\":
+        [],\r\n          \"sourceAddressPrefixes\": [],\r\n          \"destinationAddressPrefixes\":
+        []\r\n        }\r\n      }\r\n    ],\r\n    \"defaultSecurityRules\": [\r\n
+        \     {\r\n        \"name\": \"AllowVnetInBound\",\r\n        \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkSecurityGroups/miq-nsg-lb-eastus/defaultSecurityRules/AllowVnetInBound\",\r\n
+        \       \"etag\": \"W/\\\"edd3c5a8-bcb9-421c-a05f-4f439706c806\\\"\",\r\n
+        \       \"type\": \"Microsoft.Network/networkSecurityGroups/defaultSecurityRules\",\r\n
+        \       \"properties\": {\r\n          \"provisioningState\": \"Succeeded\",\r\n
+        \         \"description\": \"Allow inbound traffic from all VMs in VNET\",\r\n
+        \         \"protocol\": \"*\",\r\n          \"sourcePortRange\": \"*\",\r\n
+        \         \"destinationPortRange\": \"*\",\r\n          \"sourceAddressPrefix\":
+        \"VirtualNetwork\",\r\n          \"destinationAddressPrefix\": \"VirtualNetwork\",\r\n
+        \         \"access\": \"Allow\",\r\n          \"priority\": 65000,\r\n          \"direction\":
+        \"Inbound\",\r\n          \"sourcePortRanges\": [],\r\n          \"destinationPortRanges\":
+        [],\r\n          \"sourceAddressPrefixes\": [],\r\n          \"destinationAddressPrefixes\":
+        []\r\n        }\r\n      },\r\n      {\r\n        \"name\": \"AllowAzureLoadBalancerInBound\",\r\n
+        \       \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkSecurityGroups/miq-nsg-lb-eastus/defaultSecurityRules/AllowAzureLoadBalancerInBound\",\r\n
+        \       \"etag\": \"W/\\\"edd3c5a8-bcb9-421c-a05f-4f439706c806\\\"\",\r\n
+        \       \"type\": \"Microsoft.Network/networkSecurityGroups/defaultSecurityRules\",\r\n
+        \       \"properties\": {\r\n          \"provisioningState\": \"Succeeded\",\r\n
+        \         \"description\": \"Allow inbound traffic from azure load balancer\",\r\n
+        \         \"protocol\": \"*\",\r\n          \"sourcePortRange\": \"*\",\r\n
+        \         \"destinationPortRange\": \"*\",\r\n          \"sourceAddressPrefix\":
+        \"AzureLoadBalancer\",\r\n          \"destinationAddressPrefix\": \"*\",\r\n
+        \         \"access\": \"Allow\",\r\n          \"priority\": 65001,\r\n          \"direction\":
+        \"Inbound\",\r\n          \"sourcePortRanges\": [],\r\n          \"destinationPortRanges\":
+        [],\r\n          \"sourceAddressPrefixes\": [],\r\n          \"destinationAddressPrefixes\":
+        []\r\n        }\r\n      },\r\n      {\r\n        \"name\": \"DenyAllInBound\",\r\n
+        \       \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkSecurityGroups/miq-nsg-lb-eastus/defaultSecurityRules/DenyAllInBound\",\r\n
+        \       \"etag\": \"W/\\\"edd3c5a8-bcb9-421c-a05f-4f439706c806\\\"\",\r\n
+        \       \"type\": \"Microsoft.Network/networkSecurityGroups/defaultSecurityRules\",\r\n
+        \       \"properties\": {\r\n          \"provisioningState\": \"Succeeded\",\r\n
+        \         \"description\": \"Deny all inbound traffic\",\r\n          \"protocol\":
+        \"*\",\r\n          \"sourcePortRange\": \"*\",\r\n          \"destinationPortRange\":
+        \"*\",\r\n          \"sourceAddressPrefix\": \"*\",\r\n          \"destinationAddressPrefix\":
+        \"*\",\r\n          \"access\": \"Deny\",\r\n          \"priority\": 65500,\r\n
+        \         \"direction\": \"Inbound\",\r\n          \"sourcePortRanges\": [],\r\n
+        \         \"destinationPortRanges\": [],\r\n          \"sourceAddressPrefixes\":
+        [],\r\n          \"destinationAddressPrefixes\": []\r\n        }\r\n      },\r\n
+        \     {\r\n        \"name\": \"AllowVnetOutBound\",\r\n        \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkSecurityGroups/miq-nsg-lb-eastus/defaultSecurityRules/AllowVnetOutBound\",\r\n
+        \       \"etag\": \"W/\\\"edd3c5a8-bcb9-421c-a05f-4f439706c806\\\"\",\r\n
+        \       \"type\": \"Microsoft.Network/networkSecurityGroups/defaultSecurityRules\",\r\n
+        \       \"properties\": {\r\n          \"provisioningState\": \"Succeeded\",\r\n
+        \         \"description\": \"Allow outbound traffic from all VMs to all VMs
+        in VNET\",\r\n          \"protocol\": \"*\",\r\n          \"sourcePortRange\":
+        \"*\",\r\n          \"destinationPortRange\": \"*\",\r\n          \"sourceAddressPrefix\":
+        \"VirtualNetwork\",\r\n          \"destinationAddressPrefix\": \"VirtualNetwork\",\r\n
+        \         \"access\": \"Allow\",\r\n          \"priority\": 65000,\r\n          \"direction\":
+        \"Outbound\",\r\n          \"sourcePortRanges\": [],\r\n          \"destinationPortRanges\":
+        [],\r\n          \"sourceAddressPrefixes\": [],\r\n          \"destinationAddressPrefixes\":
+        []\r\n        }\r\n      },\r\n      {\r\n        \"name\": \"AllowInternetOutBound\",\r\n
+        \       \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkSecurityGroups/miq-nsg-lb-eastus/defaultSecurityRules/AllowInternetOutBound\",\r\n
+        \       \"etag\": \"W/\\\"edd3c5a8-bcb9-421c-a05f-4f439706c806\\\"\",\r\n
+        \       \"type\": \"Microsoft.Network/networkSecurityGroups/defaultSecurityRules\",\r\n
+        \       \"properties\": {\r\n          \"provisioningState\": \"Succeeded\",\r\n
+        \         \"description\": \"Allow outbound traffic from all VMs to Internet\",\r\n
+        \         \"protocol\": \"*\",\r\n          \"sourcePortRange\": \"*\",\r\n
+        \         \"destinationPortRange\": \"*\",\r\n          \"sourceAddressPrefix\":
+        \"*\",\r\n          \"destinationAddressPrefix\": \"Internet\",\r\n          \"access\":
+        \"Allow\",\r\n          \"priority\": 65001,\r\n          \"direction\": \"Outbound\",\r\n
+        \         \"sourcePortRanges\": [],\r\n          \"destinationPortRanges\":
+        [],\r\n          \"sourceAddressPrefixes\": [],\r\n          \"destinationAddressPrefixes\":
+        []\r\n        }\r\n      },\r\n      {\r\n        \"name\": \"DenyAllOutBound\",\r\n
+        \       \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkSecurityGroups/miq-nsg-lb-eastus/defaultSecurityRules/DenyAllOutBound\",\r\n
+        \       \"etag\": \"W/\\\"edd3c5a8-bcb9-421c-a05f-4f439706c806\\\"\",\r\n
+        \       \"type\": \"Microsoft.Network/networkSecurityGroups/defaultSecurityRules\",\r\n
+        \       \"properties\": {\r\n          \"provisioningState\": \"Succeeded\",\r\n
+        \         \"description\": \"Deny all outbound traffic\",\r\n          \"protocol\":
+        \"*\",\r\n          \"sourcePortRange\": \"*\",\r\n          \"destinationPortRange\":
+        \"*\",\r\n          \"sourceAddressPrefix\": \"*\",\r\n          \"destinationAddressPrefix\":
+        \"*\",\r\n          \"access\": \"Deny\",\r\n          \"priority\": 65500,\r\n
+        \         \"direction\": \"Outbound\",\r\n          \"sourcePortRanges\":
+        [],\r\n          \"destinationPortRanges\": [],\r\n          \"sourceAddressPrefixes\":
+        [],\r\n          \"destinationAddressPrefixes\": []\r\n        }\r\n      }\r\n
+        \   ],\r\n    \"networkInterfaces\": [\r\n      {\r\n        \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic1-lb-eastus\"\r\n
+        \     },\r\n      {\r\n        \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic2-lb-eastus\"\r\n
+        \     }\r\n    ]\r\n  }\r\n}"
+    http_version: 
+  recorded_at: Tue, 16 Oct 2018 15:04:11 GMT
+- request:
+    method: get
+    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/virtualNetworks/miq-vnet-lb-eastus?api-version=2018-08-01
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxOTI0LCJuYmYiOjE1Mzk3MDE5MjQsImV4cCI6MTUzOTcwNTgyNCwiYWlvIjoiNDJSZ1lEQVdFcGVyVEZmWmNsbFBqNVU1TCtJZ0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJZbnNTQWxlOTZrMjFtQU1KQmdBUUFRIiwidmVyIjoiMS4wIn0.RztuWtoSOGR6OrATyE0l4y_AciofeDfjiqakOMzEjf0pMe92yiLvjUbQ8O5p6cmDRfqcvo-mVFsgmoFZrfG_8NtBCLhZ-cpPGHrwHtcPyXlqn2O07BVEiGilYJJlWd8w6UmniL76TJ5rpvsgvf20BmCwP8AtZdSzb1DIpT8cekYRrSFnkd1lEkqkcCq1YY70KaLQdhcI9OuVc0BBTxulMVzh88XCuu8i-uFe9bfotIChJ_Qvk8fj9drhE1tbTvBj-KNgDsucEd_lVW5t9qCSEbVihwP4zfrQBRgOjp2txfEE6rZA9wAZYtfP6lbQwg_iMVeozB188gqs-cBnXuCI4A
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Etag:
+      - W/"e8564d43-2948-4e79-b5b2-cfb647fcb59a"
+      Vary:
+      - Accept-Encoding
+      X-Ms-Request-Id:
+      - 0b081bb7-4e39-4416-b61d-6e1a5b880d61
+      X-Ms-Correlation-Request-Id:
+      - a0692263-4bc5-4645-ae95-c35623986950
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      Server:
+      - Microsoft-HTTPAPI/2.0
+      - Microsoft-HTTPAPI/2.0
+      X-Ms-Ratelimit-Remaining-Subscription-Reads:
+      - '11976'
+      X-Ms-Routing-Request-Id:
+      - WESTCENTRALUS:20181016T150401Z:a0692263-4bc5-4645-ae95-c35623986950
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Tue, 16 Oct 2018 15:04:00 GMT
+    body:
+      encoding: ASCII-8BIT
+      string: "{\r\n  \"name\": \"miq-vnet-lb-eastus\",\r\n  \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/virtualNetworks/miq-vnet-lb-eastus\",\r\n
+        \ \"etag\": \"W/\\\"e8564d43-2948-4e79-b5b2-cfb647fcb59a\\\"\",\r\n  \"type\":
+        \"Microsoft.Network/virtualNetworks\",\r\n  \"location\": \"eastus\",\r\n
+        \ \"tags\": {\r\n    \"owner\": \"cfme\",\r\n    \"creator\": \"dberger\",\r\n
+        \   \"specs\": \"true\"\r\n  },\r\n  \"properties\": {\r\n    \"provisioningState\":
+        \"Succeeded\",\r\n    \"resourceGuid\": \"fac84728-c108-4775-8b22-12341a71b592\",\r\n
+        \   \"addressSpace\": {\r\n      \"addressPrefixes\": [\r\n        \"10.0.0.0/16\"\r\n
+        \     ]\r\n    },\r\n    \"dhcpOptions\": {\r\n      \"dnsServers\": []\r\n
+        \   },\r\n    \"subnets\": [\r\n      {\r\n        \"name\": \"miq-subnet-eastus\",\r\n
+        \       \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/virtualNetworks/miq-vnet-lb-eastus/subnets/miq-subnet-eastus\",\r\n
+        \       \"etag\": \"W/\\\"e8564d43-2948-4e79-b5b2-cfb647fcb59a\\\"\",\r\n
+        \       \"properties\": {\r\n          \"provisioningState\": \"Succeeded\",\r\n
+        \         \"addressPrefix\": \"10.0.0.0/24\",\r\n          \"ipConfigurations\":
+        [\r\n            {\r\n              \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic1-lb-eastus/ipConfigurations/ipconfig1\"\r\n
+        \           },\r\n            {\r\n              \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-networking-eastus/providers/Microsoft.Network/networkInterfaces/miq-nic2-lb-eastus/ipConfigurations/ipconfig1\"\r\n
+        \           }\r\n          ],\r\n          \"delegations\": []\r\n        },\r\n
+        \       \"type\": \"Microsoft.Network/virtualNetworks/subnets\"\r\n      }\r\n
+        \   ],\r\n    \"virtualNetworkPeerings\": [],\r\n    \"enableDdosProtection\":
+        false,\r\n    \"enableVmProtection\": false\r\n  }\r\n}"
+    http_version: 
+  recorded_at: Tue, 16 Oct 2018 15:04:11 GMT
 recorded_with: VCR 3.0.3

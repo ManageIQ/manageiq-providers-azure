@@ -12,7 +12,7 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Length:
       - '181'
       Content-Type:
@@ -37,21 +37,21 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       X-Ms-Request-Id:
-      - dd9e728f-a203-435c-b7e3-94ef6ce42b00
+      - f7f2ea87-b711-426a-b3e4-f9d3e61b1101
       P3p:
       - CP="DSP CUR OTPi IND OTRi ONL FIN"
       Set-Cookie:
       - stsservicecookie=ests; path=/; secure; HttpOnly
-      - x-ms-gateway-slice=019; path=/; secure; HttpOnly
+      - x-ms-gateway-slice=003; path=/; secure; HttpOnly
       Date:
-      - Wed, 10 Oct 2018 20:13:39 GMT
+      - Tue, 16 Oct 2018 15:02:40 GMT
       Content-Length:
       - '1351'
     body:
       encoding: UTF-8
-      string: '{"token_type":"Bearer","expires_in":"3600","ext_expires_in":"0","expires_on":"1539206020","not_before":"1539202120","resource":"https://management.core.windows.net/","access_token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMTIwLCJuYmYiOjE1MzkyMDIxMjAsImV4cCI6MTUzOTIwNjAyMCwiYWlvIjoiNDJSZ1lKalB0ajcrMnp6MVNRdk5td1FaeWxleUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJqM0tlM1FPaVhFTzM0NVR2Yk9RckFBIiwidmVyIjoiMS4wIn0.TVhDL_H4_aXVpjptXONOeJgvuoyYLCbQk45xcBXBxaAHWidC7Nvl6rQy5hLkEU-YpOZfNWJ94KhuQnz1CUbJLsx8o56c0hW_OUso48J2F4PMLcEed3xKzFZa86VtttX8OnT1Edj3O4EkpzeTeDJ0Xh2QlI4fuNMNEGIDyRAhKRktKc80EeqsMP1597df4X-PQILGpFCLpRQUvS5EXbD9j_RnRwdXR4APE1rfi8SCIRz7fFUIaH3Yi82E0YWFxKKUhxmPzoFiH-IeVFEib-L-RfspU3lNdleIvNnBp4ay7Pr1X3G1VFR040qP5mVqs3uUmfWHaYZZEal2rOrNnLRgzg"}'
+      string: '{"token_type":"Bearer","expires_in":"3600","ext_expires_in":"0","expires_on":"1539705760","not_before":"1539701860","resource":"https://management.core.windows.net/","access_token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxODYwLCJuYmYiOjE1Mzk3MDE4NjAsImV4cCI6MTUzOTcwNTc2MCwiYWlvIjoiNDJSZ1lKalNrTlgzNGZNN0EvZnEvNG9yRks4NUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoLXJ5OXhHM2FrS3o1UG5UNWhzUkFRIiwidmVyIjoiMS4wIn0.XMvzCY6opRZRuHnfoT5X0a-ynS8J0iV1NAWaV6i_j7V48V9RYC7FXHGcTtBfjSJxMEkv6Pue1IgRV_94M6rwEpEvsti2BsUPlGk_f6FID6q20TIH0-2qdhkil_ZE5vBFjgvDzVnLnGE0_3kPlyaQhIoV6IeLmwkbv7Zz-KoIseBNDQlnDmleMo1OhMiwPevPueT_gUC1RbE3RFTbQ7CtW46mbrq6STZ5X_ZzSKyl4oqFGypEOFd_1DH-3a9MGg7F9DQbgCMZuPqq-uULnJNJvp4oG2H4i3DNvzvM86N_Fme7Tq0_zyOw9P92GCghiwfUdsWFZ2t56fWj48dyAlJ_wQ"}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:13:40 GMT
+  recorded_at: Tue, 16 Oct 2018 15:02:51 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions?api-version=2016-06-01
@@ -64,11 +64,11 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMTIwLCJuYmYiOjE1MzkyMDIxMjAsImV4cCI6MTUzOTIwNjAyMCwiYWlvIjoiNDJSZ1lKalB0ajcrMnp6MVNRdk5td1FaeWxleUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJqM0tlM1FPaVhFTzM0NVR2Yk9RckFBIiwidmVyIjoiMS4wIn0.TVhDL_H4_aXVpjptXONOeJgvuoyYLCbQk45xcBXBxaAHWidC7Nvl6rQy5hLkEU-YpOZfNWJ94KhuQnz1CUbJLsx8o56c0hW_OUso48J2F4PMLcEed3xKzFZa86VtttX8OnT1Edj3O4EkpzeTeDJ0Xh2QlI4fuNMNEGIDyRAhKRktKc80EeqsMP1597df4X-PQILGpFCLpRQUvS5EXbD9j_RnRwdXR4APE1rfi8SCIRz7fFUIaH3Yi82E0YWFxKKUhxmPzoFiH-IeVFEib-L-RfspU3lNdleIvNnBp4ay7Pr1X3G1VFR040qP5mVqs3uUmfWHaYZZEal2rOrNnLRgzg
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxODYwLCJuYmYiOjE1Mzk3MDE4NjAsImV4cCI6MTUzOTcwNTc2MCwiYWlvIjoiNDJSZ1lKalNrTlgzNGZNN0EvZnEvNG9yRks4NUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoLXJ5OXhHM2FrS3o1UG5UNWhzUkFRIiwidmVyIjoiMS4wIn0.XMvzCY6opRZRuHnfoT5X0a-ynS8J0iV1NAWaV6i_j7V48V9RYC7FXHGcTtBfjSJxMEkv6Pue1IgRV_94M6rwEpEvsti2BsUPlGk_f6FID6q20TIH0-2qdhkil_ZE5vBFjgvDzVnLnGE0_3kPlyaQhIoV6IeLmwkbv7Zz-KoIseBNDQlnDmleMo1OhMiwPevPueT_gUC1RbE3RFTbQ7CtW46mbrq6STZ5X_ZzSKyl4oqFGypEOFd_1DH-3a9MGg7F9DQbgCMZuPqq-uULnJNJvp4oG2H4i3DNvzvM86N_Fme7Tq0_zyOw9P92GCghiwfUdsWFZ2t56fWj48dyAlJ_wQ
   response:
     status:
       code: 200
@@ -87,24 +87,24 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Ratelimit-Remaining-Tenant-Reads:
-      - '11999'
+      - '11998'
       X-Ms-Request-Id:
-      - 9c9e357f-918c-43f0-b294-1385ece95e9b
+      - 284e4735-7497-4b15-ba2e-289f2213d6a4
       X-Ms-Correlation-Request-Id:
-      - 9c9e357f-918c-43f0-b294-1385ece95e9b
+      - 284e4735-7497-4b15-ba2e-289f2213d6a4
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201341Z:9c9e357f-918c-43f0-b294-1385ece95e9b
+      - WESTCENTRALUS:20181016T150241Z:284e4735-7497-4b15-ba2e-289f2213d6a4
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:13:40 GMT
+      - Tue, 16 Oct 2018 15:02:40 GMT
     body:
       encoding: ASCII-8BIT
       string: '{"value":[{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID","subscriptionId":"AZURE_SUBSCRIPTION_ID","displayName":"Pay-As-You-Go","state":"Enabled","subscriptionPolicies":{"locationPlacementId":"Public_2014-09-01","quotaId":"PayAsYouGo_2014-09-01","spendingLimit":"Off"},"authorizationSource":"RoleBased"}]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:13:41 GMT
+  recorded_at: Tue, 16 Oct 2018 15:02:51 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/providers?api-version=2015-01-01
@@ -117,11 +117,11 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMTIwLCJuYmYiOjE1MzkyMDIxMjAsImV4cCI6MTUzOTIwNjAyMCwiYWlvIjoiNDJSZ1lKalB0ajcrMnp6MVNRdk5td1FaeWxleUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJqM0tlM1FPaVhFTzM0NVR2Yk9RckFBIiwidmVyIjoiMS4wIn0.TVhDL_H4_aXVpjptXONOeJgvuoyYLCbQk45xcBXBxaAHWidC7Nvl6rQy5hLkEU-YpOZfNWJ94KhuQnz1CUbJLsx8o56c0hW_OUso48J2F4PMLcEed3xKzFZa86VtttX8OnT1Edj3O4EkpzeTeDJ0Xh2QlI4fuNMNEGIDyRAhKRktKc80EeqsMP1597df4X-PQILGpFCLpRQUvS5EXbD9j_RnRwdXR4APE1rfi8SCIRz7fFUIaH3Yi82E0YWFxKKUhxmPzoFiH-IeVFEib-L-RfspU3lNdleIvNnBp4ay7Pr1X3G1VFR040qP5mVqs3uUmfWHaYZZEal2rOrNnLRgzg
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxODYwLCJuYmYiOjE1Mzk3MDE4NjAsImV4cCI6MTUzOTcwNTc2MCwiYWlvIjoiNDJSZ1lKalNrTlgzNGZNN0EvZnEvNG9yRks4NUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoLXJ5OXhHM2FrS3o1UG5UNWhzUkFRIiwidmVyIjoiMS4wIn0.XMvzCY6opRZRuHnfoT5X0a-ynS8J0iV1NAWaV6i_j7V48V9RYC7FXHGcTtBfjSJxMEkv6Pue1IgRV_94M6rwEpEvsti2BsUPlGk_f6FID6q20TIH0-2qdhkil_ZE5vBFjgvDzVnLnGE0_3kPlyaQhIoV6IeLmwkbv7Zz-KoIseBNDQlnDmleMo1OhMiwPevPueT_gUC1RbE3RFTbQ7CtW46mbrq6STZ5X_ZzSKyl4oqFGypEOFd_1DH-3a9MGg7F9DQbgCMZuPqq-uULnJNJvp4oG2H4i3DNvzvM86N_Fme7Tq0_zyOw9P92GCghiwfUdsWFZ2t56fWj48dyAlJ_wQ
   response:
     status:
       code: 200
@@ -138,21 +138,21 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Ratelimit-Remaining-Subscription-Reads:
-      - '11996'
+      - '11987'
       X-Ms-Request-Id:
-      - 737a0463-a527-441c-8789-c9e014576c72
+      - b5564640-5611-4284-8029-b408fd5af82d
       X-Ms-Correlation-Request-Id:
-      - 737a0463-a527-441c-8789-c9e014576c72
+      - b5564640-5611-4284-8029-b408fd5af82d
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201342Z:737a0463-a527-441c-8789-c9e014576c72
+      - WESTCENTRALUS:20181016T150242Z:b5564640-5611-4284-8029-b408fd5af82d
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:13:41 GMT
+      - Tue, 16 Oct 2018 15:02:42 GMT
       Content-Length:
-      - '439167'
+      - '441087'
     body:
       encoding: ASCII-8BIT
       string: '{"value":[{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.Compute","namespace":"Microsoft.Compute","authorizations":[{"applicationId":"60e6cd67-9c8c-4951-9b3c-23c25a2169af","roleDefinitionId":"e4770acb-272e-4dc8-87f3-12f44a612224"},{"applicationId":"a303894e-f1d8-4a37-bf10-67aa654a0596","roleDefinitionId":"903ac751-8ad5-4e5a-bfc2-5e49f450a241"},{"applicationId":"a8b6bf88-1d1a-4626-b040-9a729ea93c65","roleDefinitionId":"45c8267c-80ba-4b96-9a43-115b8f49fccd"},{"applicationId":"184909ca-69f1-4368-a6a7-c558ee6eb0bd","roleDefinitionId":"45c8267c-80ba-4b96-9a43-115b8f49fccd"},{"applicationId":"5e5e43d4-54da-4211-86a4-c6e7f3715801","roleDefinitionId":"ffcd6e5b-8772-457d-bb17-89703c03428f"}],"resourceTypes":[{"resourceType":"availabilitySets","locations":["East
@@ -893,10 +893,15 @@ http_interactions:
         Central US","South Central US","West Central US","Central US"],"apiVersions":["2018-08-01-preview"]},{"resourceType":"billingAccounts/billingProfiles/products","locations":["North
         Central US","South Central US","West Central US","Central US"],"apiVersions":["2018-08-01-preview"]},{"resourceType":"billingAccounts/products","locations":["North
         Central US","South Central US","West Central US","Central US"],"apiVersions":["2018-08-01-preview"]},{"resourceType":"operations","locations":["Central
-        US"],"apiVersions":["2018-03-01-preview","2017-04-24-preview","2017-02-27-preview"]}],"registrationState":"Registered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.BingMaps","namespace":"Microsoft.BingMaps","resourceTypes":[{"resourceType":"mapApis","locations":["West
+        US"],"apiVersions":["2018-03-01-preview","2017-04-24-preview","2017-02-27-preview"]},{"resourceType":"billingAccounts/projects/initiateImportRequest","locations":["North
+        Central US","South Central US","West Central US","Central US"],"apiVersions":["2018-08-01-preview"]},{"resourceType":"billingAccounts/projects/importRequests","locations":["North
+        Central US","South Central US","West Central US","Central US"],"apiVersions":["2018-08-01-preview"]},{"resourceType":"importRequests/acceptImportRequest","locations":["North
+        Central US","South Central US","West Central US","Central US"],"apiVersions":["2018-08-01-preview"]},{"resourceType":"importRequests","locations":["North
+        Central US","South Central US","West Central US","Central US"],"apiVersions":["2018-08-01-preview"]},{"resourceType":"importRequests/declineImportRequest","locations":["North
+        Central US","South Central US","West Central US","Central US"],"apiVersions":["2018-08-01-preview"]}],"registrationState":"Registered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.BingMaps","namespace":"Microsoft.BingMaps","resourceTypes":[{"resourceType":"mapApis","locations":["West
         US"],"apiVersions":["2016-08-18","2015-07-02"]},{"resourceType":"operations","locations":[],"apiVersions":["2016-08-18","2015-07-02"]},{"resourceType":"listCommunicationPreference","locations":[],"apiVersions":["2016-08-18","2015-07-02"]},{"resourceType":"updateCommunicationPreference","locations":[],"apiVersions":["2016-08-18","2015-07-02"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.BizTalkServices","namespace":"Microsoft.BizTalkServices","resourceTypes":[{"resourceType":"BizTalk","locations":["East
         US","West US","North Europe","West Europe","Southeast Asia","East Asia","North
-        Central US","Japan West","Japan East","South Central US"],"apiVersions":["2014-04-01-preview"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.Blueprint","namespace":"Microsoft.Blueprint","authorizations":[{"applicationId":"f71766dc-90d9-4b7d-bd9d-4499c4331c3f","roleDefinitionId":"cb180127-cf6d-4672-9e75-e29a487f9658"}],"resourceTypes":[{"resourceType":"blueprints","locations":[],"apiVersions":["2017-11-11-preview","2017-11-11-alpha"]},{"resourceType":"blueprints/artifacts","locations":[],"apiVersions":["2017-11-11-preview","2017-11-11-alpha"]},{"resourceType":"blueprints/versions","locations":[],"apiVersions":["2017-11-11-preview","2017-11-11-alpha"]},{"resourceType":"blueprints/versions/artifacts","locations":[],"apiVersions":["2017-11-11-preview","2017-11-11-alpha"]},{"resourceType":"blueprintAssignments","locations":[],"apiVersions":["2017-11-11-preview","2017-11-11-alpha"]},{"resourceType":"blueprintAssignments/operations","locations":[],"apiVersions":["2017-11-11-preview","2017-11-11-alpha"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.BotService","namespace":"Microsoft.BotService","authorization":{"applicationId":"f3723d34-6ff5-4ceb-a148-d99dcd2511fc","roleDefinitionId":"71213c26-43ed-41d8-9905-3c12971517a3"},"resourceTypes":[{"resourceType":"botServices","locations":["Global"],"apiVersions":["2018-07-12","2017-12-01"]},{"resourceType":"botServices/channels","locations":["Global"],"apiVersions":["2018-07-12","2017-12-01"]},{"resourceType":"botServices/connections","locations":["Global"],"apiVersions":["2018-07-12","2017-12-01"]},{"resourceType":"listAuthServiceProviders","locations":["Global"],"apiVersions":["2018-07-12","2017-12-01"]},{"resourceType":"checkNameAvailability","locations":["Global"],"apiVersions":["2018-07-12","2017-12-01"]},{"resourceType":"operations","locations":["Global"],"apiVersions":["2018-07-12","2017-12-01"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.Cache","namespace":"Microsoft.Cache","authorization":{"applicationId":"96231a05-34ce-4eb4-aa6a-70759cbb5e83","roleDefinitionId":"4f731528-ba85-45c7-acfb-cd0a9b3cf31b"},"resourceTypes":[{"resourceType":"Redis","locations":["North
+        Central US","Japan West","Japan East","South Central US"],"apiVersions":["2014-04-01-preview"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.Blueprint","namespace":"Microsoft.Blueprint","authorizations":[{"applicationId":"f71766dc-90d9-4b7d-bd9d-4499c4331c3f","roleDefinitionId":"cb180127-cf6d-4672-9e75-e29a487f9658"}],"resourceTypes":[{"resourceType":"blueprints","locations":[],"apiVersions":["2017-11-11-preview","2017-11-11-alpha"]},{"resourceType":"blueprints/artifacts","locations":[],"apiVersions":["2017-11-11-preview","2017-11-11-alpha"]},{"resourceType":"blueprints/versions","locations":[],"apiVersions":["2017-11-11-preview","2017-11-11-alpha"]},{"resourceType":"blueprints/versions/artifacts","locations":[],"apiVersions":["2017-11-11-preview","2017-11-11-alpha"]},{"resourceType":"blueprintAssignments","locations":[],"apiVersions":["2017-11-11-preview","2017-11-11-alpha"]},{"resourceType":"blueprintAssignments/operations","locations":[],"apiVersions":["2017-11-11-preview","2017-11-11-alpha"]},{"resourceType":"operations","locations":[],"apiVersions":["2017-11-11-preview","2017-11-11-alpha"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.BotService","namespace":"Microsoft.BotService","authorization":{"applicationId":"f3723d34-6ff5-4ceb-a148-d99dcd2511fc","roleDefinitionId":"71213c26-43ed-41d8-9905-3c12971517a3"},"resourceTypes":[{"resourceType":"botServices","locations":["Global"],"apiVersions":["2018-07-12","2017-12-01"]},{"resourceType":"botServices/channels","locations":["Global"],"apiVersions":["2018-07-12","2017-12-01"]},{"resourceType":"botServices/connections","locations":["Global"],"apiVersions":["2018-07-12","2017-12-01"]},{"resourceType":"listAuthServiceProviders","locations":["Global"],"apiVersions":["2018-07-12","2017-12-01"]},{"resourceType":"checkNameAvailability","locations":["Global"],"apiVersions":["2018-07-12","2017-12-01"]},{"resourceType":"operations","locations":["Global"],"apiVersions":["2018-07-12","2017-12-01"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.Cache","namespace":"Microsoft.Cache","authorization":{"applicationId":"96231a05-34ce-4eb4-aa6a-70759cbb5e83","roleDefinitionId":"4f731528-ba85-45c7-acfb-cd0a9b3cf31b"},"resourceTypes":[{"resourceType":"Redis","locations":["North
         Central US","South Central US","Central US","West Europe","North Europe","West
         US","East US","East US 2","Japan East","Japan West","Brazil South","Southeast
         Asia","East Asia","Australia East","Australia Southeast","Central India","West
@@ -1555,30 +1560,35 @@ http_interactions:
         Central","Canada East","Brazil South","South Central US","Korea South","Korea
         Central"],"apiVersions":["2018-01-15-preview"]},{"resourceType":"ProvisioningServices","locations":["East
         US","West US","West Europe","North Europe","Southeast Asia","East Asia"],"apiVersions":["2018-01-22","2017-11-15","2017-08-21-preview"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.DevTestLab","namespace":"Microsoft.DevTestLab","authorization":{"applicationId":"1a14be2a-e903-4cec-99cf-b2e209259a0f","roleDefinitionId":"8f2de81a-b9aa-49d8-b24c-11814d3ab525","managedByRoleDefinitionId":"8f2de81a-b9aa-49d8-b24c-11814d3ab525"},"resourceTypes":[{"resourceType":"labs","locations":["West
-        Central US","Japan East","West US","Australia Southeast","Canada Central","Central
-        India","Central US","East Asia","Korea Central","North Europe","South Central
-        US","UK West","West India","Australia East","Brazil South","Canada East","East
-        US","East US 2","Japan West","Korea South","North Central US","South India","Southeast
+        Central US","Japan East","West US","Australia Central","Australia Southeast","Canada
+        Central","Central India","Central US","East Asia","France Central","Korea
+        Central","North Europe","South Central US","UK West","West India","Australia
+        Central 2","Australia East","Brazil South","Canada East","East US","East US
+        2","France South","Japan West","Korea South","North Central US","South India","Southeast
         Asia","UK South","West Europe","West US 2"],"apiVersions":["2018-10-15-preview","2017-04-26-preview","2016-05-15","2015-05-21-preview"]},{"resourceType":"schedules","locations":["West
-        Central US","Japan East","West US","Australia Southeast","Canada Central","Central
-        India","Central US","East Asia","Korea Central","North Europe","South Central
-        US","UK West","West India","Australia East","Brazil South","Canada East","East
-        US","East US 2","Japan West","Korea South","North Central US","South India","Southeast
+        Central US","Japan East","West US","Australia Central","Australia Southeast","Canada
+        Central","Central India","Central US","East Asia","France Central","Korea
+        Central","North Europe","South Central US","UK West","West India","Australia
+        Central 2","Australia East","Brazil South","Canada East","East US","East US
+        2","France South","Japan West","Korea South","North Central US","South India","Southeast
         Asia","UK South","West Europe","West US 2"],"apiVersions":["2018-10-15-preview","2017-04-26-preview","2016-05-15","2015-05-21-preview"]},{"resourceType":"labs/virtualMachines","locations":["West
-        Central US","Japan East","West US","Australia Southeast","Canada Central","Central
-        India","Central US","East Asia","Korea Central","North Europe","South Central
-        US","UK West","West India","Australia East","Brazil South","Canada East","East
-        US","East US 2","Japan West","Korea South","North Central US","South India","Southeast
+        Central US","Japan East","West US","Australia Central","Australia Southeast","Canada
+        Central","Central India","Central US","East Asia","France Central","Korea
+        Central","North Europe","South Central US","UK West","West India","Australia
+        Central 2","Australia East","Brazil South","Canada East","East US","East US
+        2","France South","Japan West","Korea South","North Central US","South India","Southeast
         Asia","UK South","West Europe","West US 2"],"apiVersions":["2018-10-15-preview","2017-04-26-preview","2016-05-15","2015-05-21-preview"]},{"resourceType":"labs/serviceRunners","locations":["West
-        Central US","Japan East","West US","Australia Southeast","Canada Central","Central
-        India","Central US","East Asia","Korea Central","North Europe","South Central
-        US","UK West","West India","Australia East","Brazil South","Canada East","East
-        US","East US 2","Japan West","Korea South","North Central US","South India","Southeast
+        Central US","Japan East","West US","Australia Central","Australia Southeast","Canada
+        Central","Central India","Central US","East Asia","France Central","Korea
+        Central","North Europe","South Central US","UK West","West India","Australia
+        Central 2","Australia East","Brazil South","Canada East","East US","East US
+        2","France South","Japan West","Korea South","North Central US","South India","Southeast
         Asia","UK South","West Europe","West US 2"],"apiVersions":["2018-10-15-preview","2017-04-26-preview","2016-05-15"]},{"resourceType":"operations","locations":[],"apiVersions":["2018-10-15-preview","2017-04-26-preview","2016-05-15","2015-05-21-preview"]},{"resourceType":"locations","locations":[],"apiVersions":["2018-10-15-preview","2017-04-26-preview","2016-05-15","2015-05-21-preview"]},{"resourceType":"locations/operations","locations":["West
-        Central US","Japan East","West US","Australia Southeast","Canada Central","Central
-        India","Central US","East Asia","Korea Central","North Europe","South Central
-        US","UK West","West India","Australia East","Brazil South","Canada East","East
-        US","East US 2","Japan West","Korea South","North Central US","South India","Southeast
+        Central US","Japan East","West US","Australia Central","Australia Southeast","Canada
+        Central","Central India","Central US","East Asia","France Central","Korea
+        Central","North Europe","South Central US","UK West","West India","Australia
+        Central 2","Australia East","Brazil South","Canada East","East US","East US
+        2","France South","Japan West","Korea South","North Central US","South India","Southeast
         Asia","UK South","West Europe","West US 2"],"apiVersions":["2018-10-15-preview","2017-04-26-preview","2016-05-15","2015-05-21-preview"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.DocumentDB","namespace":"Microsoft.DocumentDB","authorizations":[{"applicationId":"57c0fc58-a83a-41d0-8ae9-08952659bdfd","roleDefinitionId":"FFFD5CF5-FFD3-4B24-B0E2-0715ADD4C282"}],"resourceTypes":[{"resourceType":"databaseAccounts","locations":["Australia
         East","Australia Southeast","Canada Central","Canada East","Central India","Central
         US","East Asia","East US","East US 2","France Central","Japan East","Japan
@@ -1749,27 +1759,34 @@ http_interactions:
         US"],"apiVersions":["2018-07-01-preview"]},{"resourceType":"diagnosticSettings","locations":[],"apiVersions":["2018-07-01-preview"]},{"resourceType":"diagnosticSettingsCategories","locations":[],"apiVersions":["2018-07-01-preview"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.IoTCentral","namespace":"Microsoft.IoTCentral","authorizations":[{"applicationId":"9edfcdd9-0bc5-4bd4-b287-c3afc716aac7"}],"resourceTypes":[{"resourceType":"IoTApps","locations":["West
         Europe","West US","East US 2","North Europe","East US"],"apiVersions":["2018-09-01","2017-07-01-privatepreview"]},{"resourceType":"checkNameAvailability","locations":["West
         Europe","West US","East US 2","North Europe","East US"],"apiVersions":["2018-09-01","2017-07-01-privatepreview"]},{"resourceType":"operations","locations":["West
-        Europe","West US","East US 2","North Europe","East US"],"apiVersions":["2018-09-01","2017-07-01-privatepreview"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.IoTSpaces","namespace":"Microsoft.IoTSpaces","authorizations":[{"applicationId":"0b07f429-9f4b-4714-9392-cc5e8e80c8b0"}],"resourceTypes":[{"resourceType":"operations","locations":[],"apiVersions":["2017-10-01-preview"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.Kusto","namespace":"Microsoft.Kusto","authorizations":[{"applicationId":"2746ea77-4702-4b45-80ca-3c97e680e8b7","roleDefinitionId":"dd9d4347-f397-45f2-b538-85f21c90037c"}],"resourceTypes":[{"resourceType":"clusters","locations":["Central
+        Europe","West US","East US 2","North Europe","East US"],"apiVersions":["2018-09-01","2017-07-01-privatepreview"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.IoTSpaces","namespace":"Microsoft.IoTSpaces","authorizations":[{"applicationId":"0b07f429-9f4b-4714-9392-cc5e8e80c8b0"}],"resourceTypes":[{"resourceType":"checkNameAvailability","locations":["North
+        Europe","Australia East","West US 2","East US"],"apiVersions":["2017-10-01-preview"]},{"resourceType":"Graph","locations":["North
+        Europe","Australia East","West US 2","East US"],"apiVersions":["2017-10-01-preview"]},{"resourceType":"operations","locations":[],"apiVersions":["2017-10-01-preview"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.Kusto","namespace":"Microsoft.Kusto","authorizations":[{"applicationId":"2746ea77-4702-4b45-80ca-3c97e680e8b7","roleDefinitionId":"dd9d4347-f397-45f2-b538-85f21c90037c"}],"resourceTypes":[{"resourceType":"clusters","locations":["Central
         US","West Europe","North Europe","East US 2","West US","Southeast Asia","East
         US","West US 2","South Central US","North Central US","East Asia","Japan East","Canada
         Central","UK South","Australia East","Brazil South","Japan West","South India","Central
-        India","West India","Canada East","Korea Central","France Central"],"apiVersions":["2018-09-07-preview"]},{"resourceType":"clusters/databases","locations":["Central
+        India","West India","Canada East","Korea Central","France Central","UK West","Korea
+        South","France South","Australia Southeast"],"apiVersions":["2018-09-07-preview"]},{"resourceType":"clusters/databases","locations":["Central
         US","West Europe","North Europe","East US 2","West US","Southeast Asia","East
         US","West US 2","South Central US","North Central US","East Asia","Japan East","Canada
         Central","UK South","Australia East","Brazil South","Japan West","South India","Central
-        India","West India","Canada East","Korea Central","France Central"],"apiVersions":["2018-09-07-preview","2017-09-07-privatepreview"]},{"resourceType":"clusters/databases/eventhubconnections","locations":["Central
+        India","West India","Canada East","Korea Central","France Central","UK West","Korea
+        South","France South","Australia Southeast"],"apiVersions":["2018-09-07-preview","2017-09-07-privatepreview"]},{"resourceType":"clusters/databases/eventhubconnections","locations":["Central
         US","West Europe","North Europe","East US 2","West US","Southeast Asia","East
         US","West US 2","South Central US","North Central US","East Asia","Japan East","Canada
         Central","UK South","Australia East","Brazil South","Japan West","South India","Central
-        India","West India","Canada East","Korea Central","France Central"],"apiVersions":["2018-09-07-preview"]},{"resourceType":"locations/operationResults","locations":["Central
+        India","West India","Canada East","Korea Central","France Central","UK West","Korea
+        South","France South","Australia Southeast"],"apiVersions":["2018-09-07-preview"]},{"resourceType":"locations/operationResults","locations":["Central
         US","West Europe","North Europe","East US 2","West US","Southeast Asia","East
         US","West US 2","South Central US","North Central US","East Asia","Japan East","Canada
         Central","UK South","Australia East","Brazil South","Japan West","South India","Central
-        India","West India","Canada East","Korea Central","France Central"],"apiVersions":["2018-09-07-preview","2017-09-07-privatepreview"]},{"resourceType":"locations","locations":[],"apiVersions":["2018-09-07-preview","2017-09-07-privatepreview"]},{"resourceType":"locations/checkNameAvailability","locations":["Central
+        India","West India","Canada East","Korea Central","France Central","UK West","Korea
+        South","France South","Australia Southeast"],"apiVersions":["2018-09-07-preview","2017-09-07-privatepreview"]},{"resourceType":"locations","locations":[],"apiVersions":["2018-09-07-preview","2017-09-07-privatepreview"]},{"resourceType":"locations/checkNameAvailability","locations":["Central
         US","West Europe","North Europe","East US 2","West US","Southeast Asia","East
         US","West US 2","South Central US","North Central US","East Asia","Japan East","Canada
         Central","UK South","Australia East","Brazil South","Japan West","South India","Central
-        India","West India","Canada East","Korea Central","France Central"],"apiVersions":["2018-09-07-preview"]},{"resourceType":"operations","locations":[],"apiVersions":["2018-09-07-preview","2017-09-07-privatepreview"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.LabServices","namespace":"Microsoft.LabServices","authorization":{"applicationId":"1a14be2a-e903-4cec-99cf-b2e209259a0f","roleDefinitionId":"8f2de81a-b9aa-49d8-b24c-11814d3ab525","managedByRoleDefinitionId":"8f2de81a-b9aa-49d8-b24c-11814d3ab525"},"resourceTypes":[{"resourceType":"labaccounts","locations":["Australia
+        India","West India","Canada East","Korea Central","France Central","UK West","Korea
+        South","France South","Australia Southeast"],"apiVersions":["2018-09-07-preview"]},{"resourceType":"operations","locations":[],"apiVersions":["2018-09-07-preview","2017-09-07-privatepreview"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.LabServices","namespace":"Microsoft.LabServices","authorization":{"applicationId":"1a14be2a-e903-4cec-99cf-b2e209259a0f","roleDefinitionId":"8f2de81a-b9aa-49d8-b24c-11814d3ab525","managedByRoleDefinitionId":"8f2de81a-b9aa-49d8-b24c-11814d3ab525"},"resourceTypes":[{"resourceType":"labaccounts","locations":["Australia
         East","Australia Southeast","Brazil South","Canada Central","Canada East","Central
         India","Central US","East Asia","East US","East US 2","Japan East","Japan
         West","Korea Central","Korea South","North Central US","North Europe","South
@@ -3235,7 +3252,7 @@ http_interactions:
         US"],"apiVersions":["2015-06-15"]},{"resourceType":"operations","locations":[],"apiVersions":["2015-06-15"]},{"resourceType":"listCommunicationPreference","locations":[],"apiVersions":["2015-06-15"]},{"resourceType":"updateCommunicationPreference","locations":[],"apiVersions":["2015-06-15"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/U2uconsult.TheIdentityHub","namespace":"U2uconsult.TheIdentityHub","resourceTypes":[{"resourceType":"services","locations":["West
         Europe"],"apiVersions":["2015-06-15"]},{"resourceType":"operations","locations":[],"apiVersions":["2015-06-15"]},{"resourceType":"listCommunicationPreference","locations":[],"apiVersions":["2015-06-15"]},{"resourceType":"updateCommunicationPreference","locations":[],"apiVersions":["2015-06-15"]}],"registrationState":"NotRegistered"}]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:13:43 GMT
+  recorded_at: Tue, 16 Oct 2018 15:02:53 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/locations?api-version=2015-01-01
@@ -3248,11 +3265,11 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMTIwLCJuYmYiOjE1MzkyMDIxMjAsImV4cCI6MTUzOTIwNjAyMCwiYWlvIjoiNDJSZ1lKalB0ajcrMnp6MVNRdk5td1FaeWxleUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJqM0tlM1FPaVhFTzM0NVR2Yk9RckFBIiwidmVyIjoiMS4wIn0.TVhDL_H4_aXVpjptXONOeJgvuoyYLCbQk45xcBXBxaAHWidC7Nvl6rQy5hLkEU-YpOZfNWJ94KhuQnz1CUbJLsx8o56c0hW_OUso48J2F4PMLcEed3xKzFZa86VtttX8OnT1Edj3O4EkpzeTeDJ0Xh2QlI4fuNMNEGIDyRAhKRktKc80EeqsMP1597df4X-PQILGpFCLpRQUvS5EXbD9j_RnRwdXR4APE1rfi8SCIRz7fFUIaH3Yi82E0YWFxKKUhxmPzoFiH-IeVFEib-L-RfspU3lNdleIvNnBp4ay7Pr1X3G1VFR040qP5mVqs3uUmfWHaYZZEal2rOrNnLRgzg
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxODYwLCJuYmYiOjE1Mzk3MDE4NjAsImV4cCI6MTUzOTcwNTc2MCwiYWlvIjoiNDJSZ1lKalNrTlgzNGZNN0EvZnEvNG9yRks4NUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoLXJ5OXhHM2FrS3o1UG5UNWhzUkFRIiwidmVyIjoiMS4wIn0.XMvzCY6opRZRuHnfoT5X0a-ynS8J0iV1NAWaV6i_j7V48V9RYC7FXHGcTtBfjSJxMEkv6Pue1IgRV_94M6rwEpEvsti2BsUPlGk_f6FID6q20TIH0-2qdhkil_ZE5vBFjgvDzVnLnGE0_3kPlyaQhIoV6IeLmwkbv7Zz-KoIseBNDQlnDmleMo1OhMiwPevPueT_gUC1RbE3RFTbQ7CtW46mbrq6STZ5X_ZzSKyl4oqFGypEOFd_1DH-3a9MGg7F9DQbgCMZuPqq-uULnJNJvp4oG2H4i3DNvzvM86N_Fme7Tq0_zyOw9P92GCghiwfUdsWFZ2t56fWj48dyAlJ_wQ
   response:
     status:
       code: 200
@@ -3269,19 +3286,19 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Ratelimit-Remaining-Subscription-Reads:
-      - '11996'
+      - '11987'
       X-Ms-Request-Id:
-      - 84231071-fc71-43b9-9ae0-08f6fea9063e
+      - cba67196-a11c-4d95-9310-7dfa510c138b
       X-Ms-Correlation-Request-Id:
-      - 84231071-fc71-43b9-9ae0-08f6fea9063e
+      - cba67196-a11c-4d95-9310-7dfa510c138b
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201343Z:84231071-fc71-43b9-9ae0-08f6fea9063e
+      - WESTCENTRALUS:20181016T150243Z:cba67196-a11c-4d95-9310-7dfa510c138b
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:13:43 GMT
+      - Tue, 16 Oct 2018 15:02:42 GMT
       Content-Length:
       - '5269'
     body:
@@ -3318,7 +3335,7 @@ http_interactions:
         Central","longitude":"149.1244","latitude":"-35.3075"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/locations/australiacentral2","name":"australiacentral2","displayName":"Australia
         Central 2","longitude":"149.1244","latitude":"-35.3075"}]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:13:43 GMT
+  recorded_at: Tue, 16 Oct 2018 15:02:54 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resources?$filter=resourceType%20eq%20%27Microsoft.Compute/virtualMachines%27%20and%20location%20eq%20%27eastasia%27&api-version=2017-08-01
@@ -3331,11 +3348,11 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMTIwLCJuYmYiOjE1MzkyMDIxMjAsImV4cCI6MTUzOTIwNjAyMCwiYWlvIjoiNDJSZ1lKalB0ajcrMnp6MVNRdk5td1FaeWxleUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJqM0tlM1FPaVhFTzM0NVR2Yk9RckFBIiwidmVyIjoiMS4wIn0.TVhDL_H4_aXVpjptXONOeJgvuoyYLCbQk45xcBXBxaAHWidC7Nvl6rQy5hLkEU-YpOZfNWJ94KhuQnz1CUbJLsx8o56c0hW_OUso48J2F4PMLcEed3xKzFZa86VtttX8OnT1Edj3O4EkpzeTeDJ0Xh2QlI4fuNMNEGIDyRAhKRktKc80EeqsMP1597df4X-PQILGpFCLpRQUvS5EXbD9j_RnRwdXR4APE1rfi8SCIRz7fFUIaH3Yi82E0YWFxKKUhxmPzoFiH-IeVFEib-L-RfspU3lNdleIvNnBp4ay7Pr1X3G1VFR040qP5mVqs3uUmfWHaYZZEal2rOrNnLRgzg
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxODYwLCJuYmYiOjE1Mzk3MDE4NjAsImV4cCI6MTUzOTcwNTc2MCwiYWlvIjoiNDJSZ1lKalNrTlgzNGZNN0EvZnEvNG9yRks4NUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoLXJ5OXhHM2FrS3o1UG5UNWhzUkFRIiwidmVyIjoiMS4wIn0.XMvzCY6opRZRuHnfoT5X0a-ynS8J0iV1NAWaV6i_j7V48V9RYC7FXHGcTtBfjSJxMEkv6Pue1IgRV_94M6rwEpEvsti2BsUPlGk_f6FID6q20TIH0-2qdhkil_ZE5vBFjgvDzVnLnGE0_3kPlyaQhIoV6IeLmwkbv7Zz-KoIseBNDQlnDmleMo1OhMiwPevPueT_gUC1RbE3RFTbQ7CtW46mbrq6STZ5X_ZzSKyl4oqFGypEOFd_1DH-3a9MGg7F9DQbgCMZuPqq-uULnJNJvp4oG2H4i3DNvzvM86N_Fme7Tq0_zyOw9P92GCghiwfUdsWFZ2t56fWj48dyAlJ_wQ
   response:
     status:
       code: 200
@@ -3352,24 +3369,24 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Request-Id:
-      - 8c09c457-dae5-4c3a-be35-42b380916105
+      - aee95529-f882-4416-a5b9-8b91082691b1
       X-Ms-Correlation-Request-Id:
-      - 8c09c457-dae5-4c3a-be35-42b380916105
+      - aee95529-f882-4416-a5b9-8b91082691b1
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201344Z:8c09c457-dae5-4c3a-be35-42b380916105
+      - WESTCENTRALUS:20181016T150243Z:aee95529-f882-4416-a5b9-8b91082691b1
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:13:44 GMT
+      - Tue, 16 Oct 2018 15:02:43 GMT
       Content-Length:
       - '12'
     body:
       encoding: ASCII-8BIT
       string: '{"value":[]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:13:44 GMT
+  recorded_at: Tue, 16 Oct 2018 15:02:54 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resources?$filter=resourceType%20eq%20%27Microsoft.Compute/virtualMachines%27%20and%20location%20eq%20%27southeastasia%27&api-version=2017-08-01
@@ -3382,11 +3399,11 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMTIwLCJuYmYiOjE1MzkyMDIxMjAsImV4cCI6MTUzOTIwNjAyMCwiYWlvIjoiNDJSZ1lKalB0ajcrMnp6MVNRdk5td1FaeWxleUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJqM0tlM1FPaVhFTzM0NVR2Yk9RckFBIiwidmVyIjoiMS4wIn0.TVhDL_H4_aXVpjptXONOeJgvuoyYLCbQk45xcBXBxaAHWidC7Nvl6rQy5hLkEU-YpOZfNWJ94KhuQnz1CUbJLsx8o56c0hW_OUso48J2F4PMLcEed3xKzFZa86VtttX8OnT1Edj3O4EkpzeTeDJ0Xh2QlI4fuNMNEGIDyRAhKRktKc80EeqsMP1597df4X-PQILGpFCLpRQUvS5EXbD9j_RnRwdXR4APE1rfi8SCIRz7fFUIaH3Yi82E0YWFxKKUhxmPzoFiH-IeVFEib-L-RfspU3lNdleIvNnBp4ay7Pr1X3G1VFR040qP5mVqs3uUmfWHaYZZEal2rOrNnLRgzg
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxODYwLCJuYmYiOjE1Mzk3MDE4NjAsImV4cCI6MTUzOTcwNTc2MCwiYWlvIjoiNDJSZ1lKalNrTlgzNGZNN0EvZnEvNG9yRks4NUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoLXJ5OXhHM2FrS3o1UG5UNWhzUkFRIiwidmVyIjoiMS4wIn0.XMvzCY6opRZRuHnfoT5X0a-ynS8J0iV1NAWaV6i_j7V48V9RYC7FXHGcTtBfjSJxMEkv6Pue1IgRV_94M6rwEpEvsti2BsUPlGk_f6FID6q20TIH0-2qdhkil_ZE5vBFjgvDzVnLnGE0_3kPlyaQhIoV6IeLmwkbv7Zz-KoIseBNDQlnDmleMo1OhMiwPevPueT_gUC1RbE3RFTbQ7CtW46mbrq6STZ5X_ZzSKyl4oqFGypEOFd_1DH-3a9MGg7F9DQbgCMZuPqq-uULnJNJvp4oG2H4i3DNvzvM86N_Fme7Tq0_zyOw9P92GCghiwfUdsWFZ2t56fWj48dyAlJ_wQ
   response:
     status:
       code: 200
@@ -3403,24 +3420,24 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Request-Id:
-      - 66741a5b-1230-4a07-9a98-adb8b8d493f5
+      - 455fe57c-7c9f-4373-a1b7-9408dfb5991c
       X-Ms-Correlation-Request-Id:
-      - 66741a5b-1230-4a07-9a98-adb8b8d493f5
+      - 455fe57c-7c9f-4373-a1b7-9408dfb5991c
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201344Z:66741a5b-1230-4a07-9a98-adb8b8d493f5
+      - WESTCENTRALUS:20181016T150244Z:455fe57c-7c9f-4373-a1b7-9408dfb5991c
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:13:44 GMT
+      - Tue, 16 Oct 2018 15:02:43 GMT
       Content-Length:
       - '12'
     body:
       encoding: ASCII-8BIT
       string: '{"value":[]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:13:45 GMT
+  recorded_at: Tue, 16 Oct 2018 15:02:54 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resources?$filter=resourceType%20eq%20%27Microsoft.Compute/virtualMachines%27%20and%20location%20eq%20%27centralus%27&api-version=2017-08-01
@@ -3433,11 +3450,11 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMTIwLCJuYmYiOjE1MzkyMDIxMjAsImV4cCI6MTUzOTIwNjAyMCwiYWlvIjoiNDJSZ1lKalB0ajcrMnp6MVNRdk5td1FaeWxleUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJqM0tlM1FPaVhFTzM0NVR2Yk9RckFBIiwidmVyIjoiMS4wIn0.TVhDL_H4_aXVpjptXONOeJgvuoyYLCbQk45xcBXBxaAHWidC7Nvl6rQy5hLkEU-YpOZfNWJ94KhuQnz1CUbJLsx8o56c0hW_OUso48J2F4PMLcEed3xKzFZa86VtttX8OnT1Edj3O4EkpzeTeDJ0Xh2QlI4fuNMNEGIDyRAhKRktKc80EeqsMP1597df4X-PQILGpFCLpRQUvS5EXbD9j_RnRwdXR4APE1rfi8SCIRz7fFUIaH3Yi82E0YWFxKKUhxmPzoFiH-IeVFEib-L-RfspU3lNdleIvNnBp4ay7Pr1X3G1VFR040qP5mVqs3uUmfWHaYZZEal2rOrNnLRgzg
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxODYwLCJuYmYiOjE1Mzk3MDE4NjAsImV4cCI6MTUzOTcwNTc2MCwiYWlvIjoiNDJSZ1lKalNrTlgzNGZNN0EvZnEvNG9yRks4NUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoLXJ5OXhHM2FrS3o1UG5UNWhzUkFRIiwidmVyIjoiMS4wIn0.XMvzCY6opRZRuHnfoT5X0a-ynS8J0iV1NAWaV6i_j7V48V9RYC7FXHGcTtBfjSJxMEkv6Pue1IgRV_94M6rwEpEvsti2BsUPlGk_f6FID6q20TIH0-2qdhkil_ZE5vBFjgvDzVnLnGE0_3kPlyaQhIoV6IeLmwkbv7Zz-KoIseBNDQlnDmleMo1OhMiwPevPueT_gUC1RbE3RFTbQ7CtW46mbrq6STZ5X_ZzSKyl4oqFGypEOFd_1DH-3a9MGg7F9DQbgCMZuPqq-uULnJNJvp4oG2H4i3DNvzvM86N_Fme7Tq0_zyOw9P92GCghiwfUdsWFZ2t56fWj48dyAlJ_wQ
   response:
     status:
       code: 200
@@ -3454,24 +3471,24 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Request-Id:
-      - 8a8ee7d8-6d9a-4d95-953e-c0cd1a0cf86f
+      - 493b610b-9d27-43d7-85aa-d39d7929c178
       X-Ms-Correlation-Request-Id:
-      - 8a8ee7d8-6d9a-4d95-953e-c0cd1a0cf86f
+      - 493b610b-9d27-43d7-85aa-d39d7929c178
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201345Z:8a8ee7d8-6d9a-4d95-953e-c0cd1a0cf86f
+      - WESTCENTRALUS:20181016T150244Z:493b610b-9d27-43d7-85aa-d39d7929c178
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:13:44 GMT
+      - Tue, 16 Oct 2018 15:02:43 GMT
       Content-Length:
       - '12'
     body:
       encoding: ASCII-8BIT
       string: '{"value":[]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:13:45 GMT
+  recorded_at: Tue, 16 Oct 2018 15:02:54 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resources?$filter=resourceType%20eq%20%27Microsoft.Compute/virtualMachines%27%20and%20location%20eq%20%27eastus%27&api-version=2017-08-01
@@ -3484,11 +3501,11 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMTIwLCJuYmYiOjE1MzkyMDIxMjAsImV4cCI6MTUzOTIwNjAyMCwiYWlvIjoiNDJSZ1lKalB0ajcrMnp6MVNRdk5td1FaeWxleUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJqM0tlM1FPaVhFTzM0NVR2Yk9RckFBIiwidmVyIjoiMS4wIn0.TVhDL_H4_aXVpjptXONOeJgvuoyYLCbQk45xcBXBxaAHWidC7Nvl6rQy5hLkEU-YpOZfNWJ94KhuQnz1CUbJLsx8o56c0hW_OUso48J2F4PMLcEed3xKzFZa86VtttX8OnT1Edj3O4EkpzeTeDJ0Xh2QlI4fuNMNEGIDyRAhKRktKc80EeqsMP1597df4X-PQILGpFCLpRQUvS5EXbD9j_RnRwdXR4APE1rfi8SCIRz7fFUIaH3Yi82E0YWFxKKUhxmPzoFiH-IeVFEib-L-RfspU3lNdleIvNnBp4ay7Pr1X3G1VFR040qP5mVqs3uUmfWHaYZZEal2rOrNnLRgzg
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxODYwLCJuYmYiOjE1Mzk3MDE4NjAsImV4cCI6MTUzOTcwNTc2MCwiYWlvIjoiNDJSZ1lKalNrTlgzNGZNN0EvZnEvNG9yRks4NUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoLXJ5OXhHM2FrS3o1UG5UNWhzUkFRIiwidmVyIjoiMS4wIn0.XMvzCY6opRZRuHnfoT5X0a-ynS8J0iV1NAWaV6i_j7V48V9RYC7FXHGcTtBfjSJxMEkv6Pue1IgRV_94M6rwEpEvsti2BsUPlGk_f6FID6q20TIH0-2qdhkil_ZE5vBFjgvDzVnLnGE0_3kPlyaQhIoV6IeLmwkbv7Zz-KoIseBNDQlnDmleMo1OhMiwPevPueT_gUC1RbE3RFTbQ7CtW46mbrq6STZ5X_ZzSKyl4oqFGypEOFd_1DH-3a9MGg7F9DQbgCMZuPqq-uULnJNJvp4oG2H4i3DNvzvM86N_Fme7Tq0_zyOw9P92GCghiwfUdsWFZ2t56fWj48dyAlJ_wQ
   response:
     status:
       code: 200
@@ -3505,24 +3522,24 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Request-Id:
-      - 6b8eec82-60f4-48f0-97a8-8ad374d08bbe
+      - a14a1c29-1d8d-4049-8e91-a891dbaf222e
       X-Ms-Correlation-Request-Id:
-      - 6b8eec82-60f4-48f0-97a8-8ad374d08bbe
+      - a14a1c29-1d8d-4049-8e91-a891dbaf222e
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201345Z:6b8eec82-60f4-48f0-97a8-8ad374d08bbe
+      - WESTCENTRALUS:20181016T150244Z:a14a1c29-1d8d-4049-8e91-a891dbaf222e
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:13:45 GMT
+      - Tue, 16 Oct 2018 15:02:44 GMT
       Content-Length:
       - '2771'
     body:
       encoding: ASCII-8BIT
       string: '{"value":[{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-eastus/providers/Microsoft.Compute/virtualMachines/miq-linux-gen-east","name":"miq-linux-gen-east","type":"Microsoft.Compute/virtualMachines","location":"eastus","tags":{"owner":"cfme","creator":"dberger","specs":"true"}},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-eastus/providers/Microsoft.Compute/virtualMachines/miq-vm1-lb-eastus","name":"miq-vm1-lb-eastus","type":"Microsoft.Compute/virtualMachines","location":"eastus","tags":{"owner":"cfme","creator":"dberger","specs":"true"}},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-eastus/providers/Microsoft.Compute/virtualMachines/miq-vm2-lb-eastus","name":"miq-vm2-lb-eastus","type":"Microsoft.Compute/virtualMachines","location":"eastus","tags":{"owner":"cfme","creator":"dberger","specs":"true"}},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-eastus/providers/Microsoft.Compute/virtualMachines/miq-vm-centos1-eastus","name":"miq-vm-centos1-eastus","type":"Microsoft.Compute/virtualMachines","location":"eastus","tags":{"owner":"cfme","creator":"dberger","specs":"true"}},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-eastus/providers/Microsoft.Compute/virtualMachines/miq-vm-from-image-eastus1","name":"miq-vm-from-image-eastus1","type":"Microsoft.Compute/virtualMachines","location":"eastus","tags":{"owner":"cfme","creator":"dberger","specs":"true"}},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-eastus/providers/Microsoft.Compute/virtualMachines/miq-vm-sles1-eastus","name":"miq-vm-sles1-eastus","type":"Microsoft.Compute/virtualMachines","location":"eastus","tags":{"owner":"cfme","creator":"dberger","specs":"true"}},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-eastus/providers/Microsoft.Compute/virtualMachines/miq-vm-ubuntu1-eastus","name":"miq-vm-ubuntu1-eastus","type":"Microsoft.Compute/virtualMachines","location":"eastus","tags":{"owner":"cfme","creator":"dberger","specs":"true"}},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-eastus/providers/Microsoft.Compute/virtualMachines/miq-vm-win-east","name":"miq-vm-win-east","type":"Microsoft.Compute/virtualMachines","location":"eastus","tags":{"owner":"cfme","creator":"dberger","specs":"true"}},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-westus/providers/Microsoft.Compute/virtualMachines/miq-vm-rhel2-mismatch","name":"miq-vm-rhel2-mismatch","type":"Microsoft.Compute/virtualMachines","location":"eastus","tags":{"owner":"cfme","creator":"dberger","specs":"true"}}]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:13:46 GMT
+  recorded_at: Tue, 16 Oct 2018 15:02:54 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resources?$filter=resourceType%20eq%20%27Microsoft.Compute/virtualMachines%27%20and%20location%20eq%20%27eastus2%27&api-version=2017-08-01
@@ -3535,11 +3552,11 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMTIwLCJuYmYiOjE1MzkyMDIxMjAsImV4cCI6MTUzOTIwNjAyMCwiYWlvIjoiNDJSZ1lKalB0ajcrMnp6MVNRdk5td1FaeWxleUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJqM0tlM1FPaVhFTzM0NVR2Yk9RckFBIiwidmVyIjoiMS4wIn0.TVhDL_H4_aXVpjptXONOeJgvuoyYLCbQk45xcBXBxaAHWidC7Nvl6rQy5hLkEU-YpOZfNWJ94KhuQnz1CUbJLsx8o56c0hW_OUso48J2F4PMLcEed3xKzFZa86VtttX8OnT1Edj3O4EkpzeTeDJ0Xh2QlI4fuNMNEGIDyRAhKRktKc80EeqsMP1597df4X-PQILGpFCLpRQUvS5EXbD9j_RnRwdXR4APE1rfi8SCIRz7fFUIaH3Yi82E0YWFxKKUhxmPzoFiH-IeVFEib-L-RfspU3lNdleIvNnBp4ay7Pr1X3G1VFR040qP5mVqs3uUmfWHaYZZEal2rOrNnLRgzg
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxODYwLCJuYmYiOjE1Mzk3MDE4NjAsImV4cCI6MTUzOTcwNTc2MCwiYWlvIjoiNDJSZ1lKalNrTlgzNGZNN0EvZnEvNG9yRks4NUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoLXJ5OXhHM2FrS3o1UG5UNWhzUkFRIiwidmVyIjoiMS4wIn0.XMvzCY6opRZRuHnfoT5X0a-ynS8J0iV1NAWaV6i_j7V48V9RYC7FXHGcTtBfjSJxMEkv6Pue1IgRV_94M6rwEpEvsti2BsUPlGk_f6FID6q20TIH0-2qdhkil_ZE5vBFjgvDzVnLnGE0_3kPlyaQhIoV6IeLmwkbv7Zz-KoIseBNDQlnDmleMo1OhMiwPevPueT_gUC1RbE3RFTbQ7CtW46mbrq6STZ5X_ZzSKyl4oqFGypEOFd_1DH-3a9MGg7F9DQbgCMZuPqq-uULnJNJvp4oG2H4i3DNvzvM86N_Fme7Tq0_zyOw9P92GCghiwfUdsWFZ2t56fWj48dyAlJ_wQ
   response:
     status:
       code: 200
@@ -3556,24 +3573,24 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Request-Id:
-      - 149c95f0-6747-4e98-9247-680dc1b224f6
+      - 113aef75-01d7-4983-a3a7-dc328712cd41
       X-Ms-Correlation-Request-Id:
-      - 149c95f0-6747-4e98-9247-680dc1b224f6
+      - 113aef75-01d7-4983-a3a7-dc328712cd41
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201346Z:149c95f0-6747-4e98-9247-680dc1b224f6
+      - WESTCENTRALUS:20181016T150244Z:113aef75-01d7-4983-a3a7-dc328712cd41
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:13:45 GMT
+      - Tue, 16 Oct 2018 15:02:43 GMT
       Content-Length:
       - '12'
     body:
       encoding: ASCII-8BIT
       string: '{"value":[]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:13:46 GMT
+  recorded_at: Tue, 16 Oct 2018 15:02:55 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resources?$filter=resourceType%20eq%20%27Microsoft.Compute/virtualMachines%27%20and%20location%20eq%20%27westus%27&api-version=2017-08-01
@@ -3586,11 +3603,11 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMTIwLCJuYmYiOjE1MzkyMDIxMjAsImV4cCI6MTUzOTIwNjAyMCwiYWlvIjoiNDJSZ1lKalB0ajcrMnp6MVNRdk5td1FaeWxleUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJqM0tlM1FPaVhFTzM0NVR2Yk9RckFBIiwidmVyIjoiMS4wIn0.TVhDL_H4_aXVpjptXONOeJgvuoyYLCbQk45xcBXBxaAHWidC7Nvl6rQy5hLkEU-YpOZfNWJ94KhuQnz1CUbJLsx8o56c0hW_OUso48J2F4PMLcEed3xKzFZa86VtttX8OnT1Edj3O4EkpzeTeDJ0Xh2QlI4fuNMNEGIDyRAhKRktKc80EeqsMP1597df4X-PQILGpFCLpRQUvS5EXbD9j_RnRwdXR4APE1rfi8SCIRz7fFUIaH3Yi82E0YWFxKKUhxmPzoFiH-IeVFEib-L-RfspU3lNdleIvNnBp4ay7Pr1X3G1VFR040qP5mVqs3uUmfWHaYZZEal2rOrNnLRgzg
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxODYwLCJuYmYiOjE1Mzk3MDE4NjAsImV4cCI6MTUzOTcwNTc2MCwiYWlvIjoiNDJSZ1lKalNrTlgzNGZNN0EvZnEvNG9yRks4NUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoLXJ5OXhHM2FrS3o1UG5UNWhzUkFRIiwidmVyIjoiMS4wIn0.XMvzCY6opRZRuHnfoT5X0a-ynS8J0iV1NAWaV6i_j7V48V9RYC7FXHGcTtBfjSJxMEkv6Pue1IgRV_94M6rwEpEvsti2BsUPlGk_f6FID6q20TIH0-2qdhkil_ZE5vBFjgvDzVnLnGE0_3kPlyaQhIoV6IeLmwkbv7Zz-KoIseBNDQlnDmleMo1OhMiwPevPueT_gUC1RbE3RFTbQ7CtW46mbrq6STZ5X_ZzSKyl4oqFGypEOFd_1DH-3a9MGg7F9DQbgCMZuPqq-uULnJNJvp4oG2H4i3DNvzvM86N_Fme7Tq0_zyOw9P92GCghiwfUdsWFZ2t56fWj48dyAlJ_wQ
   response:
     status:
       code: 200
@@ -3607,24 +3624,24 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Request-Id:
-      - bcb4fe10-bd2a-4903-8107-24e4339d52ac
+      - 1888b297-b25b-46a6-857e-cdf32451f1ec
       X-Ms-Correlation-Request-Id:
-      - bcb4fe10-bd2a-4903-8107-24e4339d52ac
+      - 1888b297-b25b-46a6-857e-cdf32451f1ec
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201347Z:bcb4fe10-bd2a-4903-8107-24e4339d52ac
+      - WESTCENTRALUS:20181016T150244Z:1888b297-b25b-46a6-857e-cdf32451f1ec
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:13:46 GMT
+      - Tue, 16 Oct 2018 15:02:44 GMT
       Content-Length:
       - '2149'
     body:
       encoding: ASCII-8BIT
       string: '{"value":[{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-eastus/providers/Microsoft.Compute/virtualMachines/miq-vm-rhel1-mismatch","name":"miq-vm-rhel1-mismatch","type":"Microsoft.Compute/virtualMachines","location":"westus","tags":{"owner":"cfme","creator":"dberger","specs":"true"}},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-westus/providers/Microsoft.Compute/virtualMachines/miq-vm1-lb-westus","name":"miq-vm1-lb-westus","type":"Microsoft.Compute/virtualMachines","location":"westus","tags":{"owner":"cfme","creator":"dberger","specs":"true"}},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-westus/providers/Microsoft.Compute/virtualMachines/miq-vm2-lb-westus","name":"miq-vm2-lb-westus","type":"Microsoft.Compute/virtualMachines","location":"westus","tags":{"owner":"cfme","creator":"dberger","specs":"true"}},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-westus/providers/Microsoft.Compute/virtualMachines/miq-vm-centos2-westus","name":"miq-vm-centos2-westus","type":"Microsoft.Compute/virtualMachines","location":"westus","tags":{"owner":"cfme","creator":"dberger","specs":"true"}},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-westus/providers/Microsoft.Compute/virtualMachines/miq-vm-sles2-westus","name":"miq-vm-sles2-westus","type":"Microsoft.Compute/virtualMachines","location":"westus","tags":{"owner":"cfme","creator":"dberger","specs":"true"}},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-westus/providers/Microsoft.Compute/virtualMachines/miq-vm-ubuntu2-westus","name":"miq-vm-ubuntu2-westus","type":"Microsoft.Compute/virtualMachines","location":"westus","tags":{"owner":"cfme","creator":"dberger","specs":"true"}},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-vms-westus/providers/Microsoft.Compute/virtualMachines/miq-vm-win-west","name":"miq-vm-win-west","type":"Microsoft.Compute/virtualMachines","location":"westus","tags":{"owner":"cfme","creator":"dberger","specs":"true"}}]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:13:47 GMT
+  recorded_at: Tue, 16 Oct 2018 15:02:55 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resources?$filter=resourceType%20eq%20%27Microsoft.Compute/virtualMachines%27%20and%20location%20eq%20%27northcentralus%27&api-version=2017-08-01
@@ -3637,11 +3654,11 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMTIwLCJuYmYiOjE1MzkyMDIxMjAsImV4cCI6MTUzOTIwNjAyMCwiYWlvIjoiNDJSZ1lKalB0ajcrMnp6MVNRdk5td1FaeWxleUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJqM0tlM1FPaVhFTzM0NVR2Yk9RckFBIiwidmVyIjoiMS4wIn0.TVhDL_H4_aXVpjptXONOeJgvuoyYLCbQk45xcBXBxaAHWidC7Nvl6rQy5hLkEU-YpOZfNWJ94KhuQnz1CUbJLsx8o56c0hW_OUso48J2F4PMLcEed3xKzFZa86VtttX8OnT1Edj3O4EkpzeTeDJ0Xh2QlI4fuNMNEGIDyRAhKRktKc80EeqsMP1597df4X-PQILGpFCLpRQUvS5EXbD9j_RnRwdXR4APE1rfi8SCIRz7fFUIaH3Yi82E0YWFxKKUhxmPzoFiH-IeVFEib-L-RfspU3lNdleIvNnBp4ay7Pr1X3G1VFR040qP5mVqs3uUmfWHaYZZEal2rOrNnLRgzg
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxODYwLCJuYmYiOjE1Mzk3MDE4NjAsImV4cCI6MTUzOTcwNTc2MCwiYWlvIjoiNDJSZ1lKalNrTlgzNGZNN0EvZnEvNG9yRks4NUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoLXJ5OXhHM2FrS3o1UG5UNWhzUkFRIiwidmVyIjoiMS4wIn0.XMvzCY6opRZRuHnfoT5X0a-ynS8J0iV1NAWaV6i_j7V48V9RYC7FXHGcTtBfjSJxMEkv6Pue1IgRV_94M6rwEpEvsti2BsUPlGk_f6FID6q20TIH0-2qdhkil_ZE5vBFjgvDzVnLnGE0_3kPlyaQhIoV6IeLmwkbv7Zz-KoIseBNDQlnDmleMo1OhMiwPevPueT_gUC1RbE3RFTbQ7CtW46mbrq6STZ5X_ZzSKyl4oqFGypEOFd_1DH-3a9MGg7F9DQbgCMZuPqq-uULnJNJvp4oG2H4i3DNvzvM86N_Fme7Tq0_zyOw9P92GCghiwfUdsWFZ2t56fWj48dyAlJ_wQ
   response:
     status:
       code: 200
@@ -3658,24 +3675,24 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Request-Id:
-      - e30188ea-79de-4953-ab26-2d2138ae227c
+      - 5fe89941-26df-44af-838d-d4af6f11b9aa
       X-Ms-Correlation-Request-Id:
-      - e30188ea-79de-4953-ab26-2d2138ae227c
+      - 5fe89941-26df-44af-838d-d4af6f11b9aa
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201347Z:e30188ea-79de-4953-ab26-2d2138ae227c
+      - WESTCENTRALUS:20181016T150245Z:5fe89941-26df-44af-838d-d4af6f11b9aa
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:13:46 GMT
+      - Tue, 16 Oct 2018 15:02:45 GMT
       Content-Length:
       - '12'
     body:
       encoding: ASCII-8BIT
       string: '{"value":[]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:13:47 GMT
+  recorded_at: Tue, 16 Oct 2018 15:02:55 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resources?$filter=resourceType%20eq%20%27Microsoft.Compute/virtualMachines%27%20and%20location%20eq%20%27southcentralus%27&api-version=2017-08-01
@@ -3688,11 +3705,11 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMTIwLCJuYmYiOjE1MzkyMDIxMjAsImV4cCI6MTUzOTIwNjAyMCwiYWlvIjoiNDJSZ1lKalB0ajcrMnp6MVNRdk5td1FaeWxleUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJqM0tlM1FPaVhFTzM0NVR2Yk9RckFBIiwidmVyIjoiMS4wIn0.TVhDL_H4_aXVpjptXONOeJgvuoyYLCbQk45xcBXBxaAHWidC7Nvl6rQy5hLkEU-YpOZfNWJ94KhuQnz1CUbJLsx8o56c0hW_OUso48J2F4PMLcEed3xKzFZa86VtttX8OnT1Edj3O4EkpzeTeDJ0Xh2QlI4fuNMNEGIDyRAhKRktKc80EeqsMP1597df4X-PQILGpFCLpRQUvS5EXbD9j_RnRwdXR4APE1rfi8SCIRz7fFUIaH3Yi82E0YWFxKKUhxmPzoFiH-IeVFEib-L-RfspU3lNdleIvNnBp4ay7Pr1X3G1VFR040qP5mVqs3uUmfWHaYZZEal2rOrNnLRgzg
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxODYwLCJuYmYiOjE1Mzk3MDE4NjAsImV4cCI6MTUzOTcwNTc2MCwiYWlvIjoiNDJSZ1lKalNrTlgzNGZNN0EvZnEvNG9yRks4NUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoLXJ5OXhHM2FrS3o1UG5UNWhzUkFRIiwidmVyIjoiMS4wIn0.XMvzCY6opRZRuHnfoT5X0a-ynS8J0iV1NAWaV6i_j7V48V9RYC7FXHGcTtBfjSJxMEkv6Pue1IgRV_94M6rwEpEvsti2BsUPlGk_f6FID6q20TIH0-2qdhkil_ZE5vBFjgvDzVnLnGE0_3kPlyaQhIoV6IeLmwkbv7Zz-KoIseBNDQlnDmleMo1OhMiwPevPueT_gUC1RbE3RFTbQ7CtW46mbrq6STZ5X_ZzSKyl4oqFGypEOFd_1DH-3a9MGg7F9DQbgCMZuPqq-uULnJNJvp4oG2H4i3DNvzvM86N_Fme7Tq0_zyOw9P92GCghiwfUdsWFZ2t56fWj48dyAlJ_wQ
   response:
     status:
       code: 200
@@ -3709,24 +3726,24 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Request-Id:
-      - 7238e861-94f4-4ec1-967a-dc4a3c8368d3
+      - d368ee86-e255-40dd-9a8a-faa20ce0cc95
       X-Ms-Correlation-Request-Id:
-      - 7238e861-94f4-4ec1-967a-dc4a3c8368d3
+      - d368ee86-e255-40dd-9a8a-faa20ce0cc95
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201348Z:7238e861-94f4-4ec1-967a-dc4a3c8368d3
+      - WESTCENTRALUS:20181016T150245Z:d368ee86-e255-40dd-9a8a-faa20ce0cc95
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:13:47 GMT
+      - Tue, 16 Oct 2018 15:02:45 GMT
       Content-Length:
       - '12'
     body:
       encoding: ASCII-8BIT
       string: '{"value":[]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:13:48 GMT
+  recorded_at: Tue, 16 Oct 2018 15:02:55 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resources?$filter=resourceType%20eq%20%27Microsoft.Compute/virtualMachines%27%20and%20location%20eq%20%27northeurope%27&api-version=2017-08-01
@@ -3739,11 +3756,11 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMTIwLCJuYmYiOjE1MzkyMDIxMjAsImV4cCI6MTUzOTIwNjAyMCwiYWlvIjoiNDJSZ1lKalB0ajcrMnp6MVNRdk5td1FaeWxleUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJqM0tlM1FPaVhFTzM0NVR2Yk9RckFBIiwidmVyIjoiMS4wIn0.TVhDL_H4_aXVpjptXONOeJgvuoyYLCbQk45xcBXBxaAHWidC7Nvl6rQy5hLkEU-YpOZfNWJ94KhuQnz1CUbJLsx8o56c0hW_OUso48J2F4PMLcEed3xKzFZa86VtttX8OnT1Edj3O4EkpzeTeDJ0Xh2QlI4fuNMNEGIDyRAhKRktKc80EeqsMP1597df4X-PQILGpFCLpRQUvS5EXbD9j_RnRwdXR4APE1rfi8SCIRz7fFUIaH3Yi82E0YWFxKKUhxmPzoFiH-IeVFEib-L-RfspU3lNdleIvNnBp4ay7Pr1X3G1VFR040qP5mVqs3uUmfWHaYZZEal2rOrNnLRgzg
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxODYwLCJuYmYiOjE1Mzk3MDE4NjAsImV4cCI6MTUzOTcwNTc2MCwiYWlvIjoiNDJSZ1lKalNrTlgzNGZNN0EvZnEvNG9yRks4NUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoLXJ5OXhHM2FrS3o1UG5UNWhzUkFRIiwidmVyIjoiMS4wIn0.XMvzCY6opRZRuHnfoT5X0a-ynS8J0iV1NAWaV6i_j7V48V9RYC7FXHGcTtBfjSJxMEkv6Pue1IgRV_94M6rwEpEvsti2BsUPlGk_f6FID6q20TIH0-2qdhkil_ZE5vBFjgvDzVnLnGE0_3kPlyaQhIoV6IeLmwkbv7Zz-KoIseBNDQlnDmleMo1OhMiwPevPueT_gUC1RbE3RFTbQ7CtW46mbrq6STZ5X_ZzSKyl4oqFGypEOFd_1DH-3a9MGg7F9DQbgCMZuPqq-uULnJNJvp4oG2H4i3DNvzvM86N_Fme7Tq0_zyOw9P92GCghiwfUdsWFZ2t56fWj48dyAlJ_wQ
   response:
     status:
       code: 200
@@ -3760,24 +3777,24 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Request-Id:
-      - 26c7d51f-b48e-4e21-93b0-f605bd197689
+      - e0ba2887-9939-49c6-8cb5-6a312e7581a0
       X-Ms-Correlation-Request-Id:
-      - 26c7d51f-b48e-4e21-93b0-f605bd197689
+      - e0ba2887-9939-49c6-8cb5-6a312e7581a0
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201348Z:26c7d51f-b48e-4e21-93b0-f605bd197689
+      - WESTCENTRALUS:20181016T150245Z:e0ba2887-9939-49c6-8cb5-6a312e7581a0
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:13:47 GMT
+      - Tue, 16 Oct 2018 15:02:44 GMT
       Content-Length:
       - '12'
     body:
       encoding: ASCII-8BIT
       string: '{"value":[]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:13:48 GMT
+  recorded_at: Tue, 16 Oct 2018 15:02:56 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resources?$filter=resourceType%20eq%20%27Microsoft.Compute/virtualMachines%27%20and%20location%20eq%20%27westeurope%27&api-version=2017-08-01
@@ -3790,11 +3807,11 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMTIwLCJuYmYiOjE1MzkyMDIxMjAsImV4cCI6MTUzOTIwNjAyMCwiYWlvIjoiNDJSZ1lKalB0ajcrMnp6MVNRdk5td1FaeWxleUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJqM0tlM1FPaVhFTzM0NVR2Yk9RckFBIiwidmVyIjoiMS4wIn0.TVhDL_H4_aXVpjptXONOeJgvuoyYLCbQk45xcBXBxaAHWidC7Nvl6rQy5hLkEU-YpOZfNWJ94KhuQnz1CUbJLsx8o56c0hW_OUso48J2F4PMLcEed3xKzFZa86VtttX8OnT1Edj3O4EkpzeTeDJ0Xh2QlI4fuNMNEGIDyRAhKRktKc80EeqsMP1597df4X-PQILGpFCLpRQUvS5EXbD9j_RnRwdXR4APE1rfi8SCIRz7fFUIaH3Yi82E0YWFxKKUhxmPzoFiH-IeVFEib-L-RfspU3lNdleIvNnBp4ay7Pr1X3G1VFR040qP5mVqs3uUmfWHaYZZEal2rOrNnLRgzg
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxODYwLCJuYmYiOjE1Mzk3MDE4NjAsImV4cCI6MTUzOTcwNTc2MCwiYWlvIjoiNDJSZ1lKalNrTlgzNGZNN0EvZnEvNG9yRks4NUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoLXJ5OXhHM2FrS3o1UG5UNWhzUkFRIiwidmVyIjoiMS4wIn0.XMvzCY6opRZRuHnfoT5X0a-ynS8J0iV1NAWaV6i_j7V48V9RYC7FXHGcTtBfjSJxMEkv6Pue1IgRV_94M6rwEpEvsti2BsUPlGk_f6FID6q20TIH0-2qdhkil_ZE5vBFjgvDzVnLnGE0_3kPlyaQhIoV6IeLmwkbv7Zz-KoIseBNDQlnDmleMo1OhMiwPevPueT_gUC1RbE3RFTbQ7CtW46mbrq6STZ5X_ZzSKyl4oqFGypEOFd_1DH-3a9MGg7F9DQbgCMZuPqq-uULnJNJvp4oG2H4i3DNvzvM86N_Fme7Tq0_zyOw9P92GCghiwfUdsWFZ2t56fWj48dyAlJ_wQ
   response:
     status:
       code: 200
@@ -3811,24 +3828,24 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Request-Id:
-      - e9b54015-66a6-4986-bd74-8beec5bc466e
+      - 6dc52bda-d885-4662-8afe-c72c7e9bf554
       X-Ms-Correlation-Request-Id:
-      - e9b54015-66a6-4986-bd74-8beec5bc466e
+      - 6dc52bda-d885-4662-8afe-c72c7e9bf554
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201349Z:e9b54015-66a6-4986-bd74-8beec5bc466e
+      - WESTCENTRALUS:20181016T150245Z:6dc52bda-d885-4662-8afe-c72c7e9bf554
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:13:49 GMT
+      - Tue, 16 Oct 2018 15:02:44 GMT
       Content-Length:
       - '12'
     body:
       encoding: ASCII-8BIT
       string: '{"value":[]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:13:49 GMT
+  recorded_at: Tue, 16 Oct 2018 15:02:56 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resources?$filter=resourceType%20eq%20%27Microsoft.Compute/virtualMachines%27%20and%20location%20eq%20%27japanwest%27&api-version=2017-08-01
@@ -3841,11 +3858,11 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMTIwLCJuYmYiOjE1MzkyMDIxMjAsImV4cCI6MTUzOTIwNjAyMCwiYWlvIjoiNDJSZ1lKalB0ajcrMnp6MVNRdk5td1FaeWxleUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJqM0tlM1FPaVhFTzM0NVR2Yk9RckFBIiwidmVyIjoiMS4wIn0.TVhDL_H4_aXVpjptXONOeJgvuoyYLCbQk45xcBXBxaAHWidC7Nvl6rQy5hLkEU-YpOZfNWJ94KhuQnz1CUbJLsx8o56c0hW_OUso48J2F4PMLcEed3xKzFZa86VtttX8OnT1Edj3O4EkpzeTeDJ0Xh2QlI4fuNMNEGIDyRAhKRktKc80EeqsMP1597df4X-PQILGpFCLpRQUvS5EXbD9j_RnRwdXR4APE1rfi8SCIRz7fFUIaH3Yi82E0YWFxKKUhxmPzoFiH-IeVFEib-L-RfspU3lNdleIvNnBp4ay7Pr1X3G1VFR040qP5mVqs3uUmfWHaYZZEal2rOrNnLRgzg
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxODYwLCJuYmYiOjE1Mzk3MDE4NjAsImV4cCI6MTUzOTcwNTc2MCwiYWlvIjoiNDJSZ1lKalNrTlgzNGZNN0EvZnEvNG9yRks4NUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoLXJ5OXhHM2FrS3o1UG5UNWhzUkFRIiwidmVyIjoiMS4wIn0.XMvzCY6opRZRuHnfoT5X0a-ynS8J0iV1NAWaV6i_j7V48V9RYC7FXHGcTtBfjSJxMEkv6Pue1IgRV_94M6rwEpEvsti2BsUPlGk_f6FID6q20TIH0-2qdhkil_ZE5vBFjgvDzVnLnGE0_3kPlyaQhIoV6IeLmwkbv7Zz-KoIseBNDQlnDmleMo1OhMiwPevPueT_gUC1RbE3RFTbQ7CtW46mbrq6STZ5X_ZzSKyl4oqFGypEOFd_1DH-3a9MGg7F9DQbgCMZuPqq-uULnJNJvp4oG2H4i3DNvzvM86N_Fme7Tq0_zyOw9P92GCghiwfUdsWFZ2t56fWj48dyAlJ_wQ
   response:
     status:
       code: 200
@@ -3862,24 +3879,24 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Request-Id:
-      - a7f9d1d1-12e2-4264-8225-3547d9ee5158
+      - c2f11714-d085-43c3-8098-51480a4aac32
       X-Ms-Correlation-Request-Id:
-      - a7f9d1d1-12e2-4264-8225-3547d9ee5158
+      - c2f11714-d085-43c3-8098-51480a4aac32
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201349Z:a7f9d1d1-12e2-4264-8225-3547d9ee5158
+      - WESTCENTRALUS:20181016T150245Z:c2f11714-d085-43c3-8098-51480a4aac32
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:13:49 GMT
+      - Tue, 16 Oct 2018 15:02:45 GMT
       Content-Length:
       - '12'
     body:
       encoding: ASCII-8BIT
       string: '{"value":[]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:13:49 GMT
+  recorded_at: Tue, 16 Oct 2018 15:02:56 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resources?$filter=resourceType%20eq%20%27Microsoft.Compute/virtualMachines%27%20and%20location%20eq%20%27japaneast%27&api-version=2017-08-01
@@ -3892,11 +3909,11 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMTIwLCJuYmYiOjE1MzkyMDIxMjAsImV4cCI6MTUzOTIwNjAyMCwiYWlvIjoiNDJSZ1lKalB0ajcrMnp6MVNRdk5td1FaeWxleUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJqM0tlM1FPaVhFTzM0NVR2Yk9RckFBIiwidmVyIjoiMS4wIn0.TVhDL_H4_aXVpjptXONOeJgvuoyYLCbQk45xcBXBxaAHWidC7Nvl6rQy5hLkEU-YpOZfNWJ94KhuQnz1CUbJLsx8o56c0hW_OUso48J2F4PMLcEed3xKzFZa86VtttX8OnT1Edj3O4EkpzeTeDJ0Xh2QlI4fuNMNEGIDyRAhKRktKc80EeqsMP1597df4X-PQILGpFCLpRQUvS5EXbD9j_RnRwdXR4APE1rfi8SCIRz7fFUIaH3Yi82E0YWFxKKUhxmPzoFiH-IeVFEib-L-RfspU3lNdleIvNnBp4ay7Pr1X3G1VFR040qP5mVqs3uUmfWHaYZZEal2rOrNnLRgzg
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxODYwLCJuYmYiOjE1Mzk3MDE4NjAsImV4cCI6MTUzOTcwNTc2MCwiYWlvIjoiNDJSZ1lKalNrTlgzNGZNN0EvZnEvNG9yRks4NUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoLXJ5OXhHM2FrS3o1UG5UNWhzUkFRIiwidmVyIjoiMS4wIn0.XMvzCY6opRZRuHnfoT5X0a-ynS8J0iV1NAWaV6i_j7V48V9RYC7FXHGcTtBfjSJxMEkv6Pue1IgRV_94M6rwEpEvsti2BsUPlGk_f6FID6q20TIH0-2qdhkil_ZE5vBFjgvDzVnLnGE0_3kPlyaQhIoV6IeLmwkbv7Zz-KoIseBNDQlnDmleMo1OhMiwPevPueT_gUC1RbE3RFTbQ7CtW46mbrq6STZ5X_ZzSKyl4oqFGypEOFd_1DH-3a9MGg7F9DQbgCMZuPqq-uULnJNJvp4oG2H4i3DNvzvM86N_Fme7Tq0_zyOw9P92GCghiwfUdsWFZ2t56fWj48dyAlJ_wQ
   response:
     status:
       code: 200
@@ -3913,24 +3930,24 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Request-Id:
-      - d425ba6d-29bb-4f5b-a953-3423b7311488
+      - 6dd64d91-8a37-4787-ba26-014a59f6972d
       X-Ms-Correlation-Request-Id:
-      - d425ba6d-29bb-4f5b-a953-3423b7311488
+      - 6dd64d91-8a37-4787-ba26-014a59f6972d
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201350Z:d425ba6d-29bb-4f5b-a953-3423b7311488
+      - WESTCENTRALUS:20181016T150246Z:6dd64d91-8a37-4787-ba26-014a59f6972d
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:13:49 GMT
+      - Tue, 16 Oct 2018 15:02:45 GMT
       Content-Length:
       - '12'
     body:
       encoding: ASCII-8BIT
       string: '{"value":[]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:13:50 GMT
+  recorded_at: Tue, 16 Oct 2018 15:02:56 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resources?$filter=resourceType%20eq%20%27Microsoft.Compute/virtualMachines%27%20and%20location%20eq%20%27brazilsouth%27&api-version=2017-08-01
@@ -3943,11 +3960,11 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMTIwLCJuYmYiOjE1MzkyMDIxMjAsImV4cCI6MTUzOTIwNjAyMCwiYWlvIjoiNDJSZ1lKalB0ajcrMnp6MVNRdk5td1FaeWxleUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJqM0tlM1FPaVhFTzM0NVR2Yk9RckFBIiwidmVyIjoiMS4wIn0.TVhDL_H4_aXVpjptXONOeJgvuoyYLCbQk45xcBXBxaAHWidC7Nvl6rQy5hLkEU-YpOZfNWJ94KhuQnz1CUbJLsx8o56c0hW_OUso48J2F4PMLcEed3xKzFZa86VtttX8OnT1Edj3O4EkpzeTeDJ0Xh2QlI4fuNMNEGIDyRAhKRktKc80EeqsMP1597df4X-PQILGpFCLpRQUvS5EXbD9j_RnRwdXR4APE1rfi8SCIRz7fFUIaH3Yi82E0YWFxKKUhxmPzoFiH-IeVFEib-L-RfspU3lNdleIvNnBp4ay7Pr1X3G1VFR040qP5mVqs3uUmfWHaYZZEal2rOrNnLRgzg
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxODYwLCJuYmYiOjE1Mzk3MDE4NjAsImV4cCI6MTUzOTcwNTc2MCwiYWlvIjoiNDJSZ1lKalNrTlgzNGZNN0EvZnEvNG9yRks4NUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoLXJ5OXhHM2FrS3o1UG5UNWhzUkFRIiwidmVyIjoiMS4wIn0.XMvzCY6opRZRuHnfoT5X0a-ynS8J0iV1NAWaV6i_j7V48V9RYC7FXHGcTtBfjSJxMEkv6Pue1IgRV_94M6rwEpEvsti2BsUPlGk_f6FID6q20TIH0-2qdhkil_ZE5vBFjgvDzVnLnGE0_3kPlyaQhIoV6IeLmwkbv7Zz-KoIseBNDQlnDmleMo1OhMiwPevPueT_gUC1RbE3RFTbQ7CtW46mbrq6STZ5X_ZzSKyl4oqFGypEOFd_1DH-3a9MGg7F9DQbgCMZuPqq-uULnJNJvp4oG2H4i3DNvzvM86N_Fme7Tq0_zyOw9P92GCghiwfUdsWFZ2t56fWj48dyAlJ_wQ
   response:
     status:
       code: 200
@@ -3964,24 +3981,24 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Request-Id:
-      - aeaaf1f6-e915-41d4-bd53-c50b5c3bb186
+      - b96dddea-d595-4f4a-bcf2-4e4da2e43318
       X-Ms-Correlation-Request-Id:
-      - aeaaf1f6-e915-41d4-bd53-c50b5c3bb186
+      - b96dddea-d595-4f4a-bcf2-4e4da2e43318
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201350Z:aeaaf1f6-e915-41d4-bd53-c50b5c3bb186
+      - WESTCENTRALUS:20181016T150246Z:b96dddea-d595-4f4a-bcf2-4e4da2e43318
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:13:50 GMT
+      - Tue, 16 Oct 2018 15:02:45 GMT
       Content-Length:
       - '12'
     body:
       encoding: ASCII-8BIT
       string: '{"value":[]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:13:50 GMT
+  recorded_at: Tue, 16 Oct 2018 15:02:56 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resources?$filter=resourceType%20eq%20%27Microsoft.Compute/virtualMachines%27%20and%20location%20eq%20%27australiaeast%27&api-version=2017-08-01
@@ -3994,11 +4011,11 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMTIwLCJuYmYiOjE1MzkyMDIxMjAsImV4cCI6MTUzOTIwNjAyMCwiYWlvIjoiNDJSZ1lKalB0ajcrMnp6MVNRdk5td1FaeWxleUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJqM0tlM1FPaVhFTzM0NVR2Yk9RckFBIiwidmVyIjoiMS4wIn0.TVhDL_H4_aXVpjptXONOeJgvuoyYLCbQk45xcBXBxaAHWidC7Nvl6rQy5hLkEU-YpOZfNWJ94KhuQnz1CUbJLsx8o56c0hW_OUso48J2F4PMLcEed3xKzFZa86VtttX8OnT1Edj3O4EkpzeTeDJ0Xh2QlI4fuNMNEGIDyRAhKRktKc80EeqsMP1597df4X-PQILGpFCLpRQUvS5EXbD9j_RnRwdXR4APE1rfi8SCIRz7fFUIaH3Yi82E0YWFxKKUhxmPzoFiH-IeVFEib-L-RfspU3lNdleIvNnBp4ay7Pr1X3G1VFR040qP5mVqs3uUmfWHaYZZEal2rOrNnLRgzg
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxODYwLCJuYmYiOjE1Mzk3MDE4NjAsImV4cCI6MTUzOTcwNTc2MCwiYWlvIjoiNDJSZ1lKalNrTlgzNGZNN0EvZnEvNG9yRks4NUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoLXJ5OXhHM2FrS3o1UG5UNWhzUkFRIiwidmVyIjoiMS4wIn0.XMvzCY6opRZRuHnfoT5X0a-ynS8J0iV1NAWaV6i_j7V48V9RYC7FXHGcTtBfjSJxMEkv6Pue1IgRV_94M6rwEpEvsti2BsUPlGk_f6FID6q20TIH0-2qdhkil_ZE5vBFjgvDzVnLnGE0_3kPlyaQhIoV6IeLmwkbv7Zz-KoIseBNDQlnDmleMo1OhMiwPevPueT_gUC1RbE3RFTbQ7CtW46mbrq6STZ5X_ZzSKyl4oqFGypEOFd_1DH-3a9MGg7F9DQbgCMZuPqq-uULnJNJvp4oG2H4i3DNvzvM86N_Fme7Tq0_zyOw9P92GCghiwfUdsWFZ2t56fWj48dyAlJ_wQ
   response:
     status:
       code: 200
@@ -4015,24 +4032,24 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Request-Id:
-      - 1406ba26-9e43-4674-8c23-680c06391cee
+      - 9e87cb49-dc1b-477e-b0d3-56ad9b3c285e
       X-Ms-Correlation-Request-Id:
-      - 1406ba26-9e43-4674-8c23-680c06391cee
+      - 9e87cb49-dc1b-477e-b0d3-56ad9b3c285e
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201351Z:1406ba26-9e43-4674-8c23-680c06391cee
+      - WESTCENTRALUS:20181016T150246Z:9e87cb49-dc1b-477e-b0d3-56ad9b3c285e
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:13:50 GMT
+      - Tue, 16 Oct 2018 15:02:46 GMT
       Content-Length:
       - '12'
     body:
       encoding: ASCII-8BIT
       string: '{"value":[]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:13:51 GMT
+  recorded_at: Tue, 16 Oct 2018 15:02:57 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resources?$filter=resourceType%20eq%20%27Microsoft.Compute/virtualMachines%27%20and%20location%20eq%20%27australiasoutheast%27&api-version=2017-08-01
@@ -4045,11 +4062,11 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMTIwLCJuYmYiOjE1MzkyMDIxMjAsImV4cCI6MTUzOTIwNjAyMCwiYWlvIjoiNDJSZ1lKalB0ajcrMnp6MVNRdk5td1FaeWxleUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJqM0tlM1FPaVhFTzM0NVR2Yk9RckFBIiwidmVyIjoiMS4wIn0.TVhDL_H4_aXVpjptXONOeJgvuoyYLCbQk45xcBXBxaAHWidC7Nvl6rQy5hLkEU-YpOZfNWJ94KhuQnz1CUbJLsx8o56c0hW_OUso48J2F4PMLcEed3xKzFZa86VtttX8OnT1Edj3O4EkpzeTeDJ0Xh2QlI4fuNMNEGIDyRAhKRktKc80EeqsMP1597df4X-PQILGpFCLpRQUvS5EXbD9j_RnRwdXR4APE1rfi8SCIRz7fFUIaH3Yi82E0YWFxKKUhxmPzoFiH-IeVFEib-L-RfspU3lNdleIvNnBp4ay7Pr1X3G1VFR040qP5mVqs3uUmfWHaYZZEal2rOrNnLRgzg
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxODYwLCJuYmYiOjE1Mzk3MDE4NjAsImV4cCI6MTUzOTcwNTc2MCwiYWlvIjoiNDJSZ1lKalNrTlgzNGZNN0EvZnEvNG9yRks4NUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoLXJ5OXhHM2FrS3o1UG5UNWhzUkFRIiwidmVyIjoiMS4wIn0.XMvzCY6opRZRuHnfoT5X0a-ynS8J0iV1NAWaV6i_j7V48V9RYC7FXHGcTtBfjSJxMEkv6Pue1IgRV_94M6rwEpEvsti2BsUPlGk_f6FID6q20TIH0-2qdhkil_ZE5vBFjgvDzVnLnGE0_3kPlyaQhIoV6IeLmwkbv7Zz-KoIseBNDQlnDmleMo1OhMiwPevPueT_gUC1RbE3RFTbQ7CtW46mbrq6STZ5X_ZzSKyl4oqFGypEOFd_1DH-3a9MGg7F9DQbgCMZuPqq-uULnJNJvp4oG2H4i3DNvzvM86N_Fme7Tq0_zyOw9P92GCghiwfUdsWFZ2t56fWj48dyAlJ_wQ
   response:
     status:
       code: 200
@@ -4066,24 +4083,24 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Request-Id:
-      - afb33147-8a10-46a5-b7ee-4bc4c24912bf
+      - e0d37cf1-f9a8-4907-90c6-ef5c27a0968a
       X-Ms-Correlation-Request-Id:
-      - afb33147-8a10-46a5-b7ee-4bc4c24912bf
+      - e0d37cf1-f9a8-4907-90c6-ef5c27a0968a
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201351Z:afb33147-8a10-46a5-b7ee-4bc4c24912bf
+      - WESTCENTRALUS:20181016T150246Z:e0d37cf1-f9a8-4907-90c6-ef5c27a0968a
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:13:51 GMT
+      - Tue, 16 Oct 2018 15:02:46 GMT
       Content-Length:
       - '12'
     body:
       encoding: ASCII-8BIT
       string: '{"value":[]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:13:51 GMT
+  recorded_at: Tue, 16 Oct 2018 15:02:57 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resources?$filter=resourceType%20eq%20%27Microsoft.Compute/virtualMachines%27%20and%20location%20eq%20%27southindia%27&api-version=2017-08-01
@@ -4096,11 +4113,11 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMTIwLCJuYmYiOjE1MzkyMDIxMjAsImV4cCI6MTUzOTIwNjAyMCwiYWlvIjoiNDJSZ1lKalB0ajcrMnp6MVNRdk5td1FaeWxleUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJqM0tlM1FPaVhFTzM0NVR2Yk9RckFBIiwidmVyIjoiMS4wIn0.TVhDL_H4_aXVpjptXONOeJgvuoyYLCbQk45xcBXBxaAHWidC7Nvl6rQy5hLkEU-YpOZfNWJ94KhuQnz1CUbJLsx8o56c0hW_OUso48J2F4PMLcEed3xKzFZa86VtttX8OnT1Edj3O4EkpzeTeDJ0Xh2QlI4fuNMNEGIDyRAhKRktKc80EeqsMP1597df4X-PQILGpFCLpRQUvS5EXbD9j_RnRwdXR4APE1rfi8SCIRz7fFUIaH3Yi82E0YWFxKKUhxmPzoFiH-IeVFEib-L-RfspU3lNdleIvNnBp4ay7Pr1X3G1VFR040qP5mVqs3uUmfWHaYZZEal2rOrNnLRgzg
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxODYwLCJuYmYiOjE1Mzk3MDE4NjAsImV4cCI6MTUzOTcwNTc2MCwiYWlvIjoiNDJSZ1lKalNrTlgzNGZNN0EvZnEvNG9yRks4NUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoLXJ5OXhHM2FrS3o1UG5UNWhzUkFRIiwidmVyIjoiMS4wIn0.XMvzCY6opRZRuHnfoT5X0a-ynS8J0iV1NAWaV6i_j7V48V9RYC7FXHGcTtBfjSJxMEkv6Pue1IgRV_94M6rwEpEvsti2BsUPlGk_f6FID6q20TIH0-2qdhkil_ZE5vBFjgvDzVnLnGE0_3kPlyaQhIoV6IeLmwkbv7Zz-KoIseBNDQlnDmleMo1OhMiwPevPueT_gUC1RbE3RFTbQ7CtW46mbrq6STZ5X_ZzSKyl4oqFGypEOFd_1DH-3a9MGg7F9DQbgCMZuPqq-uULnJNJvp4oG2H4i3DNvzvM86N_Fme7Tq0_zyOw9P92GCghiwfUdsWFZ2t56fWj48dyAlJ_wQ
   response:
     status:
       code: 200
@@ -4117,24 +4134,24 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Request-Id:
-      - d6c4f927-16c4-46d7-9c04-b69c24cdfaf9
+      - 27e5aa83-f174-41ad-b796-1afa98f79d86
       X-Ms-Correlation-Request-Id:
-      - d6c4f927-16c4-46d7-9c04-b69c24cdfaf9
+      - 27e5aa83-f174-41ad-b796-1afa98f79d86
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201352Z:d6c4f927-16c4-46d7-9c04-b69c24cdfaf9
+      - WESTCENTRALUS:20181016T150246Z:27e5aa83-f174-41ad-b796-1afa98f79d86
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:13:52 GMT
+      - Tue, 16 Oct 2018 15:02:46 GMT
       Content-Length:
       - '12'
     body:
       encoding: ASCII-8BIT
       string: '{"value":[]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:13:52 GMT
+  recorded_at: Tue, 16 Oct 2018 15:02:57 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resources?$filter=resourceType%20eq%20%27Microsoft.Compute/virtualMachines%27%20and%20location%20eq%20%27centralindia%27&api-version=2017-08-01
@@ -4147,11 +4164,11 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMTIwLCJuYmYiOjE1MzkyMDIxMjAsImV4cCI6MTUzOTIwNjAyMCwiYWlvIjoiNDJSZ1lKalB0ajcrMnp6MVNRdk5td1FaeWxleUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJqM0tlM1FPaVhFTzM0NVR2Yk9RckFBIiwidmVyIjoiMS4wIn0.TVhDL_H4_aXVpjptXONOeJgvuoyYLCbQk45xcBXBxaAHWidC7Nvl6rQy5hLkEU-YpOZfNWJ94KhuQnz1CUbJLsx8o56c0hW_OUso48J2F4PMLcEed3xKzFZa86VtttX8OnT1Edj3O4EkpzeTeDJ0Xh2QlI4fuNMNEGIDyRAhKRktKc80EeqsMP1597df4X-PQILGpFCLpRQUvS5EXbD9j_RnRwdXR4APE1rfi8SCIRz7fFUIaH3Yi82E0YWFxKKUhxmPzoFiH-IeVFEib-L-RfspU3lNdleIvNnBp4ay7Pr1X3G1VFR040qP5mVqs3uUmfWHaYZZEal2rOrNnLRgzg
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxODYwLCJuYmYiOjE1Mzk3MDE4NjAsImV4cCI6MTUzOTcwNTc2MCwiYWlvIjoiNDJSZ1lKalNrTlgzNGZNN0EvZnEvNG9yRks4NUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoLXJ5OXhHM2FrS3o1UG5UNWhzUkFRIiwidmVyIjoiMS4wIn0.XMvzCY6opRZRuHnfoT5X0a-ynS8J0iV1NAWaV6i_j7V48V9RYC7FXHGcTtBfjSJxMEkv6Pue1IgRV_94M6rwEpEvsti2BsUPlGk_f6FID6q20TIH0-2qdhkil_ZE5vBFjgvDzVnLnGE0_3kPlyaQhIoV6IeLmwkbv7Zz-KoIseBNDQlnDmleMo1OhMiwPevPueT_gUC1RbE3RFTbQ7CtW46mbrq6STZ5X_ZzSKyl4oqFGypEOFd_1DH-3a9MGg7F9DQbgCMZuPqq-uULnJNJvp4oG2H4i3DNvzvM86N_Fme7Tq0_zyOw9P92GCghiwfUdsWFZ2t56fWj48dyAlJ_wQ
   response:
     status:
       code: 200
@@ -4168,24 +4185,24 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Request-Id:
-      - d954436c-f8fe-43a4-be04-d2bd4b54aef4
+      - 2aa7fb95-16ab-4345-b119-1f8b70012458
       X-Ms-Correlation-Request-Id:
-      - d954436c-f8fe-43a4-be04-d2bd4b54aef4
+      - 2aa7fb95-16ab-4345-b119-1f8b70012458
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201352Z:d954436c-f8fe-43a4-be04-d2bd4b54aef4
+      - WESTCENTRALUS:20181016T150247Z:2aa7fb95-16ab-4345-b119-1f8b70012458
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:13:52 GMT
+      - Tue, 16 Oct 2018 15:02:46 GMT
       Content-Length:
       - '12'
     body:
       encoding: ASCII-8BIT
       string: '{"value":[]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:13:52 GMT
+  recorded_at: Tue, 16 Oct 2018 15:02:57 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resources?$filter=resourceType%20eq%20%27Microsoft.Compute/virtualMachines%27%20and%20location%20eq%20%27westindia%27&api-version=2017-08-01
@@ -4198,11 +4215,11 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMTIwLCJuYmYiOjE1MzkyMDIxMjAsImV4cCI6MTUzOTIwNjAyMCwiYWlvIjoiNDJSZ1lKalB0ajcrMnp6MVNRdk5td1FaeWxleUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJqM0tlM1FPaVhFTzM0NVR2Yk9RckFBIiwidmVyIjoiMS4wIn0.TVhDL_H4_aXVpjptXONOeJgvuoyYLCbQk45xcBXBxaAHWidC7Nvl6rQy5hLkEU-YpOZfNWJ94KhuQnz1CUbJLsx8o56c0hW_OUso48J2F4PMLcEed3xKzFZa86VtttX8OnT1Edj3O4EkpzeTeDJ0Xh2QlI4fuNMNEGIDyRAhKRktKc80EeqsMP1597df4X-PQILGpFCLpRQUvS5EXbD9j_RnRwdXR4APE1rfi8SCIRz7fFUIaH3Yi82E0YWFxKKUhxmPzoFiH-IeVFEib-L-RfspU3lNdleIvNnBp4ay7Pr1X3G1VFR040qP5mVqs3uUmfWHaYZZEal2rOrNnLRgzg
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxODYwLCJuYmYiOjE1Mzk3MDE4NjAsImV4cCI6MTUzOTcwNTc2MCwiYWlvIjoiNDJSZ1lKalNrTlgzNGZNN0EvZnEvNG9yRks4NUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoLXJ5OXhHM2FrS3o1UG5UNWhzUkFRIiwidmVyIjoiMS4wIn0.XMvzCY6opRZRuHnfoT5X0a-ynS8J0iV1NAWaV6i_j7V48V9RYC7FXHGcTtBfjSJxMEkv6Pue1IgRV_94M6rwEpEvsti2BsUPlGk_f6FID6q20TIH0-2qdhkil_ZE5vBFjgvDzVnLnGE0_3kPlyaQhIoV6IeLmwkbv7Zz-KoIseBNDQlnDmleMo1OhMiwPevPueT_gUC1RbE3RFTbQ7CtW46mbrq6STZ5X_ZzSKyl4oqFGypEOFd_1DH-3a9MGg7F9DQbgCMZuPqq-uULnJNJvp4oG2H4i3DNvzvM86N_Fme7Tq0_zyOw9P92GCghiwfUdsWFZ2t56fWj48dyAlJ_wQ
   response:
     status:
       code: 200
@@ -4219,24 +4236,24 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Request-Id:
-      - b4091235-ddc4-4e8e-bb76-19aabf687df6
+      - 6a6b43cd-fc6a-40c7-9152-5bc23b34fa2a
       X-Ms-Correlation-Request-Id:
-      - b4091235-ddc4-4e8e-bb76-19aabf687df6
+      - 6a6b43cd-fc6a-40c7-9152-5bc23b34fa2a
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201353Z:b4091235-ddc4-4e8e-bb76-19aabf687df6
+      - WESTCENTRALUS:20181016T150247Z:6a6b43cd-fc6a-40c7-9152-5bc23b34fa2a
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:13:53 GMT
+      - Tue, 16 Oct 2018 15:02:47 GMT
       Content-Length:
       - '12'
     body:
       encoding: ASCII-8BIT
       string: '{"value":[]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:13:53 GMT
+  recorded_at: Tue, 16 Oct 2018 15:02:57 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resources?$filter=resourceType%20eq%20%27Microsoft.Compute/virtualMachines%27%20and%20location%20eq%20%27canadacentral%27&api-version=2017-08-01
@@ -4249,11 +4266,11 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMTIwLCJuYmYiOjE1MzkyMDIxMjAsImV4cCI6MTUzOTIwNjAyMCwiYWlvIjoiNDJSZ1lKalB0ajcrMnp6MVNRdk5td1FaeWxleUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJqM0tlM1FPaVhFTzM0NVR2Yk9RckFBIiwidmVyIjoiMS4wIn0.TVhDL_H4_aXVpjptXONOeJgvuoyYLCbQk45xcBXBxaAHWidC7Nvl6rQy5hLkEU-YpOZfNWJ94KhuQnz1CUbJLsx8o56c0hW_OUso48J2F4PMLcEed3xKzFZa86VtttX8OnT1Edj3O4EkpzeTeDJ0Xh2QlI4fuNMNEGIDyRAhKRktKc80EeqsMP1597df4X-PQILGpFCLpRQUvS5EXbD9j_RnRwdXR4APE1rfi8SCIRz7fFUIaH3Yi82E0YWFxKKUhxmPzoFiH-IeVFEib-L-RfspU3lNdleIvNnBp4ay7Pr1X3G1VFR040qP5mVqs3uUmfWHaYZZEal2rOrNnLRgzg
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxODYwLCJuYmYiOjE1Mzk3MDE4NjAsImV4cCI6MTUzOTcwNTc2MCwiYWlvIjoiNDJSZ1lKalNrTlgzNGZNN0EvZnEvNG9yRks4NUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoLXJ5OXhHM2FrS3o1UG5UNWhzUkFRIiwidmVyIjoiMS4wIn0.XMvzCY6opRZRuHnfoT5X0a-ynS8J0iV1NAWaV6i_j7V48V9RYC7FXHGcTtBfjSJxMEkv6Pue1IgRV_94M6rwEpEvsti2BsUPlGk_f6FID6q20TIH0-2qdhkil_ZE5vBFjgvDzVnLnGE0_3kPlyaQhIoV6IeLmwkbv7Zz-KoIseBNDQlnDmleMo1OhMiwPevPueT_gUC1RbE3RFTbQ7CtW46mbrq6STZ5X_ZzSKyl4oqFGypEOFd_1DH-3a9MGg7F9DQbgCMZuPqq-uULnJNJvp4oG2H4i3DNvzvM86N_Fme7Tq0_zyOw9P92GCghiwfUdsWFZ2t56fWj48dyAlJ_wQ
   response:
     status:
       code: 200
@@ -4270,24 +4287,24 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Request-Id:
-      - fe838f5e-d805-43f3-a855-a3702fb4934a
+      - 8585710e-a531-4922-b127-3b552a07cd3d
       X-Ms-Correlation-Request-Id:
-      - fe838f5e-d805-43f3-a855-a3702fb4934a
+      - 8585710e-a531-4922-b127-3b552a07cd3d
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201353Z:fe838f5e-d805-43f3-a855-a3702fb4934a
+      - WESTCENTRALUS:20181016T150247Z:8585710e-a531-4922-b127-3b552a07cd3d
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:13:53 GMT
+      - Tue, 16 Oct 2018 15:02:46 GMT
       Content-Length:
       - '12'
     body:
       encoding: ASCII-8BIT
       string: '{"value":[]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:13:53 GMT
+  recorded_at: Tue, 16 Oct 2018 15:02:58 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resources?$filter=resourceType%20eq%20%27Microsoft.Compute/virtualMachines%27%20and%20location%20eq%20%27canadaeast%27&api-version=2017-08-01
@@ -4300,11 +4317,11 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMTIwLCJuYmYiOjE1MzkyMDIxMjAsImV4cCI6MTUzOTIwNjAyMCwiYWlvIjoiNDJSZ1lKalB0ajcrMnp6MVNRdk5td1FaeWxleUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJqM0tlM1FPaVhFTzM0NVR2Yk9RckFBIiwidmVyIjoiMS4wIn0.TVhDL_H4_aXVpjptXONOeJgvuoyYLCbQk45xcBXBxaAHWidC7Nvl6rQy5hLkEU-YpOZfNWJ94KhuQnz1CUbJLsx8o56c0hW_OUso48J2F4PMLcEed3xKzFZa86VtttX8OnT1Edj3O4EkpzeTeDJ0Xh2QlI4fuNMNEGIDyRAhKRktKc80EeqsMP1597df4X-PQILGpFCLpRQUvS5EXbD9j_RnRwdXR4APE1rfi8SCIRz7fFUIaH3Yi82E0YWFxKKUhxmPzoFiH-IeVFEib-L-RfspU3lNdleIvNnBp4ay7Pr1X3G1VFR040qP5mVqs3uUmfWHaYZZEal2rOrNnLRgzg
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxODYwLCJuYmYiOjE1Mzk3MDE4NjAsImV4cCI6MTUzOTcwNTc2MCwiYWlvIjoiNDJSZ1lKalNrTlgzNGZNN0EvZnEvNG9yRks4NUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoLXJ5OXhHM2FrS3o1UG5UNWhzUkFRIiwidmVyIjoiMS4wIn0.XMvzCY6opRZRuHnfoT5X0a-ynS8J0iV1NAWaV6i_j7V48V9RYC7FXHGcTtBfjSJxMEkv6Pue1IgRV_94M6rwEpEvsti2BsUPlGk_f6FID6q20TIH0-2qdhkil_ZE5vBFjgvDzVnLnGE0_3kPlyaQhIoV6IeLmwkbv7Zz-KoIseBNDQlnDmleMo1OhMiwPevPueT_gUC1RbE3RFTbQ7CtW46mbrq6STZ5X_ZzSKyl4oqFGypEOFd_1DH-3a9MGg7F9DQbgCMZuPqq-uULnJNJvp4oG2H4i3DNvzvM86N_Fme7Tq0_zyOw9P92GCghiwfUdsWFZ2t56fWj48dyAlJ_wQ
   response:
     status:
       code: 200
@@ -4321,24 +4338,24 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Request-Id:
-      - 0027cf54-98f6-4e14-9962-294428687af8
+      - 1d2a202c-f14a-4502-8cce-3cc20a32da31
       X-Ms-Correlation-Request-Id:
-      - 0027cf54-98f6-4e14-9962-294428687af8
+      - 1d2a202c-f14a-4502-8cce-3cc20a32da31
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201354Z:0027cf54-98f6-4e14-9962-294428687af8
+      - WESTCENTRALUS:20181016T150247Z:1d2a202c-f14a-4502-8cce-3cc20a32da31
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:13:54 GMT
+      - Tue, 16 Oct 2018 15:02:47 GMT
       Content-Length:
       - '12'
     body:
       encoding: ASCII-8BIT
       string: '{"value":[]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:13:54 GMT
+  recorded_at: Tue, 16 Oct 2018 15:02:58 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resources?$filter=resourceType%20eq%20%27Microsoft.Compute/virtualMachines%27%20and%20location%20eq%20%27uksouth%27&api-version=2017-08-01
@@ -4351,11 +4368,11 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMTIwLCJuYmYiOjE1MzkyMDIxMjAsImV4cCI6MTUzOTIwNjAyMCwiYWlvIjoiNDJSZ1lKalB0ajcrMnp6MVNRdk5td1FaeWxleUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJqM0tlM1FPaVhFTzM0NVR2Yk9RckFBIiwidmVyIjoiMS4wIn0.TVhDL_H4_aXVpjptXONOeJgvuoyYLCbQk45xcBXBxaAHWidC7Nvl6rQy5hLkEU-YpOZfNWJ94KhuQnz1CUbJLsx8o56c0hW_OUso48J2F4PMLcEed3xKzFZa86VtttX8OnT1Edj3O4EkpzeTeDJ0Xh2QlI4fuNMNEGIDyRAhKRktKc80EeqsMP1597df4X-PQILGpFCLpRQUvS5EXbD9j_RnRwdXR4APE1rfi8SCIRz7fFUIaH3Yi82E0YWFxKKUhxmPzoFiH-IeVFEib-L-RfspU3lNdleIvNnBp4ay7Pr1X3G1VFR040qP5mVqs3uUmfWHaYZZEal2rOrNnLRgzg
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxODYwLCJuYmYiOjE1Mzk3MDE4NjAsImV4cCI6MTUzOTcwNTc2MCwiYWlvIjoiNDJSZ1lKalNrTlgzNGZNN0EvZnEvNG9yRks4NUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoLXJ5OXhHM2FrS3o1UG5UNWhzUkFRIiwidmVyIjoiMS4wIn0.XMvzCY6opRZRuHnfoT5X0a-ynS8J0iV1NAWaV6i_j7V48V9RYC7FXHGcTtBfjSJxMEkv6Pue1IgRV_94M6rwEpEvsti2BsUPlGk_f6FID6q20TIH0-2qdhkil_ZE5vBFjgvDzVnLnGE0_3kPlyaQhIoV6IeLmwkbv7Zz-KoIseBNDQlnDmleMo1OhMiwPevPueT_gUC1RbE3RFTbQ7CtW46mbrq6STZ5X_ZzSKyl4oqFGypEOFd_1DH-3a9MGg7F9DQbgCMZuPqq-uULnJNJvp4oG2H4i3DNvzvM86N_Fme7Tq0_zyOw9P92GCghiwfUdsWFZ2t56fWj48dyAlJ_wQ
   response:
     status:
       code: 200
@@ -4372,24 +4389,24 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Request-Id:
-      - a44a2d42-1fef-468c-9d1a-ba6e19a2ac56
+      - c1f82a70-623d-457f-9d06-32624587382d
       X-Ms-Correlation-Request-Id:
-      - a44a2d42-1fef-468c-9d1a-ba6e19a2ac56
+      - c1f82a70-623d-457f-9d06-32624587382d
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201354Z:a44a2d42-1fef-468c-9d1a-ba6e19a2ac56
+      - WESTCENTRALUS:20181016T150248Z:c1f82a70-623d-457f-9d06-32624587382d
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:13:54 GMT
+      - Tue, 16 Oct 2018 15:02:47 GMT
       Content-Length:
       - '12'
     body:
       encoding: ASCII-8BIT
       string: '{"value":[]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:13:55 GMT
+  recorded_at: Tue, 16 Oct 2018 15:02:58 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resources?$filter=resourceType%20eq%20%27Microsoft.Compute/virtualMachines%27%20and%20location%20eq%20%27ukwest%27&api-version=2017-08-01
@@ -4402,11 +4419,11 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMTIwLCJuYmYiOjE1MzkyMDIxMjAsImV4cCI6MTUzOTIwNjAyMCwiYWlvIjoiNDJSZ1lKalB0ajcrMnp6MVNRdk5td1FaeWxleUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJqM0tlM1FPaVhFTzM0NVR2Yk9RckFBIiwidmVyIjoiMS4wIn0.TVhDL_H4_aXVpjptXONOeJgvuoyYLCbQk45xcBXBxaAHWidC7Nvl6rQy5hLkEU-YpOZfNWJ94KhuQnz1CUbJLsx8o56c0hW_OUso48J2F4PMLcEed3xKzFZa86VtttX8OnT1Edj3O4EkpzeTeDJ0Xh2QlI4fuNMNEGIDyRAhKRktKc80EeqsMP1597df4X-PQILGpFCLpRQUvS5EXbD9j_RnRwdXR4APE1rfi8SCIRz7fFUIaH3Yi82E0YWFxKKUhxmPzoFiH-IeVFEib-L-RfspU3lNdleIvNnBp4ay7Pr1X3G1VFR040qP5mVqs3uUmfWHaYZZEal2rOrNnLRgzg
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxODYwLCJuYmYiOjE1Mzk3MDE4NjAsImV4cCI6MTUzOTcwNTc2MCwiYWlvIjoiNDJSZ1lKalNrTlgzNGZNN0EvZnEvNG9yRks4NUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoLXJ5OXhHM2FrS3o1UG5UNWhzUkFRIiwidmVyIjoiMS4wIn0.XMvzCY6opRZRuHnfoT5X0a-ynS8J0iV1NAWaV6i_j7V48V9RYC7FXHGcTtBfjSJxMEkv6Pue1IgRV_94M6rwEpEvsti2BsUPlGk_f6FID6q20TIH0-2qdhkil_ZE5vBFjgvDzVnLnGE0_3kPlyaQhIoV6IeLmwkbv7Zz-KoIseBNDQlnDmleMo1OhMiwPevPueT_gUC1RbE3RFTbQ7CtW46mbrq6STZ5X_ZzSKyl4oqFGypEOFd_1DH-3a9MGg7F9DQbgCMZuPqq-uULnJNJvp4oG2H4i3DNvzvM86N_Fme7Tq0_zyOw9P92GCghiwfUdsWFZ2t56fWj48dyAlJ_wQ
   response:
     status:
       code: 200
@@ -4423,24 +4440,24 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Request-Id:
-      - '05400943-6e48-439c-91c2-26fb536bc88c'
+      - 6f44d10d-cb37-4a10-8a9c-68b829aa197d
       X-Ms-Correlation-Request-Id:
-      - '05400943-6e48-439c-91c2-26fb536bc88c'
+      - 6f44d10d-cb37-4a10-8a9c-68b829aa197d
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201355Z:05400943-6e48-439c-91c2-26fb536bc88c
+      - WESTCENTRALUS:20181016T150248Z:6f44d10d-cb37-4a10-8a9c-68b829aa197d
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:13:55 GMT
+      - Tue, 16 Oct 2018 15:02:48 GMT
       Content-Length:
       - '12'
     body:
       encoding: ASCII-8BIT
       string: '{"value":[]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:13:55 GMT
+  recorded_at: Tue, 16 Oct 2018 15:02:58 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resources?$filter=resourceType%20eq%20%27Microsoft.Compute/virtualMachines%27%20and%20location%20eq%20%27westcentralus%27&api-version=2017-08-01
@@ -4453,11 +4470,11 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMTIwLCJuYmYiOjE1MzkyMDIxMjAsImV4cCI6MTUzOTIwNjAyMCwiYWlvIjoiNDJSZ1lKalB0ajcrMnp6MVNRdk5td1FaeWxleUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJqM0tlM1FPaVhFTzM0NVR2Yk9RckFBIiwidmVyIjoiMS4wIn0.TVhDL_H4_aXVpjptXONOeJgvuoyYLCbQk45xcBXBxaAHWidC7Nvl6rQy5hLkEU-YpOZfNWJ94KhuQnz1CUbJLsx8o56c0hW_OUso48J2F4PMLcEed3xKzFZa86VtttX8OnT1Edj3O4EkpzeTeDJ0Xh2QlI4fuNMNEGIDyRAhKRktKc80EeqsMP1597df4X-PQILGpFCLpRQUvS5EXbD9j_RnRwdXR4APE1rfi8SCIRz7fFUIaH3Yi82E0YWFxKKUhxmPzoFiH-IeVFEib-L-RfspU3lNdleIvNnBp4ay7Pr1X3G1VFR040qP5mVqs3uUmfWHaYZZEal2rOrNnLRgzg
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxODYwLCJuYmYiOjE1Mzk3MDE4NjAsImV4cCI6MTUzOTcwNTc2MCwiYWlvIjoiNDJSZ1lKalNrTlgzNGZNN0EvZnEvNG9yRks4NUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoLXJ5OXhHM2FrS3o1UG5UNWhzUkFRIiwidmVyIjoiMS4wIn0.XMvzCY6opRZRuHnfoT5X0a-ynS8J0iV1NAWaV6i_j7V48V9RYC7FXHGcTtBfjSJxMEkv6Pue1IgRV_94M6rwEpEvsti2BsUPlGk_f6FID6q20TIH0-2qdhkil_ZE5vBFjgvDzVnLnGE0_3kPlyaQhIoV6IeLmwkbv7Zz-KoIseBNDQlnDmleMo1OhMiwPevPueT_gUC1RbE3RFTbQ7CtW46mbrq6STZ5X_ZzSKyl4oqFGypEOFd_1DH-3a9MGg7F9DQbgCMZuPqq-uULnJNJvp4oG2H4i3DNvzvM86N_Fme7Tq0_zyOw9P92GCghiwfUdsWFZ2t56fWj48dyAlJ_wQ
   response:
     status:
       code: 200
@@ -4474,24 +4491,24 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Request-Id:
-      - cffda2d1-ce7e-4a5b-a549-f8868d789968
+      - 99c705b6-7ca5-40b2-9d41-f74b3294b07b
       X-Ms-Correlation-Request-Id:
-      - cffda2d1-ce7e-4a5b-a549-f8868d789968
+      - 99c705b6-7ca5-40b2-9d41-f74b3294b07b
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201355Z:cffda2d1-ce7e-4a5b-a549-f8868d789968
+      - WESTCENTRALUS:20181016T150248Z:99c705b6-7ca5-40b2-9d41-f74b3294b07b
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:13:55 GMT
+      - Tue, 16 Oct 2018 15:02:48 GMT
       Content-Length:
       - '12'
     body:
       encoding: ASCII-8BIT
       string: '{"value":[]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:13:56 GMT
+  recorded_at: Tue, 16 Oct 2018 15:02:58 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resources?$filter=resourceType%20eq%20%27Microsoft.Compute/virtualMachines%27%20and%20location%20eq%20%27westus2%27&api-version=2017-08-01
@@ -4504,11 +4521,11 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMTIwLCJuYmYiOjE1MzkyMDIxMjAsImV4cCI6MTUzOTIwNjAyMCwiYWlvIjoiNDJSZ1lKalB0ajcrMnp6MVNRdk5td1FaeWxleUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJqM0tlM1FPaVhFTzM0NVR2Yk9RckFBIiwidmVyIjoiMS4wIn0.TVhDL_H4_aXVpjptXONOeJgvuoyYLCbQk45xcBXBxaAHWidC7Nvl6rQy5hLkEU-YpOZfNWJ94KhuQnz1CUbJLsx8o56c0hW_OUso48J2F4PMLcEed3xKzFZa86VtttX8OnT1Edj3O4EkpzeTeDJ0Xh2QlI4fuNMNEGIDyRAhKRktKc80EeqsMP1597df4X-PQILGpFCLpRQUvS5EXbD9j_RnRwdXR4APE1rfi8SCIRz7fFUIaH3Yi82E0YWFxKKUhxmPzoFiH-IeVFEib-L-RfspU3lNdleIvNnBp4ay7Pr1X3G1VFR040qP5mVqs3uUmfWHaYZZEal2rOrNnLRgzg
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxODYwLCJuYmYiOjE1Mzk3MDE4NjAsImV4cCI6MTUzOTcwNTc2MCwiYWlvIjoiNDJSZ1lKalNrTlgzNGZNN0EvZnEvNG9yRks4NUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoLXJ5OXhHM2FrS3o1UG5UNWhzUkFRIiwidmVyIjoiMS4wIn0.XMvzCY6opRZRuHnfoT5X0a-ynS8J0iV1NAWaV6i_j7V48V9RYC7FXHGcTtBfjSJxMEkv6Pue1IgRV_94M6rwEpEvsti2BsUPlGk_f6FID6q20TIH0-2qdhkil_ZE5vBFjgvDzVnLnGE0_3kPlyaQhIoV6IeLmwkbv7Zz-KoIseBNDQlnDmleMo1OhMiwPevPueT_gUC1RbE3RFTbQ7CtW46mbrq6STZ5X_ZzSKyl4oqFGypEOFd_1DH-3a9MGg7F9DQbgCMZuPqq-uULnJNJvp4oG2H4i3DNvzvM86N_Fme7Tq0_zyOw9P92GCghiwfUdsWFZ2t56fWj48dyAlJ_wQ
   response:
     status:
       code: 200
@@ -4525,24 +4542,24 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Request-Id:
-      - f81847d9-628f-4077-a2bc-f1aa3372ea00
+      - 582dcfc1-82eb-49dd-8f38-164ec1ea8631
       X-Ms-Correlation-Request-Id:
-      - f81847d9-628f-4077-a2bc-f1aa3372ea00
+      - 582dcfc1-82eb-49dd-8f38-164ec1ea8631
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201356Z:f81847d9-628f-4077-a2bc-f1aa3372ea00
+      - WESTCENTRALUS:20181016T150248Z:582dcfc1-82eb-49dd-8f38-164ec1ea8631
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:13:55 GMT
+      - Tue, 16 Oct 2018 15:02:48 GMT
       Content-Length:
       - '12'
     body:
       encoding: ASCII-8BIT
       string: '{"value":[]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:13:56 GMT
+  recorded_at: Tue, 16 Oct 2018 15:02:59 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resources?$filter=resourceType%20eq%20%27Microsoft.Compute/virtualMachines%27%20and%20location%20eq%20%27koreacentral%27&api-version=2017-08-01
@@ -4555,11 +4572,11 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMTIwLCJuYmYiOjE1MzkyMDIxMjAsImV4cCI6MTUzOTIwNjAyMCwiYWlvIjoiNDJSZ1lKalB0ajcrMnp6MVNRdk5td1FaeWxleUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJqM0tlM1FPaVhFTzM0NVR2Yk9RckFBIiwidmVyIjoiMS4wIn0.TVhDL_H4_aXVpjptXONOeJgvuoyYLCbQk45xcBXBxaAHWidC7Nvl6rQy5hLkEU-YpOZfNWJ94KhuQnz1CUbJLsx8o56c0hW_OUso48J2F4PMLcEed3xKzFZa86VtttX8OnT1Edj3O4EkpzeTeDJ0Xh2QlI4fuNMNEGIDyRAhKRktKc80EeqsMP1597df4X-PQILGpFCLpRQUvS5EXbD9j_RnRwdXR4APE1rfi8SCIRz7fFUIaH3Yi82E0YWFxKKUhxmPzoFiH-IeVFEib-L-RfspU3lNdleIvNnBp4ay7Pr1X3G1VFR040qP5mVqs3uUmfWHaYZZEal2rOrNnLRgzg
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxODYwLCJuYmYiOjE1Mzk3MDE4NjAsImV4cCI6MTUzOTcwNTc2MCwiYWlvIjoiNDJSZ1lKalNrTlgzNGZNN0EvZnEvNG9yRks4NUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoLXJ5OXhHM2FrS3o1UG5UNWhzUkFRIiwidmVyIjoiMS4wIn0.XMvzCY6opRZRuHnfoT5X0a-ynS8J0iV1NAWaV6i_j7V48V9RYC7FXHGcTtBfjSJxMEkv6Pue1IgRV_94M6rwEpEvsti2BsUPlGk_f6FID6q20TIH0-2qdhkil_ZE5vBFjgvDzVnLnGE0_3kPlyaQhIoV6IeLmwkbv7Zz-KoIseBNDQlnDmleMo1OhMiwPevPueT_gUC1RbE3RFTbQ7CtW46mbrq6STZ5X_ZzSKyl4oqFGypEOFd_1DH-3a9MGg7F9DQbgCMZuPqq-uULnJNJvp4oG2H4i3DNvzvM86N_Fme7Tq0_zyOw9P92GCghiwfUdsWFZ2t56fWj48dyAlJ_wQ
   response:
     status:
       code: 200
@@ -4576,24 +4593,24 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Request-Id:
-      - b3315b3c-8d2f-43f7-ad55-0bda66211a57
+      - e122d5b7-ebe1-430e-ba83-34634db7f189
       X-Ms-Correlation-Request-Id:
-      - b3315b3c-8d2f-43f7-ad55-0bda66211a57
+      - e122d5b7-ebe1-430e-ba83-34634db7f189
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201356Z:b3315b3c-8d2f-43f7-ad55-0bda66211a57
+      - WESTCENTRALUS:20181016T150248Z:e122d5b7-ebe1-430e-ba83-34634db7f189
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:13:56 GMT
+      - Tue, 16 Oct 2018 15:02:47 GMT
       Content-Length:
       - '12'
     body:
       encoding: ASCII-8BIT
       string: '{"value":[]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:13:57 GMT
+  recorded_at: Tue, 16 Oct 2018 15:02:59 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resources?$filter=resourceType%20eq%20%27Microsoft.Compute/virtualMachines%27%20and%20location%20eq%20%27koreasouth%27&api-version=2017-08-01
@@ -4606,11 +4623,11 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMTIwLCJuYmYiOjE1MzkyMDIxMjAsImV4cCI6MTUzOTIwNjAyMCwiYWlvIjoiNDJSZ1lKalB0ajcrMnp6MVNRdk5td1FaeWxleUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJqM0tlM1FPaVhFTzM0NVR2Yk9RckFBIiwidmVyIjoiMS4wIn0.TVhDL_H4_aXVpjptXONOeJgvuoyYLCbQk45xcBXBxaAHWidC7Nvl6rQy5hLkEU-YpOZfNWJ94KhuQnz1CUbJLsx8o56c0hW_OUso48J2F4PMLcEed3xKzFZa86VtttX8OnT1Edj3O4EkpzeTeDJ0Xh2QlI4fuNMNEGIDyRAhKRktKc80EeqsMP1597df4X-PQILGpFCLpRQUvS5EXbD9j_RnRwdXR4APE1rfi8SCIRz7fFUIaH3Yi82E0YWFxKKUhxmPzoFiH-IeVFEib-L-RfspU3lNdleIvNnBp4ay7Pr1X3G1VFR040qP5mVqs3uUmfWHaYZZEal2rOrNnLRgzg
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxODYwLCJuYmYiOjE1Mzk3MDE4NjAsImV4cCI6MTUzOTcwNTc2MCwiYWlvIjoiNDJSZ1lKalNrTlgzNGZNN0EvZnEvNG9yRks4NUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoLXJ5OXhHM2FrS3o1UG5UNWhzUkFRIiwidmVyIjoiMS4wIn0.XMvzCY6opRZRuHnfoT5X0a-ynS8J0iV1NAWaV6i_j7V48V9RYC7FXHGcTtBfjSJxMEkv6Pue1IgRV_94M6rwEpEvsti2BsUPlGk_f6FID6q20TIH0-2qdhkil_ZE5vBFjgvDzVnLnGE0_3kPlyaQhIoV6IeLmwkbv7Zz-KoIseBNDQlnDmleMo1OhMiwPevPueT_gUC1RbE3RFTbQ7CtW46mbrq6STZ5X_ZzSKyl4oqFGypEOFd_1DH-3a9MGg7F9DQbgCMZuPqq-uULnJNJvp4oG2H4i3DNvzvM86N_Fme7Tq0_zyOw9P92GCghiwfUdsWFZ2t56fWj48dyAlJ_wQ
   response:
     status:
       code: 200
@@ -4627,24 +4644,24 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Request-Id:
-      - 3b6f7c13-1c99-4a38-9b8c-b1bef2f7cbf4
+      - 6f8a712d-fd31-49dd-a67b-bca1fbfaf684
       X-Ms-Correlation-Request-Id:
-      - 3b6f7c13-1c99-4a38-9b8c-b1bef2f7cbf4
+      - 6f8a712d-fd31-49dd-a67b-bca1fbfaf684
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201357Z:3b6f7c13-1c99-4a38-9b8c-b1bef2f7cbf4
+      - WESTCENTRALUS:20181016T150249Z:6f8a712d-fd31-49dd-a67b-bca1fbfaf684
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:13:57 GMT
+      - Tue, 16 Oct 2018 15:02:48 GMT
       Content-Length:
       - '12'
     body:
       encoding: ASCII-8BIT
       string: '{"value":[]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:13:57 GMT
+  recorded_at: Tue, 16 Oct 2018 15:02:59 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resources?$filter=resourceType%20eq%20%27Microsoft.Compute/virtualMachines%27%20and%20location%20eq%20%27francecentral%27&api-version=2017-08-01
@@ -4657,11 +4674,11 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMTIwLCJuYmYiOjE1MzkyMDIxMjAsImV4cCI6MTUzOTIwNjAyMCwiYWlvIjoiNDJSZ1lKalB0ajcrMnp6MVNRdk5td1FaeWxleUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJqM0tlM1FPaVhFTzM0NVR2Yk9RckFBIiwidmVyIjoiMS4wIn0.TVhDL_H4_aXVpjptXONOeJgvuoyYLCbQk45xcBXBxaAHWidC7Nvl6rQy5hLkEU-YpOZfNWJ94KhuQnz1CUbJLsx8o56c0hW_OUso48J2F4PMLcEed3xKzFZa86VtttX8OnT1Edj3O4EkpzeTeDJ0Xh2QlI4fuNMNEGIDyRAhKRktKc80EeqsMP1597df4X-PQILGpFCLpRQUvS5EXbD9j_RnRwdXR4APE1rfi8SCIRz7fFUIaH3Yi82E0YWFxKKUhxmPzoFiH-IeVFEib-L-RfspU3lNdleIvNnBp4ay7Pr1X3G1VFR040qP5mVqs3uUmfWHaYZZEal2rOrNnLRgzg
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxODYwLCJuYmYiOjE1Mzk3MDE4NjAsImV4cCI6MTUzOTcwNTc2MCwiYWlvIjoiNDJSZ1lKalNrTlgzNGZNN0EvZnEvNG9yRks4NUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoLXJ5OXhHM2FrS3o1UG5UNWhzUkFRIiwidmVyIjoiMS4wIn0.XMvzCY6opRZRuHnfoT5X0a-ynS8J0iV1NAWaV6i_j7V48V9RYC7FXHGcTtBfjSJxMEkv6Pue1IgRV_94M6rwEpEvsti2BsUPlGk_f6FID6q20TIH0-2qdhkil_ZE5vBFjgvDzVnLnGE0_3kPlyaQhIoV6IeLmwkbv7Zz-KoIseBNDQlnDmleMo1OhMiwPevPueT_gUC1RbE3RFTbQ7CtW46mbrq6STZ5X_ZzSKyl4oqFGypEOFd_1DH-3a9MGg7F9DQbgCMZuPqq-uULnJNJvp4oG2H4i3DNvzvM86N_Fme7Tq0_zyOw9P92GCghiwfUdsWFZ2t56fWj48dyAlJ_wQ
   response:
     status:
       code: 200
@@ -4678,24 +4695,24 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Request-Id:
-      - 2c31cae6-9276-414c-8177-ef0e49678833
+      - bce7e06e-4764-4289-af9f-37ea323837ab
       X-Ms-Correlation-Request-Id:
-      - 2c31cae6-9276-414c-8177-ef0e49678833
+      - bce7e06e-4764-4289-af9f-37ea323837ab
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201357Z:2c31cae6-9276-414c-8177-ef0e49678833
+      - WESTCENTRALUS:20181016T150249Z:bce7e06e-4764-4289-af9f-37ea323837ab
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:13:57 GMT
+      - Tue, 16 Oct 2018 15:02:48 GMT
       Content-Length:
       - '12'
     body:
       encoding: ASCII-8BIT
       string: '{"value":[]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:13:57 GMT
+  recorded_at: Tue, 16 Oct 2018 15:02:59 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resources?$filter=resourceType%20eq%20%27Microsoft.Compute/virtualMachines%27%20and%20location%20eq%20%27francesouth%27&api-version=2017-08-01
@@ -4708,11 +4725,11 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMTIwLCJuYmYiOjE1MzkyMDIxMjAsImV4cCI6MTUzOTIwNjAyMCwiYWlvIjoiNDJSZ1lKalB0ajcrMnp6MVNRdk5td1FaeWxleUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJqM0tlM1FPaVhFTzM0NVR2Yk9RckFBIiwidmVyIjoiMS4wIn0.TVhDL_H4_aXVpjptXONOeJgvuoyYLCbQk45xcBXBxaAHWidC7Nvl6rQy5hLkEU-YpOZfNWJ94KhuQnz1CUbJLsx8o56c0hW_OUso48J2F4PMLcEed3xKzFZa86VtttX8OnT1Edj3O4EkpzeTeDJ0Xh2QlI4fuNMNEGIDyRAhKRktKc80EeqsMP1597df4X-PQILGpFCLpRQUvS5EXbD9j_RnRwdXR4APE1rfi8SCIRz7fFUIaH3Yi82E0YWFxKKUhxmPzoFiH-IeVFEib-L-RfspU3lNdleIvNnBp4ay7Pr1X3G1VFR040qP5mVqs3uUmfWHaYZZEal2rOrNnLRgzg
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxODYwLCJuYmYiOjE1Mzk3MDE4NjAsImV4cCI6MTUzOTcwNTc2MCwiYWlvIjoiNDJSZ1lKalNrTlgzNGZNN0EvZnEvNG9yRks4NUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoLXJ5OXhHM2FrS3o1UG5UNWhzUkFRIiwidmVyIjoiMS4wIn0.XMvzCY6opRZRuHnfoT5X0a-ynS8J0iV1NAWaV6i_j7V48V9RYC7FXHGcTtBfjSJxMEkv6Pue1IgRV_94M6rwEpEvsti2BsUPlGk_f6FID6q20TIH0-2qdhkil_ZE5vBFjgvDzVnLnGE0_3kPlyaQhIoV6IeLmwkbv7Zz-KoIseBNDQlnDmleMo1OhMiwPevPueT_gUC1RbE3RFTbQ7CtW46mbrq6STZ5X_ZzSKyl4oqFGypEOFd_1DH-3a9MGg7F9DQbgCMZuPqq-uULnJNJvp4oG2H4i3DNvzvM86N_Fme7Tq0_zyOw9P92GCghiwfUdsWFZ2t56fWj48dyAlJ_wQ
   response:
     status:
       code: 200
@@ -4729,24 +4746,24 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Request-Id:
-      - ac101894-1f57-4e5a-98ec-380c593b9e78
+      - '04195539-c605-45f3-82c6-c09ca19b5077'
       X-Ms-Correlation-Request-Id:
-      - ac101894-1f57-4e5a-98ec-380c593b9e78
+      - '04195539-c605-45f3-82c6-c09ca19b5077'
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201358Z:ac101894-1f57-4e5a-98ec-380c593b9e78
+      - WESTCENTRALUS:20181016T150249Z:04195539-c605-45f3-82c6-c09ca19b5077
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:13:58 GMT
+      - Tue, 16 Oct 2018 15:02:48 GMT
       Content-Length:
       - '12'
     body:
       encoding: ASCII-8BIT
       string: '{"value":[]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:13:58 GMT
+  recorded_at: Tue, 16 Oct 2018 15:02:59 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resources?$filter=resourceType%20eq%20%27Microsoft.Compute/virtualMachines%27%20and%20location%20eq%20%27australiacentral%27&api-version=2017-08-01
@@ -4759,11 +4776,11 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMTIwLCJuYmYiOjE1MzkyMDIxMjAsImV4cCI6MTUzOTIwNjAyMCwiYWlvIjoiNDJSZ1lKalB0ajcrMnp6MVNRdk5td1FaeWxleUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJqM0tlM1FPaVhFTzM0NVR2Yk9RckFBIiwidmVyIjoiMS4wIn0.TVhDL_H4_aXVpjptXONOeJgvuoyYLCbQk45xcBXBxaAHWidC7Nvl6rQy5hLkEU-YpOZfNWJ94KhuQnz1CUbJLsx8o56c0hW_OUso48J2F4PMLcEed3xKzFZa86VtttX8OnT1Edj3O4EkpzeTeDJ0Xh2QlI4fuNMNEGIDyRAhKRktKc80EeqsMP1597df4X-PQILGpFCLpRQUvS5EXbD9j_RnRwdXR4APE1rfi8SCIRz7fFUIaH3Yi82E0YWFxKKUhxmPzoFiH-IeVFEib-L-RfspU3lNdleIvNnBp4ay7Pr1X3G1VFR040qP5mVqs3uUmfWHaYZZEal2rOrNnLRgzg
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxODYwLCJuYmYiOjE1Mzk3MDE4NjAsImV4cCI6MTUzOTcwNTc2MCwiYWlvIjoiNDJSZ1lKalNrTlgzNGZNN0EvZnEvNG9yRks4NUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoLXJ5OXhHM2FrS3o1UG5UNWhzUkFRIiwidmVyIjoiMS4wIn0.XMvzCY6opRZRuHnfoT5X0a-ynS8J0iV1NAWaV6i_j7V48V9RYC7FXHGcTtBfjSJxMEkv6Pue1IgRV_94M6rwEpEvsti2BsUPlGk_f6FID6q20TIH0-2qdhkil_ZE5vBFjgvDzVnLnGE0_3kPlyaQhIoV6IeLmwkbv7Zz-KoIseBNDQlnDmleMo1OhMiwPevPueT_gUC1RbE3RFTbQ7CtW46mbrq6STZ5X_ZzSKyl4oqFGypEOFd_1DH-3a9MGg7F9DQbgCMZuPqq-uULnJNJvp4oG2H4i3DNvzvM86N_Fme7Tq0_zyOw9P92GCghiwfUdsWFZ2t56fWj48dyAlJ_wQ
   response:
     status:
       code: 200
@@ -4780,24 +4797,24 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Request-Id:
-      - 5f46d223-a81f-4f8b-bc6f-1f6c93ddbb7d
+      - a55bc1d0-6990-46a8-b813-cbc11f2c1eaa
       X-Ms-Correlation-Request-Id:
-      - 5f46d223-a81f-4f8b-bc6f-1f6c93ddbb7d
+      - a55bc1d0-6990-46a8-b813-cbc11f2c1eaa
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201358Z:5f46d223-a81f-4f8b-bc6f-1f6c93ddbb7d
+      - WESTCENTRALUS:20181016T150249Z:a55bc1d0-6990-46a8-b813-cbc11f2c1eaa
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:13:58 GMT
+      - Tue, 16 Oct 2018 15:02:48 GMT
       Content-Length:
       - '12'
     body:
       encoding: ASCII-8BIT
       string: '{"value":[]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:13:59 GMT
+  recorded_at: Tue, 16 Oct 2018 15:03:00 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resources?$filter=resourceType%20eq%20%27Microsoft.Compute/virtualMachines%27%20and%20location%20eq%20%27australiacentral2%27&api-version=2017-08-01
@@ -4810,11 +4827,11 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAyMTIwLCJuYmYiOjE1MzkyMDIxMjAsImV4cCI6MTUzOTIwNjAyMCwiYWlvIjoiNDJSZ1lKalB0ajcrMnp6MVNRdk5td1FaeWxleUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJqM0tlM1FPaVhFTzM0NVR2Yk9RckFBIiwidmVyIjoiMS4wIn0.TVhDL_H4_aXVpjptXONOeJgvuoyYLCbQk45xcBXBxaAHWidC7Nvl6rQy5hLkEU-YpOZfNWJ94KhuQnz1CUbJLsx8o56c0hW_OUso48J2F4PMLcEed3xKzFZa86VtttX8OnT1Edj3O4EkpzeTeDJ0Xh2QlI4fuNMNEGIDyRAhKRktKc80EeqsMP1597df4X-PQILGpFCLpRQUvS5EXbD9j_RnRwdXR4APE1rfi8SCIRz7fFUIaH3Yi82E0YWFxKKUhxmPzoFiH-IeVFEib-L-RfspU3lNdleIvNnBp4ay7Pr1X3G1VFR040qP5mVqs3uUmfWHaYZZEal2rOrNnLRgzg
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAxODYwLCJuYmYiOjE1Mzk3MDE4NjAsImV4cCI6MTUzOTcwNTc2MCwiYWlvIjoiNDJSZ1lKalNrTlgzNGZNN0EvZnEvNG9yRks4NUFnQT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJoLXJ5OXhHM2FrS3o1UG5UNWhzUkFRIiwidmVyIjoiMS4wIn0.XMvzCY6opRZRuHnfoT5X0a-ynS8J0iV1NAWaV6i_j7V48V9RYC7FXHGcTtBfjSJxMEkv6Pue1IgRV_94M6rwEpEvsti2BsUPlGk_f6FID6q20TIH0-2qdhkil_ZE5vBFjgvDzVnLnGE0_3kPlyaQhIoV6IeLmwkbv7Zz-KoIseBNDQlnDmleMo1OhMiwPevPueT_gUC1RbE3RFTbQ7CtW46mbrq6STZ5X_ZzSKyl4oqFGypEOFd_1DH-3a9MGg7F9DQbgCMZuPqq-uULnJNJvp4oG2H4i3DNvzvM86N_Fme7Tq0_zyOw9P92GCghiwfUdsWFZ2t56fWj48dyAlJ_wQ
   response:
     status:
       code: 200
@@ -4831,22 +4848,22 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Request-Id:
-      - 353662a7-4ac5-476d-8ae7-150fc04acb93
+      - 2ae2b2ee-7930-410d-af68-156d507c7234
       X-Ms-Correlation-Request-Id:
-      - 353662a7-4ac5-476d-8ae7-150fc04acb93
+      - 2ae2b2ee-7930-410d-af68-156d507c7234
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201359Z:353662a7-4ac5-476d-8ae7-150fc04acb93
+      - WESTCENTRALUS:20181016T150249Z:2ae2b2ee-7930-410d-af68-156d507c7234
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:13:59 GMT
+      - Tue, 16 Oct 2018 15:02:49 GMT
       Content-Length:
       - '12'
     body:
       encoding: ASCII-8BIT
       string: '{"value":[]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:13:59 GMT
+  recorded_at: Tue, 16 Oct 2018 15:03:00 GMT
 recorded_with: VCR 3.0.3

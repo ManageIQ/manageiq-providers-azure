@@ -12,7 +12,7 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Length:
       - '181'
       Content-Type:
@@ -37,21 +37,21 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       X-Ms-Request-Id:
-      - 9021b7bf-d623-4c86-a21f-f223bace2900
+      - 5f870e57-aba9-46d9-b0fb-e1529ca32001
       P3p:
       - CP="DSP CUR OTPi IND OTRi ONL FIN"
       Set-Cookie:
       - stsservicecookie=ests; path=/; secure; HttpOnly
-      - x-ms-gateway-slice=006; path=/; secure; HttpOnly
+      - x-ms-gateway-slice=001; path=/; secure; HttpOnly
       Date:
-      - Wed, 10 Oct 2018 20:10:41 GMT
+      - Tue, 16 Oct 2018 15:08:36 GMT
       Content-Length:
       - '1351'
     body:
       encoding: UTF-8
-      string: '{"token_type":"Bearer","expires_in":"3600","ext_expires_in":"0","expires_on":"1539205842","not_before":"1539201942","resource":"https://management.core.windows.net/","access_token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAxOTQyLCJuYmYiOjE1MzkyMDE5NDIsImV4cCI6MTUzOTIwNTg0MiwiYWlvIjoiNDJSZ1lHZzhvbUQrcE82YmNMWEsxYnBBbDRnV0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJ2N2Noa0NQV2hreWlIX0lqdXM0cEFBIiwidmVyIjoiMS4wIn0.Xu33SAwcAPNyV0JFO5iLOU89-8sZ8JDmK6tUTp3wqrW0lvEjrY0rxsUkOTYsshZAHKssPpb58Iu2PyQ7ZVbYBP8daHdaGviwttqKfiLYbr0BAQpUGrTKhcXCgLiZyvvJZfZfpc_BftOfTJp7NQrChj4swDeyNZXT33kVKtfyn7ZmNUQZNwSBDziPdxEB0-zAR19XBa6ff-2rVqnH8z7VaYcaeb7dFQsIfvf-0lfpp1m6fPOc6Gchj3PHo5tAUkxvcM7b_REiieln9Vl1zOE4cDtXbEQkukSnnv8choqSBLriGqck8VgP2LWCKwJXn-vS1Mujiwommw3Oxad_ZomOUQ"}'
+      string: '{"token_type":"Bearer","expires_in":"3599","ext_expires_in":"0","expires_on":"1539706117","not_before":"1539702217","resource":"https://management.core.windows.net/","access_token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAyMjE3LCJuYmYiOjE1Mzk3MDIyMTcsImV4cCI6MTUzOTcwNjExNywiYWlvIjoiNDJSZ1lKQk1ZbnNWdXBHQloxbG5yZm5sanZWY0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJWdzZIWDZtcjJVYXctLUZTbktNZ0FRIiwidmVyIjoiMS4wIn0.ATvlZxDnhIlGQmiuN45p4yBeQAVLSscVopijRS4JPQwycoNTCncU-gpEpRlMdRQhipMFrVT0qkrgmQw--CI9stdw5WXaErkJaJJc8_vEQw2wlCD8ta-Curc2bQxP68c77jppPvvQfX65_HXoQrssZwBZ3NksNDkyUzSLunrrkeVWPujtU_QC5R0Ygn6PIyOR6T2hYfWgzRpNfjEpXsyrtkAEdbnfMUwYnaE8JGHkApa2jccQLkxPdmu19DP4QkOp_GR2HPIlY-PdYPW-QWTwV_B3fIMKk5if1xiuZzEGtfSs6D-vbz6A8ozWcAcXnCY3iJP8HPcsJgDh6FyChZQ6-g"}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:10:43 GMT
+  recorded_at: Tue, 16 Oct 2018 15:08:48 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions?api-version=2016-06-01
@@ -64,11 +64,11 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAxOTQyLCJuYmYiOjE1MzkyMDE5NDIsImV4cCI6MTUzOTIwNTg0MiwiYWlvIjoiNDJSZ1lHZzhvbUQrcE82YmNMWEsxYnBBbDRnV0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJ2N2Noa0NQV2hreWlIX0lqdXM0cEFBIiwidmVyIjoiMS4wIn0.Xu33SAwcAPNyV0JFO5iLOU89-8sZ8JDmK6tUTp3wqrW0lvEjrY0rxsUkOTYsshZAHKssPpb58Iu2PyQ7ZVbYBP8daHdaGviwttqKfiLYbr0BAQpUGrTKhcXCgLiZyvvJZfZfpc_BftOfTJp7NQrChj4swDeyNZXT33kVKtfyn7ZmNUQZNwSBDziPdxEB0-zAR19XBa6ff-2rVqnH8z7VaYcaeb7dFQsIfvf-0lfpp1m6fPOc6Gchj3PHo5tAUkxvcM7b_REiieln9Vl1zOE4cDtXbEQkukSnnv8choqSBLriGqck8VgP2LWCKwJXn-vS1Mujiwommw3Oxad_ZomOUQ
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAyMjE3LCJuYmYiOjE1Mzk3MDIyMTcsImV4cCI6MTUzOTcwNjExNywiYWlvIjoiNDJSZ1lKQk1ZbnNWdXBHQloxbG5yZm5sanZWY0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJWdzZIWDZtcjJVYXctLUZTbktNZ0FRIiwidmVyIjoiMS4wIn0.ATvlZxDnhIlGQmiuN45p4yBeQAVLSscVopijRS4JPQwycoNTCncU-gpEpRlMdRQhipMFrVT0qkrgmQw--CI9stdw5WXaErkJaJJc8_vEQw2wlCD8ta-Curc2bQxP68c77jppPvvQfX65_HXoQrssZwBZ3NksNDkyUzSLunrrkeVWPujtU_QC5R0Ygn6PIyOR6T2hYfWgzRpNfjEpXsyrtkAEdbnfMUwYnaE8JGHkApa2jccQLkxPdmu19DP4QkOp_GR2HPIlY-PdYPW-QWTwV_B3fIMKk5if1xiuZzEGtfSs6D-vbz6A8ozWcAcXnCY3iJP8HPcsJgDh6FyChZQ6-g
   response:
     status:
       code: 200
@@ -87,24 +87,24 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Ratelimit-Remaining-Tenant-Reads:
-      - '11999'
+      - '11997'
       X-Ms-Request-Id:
-      - f3c144c6-d2da-4fca-8ca2-3390ee508008
+      - a4e3bc9d-4b81-43ba-8301-e8db4ed35f89
       X-Ms-Correlation-Request-Id:
-      - f3c144c6-d2da-4fca-8ca2-3390ee508008
+      - a4e3bc9d-4b81-43ba-8301-e8db4ed35f89
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201043Z:f3c144c6-d2da-4fca-8ca2-3390ee508008
+      - WESTCENTRALUS:20181016T150838Z:a4e3bc9d-4b81-43ba-8301-e8db4ed35f89
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:10:43 GMT
+      - Tue, 16 Oct 2018 15:08:38 GMT
     body:
       encoding: ASCII-8BIT
       string: '{"value":[{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID","subscriptionId":"AZURE_SUBSCRIPTION_ID","displayName":"Pay-As-You-Go","state":"Enabled","subscriptionPolicies":{"locationPlacementId":"Public_2014-09-01","quotaId":"PayAsYouGo_2014-09-01","spendingLimit":"Off"},"authorizationSource":"RoleBased"}]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:10:43 GMT
+  recorded_at: Tue, 16 Oct 2018 15:08:48 GMT
 - request:
     method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/providers?api-version=2015-01-01
@@ -117,11 +117,11 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAxOTQyLCJuYmYiOjE1MzkyMDE5NDIsImV4cCI6MTUzOTIwNTg0MiwiYWlvIjoiNDJSZ1lHZzhvbUQrcE82YmNMWEsxYnBBbDRnV0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJ2N2Noa0NQV2hreWlIX0lqdXM0cEFBIiwidmVyIjoiMS4wIn0.Xu33SAwcAPNyV0JFO5iLOU89-8sZ8JDmK6tUTp3wqrW0lvEjrY0rxsUkOTYsshZAHKssPpb58Iu2PyQ7ZVbYBP8daHdaGviwttqKfiLYbr0BAQpUGrTKhcXCgLiZyvvJZfZfpc_BftOfTJp7NQrChj4swDeyNZXT33kVKtfyn7ZmNUQZNwSBDziPdxEB0-zAR19XBa6ff-2rVqnH8z7VaYcaeb7dFQsIfvf-0lfpp1m6fPOc6Gchj3PHo5tAUkxvcM7b_REiieln9Vl1zOE4cDtXbEQkukSnnv8choqSBLriGqck8VgP2LWCKwJXn-vS1Mujiwommw3Oxad_ZomOUQ
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAyMjE3LCJuYmYiOjE1Mzk3MDIyMTcsImV4cCI6MTUzOTcwNjExNywiYWlvIjoiNDJSZ1lKQk1ZbnNWdXBHQloxbG5yZm5sanZWY0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJWdzZIWDZtcjJVYXctLUZTbktNZ0FRIiwidmVyIjoiMS4wIn0.ATvlZxDnhIlGQmiuN45p4yBeQAVLSscVopijRS4JPQwycoNTCncU-gpEpRlMdRQhipMFrVT0qkrgmQw--CI9stdw5WXaErkJaJJc8_vEQw2wlCD8ta-Curc2bQxP68c77jppPvvQfX65_HXoQrssZwBZ3NksNDkyUzSLunrrkeVWPujtU_QC5R0Ygn6PIyOR6T2hYfWgzRpNfjEpXsyrtkAEdbnfMUwYnaE8JGHkApa2jccQLkxPdmu19DP4QkOp_GR2HPIlY-PdYPW-QWTwV_B3fIMKk5if1xiuZzEGtfSs6D-vbz6A8ozWcAcXnCY3iJP8HPcsJgDh6FyChZQ6-g
   response:
     status:
       code: 200
@@ -138,21 +138,21 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Ms-Ratelimit-Remaining-Subscription-Reads:
-      - '11999'
+      - '11964'
       X-Ms-Request-Id:
-      - a3638574-f0f8-41f5-8010-dcc45818e179
+      - 192c4a6a-8520-424f-b4e0-a41010dfcb43
       X-Ms-Correlation-Request-Id:
-      - a3638574-f0f8-41f5-8010-dcc45818e179
+      - 192c4a6a-8520-424f-b4e0-a41010dfcb43
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201045Z:a3638574-f0f8-41f5-8010-dcc45818e179
+      - WESTCENTRALUS:20181016T150839Z:192c4a6a-8520-424f-b4e0-a41010dfcb43
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:10:45 GMT
+      - Tue, 16 Oct 2018 15:08:38 GMT
       Content-Length:
-      - '439167'
+      - '441087'
     body:
       encoding: ASCII-8BIT
       string: '{"value":[{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.Compute","namespace":"Microsoft.Compute","authorizations":[{"applicationId":"60e6cd67-9c8c-4951-9b3c-23c25a2169af","roleDefinitionId":"e4770acb-272e-4dc8-87f3-12f44a612224"},{"applicationId":"a303894e-f1d8-4a37-bf10-67aa654a0596","roleDefinitionId":"903ac751-8ad5-4e5a-bfc2-5e49f450a241"},{"applicationId":"a8b6bf88-1d1a-4626-b040-9a729ea93c65","roleDefinitionId":"45c8267c-80ba-4b96-9a43-115b8f49fccd"},{"applicationId":"184909ca-69f1-4368-a6a7-c558ee6eb0bd","roleDefinitionId":"45c8267c-80ba-4b96-9a43-115b8f49fccd"},{"applicationId":"5e5e43d4-54da-4211-86a4-c6e7f3715801","roleDefinitionId":"ffcd6e5b-8772-457d-bb17-89703c03428f"}],"resourceTypes":[{"resourceType":"availabilitySets","locations":["East
@@ -893,10 +893,15 @@ http_interactions:
         Central US","South Central US","West Central US","Central US"],"apiVersions":["2018-08-01-preview"]},{"resourceType":"billingAccounts/billingProfiles/products","locations":["North
         Central US","South Central US","West Central US","Central US"],"apiVersions":["2018-08-01-preview"]},{"resourceType":"billingAccounts/products","locations":["North
         Central US","South Central US","West Central US","Central US"],"apiVersions":["2018-08-01-preview"]},{"resourceType":"operations","locations":["Central
-        US"],"apiVersions":["2018-03-01-preview","2017-04-24-preview","2017-02-27-preview"]}],"registrationState":"Registered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.BingMaps","namespace":"Microsoft.BingMaps","resourceTypes":[{"resourceType":"mapApis","locations":["West
+        US"],"apiVersions":["2018-03-01-preview","2017-04-24-preview","2017-02-27-preview"]},{"resourceType":"billingAccounts/projects/initiateImportRequest","locations":["North
+        Central US","South Central US","West Central US","Central US"],"apiVersions":["2018-08-01-preview"]},{"resourceType":"billingAccounts/projects/importRequests","locations":["North
+        Central US","South Central US","West Central US","Central US"],"apiVersions":["2018-08-01-preview"]},{"resourceType":"importRequests/acceptImportRequest","locations":["North
+        Central US","South Central US","West Central US","Central US"],"apiVersions":["2018-08-01-preview"]},{"resourceType":"importRequests","locations":["North
+        Central US","South Central US","West Central US","Central US"],"apiVersions":["2018-08-01-preview"]},{"resourceType":"importRequests/declineImportRequest","locations":["North
+        Central US","South Central US","West Central US","Central US"],"apiVersions":["2018-08-01-preview"]}],"registrationState":"Registered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.BingMaps","namespace":"Microsoft.BingMaps","resourceTypes":[{"resourceType":"mapApis","locations":["West
         US"],"apiVersions":["2016-08-18","2015-07-02"]},{"resourceType":"operations","locations":[],"apiVersions":["2016-08-18","2015-07-02"]},{"resourceType":"listCommunicationPreference","locations":[],"apiVersions":["2016-08-18","2015-07-02"]},{"resourceType":"updateCommunicationPreference","locations":[],"apiVersions":["2016-08-18","2015-07-02"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.BizTalkServices","namespace":"Microsoft.BizTalkServices","resourceTypes":[{"resourceType":"BizTalk","locations":["East
         US","West US","North Europe","West Europe","Southeast Asia","East Asia","North
-        Central US","Japan West","Japan East","South Central US"],"apiVersions":["2014-04-01-preview"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.Blueprint","namespace":"Microsoft.Blueprint","authorizations":[{"applicationId":"f71766dc-90d9-4b7d-bd9d-4499c4331c3f","roleDefinitionId":"cb180127-cf6d-4672-9e75-e29a487f9658"}],"resourceTypes":[{"resourceType":"blueprints","locations":[],"apiVersions":["2017-11-11-preview","2017-11-11-alpha"]},{"resourceType":"blueprints/artifacts","locations":[],"apiVersions":["2017-11-11-preview","2017-11-11-alpha"]},{"resourceType":"blueprints/versions","locations":[],"apiVersions":["2017-11-11-preview","2017-11-11-alpha"]},{"resourceType":"blueprints/versions/artifacts","locations":[],"apiVersions":["2017-11-11-preview","2017-11-11-alpha"]},{"resourceType":"blueprintAssignments","locations":[],"apiVersions":["2017-11-11-preview","2017-11-11-alpha"]},{"resourceType":"blueprintAssignments/operations","locations":[],"apiVersions":["2017-11-11-preview","2017-11-11-alpha"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.BotService","namespace":"Microsoft.BotService","authorization":{"applicationId":"f3723d34-6ff5-4ceb-a148-d99dcd2511fc","roleDefinitionId":"71213c26-43ed-41d8-9905-3c12971517a3"},"resourceTypes":[{"resourceType":"botServices","locations":["Global"],"apiVersions":["2018-07-12","2017-12-01"]},{"resourceType":"botServices/channels","locations":["Global"],"apiVersions":["2018-07-12","2017-12-01"]},{"resourceType":"botServices/connections","locations":["Global"],"apiVersions":["2018-07-12","2017-12-01"]},{"resourceType":"listAuthServiceProviders","locations":["Global"],"apiVersions":["2018-07-12","2017-12-01"]},{"resourceType":"checkNameAvailability","locations":["Global"],"apiVersions":["2018-07-12","2017-12-01"]},{"resourceType":"operations","locations":["Global"],"apiVersions":["2018-07-12","2017-12-01"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.Cache","namespace":"Microsoft.Cache","authorization":{"applicationId":"96231a05-34ce-4eb4-aa6a-70759cbb5e83","roleDefinitionId":"4f731528-ba85-45c7-acfb-cd0a9b3cf31b"},"resourceTypes":[{"resourceType":"Redis","locations":["North
+        Central US","Japan West","Japan East","South Central US"],"apiVersions":["2014-04-01-preview"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.Blueprint","namespace":"Microsoft.Blueprint","authorizations":[{"applicationId":"f71766dc-90d9-4b7d-bd9d-4499c4331c3f","roleDefinitionId":"cb180127-cf6d-4672-9e75-e29a487f9658"}],"resourceTypes":[{"resourceType":"blueprints","locations":[],"apiVersions":["2017-11-11-preview","2017-11-11-alpha"]},{"resourceType":"blueprints/artifacts","locations":[],"apiVersions":["2017-11-11-preview","2017-11-11-alpha"]},{"resourceType":"blueprints/versions","locations":[],"apiVersions":["2017-11-11-preview","2017-11-11-alpha"]},{"resourceType":"blueprints/versions/artifacts","locations":[],"apiVersions":["2017-11-11-preview","2017-11-11-alpha"]},{"resourceType":"blueprintAssignments","locations":[],"apiVersions":["2017-11-11-preview","2017-11-11-alpha"]},{"resourceType":"blueprintAssignments/operations","locations":[],"apiVersions":["2017-11-11-preview","2017-11-11-alpha"]},{"resourceType":"operations","locations":[],"apiVersions":["2017-11-11-preview","2017-11-11-alpha"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.BotService","namespace":"Microsoft.BotService","authorization":{"applicationId":"f3723d34-6ff5-4ceb-a148-d99dcd2511fc","roleDefinitionId":"71213c26-43ed-41d8-9905-3c12971517a3"},"resourceTypes":[{"resourceType":"botServices","locations":["Global"],"apiVersions":["2018-07-12","2017-12-01"]},{"resourceType":"botServices/channels","locations":["Global"],"apiVersions":["2018-07-12","2017-12-01"]},{"resourceType":"botServices/connections","locations":["Global"],"apiVersions":["2018-07-12","2017-12-01"]},{"resourceType":"listAuthServiceProviders","locations":["Global"],"apiVersions":["2018-07-12","2017-12-01"]},{"resourceType":"checkNameAvailability","locations":["Global"],"apiVersions":["2018-07-12","2017-12-01"]},{"resourceType":"operations","locations":["Global"],"apiVersions":["2018-07-12","2017-12-01"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.Cache","namespace":"Microsoft.Cache","authorization":{"applicationId":"96231a05-34ce-4eb4-aa6a-70759cbb5e83","roleDefinitionId":"4f731528-ba85-45c7-acfb-cd0a9b3cf31b"},"resourceTypes":[{"resourceType":"Redis","locations":["North
         Central US","South Central US","Central US","West Europe","North Europe","West
         US","East US","East US 2","Japan East","Japan West","Brazil South","Southeast
         Asia","East Asia","Australia East","Australia Southeast","Central India","West
@@ -1555,30 +1560,35 @@ http_interactions:
         Central","Canada East","Brazil South","South Central US","Korea South","Korea
         Central"],"apiVersions":["2018-01-15-preview"]},{"resourceType":"ProvisioningServices","locations":["East
         US","West US","West Europe","North Europe","Southeast Asia","East Asia"],"apiVersions":["2018-01-22","2017-11-15","2017-08-21-preview"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.DevTestLab","namespace":"Microsoft.DevTestLab","authorization":{"applicationId":"1a14be2a-e903-4cec-99cf-b2e209259a0f","roleDefinitionId":"8f2de81a-b9aa-49d8-b24c-11814d3ab525","managedByRoleDefinitionId":"8f2de81a-b9aa-49d8-b24c-11814d3ab525"},"resourceTypes":[{"resourceType":"labs","locations":["West
-        Central US","Japan East","West US","Australia Southeast","Canada Central","Central
-        India","Central US","East Asia","Korea Central","North Europe","South Central
-        US","UK West","West India","Australia East","Brazil South","Canada East","East
-        US","East US 2","Japan West","Korea South","North Central US","South India","Southeast
+        Central US","Japan East","West US","Australia Central","Australia Southeast","Canada
+        Central","Central India","Central US","East Asia","France Central","Korea
+        Central","North Europe","South Central US","UK West","West India","Australia
+        Central 2","Australia East","Brazil South","Canada East","East US","East US
+        2","France South","Japan West","Korea South","North Central US","South India","Southeast
         Asia","UK South","West Europe","West US 2"],"apiVersions":["2018-10-15-preview","2017-04-26-preview","2016-05-15","2015-05-21-preview"]},{"resourceType":"schedules","locations":["West
-        Central US","Japan East","West US","Australia Southeast","Canada Central","Central
-        India","Central US","East Asia","Korea Central","North Europe","South Central
-        US","UK West","West India","Australia East","Brazil South","Canada East","East
-        US","East US 2","Japan West","Korea South","North Central US","South India","Southeast
+        Central US","Japan East","West US","Australia Central","Australia Southeast","Canada
+        Central","Central India","Central US","East Asia","France Central","Korea
+        Central","North Europe","South Central US","UK West","West India","Australia
+        Central 2","Australia East","Brazil South","Canada East","East US","East US
+        2","France South","Japan West","Korea South","North Central US","South India","Southeast
         Asia","UK South","West Europe","West US 2"],"apiVersions":["2018-10-15-preview","2017-04-26-preview","2016-05-15","2015-05-21-preview"]},{"resourceType":"labs/virtualMachines","locations":["West
-        Central US","Japan East","West US","Australia Southeast","Canada Central","Central
-        India","Central US","East Asia","Korea Central","North Europe","South Central
-        US","UK West","West India","Australia East","Brazil South","Canada East","East
-        US","East US 2","Japan West","Korea South","North Central US","South India","Southeast
+        Central US","Japan East","West US","Australia Central","Australia Southeast","Canada
+        Central","Central India","Central US","East Asia","France Central","Korea
+        Central","North Europe","South Central US","UK West","West India","Australia
+        Central 2","Australia East","Brazil South","Canada East","East US","East US
+        2","France South","Japan West","Korea South","North Central US","South India","Southeast
         Asia","UK South","West Europe","West US 2"],"apiVersions":["2018-10-15-preview","2017-04-26-preview","2016-05-15","2015-05-21-preview"]},{"resourceType":"labs/serviceRunners","locations":["West
-        Central US","Japan East","West US","Australia Southeast","Canada Central","Central
-        India","Central US","East Asia","Korea Central","North Europe","South Central
-        US","UK West","West India","Australia East","Brazil South","Canada East","East
-        US","East US 2","Japan West","Korea South","North Central US","South India","Southeast
+        Central US","Japan East","West US","Australia Central","Australia Southeast","Canada
+        Central","Central India","Central US","East Asia","France Central","Korea
+        Central","North Europe","South Central US","UK West","West India","Australia
+        Central 2","Australia East","Brazil South","Canada East","East US","East US
+        2","France South","Japan West","Korea South","North Central US","South India","Southeast
         Asia","UK South","West Europe","West US 2"],"apiVersions":["2018-10-15-preview","2017-04-26-preview","2016-05-15"]},{"resourceType":"operations","locations":[],"apiVersions":["2018-10-15-preview","2017-04-26-preview","2016-05-15","2015-05-21-preview"]},{"resourceType":"locations","locations":[],"apiVersions":["2018-10-15-preview","2017-04-26-preview","2016-05-15","2015-05-21-preview"]},{"resourceType":"locations/operations","locations":["West
-        Central US","Japan East","West US","Australia Southeast","Canada Central","Central
-        India","Central US","East Asia","Korea Central","North Europe","South Central
-        US","UK West","West India","Australia East","Brazil South","Canada East","East
-        US","East US 2","Japan West","Korea South","North Central US","South India","Southeast
+        Central US","Japan East","West US","Australia Central","Australia Southeast","Canada
+        Central","Central India","Central US","East Asia","France Central","Korea
+        Central","North Europe","South Central US","UK West","West India","Australia
+        Central 2","Australia East","Brazil South","Canada East","East US","East US
+        2","France South","Japan West","Korea South","North Central US","South India","Southeast
         Asia","UK South","West Europe","West US 2"],"apiVersions":["2018-10-15-preview","2017-04-26-preview","2016-05-15","2015-05-21-preview"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.DocumentDB","namespace":"Microsoft.DocumentDB","authorizations":[{"applicationId":"57c0fc58-a83a-41d0-8ae9-08952659bdfd","roleDefinitionId":"FFFD5CF5-FFD3-4B24-B0E2-0715ADD4C282"}],"resourceTypes":[{"resourceType":"databaseAccounts","locations":["Australia
         East","Australia Southeast","Canada Central","Canada East","Central India","Central
         US","East Asia","East US","East US 2","France Central","Japan East","Japan
@@ -1749,27 +1759,34 @@ http_interactions:
         US"],"apiVersions":["2018-07-01-preview"]},{"resourceType":"diagnosticSettings","locations":[],"apiVersions":["2018-07-01-preview"]},{"resourceType":"diagnosticSettingsCategories","locations":[],"apiVersions":["2018-07-01-preview"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.IoTCentral","namespace":"Microsoft.IoTCentral","authorizations":[{"applicationId":"9edfcdd9-0bc5-4bd4-b287-c3afc716aac7"}],"resourceTypes":[{"resourceType":"IoTApps","locations":["West
         Europe","West US","East US 2","North Europe","East US"],"apiVersions":["2018-09-01","2017-07-01-privatepreview"]},{"resourceType":"checkNameAvailability","locations":["West
         Europe","West US","East US 2","North Europe","East US"],"apiVersions":["2018-09-01","2017-07-01-privatepreview"]},{"resourceType":"operations","locations":["West
-        Europe","West US","East US 2","North Europe","East US"],"apiVersions":["2018-09-01","2017-07-01-privatepreview"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.IoTSpaces","namespace":"Microsoft.IoTSpaces","authorizations":[{"applicationId":"0b07f429-9f4b-4714-9392-cc5e8e80c8b0"}],"resourceTypes":[{"resourceType":"operations","locations":[],"apiVersions":["2017-10-01-preview"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.Kusto","namespace":"Microsoft.Kusto","authorizations":[{"applicationId":"2746ea77-4702-4b45-80ca-3c97e680e8b7","roleDefinitionId":"dd9d4347-f397-45f2-b538-85f21c90037c"}],"resourceTypes":[{"resourceType":"clusters","locations":["Central
+        Europe","West US","East US 2","North Europe","East US"],"apiVersions":["2018-09-01","2017-07-01-privatepreview"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.IoTSpaces","namespace":"Microsoft.IoTSpaces","authorizations":[{"applicationId":"0b07f429-9f4b-4714-9392-cc5e8e80c8b0"}],"resourceTypes":[{"resourceType":"checkNameAvailability","locations":["North
+        Europe","Australia East","West US 2","East US"],"apiVersions":["2017-10-01-preview"]},{"resourceType":"Graph","locations":["North
+        Europe","Australia East","West US 2","East US"],"apiVersions":["2017-10-01-preview"]},{"resourceType":"operations","locations":[],"apiVersions":["2017-10-01-preview"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.Kusto","namespace":"Microsoft.Kusto","authorizations":[{"applicationId":"2746ea77-4702-4b45-80ca-3c97e680e8b7","roleDefinitionId":"dd9d4347-f397-45f2-b538-85f21c90037c"}],"resourceTypes":[{"resourceType":"clusters","locations":["Central
         US","West Europe","North Europe","East US 2","West US","Southeast Asia","East
         US","West US 2","South Central US","North Central US","East Asia","Japan East","Canada
         Central","UK South","Australia East","Brazil South","Japan West","South India","Central
-        India","West India","Canada East","Korea Central","France Central"],"apiVersions":["2018-09-07-preview"]},{"resourceType":"clusters/databases","locations":["Central
+        India","West India","Canada East","Korea Central","France Central","UK West","Korea
+        South","France South","Australia Southeast"],"apiVersions":["2018-09-07-preview"]},{"resourceType":"clusters/databases","locations":["Central
         US","West Europe","North Europe","East US 2","West US","Southeast Asia","East
         US","West US 2","South Central US","North Central US","East Asia","Japan East","Canada
         Central","UK South","Australia East","Brazil South","Japan West","South India","Central
-        India","West India","Canada East","Korea Central","France Central"],"apiVersions":["2018-09-07-preview","2017-09-07-privatepreview"]},{"resourceType":"clusters/databases/eventhubconnections","locations":["Central
+        India","West India","Canada East","Korea Central","France Central","UK West","Korea
+        South","France South","Australia Southeast"],"apiVersions":["2018-09-07-preview","2017-09-07-privatepreview"]},{"resourceType":"clusters/databases/eventhubconnections","locations":["Central
         US","West Europe","North Europe","East US 2","West US","Southeast Asia","East
         US","West US 2","South Central US","North Central US","East Asia","Japan East","Canada
         Central","UK South","Australia East","Brazil South","Japan West","South India","Central
-        India","West India","Canada East","Korea Central","France Central"],"apiVersions":["2018-09-07-preview"]},{"resourceType":"locations/operationResults","locations":["Central
+        India","West India","Canada East","Korea Central","France Central","UK West","Korea
+        South","France South","Australia Southeast"],"apiVersions":["2018-09-07-preview"]},{"resourceType":"locations/operationResults","locations":["Central
         US","West Europe","North Europe","East US 2","West US","Southeast Asia","East
         US","West US 2","South Central US","North Central US","East Asia","Japan East","Canada
         Central","UK South","Australia East","Brazil South","Japan West","South India","Central
-        India","West India","Canada East","Korea Central","France Central"],"apiVersions":["2018-09-07-preview","2017-09-07-privatepreview"]},{"resourceType":"locations","locations":[],"apiVersions":["2018-09-07-preview","2017-09-07-privatepreview"]},{"resourceType":"locations/checkNameAvailability","locations":["Central
+        India","West India","Canada East","Korea Central","France Central","UK West","Korea
+        South","France South","Australia Southeast"],"apiVersions":["2018-09-07-preview","2017-09-07-privatepreview"]},{"resourceType":"locations","locations":[],"apiVersions":["2018-09-07-preview","2017-09-07-privatepreview"]},{"resourceType":"locations/checkNameAvailability","locations":["Central
         US","West Europe","North Europe","East US 2","West US","Southeast Asia","East
         US","West US 2","South Central US","North Central US","East Asia","Japan East","Canada
         Central","UK South","Australia East","Brazil South","Japan West","South India","Central
-        India","West India","Canada East","Korea Central","France Central"],"apiVersions":["2018-09-07-preview"]},{"resourceType":"operations","locations":[],"apiVersions":["2018-09-07-preview","2017-09-07-privatepreview"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.LabServices","namespace":"Microsoft.LabServices","authorization":{"applicationId":"1a14be2a-e903-4cec-99cf-b2e209259a0f","roleDefinitionId":"8f2de81a-b9aa-49d8-b24c-11814d3ab525","managedByRoleDefinitionId":"8f2de81a-b9aa-49d8-b24c-11814d3ab525"},"resourceTypes":[{"resourceType":"labaccounts","locations":["Australia
+        India","West India","Canada East","Korea Central","France Central","UK West","Korea
+        South","France South","Australia Southeast"],"apiVersions":["2018-09-07-preview"]},{"resourceType":"operations","locations":[],"apiVersions":["2018-09-07-preview","2017-09-07-privatepreview"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.LabServices","namespace":"Microsoft.LabServices","authorization":{"applicationId":"1a14be2a-e903-4cec-99cf-b2e209259a0f","roleDefinitionId":"8f2de81a-b9aa-49d8-b24c-11814d3ab525","managedByRoleDefinitionId":"8f2de81a-b9aa-49d8-b24c-11814d3ab525"},"resourceTypes":[{"resourceType":"labaccounts","locations":["Australia
         East","Australia Southeast","Brazil South","Canada Central","Canada East","Central
         India","Central US","East Asia","East US","East US 2","Japan East","Japan
         West","Korea Central","Korea South","North Central US","North Europe","South
@@ -3235,10 +3252,10 @@ http_interactions:
         US"],"apiVersions":["2015-06-15"]},{"resourceType":"operations","locations":[],"apiVersions":["2015-06-15"]},{"resourceType":"listCommunicationPreference","locations":[],"apiVersions":["2015-06-15"]},{"resourceType":"updateCommunicationPreference","locations":[],"apiVersions":["2015-06-15"]}],"registrationState":"NotRegistered"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/providers/U2uconsult.TheIdentityHub","namespace":"U2uconsult.TheIdentityHub","resourceTypes":[{"resourceType":"services","locations":["West
         Europe"],"apiVersions":["2015-06-15"]},{"resourceType":"operations","locations":[],"apiVersions":["2015-06-15"]},{"resourceType":"listCommunicationPreference","locations":[],"apiVersions":["2015-06-15"]},{"resourceType":"updateCommunicationPreference","locations":[],"apiVersions":["2015-06-15"]}],"registrationState":"NotRegistered"}]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:10:45 GMT
+  recorded_at: Tue, 16 Oct 2018 15:08:50 GMT
 - request:
     method: get
-    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Resources/deployments/spec-deployment-dont-delete?api-version=2018-08-01
+    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.Resources/deployments/miq-template-eastus?api-version=2018-08-01
     body:
       encoding: US-ASCII
       string: ''
@@ -3248,15 +3265,15 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAxOTQyLCJuYmYiOjE1MzkyMDE5NDIsImV4cCI6MTUzOTIwNTg0MiwiYWlvIjoiNDJSZ1lHZzhvbUQrcE82YmNMWEsxYnBBbDRnV0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJ2N2Noa0NQV2hreWlIX0lqdXM0cEFBIiwidmVyIjoiMS4wIn0.Xu33SAwcAPNyV0JFO5iLOU89-8sZ8JDmK6tUTp3wqrW0lvEjrY0rxsUkOTYsshZAHKssPpb58Iu2PyQ7ZVbYBP8daHdaGviwttqKfiLYbr0BAQpUGrTKhcXCgLiZyvvJZfZfpc_BftOfTJp7NQrChj4swDeyNZXT33kVKtfyn7ZmNUQZNwSBDziPdxEB0-zAR19XBa6ff-2rVqnH8z7VaYcaeb7dFQsIfvf-0lfpp1m6fPOc6Gchj3PHo5tAUkxvcM7b_REiieln9Vl1zOE4cDtXbEQkukSnnv8choqSBLriGqck8VgP2LWCKwJXn-vS1Mujiwommw3Oxad_ZomOUQ
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAyMjE3LCJuYmYiOjE1Mzk3MDIyMTcsImV4cCI6MTUzOTcwNjExNywiYWlvIjoiNDJSZ1lKQk1ZbnNWdXBHQloxbG5yZm5sanZWY0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJWdzZIWDZtcjJVYXctLUZTbktNZ0FRIiwidmVyIjoiMS4wIn0.ATvlZxDnhIlGQmiuN45p4yBeQAVLSscVopijRS4JPQwycoNTCncU-gpEpRlMdRQhipMFrVT0qkrgmQw--CI9stdw5WXaErkJaJJc8_vEQw2wlCD8ta-Curc2bQxP68c77jppPvvQfX65_HXoQrssZwBZ3NksNDkyUzSLunrrkeVWPujtU_QC5R0Ygn6PIyOR6T2hYfWgzRpNfjEpXsyrtkAEdbnfMUwYnaE8JGHkApa2jccQLkxPdmu19DP4QkOp_GR2HPIlY-PdYPW-QWTwV_B3fIMKk5if1xiuZzEGtfSs6D-vbz6A8ozWcAcXnCY3iJP8HPcsJgDh6FyChZQ6-g
   response:
     status:
-      code: 403
-      message: Forbidden
+      code: 200
+      message: OK
     headers:
       Cache-Control:
       - no-cache
@@ -3266,34 +3283,32 @@ http_interactions:
       - application/json; charset=utf-8
       Expires:
       - "-1"
-      X-Ms-Failure-Cause:
-      - gateway
+      Vary:
+      - Accept-Encoding
+      X-Ms-Ratelimit-Remaining-Subscription-Reads:
+      - '11963'
       X-Ms-Request-Id:
-      - e0e4dfbc-1b49-42ef-b85c-83c235037a19
+      - 7f315d8c-3e46-48f9-8296-33a1c1044a8c
       X-Ms-Correlation-Request-Id:
-      - e0e4dfbc-1b49-42ef-b85c-83c235037a19
+      - 7f315d8c-3e46-48f9-8296-33a1c1044a8c
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201046Z:e0e4dfbc-1b49-42ef-b85c-83c235037a19
+      - WESTCENTRALUS:20181016T150840Z:7f315d8c-3e46-48f9-8296-33a1c1044a8c
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:10:46 GMT
-      Connection:
-      - close
+      - Tue, 16 Oct 2018 15:08:40 GMT
       Content-Length:
-      - '408'
+      - '2089'
     body:
-      encoding: UTF-8
-      string: '{"error":{"code":"AuthorizationFailed","message":"The client ''1c294ded-b630-48b2-b7f3-e9e5d4e8ee77''
-        with object id ''1c294ded-b630-48b2-b7f3-e9e5d4e8ee77'' does not have authorization
-        to perform action ''Microsoft.Resources/deployments/read'' over scope ''/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Resources/deployments/spec-deployment-dont-delete''."}}'
+      encoding: ASCII-8BIT
+      string: '{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.Resources/deployments/miq-template-eastus","name":"miq-template-eastus","properties":{"templateHash":"11445985940860738369","parameters":{"networkSecurityGroupName":{"type":"String","value":"miq-nsg-deployment-eastus"},"availabilitySetName":{"type":"String","value":"miq-availability-set-deployment-eastus"},"adminUsername":{"type":"String","value":"miq-admin-username"},"virtualNetworkName":{"type":"String","value":"miq-vnet-deployment-eastus"},"location":{"type":"String","value":"eastus"}},"mode":"Incremental","provisioningState":"Succeeded","timestamp":"2018-10-09T19:26:18.5737681Z","duration":"PT22.7581173S","correlationId":"e198f748-e90a-4384-b348-4fc11f008eb3","providers":[{"namespace":"Microsoft.Compute","resourceTypes":[{"resourceType":"availabilitySets","locations":["eastus"]}]},{"namespace":"Microsoft.Network","resourceTypes":[{"resourceType":"networkSecurityGroups","locations":["eastus"]},{"resourceType":"virtualNetworks","locations":["eastus"]}]},{"namespace":"Microsoft.Resources","resourceTypes":[{"resourceType":"deployments","locations":[null]}]}],"dependencies":[],"outputs":{"availabilitySetName":{"type":"String","value":"miq-availability-set-deployment-eastus"},"networkSecurityGroupName":{"type":"String","value":"miq-nsg-deployment-eastus"}},"outputResources":[{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.Compute/availabilitySets/miq-availability-set-deployment-eastus"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.Compute/availabilitySets/miq-availability-set-deployment-nested"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.Network/networkSecurityGroups/miq-nsg-deployment-eastus"},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.Network/virtualNetworks/miq-vnet-deployment-eastus"}]}}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:10:46 GMT
+  recorded_at: Tue, 16 Oct 2018 15:08:51 GMT
 - request:
     method: get
-    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourcegroups/miq-azure-test1?api-version=2017-08-01
+    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.Resources/deployments/miq-template-eastus/operations?api-version=2017-08-01
     body:
       encoding: US-ASCII
       string: ''
@@ -3303,15 +3318,15 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAxOTQyLCJuYmYiOjE1MzkyMDE5NDIsImV4cCI6MTUzOTIwNTg0MiwiYWlvIjoiNDJSZ1lHZzhvbUQrcE82YmNMWEsxYnBBbDRnV0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJ2N2Noa0NQV2hreWlIX0lqdXM0cEFBIiwidmVyIjoiMS4wIn0.Xu33SAwcAPNyV0JFO5iLOU89-8sZ8JDmK6tUTp3wqrW0lvEjrY0rxsUkOTYsshZAHKssPpb58Iu2PyQ7ZVbYBP8daHdaGviwttqKfiLYbr0BAQpUGrTKhcXCgLiZyvvJZfZfpc_BftOfTJp7NQrChj4swDeyNZXT33kVKtfyn7ZmNUQZNwSBDziPdxEB0-zAR19XBa6ff-2rVqnH8z7VaYcaeb7dFQsIfvf-0lfpp1m6fPOc6Gchj3PHo5tAUkxvcM7b_REiieln9Vl1zOE4cDtXbEQkukSnnv8choqSBLriGqck8VgP2LWCKwJXn-vS1Mujiwommw3Oxad_ZomOUQ
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAyMjE3LCJuYmYiOjE1Mzk3MDIyMTcsImV4cCI6MTUzOTcwNjExNywiYWlvIjoiNDJSZ1lKQk1ZbnNWdXBHQloxbG5yZm5sanZWY0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJWdzZIWDZtcjJVYXctLUZTbktNZ0FRIiwidmVyIjoiMS4wIn0.ATvlZxDnhIlGQmiuN45p4yBeQAVLSscVopijRS4JPQwycoNTCncU-gpEpRlMdRQhipMFrVT0qkrgmQw--CI9stdw5WXaErkJaJJc8_vEQw2wlCD8ta-Curc2bQxP68c77jppPvvQfX65_HXoQrssZwBZ3NksNDkyUzSLunrrkeVWPujtU_QC5R0Ygn6PIyOR6T2hYfWgzRpNfjEpXsyrtkAEdbnfMUwYnaE8JGHkApa2jccQLkxPdmu19DP4QkOp_GR2HPIlY-PdYPW-QWTwV_B3fIMKk5if1xiuZzEGtfSs6D-vbz6A8ozWcAcXnCY3iJP8HPcsJgDh6FyChZQ6-g
   response:
     status:
-      code: 403
-      message: Forbidden
+      code: 200
+      message: OK
     headers:
       Cache-Control:
       - no-cache
@@ -3321,35 +3336,32 @@ http_interactions:
       - application/json; charset=utf-8
       Expires:
       - "-1"
-      X-Ms-Failure-Cause:
-      - gateway
+      Vary:
+      - Accept-Encoding
+      X-Ms-Ratelimit-Remaining-Subscription-Reads:
+      - '11966'
       X-Ms-Request-Id:
-      - 71b8eb4d-8e68-4ed2-b761-93e01114451b
+      - be632d0b-4a68-4799-b317-b7653a0825ad
       X-Ms-Correlation-Request-Id:
-      - 71b8eb4d-8e68-4ed2-b761-93e01114451b
+      - be632d0b-4a68-4799-b317-b7653a0825ad
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201047Z:71b8eb4d-8e68-4ed2-b761-93e01114451b
+      - WESTCENTRALUS:20181016T150841Z:be632d0b-4a68-4799-b317-b7653a0825ad
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:10:46 GMT
-      Connection:
-      - close
+      - Tue, 16 Oct 2018 15:08:41 GMT
       Content-Length:
-      - '355'
+      - '3581'
     body:
-      encoding: UTF-8
-      string: '{"error":{"code":"AuthorizationFailed","message":"The client ''1c294ded-b630-48b2-b7f3-e9e5d4e8ee77''
-        with object id ''1c294ded-b630-48b2-b7f3-e9e5d4e8ee77'' does not have authorization
-        to perform action ''Microsoft.Resources/subscriptions/resourcegroups/read''
-        over scope ''/subscriptions/AZURE_SUBSCRIPTION_ID/resourcegroups/miq-azure-test1''."}}'
+      encoding: ASCII-8BIT
+      string: '{"value":[{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.Resources/deployments/miq-template-eastus/operations/258732654CAE78F9","operationId":"258732654CAE78F9","properties":{"provisioningOperation":"Create","provisioningState":"Succeeded","timestamp":"2018-10-09T19:26:16.0378624Z","duration":"PT19.0326618S","trackingId":"5d099762-1c0b-497b-af7c-dd524ecbf395","serviceRequestId":"07cff713-6651-4850-b6da-0c513badc6e2","statusCode":"OK","targetResource":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.Network/virtualNetworks/miq-vnet-deployment-eastus","resourceType":"Microsoft.Network/virtualNetworks","resourceName":"miq-vnet-deployment-eastus"}}},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.Resources/deployments/miq-template-eastus/operations/EA07861C837BEAF9","operationId":"EA07861C837BEAF9","properties":{"provisioningOperation":"Create","provisioningState":"Succeeded","timestamp":"2018-10-09T19:26:10.4614835Z","duration":"PT13.4629305S","trackingId":"65c7badd-a5b3-4f54-830b-1d6c804bff34","serviceRequestId":"1dd8f01b-3cc6-431e-9283-ce3955d54336","statusCode":"OK","targetResource":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.Resources/deployments/miq-nested-template","resourceType":"Microsoft.Resources/deployments","resourceName":"miq-nested-template"}}},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.Resources/deployments/miq-template-eastus/operations/05F8B09E89705AEC","operationId":"05F8B09E89705AEC","properties":{"provisioningOperation":"Create","provisioningState":"Succeeded","timestamp":"2018-10-09T19:26:11.8287985Z","duration":"PT14.8379208S","trackingId":"c2a4a092-4de4-475f-816c-e362d46ccf95","serviceRequestId":"5ed5f591-d027-4e41-a28b-7acb967ecb57","statusCode":"OK","targetResource":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.Network/networkSecurityGroups/miq-nsg-deployment-eastus","resourceType":"Microsoft.Network/networkSecurityGroups","resourceName":"miq-nsg-deployment-eastus"}}},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.Resources/deployments/miq-template-eastus/operations/255AC9951323A5B6","operationId":"255AC9951323A5B6","properties":{"provisioningOperation":"Create","provisioningState":"Succeeded","timestamp":"2018-10-09T19:26:00.6949517Z","duration":"PT3.6627905S","trackingId":"7de0e0f1-d310-4da5-8788-b1050435f795","serviceRequestId":"75a6bb51-bf87-40d3-bcc5-51ba86c9ede3","statusCode":"OK","targetResource":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.Compute/availabilitySets/miq-availability-set-deployment-eastus","resourceType":"Microsoft.Compute/availabilitySets","resourceName":"miq-availability-set-deployment-eastus"}}},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.Resources/deployments/miq-template-eastus/operations/08586624937296619873","operationId":"08586624937296619873","properties":{"provisioningOperation":"EvaluateDeploymentOutput","provisioningState":"Succeeded","timestamp":"2018-10-09T19:26:18.5384046Z","duration":"PT2.4525696S","trackingId":"9a142754-5c14-4831-b24e-3174edb40d75","statusCode":"OK","statusMessage":null}}]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:10:47 GMT
+  recorded_at: Tue, 16 Oct 2018 15:08:51 GMT
 - request:
     method: get
-    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Resources/deployments/spec-deployment-dont-delete?api-version=2018-08-01
+    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.Resources/deployments/miq-nested-template?api-version=2018-08-01
     body:
       encoding: US-ASCII
       string: ''
@@ -3359,15 +3371,15 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAxOTQyLCJuYmYiOjE1MzkyMDE5NDIsImV4cCI6MTUzOTIwNTg0MiwiYWlvIjoiNDJSZ1lHZzhvbUQrcE82YmNMWEsxYnBBbDRnV0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJ2N2Noa0NQV2hreWlIX0lqdXM0cEFBIiwidmVyIjoiMS4wIn0.Xu33SAwcAPNyV0JFO5iLOU89-8sZ8JDmK6tUTp3wqrW0lvEjrY0rxsUkOTYsshZAHKssPpb58Iu2PyQ7ZVbYBP8daHdaGviwttqKfiLYbr0BAQpUGrTKhcXCgLiZyvvJZfZfpc_BftOfTJp7NQrChj4swDeyNZXT33kVKtfyn7ZmNUQZNwSBDziPdxEB0-zAR19XBa6ff-2rVqnH8z7VaYcaeb7dFQsIfvf-0lfpp1m6fPOc6Gchj3PHo5tAUkxvcM7b_REiieln9Vl1zOE4cDtXbEQkukSnnv8choqSBLriGqck8VgP2LWCKwJXn-vS1Mujiwommw3Oxad_ZomOUQ
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAyMjE3LCJuYmYiOjE1Mzk3MDIyMTcsImV4cCI6MTUzOTcwNjExNywiYWlvIjoiNDJSZ1lKQk1ZbnNWdXBHQloxbG5yZm5sanZWY0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJWdzZIWDZtcjJVYXctLUZTbktNZ0FRIiwidmVyIjoiMS4wIn0.ATvlZxDnhIlGQmiuN45p4yBeQAVLSscVopijRS4JPQwycoNTCncU-gpEpRlMdRQhipMFrVT0qkrgmQw--CI9stdw5WXaErkJaJJc8_vEQw2wlCD8ta-Curc2bQxP68c77jppPvvQfX65_HXoQrssZwBZ3NksNDkyUzSLunrrkeVWPujtU_QC5R0Ygn6PIyOR6T2hYfWgzRpNfjEpXsyrtkAEdbnfMUwYnaE8JGHkApa2jccQLkxPdmu19DP4QkOp_GR2HPIlY-PdYPW-QWTwV_B3fIMKk5if1xiuZzEGtfSs6D-vbz6A8ozWcAcXnCY3iJP8HPcsJgDh6FyChZQ6-g
   response:
     status:
-      code: 403
-      message: Forbidden
+      code: 200
+      message: OK
     headers:
       Cache-Control:
       - no-cache
@@ -3377,34 +3389,32 @@ http_interactions:
       - application/json; charset=utf-8
       Expires:
       - "-1"
-      X-Ms-Failure-Cause:
-      - gateway
+      Vary:
+      - Accept-Encoding
+      X-Ms-Ratelimit-Remaining-Subscription-Reads:
+      - '11965'
       X-Ms-Request-Id:
-      - 6b586eb8-1aa4-4373-9221-93088799ec8f
+      - ec2ad07b-f2ae-4c2f-8b4d-ab510e11b178
       X-Ms-Correlation-Request-Id:
-      - 6b586eb8-1aa4-4373-9221-93088799ec8f
+      - ec2ad07b-f2ae-4c2f-8b4d-ab510e11b178
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201047Z:6b586eb8-1aa4-4373-9221-93088799ec8f
+      - WESTCENTRALUS:20181016T150841Z:ec2ad07b-f2ae-4c2f-8b4d-ab510e11b178
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:10:46 GMT
-      Connection:
-      - close
+      - Tue, 16 Oct 2018 15:08:41 GMT
       Content-Length:
-      - '408'
+      - '750'
     body:
-      encoding: UTF-8
-      string: '{"error":{"code":"AuthorizationFailed","message":"The client ''1c294ded-b630-48b2-b7f3-e9e5d4e8ee77''
-        with object id ''1c294ded-b630-48b2-b7f3-e9e5d4e8ee77'' does not have authorization
-        to perform action ''Microsoft.Resources/deployments/read'' over scope ''/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Resources/deployments/spec-deployment-dont-delete''."}}'
+      encoding: ASCII-8BIT
+      string: '{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.Resources/deployments/miq-nested-template","name":"miq-nested-template","properties":{"templateHash":"6176764676603753329","mode":"Incremental","provisioningState":"Succeeded","timestamp":"2018-10-09T19:26:09.4699588Z","duration":"PT8.3849805S","correlationId":"e198f748-e90a-4384-b348-4fc11f008eb3","providers":[{"namespace":"Microsoft.Compute","resourceTypes":[{"resourceType":"availabilitySets","locations":["eastus"]}]}],"dependencies":[],"outputResources":[{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.Compute/availabilitySets/miq-availability-set-deployment-nested"}]}}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:10:47 GMT
+  recorded_at: Tue, 16 Oct 2018 15:08:52 GMT
 - request:
     method: get
-    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Resources/deployments/spec-deployment-dont-delete?api-version=2018-08-01
+    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.Resources/deployments/miq-nested-template/operations?api-version=2017-08-01
     body:
       encoding: US-ASCII
       string: ''
@@ -3414,15 +3424,15 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin17.4.0 x86_64) ruby/2.4.3p205
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
       Content-Type:
       - application/json
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5MjAxOTQyLCJuYmYiOjE1MzkyMDE5NDIsImV4cCI6MTUzOTIwNTg0MiwiYWlvIjoiNDJSZ1lHZzhvbUQrcE82YmNMWEsxYnBBbDRnV0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJ2N2Noa0NQV2hreWlIX0lqdXM0cEFBIiwidmVyIjoiMS4wIn0.Xu33SAwcAPNyV0JFO5iLOU89-8sZ8JDmK6tUTp3wqrW0lvEjrY0rxsUkOTYsshZAHKssPpb58Iu2PyQ7ZVbYBP8daHdaGviwttqKfiLYbr0BAQpUGrTKhcXCgLiZyvvJZfZfpc_BftOfTJp7NQrChj4swDeyNZXT33kVKtfyn7ZmNUQZNwSBDziPdxEB0-zAR19XBa6ff-2rVqnH8z7VaYcaeb7dFQsIfvf-0lfpp1m6fPOc6Gchj3PHo5tAUkxvcM7b_REiieln9Vl1zOE4cDtXbEQkukSnnv8choqSBLriGqck8VgP2LWCKwJXn-vS1Mujiwommw3Oxad_ZomOUQ
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAyMjE3LCJuYmYiOjE1Mzk3MDIyMTcsImV4cCI6MTUzOTcwNjExNywiYWlvIjoiNDJSZ1lKQk1ZbnNWdXBHQloxbG5yZm5sanZWY0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJWdzZIWDZtcjJVYXctLUZTbktNZ0FRIiwidmVyIjoiMS4wIn0.ATvlZxDnhIlGQmiuN45p4yBeQAVLSscVopijRS4JPQwycoNTCncU-gpEpRlMdRQhipMFrVT0qkrgmQw--CI9stdw5WXaErkJaJJc8_vEQw2wlCD8ta-Curc2bQxP68c77jppPvvQfX65_HXoQrssZwBZ3NksNDkyUzSLunrrkeVWPujtU_QC5R0Ygn6PIyOR6T2hYfWgzRpNfjEpXsyrtkAEdbnfMUwYnaE8JGHkApa2jccQLkxPdmu19DP4QkOp_GR2HPIlY-PdYPW-QWTwV_B3fIMKk5if1xiuZzEGtfSs6D-vbz6A8ozWcAcXnCY3iJP8HPcsJgDh6FyChZQ6-g
   response:
     status:
-      code: 403
-      message: Forbidden
+      code: 200
+      message: OK
     headers:
       Cache-Control:
       - no-cache
@@ -3432,29 +3442,260 @@ http_interactions:
       - application/json; charset=utf-8
       Expires:
       - "-1"
-      X-Ms-Failure-Cause:
-      - gateway
+      Vary:
+      - Accept-Encoding
+      X-Ms-Ratelimit-Remaining-Subscription-Reads:
+      - '11968'
       X-Ms-Request-Id:
-      - b1445958-6d89-42c5-b57a-4a677fd93f2e
+      - 89529d90-4779-4e2f-8e79-aedd46dbef9f
       X-Ms-Correlation-Request-Id:
-      - b1445958-6d89-42c5-b57a-4a677fd93f2e
+      - 89529d90-4779-4e2f-8e79-aedd46dbef9f
       X-Ms-Routing-Request-Id:
-      - CENTRALUS:20181010T201048Z:b1445958-6d89-42c5-b57a-4a677fd93f2e
+      - WESTCENTRALUS:20181016T150842Z:89529d90-4779-4e2f-8e79-aedd46dbef9f
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Wed, 10 Oct 2018 20:10:47 GMT
-      Connection:
-      - close
+      - Tue, 16 Oct 2018 15:08:41 GMT
       Content-Length:
-      - '408'
+      - '1285'
     body:
-      encoding: UTF-8
-      string: '{"error":{"code":"AuthorizationFailed","message":"The client ''1c294ded-b630-48b2-b7f3-e9e5d4e8ee77''
-        with object id ''1c294ded-b630-48b2-b7f3-e9e5d4e8ee77'' does not have authorization
-        to perform action ''Microsoft.Resources/deployments/read'' over scope ''/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-azure-test1/providers/Microsoft.Resources/deployments/spec-deployment-dont-delete''."}}'
+      encoding: ASCII-8BIT
+      string: '{"value":[{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.Resources/deployments/miq-nested-template/operations/91914B50B8ED03D2","operationId":"91914B50B8ED03D2","properties":{"provisioningOperation":"Create","provisioningState":"Succeeded","timestamp":"2018-10-09T19:26:05.9283113Z","duration":"PT3.8233128S","trackingId":"793fb8bf-931a-4d7a-ba9e-667ad8a1a23d","serviceRequestId":"5885de76-8a04-42df-a16b-1029017fa0ae","statusCode":"OK","targetResource":{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.Compute/availabilitySets/miq-availability-set-deployment-nested","resourceType":"Microsoft.Compute/availabilitySets","resourceName":"miq-availability-set-deployment-nested"}}},{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.Resources/deployments/miq-nested-template/operations/08586624937243926313","operationId":"08586624937243926313","properties":{"provisioningOperation":"EvaluateDeploymentOutput","provisioningState":"Succeeded","timestamp":"2018-10-09T19:26:09.4336616Z","duration":"PT3.4731446S","trackingId":"c85b58a7-9dd4-493e-b844-e126b979d612","statusCode":"OK","statusMessage":null}}]}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 20:10:48 GMT
+  recorded_at: Tue, 16 Oct 2018 15:08:53 GMT
+- request:
+    method: get
+    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourcegroups/miq-misc-eastus?api-version=2017-08-01
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAyMjE3LCJuYmYiOjE1Mzk3MDIyMTcsImV4cCI6MTUzOTcwNjExNywiYWlvIjoiNDJSZ1lKQk1ZbnNWdXBHQloxbG5yZm5sanZWY0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJWdzZIWDZtcjJVYXctLUZTbktNZ0FRIiwidmVyIjoiMS4wIn0.ATvlZxDnhIlGQmiuN45p4yBeQAVLSscVopijRS4JPQwycoNTCncU-gpEpRlMdRQhipMFrVT0qkrgmQw--CI9stdw5WXaErkJaJJc8_vEQw2wlCD8ta-Curc2bQxP68c77jppPvvQfX65_HXoQrssZwBZ3NksNDkyUzSLunrrkeVWPujtU_QC5R0Ygn6PIyOR6T2hYfWgzRpNfjEpXsyrtkAEdbnfMUwYnaE8JGHkApa2jccQLkxPdmu19DP4QkOp_GR2HPIlY-PdYPW-QWTwV_B3fIMKk5if1xiuZzEGtfSs6D-vbz6A8ozWcAcXnCY3iJP8HPcsJgDh6FyChZQ6-g
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Vary:
+      - Accept-Encoding
+      X-Ms-Ratelimit-Remaining-Subscription-Reads:
+      - '11963'
+      X-Ms-Request-Id:
+      - 55eb9503-f8bf-4e0b-9c0f-f0ce901630fd
+      X-Ms-Correlation-Request-Id:
+      - 55eb9503-f8bf-4e0b-9c0f-f0ce901630fd
+      X-Ms-Routing-Request-Id:
+      - WESTCENTRALUS:20181016T150843Z:55eb9503-f8bf-4e0b-9c0f-f0ce901630fd
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Tue, 16 Oct 2018 15:08:42 GMT
+      Content-Length:
+      - '242'
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus","name":"miq-misc-eastus","location":"eastus","tags":{"owner":"cfme","creator":"dberger","specs":"true"},"properties":{"provisioningState":"Succeeded"}}'
+    http_version: 
+  recorded_at: Tue, 16 Oct 2018 15:08:53 GMT
+- request:
+    method: post
+    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.Resources/deployments/miq-template-eastus/exportTemplate?api-version=2017-08-01
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAyMjE3LCJuYmYiOjE1Mzk3MDIyMTcsImV4cCI6MTUzOTcwNjExNywiYWlvIjoiNDJSZ1lKQk1ZbnNWdXBHQloxbG5yZm5sanZWY0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJWdzZIWDZtcjJVYXctLUZTbktNZ0FRIiwidmVyIjoiMS4wIn0.ATvlZxDnhIlGQmiuN45p4yBeQAVLSscVopijRS4JPQwycoNTCncU-gpEpRlMdRQhipMFrVT0qkrgmQw--CI9stdw5WXaErkJaJJc8_vEQw2wlCD8ta-Curc2bQxP68c77jppPvvQfX65_HXoQrssZwBZ3NksNDkyUzSLunrrkeVWPujtU_QC5R0Ygn6PIyOR6T2hYfWgzRpNfjEpXsyrtkAEdbnfMUwYnaE8JGHkApa2jccQLkxPdmu19DP4QkOp_GR2HPIlY-PdYPW-QWTwV_B3fIMKk5if1xiuZzEGtfSs6D-vbz6A8ozWcAcXnCY3iJP8HPcsJgDh6FyChZQ6-g
+      Content-Length:
+      - '0'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Vary:
+      - Accept-Encoding
+      X-Ms-Ratelimit-Remaining-Subscription-Writes:
+      - '1198'
+      X-Ms-Request-Id:
+      - 678afd5b-189a-434c-934c-0b43d9403564
+      X-Ms-Correlation-Request-Id:
+      - 678afd5b-189a-434c-934c-0b43d9403564
+      X-Ms-Routing-Request-Id:
+      - WESTCENTRALUS:20181016T150843Z:678afd5b-189a-434c-934c-0b43d9403564
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Tue, 16 Oct 2018 15:08:42 GMT
+    body:
+      encoding: ASCII-8BIT
+      string: '{"template":{"$schema":"https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#","contentVersion":"1.0.0.0","parameters":{"networkSecurityGroupName":{"type":"String"},"availabilitySetName":{"type":"String"},"adminUsername":{"type":"String"},"virtualNetworkName":{"type":"String"},"location":{"defaultValue":"eastus","type":"String"}},"resources":[{"type":"Microsoft.Compute/availabilitySets","name":"[parameters(''availabilitySetName'')]","apiVersion":"2018-10-01","location":"[parameters(''location'')]","properties":{"platformFaultDomainCount":"3","platformUpdateDomainCount":"20"}},{"type":"Microsoft.Network/networkSecurityGroups","name":"[parameters(''networkSecurityGroupName'')]","apiVersion":"2018-08-01","location":"[parameters(''location'')]"},{"type":"Microsoft.Network/virtualNetworks","name":"[parameters(''virtualNetworkName'')]","apiVersion":"2018-08-01","location":"[parameters(''location'')]","properties":{"addressSpace":{"addressPrefixes":["10.0.0.0/16"]},"subnets":[{"name":"default","properties":{"addressPrefix":"10.0.0.0/24"}}]}},{"type":"Microsoft.Resources/deployments","name":"miq-nested-template","apiVersion":"2018-08-01","properties":{"mode":"Incremental","template":{"$schema":"https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#","contentVersion":"1.0.0.0","resources":[{"type":"Microsoft.Compute/availabilitySets","name":"miq-availability-set-deployment-nested","apiVersion":"2018-10-01","location":"[parameters(''location'')]"}]}}}],"outputs":{"availabilitySetName":{"type":"String","value":"[parameters(''availabilitySetName'')]"},"networkSecurityGroupName":{"type":"String","value":"[parameters(''networkSecurityGroupName'')]"}}}}'
+    http_version: 
+  recorded_at: Tue, 16 Oct 2018 15:08:54 GMT
+- request:
+    method: post
+    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.Resources/deployments/miq-nested-template/exportTemplate?api-version=2017-08-01
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAyMjE3LCJuYmYiOjE1Mzk3MDIyMTcsImV4cCI6MTUzOTcwNjExNywiYWlvIjoiNDJSZ1lKQk1ZbnNWdXBHQloxbG5yZm5sanZWY0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJWdzZIWDZtcjJVYXctLUZTbktNZ0FRIiwidmVyIjoiMS4wIn0.ATvlZxDnhIlGQmiuN45p4yBeQAVLSscVopijRS4JPQwycoNTCncU-gpEpRlMdRQhipMFrVT0qkrgmQw--CI9stdw5WXaErkJaJJc8_vEQw2wlCD8ta-Curc2bQxP68c77jppPvvQfX65_HXoQrssZwBZ3NksNDkyUzSLunrrkeVWPujtU_QC5R0Ygn6PIyOR6T2hYfWgzRpNfjEpXsyrtkAEdbnfMUwYnaE8JGHkApa2jccQLkxPdmu19DP4QkOp_GR2HPIlY-PdYPW-QWTwV_B3fIMKk5if1xiuZzEGtfSs6D-vbz6A8ozWcAcXnCY3iJP8HPcsJgDh6FyChZQ6-g
+      Content-Length:
+      - '0'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Vary:
+      - Accept-Encoding
+      X-Ms-Ratelimit-Remaining-Subscription-Writes:
+      - '1198'
+      X-Ms-Request-Id:
+      - 9d99558b-cdde-413b-8bd7-ccd7a734d1fc
+      X-Ms-Correlation-Request-Id:
+      - 9d99558b-cdde-413b-8bd7-ccd7a734d1fc
+      X-Ms-Routing-Request-Id:
+      - WESTCENTRALUS:20181016T150844Z:9d99558b-cdde-413b-8bd7-ccd7a734d1fc
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Tue, 16 Oct 2018 15:08:44 GMT
+    body:
+      encoding: ASCII-8BIT
+      string: '{"template":{"$schema":"https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#","contentVersion":"1.0.0.0","resources":[{"type":"Microsoft.Compute/availabilitySets","name":"miq-availability-set-deployment-nested","apiVersion":"2018-10-01","location":"eastus"}]}}'
+    http_version: 
+  recorded_at: Tue, 16 Oct 2018 15:08:55 GMT
+- request:
+    method: get
+    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.Network/virtualNetworks/miq-vnet-deployment-eastus?api-version=2018-08-01
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.3p205
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSIsImtpZCI6Imk2bEdrM0ZaenhSY1ViMkMzbkVRN3N5SEpsWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYvIiwiaWF0IjoxNTM5NzAyMjE3LCJuYmYiOjE1Mzk3MDIyMTcsImV4cCI6MTUzOTcwNjExNywiYWlvIjoiNDJSZ1lKQk1ZbnNWdXBHQloxbG5yZm5sanZWY0FBPT0iLCJhcHBpZCI6IjllYTcyMzdkLTVmMDgtNGQ0MS05NmRlLTU4ODhiNDBiNzNmNiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2I4ZWQ0ZGM2LWVkZWEtNDg3MS04YjMxLTRiZjhmYmVjOWVkNi8iLCJvaWQiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJzdWIiOiIxYzI5NGRlZC1iNjMwLTQ4YjItYjdmMy1lOWU1ZDRlOGVlNzciLCJ0aWQiOiJiOGVkNGRjNi1lZGVhLTQ4NzEtOGIzMS00YmY4ZmJlYzllZDYiLCJ1dGkiOiJWdzZIWDZtcjJVYXctLUZTbktNZ0FRIiwidmVyIjoiMS4wIn0.ATvlZxDnhIlGQmiuN45p4yBeQAVLSscVopijRS4JPQwycoNTCncU-gpEpRlMdRQhipMFrVT0qkrgmQw--CI9stdw5WXaErkJaJJc8_vEQw2wlCD8ta-Curc2bQxP68c77jppPvvQfX65_HXoQrssZwBZ3NksNDkyUzSLunrrkeVWPujtU_QC5R0Ygn6PIyOR6T2hYfWgzRpNfjEpXsyrtkAEdbnfMUwYnaE8JGHkApa2jccQLkxPdmu19DP4QkOp_GR2HPIlY-PdYPW-QWTwV_B3fIMKk5if1xiuZzEGtfSs6D-vbz6A8ozWcAcXnCY3iJP8HPcsJgDh6FyChZQ6-g
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Etag:
+      - W/"53663516-50ad-4b7d-b49b-61b70b31c013"
+      Vary:
+      - Accept-Encoding
+      X-Ms-Request-Id:
+      - c2fd5e5c-9f92-4d2c-958c-d854e591533c
+      X-Ms-Correlation-Request-Id:
+      - 9ca758b2-650d-4f49-8244-87d66de91f50
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Ms-Ratelimit-Remaining-Subscription-Reads:
+      - '11969'
+      Server:
+      - Microsoft-HTTPAPI/2.0
+      - Microsoft-HTTPAPI/2.0
+      X-Ms-Routing-Request-Id:
+      - WESTCENTRALUS:20181016T150845Z:9ca758b2-650d-4f49-8244-87d66de91f50
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Tue, 16 Oct 2018 15:08:45 GMT
+    body:
+      encoding: ASCII-8BIT
+      string: "{\r\n  \"name\": \"miq-vnet-deployment-eastus\",\r\n  \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.Network/virtualNetworks/miq-vnet-deployment-eastus\",\r\n
+        \ \"etag\": \"W/\\\"53663516-50ad-4b7d-b49b-61b70b31c013\\\"\",\r\n  \"type\":
+        \"Microsoft.Network/virtualNetworks\",\r\n  \"location\": \"eastus\",\r\n
+        \ \"properties\": {\r\n    \"provisioningState\": \"Succeeded\",\r\n    \"resourceGuid\":
+        \"0b37dc10-be62-4d76-a4ce-cd89e547e525\",\r\n    \"addressSpace\": {\r\n      \"addressPrefixes\":
+        [\r\n        \"10.0.0.0/16\"\r\n      ]\r\n    },\r\n    \"subnets\": [\r\n
+        \     {\r\n        \"name\": \"default\",\r\n        \"id\": \"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.Network/virtualNetworks/miq-vnet-deployment-eastus/subnets/default\",\r\n
+        \       \"etag\": \"W/\\\"53663516-50ad-4b7d-b49b-61b70b31c013\\\"\",\r\n
+        \       \"properties\": {\r\n          \"provisioningState\": \"Succeeded\",\r\n
+        \         \"addressPrefix\": \"10.0.0.0/24\",\r\n          \"delegations\":
+        []\r\n        },\r\n        \"type\": \"Microsoft.Network/virtualNetworks/subnets\"\r\n
+        \     }\r\n    ],\r\n    \"virtualNetworkPeerings\": [],\r\n    \"enableDdosProtection\":
+        false,\r\n    \"enableVmProtection\": false\r\n  }\r\n}"
+    http_version: 
+  recorded_at: Tue, 16 Oct 2018 15:08:56 GMT
 recorded_with: VCR 3.0.3
