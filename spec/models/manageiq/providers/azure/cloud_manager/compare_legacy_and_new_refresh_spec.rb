@@ -8,7 +8,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
     context "with settings #{refresh_settings}" do
       before do
         define_shared_variables
-        @mismatch_ip = '52.168.33.118'
+        @mismatch_ip = '23.96.82.94'
       end
 
       after do
