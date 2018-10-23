@@ -1,5 +1,3 @@
-require 'etc'
-
 module AzureRefresherSpecCommon
   extend ActiveSupport::Concern
 
@@ -108,7 +106,7 @@ module AzureRefresherSpecCommon
     @lb_ip_address        = '40.76.218.17'  # Update after restart
     @ubuntu_ip_address    = '40.114.95.228' # Update after restart
     @orch_template        = 'miq-template-eastus'
-    @creator              = Etc.getlogin
+    @creator              = 'dberger' # Update as needed
 
     @vm_powered_on = @ubuntu_east
     @vm_powered_off = @centos_east
