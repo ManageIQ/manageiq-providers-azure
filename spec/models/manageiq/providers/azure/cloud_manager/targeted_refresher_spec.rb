@@ -262,43 +262,37 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
             end
           end
 
-=begin
-          it "will refresh orchestration stack followed by Vm refresh" do
-            2.times do # Run twice to verify that a second run with existing data does not change anything
-              refresh_with_cassette([parent_orchestration_stack_target], vcr_suffix("orchestration_stack_refresh"))
+          # it "will refresh orchestration stack followed by Vm refresh" do
+          #   2.times do # Run twice to verify that a second run with existing data does not change anything
+          #     refresh_with_cassette([parent_orchestration_stack_target], vcr_suffix("orchestration_stack_refresh"))
+          #
+          #     assert_stack_and_vm_targeted_refresh
+          #
+          #     refresh_with_cassette([child_orchestration_stack_vm_target], vcr_suffix("orchestration_stack_vm_refresh"))
+          #     assert_stack_and_vm_targeted_refresh
+          #   end
+          # end
 
-              assert_stack_and_vm_targeted_refresh
+          # it "will refresh orchestration stack with vms" do
+          #   2.times do # Run twice to verify that a second run with existing data does not change anything
+          #     refresh_with_cassette([parent_orchestration_stack_target,
+          #                            child_orchestration_stack_vm_target,
+          #                            child_orchestration_stack_vm_target2], vcr_suffix("orchestration_stack_refresh"))
+          #
+          #     assert_stack_and_vm_targeted_refresh
+          #   end
+          # end
 
-              refresh_with_cassette([child_orchestration_stack_vm_target], vcr_suffix("orchestration_stack_vm_refresh"))
-              assert_stack_and_vm_targeted_refresh
-            end
-          end
-=end
-
-=begin
-          it "will refresh orchestration stack with vms" do
-            2.times do # Run twice to verify that a second run with existing data does not change anything
-              refresh_with_cassette([parent_orchestration_stack_target,
-                                     child_orchestration_stack_vm_target,
-                                     child_orchestration_stack_vm_target2], vcr_suffix("orchestration_stack_refresh"))
-
-              assert_stack_and_vm_targeted_refresh
-            end
-          end
-=end
-
-=begin
-          it "will refresh orchestration stack followed by LoadBalancer refresh" do
-            2.times do # Run twice to verify that a second run with existing data does not change anything
-              refresh_with_cassette([parent_orchestration_stack_target], vcr_suffix("orchestration_stack_refresh"))
-
-              assert_stack_and_vm_targeted_refresh
-
-              refresh_with_cassette([lb_target], vcr_suffix("orchestration_stack_lb_refresh"))
-              assert_stack_and_vm_targeted_refresh
-            end
-          end
-=end
+          # it "will refresh orchestration stack followed by LoadBalancer refresh" do
+          #   2.times do # Run twice to verify that a second run with existing data does not change anything
+          #     refresh_with_cassette([parent_orchestration_stack_target], vcr_suffix("orchestration_stack_refresh"))
+          #
+          #     assert_stack_and_vm_targeted_refresh
+          #
+          #     refresh_with_cassette([lb_target], vcr_suffix("orchestration_stack_lb_refresh"))
+          #     assert_stack_and_vm_targeted_refresh
+          #   end
+          # end
 
           it "will refresh LoadBalancer created by stack" do
             2.times do # Run twice to verify that a second run with existing data does not change anything
@@ -385,7 +379,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
             2.times do # Run twice to verify that a second run with existing data does not change anything
               refresh_with_cassette([template_target], vcr_suffix("template_refresh"))
 
-              #assert_specific_template
+              # assert_specific_template
             end
           end
 

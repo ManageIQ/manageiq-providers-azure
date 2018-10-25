@@ -22,7 +22,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
           setup_ems_and_cassette(refresh_settings)
           inventory_after = serialize_inventory
 
-          #assert_models_not_changed(inventory_before, inventory_after)
+          # assert_models_not_changed(inventory_before, inventory_after)
         end
       end
     end
