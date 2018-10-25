@@ -345,8 +345,14 @@ module AzureRefresherSpecCommon
       :name             => @route_table,
       :status           => 'inactive',
       :type             => 'ManageIQ::Providers::Azure::NetworkManager::NetworkRouter',
-      :extra_attributes => {:routes =>
-        [{'Name' => 'miq-route-eastus1', 'Resource Group' => @network_group, 'CIDR' => '10.0.0.0/16'}]
+      :extra_attributes => {
+        :routes => [
+          {
+            'Name'           => 'miq-route-eastus1',
+            'Resource Group' => @network_group,
+            'CIDR'           => '10.0.0.0/16'
+          }
+        ]
       }
     )
   end
@@ -368,10 +374,10 @@ module AzureRefresherSpecCommon
     expect(sg.firewall_rules.size).to eq(3)
 
     sg.firewall_rules
-       .order(:host_protocol, :direction, :port, :end_port, :source_ip_range, :source_security_group_id)
-       .zip(expected_firewall_rules)
-       .each do |actual, expected|
-     expect(actual).to have_attributes(expected)
+      .order(:host_protocol, :direction, :port, :end_port, :source_ip_range, :source_security_group_id)
+      .zip(expected_firewall_rules)
+      .each do |actual, expected|
+      expect(actual).to have_attributes(expected)
     end
   end
 
@@ -380,13 +386,13 @@ module AzureRefresherSpecCommon
       flavor = ManageIQ::Providers::Azure::CloudManager::Flavor.find_by(:ems_ref => 'standard_a0')
       name = 'Standard_A0'
       memory = 768.megabytes
-      root_disk_size = 1047552.megabytes
-      swap_disk_size = 20480.megabytes
+      root_disk_size = 1_047_552.megabytes
+      swap_disk_size = 20_480.megabytes
     else
       flavor = ManageIQ::Providers::Azure::CloudManager::Flavor.find_by(:ems_ref => 'standard_b1s')
       name = 'Standard_B1s'
       memory = 1024.megabytes
-      root_disk_size = 1047552.megabytes
+      root_disk_size = 1_047_552.megabytes
       swap_disk_size = 2048.megabytes
     end
 
@@ -496,8 +502,8 @@ module AzureRefresherSpecCommon
     expect(vm.snapshots.size).to eql(0)
 
     aggregate_failures do
-      expect(vm.labels.pluck(:name, :value).to_h).to eq({'creator'=> @creator, 'specs' => 'true', 'owner' => 'cfme'})
-      #expect(vm.tags.pluck(:name)).to eq(%w(/managed/azure:vm:shutdown/true))
+      expect(vm.labels.pluck(:name, :value).to_h).to eq('creator' => @creator, 'specs' => 'true', 'owner' => 'cfme')
+      # expect(vm.tags.pluck(:name)).to eq(%w(/managed/azure:vm:shutdown/true))
     end
 
     assert_specific_vm_powered_on_hardware(vm)
@@ -554,7 +560,6 @@ module AzureRefresherSpecCommon
   def assert_specific_disk
     uri  = "https://miqunmanagedeastus.blob.core.windows.net/vhds/#{@disk_powered_on}.vhd"
     disk = Disk.find_by(:device_name => @disk_powered_on)
-
 
     expect(disk).to have_attributes(
       :location => uri,
@@ -617,7 +622,7 @@ module AzureRefresherSpecCommon
 
     aggregate_failures do
       expect(vm.labels.pluck(:name, :value).to_h).to eq(labels)
-      #expect(vm.tags.pluck(:name)).to eq(%w(/managed/azure:vm:shutdown/true))
+      # expect(vm.tags.pluck(:name)).to eq(%w(/managed/azure:vm:shutdown/true))
     end
 
     assert_specific_vm_powered_off_hardware(vm)
@@ -770,7 +775,7 @@ module AzureRefresherSpecCommon
     admin_param = parameters.find { |param| param.name == 'adminUsername' }
 
     expect(admin_param).to have_attributes(
-      :value => 'miq-admin-username',
+      :value   => 'miq-admin-username',
       :ems_ref => "/subscriptions/#{@ems.subscription}/resourceGroups/#{@misc_group}"\
         "/providers/Microsoft.Resources/deployments/#{@orch_template}/adminUsername"
     )
