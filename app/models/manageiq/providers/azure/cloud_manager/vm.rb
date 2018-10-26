@@ -2,30 +2,34 @@ class ManageIQ::Providers::Azure::CloudManager::Vm < ManageIQ::Providers::CloudM
   include_concern 'Operations'
   include_concern 'ManageIQ::Providers::Azure::CloudManager::VmOrTemplateShared'
 
-  # Only select the columns we actually use for the Azure provider.
+  UNSUPPORTED_COLUMNS = %w[
+    busy
+    config_xml
+    cpu_affinity
+    cpu_hot_add_enabled
+    cpu_hot_remove_enabled
+    cpu_limit
+    cpu_reserve
+    cpu_reserve_expand
+    cpu_shares
+    cpu_shares_level
+    deprecated
+    fault_tolerance
+    linked_clone
+    memory_hot_add_enabled
+    memory_hot_add_increment
+    memory_hot_add_limit
+    memory_limit
+    memory_reserve
+    memory_reserve_expand
+    memory_shares
+    memory_shares_level
+    tools_status
+  ].freeze
+
+  # Exclude columns that are not used by Azure.
   default_scope do
-    select([
-      :availability_zone_id,
-      :cloud,
-      :created_on,
-      :description,
-      :ems_id,
-      :ems_ref,
-      :flavor_id,
-      :guid,
-      :location,
-      :name,
-      :orchestration_stack_id,
-      :power_state,
-      :publicly_available,
-      :raw_power_state,
-      :resource_group_id,
-      :state_changed_on,
-      :tenant_id,
-      :type,
-      :uid_ems,
-      :vendor
-    ])
+    select(VmOrTemplate.column_names - UNSUPPORTED_COLUMNS)
   end
 
   #
