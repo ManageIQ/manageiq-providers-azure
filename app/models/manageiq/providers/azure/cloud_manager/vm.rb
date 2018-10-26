@@ -2,6 +2,32 @@ class ManageIQ::Providers::Azure::CloudManager::Vm < ManageIQ::Providers::CloudM
   include_concern 'Operations'
   include_concern 'ManageIQ::Providers::Azure::CloudManager::VmOrTemplateShared'
 
+  # Only select the columns we actually use for the Azure provider.
+  default_scope do
+    select([
+      :availability_zone_id,
+      :cloud,
+      :created_on,
+      :description,
+      :ems_id,
+      :ems_ref,
+      :flavor_id,
+      :guid,
+      :location,
+      :name,
+      :orchestration_stack_id,
+      :power_state,
+      :publicly_available,
+      :raw_power_state,
+      :resource_group_id,
+      :state_changed_on,
+      :tenant_id,
+      :type,
+      :uid_ems,
+      :vendor
+    ])
+  end
+
   #
   # Relationship methods
   #
