@@ -12,6 +12,7 @@ VCR.configure do |config|
       VCR.request_matchers.uri_without_param('api-version')
     ]
   }
+  # config.debug_logger = File.open('vcr.debug', 'w')
 end
 
 Dir[Rails.root.join("spec/shared/**/*.rb")].each { |f| require f }

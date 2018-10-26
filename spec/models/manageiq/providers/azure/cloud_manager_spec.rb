@@ -230,24 +230,24 @@ describe ManageIQ::Providers::Azure::CloudManager do
 
     it "with no existing records" do |example|
       found = recorded_discover(example)
-      expect(found.count).to eq(3)
+      expect(found.count).to eq(2)
 
       emses = ManageIQ::Providers::Azure::CloudManager.order(:name)
-      expect(emses.count).to eq(3)
-      assert_region(emses[1], "Azure-eastus")
-      assert_region(emses[2], "Azure-westus")
+      expect(emses.count).to eq(2)
+      assert_region(emses[0], "Azure-eastus")
+      assert_region(emses[1], "Azure-westus")
     end
 
     it "with some existing records" do |example|
       create_factory_ems("Azure-eastus", "eastus")
 
       found = recorded_discover(example)
-      expect(found.count).to eq(2)
+      expect(found.count).to eq(1)
 
       emses = ManageIQ::Providers::Azure::CloudManager.order(:name)
-      expect(emses.count).to eq(3)
-      assert_region(emses[1], "Azure-eastus")
-      assert_region(emses[2], "Azure-westus")
+      expect(emses.count).to eq(2)
+      assert_region(emses[0], "Azure-eastus")
+      assert_region(emses[1], "Azure-westus")
     end
 
     it "with all existing records" do |example|
@@ -255,12 +255,12 @@ describe ManageIQ::Providers::Azure::CloudManager do
       create_factory_ems("Azure-westus", "westus")
 
       found = recorded_discover(example)
-      expect(found.count).to eq(1)
+      expect(found.count).to eq(0)
 
       emses = ManageIQ::Providers::Azure::CloudManager.order(:name)
-      expect(emses.count).to eq(3)
-      assert_region(emses[1], "Azure-eastus")
-      assert_region(emses[2], "Azure-westus")
+      expect(emses.count).to eq(2)
+      assert_region(emses[0], "Azure-eastus")
+      assert_region(emses[1], "Azure-westus")
     end
 
     context "supports features" do
@@ -304,14 +304,13 @@ describe ManageIQ::Providers::Azure::CloudManager do
         FactoryGirl.create(:ems_azure_with_authentication, :name => "Azure-westus", :provider_region => "westus")
 
         found = recorded_discover(example)
-        expect(found.count).to eq(3)
+        expect(found.count).to eq(2)
 
         emses = ManageIQ::Providers::Azure::CloudManager.order(:name).includes(:authentications)
-        expect(emses.count).to eq(4)
-        assert_region(emses[0], "Azure-centralus")
-        assert_region(emses[1], "Azure-eastus")
-        assert_region_on_another_account(emses[2], "Azure-westus")
-        assert_region(emses[3], "Azure-westus #{@client_id}")
+        expect(emses.count).to eq(3)
+        assert_region(emses[0], "Azure-eastus")
+        assert_region_on_another_account(emses[1], "Azure-westus")
+        assert_region(emses[2], "Azure-westus #{@client_id}")
       end
 
       it "with the same name and backup name" do |example|
@@ -325,15 +324,15 @@ describe ManageIQ::Providers::Azure::CloudManager do
           :provider_region => "westus")
 
         found = recorded_discover(example)
-        expect(found.count).to eq(3)
+        expect(found.count).to eq(2)
 
         emses = ManageIQ::Providers::Azure::CloudManager.order(:name).includes(:authentications)
-        expect(emses.count).to eq(5)
+        expect(emses.count).to eq(4)
 
-        assert_region(emses[1], "Azure-eastus")
-        assert_region_on_another_account(emses[2], "Azure-westus")
-        assert_region(emses[3], "Azure-westus 1")
-        assert_region_on_another_account(emses[4], "Azure-westus #{@client_id}")
+        assert_region(emses[0], "Azure-eastus")
+        assert_region_on_another_account(emses[1], "Azure-westus")
+        assert_region(emses[2], "Azure-westus 1")
+        assert_region_on_another_account(emses[3], "Azure-westus #{@client_id}")
       end
 
       it "with the same name, backup name, and secondary backup name" do |example|
@@ -345,16 +344,16 @@ describe ManageIQ::Providers::Azure::CloudManager do
         FactoryGirl.create(:ems_azure_with_authentication, :name => "Azure-westus 1", :provider_region => "westus")
 
         found = recorded_discover(example)
-        expect(found.count).to eq(3)
+        expect(found.count).to eq(2)
 
         emses = ManageIQ::Providers::Azure::CloudManager.order(:name).includes(:authentications)
-        expect(emses.count).to eq(6)
+        expect(emses.count).to eq(5)
 
-        assert_region(emses[1], "Azure-eastus")
-        assert_region_on_another_account(emses[2], "Azure-westus")
-        assert_region_on_another_account(emses[3], "Azure-westus 1")
-        assert_region(emses[4], "Azure-westus 2")
-        assert_region_on_another_account(emses[5], "Azure-westus #{@client_id}")
+        assert_region(emses[0], "Azure-eastus")
+        assert_region_on_another_account(emses[1], "Azure-westus")
+        assert_region_on_another_account(emses[2], "Azure-westus 1")
+        assert_region(emses[3], "Azure-westus 2")
+        assert_region_on_another_account(emses[4], "Azure-westus #{@client_id}")
       end
     end
   end

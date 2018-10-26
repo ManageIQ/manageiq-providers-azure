@@ -81,18 +81,36 @@ module AzureRefresherSpecCommon
 
     @ems = FactoryGirl.create(:ems_azure_with_vcr_authentication, :zone => zone, :provider_region => 'eastus')
 
-    @resource_group    = 'miq-azure-test1'
-    @managed_vm        = 'miqazure-linux-managed'
-    @device_name       = 'miq-test-rhel1' # Make sure this is running if generating a new cassette.
-    @vm_powered_off    = 'miqazure-centos1' # Make sure this is powered off if generating a new cassette.
-    @ip_address        = '52.224.165.15'  # This will change if you had to restart the @device_name.
-    @mismatch_ip       = '13.92.63.10'    # This will change if you had to restart the 'miqmismatch1' VM.
-    @managed_os_disk   = "miqazure-linux-managed_OsDisk_1_7b2bdf790a7d4379ace2846d307730cd"
-    @managed_data_disk = "miqazure-linux-managed-data-disk"
-    @template          = nil
-    @avail_zone        = nil
+    @vm_group             = 'miq-vms-eastus'
+    @network_group        = 'miq-networking-eastus'
+    @misc_group           = 'miq-misc-eastus'
+    @ubuntu_east          = 'miq-vm-ubuntu1-eastus' # Power on before regenerating cassettes
+    @centos_east          = 'miq-vm-centos1-eastus' # Power off before regenerating cassettes
+    @rhel_east            = 'miq-vm-rhel2-mismatch'
+    @security_group       = 'miq-nsg-eastus1'
+    @centos_public_ip     = 'miq-publicip-eastus2'
+    @unmanaged_disk       = 'miq-vm-centos-disk1'
+    @cloud_network        = 'miq-vnet-eastus'
+    @network_interface    = 'miq-nic-eastus1'
+    @managed_vm           = 'miq-vm-sles1-eastus'
+    @managed_os_disk      = 'miq-vm-sles1-disk'
+    @managed_data_disk    = 'miq-data-disk-eastus1'
+    @route_table          = 'miq-route-table-eastus1'
+    @vm_from_image        = 'miq-vm-from-image-eastus1'
+    @image_name           = 'miq-linux-img-east'
+    @load_balancer        = 'miq-lb-eastus'
+    @load_balancer_no_mem = 'miq-lb-eastus2'
+    @backend_pool         = 'miq-backend-pool1'
+    @vm_lb1               = 'miq-vm1-lb-eastus'
+    @vm_lb2               = 'miq-vm2-lb-eastus'
+    @lb_ip_address        = '40.76.218.17'  # Update after restart
+    @ubuntu_ip_address    = '40.114.95.228' # Update after restart
+    @orch_template        = 'miq-template-eastus'
+    @creator              = 'dberger' # Update as needed
 
-    @resource_group_managed_vm = "miq-azure-test4"
+    @vm_powered_on = @ubuntu_east
+    @vm_powered_off = @centos_east
+    @disk_powered_on = 'miq-vm-ubuntu-disk1'
 
     FactoryGirl.create(:tag_mapping_with_category,
                        :labeled_resource_type => 'VmAzure',
@@ -141,38 +159,38 @@ module AzureRefresherSpecCommon
 
   def expected_table_counts
     {
-      :ext_management_system             => 2,
-      :flavor                            => 192,
       :availability_zone                 => 1,
-      :vm_or_template                    => 14,
-      :vm                                => 13,
-      :miq_template                      => 1,
-      :disk                              => 14,
+      :cloud_network                     => 3,
+      :cloud_subnet                      => 3,
+      :disk                              => 11,
+      :ext_management_system             => 2,
+      :flavor                            => 196,
+      :floating_ip                       => 9,
       :guest_device                      => 0,
-      :hardware                          => 14,
-      :network                           => 23,
-      :operating_system                  => 13,
-      :relationship                      => 2,
-      :orchestration_template            => 26,
-      :orchestration_stack               => 29,
-      :orchestration_stack_parameter     => 261,
-      :orchestration_stack_output        => 11,
-      :orchestration_stack_resource      => 90,
-      :security_group                    => 13,
-      :network_port                      => 17,
-      :cloud_network                     => 6,
-      :floating_ip                       => 13,
-      :network_router                    => 1,
-      :cloud_subnet                      => 6,
-      :resource_group                    => 4,
-      :load_balancer                     => 3,
-      :load_balancer_pool                => @refresh_settings[:inventory_object_refresh] ? 2 : 3,
-      :load_balancer_pool_member         => 4,
-      :load_balancer_pool_member_pool    => 4,
-      :load_balancer_listener            => 2,
-      :load_balancer_listener_pool       => 2,
+      :hardware                          => 10,
+      :load_balancer                     => 2,
+      :load_balancer_pool                => @refresh_settings[:inventory_object_refresh] ? 1 : 2,
+      :load_balancer_pool_member         => 2,
+      :load_balancer_pool_member_pool    => 2,
+      :load_balancer_listener            => 1,
+      :load_balancer_listener_pool       => 1,
       :load_balancer_health_check        => 3,
-      :load_balancer_health_check_member => 4,
+      :load_balancer_health_check_member => 2,
+      :miq_template                      => 1,
+      :network                           => 16,
+      :network_port                      => 11,
+      :network_router                    => 1,
+      :operating_system                  => 10,
+      :orchestration_stack               => 12,
+      :orchestration_stack_output        => 2,
+      :orchestration_stack_parameter     => 13,
+      :orchestration_stack_resource      => 15,
+      :orchestration_template            => 12,
+      :relationship                      => 2,
+      :resource_group                    => 8,
+      :security_group                    => 5,
+      :vm                                => 9,
+      :vm_or_template                    => 10,
     }
   end
 
@@ -205,210 +223,238 @@ module AzureRefresherSpecCommon
     expect(@ems.miq_templates.size).to eq(expected_table_counts[:miq_template])
 
     expect(@ems.orchestration_stacks.size).to eql(expected_table_counts[:orchestration_stack])
-    expect(@ems.direct_orchestration_stacks.size).to eql(28)
+    expect(@ems.direct_orchestration_stacks.size).to eql(11)
   end
 
   def assert_specific_load_balancers
-    lb_ems_ref      = "/subscriptions/#{@ems.subscription}/"\
-                          "resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb1"
+    lb_ems_ref = "/subscriptions/#{@ems.subscription}/resourceGroups/#{@network_group}"\
+                   "/providers/Microsoft.Network/loadBalancers/#{@load_balancer}"
 
-    lb_pool_ems_ref = "/subscriptions/#{@ems.subscription}/"\
-                          "resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/"\
-                          "rspec-lb1/backendAddressPools/rspec-lb-pool"
+    lb_pool_ems_ref = "/subscriptions/#{@ems.subscription}/resourceGroups/#{@network_group}"\
+                        "/providers/Microsoft.Network/loadBalancers/#{@load_balancer}/backendAddressPools/#{@backend_pool}"
 
-    @lb = ManageIQ::Providers::Azure::NetworkManager::LoadBalancer.where(
-      :name    => "rspec-lb1"
-    ).first
-    @lb_no_members = ManageIQ::Providers::Azure::NetworkManager::LoadBalancer.where(
-      :name    => "rspec-lb2"
-    ).first
-    @pool = ManageIQ::Providers::Azure::NetworkManager::LoadBalancerPool.where(
-      :ems_ref => lb_pool_ems_ref
-    ).first
+    lb = ManageIQ::Providers::Azure::NetworkManager::LoadBalancer.find_by(:name => @load_balancer)
 
-    expect(@lb).to have_attributes(
-      "ems_ref"         => lb_ems_ref,
-      "name"            => "rspec-lb1",
-      "description"     => nil,
-      "cloud_tenant_id" => nil,
-      "type"            => "ManageIQ::Providers::Azure::NetworkManager::LoadBalancer"
+    lb_no_members = ManageIQ::Providers::Azure::NetworkManager::LoadBalancer.find_by(:name => @load_balancer_no_mem)
+
+    pool = ManageIQ::Providers::Azure::NetworkManager::LoadBalancerPool.find_by(:ems_ref => lb_pool_ems_ref)
+
+    expect(lb).to have_attributes(
+      'ems_ref'         => lb_ems_ref,
+      'name'            => @load_balancer,
+      'description'     => nil,
+      'cloud_tenant_id' => nil,
+      'type'            => 'ManageIQ::Providers::Azure::NetworkManager::LoadBalancer'
     )
 
-    expect(@lb.ext_management_system).to eq(@ems.network_manager)
-    expect(@lb.vms.count).to eq 2
-    expect(@lb.load_balancer_pools.first).to eq(@pool)
-    expect(@lb.load_balancer_pool_members.count).to eq 2
-    expect(@lb.load_balancer_pool_members.first.ext_management_system).to eq @ems.network_manager
-    expect(@lb.vms.first.ext_management_system).to eq @ems
-    expect(@lb.vms.collect(&:name).sort).to match_array ["rspec-lb-a", "rspec-lb-b"]
-    expect(@lb_no_members.load_balancer_pool_members.count).to eq 0
+    expect(lb.ext_management_system).to eq(@ems.network_manager)
+    expect(lb.vms.count).to eq(2)
+    expect(lb.load_balancer_pools.first).to eq(pool)
+    expect(lb.load_balancer_pool_members.count).to eq(2)
+    expect(lb.load_balancer_pool_members.first.ext_management_system).to eq(@ems.network_manager)
+    expect(lb.vms.first.ext_management_system).to eq(@ems)
+    expect(lb.vms.collect(&:name).sort).to match_array(['miq-vm1-lb-eastus', 'miq-vm2-lb-eastus'])
+    expect(lb_no_members.load_balancer_pool_members.count).to eq(0)
   end
 
   def assert_specific_load_balancer_networking
-    floating_ip = FloatingIp.where(:address => "40.71.82.83").first
+    lb = ManageIQ::Providers::Azure::NetworkManager::LoadBalancer.find_by(:name => @load_balancer)
+    floating_ip = FloatingIp.find_by(:address => @lb_ip_address)
 
-    expect(@lb).to eq floating_ip.network_port.device
+    expect(lb).to eq(floating_ip.network_port.device)
   end
 
   def assert_specific_load_balancer_listeners
-    lb_listener_ems_ref      = "/subscriptions/#{@ems.subscription}/resourceGroups/"\
-                                   "miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb1/"\
-                                   "loadBalancingRules/rspec-lb1-rule"
+    lb_listener_ems_ref = "/subscriptions/#{@ems.subscription}/resourceGroups/#{@network_group}"\
+                            "/providers/Microsoft.Network/loadBalancers/#{@load_balancer}"\
+                            "/loadBalancingRules/miq-lb-rule1"
 
-    lb_pool_member_1_ems_ref = "/subscriptions/#{@ems.subscription}/resourceGroups/"\
-                                   "miq-azure-test1/providers/Microsoft.Network/networkInterfaces/rspec-lb-a670/"\
-                                   "ipConfigurations/ipconfig1"
+    lb_pool_ems_ref = "/subscriptions/#{@ems.subscription}/resourceGroups/#{@network_group}"\
+                        "/providers/Microsoft.Network/loadBalancers/#{@load_balancer}/backendAddressPools/#{@backend_pool}"
 
-    lb_pool_member_2_ems_ref = "/subscriptions/#{@ems.subscription}/resourceGroups/"\
-                                   "miq-azure-test1/providers/Microsoft.Network/networkInterfaces/rspec-lb-b843/"\
-                                   "ipConfigurations/ipconfig1"
+    lb_pool_member_1_ems_ref = "/subscriptions/#{@ems.subscription}/resourceGroups/#{@network_group}"\
+                                 "/providers/Microsoft.Network/networkInterfaces/miq-nic1-lb-eastus"\
+                                 "/ipConfigurations/ipconfig1"
 
-    @listener = ManageIQ::Providers::Azure::NetworkManager::LoadBalancerListener.where(
-      :ems_ref => lb_listener_ems_ref
-    ).first
+    lb_pool_member_2_ems_ref = "/subscriptions/#{@ems.subscription}/resourceGroups/#{@network_group}"\
+                                 "/providers/Microsoft.Network/networkInterfaces/miq-nic2-lb-eastus"\
+                                 "/ipConfigurations/ipconfig1"
 
-    expect(@listener).to have_attributes(
-      "ems_ref"                  => lb_listener_ems_ref,
-      "name"                     => nil,
-      "description"              => nil,
-      "load_balancer_protocol"   => "Tcp",
-      "load_balancer_port_range" => 80...81,
-      "instance_protocol"        => "Tcp",
-      "instance_port_range"      => 80...81,
-      "cloud_tenant_id"          => nil,
-      "type"                     => "ManageIQ::Providers::Azure::NetworkManager::LoadBalancerListener"
+    lb = ManageIQ::Providers::Azure::NetworkManager::LoadBalancer.find_by(:name => @load_balancer)
+    listener = ManageIQ::Providers::Azure::NetworkManager::LoadBalancerListener.find_by(:ems_ref => lb_listener_ems_ref)
+    pool = ManageIQ::Providers::Azure::NetworkManager::LoadBalancerPool.find_by(:ems_ref => lb_pool_ems_ref)
+    lb_no_members = ManageIQ::Providers::Azure::NetworkManager::LoadBalancer.find_by(:name => @load_balancer_no_mem)
+
+    expect(listener).to have_attributes(
+      'ems_ref'                  => lb_listener_ems_ref,
+      'name'                     => nil,
+      'description'              => nil,
+      'load_balancer_protocol'   => 'Tcp',
+      'load_balancer_port_range' => 80...81,
+      'instance_protocol'        => 'Tcp',
+      'instance_port_range'      => 80...81,
+      'cloud_tenant_id'          => nil,
+      'type'                     => 'ManageIQ::Providers::Azure::NetworkManager::LoadBalancerListener'
     )
-    expect(@listener.ext_management_system).to eq(@ems.network_manager)
-    expect(@lb.load_balancer_listeners).to eq [@listener]
-    expect(@listener.load_balancer_pools).to eq([@pool])
-    expect(@listener.load_balancer_pool_members.collect(&:ems_ref).sort)
+
+    expect(listener.ext_management_system).to eq(@ems.network_manager)
+    expect(lb.load_balancer_listeners).to eq [listener]
+    expect(listener.load_balancer_pools).to eq([pool])
+    expect(listener.load_balancer_pool_members.collect(&:ems_ref).sort)
       .to match_array [lb_pool_member_1_ems_ref, lb_pool_member_2_ems_ref]
 
-    expect(@listener.vms.collect(&:name).sort).to match_array ["rspec-lb-a", "rspec-lb-b"]
-    expect(@lb_no_members.load_balancer_listeners.count).to eq 0
+    expect(listener.vms.collect(&:name).sort).to match_array(['miq-vm1-lb-eastus', 'miq-vm2-lb-eastus'])
+    expect(lb_no_members.load_balancer_listeners.count).to eq(0)
   end
 
   def assert_specific_load_balancer_health_checks
-    health_check_ems_ref = "/subscriptions/#{@ems.subscription}/resourceGroups/"\
-                               "miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb1/"\
-                               "probes/rspec-lb-probe"
+    health_check_ems_ref = "/subscriptions/#{@ems.subscription}/resourceGroups/#{@network_group}"\
+                             "/providers/Microsoft.Network/loadBalancers/#{@load_balancer}"\
+                             "/probes/miq-lb-health-probe1"
 
-    @health_check = ManageIQ::Providers::Azure::NetworkManager::LoadBalancerHealthCheck.where(
-      :ems_ref => health_check_ems_ref
-    ).first
+    lb_listener_ems_ref = "/subscriptions/#{@ems.subscription}/resourceGroups/#{@network_group}"\
+                            "/providers/Microsoft.Network/loadBalancers/#{@load_balancer}"\
+                            "/loadBalancingRules/miq-lb-rule1"
 
-    expect(@health_check).to have_attributes(
-      "ems_ref"         => health_check_ems_ref,
-      "name"            => nil,
-      "protocol"        => "Http",
-      "port"            => 80,
-      "url_path"        => "/",
-      "interval"        => 5,
-      "cloud_tenant_id" => nil,
-      "type"            => "ManageIQ::Providers::Azure::NetworkManager::LoadBalancerHealthCheck"
+    lb = ManageIQ::Providers::Azure::NetworkManager::LoadBalancer.find_by(:name => @load_balancer)
+    health_check = ManageIQ::Providers::Azure::NetworkManager::LoadBalancerHealthCheck.find_by(:ems_ref => health_check_ems_ref)
+    lb_no_members = ManageIQ::Providers::Azure::NetworkManager::LoadBalancer.find_by(:name => @load_balancer_no_mem)
+    listener = ManageIQ::Providers::Azure::NetworkManager::LoadBalancerListener.find_by(:ems_ref => lb_listener_ems_ref)
+
+    expect(health_check).to have_attributes(
+      'ems_ref'         => health_check_ems_ref,
+      'name'            => nil,
+      'protocol'        => 'Http',
+      'port'            => 80,
+      'url_path'        => '/',
+      'interval'        => 15,
+      'cloud_tenant_id' => nil,
+      'type'            => 'ManageIQ::Providers::Azure::NetworkManager::LoadBalancerHealthCheck'
     )
-    expect(@listener.load_balancer_health_checks.first).to eq @health_check
-    expect(@health_check.load_balancer).to eq @lb
-    expect(@health_check.load_balancer_health_check_members.count).to eq 2
-    expect(@health_check.load_balancer_pool_members.count).to eq 2
-    expect(@lb_no_members.load_balancer_health_checks.count).to eq 1
+    expect(listener.load_balancer_health_checks.first).to eq(health_check)
+    expect(health_check.load_balancer).to eq(lb)
+    expect(health_check.load_balancer_health_check_members.count).to eq(2)
+    expect(health_check.load_balancer_pool_members.count).to eq(2)
+    expect(lb_no_members.load_balancer_health_checks.count).to eq(1)
   end
 
   def assert_specific_router
-    router = ManageIQ::Providers::Azure::NetworkManager::NetworkRouter.where(:name => 'miq-azure-routetabletest').first
+    router = ManageIQ::Providers::Azure::NetworkManager::NetworkRouter.where(:name => @route_table).first
 
     expect(router).to have_attributes(
-      :name             => 'miq-azure-routetabletest',
+      :name             => @route_table,
       :status           => 'inactive',
       :type             => 'ManageIQ::Providers::Azure::NetworkManager::NetworkRouter',
-      :extra_attributes => {:routes => [{"Name" => "route1", "Resource Group" => "miq-azure-test4", "CIDR" => "10.1.0.0/16"}]}
+      :extra_attributes => {
+        :routes => [
+          {
+            'Name'           => 'miq-route-eastus1',
+            'Resource Group' => @network_group,
+            'CIDR'           => '10.0.0.0/16'
+          }
+        ]
+      }
     )
   end
 
   def assert_specific_security_group
-    @sg = ManageIQ::Providers::Azure::NetworkManager::SecurityGroup.where(:name => @device_name).first
+    sg = ManageIQ::Providers::Azure::NetworkManager::SecurityGroup.find_by(:name => @security_group)
 
-    expect(@sg).to have_attributes(
-      :name        => @device_name,
-      :description => 'miq-azure-test1-eastus'
+    expect(sg).to have_attributes(
+      :name        => @security_group,
+      :description => 'miq-networking-eastus-eastus'
     )
 
     expected_firewall_rules = [
-      {:host_protocol => "TCP", :direction => "Inbound", :port => 22,  :end_port => 22,  :source_ip_range => "*"},
-      {:host_protocol => "TCP", :direction => "Inbound", :port => 80,  :end_port => 80,  :source_ip_range => "*"},
-      {:host_protocol => "TCP", :direction => "Inbound", :port => 443, :end_port => 443, :source_ip_range => "*"}
+      {:host_protocol => 'TCP', :direction => 'Inbound', :port => 22,  :end_port => 22,  :source_ip_range => '*'},
+      {:host_protocol => 'TCP', :direction => 'Inbound', :port => 80,  :end_port => 80,  :source_ip_range => '*'},
+      {:host_protocol => 'TCP', :direction => 'Inbound', :port => 443, :end_port => 443, :source_ip_range => '*'}
     ]
 
-    expect(@sg.firewall_rules.size).to eq(3)
+    expect(sg.firewall_rules.size).to eq(3)
 
-    @sg.firewall_rules
-       .order(:host_protocol, :direction, :port, :end_port, :source_ip_range, :source_security_group_id)
-       .zip(expected_firewall_rules)
-       .each do |actual, expected|
+    sg.firewall_rules
+      .order(:host_protocol, :direction, :port, :end_port, :source_ip_range, :source_security_group_id)
+      .zip(expected_firewall_rules)
+      .each do |actual, expected|
       expect(actual).to have_attributes(expected)
     end
   end
 
-  def assert_specific_flavor
-    @flavor = ManageIQ::Providers::Azure::CloudManager::Flavor.where(:ems_ref => "basic_a0").first
+  def assert_specific_flavor(managed = false)
+    if managed
+      flavor = ManageIQ::Providers::Azure::CloudManager::Flavor.find_by(:ems_ref => 'standard_a0')
+      name = 'Standard_A0'
+      memory = 768.megabytes
+      root_disk_size = 1_047_552.megabytes
+      swap_disk_size = 20_480.megabytes
+    else
+      flavor = ManageIQ::Providers::Azure::CloudManager::Flavor.find_by(:ems_ref => 'standard_b1s')
+      name = 'Standard_B1s'
+      memory = 1024.megabytes
+      root_disk_size = 1_047_552.megabytes
+      swap_disk_size = 2048.megabytes
+    end
 
-    expect(@flavor).to have_attributes(
-      :name                     => "Basic_A0",
+    expect(flavor).to have_attributes(
+      :name                     => name,
       :description              => nil,
       :enabled                  => true,
       :cpus                     => 1,
       :cpu_cores                => 1,
-      :memory                   => 768.megabytes,
+      :memory                   => memory,
       :supports_32_bit          => nil,
       :supports_64_bit          => nil,
       :supports_hvm             => nil,
       :supports_paravirtual     => nil,
       :block_storage_based_only => nil,
-      :root_disk_size           => 1_047_552.megabytes,
-      :swap_disk_size           => 20_480.megabytes
+      :root_disk_size           => root_disk_size,
+      :swap_disk_size           => swap_disk_size
     )
 
-    expect(@flavor.ext_management_system).to eq(@ems)
+    expect(flavor.ext_management_system).to eq(@ems)
   end
 
   def assert_specific_az
-    @avail_zone = ManageIQ::Providers::Azure::CloudManager::AvailabilityZone.first
-    expect(@avail_zone).to have_attributes(:name => @ems.name)
+    avail_zone = ManageIQ::Providers::Azure::CloudManager::AvailabilityZone.first
+    expect(avail_zone).to have_attributes(:name => @ems.name)
   end
 
   def assert_specific_cloud_network
-    name = 'miq-azure-test1'
-
     cn_resource_id = "/subscriptions/#{@ems.subscription}"\
-                         "/resourceGroups/#{@resource_group}/providers/Microsoft.Network"\
-                         "/virtualNetworks/#{@resource_group}"
+                         "/resourceGroups/#{@network_group}/providers/Microsoft.Network"\
+                         "/virtualNetworks/#{@cloud_network}"
 
-    @cn = CloudNetwork.where(:name => name).first
-    @avail_zone = ManageIQ::Providers::Azure::CloudManager::AvailabilityZone.first
+    cloud_network = CloudNetwork.find_by(:name => @cloud_network)
+    availability_zone = ManageIQ::Providers::Azure::CloudManager::AvailabilityZone.first
 
-    expect(@cn).to have_attributes(
-      :name    => name,
+    expect(cloud_network).to have_attributes(
+      :name    => @cloud_network,
       :ems_ref => cn_resource_id,
-      :cidr    => "10.16.0.0/16",
+      :cidr    => '10.0.0.0/16',
       :status  => nil,
       :enabled => true
     )
-    expect(@cn.vms.size).to be >= 1
-    expect(@cn.network_ports.size).to be >= 1
 
-    vm = @cn.vms.where(:name => @device_name).first
+    expect(cloud_network.vms.size).to be >= 1
+    expect(cloud_network.network_ports.size).to be >= 1
+
+    vm = cloud_network.vms.find_by(:name => @ubuntu_east)
     expect(vm.cloud_networks.size).to be >= 1
 
-    expect(@cn.cloud_subnets.size).to eq(1)
-    @subnet = @cn.cloud_subnets.where(:name => "default").first
-    expect(@subnet).to have_attributes(
-      :name              => "default",
+    expect(cloud_network.cloud_subnets.size).to eq(1)
+
+    subnet = cloud_network.cloud_subnets.find_by(:name => 'default')
+
+    expect(subnet).to have_attributes(
+      :name              => 'default',
       :ems_ref           => "#{cn_resource_id}/subnets/default",
-      :cidr              => "10.16.0.0/24",
-      :availability_zone => @avail_zone
+      :cidr              => '10.0.0.0/24',
+      :availability_zone => availability_zone
     )
 
-    vm_subnet = @subnet.vms.where(:name => @device_name).first
+    vm_subnet = subnet.vms.find_by(:name => @ubuntu_east)
+
     expect(vm_subnet.cloud_subnets.size).to be >= 1
     expect(vm_subnet.network_ports.size).to be >= 1
     expect(vm_subnet.security_groups.size).to be >= 1
@@ -416,19 +462,21 @@ module AzureRefresherSpecCommon
   end
 
   def assert_specific_vm_powered_on
-    vm = ManageIQ::Providers::Azure::CloudManager::Vm.where(
-      :name => @device_name, :raw_power_state => "VM running"
-    ).first
-    vm_resource_id = "#{@ems.subscription}/#{@resource_group}/microsoft.compute/virtualmachines/#{@device_name}"
+    vm = ManageIQ::Providers::Azure::CloudManager::Vm.find_by(:name => @ubuntu_east)
+    avail_zone = ManageIQ::Providers::Azure::CloudManager::AvailabilityZone.first
+    flavor = ManageIQ::Providers::Azure::CloudManager::Flavor.find_by(:ems_ref => 'standard_b1s')
+
+    vm_resource_id = "#{@ems.subscription}/#{@vm_group}/microsoft.compute/virtualmachines/#{@ubuntu_east}"
 
     expect(vm).to have_attributes(
       :template              => false,
       :ems_ref               => vm_resource_id,
       :ems_ref_obj           => nil,
       :uid_ems               => vm_resource_id,
-      :vendor                => "azure",
-      :power_state           => "on",
-      :location              => "eastus",
+      :vendor                => 'azure',
+      :power_state           => 'on',
+      :raw_power_state       => 'VM running',
+      :location              => 'eastus',
       :tools_status          => nil,
       :boot_time             => nil,
       :standby_action        => nil,
@@ -447,15 +495,15 @@ module AzureRefresherSpecCommon
     )
 
     expect(vm.ext_management_system).to eql(@ems)
-    expect(vm.availability_zone).to eql(@avail_zone)
-    expect(vm.flavor).to eql(@flavor)
-    expect(vm.operating_system.product_name).to eql("RHEL 7.2")
-    expect(vm.custom_attributes.size).to eql(1)
+    expect(vm.availability_zone).to eql(avail_zone)
+    expect(vm.flavor).to eql(flavor)
+    expect(vm.operating_system.product_name).to eql('UbuntuServer 16.04 LTS')
+    expect(vm.custom_attributes.size).to eql(3)
     expect(vm.snapshots.size).to eql(0)
 
     aggregate_failures do
-      expect(vm.labels.pluck(:name, :value).to_h).to eq('Shutdown' => 'true')
-      expect(vm.tags.pluck(:name)).to eq(%w(/managed/azure:vm:shutdown/true))
+      expect(vm.labels.pluck(:name, :value).to_h).to eq('creator' => @creator, 'specs' => 'true', 'owner' => 'cfme')
+      # expect(vm.tags.pluck(:name)).to eq(%w(/managed/azure:vm:shutdown/true))
     end
 
     assert_specific_vm_powered_on_hardware(vm)
@@ -468,20 +516,18 @@ module AzureRefresherSpecCommon
       :bios                => nil,
       :annotation          => nil,
       :cpu_sockets         => 1,
-      :memory_mb           => 768,
-      :disk_capacity       => 1_047_552.megabyte + 20_480.megabyte,
+      :memory_mb           => 1024,
+      :disk_capacity       => 1025.gigabytes,
       :bitness             => nil,
       :virtualization_type => nil
     )
 
     expect(v.hardware.guest_devices.size).to eql(0)
     expect(v.hardware.nics.size).to eql(0)
-    floating_ip = ManageIQ::Providers::Azure::NetworkManager::FloatingIp.where(
-      :address => @ip_address
-    ).first
-    cloud_network = ManageIQ::Providers::Azure::NetworkManager::CloudNetwork.where(
-      :name => @resource_group
-    ).first
+
+    floating_ip = ManageIQ::Providers::Azure::NetworkManager::FloatingIp.find_by(:address => @ubuntu_ip_address)
+    cloud_network = ManageIQ::Providers::Azure::NetworkManager::CloudNetwork.find_by(:name => @cloud_network)
+
     cloud_subnet = cloud_network.cloud_subnets.first
     expect(v.floating_ip).to eql(floating_ip)
     expect(v.floating_ips.first).to eql(floating_ip)
@@ -499,24 +545,25 @@ module AzureRefresherSpecCommon
     expect(v.hardware.networks.size).to eql(2)
     network = v.hardware.networks.where(:description => "public").first
     expect(network).to have_attributes(
-      :description => "public",
-      :ipaddress   => @ip_address,
-      :hostname    => "ipconfig1"
+      :description => 'public',
+      :ipaddress   => @ubuntu_ip_address,
+      :hostname    => 'ipconfig1'
     )
     network = v.hardware.networks.where(:description => "private").first
     expect(network).to have_attributes(
-      :description => "private",
-      :ipaddress   => "10.16.0.4",
-      :hostname    => "ipconfig1"
+      :description => 'private',
+      :ipaddress   => '10.0.0.4',
+      :hostname    => 'ipconfig1'
     )
   end
 
   def assert_specific_disk
-    disk = Disk.where(:device_name => @device_name).first
+    uri  = "https://miqunmanagedeastus.blob.core.windows.net/vhds/#{@disk_powered_on}.vhd"
+    disk = Disk.find_by(:device_name => @disk_powered_on)
 
     expect(disk).to have_attributes(
-      :location => "https://miqazuretest18686.blob.core.windows.net/vhds/miq-test-rhel12016218112243.vhd",
-      :size     => 32_212_255_232 # 30gb, approx
+      :location => uri,
+      :size     => 32_212_254_720 # 30gb, approx
     )
   end
 
@@ -528,72 +575,70 @@ module AzureRefresherSpecCommon
 
   def assert_specific_managed_disk
     disk = Disk.find_by(:device_name => @managed_os_disk)
-    expect(disk.location).to eql("/subscriptions/#{@ems.subscription}/resourceGroups/"\
-                                      "MIQ-AZURE-TEST4/providers/Microsoft.Compute/disks/"\
-                                      "miqazure-linux-managed_OsDisk_1_7b2bdf790a7d4379ace2846d307730cd")
-    expect(disk.size).to eql(32.gigabytes)
+    expect(disk.location.downcase).to eql("/subscriptions/#{@ems.subscription}/resourceGroups/"\
+                                   "#{@vm_group}/providers/Microsoft.Compute/disks/"\
+                                   "#{@managed_os_disk}".downcase)
+    expect(disk.size).to eql(30.gigabytes)
   end
 
   def assert_specific_resource_group
-    vm_managed   = Vm.find_by(:name => @managed_vm)
-    vm_unmanaged = Vm.find_by(:name => @device_name)
+    vm_same_region = Vm.find_by(:name => @ubuntu_east)
+    vm_diff_region = Vm.find_by(:name => @rhel_east)
 
-    # VM in eastus, resource group in westus
-    vm_mismatch  = Vm.find_by(:name => 'miqmismatch2')
+    group_same_region = ResourceGroup.find_by(:name => 'miq-vms-eastus')
+    group_diff_region = ResourceGroup.find_by(:name => 'miq-vms-westus')
 
-    managed_group = ResourceGroup.find_by(:name => 'miq-azure-test4')
-    unmanaged_group = ResourceGroup.find_by(:name => 'miq-azure-test1')
-    mismatch_group = ResourceGroup.find_by(:name => 'miq-azure-test3')
-
-    expect(vm_managed.resource_group).to eql(managed_group)
-    expect(vm_unmanaged.resource_group).to eql(unmanaged_group)
-    expect(vm_mismatch.resource_group).to eql(mismatch_group)
+    expect(vm_same_region.resource_group).to eql(group_same_region)
+    expect(vm_diff_region.resource_group).to eql(group_diff_region)
   end
 
   def assert_specific_vm_powered_off
-    vm_name = 'miqazure-centos1'
-
-    v = ManageIQ::Providers::Azure::CloudManager::Vm.where(
-      :name            => vm_name,
+    vm = ManageIQ::Providers::Azure::CloudManager::Vm.find_by(
+      :name            => @centos_east,
       :raw_power_state => 'VM deallocated'
-    ).first
+    )
 
-    az1           = ManageIQ::Providers::Azure::CloudManager::AvailabilityZone.first
-    floating_ip   = ManageIQ::Providers::Azure::NetworkManager::FloatingIp.where(:address => "miqazure-centos1").first
-    cloud_network = ManageIQ::Providers::Azure::NetworkManager::CloudNetwork.where(:name => "miq-azure-test1").first
-    cloud_subnet  = cloud_network.cloud_subnets.first
+    availability_zone = ManageIQ::Providers::Azure::CloudManager::AvailabilityZone.first
+    floating_ip       = ManageIQ::Providers::Azure::NetworkManager::FloatingIp.find_by(:name => @centos_public_ip)
+    cloud_network     = ManageIQ::Providers::Azure::NetworkManager::CloudNetwork.find_by(:name => @cloud_network)
+    cloud_subnet      = cloud_network.cloud_subnets.first
 
-    assert_specific_vm_powered_off_attributes(v)
+    assert_specific_vm_powered_off_attributes(vm)
 
-    expect(v.ext_management_system).to eql(@ems)
-    expect(v.availability_zone).to eql(az1)
-    expect(v.floating_ip).to eql(floating_ip)
-    expect(v.cloud_network).to eql(cloud_network)
-    expect(v.cloud_subnet).to eql(cloud_subnet)
-    expect(v.operating_system.product_name).to eql('CentOS 7.1')
-    expect(v.custom_attributes.size).to eql(1)
-    expect(v.snapshots.size).to eql(0)
+    expect(vm.ext_management_system).to eql(@ems)
+    expect(vm.availability_zone).to eql(availability_zone)
+    expect(vm.floating_ip).to eql(floating_ip)
+    expect(vm.cloud_network).to eql(cloud_network)
+    expect(vm.cloud_subnet).to eql(cloud_subnet)
+    expect(vm.operating_system.product_name).to eql('CentOS 7.3')
+    expect(vm.custom_attributes.size).to eql(3)
+    expect(vm.snapshots.size).to eql(0)
+
+    labels = {
+      'creator' => 'dberger',
+      'owner'   => 'cfme',
+      'specs'   => 'true'
+    }
 
     aggregate_failures do
-      expect(v.labels.pluck(:name, :value).to_h).to eq('Shutdown' => 'true')
-      expect(v.tags.pluck(:name)).to eq(%w(/managed/azure:vm:shutdown/true))
+      expect(vm.labels.pluck(:name, :value).to_h).to eq(labels)
+      # expect(vm.tags.pluck(:name)).to eq(%w(/managed/azure:vm:shutdown/true))
     end
 
-    assert_specific_vm_powered_off_hardware(v)
+    assert_specific_vm_powered_off_hardware(vm)
   end
 
-  def assert_specific_vm_powered_off_attributes(v)
-    name = 'miqazure-centos1'
-    vm_resource_id = "#{@ems.subscription}/#{@resource_group}/microsoft.compute/virtualmachines/#{name}"
+  def assert_specific_vm_powered_off_attributes(vm)
+    vm_resource_id = "#{@ems.subscription}/#{@vm_group}/microsoft.compute/virtualmachines/#{@centos_east}"
 
-    expect(v).to have_attributes(
+    expect(vm).to have_attributes(
       :template              => false,
       :ems_ref               => vm_resource_id,
       :ems_ref_obj           => nil,
       :uid_ems               => vm_resource_id,
-      :vendor                => "azure",
-      :power_state           => "off",
-      :location              => "eastus",
+      :vendor                => 'azure',
+      :power_state           => 'off',
+      :location              => 'eastus',
       :tools_status          => nil,
       :boot_time             => nil,
       :standby_action        => nil,
@@ -612,31 +657,29 @@ module AzureRefresherSpecCommon
     )
   end
 
-  def assert_specific_vm_powered_off_hardware(v)
-    expect(v.hardware).to have_attributes(
+  def assert_specific_vm_powered_off_hardware(vm)
+    expect(vm.hardware).to have_attributes(
       :guest_os           => nil,
       :guest_os_full_name => nil,
       :bios               => nil,
       :annotation         => nil,
       :cpu_sockets        => 1,
-      :memory_mb          => 768,
-      :disk_capacity      => 1_047_552.megabytes + 20_480.megabytes,
+      :memory_mb          => 1024,
+      :disk_capacity      => 1_100_585_369_600,
       :bitness            => nil
     )
 
-    expect(v.hardware.disks.size).to eql(1)
-    expect(v.hardware.guest_devices.size).to eql(0)
-    expect(v.hardware.nics.size).to eql(0)
-    expect(v.hardware.networks.size).to eql(2)
+    expect(vm.hardware.disks.size).to eql(1)
+    expect(vm.hardware.guest_devices.size).to eql(0)
+    expect(vm.hardware.nics.size).to eql(0)
+    expect(vm.hardware.networks.size).to eql(2)
   end
 
   def assert_specific_parent
-    template_resource_id = "https://miqazuretest14047.blob.core.windows.net/system/"\
-                               "Microsoft.Compute/Images/miq-test-container/"\
-                               "test-win2k12-img-osDisk.e17a95b0-f4fb-4196-93c5-0c8be7d5c536.vhd"
+    template_resource_id = "/subscriptions/#{@ems.subscription}/resourcegroups/#{@vm_group}"\
+                           "/providers/microsoft.compute/images/#{@image_name}"
 
-    vm_resource_id = "#{@ems.subscription}/miq-azure-test4/"\
-                        "microsoft.compute/virtualmachines/dbergerprov1"
+    vm_resource_id = "#{@ems.subscription}/#{@vm_group}/microsoft.compute/virtualmachines/#{@vm_from_image}"
 
     vm = ManageIQ::Providers::Azure::CloudManager::Vm.find_by(:ems_ref => vm_resource_id)
     template = ManageIQ::Providers::Azure::CloudManager::Template.find_by(:ems_ref => template_resource_id)
@@ -645,20 +688,19 @@ module AzureRefresherSpecCommon
   end
 
   def assert_specific_template
-    template_resource_id = "https://miqazuretest14047.blob.core.windows.net/system/"\
-                               "Microsoft.Compute/Images/miq-test-container/"\
-                               "test-win2k12-img-osDisk.e17a95b0-f4fb-4196-93c5-0c8be7d5c536.vhd"
+    template_ems_ref = "/subscriptions/#{@ems.subscription}/resourcegroups/#{@vm_group}"\
+                         "/providers/microsoft.compute/images/#{@image_name}"
 
-    @template = ManageIQ::Providers::Azure::CloudManager::Template.find_by(:ems_ref => template_resource_id)
+    template = ManageIQ::Providers::Azure::CloudManager::Template.find_by(:ems_ref => template_ems_ref)
 
-    expect(@template).to have_attributes(
+    expect(template).to have_attributes(
       :template              => true,
-      :ems_ref               => template_resource_id,
+      :ems_ref               => template_ems_ref,
       :ems_ref_obj           => nil,
-      :uid_ems               => template_resource_id,
-      :vendor                => "azure",
-      :power_state           => "never",
-      :location              => "eastus",
+      :uid_ems               => template_ems_ref,
+      :vendor                => 'azure',
+      :power_state           => 'never',
+      :location              => 'eastus',
       :tools_status          => nil,
       :boot_time             => nil,
       :standby_action        => nil,
@@ -676,13 +718,13 @@ module AzureRefresherSpecCommon
       :cpu_shares_level      => nil
     )
 
-    expect(@template.ext_management_system).to eq(@ems)
-    expect(@template.operating_system).to eq(nil)
-    expect(@template.custom_attributes.size).to eq(0)
-    expect(@template.snapshots.size).to eq(0)
+    expect(template.ext_management_system).to eq(@ems)
+    expect(template.operating_system.product_name).to eq('Linux')
+    expect(template.custom_attributes.size).to eq(0)
+    expect(template.snapshots.size).to eq(0)
 
-    expect(@template.hardware).to have_attributes(
-      :guest_os            => "windows_generic",
+    expect(template.hardware).to have_attributes(
+      :guest_os            => 'linux_generic',
       :guest_os_full_name  => nil,
       :bios                => nil,
       :annotation          => nil,
@@ -693,35 +735,30 @@ module AzureRefresherSpecCommon
       :root_device_type    => nil
     )
 
-    expect(@template.hardware.disks.size).to eq(0)
-    expect(@template.hardware.guest_devices.size).to eq(0)
-    expect(@template.hardware.nics.size).to eq(0)
-    expect(@template.hardware.networks.size).to eq(0)
+    expect(template.hardware.disks.size).to eq(0)
+    expect(template.hardware.guest_devices.size).to eq(0)
+    expect(template.hardware.nics.size).to eq(0)
+    expect(template.hardware.networks.size).to eq(0)
   end
 
   def assert_specific_orchestration_template
-    @orch_template = ManageIQ::Providers::Azure::CloudManager::OrchestrationTemplate.find_by(
-      :name => "spec-nested-deployment-dont-delete"
-    )
-    expect(@orch_template).to have_attributes(
-      :md5 => "05e28d9332a3b60def5fbd66ac031a7d"
-    )
-    expect(@orch_template.description).to eql('contentVersion: 1.0.0.0')
-    expect(@orch_template.content).to start_with("{\"$schema\":\"http://schema.management.azure.com"\
-          "/schemas/2015-01-01/deploymentTemplate.json\"")
+    template = ManageIQ::Providers::Azure::CloudManager::OrchestrationTemplate.find_by(:name => @orch_template)
+
+    expect(template.name).to eql(@orch_template)
+    expect(template.description).to start_with('contentVersion:')
+    expect(template.content).to start_with("{\"$schema\":\"https://schema.management.azure.com"\
+          "/schemas/2015-01-01/deploymentTemplate.json")
   end
 
   def assert_specific_orchestration_stack
-    @orch_stack = ManageIQ::Providers::Azure::CloudManager::OrchestrationStack.find_by(
-      :name => "spec-nested-deployment-dont-delete"
-    )
-    expect(@orch_stack).to have_attributes(
-      :status         => "Succeeded",
-      :description    => "spec-nested-deployment-dont-delete",
-      :resource_group => "miq-azure-test1",
-      :ems_ref        => "/subscriptions/#{@ems.subscription}/resourceGroups"\
-      "/miq-azure-test1/providers/Microsoft.Resources"\
-      "/deployments/spec-nested-deployment-dont-delete",
+    orch_stack = ManageIQ::Providers::Azure::CloudManager::OrchestrationStack.find_by(:name => @orch_template)
+
+    expect(orch_stack).to have_attributes(
+      :status         => 'Succeeded',
+      :description    => @orch_template,
+      :resource_group => @misc_group,
+      :ems_ref        => "/subscriptions/#{@ems.subscription}/resourceGroups/#{@misc_group}"\
+        "/providers/Microsoft.Resources/deployments/#{@orch_template}"
     )
 
     assert_specific_orchestration_stack_parameters
@@ -731,100 +768,102 @@ module AzureRefresherSpecCommon
   end
 
   def assert_specific_orchestration_stack_parameters
-    parameters = @orch_stack.parameters.order("ems_ref")
-    expect(parameters.size).to eq(14)
+    orch_stack = ManageIQ::Providers::Azure::CloudManager::OrchestrationStack.find_by(:name => @orch_template)
+    parameters = orch_stack.parameters.order('ems_ref')
+    expect(parameters.size).to eq(5)
 
-    # assert one of the parameter models
-    expect(parameters.find { |p| p.name == 'adminUsername' }).to have_attributes(
-      :value   => "deploy1admin",
-      :ems_ref => "/subscriptions/#{@ems.subscription}/resourceGroups"\
-                      "/miq-azure-test1/providers/Microsoft.Resources"\
-                      "/deployments/spec-nested-deployment-dont-delete/adminUsername"
+    admin_param = parameters.find { |param| param.name == 'adminUsername' }
+
+    expect(admin_param).to have_attributes(
+      :value   => 'miq-admin-username',
+      :ems_ref => "/subscriptions/#{@ems.subscription}/resourceGroups/#{@misc_group}"\
+        "/providers/Microsoft.Resources/deployments/#{@orch_template}/adminUsername"
     )
   end
 
   def assert_specific_orchestration_stack_resources
-    resources = @orch_stack.resources.order("ems_ref")
-    expect(resources.size).to eq(9)
+    orch_stack = ManageIQ::Providers::Azure::CloudManager::OrchestrationStack.find_by(:name => @orch_template)
+    resources = orch_stack.resources.order('ems_ref')
+    expect(resources.size).to eq(4)
+    name = 'miq-availability-set-deployment-eastus'
 
-    # assert one of the resource models
-    expect(resources.find { |r| r.name == 'spec0deply1as' }).to have_attributes(
-      :logical_resource       => "spec0deply1as",
-      :physical_resource      => "a2495990-63ae-4ea3-8904-866b7e01ec18",
-      :resource_category      => "Microsoft.Compute/availabilitySets",
-      :resource_status        => "Succeeded",
-      :resource_status_reason => "OK",
-      :ems_ref                => "/subscriptions/#{@ems.subscription}/resourceGroups"\
-                                     "/miq-azure-test1/providers/Microsoft.Compute/availabilitySets/spec0deply1as"
+    availability_set = resources.find { |res| res.name == name }
+
+    expect(availability_set).to have_attributes(
+      :logical_resource       => name,
+      :resource_category      => 'Microsoft.Compute/availabilitySets',
+      :resource_status        => 'Succeeded',
+      :resource_status_reason => 'OK',
+      :ems_ref                => "/subscriptions/#{@ems.subscription}/resourceGroups/#{@misc_group}"\
+                                   "/providers/Microsoft.Compute/availabilitySets/#{name}"
     )
   end
 
   def assert_specific_orchestration_stack_outputs
-    outputs = ManageIQ::Providers::Azure::CloudManager::OrchestrationStack.find_by(
-      :name => "spec-deployment-dont-delete"
-    ).outputs
-    expect(outputs.size).to eq(1)
-    expect(outputs[0]).to have_attributes(
-      :key         => "siteUri",
-      :value       => "hard-coded output for test",
-      :description => "siteUri",
-      :ems_ref     => "/subscriptions/#{@ems.subscription}/resourceGroups"\
-    "/miq-azure-test1/providers/Microsoft.Resources"\
-    "/deployments/spec-deployment-dont-delete/siteUri"
+    outputs = ManageIQ::Providers::Azure::CloudManager::OrchestrationStack.find_by(:name => @orch_template).outputs
+    name = 'availabilitySetName'
+
+    expect(outputs.size).to eq(2)
+    expect(outputs.first).to have_attributes(
+      :key         => name,
+      :value       => 'miq-availability-set-deployment-eastus',
+      :description => name,
+      :ems_ref     => "/subscriptions/#{@ems.subscription}/resourceGroups/#{@misc_group}"\
+                        "/providers/Microsoft.Resources/deployments/#{@orch_template}/#{name}"
     )
   end
 
   def assert_specific_orchestration_stack_associations
+    child_template_name = 'miq-nested-template'
+    child_template = ManageIQ::Providers::Azure::CloudManager::OrchestrationTemplate.find_by(:name => child_template_name)
+    child_stack = ManageIQ::Providers::Azure::CloudManager::OrchestrationStack.find_by(:name => child_template.name)
+
     # orchestration stack belongs to a provider
-    expect(@orch_stack.ext_management_system).to eql(@ems)
+    expect(child_stack.ext_management_system).to eql(@ems)
 
     # orchestration stack belongs to an orchestration template
-    expect(@orch_stack.orchestration_template).to eql(@orch_template)
+    expect(child_stack.orchestration_template).to eql(child_template)
 
     # orchestration stack can be nested
-    parent_stack = ManageIQ::Providers::Azure::CloudManager::OrchestrationStack.find_by(
-      :name => "spec-deployment-dont-delete"
-    )
-    expect(@orch_stack.parent).to eql(parent_stack)
+    parent_stack = ManageIQ::Providers::Azure::CloudManager::OrchestrationStack.find_by(:name => @orch_template)
 
-    # orchestration stack can have vms
-    vm = ManageIQ::Providers::Azure::CloudManager::Vm.find_by(:name => "spec0deply1vm1")
-    expect(vm.orchestration_stack).to eql(@orch_stack)
+    expect(child_stack.parent).to eql(parent_stack)
+    expect(parent_stack.children).to include(child_stack)
 
     # orchestration stack can have cloud networks
-    cloud_network = CloudNetwork.find_by(:name => 'spec0deply1vnet')
-    expect(cloud_network.orchestration_stack).to eql(@orch_stack)
+    cloud_network = CloudNetwork.find_by(:name => 'miq-vnet-deployment-eastus')
+    expect(cloud_network.orchestration_stack).to eql(parent_stack)
   end
 
   def assert_specific_nic_and_ip
-    nic_group = 'miq-azure-test1' # EastUS
-    ip_group  = 'miq-azure-test4' # Also EastUS
-    nic_name  = 'miqmismatch1'
+    res_group = 'miq-networking-eastus'
+    nic_name  = 'miq-nic-eastus1'
+    ip_name   = 'miq-publicip-eastus1'
 
     ems_ref_nic = "/subscriptions/#{@ems.subscription}/resourceGroups"\
-                   "/#{nic_group}/providers/Microsoft.Network"\
-                   "/networkInterfaces/miqmismatch1"
+                   "/#{res_group}/providers/Microsoft.Network"\
+                   "/networkInterfaces/#{nic_name}"
 
     ems_ref_ip = "/subscriptions/#{@ems.subscription}/resourceGroups"\
-                   "/#{ip_group}/providers/Microsoft.Network"\
-                   "/publicIPAddresses/miqmismatch1"
+                   "/#{res_group}/providers/Microsoft.Network"\
+                   "/publicIPAddresses/#{ip_name}"
 
-    @network_port = ManageIQ::Providers::Azure::NetworkManager::NetworkPort.where(:ems_ref => ems_ref_nic).first
-    @floating_ip  = ManageIQ::Providers::Azure::NetworkManager::FloatingIp.where(:ems_ref => ems_ref_ip).first
+    network_port = ManageIQ::Providers::Azure::NetworkManager::NetworkPort.find_by(:ems_ref => ems_ref_nic)
+    floating_ip  = ManageIQ::Providers::Azure::NetworkManager::FloatingIp.find_by(:ems_ref => ems_ref_ip)
 
-    expect(@network_port).to have_attributes(
+    expect(network_port).to have_attributes(
       :status  => 'Succeeded',
       :name    => nic_name,
       :ems_ref => ems_ref_nic
     )
 
-    expect(@floating_ip).to have_attributes(
+    expect(floating_ip).to have_attributes(
       :status  => 'Succeeded',
-      :address => @mismatch_ip,
+      :address => @ubuntu_ip_address,
       :ems_ref => ems_ref_ip,
     )
 
-    expect(@network_port.device.id).to eql(@floating_ip.vm.id)
+    expect(network_port.device.id).to eql(floating_ip.vm.id)
   end
 
   def assert_lbs_with_vms
@@ -839,22 +878,22 @@ module AzureRefresherSpecCommon
       :cloud_subnet                      => 1,
       :disk                              => 2,
       :ext_management_system             => 2,
-      :flavor                            => 2,
-      :floating_ip                       => 4,
+      :flavor                            => 1,
+      :floating_ip                       => 2,
       :hardware                          => 2,
       :load_balancer                     => 2,
-      :load_balancer_health_check        => 2,
+      :load_balancer_health_check        => 3,
       :load_balancer_health_check_member => 2,
       :load_balancer_listener            => 1,
       :load_balancer_listener_pool       => 1,
       :load_balancer_pool                => 1,
       :load_balancer_pool_member         => 2,
       :load_balancer_pool_member_pool    => 2,
-      :network                           => 4,
+      :network                           => 2,
       :network_port                      => 4,
       :operating_system                  => 2,
       :resource_group                    => 1,
-      :security_group                    => 2,
+      :security_group                    => 1,
       :vm                                => 2,
       :vm_or_template                    => 2
     )
@@ -865,101 +904,101 @@ module AzureRefresherSpecCommon
     assert_specific_orchestration_stack
 
     assert_counts(
-      :availability_zone                 => 1,
+      :availability_zone                 => 0,
       :cloud_network                     => 1,
       :cloud_subnet                      => 1,
-      :disk                              => 2,
+      :disk                              => 0,
       :ext_management_system             => 2,
-      :flavor                            => 1,
-      :floating_ip                       => 1,
-      :hardware                          => 2,
-      :load_balancer                     => 1,
-      :load_balancer_health_check        => 1,
-      :load_balancer_health_check_member => 2,
-      :load_balancer_listener            => 1,
-      :load_balancer_listener_pool       => 1,
-      :load_balancer_pool                => 1,
-      :load_balancer_pool_member         => 2,
-      :load_balancer_pool_member_pool    => 2,
-      :network                           => 2,
-      :network_port                      => 3,
-      :operating_system                  => 2,
+      :flavor                            => 0,
+      :floating_ip                       => 0,
+      :hardware                          => 0,
+      :load_balancer                     => 0,
+      :load_balancer_health_check        => 0,
+      :load_balancer_health_check_member => 0,
+      :load_balancer_listener            => 0,
+      :load_balancer_listener_pool       => 0,
+      :load_balancer_pool                => 0,
+      :load_balancer_pool_member         => 0,
+      :load_balancer_pool_member_pool    => 0,
+      :network                           => 0,
+      :network_port                      => 0,
+      :operating_system                  => 0,
       :orchestration_stack               => 2,
-      :orchestration_stack_output        => 1,
-      :orchestration_stack_parameter     => 29,
-      :orchestration_stack_resource      => 10,
+      :orchestration_stack_output        => 2,
+      :orchestration_stack_parameter     => 5,
+      :orchestration_stack_resource      => 5,
       :orchestration_template            => 2,
       :resource_group                    => 1,
-      :vm                                => 2,
-      :vm_or_template                    => 2
+      :vm                                => 0,
+      :vm_or_template                    => 0
     )
   end
 
   def network_port_target
-    network_port_id = "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test4/providers/Microsoft.Network/networkInterfaces/miqazure-linux-manag944"
+    network_port_id = "/subscriptions/#{@ems.subscription}/resourceGroups/#{@network_group}/providers/Microsoft.Network/networkInterfaces/#{@network_interface}"
     InventoryRefresh::Target.new(:manager     => @ems,
                                  :association => :network_ports,
                                  :manager_ref => {:ems_ref => network_port_id})
   end
 
   def non_existent_network_port_target
-    network_port_id = "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test4/providers/Microsoft.Network/networkInterfaces/non_existent"
+    network_port_id = "/subscriptions/#{@ems.subscription}/resourceGroups/#{@network_group}/providers/Microsoft.Network/networkInterfaces/non_existent"
     InventoryRefresh::Target.new(:manager     => @ems,
                                  :association => :network_ports,
                                  :manager_ref => {:ems_ref => network_port_id})
   end
 
   def cloud_network_target
-    cloud_network_id = "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test2/providers/Microsoft.Network/virtualNetworks/miq-azure-test2"
+    cloud_network_id = "/subscriptions/#{@ems.subscription}/resourceGroups/#{@network_group}/providers/Microsoft.Network/virtualNetworks/#{@cloud_network}"
     InventoryRefresh::Target.new(:manager     => @ems,
                                  :association => :cloud_networks,
                                  :manager_ref => {:ems_ref => cloud_network_id})
   end
 
   def non_existent_cloud_network_target
-    cloud_network_id = "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test2/providers/Microsoft.Network/virtualNetworks/non_existent"
+    cloud_network_id = "/subscriptions/#{@ems.subscription}/resourceGroups/#{@network_group}/providers/Microsoft.Network/virtualNetworks/non_existent"
     InventoryRefresh::Target.new(:manager     => @ems,
                                  :association => :cloud_networks,
                                  :manager_ref => {:ems_ref => cloud_network_id})
   end
 
   def security_group_target
-    security_group_id = "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test4/providers/Microsoft.Network/networkSecurityGroups/miqazure-linux-managed-nsg"
+    security_group_id = "/subscriptions/#{@ems.subscription}/resourceGroups/#{@network_group}/providers/Microsoft.Network/networkSecurityGroups/#{@security_group}"
     InventoryRefresh::Target.new(:manager     => @ems,
                                  :association => :security_groups,
                                  :manager_ref => {:ems_ref => security_group_id})
   end
 
   def non_existent_security_group_target
-    security_group_id = "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test4/providers/Microsoft.Network/networkSecurityGroups/non_existent"
+    security_group_id = "/subscriptions/#{@ems.subscription}/resourceGroups/#{@network_group}/providers/Microsoft.Network/networkSecurityGroups/non_existent"
     InventoryRefresh::Target.new(:manager     => @ems,
                                  :association => :security_groups,
                                  :manager_ref => {:ems_ref => security_group_id})
   end
 
   def floating_ip_target
-    floating_ip_id = "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test1/providers/Microsoft.Network/publicIPAddresses/spec0deply1ip"
+    floating_ip_id = "/subscriptions/#{@ems.subscription}/resourceGroups/#{@network_group}/providers/Microsoft.Network/publicIPAddresses/#{@centos_public_ip}"
     InventoryRefresh::Target.new(:manager     => @ems,
                                  :association => :floating_ips,
                                  :manager_ref => {:ems_ref => floating_ip_id})
   end
 
   def non_existent_floating_ip_target
-    floating_ip_id = "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test1/providers/Microsoft.Network/publicIPAddresses/non_existent"
+    floating_ip_id = "/subscriptions/#{@ems.subscription}/resourceGroups/#{@network_group}/providers/Microsoft.Network/publicIPAddresses/non_existent"
     InventoryRefresh::Target.new(:manager     => @ems,
                                  :association => :floating_ips,
                                  :manager_ref => {:ems_ref => floating_ip_id})
   end
 
   def resource_group_target
-    resource_group_id = "/subscriptions/#{@ems.subscription}/resourcegroups/miq-azure-test1"
+    resource_group_id = "/subscriptions/#{@ems.subscription}/resourcegroups/#{@vm_group}"
     InventoryRefresh::Target.new(:manager     => @ems,
                                  :association => :resource_groups,
                                  :manager_ref => {:ems_ref => resource_group_id})
   end
 
   def non_existent_resource_group_target
-    resource_group_id = "/subscriptions/#{@ems.subscription}/resourcegroups/miq-azure-test4"
+    resource_group_id = "/subscriptions/#{@ems.subscription}/resourcegroups/non_existent"
     InventoryRefresh::Target.new(:manager     => @ems,
                                  :association => :resource_groups,
                                  :manager_ref => {:ems_ref => resource_group_id})
@@ -967,7 +1006,7 @@ module AzureRefresherSpecCommon
 
   def lb_non_stack_target
     lb_resource_id = "/subscriptions/#{@ems.subscription}/"\
-                            "resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb1"
+                            "resourceGroups/#{@network_group}/providers/Microsoft.Network/loadBalancers/#{@load_balancer}"
     InventoryRefresh::Target.new(:manager     => @ems,
                                  :association => :load_balancers,
                                  :manager_ref => {:ems_ref => lb_resource_id})
@@ -975,7 +1014,7 @@ module AzureRefresherSpecCommon
 
   def lb_non_stack_target2
     lb_resource_id2 = "/subscriptions/#{@ems.subscription}/"\
-                            "resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/rspec-lb2"
+                            "resourceGroups/#{@network_group}/providers/Microsoft.Network/loadBalancers/miq-lb-eastus2"
     InventoryRefresh::Target.new(:manager     => @ems,
                                  :association => :load_balancers,
                                  :manager_ref => {:ems_ref => lb_resource_id2})
@@ -986,12 +1025,12 @@ module AzureRefresherSpecCommon
   end
 
   def lbs_vms_targets
-    vm_resource_id1 = "#{@ems.subscription}/miq-azure-test1/microsoft.compute/virtualmachines/rspec-lb-a"
+    vm_resource_id1 = "#{@ems.subscription}/#{@vm_group}/microsoft.compute/virtualmachines/miq-vm1-lb-eastus"
     vm_target1      = InventoryRefresh::Target.new(:manager     => @ems,
                                                    :association => :vms,
                                                    :manager_ref => {:ems_ref => vm_resource_id1})
 
-    vm_resource_id2 = "#{@ems.subscription}/miq-azure-test1/microsoft.compute/virtualmachines/rspec-lb-b"
+    vm_resource_id2 = "#{@ems.subscription}/#{@vm_group}/microsoft.compute/virtualmachines/miq-vm2-lb-eastus"
     vm_target2      = InventoryRefresh::Target.new(:manager     => @ems,
                                                    :association => :vms,
                                                    :manager_ref => {:ems_ref => vm_resource_id2})
@@ -999,7 +1038,7 @@ module AzureRefresherSpecCommon
   end
 
   def vm_powered_on_target
-    vm_resource_id = "#{@ems.subscription}/#{@resource_group}/microsoft.compute/virtualmachines/#{@device_name}"
+    vm_resource_id = "#{@ems.subscription}/#{@vm_group}/microsoft.compute/virtualmachines/#{@vm_powered_on}"
 
     InventoryRefresh::Target.new(:manager     => @ems,
                                  :association => :vms,
@@ -1007,7 +1046,7 @@ module AzureRefresherSpecCommon
   end
 
   def vm_powered_off_target
-    vm_resource_id = "#{@ems.subscription}/#{@resource_group}/microsoft.compute/virtualmachines/#{@vm_powered_off}"
+    vm_resource_id = "#{@ems.subscription}/#{@vm_group}/microsoft.compute/virtualmachines/#{@vm_powered_off}"
 
     InventoryRefresh::Target.new(:manager     => @ems,
                                  :association => :vms,
@@ -1015,7 +1054,7 @@ module AzureRefresherSpecCommon
   end
 
   def vm_with_managed_disk_target
-    vm_resource_id = "#{@ems.subscription}/#{@resource_group_managed_vm}/microsoft.compute/virtualmachines/#{@managed_vm}"
+    vm_resource_id = "#{@ems.subscription}/#{@vm_group}/microsoft.compute/virtualmachines/#{@managed_vm}"
 
     InventoryRefresh::Target.new(:manager     => @ems,
                                  :association => :vms,
@@ -1023,7 +1062,7 @@ module AzureRefresherSpecCommon
   end
 
   def non_existent_vm_target
-    vm_resource_id = "#{@ems.subscription}/#{@resource_group_managed_vm}/microsoft.compute/virtualmachines/non_existent_vm_that_does_not_exist"
+    vm_resource_id = "#{@ems.subscription}/#{@vm_group}/microsoft.compute/virtualmachines/non_existent_vm_that_does_not_exist"
 
     InventoryRefresh::Target.new(:manager     => @ems,
                                  :association => :vms,
@@ -1031,7 +1070,8 @@ module AzureRefresherSpecCommon
   end
 
   def parent_orchestration_stack_target
-    stack_resource_id = "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test1/providers/Microsoft.Resources/deployments/spec-deployment-dont-delete"
+    stack_resource_id = "/subscriptions/#{@ems.subscription}/resourceGroups/#{@misc_group}"\
+                          "/providers/Microsoft.Resources/deployments/#{@orch_template}"
 
     InventoryRefresh::Target.new(:manager     => @ems,
                                  :association => :orchestration_stacks,
@@ -1039,7 +1079,8 @@ module AzureRefresherSpecCommon
   end
 
   def non_existent_orchestration_stack_target
-    stack_resource_id = "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test1/providers/Microsoft.Resources/deployments/non_existent"
+    stack_resource_id = "/subscriptions/#{@ems.subscription}/resourceGroups/#{@misc_group}"\
+                          "/providers/Microsoft.Resources/deployments/non_existent"
 
     InventoryRefresh::Target.new(:manager     => @ems,
                                  :association => :orchestration_stacks,
@@ -1047,37 +1088,40 @@ module AzureRefresherSpecCommon
   end
 
   def child_orchestration_stack_vm_target
-    vm_resource_id = "#{@ems.subscription}/miq-azure-test1/microsoft.compute/virtualmachines/spec0deply1vm0"
+    vm_resource_id = "#{@ems.subscription}/#{@vm_group}/microsoft.compute/virtualmachines/miq-vm1-lb-eastus"
     InventoryRefresh::Target.new(:manager     => @ems,
                                  :association => :vms,
                                  :manager_ref => {:ems_ref => vm_resource_id})
   end
 
   def child_orchestration_stack_vm_target2
-    vm_resource_id2 = "#{@ems.subscription}/miq-azure-test1/microsoft.compute/virtualmachines/spec0deply1vm1"
+    vm_resource_id2 = "#{@ems.subscription}/#{@vm_group}/microsoft.compute/virtualmachines/miq-vm2-lb-eastus"
     InventoryRefresh::Target.new(:manager     => @ems,
                                  :association => :vms,
                                  :manager_ref => {:ems_ref => vm_resource_id2})
   end
 
   def lb_target
-    lb_resource_id = "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/spec0deply1lb"
+    lb_resource_id = "/subscriptions/#{@ems.subscription}/resourceGroups/#{@network_group}"\
+                       "/providers/Microsoft.Network/loadBalancers/#{@load_balancer}"
+
     InventoryRefresh::Target.new(:manager     => @ems,
                                  :association => :load_balancers,
                                  :manager_ref => {:ems_ref => lb_resource_id})
   end
 
   def non_existent_lb_target
-    lb_resource_id = "/subscriptions/#{@ems.subscription}/resourceGroups/miq-azure-test1/providers/Microsoft.Network/loadBalancers/non_existent_lb"
+    lb_resource_id = "/subscriptions/#{@ems.subscription}/resourceGroups/#{@network_group}"\
+                       "/providers/Microsoft.Network/loadBalancers/non_existent_lb"
+
     InventoryRefresh::Target.new(:manager     => @ems,
                                  :association => :load_balancers,
                                  :manager_ref => {:ems_ref => lb_resource_id})
   end
 
   def template_target
-    template_resource_id = "https://miqazuretest14047.blob.core.windows.net/system/"\
-                                 "Microsoft.Compute/Images/miq-test-container/"\
-                                 "test-win2k12-img-osDisk.e17a95b0-f4fb-4196-93c5-0c8be7d5c536.vhd"
+    template_resource_id = "/subscriptions/#{@ems.subscription}/resourcegroups/#{@vm_group}"\
+                             "/providers/microsoft.compute/images/#{@image_name}"
 
     InventoryRefresh::Target.new(:manager     => @ems,
                                  :association => :miq_templates,
@@ -1085,9 +1129,8 @@ module AzureRefresherSpecCommon
   end
 
   def non_existent_template_target
-    template_resource_id = "https://miqazuretest14047.blob.core.windows.net/system/"\
-                                 "Microsoft.Compute/Images/miq-test-container/"\
-                                 "non_existent_template.vhd"
+    template_resource_id = "/subscriptions/#{@ems.subscription}/resourcegroups/#{@vm_group}"\
+                             "/providers/microsoft.compute/images/non_existent_template"
 
     InventoryRefresh::Target.new(:manager     => @ems,
                                  :association => :miq_templates,
