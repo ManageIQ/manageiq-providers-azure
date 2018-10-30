@@ -399,7 +399,7 @@ module ManageIQ::Providers
             blob_name = uri.basename
 
             storage_acct = @storage_accounts.find { |s| s.name.casecmp(storage_name).zero? }
-            mode = storage_acct.sku.name
+            mode = storage_acct.try(:sku).try(:name)
 
             if @options.get_unmanaged_disk_space && disk_size.nil?
               storage_keys = @sas.list_account_keys(storage_acct.name, storage_acct.resource_group)
