@@ -563,7 +563,7 @@ module AzureRefresherSpecCommon
 
     expect(disk).to have_attributes(
       :location => uri,
-      :mode     => 'Standard_RAGRS',
+      #:mode     => 'Standard_RAGRS',
       :size     => 32_212_254_720 # 30gb, approx
     )
   end
