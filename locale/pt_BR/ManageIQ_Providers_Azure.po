@@ -1,221 +1,282 @@
-# Portuguese translations for ManageIQ_Providers_Azure package.
-# Copyright (C) 2018 THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the ManageIQ_Providers_Azure package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
-#
+# renata <translator01_redhat@roundtableinc.net>, 2017. #zanata
+# renata <translator01_redhat@roundtableinc.net>, 2018. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: ManageIQ_Providers_Azure 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2018-10-03 14:34+0200\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Portuguese\n"
-"Language: pt_BR\n"
+"POT-Creation-Date: 2018-10-03 14:34+0200\n"
+"PO-Revision-Date: 2018-10-22 07:14+0000\n"
+"Last-Translator: renata <translator01_redhat@roundtableinc.net>\n"
+"Language-Team: Portuguese (Brazil)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"\n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Generator: Zanata 4.6.2\n"
 
+#: ../app/models/manageiq/providers/azure/cloud_manager/orchestration_stack.rb:66
 msgid "%{name} does not exist on %{management}"
-msgstr ""
+msgstr "%{name} não existe em %{management}"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:14
 msgid "Australia Central"
-msgstr ""
+msgstr "Austrália central"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:18
 msgid "Australia Central 2"
-msgstr ""
+msgstr "Austrália central 2"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:10
 msgid "Australia East"
-msgstr ""
+msgstr "Leste da Austrália"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:22
 msgid "Australia Southeast"
-msgstr ""
+msgstr "Sudeste da Austrália"
 
+#: ../lib/manageiq/providers/azure/engine.rb:9
 msgid "Azure Provider"
-msgstr ""
+msgstr "Azure Provider"
 
+#: ../app/models/manageiq/providers/azure/cloud_manager/orchestration_template.rb:50
 msgid "Azure Template"
 msgid_plural "Azure Templates"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Modelo do Azure"
+msgstr[1] "Modelos do Azure"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:26
 msgid "Brazil South"
-msgstr ""
+msgstr "Sul do Brasil"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:30
 msgid "Canada Central"
-msgstr ""
+msgstr "Canadá Central"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:34
 msgid "Canada East"
-msgstr ""
+msgstr "Leste do Canadá"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:38
 msgid "Central India"
-msgstr ""
+msgstr "Índia Central"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:42
 msgid "Central US"
-msgstr ""
+msgstr "EUA Central"
 
+#: ../app/models/manageiq/providers/azure/network_manager/cloud_network.rb:3
 msgid "Cloud Network (Microsoft Azure)"
 msgid_plural "Cloud Networks (Microsoft Azure)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Rede na nuvem (Microsoft Azure)"
+msgstr[1] "Redes na nuvem (Microsoft Azure)"
 
+#: ../app/models/manageiq/providers/azure/cloud_manager.rb:225
 msgid "Cloud Provider (Microsoft Azure)"
 msgid_plural "Cloud Providers (Microsoft Azure)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Provedor da nuvem (Microsoft Azure)"
+msgstr[1] "Provedor da nuvem (Microsoft Azure)"
 
+#: ../app/models/manageiq/providers/azure/network_manager/cloud_subnet.rb:3
 msgid "Cloud Subnet (Microsoft Azure)"
 msgid_plural "Cloud Subnets (Microsoft Azure)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Sub-rede na nuvem (Microsoft Azure)"
+msgstr[1] "Sub-redes na nuvem (Microsoft Azure)"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:46
 msgid "East Asia"
-msgstr ""
+msgstr "Leste da Ásia"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:50
 msgid "East US"
-msgstr ""
+msgstr "Leste dos EUA"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:54
 msgid "East US 2"
-msgstr ""
+msgstr "Leste dos EUA 2"
 
+#: ../app/models/manageiq/providers/azure/cloud_manager/flavor.rb:3
 msgid "Flavor (Microsoft Azure)"
 msgid_plural "Flavors (Microsoft Azure)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tipo (Microsoft Azure)"
+msgstr[1] "Tipos (Microsoft Azure)"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:58
 msgid "France Central"
-msgstr ""
+msgstr "França central"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:62
 msgid "France South"
-msgstr ""
+msgstr "Sul da França"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:66
 msgid "Germany Central"
-msgstr ""
+msgstr "Alemanha Central"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:70
 msgid "Germany North"
-msgstr ""
+msgstr "Norte da Alemanha"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:74
 msgid "Germany Northeast"
-msgstr ""
+msgstr "Nordeste da Alemanha"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:78
 msgid "Germany West Central"
-msgstr ""
+msgstr "Centro-Oeste da Alemanha"
 
+#: ../app/models/manageiq/providers/azure/manager_mixin.rb:59
 msgid "Incorrect credentials - %{error_message}"
-msgstr ""
+msgstr "Credenciais incorretas - %{error_message}"
 
+#: ../app/models/manageiq/providers/azure/manager_mixin.rb:61
 msgid "Incorrect credentials - check your Azure Client ID and Client Key"
 msgstr ""
+"Credenciais incorretas - verifique sua ID do cliente e a chave do cliente do"
+" Azure"
 
+#: ../app/models/manageiq/providers/azure/manager_mixin.rb:22
 msgid "Incorrect credentials - check your Azure Subscription ID"
-msgstr ""
+msgstr "Credenciais incorretas - verifique sua ID de subscrição do Azure"
 
+#: ../app/models/manageiq/providers/azure/cloud_manager/vm.rb:43
 msgid "Instance (Microsoft Azure)"
 msgid_plural "Instances (Microsoft Azure)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Instância (Microsoft Azure)"
+msgstr[1] "Instâncias (Microsoft Azure)"
 
+#: ../app/models/manageiq/providers/azure/manager_mixin.rb:35
 msgid "Invalid endpoint"
-msgstr ""
+msgstr "Endpoint inválido"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:82
 msgid "Japan East"
-msgstr ""
+msgstr "Leste do Japão"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:86
 msgid "Japan West"
-msgstr ""
+msgstr "Oeste do Japão"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:90
 msgid "Korea Central"
-msgstr ""
+msgstr "Coreia Central"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:94
 msgid "Korea South"
-msgstr ""
+msgstr "Coreia do Sul"
 
+#: ../app/models/manageiq/providers/azure/network_manager/load_balancer.rb:3
 msgid "Load Balancer (Microsoft Azure)"
 msgid_plural "Load Balancers (Microsoft Azure)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Balanceador de carga (Microsoft Azure)"
+msgstr[1] "Balanceadores de carga (Microsoft Azure)"
 
+#: ../app/models/manageiq/providers/azure/network_manager.rb:59
 msgid "Network Manager (Microsoft Azure)"
 msgid_plural "Network Managers (Microsoft Azure)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Gerenciador de rede (Microsoft Azure)"
+msgstr[1] "Gerenciadores de rede (Microsoft Azure)"
 
+#: ../app/models/manageiq/providers/azure/network_manager/network_port.rb:3
 msgid "Network Port (Microsoft Azure)"
 msgid_plural "Network Ports (Microsoft Azure)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Porta de rede (Microsoft Azure)"
+msgstr[1] "Portas de rede (Microsoft Azure)"
 
+#: ../app/models/manageiq/providers/azure/manager_mixin.rb:5
 msgid "No credentials defined"
-msgstr ""
+msgstr "Nenhuma credencial definida"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:98
 msgid "North Central US"
-msgstr ""
+msgstr "Centro-Norte dos EUA"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:102
 msgid "North Europe"
-msgstr ""
+msgstr "Europa Setentrional"
 
+#: ../app/models/manageiq/providers/azure/cloud_manager/orchestration_stack.rb:74
 msgid "Orchestration Stack (Microsoft Azure)"
 msgid_plural "Orchestration Stacks (Microsoft Azure)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Pilha de orquestração (Microsoft Azure)"
+msgstr[1] "Pilhas de orquestração (Microsoft Azure)"
 
+#: ../app/models/manageiq/providers/azure/cloud_manager/vm/operations/power.rb:19
 msgid "Pause Operation"
-msgstr ""
+msgstr "Pausar operação"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:106
 msgid "South Central US"
-msgstr ""
+msgstr "Centro-Sul dos EUA"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:114
 msgid "South India"
-msgstr ""
+msgstr "Sul da Índia"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:110
 msgid "Southeast Asia"
-msgstr ""
+msgstr "Sudeste da Ásia"
 
+#: ../app/models/manageiq/providers/azure/cloud_manager/vm/operations/power.rb:7
 msgid "The VM is not powered on"
-msgstr ""
+msgstr "A VM não está ligada"
 
+#: ../app/models/manageiq/providers/azure/cloud_manager.rb:31
 msgid "Timeline not supported for this region"
-msgstr ""
+msgstr "Linha do tempo não suportada para esta região"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:118
 msgid "UK South"
-msgstr ""
+msgstr "Sul do Reino Unido"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:122
 msgid "UK West"
-msgstr ""
+msgstr "Oeste do Reino Unido"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:126
 msgid "US Gov Arizona"
-msgstr ""
+msgstr "Gov. EUA - Arizona"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:130
 msgid "US Gov Iowa"
-msgstr ""
+msgstr "Gov. EUA - Iowa"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:134
 msgid "US Gov Texas"
-msgstr ""
+msgstr "Gov. EUA - Texas"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:138
 msgid "US Gov Virginia"
-msgstr ""
+msgstr "Gov. EUA - Virgínia"
 
+#: ../app/models/manageiq/providers/azure/manager_mixin.rb:66
 msgid "Unexpected response returned from system: %{error_message}"
-msgstr ""
+msgstr "Houve uma resposta inesperada do sistema: %{error_message}"
 
+#: ../app/models/manageiq/providers/azure/cloud_manager/vm/operations.rb:7
 msgid "VM has no %{table}, unable to destroy VM"
-msgstr ""
+msgstr "A VM não tem %{table}, não foi possível destruir a VM"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:150
 msgid "West Central US"
-msgstr ""
+msgstr "Centro-Oeste dos EUA"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:142
 msgid "West Europe"
-msgstr ""
+msgstr "Oeste da Europa"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:146
 msgid "West India"
-msgstr ""
+msgstr "Índia Ocidental"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:154
 msgid "West US"
-msgstr ""
+msgstr "Oeste dos EUA"
 
+#: ../app/models/manageiq/providers/azure/regions.rb:158
 msgid "West US 2"
-msgstr ""
+msgstr "Oeste dos EUA 2"
 
+#: ../app/models/manageiq/providers/azure/cloud_manager/template.rb:8
 msgid "not connected to ems"
-msgstr ""
+msgstr "não conectado a EMS"
