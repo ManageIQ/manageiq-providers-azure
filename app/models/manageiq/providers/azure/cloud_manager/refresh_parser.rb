@@ -374,7 +374,7 @@ module ManageIQ::Providers
 
           if managed_disk
             disk_size = managed_disk.properties.disk_size_gb.gigabytes
-            mode      = managed_disk.sku.name
+            mode      = managed_disk.try(:sku).try(:name)
           else
             _log.warn("Unable to find disk information for #{instance.name}/#{instance.resource_group}")
             disk_size = nil
@@ -392,7 +392,7 @@ module ManageIQ::Providers
             blob_name = uri.basename
 
             storage_acct = @storage_accounts.find { |s| s.name.casecmp(storage_name).zero? }
-            mode = storage_acct.sku.name
+            mode = storage_acct.try(:sku).try(:name)
 
             if @options.get_unmanaged_disk_space && disk_size.nil?
               storage_keys = @sas.list_account_keys(storage_acct.name, storage_acct.resource_group)

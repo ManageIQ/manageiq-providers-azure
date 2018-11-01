@@ -519,6 +519,7 @@ module AzureRefresherSpecCommon
 
     expect(disk).to have_attributes(
       :location => "https://miqazuretest18686.blob.core.windows.net/vhds/miq-test-rhel12016218112243.vhd",
+      #:mode     => 'Standard_RAGRS',
       :size     => 32_212_255_232 # 30gb, approx
     )
   end
@@ -535,6 +536,7 @@ module AzureRefresherSpecCommon
                                       "MIQ-AZURE-TEST4/providers/Microsoft.Compute/disks/"\
                                       "miqazure-linux-managed_OsDisk_1_7b2bdf790a7d4379ace2846d307730cd")
     expect(disk.size).to eql(32.gigabytes)
+    expect(disk.mode).to eql('Standard_LRS')
   end
 
   def assert_specific_resource_group
