@@ -169,7 +169,7 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
 
       if managed_disk
         disk_size = managed_disk.properties.disk_size_gb.gigabytes
-        mode      = managed_disk.sku.name
+        mode      = managed_disk.try(:sku).try(:name)
       else
         _log.warn("Unable to find disk information for #{instance.name}/#{instance.resource_group}")
         disk_size = nil
