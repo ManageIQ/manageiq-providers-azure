@@ -563,6 +563,7 @@ module AzureRefresherSpecCommon
 
     expect(disk).to have_attributes(
       :location => uri,
+      #:mode     => 'Standard_RAGRS',
       :size     => 32_212_254_720 # 30gb, approx
     )
   end
@@ -579,6 +580,7 @@ module AzureRefresherSpecCommon
                                    "#{@vm_group}/providers/Microsoft.Compute/disks/"\
                                    "#{@managed_os_disk}".downcase)
     expect(disk.size).to eql(30.gigabytes)
+    expect(disk.mode).to eql('Standard_LRS')
   end
 
   def assert_specific_resource_group
