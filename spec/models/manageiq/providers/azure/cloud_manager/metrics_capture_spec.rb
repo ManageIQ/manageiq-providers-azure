@@ -9,11 +9,11 @@ describe ManageIQ::Providers::Azure::CloudManager::MetricsCapture do
     let(:metric) { described_class.new(self) }
     let(:armrest_service) { double('::Azure::Armrest::ArmrestService') }
 
-    before {
+    before do
       allow(self).to receive(:ext_management_system).and_return(ems)
       allow(self).to receive(:name).and_return('target1')
       allow(self).to receive(:resource_group).and_return(group)
-    }
+    end
 
     it "returns an empty array if the insights service is not registered" do
       allow(ems).to receive(:insights?).and_return(false)
@@ -22,21 +22,21 @@ describe ManageIQ::Providers::Azure::CloudManager::MetricsCapture do
 
     it "returns an empty array if the region is not supported" do
       allow(ems).to receive(:insights?).and_return(true)
-      allow(armrest_service).to receive(:list).and_raise(::Azure::Armrest::BadRequestException.new('x','y','z'))
+      allow(armrest_service).to receive(:list).and_raise(::Azure::Armrest::BadRequestException.new('x', 'y', 'z'))
       expect($log).to receive(:warn).with(/problem collecting metrics/i)
       expect(metric.send(:get_counters, armrest_service)).to eql([])
     end
 
     it "returns an empty array if a timeout occurs" do
       allow(ems).to receive(:insights?).and_return(true)
-      allow(armrest_service).to receive(:list).and_raise(::Azure::Armrest::RequestTimeoutException.new('x','y','z'))
+      allow(armrest_service).to receive(:list).and_raise(::Azure::Armrest::RequestTimeoutException.new('x', 'y', 'z'))
       expect($log).to receive(:warn).with(/timeout attempting to collect metrics/i)
       expect(metric.send(:get_counters, armrest_service)).to eql([])
     end
 
     it "returns an empty array if the VM could not be found" do
       allow(ems).to receive(:insights?).and_return(true)
-      allow(armrest_service).to receive(:list).and_raise(::Azure::Armrest::NotFoundException.new('x','y','z'))
+      allow(armrest_service).to receive(:list).and_raise(::Azure::Armrest::NotFoundException.new('x', 'y', 'z'))
       expect($log).to receive(:warn).with(/could not find metrics definitions/i)
       expect(metric.send(:get_counters, armrest_service)).to eql([])
     end
@@ -151,7 +151,8 @@ describe ManageIQ::Providers::Azure::CloudManager::MetricsCapture do
     storage_acc_service = double(
       "Azure::Armrest::StorageAccountService",
       :name           => "defaultstorage",
-      :resource_group => "Default-Storage")
+      :resource_group => "Default-Storage"
+    )
 
     allow_any_instance_of(described_class).to receive(:with_metrics_services)
       .and_yield(metrics_service, storage_acc_service)
