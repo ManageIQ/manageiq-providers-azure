@@ -3,6 +3,51 @@ require 'azure-armrest'
 describe ManageIQ::Providers::Azure::CloudManager::MetricsCapture do
   let(:ems)      { FactoryGirl.create(:ems_azure) }
   let(:vm)       { FactoryGirl.build(:vm_azure, :ext_management_system => ems, :ems_ref => "my_ems_ref") }
+  let(:group)    { FactoryGirl.build(:azure_resource_group) }
+
+  context "#get_counters" do
+    let(:metric) { described_class.new(self) }
+    let(:armrest_service) { double('::Azure::Armrest::ArmrestService') }
+
+    before {
+      allow(self).to receive(:ext_management_system).and_return(ems)
+      allow(self).to receive(:name).and_return('target1')
+      allow(self).to receive(:resource_group).and_return(group)
+    }
+
+    it "returns an empty array if the insights service is not registered" do
+      allow(ems).to receive(:insights?).and_return(false)
+      expect(metric.send(:get_counters, armrest_service)).to eql([])
+    end
+
+    it "returns an empty array if the region is not supported" do
+      allow(ems).to receive(:insights?).and_return(true)
+      allow(armrest_service).to receive(:list).and_raise(::Azure::Armrest::BadRequestException.new('x','y','z'))
+      expect($log).to receive(:warn).with(/problem collecting metrics/i)
+      expect(metric.send(:get_counters, armrest_service)).to eql([])
+    end
+
+    it "returns an empty array if a timeout occurs" do
+      allow(ems).to receive(:insights?).and_return(true)
+      allow(armrest_service).to receive(:list).and_raise(::Azure::Armrest::RequestTimeoutException.new('x','y','z'))
+      expect($log).to receive(:warn).with(/timeout attempting to collect metrics/i)
+      expect(metric.send(:get_counters, armrest_service)).to eql([])
+    end
+
+    it "returns an empty array if the VM could not be found" do
+      allow(ems).to receive(:insights?).and_return(true)
+      allow(armrest_service).to receive(:list).and_raise(::Azure::Armrest::NotFoundException.new('x','y','z'))
+      expect($log).to receive(:warn).with(/could not find metrics definitions/i)
+      expect(metric.send(:get_counters, armrest_service)).to eql([])
+    end
+
+    it "raises an error if any other exception occurs" do
+      allow(ems).to receive(:insights?).and_return(true)
+      allow(armrest_service).to receive(:list).and_raise(Exception.new)
+      expect($log).to receive(:error).with(/unhandled exception/i)
+      expect { metric.send(:get_counters, armrest_service) }.to raise_error(Exception)
+    end
+  end
 
   context "#perf_collect_metrics" do
     it "raises an error when no EMS is defined" do
