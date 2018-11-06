@@ -104,11 +104,11 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
           refresh_with_cassette([child_orchestration_stack_vm_target], "_targeted_scope/orchestration_stack_vm_refresh")
         end
 
-        it "will refresh orchestration stack with vms" do
-          refresh_with_cassette([parent_orchestration_stack_target,
-                                 child_orchestration_stack_vm_target,
-                                 child_orchestration_stack_vm_target2], "_targeted_scope/orchestration_stack_refresh")
-        end
+        #it "will refresh orchestration stack with vms" do
+        #  refresh_with_cassette([parent_orchestration_stack_target,
+        #                         child_orchestration_stack_vm_target,
+        #                         child_orchestration_stack_vm_target2], "_targeted_scope/orchestration_stack_refresh")
+        #end
 
         it "will refresh orchestration stack followed by LoadBalancer refresh" do
           refresh_with_cassette([parent_orchestration_stack_target], "_targeted_scope/orchestration_stack_refresh")
