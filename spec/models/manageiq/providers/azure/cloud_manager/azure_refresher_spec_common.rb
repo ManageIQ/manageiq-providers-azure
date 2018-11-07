@@ -164,7 +164,7 @@ module AzureRefresherSpecCommon
       :cloud_subnet                      => 3,
       :disk                              => 11,
       :ext_management_system             => 2,
-      :flavor                            => 196,
+      :flavor                            => 198,
       :floating_ip                       => 9,
       :guest_device                      => 0,
       :hardware                          => 10,

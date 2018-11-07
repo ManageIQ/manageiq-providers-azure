@@ -58,6 +58,8 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
 
         before do
           allow(template_deployment_service).to receive(:api_version=)
+          allow(template_deployment_service).to receive(:service_name).and_return('deployments')
+          allow(template_deployment_service).to receive(:provider).and_return('Microsoft.Resources')
           allow(Azure::Armrest::TemplateDeploymentService).to receive(:new).and_return(template_deployment_service)
         end
 
