@@ -207,6 +207,11 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
           .list('Microsoft.Compute', 'virtualMachines', target.name, target.resource_group.name)
           .select { |m| m.name.value.in?(COUNTER_NAMES) }
       end
+    rescue ::Azure::Armrest::BadRequestException # Probably means region is not supported
+      msg = "Problem collecting metrics for #{target.name}/#{target.resource_group.name}. "\
+            "Region [#{ems.provider_region}] may not be supported."
+      _log.warn(msg)
+      counters = []
     rescue ::Azure::Armrest::RequestTimeoutException # Problem on Azure side
       _log.warn("Timeout attempting to collect metrics definitions for: #{target.name}/#{target.resource_group.name}. Skipping.")
       counters = []
