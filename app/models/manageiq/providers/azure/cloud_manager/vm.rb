@@ -15,6 +15,7 @@ class ManageIQ::Providers::Azure::CloudManager::Vm < ManageIQ::Providers::CloudM
     cpu_shares_level
     deprecated
     fault_tolerance
+    format
     linked_clone
     memory_hot_add_enabled
     memory_hot_add_increment
@@ -24,6 +25,7 @@ class ManageIQ::Providers::Azure::CloudManager::Vm < ManageIQ::Providers::CloudM
     memory_reserve_expand
     memory_shares
     memory_shares_level
+    registered
     tools_status
   ].freeze
 
