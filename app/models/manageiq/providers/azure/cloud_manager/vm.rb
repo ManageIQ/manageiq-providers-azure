@@ -14,14 +14,6 @@ class ManageIQ::Providers::Azure::CloudManager::Vm < ManageIQ::Providers::CloudM
     save
   end
 
-  def disconnected
-    false
-  end
-
-  def disconnected?
-    false
-  end
-
   def memory_mb_available?
     true
   end
