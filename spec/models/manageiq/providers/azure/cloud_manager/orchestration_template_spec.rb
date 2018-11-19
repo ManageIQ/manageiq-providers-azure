@@ -88,11 +88,10 @@ describe ManageIQ::Providers::Azure::CloudManager::OrchestrationTemplate do
   describe '#deployment_options' do
     it do
       options = subject.deployment_options
-      assert_deployment_option(options[0], "tenant_name", :OrchestrationParameterAllowedDynamic, true)
-      assert_deployment_option(options[1], "stack_name", :OrchestrationParameterPattern, true)
-      assert_deployment_option(options[2], "resource_group", :OrchestrationParameterAllowedDynamic, false)
-      assert_deployment_option(options[3], "new_resource_group", :OrchestrationParameterPattern, false)
-      assert_deployment_option(options[4], "deploy_mode", :OrchestrationParameterAllowed, false)
+      assert_deployment_option(options[0], "stack_name", :OrchestrationParameterPattern, true)
+      assert_deployment_option(options[1], "resource_group", :OrchestrationParameterAllowedDynamic, false)
+      assert_deployment_option(options[2], "new_resource_group", :OrchestrationParameterPattern, false)
+      assert_deployment_option(options[3], "deploy_mode", :OrchestrationParameterAllowed, false)
     end
   end
 
