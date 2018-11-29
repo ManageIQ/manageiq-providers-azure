@@ -5,7 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
-## Hammer RC-1
+## Hammer RC-2
+
+### Fixed
+- Handle regions where metrics are unsupported [(#302)](https://github.com/ManageIQ/manageiq-providers-azure/pull/302)
+
+## Hammer RC-1 - Released 2018-11-16
 
 ### Fixed
 - Handle possibility that disk might not have sku [(#300)](https://github.com/ManageIQ/manageiq-providers-azure/pull/300)
