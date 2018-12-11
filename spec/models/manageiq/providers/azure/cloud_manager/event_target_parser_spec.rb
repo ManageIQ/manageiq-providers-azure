@@ -7,7 +7,7 @@ describe ManageIQ::Providers::Azure::CloudManager::EventTargetParser do
   before do
     _guid, _server, zone = EvmSpecHelper.create_guid_miq_server_zone
 
-    @ems = FactoryGirl.create(:ems_azure_with_vcr_authentication, :zone => zone, :provider_region => 'eastus')
+    @ems = FactoryBot.create(:ems_azure_with_vcr_authentication, :zone => zone, :provider_region => 'eastus')
   end
 
   shared_examples "parses_event" do |event_type|

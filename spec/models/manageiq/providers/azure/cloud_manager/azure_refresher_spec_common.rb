@@ -79,7 +79,7 @@ module AzureRefresherSpecCommon
   def define_shared_variables
     _guid, _server, zone = EvmSpecHelper.create_guid_miq_server_zone
 
-    @ems = FactoryGirl.create(:ems_azure_with_vcr_authentication, :zone => zone, :provider_region => 'eastus')
+    @ems = FactoryBot.create(:ems_azure_with_vcr_authentication, :zone => zone, :provider_region => 'eastus')
 
     @vm_group             = 'miq-vms-eastus'
     @network_group        = 'miq-networking-eastus'
@@ -112,7 +112,7 @@ module AzureRefresherSpecCommon
     @vm_powered_off = @centos_east
     @disk_powered_on = 'miq-vm-ubuntu-disk1'
 
-    FactoryGirl.create(:tag_mapping_with_category,
+    FactoryBot.create(:tag_mapping_with_category,
                        :labeled_resource_type => 'VmAzure',
                        :label_name            => 'Shutdown',
                        :category_name         => 'azure:vm:shutdown')

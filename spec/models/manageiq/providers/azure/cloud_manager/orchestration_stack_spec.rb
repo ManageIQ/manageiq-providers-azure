@@ -1,8 +1,8 @@
 require 'azure-armrest'
 
 describe ManageIQ::Providers::Azure::CloudManager::OrchestrationStack do
-  let(:ems) { FactoryGirl.create(:ems_azure_with_authentication) }
-  let(:template) { FactoryGirl.create(:orchestration_template_azure_in_json) }
+  let(:ems) { FactoryBot.create(:ems_azure_with_authentication) }
+  let(:template) { FactoryBot.create(:orchestration_template_azure_in_json) }
   let(:orchestration_service) { double("orchestration service") }
   let(:the_raw_stack) do
     Azure::Armrest::TemplateDeployment.new(
@@ -10,7 +10,7 @@ describe ManageIQ::Providers::Azure::CloudManager::OrchestrationStack do
       'properties' => {'provisioningState' => 'Succeeded'}
     )
   end
-  subject { FactoryGirl.create(:orchestration_stack_azure, :ext_management_system => ems, :name => 'test') }
+  subject { FactoryBot.create(:orchestration_stack_azure, :ext_management_system => ems, :name => 'test') }
 
 
   before do

@@ -98,8 +98,8 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
 
           it "will reconnect powered off VM" do
             existing_ref = "#{@ems.subscription}/#{@vm_resource_group}/microsoft.compute/virtualmachines/#{@vm_centos}"
-            vm_oldest    = FactoryGirl.create(:vm_azure, :ems_ref => existing_ref, :uid_ems => existing_ref)
-            FactoryGirl.create(:vm_azure, :ems_ref => existing_ref, :uid_ems => existing_ref)
+            vm_oldest    = FactoryBot.create(:vm_azure, :ems_ref => existing_ref, :uid_ems => existing_ref)
+            FactoryBot.create(:vm_azure, :ems_ref => existing_ref, :uid_ems => existing_ref)
 
             2.times do # Run twice to verify that a second run with existing data does not change anything
               refresh_with_cassette([vm_powered_off_target], vcr_suffix("powered_off_vm_refresh"))
