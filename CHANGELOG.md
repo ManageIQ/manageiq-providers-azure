@@ -5,7 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
-## Gaprindashvili-5
+## Gaprindashvili-7
+
+### Fixed
+- Handle possibility that disk might not have sku [(#300)](https://github.com/ManageIQ/manageiq-providers-azure/pull/300)
+- Handle regions where metrics are unsupported [(#302)](https://github.com/ManageIQ/manageiq-providers-azure/pull/302)
+
+## Gaprindashvili-5 - Released 2018-09-07
 
 ### Fixed
 - Default to StandardError if a connection cannot be made [(#278)](https://github.com/ManageIQ/manageiq-providers-azure/pull/278)
