@@ -28,7 +28,7 @@ describe ManageIQ::Providers::Azure::CloudManager do
     #
     # https://bugzilla.redhat.com/show_bug.cgi?id=1389459
     # https://bugzilla.redhat.com/show_bug.cgi?id=1393675
-    ems = FactoryGirl.create(:ems_azure)
+    ems = FactoryBot.create(:ems_azure)
     same_ems = ExtManagementSystem.find(ems.id)
 
     ems.destroy
@@ -39,10 +39,10 @@ describe ManageIQ::Providers::Azure::CloudManager do
   end
 
   it "moves the network_manager to the same zone and provider region as the cloud_manager" do
-    zone1 = FactoryGirl.create(:zone)
-    zone2 = FactoryGirl.create(:zone)
+    zone1 = FactoryBot.create(:zone)
+    zone2 = FactoryBot.create(:zone)
 
-    ems = FactoryGirl.create(:ems_azure, :zone => zone1, :provider_region => "region1")
+    ems = FactoryBot.create(:ems_azure, :zone => zone1, :provider_region => "region1")
     expect(ems.network_manager.zone).to eq zone1
     expect(ems.network_manager.zone_id).to eq zone1.id
     expect(ems.network_manager.provider_region).to eq "region1"
@@ -59,8 +59,8 @@ describe ManageIQ::Providers::Azure::CloudManager do
 
   context "#connectivity" do
     before do
-      @e = FactoryGirl.create(:ems_azure)
-      @e.authentications << FactoryGirl.create(:authentication, :userid => "klmnopqrst", :password => "1234567890")
+      @e = FactoryBot.create(:ems_azure)
+      @e.authentications << FactoryBot.create(:authentication, :userid => "klmnopqrst", :password => "1234567890")
       @e.azure_tenant_id = "abcdefghij"
     end
 
@@ -218,14 +218,14 @@ describe ManageIQ::Providers::Azure::CloudManager do
     end
 
     def create_factory_ems(name, region)
-      ems = FactoryGirl.create(:ems_azure, :name => name, :provider_region => region)
+      ems = FactoryBot.create(:ems_azure, :name => name, :provider_region => region)
       cred = {
         :userid   => @client_id,
         :password => @client_key,
       }
       ems.update_attributes(:azure_tenant_id => @tenant_id)
       ems.update_attributes(:subscription => @subscription)
-      ems.authentications << FactoryGirl.create(:authentication, cred)
+      ems.authentications << FactoryBot.create(:authentication, cred)
     end
 
     it "with no existing records" do |example|
@@ -267,7 +267,7 @@ describe ManageIQ::Providers::Azure::CloudManager do
       before(:each) do
         name = 'Azure-CentralUS'
         region = 'centralus'
-        @ems = FactoryGirl.create(:ems_azure, :name => name, :provider_region => region)
+        @ems = FactoryBot.create(:ems_azure, :name => name, :provider_region => region)
       end
 
       it "supports regions" do
@@ -301,7 +301,7 @@ describe ManageIQ::Providers::Azure::CloudManager do
 
     context "with records from a different account" do
       it "with the same name" do |example|
-        FactoryGirl.create(:ems_azure_with_authentication, :name => "Azure-westus", :provider_region => "westus")
+        FactoryBot.create(:ems_azure_with_authentication, :name => "Azure-westus", :provider_region => "westus")
 
         found = recorded_discover(example)
         expect(found.count).to eq(2)
@@ -314,11 +314,11 @@ describe ManageIQ::Providers::Azure::CloudManager do
       end
 
       it "with the same name and backup name" do |example|
-        FactoryGirl.create(
+        FactoryBot.create(
           :ems_azure_with_authentication,
           :name            => "Azure-westus",
           :provider_region => "westus")
-        FactoryGirl.create(
+        FactoryBot.create(
           :ems_azure_with_authentication,
           :name            => "Azure-westus #{@client_id}",
           :provider_region => "westus")
@@ -336,12 +336,12 @@ describe ManageIQ::Providers::Azure::CloudManager do
       end
 
       it "with the same name, backup name, and secondary backup name" do |example|
-        FactoryGirl.create(:ems_azure_with_authentication, :name => "Azure-westus", :provider_region => "westus")
-        FactoryGirl.create(
+        FactoryBot.create(:ems_azure_with_authentication, :name => "Azure-westus", :provider_region => "westus")
+        FactoryBot.create(
           :ems_azure_with_authentication,
           :name            => "Azure-westus #{@client_id}",
           :provider_region => "westus")
-        FactoryGirl.create(:ems_azure_with_authentication, :name => "Azure-westus 1", :provider_region => "westus")
+        FactoryBot.create(:ems_azure_with_authentication, :name => "Azure-westus 1", :provider_region => "westus")
 
         found = recorded_discover(example)
         expect(found.count).to eq(2)
@@ -359,7 +359,7 @@ describe ManageIQ::Providers::Azure::CloudManager do
   end
 
   context 'catalog types' do
-    let(:ems) { FactoryGirl.create(:ems_azure) }
+    let(:ems) { FactoryBot.create(:ems_azure) }
 
     it "#supported_catalog_types" do
       expect(ems.supported_catalog_types).to eq(%w(azure))

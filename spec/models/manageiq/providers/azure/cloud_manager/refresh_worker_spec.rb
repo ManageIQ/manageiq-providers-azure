@@ -1,8 +1,8 @@
 describe ManageIQ::Providers::Azure::CloudManager::RefreshWorker do
   context "EMS with children" do
-    let!(:network_manager) { FactoryGirl.create(:ems_network) }
+    let!(:network_manager) { FactoryBot.create(:ems_network) }
     let(:ems) do
-      FactoryGirl.create(:ems_cloud).tap do |ems|
+      FactoryBot.create(:ems_cloud).tap do |ems|
         network_manager.update_attributes(:parent_ems_id => ems.id)
       end
     end
@@ -15,7 +15,7 @@ describe ManageIQ::Providers::Azure::CloudManager::RefreshWorker do
   end
 
   context "EMS with no children" do
-    let(:ems) { FactoryGirl.create(:ems_cloud) }
+    let(:ems) { FactoryBot.create(:ems_cloud) }
 
     it ".queue_name_for_ems" do
       queue_name = described_class.queue_name_for_ems(ems)

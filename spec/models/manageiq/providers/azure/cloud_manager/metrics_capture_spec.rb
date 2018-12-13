@@ -1,9 +1,9 @@
 require 'azure-armrest'
 
 describe ManageIQ::Providers::Azure::CloudManager::MetricsCapture do
-  let(:ems)      { FactoryGirl.create(:ems_azure) }
-  let(:vm)       { FactoryGirl.build(:vm_azure, :ext_management_system => ems, :ems_ref => "my_ems_ref") }
-  let(:group)    { FactoryGirl.build(:azure_resource_group) }
+  let(:ems)      { FactoryBot.create(:ems_azure) }
+  let(:vm)       { FactoryBot.build(:vm_azure, :ext_management_system => ems, :ems_ref => "my_ems_ref") }
+  let(:group)    { FactoryBot.build(:azure_resource_group) }
 
   context "#get_counters" do
     let(:metric) { described_class.new(self) }
@@ -51,7 +51,7 @@ describe ManageIQ::Providers::Azure::CloudManager::MetricsCapture do
 
   context "#perf_collect_metrics" do
     it "raises an error when no EMS is defined" do
-      vm = FactoryGirl.build(:vm_azure, :ext_management_system => nil)
+      vm = FactoryBot.build(:vm_azure, :ext_management_system => nil)
       expect { vm.perf_collect_metrics('interval_name') }.to raise_error(RuntimeError, /No EMS defined/)
     end
 

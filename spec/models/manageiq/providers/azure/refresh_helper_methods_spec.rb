@@ -2,7 +2,7 @@ require 'azure-armrest'
 
 describe ManageIQ::Providers::Azure::RefreshHelperMethods do
   before do
-    @ems_azure = FactoryGirl.create(:ems_azure, :name => 'test', :provider_region => 'eastus')
+    @ems_azure = FactoryBot.create(:ems_azure, :name => 'test', :provider_region => 'eastus')
     @ems_azure.extend(described_class)
     @ems_azure.instance_variable_set(:@ems, @ems_azure)
     allow(Azure::Armrest::VirtualMachineService).to receive(:new).and_return(virtual_machine_service)
@@ -57,12 +57,12 @@ describe ManageIQ::Providers::Azure::RefreshHelperMethods do
 
   context "build_image_name" do
     it "removes ./ from image names" do
-      image = FactoryGirl.create(:azure_image, :name => './foo', :location => 'westus', :vendor => 'azure')
+      image = FactoryBot.create(:azure_image, :name => './foo', :location => 'westus', :vendor => 'azure')
       expect(@ems_azure.build_image_name(image)).to eql('foo')
     end
 
     it "does not affect images that do not have a ./ in them" do
-      image = FactoryGirl.create(:azure_image, :name => 'foo', :location => 'westus', :vendor => 'azure')
+      image = FactoryBot.create(:azure_image, :name => 'foo', :location => 'westus', :vendor => 'azure')
       expect(@ems_azure.build_image_name(image)).to eql('foo')
     end
   end

@@ -2,14 +2,14 @@ require 'azure-armrest'
 
 describe ManageIQ::Providers::Azure::CloudManager::Provision::Cloning do
   let(:provision) { ManageIQ::Providers::Azure::CloudManager::Provision.new }
-  let(:ems) { FactoryGirl.create(:ems_azure_with_authentication) }
+  let(:ems) { FactoryBot.create(:ems_azure_with_authentication) }
   let(:ip_address_service) { double('ip address service') }
   let(:nic_id) { '/subscriptions/xyz/resourceGroups/foo/providers/Microsoft.Network/networkInterfaces/foo_nic' }
 
   context "associated_nic" do
     before do
-      @floating_ip = FactoryGirl.create(:floating_ip_azure)
-      @network_port = FactoryGirl.create(:network_port_azure)
+      @floating_ip = FactoryBot.create(:floating_ip_azure)
+      @network_port = FactoryBot.create(:network_port_azure)
     end
 
     it "returns nil if floating ip is not found" do
@@ -30,9 +30,9 @@ describe ManageIQ::Providers::Azure::CloudManager::Provision::Cloning do
 
   context "create_nic" do
     before do
-      @floating_ip = FactoryGirl.create(:floating_ip_azure)
-      @network_port = FactoryGirl.create(:network_port_azure)
-      @resource_group = FactoryGirl.create(:azure_resource_group)
+      @floating_ip = FactoryBot.create(:floating_ip_azure)
+      @network_port = FactoryBot.create(:network_port_azure)
+      @resource_group = FactoryBot.create(:azure_resource_group)
 
       nic_service = double("nic service")
 

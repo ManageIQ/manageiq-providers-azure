@@ -1,6 +1,6 @@
 describe ManageIQ::Providers::Azure::CloudManager::EventCatcher::Runner do
   context "parsing properties" do
-    let(:ems) { FactoryGirl.create(:ems_azure_with_authentication) }
+    let(:ems) { FactoryBot.create(:ems_azure_with_authentication) }
     let(:catcher) { described_class.new(:ems_id => ems.id) }
 
     let(:event) do

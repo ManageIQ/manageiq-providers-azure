@@ -1,12 +1,12 @@
 describe ManageIQ::Providers::Azure::CloudManager::Provision do
-  let(:provider)     { FactoryGirl.create(:ems_azure_with_authentication) }
-  let(:template)     { FactoryGirl.create(:template_azure, :ext_management_system => provider) }
-  let(:flavor)       { FactoryGirl.create(:flavor_azure) }
-  let(:vm)           { FactoryGirl.create(:vm_azure, :ext_management_system => provider) }
-  let(:sec_group)    { FactoryGirl.create(:security_group_azure) }
-  let(:subnet)       { FactoryGirl.create(:cloud_subnet_azure) }
-  let(:network_port) { FactoryGirl.create(:network_port_azure) }
-  let(:floating_ip)  { FactoryGirl.create(:floating_ip_azure) }
+  let(:provider)     { FactoryBot.create(:ems_azure_with_authentication) }
+  let(:template)     { FactoryBot.create(:template_azure, :ext_management_system => provider) }
+  let(:flavor)       { FactoryBot.create(:flavor_azure) }
+  let(:vm)           { FactoryBot.create(:vm_azure, :ext_management_system => provider) }
+  let(:sec_group)    { FactoryBot.create(:security_group_azure) }
+  let(:subnet)       { FactoryBot.create(:cloud_subnet_azure) }
+  let(:network_port) { FactoryBot.create(:network_port_azure) }
+  let(:floating_ip)  { FactoryBot.create(:floating_ip_azure) }
 
   context "#create vm" do
     subscription_id = "01234567890"
@@ -40,13 +40,13 @@ describe ManageIQ::Providers::Azure::CloudManager::Provision do
       end
 
       it "VM in different sub-class" do
-        vm = FactoryGirl.create(:vm_openstack, :ext_management_system => provider)
+        vm = FactoryBot.create(:vm_openstack, :ext_management_system => provider)
         expect(subject.find_destination_in_vmdb(:ems_ref => vm.ems_ref)).to be_nil
       end
     end
 
     context "#validate_dest_name" do
-      let(:vm) { FactoryGirl.create(:vm_azure, :ext_management_system => provider) }
+      let(:vm) { FactoryBot.create(:vm_azure, :ext_management_system => provider) }
 
       it "with valid name" do
         allow(subject).to receive(:dest_name).and_return("new_vm_1")
@@ -130,9 +130,9 @@ describe ManageIQ::Providers::Azure::CloudManager::Provision do
     end
 
     it "#workflow" do
-      user    = FactoryGirl.create(:user)
+      user    = FactoryBot.create(:user)
       options = {:src_vm_id => [template.id, template.name]}
-      vm_prov = FactoryGirl.create(:miq_provision_azure,
+      vm_prov = FactoryBot.create(:miq_provision_azure,
                                    :userid       => user.userid,
                                    :source       => template,
                                    :request_type => 'template',

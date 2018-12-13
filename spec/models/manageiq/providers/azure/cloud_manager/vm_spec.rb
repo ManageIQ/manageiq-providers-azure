@@ -1,7 +1,7 @@
 describe ManageIQ::Providers::Azure::CloudManager::Vm do
-  let(:ems) { FactoryGirl.create(:ems_azure) }
-  let(:host) { FactoryGirl.create(:host, :ext_management_system => ems) }
-  let(:vm) { FactoryGirl.create(:vm_azure, :ext_management_system => ems, :host => host) }
+  let(:ems) { FactoryBot.create(:ems_azure) }
+  let(:host) { FactoryBot.create(:host, :ext_management_system => ems) }
+  let(:vm) { FactoryBot.create(:vm_azure, :ext_management_system => ems, :host => host) }
   let(:power_state_on)  { "VM running" }
   let(:power_state_off) { "VM deallocated" }
   let(:power_state_suspended) { "VM stopping" }

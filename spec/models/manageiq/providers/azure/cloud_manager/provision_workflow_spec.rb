@@ -1,9 +1,9 @@
 describe ManageIQ::Providers::Azure::CloudManager::ProvisionWorkflow do
   include Spec::Support::WorkflowHelper
 
-  let(:admin)    { FactoryGirl.create(:user_with_group) }
-  let(:ems)      { FactoryGirl.create(:ems_azure) }
-  let(:template) { FactoryGirl.create(:template_azure, :name => "template", :ext_management_system => ems) }
+  let(:admin)    { FactoryBot.create(:user_with_group) }
+  let(:ems)      { FactoryBot.create(:ems_azure) }
+  let(:template) { FactoryBot.create(:template_azure, :name => "template", :ext_management_system => ems) }
   let(:workflow) do
     stub_dialog
     allow_any_instance_of(User).to receive(:get_timezone).and_return(Time.zone)
@@ -23,7 +23,7 @@ describe ManageIQ::Providers::Azure::CloudManager::ProvisionWorkflow do
   context "without applied tags" do
     context "Instance Type (Flavor)" do
       it "#get_targets_for_ems" do
-        flavor = FactoryGirl.create(:flavor, :name => "Standard_A0", :supports_32_bit => false,
+        flavor = FactoryBot.create(:flavor, :name => "Standard_A0", :supports_32_bit => false,
                                     :supports_64_bit => true)
         ems.flavors << flavor
         expect(workflow.allowed_instance_types.length).to eq(1)
@@ -33,7 +33,7 @@ describe ManageIQ::Providers::Azure::CloudManager::ProvisionWorkflow do
     context "security_groups" do
       context "non cloud network" do
         it "#get_targets_for_ems" do
-          sg = FactoryGirl.create(:security_group, :ext_management_system => ems.network_manager)
+          sg = FactoryBot.create(:security_group, :ext_management_system => ems.network_manager)
           ems.security_groups << sg
           filtered = workflow.send(:get_targets_for_ems, ems, :cloud_filter, SecurityGroup,
                                    'security_groups.non_cloud_network')
@@ -44,8 +44,8 @@ describe ManageIQ::Providers::Azure::CloudManager::ProvisionWorkflow do
 
       context "cloud network" do
         it "#get_targets_for_ems" do
-          cn1 = FactoryGirl.create(:cloud_network, :ext_management_system => ems.network_manager)
-          sg_cn = FactoryGirl.create(:security_group, :ext_management_system => ems.network_manager, :cloud_network => cn1)
+          cn1 = FactoryBot.create(:cloud_network, :ext_management_system => ems.network_manager)
+          sg_cn = FactoryBot.create(:security_group, :ext_management_system => ems.network_manager, :cloud_network => cn1)
           ems.security_groups << sg_cn
           filtered = workflow.send(:get_targets_for_ems, ems, :cloud_filter, SecurityGroup, 'security_groups')
           expect(filtered.size).to eq(1)
@@ -56,21 +56,21 @@ describe ManageIQ::Providers::Azure::CloudManager::ProvisionWorkflow do
 
     context "floating ips" do
       before do
-        FactoryGirl.create(:network_port_azure, :id => 1, :device_id => nil)
-        ems.floating_ips << FactoryGirl.create(
+        FactoryBot.create(:network_port_azure, :id => 1, :device_id => nil)
+        ems.floating_ips << FactoryBot.create(
           :floating_ip_azure,
           :ext_management_system => ems.network_manager,
           :network_port_id       => 1
         )
 
-        FactoryGirl.create(:network_port_azure, :id => 2, :device_id => 1)
-        ems.floating_ips << FactoryGirl.create(
+        FactoryBot.create(:network_port_azure, :id => 2, :device_id => 1)
+        ems.floating_ips << FactoryBot.create(
           :floating_ip_azure,
           :ext_management_system => ems.network_manager,
           :network_port_id       => 2
         )
 
-        ems.floating_ips << FactoryGirl.create(
+        ems.floating_ips << FactoryBot.create(
           :floating_ip_azure,
           :ext_management_system => ems.network_manager,
           :network_port_id       => nil
@@ -86,18 +86,18 @@ describe ManageIQ::Providers::Azure::CloudManager::ProvisionWorkflow do
 
   context "with applied tags" do
     before do
-      FactoryGirl.create(:classification_cost_center_with_tags)
+      FactoryBot.create(:classification_cost_center_with_tags)
       admin.current_group.entitlement = Entitlement.create!
       admin.current_group.entitlement.set_managed_filters([['/managed/cc/001']])
       admin.current_group.save!
-      ems.flavors << FactoryGirl.create(:flavor, :name => "Standard_A0", :supports_32_bit => false,
+      ems.flavors << FactoryBot.create(:flavor, :name => "Standard_A0", :supports_32_bit => false,
                                         :supports_64_bit => true)
-      ems.flavors << FactoryGirl.create(:flavor, :name => "Standard_A1", :supports_32_bit => false,
+      ems.flavors << FactoryBot.create(:flavor, :name => "Standard_A1", :supports_32_bit => false,
                                         :supports_64_bit => true)
       tagged_flavor = ems.flavors.first
       Classification.classify(tagged_flavor, 'cc', '001')
 
-      2.times { FactoryGirl.create(:security_group, :ext_management_system => ems.network_manager) }
+      2.times { FactoryBot.create(:security_group, :ext_management_system => ems.network_manager) }
       tagged_sec = ems.security_groups.first
       Classification.classify(tagged_sec, 'cc', '001')
     end
@@ -140,12 +140,12 @@ describe ManageIQ::Providers::Azure::CloudManager::ProvisionWorkflow do
 
     context "with valid relationships" do
       before do
-        ems.flavors << FactoryGirl.create(:flavor, :name => "Standard_A0", :supports_32_bit => false,
+        ems.flavors << FactoryBot.create(:flavor, :name => "Standard_A0", :supports_32_bit => false,
                                           :supports_64_bit => true)
-        ems.flavors << FactoryGirl.create(:flavor, :name => "Standard_A1", :supports_32_bit => false,
+        ems.flavors << FactoryBot.create(:flavor, :name => "Standard_A1", :supports_32_bit => false,
                                           :supports_64_bit => true)
-        ems.resource_groups << FactoryGirl.create(:azure_resource_group)
-        ems.resource_groups << FactoryGirl.create(:azure_resource_group)
+        ems.resource_groups << FactoryBot.create(:azure_resource_group)
+        ems.resource_groups << FactoryBot.create(:azure_resource_group)
       end
 
       it "#allowed_instance_types" do
@@ -160,11 +160,11 @@ describe ManageIQ::Providers::Azure::CloudManager::ProvisionWorkflow do
 
   context "with VPC relationships" do
     before do
-      @az1 = FactoryGirl.create(:availability_zone, :ext_management_system => ems)
-      @cn1 = FactoryGirl.create(:cloud_network, :ext_management_system => ems.network_manager)
-      @cn2 = FactoryGirl.create(:cloud_network, :ext_management_system => ems.network_manager)
-      FactoryGirl.create(:cloud_subnet, :cloud_network => @cn1, :availability_zone => @az1)
-      FactoryGirl.create(:cloud_subnet, :cloud_network => @cn1)
+      @az1 = FactoryBot.create(:availability_zone, :ext_management_system => ems)
+      @cn1 = FactoryBot.create(:cloud_network, :ext_management_system => ems.network_manager)
+      @cn2 = FactoryBot.create(:cloud_network, :ext_management_system => ems.network_manager)
+      FactoryBot.create(:cloud_subnet, :cloud_network => @cn1, :availability_zone => @az1)
+      FactoryBot.create(:cloud_subnet, :cloud_network => @cn1)
     end
 
     context "#allowed_cloud_subnets" do
@@ -193,7 +193,7 @@ describe ManageIQ::Providers::Azure::CloudManager::ProvisionWorkflow do
   end
 
   context "#display_name_for_name_description" do
-    let(:flavor) { FactoryGirl.create(:flavor_azure, :name => "test_flavor") }
+    let(:flavor) { FactoryBot.create(:flavor_azure, :name => "test_flavor") }
 
     it "with name only" do
       expect(workflow.display_name_for_name_description(flavor)).to eq("test_flavor")
@@ -212,7 +212,7 @@ describe ManageIQ::Providers::Azure::CloudManager::ProvisionWorkflow do
   end
 
   describe "#make_request" do
-    let(:alt_user) { FactoryGirl.create(:user_with_group) }
+    let(:alt_user) { FactoryBot.create(:user_with_group) }
     it "creates and update a request" do
       stub_dialog(:get_pre_dialogs)
       stub_dialog(:get_dialogs)
