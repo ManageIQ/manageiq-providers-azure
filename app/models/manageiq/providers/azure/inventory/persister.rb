@@ -31,22 +31,4 @@ class ManageIQ::Providers::Azure::Inventory::Persister < ManageIQ::Providers::In
     end
     @tag_mapper
   end
-
-  protected
-
-  def parent
-    manager.presence
-  end
-
-  def strategy
-    nil
-  end
-
-  def shared_options
-    {
-      :parent   => parent,
-      :strategy => strategy,
-      :targeted => targeted?
-    }
-  end
 end
