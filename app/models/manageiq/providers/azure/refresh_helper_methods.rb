@@ -68,7 +68,11 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
   # their resource group.
   #
   def gather_data_for_this_region(arm_service, method_name = 'list_all')
-    return [] unless supported_service(arm_service.service_name)
+    unless supported_service(arm_service.service_name)
+      _log.warn("Skipping data collection for unsupported service: #{arm_service.service_name}")
+      return []
+    end
+
     if method_name.to_s == 'list_all'
       arm_service.send(method_name).select do |resource|
         resource.try(:location).try(:casecmp, @ems.provider_region).zero?
