@@ -5,20 +5,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
-## Hammer RC-2
-
-### Fixed
-- Handle regions where metrics are unsupported [(#302)](https://github.com/ManageIQ/manageiq-providers-azure/pull/302)
-
-## Hammer RC-1 - Released 2018-11-16
-
-### Fixed
-- Handle possibility that disk might not have sku [(#300)](https://github.com/ManageIQ/manageiq-providers-azure/pull/300)
-
-## Hammer Beta-1 - Released 2018-10-12
+## Hammer-1
 
 ### Added
-- Add plugin display name [(#283)](https://github.com/ManageIQ/manageiq-providers-azure/pull/283)
 - Add plugin display name [(#283)](https://github.com/ManageIQ/manageiq-providers-azure/pull/283)
 - Enable graph refresh by default [(#280)](https://github.com/ManageIQ/manageiq-providers-azure/pull/280)
 - Add support for custom endpoint [(#274)](https://github.com/ManageIQ/manageiq-providers-azure/pull/274)
@@ -36,6 +25,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - Update i18n catalog for hammer [(#294)](https://github.com/ManageIQ/manageiq-providers-azure/pull/294)
 
 ### Fixed
+- Handle regions where metrics are unsupported [(#302)](https://github.com/ManageIQ/manageiq-providers-azure/pull/302)
+- Handle possibility that disk might not have sku [(#300)](https://github.com/ManageIQ/manageiq-providers-azure/pull/300)
 - Fix parent association in graph refresh [(#291)](https://github.com/ManageIQ/manageiq-providers-azure/pull/291)
 - Don't use #{} inside gettext strings [(#273)](https://github.com/ManageIQ/manageiq-providers-azure/pull/273)
 - Fix root disk size swap disk size [(#264)](https://github.com/ManageIQ/manageiq-providers-azure/pull/264)
