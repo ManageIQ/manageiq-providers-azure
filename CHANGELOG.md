@@ -5,20 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
-## Unreleased as of Sprint 99 ending 2018-11-19
-
-### Fixed
-- Handle regions where metrics are unsupported [(#302)](https://github.com/ManageIQ/manageiq-providers-azure/pull/302)
-- Use valid api-version string if settings.yml value is invalid [(#275)](https://github.com/ManageIQ/manageiq-providers-azure/pull/275)
-
-## Unreleased as of Sprint 98 ending 2018-11-05
-
-### Fixed
-- Handle possibility that disk might not have sku [(#300)](https://github.com/ManageIQ/manageiq-providers-azure/pull/300)
-
-## Hammer Beta-1 - Released 2018-10-12
+## Hammer-1
 
 ### Added
+- Add plugin display name [(#283)](https://github.com/ManageIQ/manageiq-providers-azure/pull/283)
 - Add plugin display name [(#283)](https://github.com/ManageIQ/manageiq-providers-azure/pull/283)
 - Enable graph refresh by default [(#280)](https://github.com/ManageIQ/manageiq-providers-azure/pull/280)
 - Add support for custom endpoint [(#274)](https://github.com/ManageIQ/manageiq-providers-azure/pull/274)
@@ -36,6 +26,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - Update i18n catalog for hammer [(#294)](https://github.com/ManageIQ/manageiq-providers-azure/pull/294)
 
 ### Fixed
+- Handle regions where metrics are unsupported [(#302)](https://github.com/ManageIQ/manageiq-providers-azure/pull/302)
+- Handle possibility that disk might not have sku [(#300)](https://github.com/ManageIQ/manageiq-providers-azure/pull/300)
 - Fix parent association in graph refresh [(#291)](https://github.com/ManageIQ/manageiq-providers-azure/pull/291)
 - Don't use #{} inside gettext strings [(#273)](https://github.com/ManageIQ/manageiq-providers-azure/pull/273)
 - Fix root disk size swap disk size [(#264)](https://github.com/ManageIQ/manageiq-providers-azure/pull/264)
@@ -43,6 +35,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - Add resourceProviderName to list of collected event fields [(#182)](https://github.com/ManageIQ/manageiq-providers-azure/pull/182)
 - Set the location property of managed disks to ensure disk saving [(#143)](https://github.com/ManageIQ/manageiq-providers-azure/pull/143)
 - Always collect all resource groups [(#142)](https://github.com/ManageIQ/manageiq-providers-azure/pull/142)
+
+## Unreleased as of Sprint 99 ending 2018-11-19
+
+### Fixed
+- Use valid api-version string if settings.yml value is invalid [(#275)](https://github.com/ManageIQ/manageiq-providers-azure/pull/275)
 
 ## Gaprindashvili-5 - Released 2018-09-07
 
