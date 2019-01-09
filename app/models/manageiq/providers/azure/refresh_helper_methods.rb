@@ -68,6 +68,7 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
   # their resource group.
   #
   def gather_data_for_this_region(arm_service, method_name = 'list_all')
+    return [] unless supported_service(arm_service.service_name)
     if method_name.to_s == 'list_all'
       arm_service.send(method_name).select do |resource|
         resource.try(:location).try(:casecmp, @ems.provider_region).zero?
@@ -82,6 +83,14 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
         end
       end.flatten
     end
+  end
+
+  # Caches a hash of services and their support status using the service name.
+  #
+  def supported_service(service_name)
+    @supported_service_hash ||= {}
+    return @supported_service_hash[service_name] unless @supported_service_hash[service_name].nil?
+    @supported_service_hash[service_name] = @rps.supported?(service_name)
   end
 
   # Because resources do not necessarily have to belong to the same region as

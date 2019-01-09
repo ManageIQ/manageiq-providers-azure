@@ -50,6 +50,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManageIQ::Providers::In
     @nsg = network_security_group_service(@config)
     @lbs = load_balancer_service(@config)
     @rts = route_table_service(@config)
+    @rps = cached_resource_provider_service(@config)
   end
 
   ##############################################################
