@@ -68,7 +68,7 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
   # their resource group.
   #
   def gather_data_for_this_region(arm_service, method_name = 'list_all')
-    unless supported_service(arm_service.service_name)
+    unless supported_service(arm_service)
       _log.warn("Skipping data collection for unsupported service: #{arm_service.service_name}")
       return []
     end
@@ -91,10 +91,10 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
 
   # Caches a hash of services and their support status using the service name.
   #
-  def supported_service(service_name)
+  def supported_service(arm_service)
     @supported_service_hash ||= {}
-    return @supported_service_hash[service_name] unless @supported_service_hash[service_name].nil?
-    @supported_service_hash[service_name] = @rps.supported?(service_name)
+    return @supported_service_hash[arm_service.service_name] unless @supported_service_hash[arm_service.service_name].nil?
+    @supported_service_hash[arm_service.service_name] = @rps.supported?(arm_service.service_name, arm_service.provider)
   end
 
   # Because resources do not necessarily have to belong to the same region as
