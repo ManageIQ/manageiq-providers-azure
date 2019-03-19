@@ -4,7 +4,7 @@ describe ManageIQ::Providers::Azure::CloudManager do
     it "decrypts passwords" do
       allow(::Azure::Armrest::Configuration).to receive(:new)
 
-      expect(MiqPassword).to receive(:try_decrypt).with("1234567890")
+      expect(ManageIQ::Password).to receive(:try_decrypt).with("1234567890")
       described_class.raw_connect("klmnopqrst", "1234567890", "abcdefghij", 'subscription', 'proxy_uri')
     end
   end

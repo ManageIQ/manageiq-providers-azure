@@ -43,7 +43,7 @@ module ManageIQ::Providers::Azure::ManagerMixin
       connection_rescue_block do
         ::Azure::Armrest::Configuration.new(
           :client_id       => client_id,
-          :client_key      => MiqPassword.try_decrypt(client_key),
+          :client_key      => ManageIQ::Password.try_decrypt(client_key),
           :tenant_id       => azure_tenant_id,
           :subscription_id => subscription,
           :proxy           => proxy_uri,
@@ -118,7 +118,7 @@ module ManageIQ::Providers::Azure::ManagerMixin
       MiqQueue.put(
         :class_name  => name,
         :method_name => "discover_from_queue",
-        :args        => [clientid, MiqPassword.encrypt(clientkey), azure_tenant_id, subscription]
+        :args        => [clientid, ManageIQ::Password.encrypt(clientkey), azure_tenant_id, subscription]
       )
     end
 
@@ -128,7 +128,7 @@ module ManageIQ::Providers::Azure::ManagerMixin
     end
 
     def discover_from_queue(clientid, clientkey, azure_tenant_id, subscription)
-      discover(clientid, MiqPassword.decrypt(clientkey), azure_tenant_id, subscription)
+      discover(clientid, ManageIQ::Password.decrypt(clientkey), azure_tenant_id, subscription)
     end
 
     def create_discovered_region(region_name, clientid, clientkey, azure_tenant_id, subscription, all_ems_names)
