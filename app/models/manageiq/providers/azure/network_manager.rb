@@ -18,7 +18,7 @@ class ManageIQ::Providers::Azure::NetworkManager < ManageIQ::Providers::NetworkM
   include ManageIQ::Providers::Azure::ManagerMixin
 
   has_many :floating_ips, :foreign_key => :ems_id, :dependent => :destroy,
-           :class_name => ManageIQ::Providers::Azure::NetworkManager::FloatingIp
+           :class_name => "ManageIQ::Providers::Azure::NetworkManager::FloatingIp"
 
   # Auth and endpoints delegations, editing of this type of manager must be disabled
   delegate :authentication_check,
