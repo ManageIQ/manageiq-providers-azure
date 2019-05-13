@@ -3,8 +3,8 @@ describe ManageIQ::Providers::Azure::CloudManager::EventCatcher do
     let(:unsupported_reason) { "Timeline events not supported for this region" }
 
     before do
-      @ems = FactoryBot.create(:ems_azure)
-      allow(@ems).to receive(:authentication_status_ok?).and_return(true)
+      server = EvmSpecHelper.local_miq_server
+      @ems = FactoryGirl.create(:ems_azure, :with_authentication, :zone => server.zone)
       allow(described_class).to receive(:all_ems_in_zone).and_return([@ems])
     end
 
