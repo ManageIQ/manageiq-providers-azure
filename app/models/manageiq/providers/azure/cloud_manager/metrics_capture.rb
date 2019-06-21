@@ -1,231 +1,224 @@
+# frozen_string_literal: true
+
+## https://docs.microsoft.com/en-us/azure/azure-monitor/platform/metrics-supported#microsoftcomputevirtualmachines
+
 class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Providers::BaseManager::MetricsCapture
-  INTERVAL_1_MINUTE = "PT1M".freeze
+  INTERVAL_1_MINUTE = 'PT1M'
+  VIM_INTERVAL = 20.seconds.freeze
+  private_constant(*%i[INTERVAL_1_MINUTE VIM_INTERVAL])
 
-  # Linux, Windows counters
-  CPU_METERS     = ["\\Processor Information(_Total)\\% Processor Time",
-                    "\\Processor(_Total)\\% Processor Time",
-                    "\\Processor\\PercentProcessorTime"].freeze
-
-  NETWORK_METERS = ["\\NetworkInterface\\BytesTotal"].freeze # Linux (No windows counter available)
-
-  MEMORY_METERS  = ["\\Memory\\PercentUsedMemory",
-                    "\\Memory\\% Committed Bytes In Use",
-                    "\\Memory\\Committed Bytes"].freeze
-
-  DISK_METERS    = ["\\PhysicalDisk\\BytesPerSecond",
-                    "\\PhysicalDisk(_Total)\\Disk Read Bytes/sec", # Windows
-                    "\\PhysicalDisk(_Total)\\Disk Write Bytes/sec",
-                    "\\LogicalDisk(_Total)\\Disk Read Bytes/sec",
-                    "\\LogicalDisk(_Total)\\Disk Write Bytes/sec"].freeze # Windows
-
-  COUNTER_INFO = [
+  COUNTERS_INFO = [
+    ## CPU
     {
-      :native_counters       => CPU_METERS,
-      :calculation           => ->(stat) { stat.first },
-      :vim_style_counter_key => "cpu_usage_rate_average"
+      :counter_key => 'cpu_usage_rate_average',
+      :source      => :api,
+      :metrics     => [
+        'Percentage CPU',
+      ].freeze,
+      :calculation => ->(stats) { stats.mean },
+      :unit_key    => 'percent',
     },
+    ## Memory
     {
-      :native_counters       => NETWORK_METERS,
-      :calculation           => ->(stat) { stat.first / 1.kilobyte },
-      :vim_style_counter_key => "net_usage_rate_average",
+      :counter_key => 'mem_usage_rate_average',
+      :source      => :raw,
+      :metrics     => [
+        '/builtin/memory/percentusedmemory', # linux
+        '\Memory\% Committed Bytes In Use', # windows
+      ].freeze,
+      :calculation => ->(stats) { stats.mean },
+      :unit_key    => 'percent',
     },
+    ## Disk
     {
-      :native_counters       => MEMORY_METERS,
-      :calculation           => ->(stat) { stat.first },
-      :vim_style_counter_key => "mem_usage_absolute_average",
+      :counter_key => 'disk_usage_rate_average', # TODO: should be 'disk_usage_absolute_average',
+      :source      => :api,
+      :metrics     => [
+        'Per Disk Read Bytes/sec',
+        'Per Disk Write Bytes/sec',
+      ].freeze,
+      :calculation => ->(stats) { stats.sum / 1.kilobyte },
+      :unit_key    => 'kilobytespersecond',
     },
+    ## Network
     {
-      :native_counters       => DISK_METERS,
-      :calculation           => ->(stat) { stat.sum / 1.kilobyte },
-      :vim_style_counter_key => "disk_usage_rate_average",
-    }
-  ].freeze
+      :counter_key => 'net_usage_rate_average', # TODO: should be 'net_usage_absolute_average',
+      :source      => :api,
+      :metrics     => [
+        'Network In Total',
+        'Network Out Total',
+      ].freeze,
+      :calculation => ->(stats) { stats.sum / 1.kilobyte },
+      :unit_key    => 'kilobytespersecond',
+    },
+  ].map { |h| OpenStruct.new(h).freeze }.group_by(&:source).to_h.freeze
 
-  COUNTER_NAMES = COUNTER_INFO.flat_map { |i| i[:native_counters] }.uniq.to_set.freeze
+  METRIC_NAMES = COUNTERS_INFO.map do |source, counters_info|
+    [source, counters_info.flat_map(&:metrics).uniq]
+  end.to_h.freeze
 
-  VIM_STYLE_COUNTERS = {
-    "cpu_usage_rate_average"     => {
-      :counter_key           => "cpu_usage_rate_average",
-      :instance              => "",
-      :capture_interval      => "20",
+  VIM_STYLE_COUNTERS = COUNTERS_INFO.values.flatten.map do |counter_info|
+    [counter_info.counter_key, {
+      :counter_key           => counter_info.counter_key,
+      :instance              => '',
+      :capture_interval      => VIM_INTERVAL.to_s,
       :precision             => 1,
-      :rollup                => "average",
-      :unit_key              => "percent",
-      :capture_interval_name => "realtime"
-    },
-    "mem_usage_absolute_average" => {
-      :counter_key           => "mem_usage_absolute_average",
-      :instance              => "",
-      :capture_interval      => "20",
-      :precision             => 1,
-      :rollup                => "average",
-      :unit_key              => "percent",
-      :capture_interval_name => "realtime"
-    },
-    "net_usage_rate_average"     => {
-      :counter_key           => "net_usage_rate_average",
-      :instance              => "",
-      :capture_interval      => "20",
-      :precision             => 1,
-      :rollup                => "average",
-      :unit_key              => "kilobytespersecond",
-      :capture_interval_name => "realtime"
-    },
-    "disk_usage_rate_average"    => {
-      :counter_key           => "disk_usage_rate_average",
-      :instance              => "",
-      :capture_interval      => "20",
-      :precision             => 1,
-      :rollup                => "average",
-      :unit_key              => "kilobytespersecond",
-      :capture_interval_name => "realtime"
-    },
-  }.freeze
+      :rollup                => 'average',
+      :unit_key              => counter_info.unit_key,
+      :capture_interval_name => 'realtime',
+    }.freeze]
+  end.to_h.freeze
 
   def perf_collect_metrics(interval_name, start_time = nil, end_time = nil)
-    raise "No EMS defined" if target.ext_management_system.nil?
+    raise 'No EMS defined' unless ems
 
-    log_header = "[#{interval_name}] for: [#{target.class.name}], [#{target.id}], [#{target.name}]"
-
-    end_time   = (end_time || Time.now).utc
-    start_time = (start_time || end_time - 4.hours).utc # 4 hours for symmetry with VIM
-
-    begin
-      # This is just for consistency, to produce a :connect benchmark
-      Benchmark.realtime_block(:connect) {}
-      target.ext_management_system.with_provider_connection do |conn|
-        with_metrics_services(conn) do |metrics_conn, storage_conn|
-          perf_capture_data_azure(metrics_conn, storage_conn, start_time, end_time)
-        end
-      end
-    rescue Exception => err
-      _log.error("#{log_header} Unhandled exception during perf data collection: [#{err}], class: [#{err.class}]")
-      _log.error("#{log_header}   Timings at time of error: #{Benchmark.current_realtime.inspect}")
-      _log.log_backtrace(err)
-      raise
+    unless ems.insights?
+      _log.info("Metrics not supported for region: [#{provider_region}]")
+      return
     end
+
+    end_time   = end_time   ? end_time.utc   : Time.now.utc
+    start_time = start_time ? start_time.utc : (end_time - 4.hours) # 4 hours for symmetry with VIM
+
+    # This is just for consistency, to produce a :connect benchmark
+    Benchmark.realtime_block(:connect) {}
+
+    ems.with_provider_connection do |connection|
+      metrics_conn = Azure::Armrest::Insights::MetricsService.new(connection)
+
+      ## Counters from the metrics api
+
+      metrics_uri = URI.join(
+        metrics_conn.configuration.environment.resource_url,
+        "#{resource_uri}/providers/microsoft.insights/metrics"
+      )
+
+      # https://docs.microsoft.com/en-us/rest/api/monitor/metrics/list#uri-parameters
+      metrics_uri.query = URI.encode_www_form(
+        'timespan'    => "#{start_time.iso8601}/#{end_time.iso8601}",
+        'interval'    => INTERVAL_1_MINUTE,
+        'metricnames' => api_metric_names.join(','),
+        'aggregation' => 'Average',
+        'api-version' => metrics_conn.api_version
+      )
+
+      metrics, _timings = Benchmark.realtime_block(:capture_counters) do
+        # azure-armrest gem needs to be modified to accept query ('list_metrics' method)
+        response = metrics_conn.send(:rest_get, metrics_uri.to_s)
+        Azure::Armrest::ArmrestCollection.create_from_response(response, Azure::Armrest::Insights::Metric)
+      end
+
+      metrics = metrics.map do |metric|
+        [metric.name.value, metric.timeseries.flat_map do |t|
+          t.data.select { |d| d.respond_to?(:average) }
+        end]
+      end.to_h.freeze
+
+      counter_values = api_counters_info.each_with_object({}) do |counter_info, memo|
+        counter_metrics = metrics.values_at(*counter_info.metrics).compact.flatten
+
+        # { timestamp => [value, ...], ... }
+        timestamped_values = counter_metrics.each_with_object({}) do |metric_value, ts_memo|
+          timestamp = Time.zone.parse(metric_value.time_stamp)
+          (ts_memo[timestamp] ||= []) << metric_value.average
+        end
+
+        next if timestamped_values.empty?
+
+        # { timestamp => value, ... }
+        timestamped_values.transform_values! { |values| counter_info.calculation.call(values) }
+        timestamped_values.sort_by! { |timestamp, _value| timestamp }
+
+        timestamped_values.keys.each_cons(2) do |ts, next_ts|
+          value = timestamped_values[ts]
+
+          # For (temporary) symmetry with VIM API we create 20-second intervals.
+          (ts...next_ts).step_value(VIM_INTERVAL).each do |inner_ts|
+            memo.store_path(inner_ts.iso8601, counter_info.counter_key, value)
+          end
+        end
+
+        # add last minute's value
+        ts, value = timestamped_values.to_a.last
+        memo.store_path(ts.iso8601, counter_info.counter_key, value)
+      end
+
+      # TODO: ## Counters, which available only through legacy API or storage account (raw)
+
+      [{ ems_ref => VIM_STYLE_COUNTERS }, { ems_ref => counter_values }]
+    end
+  rescue ::Azure::Armrest::BadRequestException # Probably means region is not supported
+    msg = "Problem collecting metrics for #{resource_description}. "\
+          "Region [#{provider_region}] may not be supported."
+    _log.warn(msg)
+  rescue ::Azure::Armrest::RequestTimeoutException # Problem on Azure side
+    _log.warn("Timeout attempting to collect metrics for: #{resource_description}. Skipping.")
+  rescue ::Azure::Armrest::NotFoundException # VM deleted
+    _log.warn("Could not find metrics for: #{resource_description}. Skipping.")
+  rescue Exception => err
+    log_header = "[#{interval_name}] for: [#{target.class.name}], [#{target.id}], [#{target.name}]"
+    _log.error("#{log_header} Unhandled exception during perf data collection: [#{err}], class: [#{err.class}]")
+    _log.error("#{log_header}   Timings at time of error: #{Benchmark.current_realtime.inspect}")
+    _log.log_backtrace(err)
+    raise
   end
 
   private
 
-  def with_metrics_services(connection)
-    metrics_conn = Azure::Armrest::Insights::MetricsService.new(connection)
-    storage_conn = Azure::Armrest::StorageAccountService.new(connection)
+  def ems
+    return @ems if defined? @ems
 
-    yield metrics_conn, storage_conn
+    @ems = target.ext_management_system
   end
 
-  def storage_accounts(storage_account_service)
-    @storage_accounts ||= storage_account_service.list_all
+  with_options :allow_nil => true do
+    delegate :ems_ref,         :to => :target
+    delegate :name,            :to => :target, :prefix => true
+    delegate :provider_region, :to => :ems
   end
 
-  def perf_capture_data_azure(metrics_conn, storage_conn, start_time, end_time)
-    start_time -= 1.minute # Get one extra minute so we can build the 20-second intermediate values
+  alias resource_name target_name
 
-    counters                = get_counters(metrics_conn)
-    metrics_by_counter_name = metrics_by_counter_name(storage_conn, counters, start_time, end_time)
-    counter_values_by_ts    = counter_values_by_timestamp(metrics_by_counter_name)
+  def resource_group
+    return @resource_group if defined? @resource_group
 
-    counters_by_id              = {target.ems_ref => VIM_STYLE_COUNTERS}
-    counter_values_by_id_and_ts = {target.ems_ref => counter_values_by_ts}
-    return counters_by_id, counter_values_by_id_and_ts
+    @resource_group = target.resource_group.name
   end
 
-  def counter_values_by_timestamp(metrics_by_counter_name)
-    counter_values_by_ts = {}
-    COUNTER_INFO.each do |i|
-      timestamps = i[:native_counters].flat_map do |c|
-        metrics_by_counter_name[c]&.keys
-      end.uniq.compact.sort
+  def resource_description
+    return @resource_description if defined? @resource_description
 
-      timestamps.each_cons(2) do |last_ts, ts|
-        metrics = i[:native_counters].collect { |c| metrics_by_counter_name.fetch_path(c, ts) }
-        value = i[:calculation].call(metrics.compact)
-
-        # For (temporary) symmetry with VIM API we create 20-second intervals.
-        (last_ts + 20.seconds..ts).step_value(20.seconds).each do |inner_ts|
-          counter_values_by_ts.store_path(inner_ts.iso8601, i[:vim_style_counter_key], value)
-        end
-      end
-    end
-    counter_values_by_ts
+    @resource_description = "#{resource_name}/#{resource_group}"
   end
 
-  def metrics_by_counter_name(storage_conn, counters, start_time, end_time)
-    counters.each_with_object({}) do |c, h|
-      metrics = h[c.name.value] = {}
+  def resource_uri
+    return @resource_uri if defined? @resource_uri
 
-      raw_metrics, _timings = Benchmark.realtime_block(:capture_counter_values) do
-        raw_metrics_for_counter(storage_conn, c, start_time, end_time)
-      end
-
-      raw_metrics.each { |m| metrics[Time.parse(m._timestamp)] = m.average }
-    end
+    @resource_uri = [
+      'subscriptions',
+      ems.subscription,
+      'resourceGroups',
+      resource_group,
+      'providers',
+      'Microsoft.Compute', # resourceProviderNamespace
+      'virtualMachines',   # resourceType
+      resource_name,
+    ].join('/')
   end
 
-  def raw_metrics_for_counter(storage_conn, counter, start_time, end_time)
-    # TODO: We should really find the availabilities that
-    #       a) match the time range
-    #       b) are other sizes than 1-minute time grains
-    # TODO: This should live in the azure-armrest gem as a general method for
-    #       capturing metrics for a target.
-    availability = counter.metric_availabilities.detect { |ma| ma.time_grain == INTERVAL_1_MINUTE }
-    return [] if availability.nil?
-
-    table_name = availability.location.table_info.last.try(:table_name)
-    return [] if table_name.nil?
-
-    endpoint      = availability.location.table_endpoint
-    partition_key = availability.location.partition_key
-
-    storage_acct_name = URI.parse(endpoint).host.split('.').first
-    storage_account   = storage_accounts(storage_conn).find { |account| account.name == storage_acct_name }
-    storage_key       = storage_conn.list_account_keys(storage_account.name, storage_account.resource_group).fetch('key1')
-
-    filter = "PartitionKey eq '#{partition_key}' and CounterName eq '#{counter.name.value}' and Timestamp ge datetime'#{start_time.iso8601}' and Timestamp le datetime'#{end_time.iso8601}'"
-
-    fields = 'Timestamp,TIMESTAMP,Average'
-
-    storage_account.table_data(
-      table_name,
-      storage_key,
-      :filter => filter,
-      :select => fields,
-      :all    => true
-    )
+  def api_counters_info
+    COUNTERS_INFO[:api]
   end
 
-  def get_counters(metrics_conn)
-    ems = target.ext_management_system
+  def api_metric_names
+    METRIC_NAMES[:api]
+  end
 
-    unless ems.insights?
-      _log.info("Metrics not supported for region: " + "[#{ems.provider_region}]")
-      return []
-    end
+  def raw_counters_info
+    COUNTERS_INFO[:raw]
+  end
 
-    begin
-      counters, _timings = Benchmark.realtime_block(:capture_counters) do
-        metrics_conn
-          .list('Microsoft.Compute', 'virtualMachines', target.name, target.resource_group.name)
-          .select { |m| m.name.value.in?(COUNTER_NAMES) }
-      end
-    rescue ::Azure::Armrest::BadRequestException # Probably means region is not supported
-      msg = "Problem collecting metrics for #{target.name}/#{target.resource_group.name}. "\
-            "Region [#{ems.provider_region}] may not be supported."
-      _log.warn(msg)
-      counters = []
-    rescue ::Azure::Armrest::RequestTimeoutException # Problem on Azure side
-      _log.warn("Timeout attempting to collect metrics definitions for: #{target.name}/#{target.resource_group.name}. Skipping.")
-      counters = []
-    rescue ::Azure::Armrest::NotFoundException # VM deleted
-      _log.warn("Could not find metrics definitions for: #{target.name}/#{target.resource_group.name}. Skipping.")
-      counters = []
-    rescue Exception => err
-      _log.error("Unhandled exception during counter collection: #{target.name}/#{target.resource_group.name}")
-      _log.log_backtrace(err)
-      raise
-    end
-
-    counters
+  def raw_metric_names
+    METRIC_NAMES[:raw]
   end
 end
