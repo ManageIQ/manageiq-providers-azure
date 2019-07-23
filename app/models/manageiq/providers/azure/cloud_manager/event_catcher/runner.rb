@@ -26,7 +26,18 @@ class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Runner <
     else
       _log.info("#{log_prefix} Caught event #{parse_event_type(event)} for #{event["resourceId"]}")
       event_hash = ManageIQ::Providers::Azure::CloudManager::EventParser.event_to_hash(event, @cfg[:ems_id])
-      EmsEvent.add_queue('add', @cfg[:ems_id], event_hash)
+
+      event_filter = {
+        :event_type => event_hash[:event_type],
+        :vm_ems_ref => event_hash[:vm_ems_ref],
+        :timestamp  => DateTime.parse(event_hash[:timestamp]),
+      }
+
+      if EmsEvent.where(event_filter).exists?
+        _log.info("#{log_prefix} Skipping duplicated Azure event #{event_hash[:event_type]} for #{event["resourceId"]}")
+      else
+        EmsEvent.add_queue('add', @cfg[:ems_id], event_hash)
+      end
     end
   end
 
