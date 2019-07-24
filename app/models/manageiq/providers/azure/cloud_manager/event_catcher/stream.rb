@@ -40,7 +40,7 @@ class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Stream
   end
 
   def startup_interval
-    (Time.current - 1.minute).httpdate
+    format_timestamp(1.minute.ago)
   end
 
   def one_ms_from_last_timestamp(events)
