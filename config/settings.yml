@@ -52,11 +52,6 @@
     :get_unmanaged_disk_space: true
     # Limit of threads we spawn to speed up API queries [Graph refresh only]
     :parallel_thread_limit: 25
-    # Switches refresh to graph refresh on [Graph refresh only]
-    :inventory_object_refresh: true
-    # Switches graph targeted refresh on [massive refresh performance optimization [Graph refresh only]]
-    :allow_targeted_refresh: true
-    # A threshold for fetching all entities from the API, instead of query for 1 entity [Graph refresh only]
     :targeted_api_collection_threshold: 500
     # Not fetching resources and templates of deployments unless deployment changed [Graph refresh only]
     :enabled_deployments_caching: true
@@ -64,9 +59,6 @@
       # Strategy for saving, another allowed is batch, doing batch SQL queries [Graph refresh only]
       :saver_strategy: default
   :azure_network:
-    # Same options as in :azure, applied for a network manager
-    :inventory_object_refresh: true
-    :allow_targeted_refresh: true
     :inventory_collections:
       :saver_strategy: default
 :http_proxy:

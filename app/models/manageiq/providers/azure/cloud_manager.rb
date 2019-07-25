@@ -5,7 +5,6 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
   require_nested :Flavor
   require_nested :MetricsCapture
   require_nested :MetricsCollectorWorker
-  require_nested :RefreshParser
   require_nested :RefreshWorker
   require_nested :Refresher
   require_nested :Vm
@@ -80,6 +79,14 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
 
   def supported_catalog_types
     %w(azure)
+  end
+
+  def inventory_object_refresh?
+    true
+  end
+
+  def allow_targeted_refresh?
+    true
   end
 
   # Operations
