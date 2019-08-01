@@ -1,7 +1,7 @@
 module AzureRefresherSpecCommon
   extend ActiveSupport::Concern
 
-  ALL_GRAPH_REFRESH_SETTINGS = [
+  ALL_REFRESH_SETTINGS = [
     {
       :get_private_images       => true,
       :inventory_object_refresh => true,
@@ -18,12 +18,6 @@ module AzureRefresherSpecCommon
     }
   ].freeze
 
-  ALL_OLD_REFRESH_SETTINGS = [
-    {
-      :inventory_object_refresh => false
-    }
-  ].freeze
-
   GRAPH_REFRESH_ADDITIONAL_SETTINGS = [
     {
       :targeted_api_collection_threshold => 0,
@@ -31,8 +25,6 @@ module AzureRefresherSpecCommon
       :targeted_api_collection_threshold => 500,
     }
   ].freeze
-
-  ALL_REFRESH_SETTINGS = (AzureRefresherSpecCommon::ALL_GRAPH_REFRESH_SETTINGS + AzureRefresherSpecCommon::ALL_OLD_REFRESH_SETTINGS).freeze
 
   MODELS = %i(
     ext_management_system flavor availability_zone vm_or_template vm miq_template disk guest_device

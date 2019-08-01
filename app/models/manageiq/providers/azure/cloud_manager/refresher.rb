@@ -1,9 +1,5 @@
 module ManageIQ::Providers::Azure
   class CloudManager::Refresher < ManageIQ::Providers::BaseManager::Refresher
-    def parse_legacy_inventory(ems)
-      ManageIQ::Providers::Azure::CloudManager::RefreshParser.ems_inv_to_hashes(ems, refresher_options)
-    end
-
     def save_inventory(ems, target, _hashes)
       super
       EmsRefresh.queue_refresh(ems.network_manager) if target.kind_of?(ManageIQ::Providers::BaseManager)

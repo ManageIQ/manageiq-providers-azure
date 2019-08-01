@@ -10,7 +10,6 @@ class ManageIQ::Providers::Azure::NetworkManager < ManageIQ::Providers::NetworkM
   require_nested :LoadBalancerPoolMember
   require_nested :NetworkPort
   require_nested :NetworkRouter
-  require_nested :RefreshParser
   require_nested :RefreshWorker
   require_nested :Refresher
   require_nested :SecurityGroup
@@ -53,6 +52,14 @@ class ManageIQ::Providers::Azure::NetworkManager < ManageIQ::Providers::NetworkM
 
   def description
     ManageIQ::Providers::Azure::Regions.find_by_name(provider_region)[:description]
+  end
+
+  def inventory_object_refresh?
+    true
+  end
+
+  def allow_targeted_refresh?
+    true
   end
 
   def self.display_name(number = 1)

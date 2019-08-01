@@ -4,7 +4,7 @@ require_relative "azure_refresher_spec_common"
 describe ManageIQ::Providers::Azure::CloudManager::Refresher do
   include AzureRefresherSpecCommon
 
-  AzureRefresherSpecCommon::ALL_GRAPH_REFRESH_SETTINGS.each do |refresh_settings|
+  AzureRefresherSpecCommon::ALL_REFRESH_SETTINGS.each do |refresh_settings|
     context "with settings #{refresh_settings}" do
       AzureRefresherSpecCommon::GRAPH_REFRESH_ADDITIONAL_SETTINGS.each do |additional_settings|
         context "with additional settings #{additional_settings}" do
