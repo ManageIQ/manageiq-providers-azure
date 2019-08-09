@@ -23,7 +23,8 @@ describe ManageIQ::Providers::Azure::CloudManager::EventParser do
         :ems_id     => nil,
         :event_type => 'virtualMachines_deallocate_BeginRequest',
         :full_data  => event,
-        :vm_ems_ref => "xyz/bar/microsoft.compute/virtualmachines/another_vm"
+        :vm_ems_ref => "xyz/bar/microsoft.compute/virtualmachines/another_vm",
+        :vm_uid_ems => "xyz/bar/microsoft.compute/virtualmachines/another_vm"
       )
     end
 
@@ -38,7 +39,8 @@ describe ManageIQ::Providers::Azure::CloudManager::EventParser do
         :ems_id     => nil,
         :event_type => 'New Recommendation',
         :full_data  => event,
-        :vm_ems_ref => "xyz/foo/microsoft.compute/virtualmachines/my_vm1"
+        :vm_ems_ref => "xyz/foo/microsoft.compute/virtualmachines/my_vm1",
+        :vm_uid_ems => "xyz/foo/microsoft.compute/virtualmachines/my_vm1"
       )
     end
 
@@ -56,6 +58,7 @@ describe ManageIQ::Providers::Azure::CloudManager::EventParser do
       )
 
       expect(hash.key?(:vm_ems_ref)).to be(false)
+      expect(hash.key?(:vm_uid_ems)).to be(false)
     end
   end
 end
