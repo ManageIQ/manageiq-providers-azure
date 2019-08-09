@@ -5,7 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
-## Hammer-1
+## Hammer-10
+
+### Fixed
+- fix wrong timestamp format [(#338)](https://github.com/ManageIQ/manageiq-providers-azure/pull/338)
+
+## Hammer-1 - Released 2019-01-15
 
 ### Added
 - Add plugin display name [(#283)](https://github.com/ManageIQ/manageiq-providers-azure/pull/283)
