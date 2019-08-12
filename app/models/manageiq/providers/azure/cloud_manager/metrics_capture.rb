@@ -77,76 +77,133 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
       return
     end
 
-    end_time   = end_time   ? end_time.utc   : Time.now.utc
-    start_time = start_time ? start_time.utc : (end_time - 4.hours) # 4 hours for symmetry with VIM
+    end_time       = end_time   ? end_time.to_time.utc   : Time.now.utc
+    start_time     = start_time ? start_time.to_time.utc : (end_time - 4.hours) # 4 hours for symmetry with VIM
+    time_interval  = start_time..end_time
+    counter_values = {}
 
     # This is just for consistency, to produce a :connect benchmark
     Benchmark.realtime_block(:connect) {}
 
     ems.with_provider_connection do |connection|
-      metrics_conn = Azure::Armrest::Insights::MetricsService.new(connection)
+      base_url = connection.environment.resource_url
 
       ## Counters from the metrics api
 
-      metrics_uri = URI.join(
-        metrics_conn.configuration.environment.resource_url,
-        "#{resource_uri}/providers/microsoft.insights/metrics"
-      )
-
-      # https://docs.microsoft.com/en-us/rest/api/monitor/metrics/list#uri-parameters
-      metrics_uri.query = URI.encode_www_form(
-        'timespan'    => "#{start_time.iso8601}/#{end_time.iso8601}",
-        'interval'    => INTERVAL_1_MINUTE,
-        'metricnames' => api_metric_names.join(','),
-        'aggregation' => 'Average',
-        'api-version' => metrics_conn.api_version
-      )
+      metrics_conn = Azure::Armrest::Insights::MetricsService.new(connection)
 
       metrics, _timings = Benchmark.realtime_block(:capture_counters) do
         # azure-armrest gem needs to be modified to accept query ('list_metrics' method)
-        response = metrics_conn.send(:rest_get, metrics_uri.to_s)
+        response = metrics_conn.send(:rest_get, metrics_url(base_url, start_time, end_time).to_s)
         Azure::Armrest::ArmrestCollection.create_from_response(response, Azure::Armrest::Insights::Metric)
       end
 
+      # { metric_name => { timestamp => [value, ...], ... }, ... }
       metrics = metrics.map do |metric|
-        [metric.name.value, metric.timeseries.flat_map do |t|
+        metric_values = metric.timeseries.flat_map do |t|
           t.data.select { |d| d.respond_to?(:average) }
-        end]
-      end.to_h.freeze
+        end
+        timestamped_values = metric_values.each_with_object({}) do |metric_value, memo|
+          timestamp = parse_timestamp(metric_value.time_stamp)
+          (memo[timestamp] ||= []) << metric_value.average
+        end
+        [metric.name.value, timestamped_values]
+      end.to_h
 
-      counter_values = api_counters_info.each_with_object({}) do |counter_info, memo|
-        counter_metrics = metrics.values_at(*counter_info.metrics).compact.flatten
+      ## Counters, which are available only through legacy API and storage account (raw)
+
+      storage_conn = Azure::Armrest::StorageAccountService.new(connection)
+      storage_accounts = storage_conn.list_all
+
+      metric_definitions, _timings = Benchmark.realtime_block(:capture_counters) do
+        # azure-armrest gem needs to be modified to accept version ('list_definitions' method)
+        response = metrics_conn.send(:rest_get, definitions_url(base_url).to_s)
+        Azure::Armrest::ArmrestCollection.create_from_response(response, Azure::Armrest::Insights::MetricDefinition)
+      end
+
+      metric_definitions.each do |metric_definition|
+        metric_name = metric_definition.name.value
+        next unless METRIC_NAMES[:raw].include?(metric_name)
+
+        metric_availability = metric_definition.metric_availabilities.detect { |ma| ma.time_grain == INTERVAL_1_MINUTE }
+        next unless metric_availability
+
+        timestamped_values = metrics[metric_name] ||= {}
+
+        metric_location = metric_availability.location
+
+        storage_account_name = URI.parse(metric_location.table_endpoint).host.split('.').first
+        storage_account      = storage_accounts.find { |account| account.name == storage_account_name }
+        storage_account_keys = storage_conn.list_account_keys(storage_account.name, storage_account.resource_group)
+        storage_account_key  = storage_account_keys.fetch('key1')
+
+        filter = <<~FILTER
+          CounterName eq '#{metric_name}' AND \
+          PartitionKey eq '#{metric_location.partition_key}' AND \
+          Timestamp ge datetime'#{start_time.iso8601}' AND \
+          Timestamp le datetime'#{end_time.iso8601}'
+        FILTER
+
+        metric_location.table_info.each do |table_info|
+          t_start_time = parse_timestamp(table_info.start_time)
+          t_end_time   = parse_timestamp(table_info.end_time).end_of_day
+          next unless time_interval.overlaps?(t_start_time..t_end_time)
+
+          table_data, _timings = Benchmark.realtime_block(:capture_counters) do
+            storage_account.table_data(
+              table_info.table_name,
+              storage_account_key,
+              :filter => filter,
+              :select => 'TIMESTAMP,Average',
+              :all    => true
+            )
+          end
+
+          table_data.each do |row_data|
+            timestamp = parse_timestamp(row_data.timestamp)
+            (timestamped_values[timestamp] ||= []) << row_data.average
+          end
+        end
+      end
+
+      ## Organize data in the proper form
+
+      COUNTERS_INFO.values.flatten.each do |counter_info|
+        metric_values = metrics.values_at(*counter_info.metrics).compact
+        next if metric_values.empty?
 
         # { timestamp => [value, ...], ... }
-        timestamped_values = counter_metrics.each_with_object({}) do |metric_value, ts_memo|
-          timestamp = Time.zone.parse(metric_value.time_stamp)
-          (ts_memo[timestamp] ||= []) << metric_value.average
+        timestamped_values = Hash.new { |h, k| h[k] = [] }
+        metric_values.each do |ts_values|
+          ts_values.each do |timestamp, values|
+            timestamped_values[timestamp].concat(values)
+          end
         end
 
-        next if timestamped_values.empty?
-
         # { timestamp => value, ... }
-        timestamped_values.transform_values! { |values| counter_info.calculation.call(values) }
-        timestamped_values.sort_by! { |timestamp, _value| timestamp }
+        timestamped_values.transform_values! do |values|
+          counter_info.calculation.call(values)
+        end
 
+        timestamped_values.sort_by! { |timestamp, _value| timestamp }
         timestamped_values.keys.each_cons(2) do |ts, next_ts|
           value = timestamped_values[ts]
 
           # For (temporary) symmetry with VIM API we create 20-second intervals.
           (ts...next_ts).step_value(VIM_INTERVAL).each do |inner_ts|
-            memo.store_path(inner_ts.iso8601, counter_info.counter_key, value)
+            counter_values.store_path(inner_ts.iso8601, counter_info.counter_key, value)
           end
         end
 
         # add last minute's value
         ts, value = timestamped_values.to_a.last
-        memo.store_path(ts.iso8601, counter_info.counter_key, value)
+        counter_values.store_path(ts.iso8601, counter_info.counter_key, value)
       end
-
-      # TODO: ## Counters, which available only through legacy API or storage account (raw)
-
-      [{ ems_ref => VIM_STYLE_COUNTERS }, { ems_ref => counter_values }]
     end
+
+    counter_values.sort_by! { |timestamp, _value| timestamp }
+
+    [{ ems_ref => VIM_STYLE_COUNTERS }, { ems_ref => counter_values }]
   rescue ::Azure::Armrest::BadRequestException # Probably means region is not supported
     msg = "Problem collecting metrics for #{resource_description}. "\
           "Region [#{provider_region}] may not be supported."
@@ -166,9 +223,7 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
   private
 
   def ems
-    return @ems if defined? @ems
-
-    @ems = target.ext_management_system
+    defined?(@ems) ? @ems : @ems = target.ext_management_system
   end
 
   with_options :allow_nil => true do
@@ -180,21 +235,15 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
   alias resource_name target_name
 
   def resource_group
-    return @resource_group if defined? @resource_group
-
-    @resource_group = target.resource_group.name
+    @resource_group ||= target.resource_group.name.to_s
   end
 
   def resource_description
-    return @resource_description if defined? @resource_description
-
-    @resource_description = "#{resource_name}/#{resource_group}"
+    @resource_description ||= "#{resource_name}/#{resource_group}"
   end
 
   def resource_uri
-    return @resource_uri if defined? @resource_uri
-
-    @resource_uri = [
+    @resource_uri ||= [
       'subscriptions',
       ems.subscription,
       'resourceGroups',
@@ -206,19 +255,35 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
     ].join('/')
   end
 
-  def api_counters_info
-    COUNTERS_INFO[:api]
+  def resource_url(base_url, tail_path = nil, query = {})
+    url       = URI.join(base_url, resource_uri)
+    url.path  = [url.path, tail_path].join('/') if tail_path
+    url.query = URI.encode_www_form(query) unless query.empty?
+    url
   end
 
-  def api_metric_names
-    METRIC_NAMES[:api]
+  def metrics_url(base_url, start_time, end_time)
+    resource_url(
+      base_url,
+      'providers/microsoft.insights/metrics',
+      # https://docs.microsoft.com/en-us/rest/api/monitor/metrics/list#uri-parameters
+      'timespan'    => "#{start_time.iso8601}/#{end_time.iso8601}",
+      'interval'    => INTERVAL_1_MINUTE,
+      'metricnames' => METRIC_NAMES[:api].join(','),
+      'aggregation' => 'Average',
+      'api-version' => '2018-01-01'
+    ).freeze
   end
 
-  def raw_counters_info
-    COUNTERS_INFO[:raw]
+  def definitions_url(base_url)
+    resource_url(
+      base_url,
+      'providers/microsoft.insights/metricDefinitions',
+      'api-version' => '2015-07-01'
+    ).freeze
   end
 
-  def raw_metric_names
-    METRIC_NAMES[:raw]
+  def parse_timestamp(timestamp)
+    Time.parse(timestamp).utc
   end
 end
