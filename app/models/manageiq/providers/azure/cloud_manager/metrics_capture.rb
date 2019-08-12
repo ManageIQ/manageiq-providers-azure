@@ -86,18 +86,15 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
     Benchmark.realtime_block(:connect) {}
 
     ems.with_provider_connection do |connection|
-      # TODO: code smell - should be in a 'collector' class instantiated here / find a better solution?
-      @connection = connection
-      @start_time = start_time.iso8601
-      @end_time   = end_time.iso8601
+      base_url = connection.environment.resource_url
 
       ## Counters from the metrics api
 
-      metrics_conn = Azure::Armrest::Insights::MetricsService.new(@connection)
+      metrics_conn = Azure::Armrest::Insights::MetricsService.new(connection)
 
       metrics, _timings = Benchmark.realtime_block(:capture_counters) do
         # azure-armrest gem needs to be modified to accept query ('list_metrics' method)
-        response = metrics_conn.send(:rest_get, metrics_url.to_s)
+        response = metrics_conn.send(:rest_get, metrics_url(base_url, start_time, end_time).to_s)
         Azure::Armrest::ArmrestCollection.create_from_response(response, Azure::Armrest::Insights::Metric)
       end
 
@@ -115,12 +112,12 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
 
       ## Counters, which are available only through legacy API and storage account (raw)
 
-      storage_conn = Azure::Armrest::StorageAccountService.new(@connection)
+      storage_conn = Azure::Armrest::StorageAccountService.new(connection)
       storage_accounts = storage_conn.list_all
 
       metric_definitions, _timings = Benchmark.realtime_block(:capture_counters) do
         # azure-armrest gem needs to be modified to accept version ('list_definitions' method)
-        response = metrics_conn.send(:rest_get, definitions_url.to_s)
+        response = metrics_conn.send(:rest_get, definitions_url(base_url).to_s)
         Azure::Armrest::ArmrestCollection.create_from_response(response, Azure::Armrest::Insights::MetricDefinition)
       end
 
@@ -140,17 +137,17 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
         storage_account_keys = storage_conn.list_account_keys(storage_account.name, storage_account.resource_group)
         storage_account_key  = storage_account_keys.fetch('key1')
 
+        filter = <<~FILTER
+          CounterName eq '#{metric_name}' AND \
+          PartitionKey eq '#{metric_location.partition_key}' AND \
+          Timestamp ge datetime'#{start_time.iso8601}' AND \
+          Timestamp le datetime'#{end_time.iso8601}'
+        FILTER
+
         metric_location.table_info.each do |table_info|
           t_start_time = parse_timestamp(table_info.start_time)
           t_end_time   = parse_timestamp(table_info.end_time).end_of_day
           next unless time_interval.overlaps?(t_start_time..t_end_time)
-
-          filter = [
-            "CounterName eq '#{metric_name}'",
-            "PartitionKey eq '#{metric_location.partition_key}'",
-            "Timestamp ge datetime'#{@start_time}'",
-            "Timestamp le datetime'#{@end_time}'",
-          ].join(' and ')
 
           table_data, _timings = Benchmark.realtime_block(:capture_counters) do
             storage_account.table_data(
@@ -176,9 +173,10 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
         next if metric_values.empty?
 
         # { timestamp => [value, ...], ... }
-        timestamped_values = metric_values.each_with_object({}) do |ts_values, memo|
+        timestamped_values = Hash.new { |h, k| h[k] = [] }
+        metric_values.each do |ts_values|
           ts_values.each do |timestamp, values|
-            memo[timestamp] = (memo[timestamp] || []) + values
+            timestamped_values[timestamp].concat(values)
           end
         end
 
@@ -257,21 +255,19 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
     ].join('/')
   end
 
-  def resource_url(tail_path = nil, query = {})
-    @resource_url ||= URI.join(@connection.environment.resource_url, resource_uri).freeze
-
-    url       = @resource_url.dup
+  def resource_url(base_url, tail_path = nil, query = {})
+    url       = URI.join(base_url, resource_uri)
     url.path  = [url.path, tail_path].join('/') if tail_path
     url.query = URI.encode_www_form(query) unless query.empty?
-
     url
   end
 
-  def metrics_url
-    @metrics_url ||= resource_url(
-      # https://docs.microsoft.com/en-us/rest/api/monitor/metrics/list#uri-parameters
+  def metrics_url(base_url, start_time, end_time)
+    resource_url(
+      base_url,
       'providers/microsoft.insights/metrics',
-      'timespan'    => "#{@start_time}/#{@end_time}",
+      # https://docs.microsoft.com/en-us/rest/api/monitor/metrics/list#uri-parameters
+      'timespan'    => "#{start_time.iso8601}/#{end_time.iso8601}",
       'interval'    => INTERVAL_1_MINUTE,
       'metricnames' => METRIC_NAMES[:api].join(','),
       'aggregation' => 'Average',
@@ -279,8 +275,9 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
     ).freeze
   end
 
-  def definitions_url
-    @definitions_url ||= resource_url(
+  def definitions_url(base_url)
+    resource_url(
+      base_url,
       'providers/microsoft.insights/metricDefinitions',
       'api-version' => '2015-07-01'
     ).freeze
