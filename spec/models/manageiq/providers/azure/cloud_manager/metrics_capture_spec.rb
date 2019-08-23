@@ -24,28 +24,36 @@ describe ManageIQ::Providers::Azure::CloudManager::MetricsCapture do
 
     it "returns nothing if the insights service is not registered" do
       allow(ems).to receive(:insights?).and_return(false)
-      expect(metric.perf_collect_metrics('whatever')).to be_nil
+      counters, values = metric.perf_collect_metrics('whatever')
+      expect(counters).to eq({})
+      expect(values).to eq({})
     end
 
     it "returns nothing if the region is not supported" do
       allow(ems).to receive(:insights?).and_return(true)
       allow(armrest_service).to receive(:rest_get).and_raise(::Azure::Armrest::BadRequestException.new('x', 'y', 'z'))
       expect($log).to receive(:warn).with(/problem collecting metrics/i)
-      expect(metric.perf_collect_metrics('whatever')).to be_nil
+      counters, values = metric.perf_collect_metrics('whatever')
+      expect(counters).to eq({})
+      expect(values).to eq({})
     end
 
     it "returns nothing if a timeout occurs" do
       allow(ems).to receive(:insights?).and_return(true)
       allow(armrest_service).to receive(:rest_get).and_raise(::Azure::Armrest::RequestTimeoutException.new('x', 'y', 'z'))
       expect($log).to receive(:warn).with(/timeout attempting to collect metrics/i)
-      expect(metric.perf_collect_metrics('whatever')).to be_nil
+      counters, values = metric.perf_collect_metrics('whatever')
+      expect(counters).to eq({})
+      expect(values).to eq({})
     end
 
     it "returns nothing if the VM could not be found" do
       allow(ems).to receive(:insights?).and_return(true)
       allow(armrest_service).to receive(:rest_get).and_raise(::Azure::Armrest::NotFoundException.new('x', 'y', nil))
       expect($log).to receive(:warn).with(/could not find metrics for/i)
-      expect(metric.perf_collect_metrics('whatever')).to eql(nil)
+      counters, values = metric.perf_collect_metrics('whatever')
+      expect(counters).to eq({})
+      expect(values).to eq({})
     end
 
     it "raises an error if any other exception occurs" do
