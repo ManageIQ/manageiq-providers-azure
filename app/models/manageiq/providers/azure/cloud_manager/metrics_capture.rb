@@ -70,11 +70,13 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
   end.to_h.freeze
 
   def perf_collect_metrics(interval_name, start_time = nil, end_time = nil)
+    counters_by_mor = {}
+    counter_values_by_mor = {}
     raise 'No EMS defined' unless ems
 
     unless ems.insights?
       _log.info("Metrics not supported for region: [#{provider_region}]")
-      return
+      return counters_by_mor, counter_values_by_mor
     end
 
     end_time       = end_time   ? end_time.to_time.utc   : Time.now.utc
@@ -203,15 +205,21 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
 
     counter_values.sort_by! { |timestamp, _value| timestamp }
 
-    [{ ems_ref => VIM_STYLE_COUNTERS }, { ems_ref => counter_values }]
+    counters_by_mor[ems_ref]       = VIM_STYLE_COUNTERS
+    counter_values_by_mor[ems_ref] = counter_values
+
+    return counters_by_mor, counter_values_by_mor
   rescue ::Azure::Armrest::BadRequestException # Probably means region is not supported
     msg = "Problem collecting metrics for #{resource_description}. "\
           "Region [#{provider_region}] may not be supported."
     _log.warn(msg)
+    return counters_by_mor, counter_values_by_mor
   rescue ::Azure::Armrest::RequestTimeoutException # Problem on Azure side
     _log.warn("Timeout attempting to collect metrics for: #{resource_description}. Skipping.")
+    return counters_by_mor, counter_values_by_mor
   rescue ::Azure::Armrest::NotFoundException # VM deleted
     _log.warn("Could not find metrics for: #{resource_description}. Skipping.")
+    return counters_by_mor, counter_values_by_mor
   rescue Exception => err
     log_header = "[#{interval_name}] for: [#{target.class.name}], [#{target.id}], [#{target.name}]"
     _log.error("#{log_header} Unhandled exception during perf data collection: [#{err}], class: [#{err.class}]")
