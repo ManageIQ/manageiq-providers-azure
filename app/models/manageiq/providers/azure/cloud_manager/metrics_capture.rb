@@ -140,9 +140,9 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
         storage_account_key  = storage_account_keys.fetch('key1')
 
         filter = <<~FILTER
-          CounterName eq '#{metric_name}' AND \
-          PartitionKey eq '#{metric_location.partition_key}' AND \
-          Timestamp ge datetime'#{start_time.iso8601}' AND \
+          CounterName eq '#{metric_name}' and \
+          PartitionKey eq '#{metric_location.partition_key}' and \
+          Timestamp ge datetime'#{start_time.iso8601}' and \
           Timestamp le datetime'#{end_time.iso8601}'
         FILTER
 
