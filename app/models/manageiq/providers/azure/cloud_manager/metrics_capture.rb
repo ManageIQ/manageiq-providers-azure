@@ -199,7 +199,7 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
 
         # add last minute's value
         ts, value = timestamped_values.to_a.last
-        counter_values.store_path(ts.iso8601, counter_info.counter_key, value)
+        counter_values.store_path(ts.iso8601, counter_info.counter_key, value) if ts
       end
     end
 
