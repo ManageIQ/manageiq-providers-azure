@@ -140,9 +140,9 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
         storage_account_key  = storage_account_keys.fetch('key1')
 
         filter = <<~FILTER
-          CounterName eq '#{metric_name}' AND \
-          PartitionKey eq '#{metric_location.partition_key}' AND \
-          Timestamp ge datetime'#{start_time.iso8601}' AND \
+          CounterName eq '#{metric_name}' and \
+          PartitionKey eq '#{metric_location.partition_key}' and \
+          Timestamp ge datetime'#{start_time.iso8601}' and \
           Timestamp le datetime'#{end_time.iso8601}'
         FILTER
 
@@ -209,8 +209,8 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
     counter_values_by_mor[ems_ref] = counter_values
 
     return counters_by_mor, counter_values_by_mor
-  rescue ::Azure::Armrest::BadRequestException # Probably means region is not supported
-    msg = "Problem collecting metrics for #{resource_description}. "\
+  rescue ::Azure::Armrest::BadRequestException => err # Probably means region is not supported
+    msg = "Problem collecting metrics for #{resource_description}: #{err}. "\
           "Region [#{provider_region}] may not be supported."
     _log.warn(msg)
     return counters_by_mor, counter_values_by_mor
