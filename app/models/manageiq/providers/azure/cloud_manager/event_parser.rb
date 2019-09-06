@@ -14,7 +14,8 @@ module ManageIQ::Providers::Azure::CloudManager::EventParser
       :message    => event["description"].presence,
       :ems_id     => ems_id,
       :event_type => event_type,
-      :full_data  => event
+      :full_data  => event,
+      :ems_ref    => event["eventId"]
     }
 
     resource_type = event["resourceType"]["value"].to_s.downcase

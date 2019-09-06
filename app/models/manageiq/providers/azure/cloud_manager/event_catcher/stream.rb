@@ -2,8 +2,9 @@ class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Stream
   #
   # Creates an event monitor
   #
-  def initialize(ems)
+  def initialize(ems, runner)
     @ems = ems
+    @worker = runner.worker
     @collecting_events = false
     @since = nil
   end
@@ -29,13 +30,14 @@ class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Stream
   def get_events
     # Grab only events for the last minute if this is the first poll
     filter = @since ? "eventTimestamp ge #{@since}" : "eventTimestamp ge #{startup_interval}"
-    fields = 'authorization,description,eventName,eventTimestamp,resourceGroupName,resourceProviderName,resourceId,resourceType'
+    fields = 'authorization,correlationId,description,eventId,eventName,eventTimestamp,resourceGroupName,resourceProviderName,resourceId,resourceType,submissionTimestamp'
     events = connection.list(:filter => filter, :select => fields, :all => true).sort_by(&:event_timestamp)
 
     # HACK: the Azure Insights API does not support the 'gt' (greater than relational operator)
     # therefore we have to poll from 1 millisecond past the timestamp of the last event to avoid
     # gathering the same event more than once.
-    @since = one_ms_from_last_timestamp(events) unless events.empty?
+    #@since = one_ms_from_last_timestamp(events) unless events.empty?
+    @since = @worker.last_heartbeat
     events
   end
 
