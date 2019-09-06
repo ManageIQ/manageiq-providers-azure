@@ -37,7 +37,7 @@ class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Stream
     # therefore we have to poll from 1 millisecond past the timestamp of the last event to avoid
     # gathering the same event more than once.
     #@since = one_ms_from_last_timestamp(events) unless events.empty?
-    @since = @worker.last_heartbeat
+    @since = @worker.last_heartbeat unless events.empty?
     events
   end
 
