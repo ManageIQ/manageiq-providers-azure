@@ -86,7 +86,7 @@ describe ManageIQ::Providers::Azure::CloudManager::MetricsCapture do
 
       expect(counters_by_id).to have_key("my_ems_ref")
       expect(counters_by_id["my_ems_ref"]).to have_key("cpu_usage_rate_average")
-      expect(counters_by_id["my_ems_ref"]).to have_key("mem_usage_rate_average")
+      expect(counters_by_id["my_ems_ref"]).to have_key("mem_usage_absolute_average")
       expect(counters_by_id["my_ems_ref"]).to have_key("disk_usage_rate_average")
       expect(counters_by_id["my_ems_ref"]).to have_key("net_usage_rate_average")
     end

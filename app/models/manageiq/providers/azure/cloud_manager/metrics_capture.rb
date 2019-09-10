@@ -20,7 +20,7 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
     },
     ## Memory
     {
-      :counter_key => 'mem_usage_rate_average',
+      :counter_key => 'mem_usage_absolute_average', # TODO: should be 'mem_usage_rate_average',
       :source      => :raw,
       :metrics     => [
         '/builtin/memory/percentusedmemory', # linux
