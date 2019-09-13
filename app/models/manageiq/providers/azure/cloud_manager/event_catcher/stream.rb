@@ -2,9 +2,8 @@ class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Stream
   #
   # Creates an event monitor
   #
-  def initialize(ems, runner)
+  def initialize(ems)
     @ems = ems
-    @worker = runner.worker
     @collecting_events = false
     @since = nil
   end
@@ -36,13 +35,12 @@ class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Stream
     # HACK: the Azure Insights API does not support the 'gt' (greater than relational operator)
     # therefore we have to poll from 1 millisecond past the timestamp of the last event to avoid
     # gathering the same event more than once.
-    #@since = one_ms_from_last_timestamp(events) unless events.empty?
-    @since = format_timestamp(@worker.last_heartbeat.to_s) unless events.empty?
+    @since = one_ms_from_last_timestamp(events) unless events.empty?
     events
   end
 
   def startup_interval
-    format_timestamp(1.minute.ago)
+    format_timestamp(2.minutes.ago)
   end
 
   def one_ms_from_last_timestamp(events)

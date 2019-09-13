@@ -33,7 +33,7 @@ class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Runner <
   private
 
   def event_monitor_handle
-    @event_monitor_handle ||= ManageIQ::Providers::Azure::CloudManager::EventCatcher::Stream.new(@ems, self)
+    @event_monitor_handle ||= ManageIQ::Providers::Azure::CloudManager::EventCatcher::Stream.new(@ems)
   end
 
   def reset_event_monitor_handle
