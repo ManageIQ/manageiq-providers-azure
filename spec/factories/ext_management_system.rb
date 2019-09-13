@@ -17,8 +17,8 @@ FactoryBot.define do
       }
 
       ems.authentications << FactoryBot.create(:authentication, cred)
-      ems.update_attributes(:azure_tenant_id => tenant_id)
-      ems.update_attributes(:subscription => subscription_id)
+      ems.update(:azure_tenant_id => tenant_id)
+      ems.update(:subscription => subscription_id)
     end
   end
 end
