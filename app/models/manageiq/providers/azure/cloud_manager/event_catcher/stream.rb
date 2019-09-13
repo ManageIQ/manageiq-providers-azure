@@ -42,8 +42,8 @@ class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Stream
     events = connection.list(:filter => filter, :select => fields, :all => true)
 
     if events.present?
-      duplicates = EventStream.select(:ems_ref).where(:source => 'AZURE', :ems_ref => events.map(&:event_data_id)).map(&:ems_ref)
-      events = events.reject{ |e| duplicates.include?(e.ems_ref) } if duplicates.present?
+      existing_records = EventStream.select(:ems_ref).where(:source => 'AZURE', :ems_ref => events.map(&:event_data_id)).map(&:ems_ref)
+      events = events.reject{ |e| existing_records.include?(e.event_data_id) } if existing_records.present?
     end
 
     events
