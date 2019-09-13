@@ -223,8 +223,8 @@ describe ManageIQ::Providers::Azure::CloudManager do
         :userid   => @client_id,
         :password => @client_key,
       }
-      ems.update_attributes(:azure_tenant_id => @tenant_id)
-      ems.update_attributes(:subscription => @subscription)
+      ems.update(:azure_tenant_id => @tenant_id)
+      ems.update(:subscription => @subscription)
       ems.authentications << FactoryBot.create(:authentication, cred)
     end
 
