@@ -29,7 +29,7 @@ class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Stream
   def get_events
     # Grab only events for the last minute if this is the first poll
     filter = @since ? "eventTimestamp ge #{@since}" : "eventTimestamp ge #{startup_interval}"
-    fields = 'authorization,correlationId,description,eventDataId,eventName,eventTimestamp,resourceGroupName,resourceProviderName,resourceId,resourceType,submissionTimestamp'
+    fields = 'authorization,description,eventDataId,eventName,eventTimestamp,resourceGroupName,resourceProviderName,resourceId,resourceType'
     events = connection.list(:filter => filter, :select => fields, :all => true).sort_by(&:event_timestamp)
 
     # HACK: the Azure Insights API does not support the 'gt' (greater than relational operator)
@@ -39,6 +39,9 @@ class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Stream
     events
   end
 
+  # When the appliance first starts, or is restarted, start looking for events
+  # from a fixed, recent point in the past.
+  #
   def startup_interval
     format_timestamp(2.minutes.ago)
   end
@@ -52,14 +55,21 @@ class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Stream
     Time.zone.parse(events.last.event_timestamp).to_f + 0.001
   end
 
+  # Given a Time object, return a string suitable for the Azure REST API query.
+  #
   def format_timestamp(time)
     time.strftime('%Y-%m-%dT%H:%M:%S.%L')
   end
 
+  # A cached connection to the event service, which is used to query for events.
+  #
   def connection
     @connection ||= create_event_service
   end
 
+  # Create an event service object using the provider connection credentials.
+  # This will be used by the +connection+ method to query for events.
+  #
   def create_event_service
     @ems.with_provider_connection do |conf|
       Azure::Armrest::Insights::EventService.new(conf)
