@@ -57,11 +57,21 @@ class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Stream
   end
 
   # Retrieve the most recent Azure event minus 2 minutes, or the startup interval
-  # if no records are found.
+  # if no records are found. Go back a maximum of 1 hour if the newest record
+  # is older than that.
   #
   def most_recent_time
     result = EventStream.select(:timestamp).where(:source => 'AZURE').order('timestamp desc').limit(1).first
-    result ? format_timestamp(result.timestamp - 2.minutes) : startup_interval
+
+    if result
+      if result.timestamp < 1.hour.ago
+        format_timestamp(1.hour.ago)
+      else
+        format_timestamp(result.timestamp - 2.minutes)
+      end
+    else
+      startup_interval
+    end
   end
 
   # Given a Time object, return a string suitable for the Azure REST API query.
