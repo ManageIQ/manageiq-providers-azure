@@ -26,16 +26,26 @@ class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Stream
 
   private
 
+  # Get a list of events that have happened since the most recent event time.
+  #
+  # Because Azure event timestamps are not necessarily stamped in order, an
+  # issue occurs where we could accidentally skip over events that happen
+  # in quick succession. We must therefore begin our query a couple minutes
+  # back from our most recent timestamp, and filter out any duplicates.
+  #
+  # See https://bugzilla.redhat.com/show_bug.cgi?id=1724312 for details.
+  #
   def get_events
-    # Grab only events for the last minute if this is the first poll
-    filter = @since ? "eventTimestamp ge #{@since}" : "eventTimestamp ge #{startup_interval}"
+    filter = "eventTimestamp ge #{most_recent_time}"
     fields = 'authorization,description,eventDataId,eventName,eventTimestamp,resourceGroupName,resourceProviderName,resourceId,resourceType'
-    events = connection.list(:filter => filter, :select => fields, :all => true).sort_by(&:event_timestamp)
 
-    # HACK: the Azure Insights API does not support the 'gt' (greater than relational operator)
-    # therefore we have to poll from 1 millisecond past the timestamp of the last event to avoid
-    # gathering the same event more than once.
-    @since = one_ms_from_last_timestamp(events) unless events.empty?
+    events = connection.list(:filter => filter, :select => fields, :all => true)
+
+    if events.present?
+      duplicates = EventStream.select(:ems_ref).where(:source => 'AZURE', :ems_ref => events.map(&:ems_ref)).map(&:ems_ref)
+      events = events.reject{ |e| duplicates.include?(e.ems_ref) } if duplicates.present?
+    end
+
     events
   end
 
@@ -46,13 +56,12 @@ class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Stream
     format_timestamp(2.minutes.ago)
   end
 
-  def one_ms_from_last_timestamp(events)
-    time = Time.at(one_ms_from_last_timestamp_as_f(events)).utc
-    format_timestamp(time)
-  end
-
-  def one_ms_from_last_timestamp_as_f(events)
-    Time.zone.parse(events.last.event_timestamp).to_f + 0.001
+  # Retrieve the most recent Azure event minus 2 minutes, or the startup interval
+  # if no records are found.
+  #
+  def most_recent_time
+    result = EventStream.select(:timestamp).where(:source => 'AZURE').order('timestamp desc').limit(1).first
+    result ? format_timestamp(result.timestamp - 2.minutes) : startup_interval
   end
 
   # Given a Time object, return a string suitable for the Azure REST API query.
