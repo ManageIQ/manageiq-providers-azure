@@ -37,7 +37,7 @@ class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Stream
   #
   def get_events
     filter = "eventTimestamp ge #{most_recent_time}"
-    fields = 'authorization,description,eventDataId,eventName,eventTimestamp,resourceGroupName,resourceProviderName,resourceId,resourceType'
+    fields = 'authorization,description,eventDataId,eventName,eventTimestamp,operationName,resourceGroupName,resourceProviderName,resourceId,resourceType'
 
     events = connection.list(:filter => filter, :select => fields, :all => true)
 
@@ -58,7 +58,7 @@ class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Stream
 
   # Retrieve the most recent Azure event minus 2 minutes, or the startup interval
   # if no records are found. Go back a maximum of 1 hour if the newest record
-  # is older than that.
+  # is older than that to avoid hitting the account's request limits.
   #
   def most_recent_time
     result = EventStream.select(:timestamp).where(:source => 'AZURE').order('timestamp desc').limit(1).first
