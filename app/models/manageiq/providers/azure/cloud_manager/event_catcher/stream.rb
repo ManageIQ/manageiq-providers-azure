@@ -37,7 +37,7 @@ class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Stream
   #
   def get_events
     filter = "eventTimestamp ge #{most_recent_time}"
-    fields = 'authorization,description,eventDataId,eventName,eventTimestamp,operationName,resourceGroupName,resourceProviderName,resourceId,resourceType'
+    fields = 'authorization,correlationId,description,eventDataId,eventName,eventTimestamp,operationName,resourceGroupName,resourceProviderName,resourceId,resourceType'
 
     events = connection.list(:filter => filter, :select => fields, :all => true)
 
