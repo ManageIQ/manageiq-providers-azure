@@ -57,8 +57,11 @@ class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Stream
   end
 
   # Retrieve the most recent Azure event minus 2 minutes, or the startup interval
-  # if no records are found. Go back a maximum of 1 hour if the newest record
-  # is older than that to avoid hitting the account's request limits.
+  # if no records are found.
+  #
+  # Go back a maximum of 1 hour if the newest record is older than that to avoid
+  # hitting the account's request limits. This should only happen in practice if
+  # the appliance has been down for a while and was restarted.
   #
   def most_recent_time
     result = EventStream.select(:timestamp).where(:source => 'AZURE').order('timestamp desc').limit(1).first
