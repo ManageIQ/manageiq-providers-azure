@@ -1,6 +1,5 @@
 class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Stream
-  #
-  # Creates an event monitor
+  # Creates an event monitor. Used internally by the Runner.
   #
   def initialize(ems)
     @ems = ems
@@ -8,16 +7,22 @@ class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Stream
     @since = nil
   end
 
-  # Start capturing events
+  # Sets a boolean used by the +each_batch+ method that indicates
+  # that events should start/keep being captured.
+  #
   def start
     @collecting_events = true
   end
 
-  # Stop capturing events
+  # Sets a boolean used by the +each_batch+ method that indicates
+  # that events should stop being captured.
+  #
   def stop
     @collecting_events = false
   end
 
+  # Used internally by the Runner#monitor_events method.
+  #
   def each_batch
     while @collecting_events
       yield get_events.collect { |e| JSON.parse(e) }
