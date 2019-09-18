@@ -11,7 +11,7 @@ class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Stream
     resourceProviderName
     resourceId
     resourceType
-  ].join(',')
+  ].join(',').freeze
 
   # Creates an event monitor. Used internally by the Runner.
   #
@@ -39,7 +39,7 @@ class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Stream
   #
   def each_batch
     while @collecting_events
-      yield get_events.collect { |e| e.to_hash }
+      yield get_events.collect(&:to_hash)
     end
   end
 
