@@ -5,7 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
-## Ivanchuk-1
+## Sprint 120 - Unreleased as of 2019-09-16
+
+### Fixed
+- Fix azure memory metrics, wrong key was being used [(#351)](https://github.com/ManageIQ/manageiq-providers-azure/pull/351)
+
+## Ivanchuk-1 - Released 2019-09-18
 
 ### Fixed
 - fix wrong timestamp format [(#338)](https://github.com/ManageIQ/manageiq-providers-azure/pull/338)
