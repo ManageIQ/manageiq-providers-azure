@@ -82,13 +82,13 @@ class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Stream
   # the appliance has been down for a while and was restarted.
   #
   def most_recent_time
-    result = EventStream.select(:timestamp).where(:source => 'AZURE').order('timestamp desc').limit(1).first
+    result = EventStream.where(source: 'AZURE').maximum(:timestamp)
 
     if result
-      if result.timestamp < 1.hour.ago
+      if result < 1.hour.ago
         format_timestamp(1.hour.ago)
       else
-        format_timestamp(result.timestamp - 2.minutes)
+        format_timestamp(result - 2.minutes)
       end
     else
       startup_interval
