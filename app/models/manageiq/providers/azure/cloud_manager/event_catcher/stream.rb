@@ -1,4 +1,18 @@
 class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Stream
+  SELECT_FIELDS = %w[
+    authorization
+    correlationId
+    description
+    eventDataId
+    eventName
+    eventTimestamp
+    operationName
+    resourceGroupName
+    resourceProviderName
+    resourceId
+    resourceType
+  ].join(',')
+
   # Creates an event monitor. Used internally by the Runner.
   #
   def initialize(ems)
@@ -25,7 +39,7 @@ class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Stream
   #
   def each_batch
     while @collecting_events
-      yield get_events.collect { |e| JSON.parse(e) }
+      yield get_events.collect { |e| e.to_hash }
     end
   end
 
@@ -42,9 +56,8 @@ class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Stream
   #
   def get_events
     filter = "eventTimestamp ge #{most_recent_time}"
-    fields = 'authorization,correlationId,description,eventDataId,eventName,eventTimestamp,operationName,resourceGroupName,resourceProviderName,resourceId,resourceType'
 
-    events = connection.list(:filter => filter, :select => fields, :all => true)
+    events = connection.list(:filter => filter, :select => SELECT_FIELDS, :all => true)
 
     if events.present?
       existing_records = EventStream.select(:ems_ref).where(:source => 'AZURE', :ems_ref => events.map(&:event_data_id)).map(&:ems_ref)
