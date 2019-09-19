@@ -9,7 +9,7 @@ module ManageIQ::Providers::Azure::CloudManager::EventParser
   # Note that we do not set the chain_id (i.e. group ID) because of a type
   # mismatch between Azure, which returns a GUID, and our schema, which is
   # set to bigint. For now it is not strictly necessary, and can be obtained
-  # from the full_data column if necessary.
+  # from the full_data column if necessary via the correlationId value.
   #
   def self.event_to_hash(event, ems_id)
     log_header = "ems_id: [#{ems_id}] " unless ems_id.nil?
