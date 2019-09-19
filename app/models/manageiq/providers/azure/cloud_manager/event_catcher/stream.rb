@@ -56,15 +56,7 @@ class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Stream
   #
   def get_events
     filter = "eventTimestamp ge #{most_recent_time}"
-
-    events = connection.list(:filter => filter, :select => SELECT_FIELDS, :all => true)
-
-    if events.present?
-      existing_records = EventStream.select(:ems_ref).where(:source => 'AZURE', :ems_ref => events.map(&:event_data_id)).map(&:ems_ref)
-      events = events.reject{ |e| existing_records.include?(e.event_data_id) } if existing_records.present?
-    end
-
-    events
+    connection.list(:filter => filter, :select => SELECT_FIELDS, :all => true)
   end
 
   # When the appliance first starts, or is restarted, start looking for events
