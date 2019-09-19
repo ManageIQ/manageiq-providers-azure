@@ -22,7 +22,7 @@ module ManageIQ::Providers::Azure::CloudManager::EventParser
     event_hash = {
       :source     => "AZURE",
       :timestamp  => Time.parse(event["eventTimestamp"]).iso8601(6),
-      :message    => event["description"].presence || event["operationName"]["localizedValue"].presence,
+      :message    => event["description"].presence || event.dig("operationName", "localizedValue").presence,
       :ems_id     => ems_id,
       :event_type => event_type,
       :full_data  => event,
