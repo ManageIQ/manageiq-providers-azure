@@ -1,4 +1,6 @@
 class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Stream
+  EVENT_TIMESTAMP_BUFFER = 2.minutes
+
   SELECT_FIELDS = %w[
     authorization
     correlationId
@@ -14,6 +16,7 @@ class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Stream
   ].join(',').freeze
 
   attr_reader :ems
+  attr_accessor :since
 
   # Creates an event monitor. Used internally by the Runner.
   #
@@ -59,7 +62,9 @@ class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Stream
   #
   def get_events
     filter = "eventTimestamp ge #{most_recent_time}"
-    connection.list(:filter => filter, :select => SELECT_FIELDS, :all => true)
+    events = connection.list(:filter => filter, :select => SELECT_FIELDS, :all => true)
+    since  = events.max_by(&:event_timestamp)
+    events
   end
 
   # When the appliance first starts, or is restarted, start looking for events
@@ -69,22 +74,12 @@ class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Stream
     format_timestamp(2.minutes.ago)
   end
 
-  # Retrieve the most recent Azure event minus 2 minutes, or the startup interval
-  # if no records are found.
-  #
-  # Go back a maximum of 1 hour if the newest record is older than that to avoid
-  # hitting the account's request limits. This should only happen in practice if
-  # the appliance has been down for a while and was restarted.
+  # Retrieve the most recent Azure event minus the timestamp buffer, or the
+  # startup interval if no records are found.
   #
   def most_recent_time
-    result = EventStream.where(:source => 'AZURE', :ems_id => ems.id).maximum(:timestamp)
-
-    if result
-      if result < 1.hour.ago
-        format_timestamp(1.hour.ago)
-      else
-        format_timestamp(result - 2.minutes)
-      end
+    if since
+      format_timestamp(since - EVENT_TIMESTAMP_BUFFER)
     else
       startup_interval
     end
