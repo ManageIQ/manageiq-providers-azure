@@ -16,9 +16,9 @@ module ManageIQ::Providers::Azure::CloudManager::EventParser
     event_type = parse_event_type(event)
     _log.debug("#{log_header}event: [#{event_type}]")
 
-    # The timestamp must be truncated to 6 digit precision or a comparison
-    # that happens within the EmsEvent model will fail, and duplicate events
-    # could appear in the table.
+    # The timestamp must be truncated to 6 digit precision or an existence check
+    # that happens within the EmsEvent.create_event method will fail, and
+    # duplicate events could appear in the table.
     event_hash = {
       :source     => "AZURE",
       :timestamp  => Time.parse(event["eventTimestamp"]).iso8601(6),
