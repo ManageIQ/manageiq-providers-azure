@@ -18,9 +18,10 @@ describe ManageIQ::Providers::Azure::CloudManager::EventParser do
 
       expect(hash).to include(
         :source     => 'AZURE',
-        :timestamp  => '2017-11-21T19:47:07.5023866Z',
+        :timestamp  => '2017-11-21T19:47:07.502386Z',
         :message    => nil,
         :ems_id     => nil,
+        :ems_ref    => nil,
         :event_type => 'virtualMachines_deallocate_BeginRequest',
         :full_data  => event,
         :vm_ems_ref => "xyz/bar/microsoft.compute/virtualmachines/another_vm",
@@ -34,9 +35,10 @@ describe ManageIQ::Providers::Azure::CloudManager::EventParser do
 
       expect(hash).to include(
         :source     => 'AZURE',
-        :timestamp  => '2017-11-21T19:44:42.5032036Z',
+        :timestamp  => '2017-11-21T19:44:42.503203Z',
         :message    => nil,
         :ems_id     => nil,
+        :ems_ref    => nil,
         :event_type => 'New Recommendation',
         :full_data  => event,
         :vm_ems_ref => "xyz/foo/microsoft.compute/virtualmachines/my_vm1",
@@ -50,9 +52,10 @@ describe ManageIQ::Providers::Azure::CloudManager::EventParser do
 
       expect(hash).to include(
         :source     => 'AZURE',
-        :timestamp  => '2017-11-20T08:24:46.8082029Z',
+        :timestamp  => '2017-11-20T08:24:46.808202Z',
         :message    => nil,
         :ems_id     => nil,
+        :ems_ref    => nil,
         :event_type => 'storageAccounts_listKeys_BeginRequest',
         :full_data  => event,
       )
