@@ -67,21 +67,14 @@ class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Stream
     events
   end
 
-  # When the appliance first starts, or is restarted, start looking for events
-  # from a fixed, recent point in the past.
-  #
-  def startup_interval
-    format_timestamp(2.minutes.ago)
-  end
-
   # Retrieve the most recent Azure event minus the timestamp buffer, or the
-  # startup interval if no records are found.
+  # startup interval (2 minutes) if no records are found.
   #
   def most_recent_time
     if since
       format_timestamp(since - EVENT_TIMESTAMP_BUFFER)
     else
-      startup_interval
+      format_timestamp(2.minutes.ago)
     end
   end
 
