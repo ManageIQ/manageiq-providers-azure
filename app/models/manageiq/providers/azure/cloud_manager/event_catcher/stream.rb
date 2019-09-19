@@ -13,12 +13,15 @@ class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Stream
     resourceType
   ].join(',').freeze
 
+  attr_reader :ems
+
   # Creates an event monitor. Used internally by the Runner.
   #
   def initialize(ems)
     @ems = ems
     @collecting_events = false
     @since = nil
+    @connection = nil
   end
 
   # Sets a boolean used by the +each_batch+ method that indicates
@@ -74,7 +77,7 @@ class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Stream
   # the appliance has been down for a while and was restarted.
   #
   def most_recent_time
-    result = EventStream.where(source: 'AZURE').maximum(:timestamp)
+    result = EventStream.where(:source => 'AZURE', :ems_id => ems.id).maximum(:timestamp)
 
     if result
       if result < 1.hour.ago
@@ -103,7 +106,7 @@ class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Stream
   # This will be used by the +connection+ method to query for events.
   #
   def create_event_service
-    @ems.with_provider_connection do |conf|
+    ems.with_provider_connection do |conf|
       Azure::Armrest::Insights::EventService.new(conf)
     end
   end
