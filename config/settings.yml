@@ -73,7 +73,7 @@
   :worker_base:
     :event_catcher:
       :event_catcher_azure:
-        :poll: 30.seconds
+        :poll: 15.seconds
     :queue_worker_base:
       :ems_metrics_collector_worker:
         :ems_metrics_collector_worker_azure: {}
