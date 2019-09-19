@@ -63,7 +63,7 @@ class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Stream
   def get_events
     filter = "eventTimestamp ge #{most_recent_time}"
     events = connection.list(:filter => filter, :select => SELECT_FIELDS, :all => true)
-    self.since = events.max_by(&:event_timestamp)
+    self.since = events.max_by(&:event_timestamp)&.event_timestamp
     events
   end
 
