@@ -1,67 +1,100 @@
 class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Stream
-  #
-  # Creates an event monitor
+  EVENT_TIMESTAMP_BUFFER = 2.minutes
+
+  SELECT_FIELDS = %w[
+    authorization
+    correlationId
+    description
+    eventDataId
+    eventName
+    eventTimestamp
+    operationName
+    resourceGroupName
+    resourceProviderName
+    resourceId
+    resourceType
+  ].join(',').freeze
+
+  attr_reader :ems
+  attr_accessor :since
+
+  # Creates an event monitor. Used internally by the Runner.
   #
   def initialize(ems)
     @ems = ems
     @collecting_events = false
     @since = nil
+    @connection = nil
   end
 
-  # Start capturing events
+  # Sets a boolean used by the +each_batch+ method that indicates
+  # that events should start/keep being captured.
+  #
   def start
     @collecting_events = true
   end
 
-  # Stop capturing events
+  # Sets a boolean used by the +each_batch+ method that indicates
+  # that events should stop being captured.
+  #
   def stop
     @collecting_events = false
   end
 
+  # Used internally by the Runner#monitor_events method.
+  #
   def each_batch
     while @collecting_events
-      yield get_events.collect { |e| JSON.parse(e) }
+      yield get_events.collect(&:to_hash)
     end
   end
 
   private
 
+  # Get a list of events that have happened since the most recent event time.
+  #
+  # Because Azure event timestamps are not necessarily stamped in order, an
+  # issue occurs where we could accidentally skip over events that happen
+  # in quick succession. We must therefore begin our query a couple minutes
+  # back from our most recent timestamp, and filter out any duplicates.
+  #
+  # See https://bugzilla.redhat.com/show_bug.cgi?id=1724312 for details.
+  #
   def get_events
-    # Grab only events for the last minute if this is the first poll
-    filter = @since ? "eventTimestamp ge #{@since}" : "eventTimestamp ge #{startup_interval}"
-    fields = 'authorization,description,eventName,eventTimestamp,resourceGroupName,resourceProviderName,resourceId,resourceType'
-    events = connection.list(:filter => filter, :select => fields, :all => true).sort_by(&:event_timestamp)
-
-    # HACK: the Azure Insights API does not support the 'gt' (greater than relational operator)
-    # therefore we have to poll from 1 millisecond past the timestamp of the last event to avoid
-    # gathering the same event more than once.
-    @since = one_ms_from_last_timestamp(events) unless events.empty?
+    filter = "eventTimestamp ge #{most_recent_time}"
+    events = connection.list(:filter => filter, :select => SELECT_FIELDS, :all => true)
+    self.since = events.max_by(&:event_timestamp)&.event_timestamp
     events
   end
 
-  def startup_interval
-    format_timestamp(1.minute.ago)
+  # Retrieve the most recent Azure event minus the timestamp buffer, or the
+  # startup interval (2 minutes) if no records are found.
+  #
+  def most_recent_time
+    if since
+      format_timestamp(since - EVENT_TIMESTAMP_BUFFER)
+    else
+      format_timestamp(2.minutes.ago)
+    end
   end
 
-  def one_ms_from_last_timestamp(events)
-    time = Time.at(one_ms_from_last_timestamp_as_f(events)).utc
-    format_timestamp(time)
-  end
-
-  def one_ms_from_last_timestamp_as_f(events)
-    Time.zone.parse(events.last.event_timestamp).to_f + 0.001
-  end
-
+  # Given a Time object, return a string suitable for the Azure REST API query.
+  #
   def format_timestamp(time)
     time.strftime('%Y-%m-%dT%H:%M:%S.%L')
   end
 
+  # A cached connection to the event service, which is used to query for events.
+  #
   def connection
     @connection ||= create_event_service
   end
 
+  # Create an event service object using the provider connection credentials.
+  # This will be used by the +connection+ method to query for events.
+  #
   def create_event_service
-    @ems.with_provider_connection do |conf|
+    ems.with_provider_connection do |conf|
       Azure::Armrest::Insights::EventService.new(conf)
     end
   end
