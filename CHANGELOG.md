@@ -5,7 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
-## Sprint 120 - Unreleased as of 2019-09-16
+## Unreleased as of Sprint 121 - 2019-09-30
+
+### Fixed
+- Fix event timestamps for Azure [(#350)](https://github.com/ManageIQ/manageiq-providers-azure/pull/350)
+
+## Unreleased as of Sprint 120 - 2019-09-16
 
 ### Fixed
 - Fix azure memory metrics, wrong key was being used [(#351)](https://github.com/ManageIQ/manageiq-providers-azure/pull/351)
