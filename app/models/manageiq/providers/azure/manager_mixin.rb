@@ -15,6 +15,82 @@ module ManageIQ::Providers::Azure::ManagerMixin
   end
 
   module ClassMethods
+    def params_for_create
+      @params_for_create ||= {
+        :title  => "Configure #{description}",
+        :fields => [
+          {
+            :component  => "text-field",
+            :name       => "region",
+            :label      => "Region",
+            :isRequired => true,
+            :validate   => [{:type => "required-validator"}]
+          },
+          {
+            :component  => "text-field",
+            :name       => "endpoints.default.client_id",
+            :label      => "Client ID",
+            :isRequired => true,
+            :validate   => [{:type => "required-validator"}]
+          },
+          {
+            :component  => "text-field",
+            :name       => "endpoints.default.client_key",
+            :label      => "Client Key",
+            :type       => "password",
+            :isRequired => true,
+            :validate   => [{:type => "required-validator"}]
+          },
+          {
+            :component  => "text-field",
+            :name       => "endpoints.default.azure_tenant_id",
+            :label      => "Azure Tenant ID",
+            :isRequired => true,
+            :validate   => [{:type => "required-validator"}]
+          },
+          {
+            :component  => "text-field",
+            :name       => "endpoints.default.subscription",
+            :label      => "Subscription",
+            :isRequired => true,
+            :validate   => [{:type => "required-validator"}]
+          },
+          {
+            :component  => "text-field",
+            :name       => "endpoints.default.endpoint_url",
+            :label      => "URL",
+            :isRequired => true,
+            :validate   => [{:type => "required-validator"}]
+          }
+        ]
+      }.freeze
+    end
+
+    # Verify Credentials
+    # args:
+    # {
+    #   "region" => "",
+    #   "endpoints" => {
+    #     "default" => {
+    #       "client_id"       => "",
+    #       "client_key"      => "",
+    #       "azure_tenant_id" => "",
+    #       "subscription"    => "",
+    #       "endpoint_url"    => ""
+    #     }
+    #   }
+    # }
+    def verify_credentials(args)
+      region           = args["region"]
+      default_endpoint = args.dig("endpoints", "default")
+
+      client_id, client_key, azure_tenant_id, subscription, endpoint_url = default_endpoint&.values_at(
+        "client_id", "client_key", "azure_tenant_id", "subscription", "endpoint_url"
+      )
+
+      !!raw_connect(client_id, client_key, azure_tenant_id, subscription, http_proxy_uri, region, endpoint_url)
+    end
+
     def raw_connect(client_id, client_key, azure_tenant_id, subscription, proxy_uri = nil, provider_region = nil, endpoint = nil)
       require 'azure-armrest'
 
