@@ -10,6 +10,13 @@ module ManageIQ::Providers::Azure::CloudManager::VmOrTemplateShared::Scanning
     end
   end
 
+  #
+  # Adjustment Multiplier is 4 (i.e. 4 times the specified timeout)
+  #
+  def self.scan_timeout_adjustment_multiplier
+    4
+  end
+
   def perform_metadata_scan(ost)
     require 'MiqVm/miq_azure_vm'
 
