@@ -91,43 +91,6 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
 
   # Operations
 
-  def vm_start(vm, _options = {})
-    vm.start
-  rescue StandardError => err
-    _log.error("vm=[#{vm.name}], error: #{err}")
-  end
-
-  def vm_stop(vm, _options = {})
-    vm.stop
-  rescue StandardError => err
-    _log.error("vm=[#{vm.name}], error: #{err}")
-  end
-
-  def vm_suspend(vm, _options = {})
-    vm.suspend
-  rescue StandardError => err
-    _log.error("vm=[#{vm.name}], error: #{err}")
-  end
-
-  def vm_destroy(vm, _options = {})
-    vm.vm_destroy
-  rescue StandardError => err
-    _log.error("vm=[#{vm.name}], error: #{err}")
-  end
-
-  def vm_restart(vm, _options = {})
-    # TODO: switch to vm.restart
-    vm.raw_restart
-  rescue StandardError => err
-    _log.error("vm=[#{vm.name}], error: #{err}")
-  end
-
-  def vm_reboot_guest(vm, _options = {})
-    vm.reboot_guest
-  rescue StandardError => err
-    _log.error("vm=[#{vm.name}], error: #{err}")
-  end
-
   def vm_create_evm_snapshot(vm, options = {})
     @connection = connect(options)
     vm.provider_service(@connection)
