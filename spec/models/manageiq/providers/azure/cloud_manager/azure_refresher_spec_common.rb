@@ -463,7 +463,6 @@ module AzureRefresherSpecCommon
     expect(vm).to have_attributes(
       :template              => false,
       :ems_ref               => vm_resource_id,
-      :ems_ref_obj           => nil,
       :uid_ems               => vm_resource_id,
       :vendor                => 'azure',
       :power_state           => 'on',
@@ -628,7 +627,6 @@ module AzureRefresherSpecCommon
     expect(vm).to have_attributes(
       :template              => false,
       :ems_ref               => vm_resource_id,
-      :ems_ref_obj           => nil,
       :uid_ems               => vm_resource_id,
       :vendor                => 'azure',
       :power_state           => 'off',
@@ -690,7 +688,6 @@ module AzureRefresherSpecCommon
     expect(template).to have_attributes(
       :template              => true,
       :ems_ref               => template_ems_ref,
-      :ems_ref_obj           => nil,
       :uid_ems               => template_ems_ref,
       :vendor                => 'azure',
       :power_state           => 'never',
