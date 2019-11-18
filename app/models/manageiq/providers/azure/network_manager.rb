@@ -1,7 +1,6 @@
 class ManageIQ::Providers::Azure::NetworkManager < ManageIQ::Providers::NetworkManager
   require_nested :CloudNetwork
   require_nested :CloudSubnet
-  require_nested :EventCatcher
   require_nested :FloatingIp
   require_nested :LoadBalancer
   require_nested :LoadBalancerHealthCheck
