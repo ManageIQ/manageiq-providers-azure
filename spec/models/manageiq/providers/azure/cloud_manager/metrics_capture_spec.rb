@@ -12,7 +12,7 @@ describe ManageIQ::Providers::Azure::CloudManager::MetricsCapture do
   end
 
   context "handles errors" do
-    let(:metric) { described_class.new(self) }
+    let(:metric) { described_class.new(self, ems) }
 
     before do
       allow(self).to receive(:ext_management_system).and_return(ems)
