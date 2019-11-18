@@ -10,7 +10,6 @@ class ManageIQ::Providers::Azure::NetworkManager < ManageIQ::Providers::NetworkM
   require_nested :LoadBalancerPoolMember
   require_nested :NetworkPort
   require_nested :NetworkRouter
-  require_nested :RefreshWorker
   require_nested :Refresher
   require_nested :SecurityGroup
 
