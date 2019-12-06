@@ -10,6 +10,11 @@ module ManageIQ::Providers::Azure::CloudManager::VmOrTemplateShared::Scanning
     end
   end
 
+  def scan_job_class
+    ManageIQ::Providers::Azure::CloudManager::Scanning::Job
+  end
+
+
   #
   # Adjustment Multiplier is 4 (i.e. 4 times the specified timeout)
   #
