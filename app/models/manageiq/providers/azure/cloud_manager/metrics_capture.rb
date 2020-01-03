@@ -2,7 +2,7 @@
 
 ## https://docs.microsoft.com/en-us/azure/azure-monitor/platform/metrics-supported#microsoftcomputevirtualmachines
 
-class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Providers::BaseManager::MetricsCapture
+class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Providers::CloudManager::MetricsCapture
   INTERVAL_1_MINUTE = 'PT1M'
   VIM_INTERVAL = 20.seconds.freeze
   private_constant(*%i[INTERVAL_1_MINUTE VIM_INTERVAL])
