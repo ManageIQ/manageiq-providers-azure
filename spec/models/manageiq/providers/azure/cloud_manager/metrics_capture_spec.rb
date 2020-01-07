@@ -11,6 +11,12 @@ describe ManageIQ::Providers::Azure::CloudManager::MetricsCapture do
     allow(ems).to receive(:with_provider_connection).and_yield(armrest_service)
   end
 
+  context "#perf_capture_object" do
+    it "returns the correct class" do
+      expect(vm.perf_capture_object.class).to eq(described_class)
+    end
+  end
+
   context "handles errors" do
     let(:metric) { described_class.new(self, ems) }
 
