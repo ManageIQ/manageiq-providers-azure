@@ -34,8 +34,8 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
       :counter_key => 'disk_usage_rate_average', # TODO: should be 'disk_usage_absolute_average',
       :source      => :api,
       :metrics     => [
-        'Per Disk Read Bytes/sec',
-        'Per Disk Write Bytes/sec',
+        'Disk Read Bytes',
+        'Disk Write Bytes',
       ].freeze,
       :calculation => ->(stats) { stats.sum / 1.kilobyte },
       :unit_key    => 'kilobytespersecond',
