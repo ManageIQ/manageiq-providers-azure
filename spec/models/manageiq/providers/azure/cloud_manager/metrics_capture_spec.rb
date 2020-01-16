@@ -137,9 +137,8 @@ describe ManageIQ::Providers::Azure::CloudManager::MetricsCapture do
       expect(metrics_by_id_and_ts).to eq(expected_metrics)
     end
 
-    it "parses and aggregates read and write on disk" do
-      counters = stage_counter_data(['Per Disk Read Bytes/sec',
-                                     'Per Disk Write Bytes/sec'])
+    it "parses and aggregates read and write on disk", :disk do
+      counters = stage_counter_data(['Disk Read Bytes', 'Disk Write Bytes'])
 
       metric_data = [
         build_metric_data(982_252_000, "2016-07-23T07:20:00.5580968Z"),
