@@ -17,52 +17,70 @@ module ManageIQ::Providers::Azure::ManagerMixin
   module ClassMethods
     def params_for_create
       @params_for_create ||= {
-        :title  => "Configure #{description}",
         :fields => [
           {
-            :component  => "text-field",
-            :name       => "region",
-            :label      => "Region",
+            :component  => "select-field",
+            :name       => "provider_region",
+            :label      => _("Region"),
             :isRequired => true,
-            :validate   => [{:type => "required-validator"}]
+            :validate   => [{:type => "required-validator"}],
+            :options    => ManageIQ::Providers::Azure::Regions.all.sort_by { |r| r[:description] }.map do |region|
+              {
+                :label => region[:description],
+                :value => region[:name]
+              }
+            end
           },
           {
-            :component  => "text-field",
-            :name       => "endpoints.default.client_id",
-            :label      => "Client ID",
-            :isRequired => true,
-            :validate   => [{:type => "required-validator"}]
+            :component => 'sub-form',
+            :name      => 'endpoints',
+            :title     => _("Endpoint"),
+            :fields    => [
+              {
+                :component              => 'validate-provider-credentials',
+                :name                   => 'endpoints.default.valid',
+                :validationDependencies => %w[zone_name provider_region],
+                :fields                 => [
+                  {
+                    :component  => "text-field",
+                    :name       => "endpoints.default.azure_tenant_id",
+                    :label      => _("Tenant ID"),
+                    :isRequired => true,
+                    :validate   => [{:type => "required-validator"}],
+                  },
+                  {
+                    :component  => "text-field",
+                    :name       => "endpoints.default.subscription",
+                    :label      => _("Subscription ID"),
+                    :isRequired => true,
+                    :validate   => [{:type => "required-validator"}],
+                  },
+                  {
+                    :component => "text-field",
+                    :name      => "endpoints.default.endpoint_url",
+                    :label     => _("Endpoint URL"),
+                  },
+                  {
+                    :component  => "text-field",
+                    :name       => "endpoints.default.client_id",
+                    :label      => _("Client ID"),
+                    :helperText => _("Should have privileged access, such as root or administrator."),
+                    :isRequired => true,
+                    :validate   => [{:type => "required-validator"}]
+                  },
+                  {
+                    :component  => "text-field",
+                    :name       => "endpoints.default.client_key",
+                    :label      => _("Client Key"),
+                    :type       => "password",
+                    :isRequired => true,
+                    :validate   => [{:type => "required-validator"}]
+                  },
+                ],
+              },
+            ],
           },
-          {
-            :component  => "text-field",
-            :name       => "endpoints.default.client_key",
-            :label      => "Client Key",
-            :type       => "password",
-            :isRequired => true,
-            :validate   => [{:type => "required-validator"}]
-          },
-          {
-            :component  => "text-field",
-            :name       => "endpoints.default.azure_tenant_id",
-            :label      => "Azure Tenant ID",
-            :isRequired => true,
-            :validate   => [{:type => "required-validator"}]
-          },
-          {
-            :component  => "text-field",
-            :name       => "endpoints.default.subscription",
-            :label      => "Subscription",
-            :isRequired => true,
-            :validate   => [{:type => "required-validator"}]
-          },
-          {
-            :component  => "text-field",
-            :name       => "endpoints.default.endpoint_url",
-            :label      => "URL",
-            :isRequired => true,
-            :validate   => [{:type => "required-validator"}]
-          }
-        ]
+        ],
       }.freeze
     end
 
