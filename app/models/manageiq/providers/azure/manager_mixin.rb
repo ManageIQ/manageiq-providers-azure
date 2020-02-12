@@ -39,7 +39,7 @@ module ManageIQ::Providers::Azure::ManagerMixin
               {
                 :component              => 'validate-provider-credentials',
                 :name                   => 'endpoints.default.valid',
-                :validationDependencies => %w[zone_name provider_region],
+                :validationDependencies => %w[type zone_name provider_region],
                 :fields                 => [
                   {
                     :component  => "text-field",
