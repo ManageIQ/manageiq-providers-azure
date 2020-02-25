@@ -14,6 +14,20 @@ module ManageIQ::Providers::Azure::ManagerMixin
     connect(options)
   end
 
+  def edit_with_params(params)
+    default_endpoint = params.delete("endpoints").dig("default")
+    default_authentication = params.delete("authentications").dig("default")
+
+    tap do |ems|
+      ems.default_authentication.assign_attributes(default_authentication)
+      ems.default_endpoint.assign_attributes(default_endpoint)
+
+      ems.assign_attributes(params)
+
+      ems.save!
+    end
+  end
+
   module ClassMethods
     def params_for_create
       @params_for_create ||= {
@@ -32,45 +46,45 @@ module ManageIQ::Providers::Azure::ManagerMixin
             end
           },
           {
+            :component  => "text-field",
+            :name       => "uid_ems",
+            :label      => _("Tenant ID"),
+            :isRequired => true,
+            :validate   => [{:type => "required-validator"}],
+          },
+          {
+            :component  => "text-field",
+            :name       => "subscription",
+            :label      => _("Subscription ID"),
+            :isRequired => true,
+            :validate   => [{:type => "required-validator"}],
+          },
+          {
             :component => 'sub-form',
             :name      => 'endpoints',
             :title     => _("Endpoint"),
             :fields    => [
               {
                 :component              => 'validate-provider-credentials',
-                :name                   => 'endpoints.default.valid',
-                :validationDependencies => %w[type zone_name provider_region],
+                :name                   => 'authentications.default.valid',
+                :validationDependencies => %w[type zone_name provider_region subscription uid_ems],
                 :fields                 => [
                   {
-                    :component  => "text-field",
-                    :name       => "endpoints.default.azure_tenant_id",
-                    :label      => _("Tenant ID"),
-                    :isRequired => true,
-                    :validate   => [{:type => "required-validator"}],
-                  },
-                  {
-                    :component  => "text-field",
-                    :name       => "endpoints.default.subscription",
-                    :label      => _("Subscription ID"),
-                    :isRequired => true,
-                    :validate   => [{:type => "required-validator"}],
-                  },
-                  {
                     :component => "text-field",
-                    :name      => "endpoints.default.endpoint_url",
+                    :name      => "endpoints.default.url",
                     :label     => _("Endpoint URL"),
                   },
                   {
                     :component  => "text-field",
-                    :name       => "endpoints.default.client_id",
+                    :name       => "authentications.default.userid",
                     :label      => _("Client ID"),
                     :helperText => _("Should have privileged access, such as root or administrator."),
                     :isRequired => true,
                     :validate   => [{:type => "required-validator"}]
                   },
                   {
-                    :component  => "text-field",
-                    :name       => "endpoints.default.client_key",
+                    :component  => "password-field",
+                    :name       => "authentications.default.password",
                     :label      => _("Client Key"),
                     :type       => "password",
                     :isRequired => true,
@@ -84,27 +98,50 @@ module ManageIQ::Providers::Azure::ManagerMixin
       }.freeze
     end
 
+    def create_from_params(params)
+      endpoints = params.delete("endpoints") || {'default' => {}} # Fall back to an empty default endpoint
+      authentications = params.delete("authentications")
+
+      params[:zone] = Zone.find_by(:name => params.delete("zone_name"))
+      new(params).tap do |ems|
+        endpoints.each do |authtype, endpoint|
+          ems.endpoints.new(endpoint.merge(:role => authtype))
+        end
+
+        authentications.each do |authtype, authentication|
+          ems.authentications.new(authentication.merge(:authtype => authtype))
+        end
+
+        ems.save!
+      end
+    end
+
     # Verify Credentials
     # args:
     # {
-    #   "region" => "",
-    #   "endpoints" => {
+    #   "uid_ems"      => "",
+    #   "subscription" => "",
+    #   "region"       => "",
+    #   "endpoints"    => {
     #     "default" => {
-    #       "client_id"       => "",
-    #       "client_key"      => "",
-    #       "azure_tenant_id" => "",
-    #       "subscription"    => "",
-    #       "endpoint_url"    => ""
+    #       "userid"   => "",
+    #       "password" => "",
+    #       "url"      => ""
     #     }
     #   }
     # }
     def verify_credentials(args)
       region           = args["region"]
-      default_endpoint = args.dig("endpoints", "default")
+      subscription     = args["subscription"]
+      azure_tenant_id  = args["uid_ems"]
+      default_endpoint = args.dig("authentications", "default")
+      endpoint_url = args.dig("endpoints", "default", "url")
 
-      client_id, client_key, azure_tenant_id, subscription, endpoint_url = default_endpoint&.values_at(
-        "client_id", "client_key", "azure_tenant_id", "subscription", "endpoint_url"
-      )
+      client_id, client_key = default_endpoint&.values_at("userid", "password")
+
+      client_key = MiqPassword.try_decrypt(client_key)
+      # Pull out the password from the database if a provider ID is available
+      client_key ||= find(args["id"]).authentication_password('default')
 
       !!raw_connect(client_id, client_key, azure_tenant_id, subscription, http_proxy_uri, region, endpoint_url)
     end
