@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
+## Ivanchuk-2
+
+### Fixed
+- Rename memory metric as it was before [(#351)](https://github.com/ManageIQ/manageiq-providers-azure/pull/351)
+- Fix event timestamps for Azure [(#350)](https://github.com/ManageIQ/manageiq-providers-azure/pull/350)
+- Test ruby 2.5.5 [(#362)](https://github.com/ManageIQ/manageiq-providers-azure/pull/362)
 
 ## Ivanchuk-1
 
