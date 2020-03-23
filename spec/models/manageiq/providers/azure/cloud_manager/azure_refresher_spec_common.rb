@@ -158,7 +158,7 @@ module AzureRefresherSpecCommon
       :guest_device                      => 0,
       :hardware                          => 10,
       :load_balancer                     => 2,
-      :load_balancer_pool                => 2,
+      :load_balancer_pool                => 1,
       :load_balancer_pool_member         => 2,
       :load_balancer_pool_member_pool    => 2,
       :load_balancer_listener            => 1,
