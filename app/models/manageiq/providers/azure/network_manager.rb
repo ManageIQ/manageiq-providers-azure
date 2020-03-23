@@ -52,10 +52,6 @@ class ManageIQ::Providers::Azure::NetworkManager < ManageIQ::Providers::NetworkM
     ManageIQ::Providers::Azure::Regions.find_by_name(provider_region)[:description]
   end
 
-  def inventory_object_refresh?
-    true
-  end
-
   def allow_targeted_refresh?
     true
   end
