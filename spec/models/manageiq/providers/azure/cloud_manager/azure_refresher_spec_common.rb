@@ -53,6 +53,7 @@ module AzureRefresherSpecCommon
     @ems.reload
 
     name = described_class.name.underscore
+    name += '_inventory_object'
 
     # Must decode compressed response for subscription id.
     VCR.use_cassette(name, :allow_unused_http_interactions => true, :decode_compressed_response => true) do
@@ -157,7 +158,7 @@ module AzureRefresherSpecCommon
       :guest_device                      => 0,
       :hardware                          => 10,
       :load_balancer                     => 2,
-      :load_balancer_pool                => 2,
+      :load_balancer_pool                => 1,
       :load_balancer_pool_member         => 2,
       :load_balancer_pool_member_pool    => 2,
       :load_balancer_listener            => 1,
