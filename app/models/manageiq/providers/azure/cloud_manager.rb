@@ -81,6 +81,10 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
     %w(azure)
   end
 
+  def inventory_object_refresh?
+    true
+  end
+
   def allow_targeted_refresh?
     true
   end

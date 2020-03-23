@@ -3,12 +3,14 @@ module AzureRefresherSpecCommon
 
   ALL_REFRESH_SETTINGS = [
     {
+      :inventory_object_refresh => true,
       :get_private_images       => true,
       :inventory_collections    => {
         :saver_strategy => "default",
       },
     }, {
       :get_private_images       => true,
+      :inventory_object_refresh => true,
       :inventory_collections    => {
         :saver_strategy => "batch",
         :use_ar_object  => false,
@@ -53,6 +55,8 @@ module AzureRefresherSpecCommon
     @ems.reload
 
     name = described_class.name.underscore
+    # We need different VCR for GraphRefresh
+    name += '_inventory_object' if refresh_settings[:inventory_object_refresh]
 
     # Must decode compressed response for subscription id.
     VCR.use_cassette(name, :allow_unused_http_interactions => true, :decode_compressed_response => true) do
@@ -157,7 +161,7 @@ module AzureRefresherSpecCommon
       :guest_device                      => 0,
       :hardware                          => 10,
       :load_balancer                     => 2,
-      :load_balancer_pool                => 2,
+      :load_balancer_pool                => @refresh_settings[:inventory_object_refresh] ? 1 : 2,
       :load_balancer_pool_member         => 2,
       :load_balancer_pool_member_pool    => 2,
       :load_balancer_listener            => 1,
