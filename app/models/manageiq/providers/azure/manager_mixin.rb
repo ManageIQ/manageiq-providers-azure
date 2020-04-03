@@ -67,7 +67,7 @@ module ManageIQ::Providers::Azure::ManagerMixin
               {
                 :component              => 'validate-provider-credentials',
                 :name                   => 'authentications.default.valid',
-                :validationDependencies => %w[type zone_name provider_region subscription uid_ems],
+                :validationDependencies => %w[type zone_id provider_region subscription uid_ems],
                 :fields                 => [
                   {
                     :component => "text-field",
@@ -102,7 +102,6 @@ module ManageIQ::Providers::Azure::ManagerMixin
       endpoints = params.delete("endpoints") || {'default' => {}} # Fall back to an empty default endpoint
       authentications = params.delete("authentications")
 
-      params[:zone] = Zone.find_by(:name => params.delete("zone_name"))
       new(params).tap do |ems|
         endpoints.each do |authtype, endpoint|
           ems.endpoints.new(endpoint.merge(:role => authtype))
