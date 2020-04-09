@@ -77,8 +77,8 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
     ManageIQ::Providers::Azure::Regions.find_by_name(provider_region)[:description]
   end
 
-  def supported_catalog_types
-    %w(azure)
+  def self.catalog_types
+    {"azure" => N_("Azure")}
   end
 
   def inventory_object_refresh?
