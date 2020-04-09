@@ -358,11 +358,11 @@ describe ManageIQ::Providers::Azure::CloudManager do
     end
   end
 
-  context 'catalog types' do
+  describe "#catalog types" do
     let(:ems) { FactoryBot.create(:ems_azure) }
 
-    it "#supported_catalog_types" do
-      expect(ems.supported_catalog_types).to eq(%w(azure))
+    it "#catalog_types" do
+      expect(ems.catalog_types).to include("azure")
     end
   end
 end
