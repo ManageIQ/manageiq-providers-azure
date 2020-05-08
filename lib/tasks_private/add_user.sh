@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# This script adds a user to the Azure dev environment using their Redhat
+# This script adds a user to the Azure dev environment using their company
 # userid. By default, it will create a resource group in the east US region
 # with the same name as the userid, scope the user to that resource group,
 # and the credentials will be good for two years.
@@ -17,7 +17,7 @@ region="${2:-eastus}"
 subscription_id="${3:-$AZURE_SUBSCRIPTION_ID}"
 
 if [ -z "$username" ]; then
-  echo "You must specify a username argument. This should match the user's Redhat userid."
+  echo "You must specify a username argument. This should match the user's company userid."
   exit
 fi
 
