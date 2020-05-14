@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# This script adds a user to the Azure dev environment using their company
-# userid. By default, it will create a resource group in the east US region
-# with the same name as the userid, scope the user to that resource group,
+# This script adds a user to the Azure dev environment using their userid.
+# By default, it will create a resource group in the east US region with
+# the same name as the userid, scope the user to that resource group,
 # and the credentials will be good for two years.
 
 # The password will only be displayed once, so be sure to save it somewhere.
@@ -17,13 +17,13 @@ region="${2:-eastus}"
 subscription_id="${3:-$AZURE_SUBSCRIPTION_ID}"
 
 if [ -z "$username" ]; then
-  echo "You must specify a username argument. This should match the user's company userid."
+  echo "You must specify a username argument. This should match the user's ID."
   exit
 fi
 
 # Explicitly set the subscription ID.
 if [ -z "$subscription_id" ]; then
-  echo "Unable to continue. Please specify the subscription ID, or set env variable."
+  echo "Unable to continue. Please specify the subscription ID, or set the AZURE_SUBSCRIPTION_ID env variable."
   exit
 else
   echo "Setting account using subscription ${subscription_id}"
