@@ -2,6 +2,12 @@ module ManageIQ::Providers::Azure::CloudManager::Vm::Operations
   extend ActiveSupport::Concern
   include_concern 'Power'
 
+  included do
+    supports :terminate do
+      unsupported_reason_add(:terminate, unsupported_reason(:control)) unless supports_control?
+    end
+  end
+
   def raw_destroy
     unless ext_management_system
       raise _("VM has no %{table}, unable to destroy VM") % {:table => ui_lookup(:table => "ext_management_systems")}
