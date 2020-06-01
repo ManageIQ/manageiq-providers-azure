@@ -12,6 +12,7 @@ class ManageIQ::Providers::Azure::NetworkManager < ManageIQ::Providers::NetworkM
   require_nested :Refresher
   require_nested :SecurityGroup
 
+  include BelongsToParentManagerMixin
   include ManageIQ::Providers::Azure::ManagerMixin
 
   has_many :floating_ips, :foreign_key => :ems_id, :dependent => :destroy,
