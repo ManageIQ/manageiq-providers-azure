@@ -78,7 +78,7 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
       next if (status = collector.power_status(instance)).blank?
 
       persister_instance = persister.vms.build(
-        :uid_ems             => uid,
+        :uid_ems             => instance.properties.vm_id,
         :ems_ref             => uid,
         :name                => instance.name,
         :vendor              => "azure",
