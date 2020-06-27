@@ -10,8 +10,8 @@ class ManageIQ::Providers::Azure::CloudManager::EventCatcher::Runner <
 
   def monitor_events
     event_monitor_handle.start
+    event_monitor_running
     event_monitor_handle.each_batch do |events|
-      event_monitor_running
       _log.debug("#{log_prefix} Received events #{events.collect { |e| parse_event_type(e) }}")
       @queue.enq(events)
       sleep_poll_normal
