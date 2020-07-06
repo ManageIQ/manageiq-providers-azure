@@ -58,7 +58,6 @@ module AzureRefresherSpecCommon
     # Must decode compressed response for subscription id.
     VCR.use_cassette(name, :allow_unused_http_interactions => true, :decode_compressed_response => true) do
       EmsRefresh.refresh(@ems)
-      EmsRefresh.refresh(@ems.network_manager)
     end
 
     ::Azure::Armrest::Configuration.clear_caches

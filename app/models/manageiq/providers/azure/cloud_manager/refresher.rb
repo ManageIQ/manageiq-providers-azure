@@ -1,10 +1,5 @@
 module ManageIQ::Providers::Azure
   class CloudManager::Refresher < ManageIQ::Providers::BaseManager::Refresher
-    def save_inventory(ems, target, _hashes)
-      super
-      EmsRefresh.queue_refresh(ems.network_manager) if target.kind_of?(ManageIQ::Providers::BaseManager)
-    end
-
     def preprocess_targets
       # sort the EMSes to be refreshed with cloud managers before other EMSes.
       # since @targets_by_ems_id is a hash, we have to insert the items into a new
