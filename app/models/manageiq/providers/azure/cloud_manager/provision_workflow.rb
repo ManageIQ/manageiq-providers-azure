@@ -15,6 +15,19 @@ class ManageIQ::Providers::Azure::CloudManager::ProvisionWorkflow < ManageIQ::Pr
     resource_groups.each_with_object({}) { |rg, hash| hash[rg.id] = rg.name }
   end
 
+  def allowed_cloud_networks(_options = {})
+    source = load_ar_obj(get_source_vm)
+    ems = source.try(:ext_management_system)
+
+    if ems.present?
+      ems.cloud_networks.select{ |cn| cn.cloud_subnets.size > 0 }.each_with_object({}) do |cn, hash|
+        hash[cn.id] = "#{cn.name} (#{cn.cidr})"
+      end
+    else
+      {}
+    end
+  end
+
   def allowed_cloud_subnets(_options = {})
     src = resources_for_ui
     if (cn = CloudNetwork.find_by(:id => src[:cloud_network_id]))
