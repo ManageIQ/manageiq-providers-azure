@@ -20,7 +20,7 @@ class ManageIQ::Providers::Azure::CloudManager::ProvisionWorkflow < ManageIQ::Pr
     ems = source.try(:ext_management_system)
 
     if ems.present?
-      ems.cloud_networks.select{ |cn| cn.cloud_subnets.size > 0 }.each_with_object({}) do |cn, hash|
+      ems.cloud_networks.distinct.joins(:cloud_subnets).where.not(:cloud_subnets => {:id => nil}).each_with_object({}) do |cn, hash|
         hash[cn.id] = "#{cn.name} (#{cn.cidr})"
       end
     else
