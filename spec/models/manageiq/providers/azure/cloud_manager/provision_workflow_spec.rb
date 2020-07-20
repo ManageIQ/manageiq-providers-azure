@@ -186,8 +186,14 @@ describe ManageIQ::Providers::Azure::CloudManager::ProvisionWorkflow do
       end
 
       it "#allowed_cloud_networks without availability zone returns everything" do
+        FactoryBot.create(:cloud_subnet, :cloud_network => @cn2)
         cns = workflow.allowed_cloud_networks
         expect(cns.keys).to match_array [@cn1.id, @cn2.id]
+      end
+
+      it "#allowed_cloud_networks without subnet" do
+        cns = workflow.allowed_cloud_networks
+        expect(cns.keys).to match_array [@cn1.id]
       end
     end
   end
