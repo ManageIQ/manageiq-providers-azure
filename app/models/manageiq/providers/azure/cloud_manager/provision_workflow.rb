@@ -15,12 +15,14 @@ class ManageIQ::Providers::Azure::CloudManager::ProvisionWorkflow < ManageIQ::Pr
     resource_groups.each_with_object({}) { |rg, hash| hash[rg.id] = rg.name }
   end
 
+  # In addition to restricting cloud networks by availability zone, we also
+  # restrict cloud networks to those that have at least one subnet.
+  #
   def allowed_cloud_networks(_options = {})
-    source = load_ar_obj(get_source_vm)
-    ems = source.try(:ext_management_system)
+    subset = CloudNetwork.where(:id => super.keys)
 
-    if ems.present?
-      ems.cloud_networks.distinct.joins(:cloud_subnets).where.not(:cloud_subnets => {:id => nil}).each_with_object({}) do |cn, hash|
+    if subset.present?
+      subset.distinct.joins(:cloud_subnets).where.not(:cloud_subnets => {:id => nil}).each_with_object({}) do |cn, hash|
         hash[cn.id] = "#{cn.name} (#{cn.cidr})"
       end
     else
