@@ -19,11 +19,11 @@ module ManageIQ::Providers::Azure::ManagerMixin
       @params_for_create ||= {
         :fields => [
           {
-            :component  => "select-field",
+            :component  => "select",
             :name       => "provider_region",
             :label      => _("Region"),
             :isRequired => true,
-            :validate   => [{:type => "required-validator"}],
+            :validate   => [{:type => "required"}],
             :options    => ManageIQ::Providers::Azure::Regions.all.sort_by { |r| r[:description] }.map do |region|
               {
                 :label => region[:description],
@@ -36,14 +36,14 @@ module ManageIQ::Providers::Azure::ManagerMixin
             :name       => "uid_ems",
             :label      => _("Tenant ID"),
             :isRequired => true,
-            :validate   => [{:type => "required-validator"}],
+            :validate   => [{:type => "required"}],
           },
           {
             :component  => "text-field",
             :name       => "subscription",
             :label      => _("Subscription ID"),
             :isRequired => true,
-            :validate   => [{:type => "required-validator"}],
+            :validate   => [{:type => "required"}],
           },
           {
             :component => 'sub-form',
@@ -67,7 +67,7 @@ module ManageIQ::Providers::Azure::ManagerMixin
                     :label      => _("Client ID"),
                     :helperText => _("Should have privileged access, such as root or administrator."),
                     :isRequired => true,
-                    :validate   => [{:type => "required-validator"}]
+                    :validate   => [{:type => "required"}]
                   },
                   {
                     :component  => "password-field",
@@ -75,7 +75,7 @@ module ManageIQ::Providers::Azure::ManagerMixin
                     :label      => _("Client Key"),
                     :type       => "password",
                     :isRequired => true,
-                    :validate   => [{:type => "required-validator"}]
+                    :validate   => [{:type => "required"}]
                   },
                 ],
               },
