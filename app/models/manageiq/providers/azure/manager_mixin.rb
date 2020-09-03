@@ -20,6 +20,7 @@ module ManageIQ::Providers::Azure::ManagerMixin
         :fields => [
           {
             :component  => "select",
+            :id         => "provider_region",
             :name       => "provider_region",
             :label      => _("Region"),
             :isRequired => true,
@@ -33,6 +34,7 @@ module ManageIQ::Providers::Azure::ManagerMixin
           },
           {
             :component  => "text-field",
+            :id         => "uid_ems",
             :name       => "uid_ems",
             :label      => _("Tenant ID"),
             :isRequired => true,
@@ -40,6 +42,7 @@ module ManageIQ::Providers::Azure::ManagerMixin
           },
           {
             :component  => "text-field",
+            :id         => "subscription",
             :name       => "subscription",
             :label      => _("Subscription ID"),
             :isRequired => true,
@@ -47,22 +50,26 @@ module ManageIQ::Providers::Azure::ManagerMixin
           },
           {
             :component => 'sub-form',
+            :id        => 'endpoints-subform',
             :name      => 'endpoints-subform',
             :title     => _("Endpoint"),
             :fields    => [
               {
                 :component              => 'validate-provider-credentials',
+                :id                     => 'authentications.default.valid',
                 :name                   => 'authentications.default.valid',
                 :skipSubmit             => true,
                 :validationDependencies => %w[type zone_id provider_region subscription uid_ems],
                 :fields                 => [
                   {
                     :component => "text-field",
+                    :id        => "endpoints.default.url",
                     :name      => "endpoints.default.url",
                     :label     => _("Endpoint URL"),
                   },
                   {
                     :component  => "text-field",
+                    :id         => "authentications.default.userid",
                     :name       => "authentications.default.userid",
                     :label      => _("Client ID"),
                     :helperText => _("Should have privileged access, such as root or administrator."),
@@ -71,6 +78,7 @@ module ManageIQ::Providers::Azure::ManagerMixin
                   },
                   {
                     :component  => "password-field",
+                    :id         => "authentications.default.password",
                     :name       => "authentications.default.password",
                     :label      => _("Client Key"),
                     :type       => "password",
