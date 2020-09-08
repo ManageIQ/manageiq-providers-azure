@@ -19,11 +19,12 @@ module ManageIQ::Providers::Azure::ManagerMixin
       @params_for_create ||= {
         :fields => [
           {
-            :component  => "select-field",
+            :component  => "select",
+            :id         => "provider_region",
             :name       => "provider_region",
             :label      => _("Region"),
             :isRequired => true,
-            :validate   => [{:type => "required-validator"}],
+            :validate   => [{:type => "required"}],
             :options    => ManageIQ::Providers::Azure::Regions.all.sort_by { |r| r[:description] }.map do |region|
               {
                 :label => region[:description],
@@ -33,49 +34,56 @@ module ManageIQ::Providers::Azure::ManagerMixin
           },
           {
             :component  => "text-field",
+            :id         => "uid_ems",
             :name       => "uid_ems",
             :label      => _("Tenant ID"),
             :isRequired => true,
-            :validate   => [{:type => "required-validator"}],
+            :validate   => [{:type => "required"}],
           },
           {
             :component  => "text-field",
+            :id         => "subscription",
             :name       => "subscription",
             :label      => _("Subscription ID"),
             :isRequired => true,
-            :validate   => [{:type => "required-validator"}],
+            :validate   => [{:type => "required"}],
           },
           {
             :component => 'sub-form',
+            :id        => 'endpoints-subform',
             :name      => 'endpoints-subform',
             :title     => _("Endpoint"),
             :fields    => [
               {
                 :component              => 'validate-provider-credentials',
+                :id                     => 'authentications.default.valid',
                 :name                   => 'authentications.default.valid',
                 :skipSubmit             => true,
                 :validationDependencies => %w[type zone_id provider_region subscription uid_ems],
                 :fields                 => [
                   {
                     :component => "text-field",
+                    :id        => "endpoints.default.url",
                     :name      => "endpoints.default.url",
                     :label     => _("Endpoint URL"),
                   },
                   {
                     :component  => "text-field",
+                    :id         => "authentications.default.userid",
                     :name       => "authentications.default.userid",
                     :label      => _("Client ID"),
                     :helperText => _("Should have privileged access, such as root or administrator."),
                     :isRequired => true,
-                    :validate   => [{:type => "required-validator"}]
+                    :validate   => [{:type => "required"}]
                   },
                   {
                     :component  => "password-field",
+                    :id         => "authentications.default.password",
                     :name       => "authentications.default.password",
                     :label      => _("Client Key"),
                     :type       => "password",
                     :isRequired => true,
-                    :validate   => [{:type => "required-validator"}]
+                    :validate   => [{:type => "required"}]
                   },
                 ],
               },
