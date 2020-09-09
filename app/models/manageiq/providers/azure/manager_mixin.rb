@@ -15,12 +15,6 @@ module ManageIQ::Providers::Azure::ManagerMixin
   end
 
   module ClassMethods
-    def params_for_create
-      static_params_for_create.deep_clone.tap do |params|
-        params[:fields].detect { |f| f[:id] == 'provider_region' }[:options] = provider_region_options
-      end
-    end
-
     private def provider_region_options
       ManageIQ::Providers::Azure::Regions
         .all
@@ -33,8 +27,8 @@ module ManageIQ::Providers::Azure::ManagerMixin
         end
     end
 
-    private def static_params_for_create
-      @static_params_for_create ||= {
+    def params_for_create
+      {
         :fields => [
           {
             :component  => "select",
@@ -42,8 +36,8 @@ module ManageIQ::Providers::Azure::ManagerMixin
             :name       => "provider_region",
             :label      => _("Region"),
             :isRequired => true,
-            :validate   => [{:type => "required"}]
-            # options is a dynamic field
+            :validate   => [{:type => "required"}],
+            :options    => provider_region_options
           },
           {
             :component  => "text-field",
@@ -103,7 +97,7 @@ module ManageIQ::Providers::Azure::ManagerMixin
             ],
           },
         ],
-      }.freeze
+      }
     end
 
     # Verify Credentials
