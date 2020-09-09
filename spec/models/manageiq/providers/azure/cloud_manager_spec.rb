@@ -21,6 +21,39 @@ describe ManageIQ::Providers::Azure::CloudManager do
     expect(described_class.default_blacklisted_event_names).to eq(Settings.ems.ems_azure.blacklisted_event_names)
   end
 
+  describe ".params_for_create" do
+    it "dynamically adjusts to new regions" do
+      r1_data = {
+        :name        => "westus",
+        :description => _("West US"),
+      }
+      r1 = {'us-west-1' => r1_data}
+      r2_data = {
+        :name        => "eastus",
+        :description => _("East US"),
+      }
+      r2 = {'us-east-1' => r2_data}
+
+      expect(ManageIQ::Providers::Azure::Regions).to receive(:regions).and_return({})
+      options = described_class.params_for_create[:fields].detect { |f| f[:id] == "provider_region" }[:options]
+      expect(options).to be_empty
+
+      expect(ManageIQ::Providers::Azure::Regions).to receive(:regions).and_return(r1)
+      options = described_class.params_for_create[:fields].detect { |f| f[:id] == "provider_region" }[:options]
+      expect(options).to eq [
+        {:label => r1_data[:description], :value => r1_data[:name]}
+      ]
+
+      expect(ManageIQ::Providers::Azure::Regions).to receive(:regions).and_return(r1.merge(r2))
+      options = described_class.params_for_create[:fields].detect { |f| f[:id] == "provider_region" }[:options]
+      expect(options).to eq [
+        # Note that this also tests that the providers are returned properly sorted
+        {:label => r2_data[:description], :value => r2_data[:name]},
+        {:label => r1_data[:description], :value => r1_data[:name]}
+      ]
+    end
+  end
+
   it "does not create orphaned network_manager" do
     # When the cloud_manager is destroyed during a refresh the there will still be an instance
     # of the cloud_manager in the refresh worker. After the refresh we will try to save the cloud_manager

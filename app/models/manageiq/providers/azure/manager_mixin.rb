@@ -16,7 +16,25 @@ module ManageIQ::Providers::Azure::ManagerMixin
 
   module ClassMethods
     def params_for_create
-      @params_for_create ||= {
+      static_params_for_create.deep_clone.tap do |params|
+        params[:fields].detect { |f| f[:id] == 'provider_region' }[:options] = provider_region_options
+      end
+    end
+
+    private def provider_region_options
+      ManageIQ::Providers::Azure::Regions
+        .all
+        .sort_by { |r| r[:description].downcase }
+        .map do |r|
+          {
+            :label => r[:description],
+            :value => r[:name]
+          }
+        end
+    end
+
+    private def static_params_for_create
+      @static_params_for_create ||= {
         :fields => [
           {
             :component  => "select",
@@ -24,13 +42,8 @@ module ManageIQ::Providers::Azure::ManagerMixin
             :name       => "provider_region",
             :label      => _("Region"),
             :isRequired => true,
-            :validate   => [{:type => "required"}],
-            :options    => ManageIQ::Providers::Azure::Regions.all.sort_by { |r| r[:description] }.map do |region|
-              {
-                :label => region[:description],
-                :value => region[:name]
-              }
-            end
+            :validate   => [{:type => "required"}]
+            # options is a dynamic field
           },
           {
             :component  => "text-field",
