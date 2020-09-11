@@ -1,9 +1,8 @@
-# manageiq-providers-azure
+# ManageIQ::Providers::Azure
 
-[![Gem Version](https://badge.fury.io/rb/manageiq-providers-azure.svg)](http://badge.fury.io/rb/manageiq-providers-azure)
 [![Build Status](https://travis-ci.com/ManageIQ/manageiq-providers-azure.svg?branch=master)](https://travis-ci.com/ManageIQ/manageiq-providers-azure)
-[![Code Climate](https://codeclimate.com/github/ManageIQ/manageiq-providers-azure.svg)](https://codeclimate.com/github/ManageIQ/manageiq-providers-azure)
-[![Test Coverage](https://codeclimate.com/github/ManageIQ/manageiq-providers-azure/badges/coverage.svg)](https://codeclimate.com/github/ManageIQ/manageiq-providers-azure/coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/b870f505f2956081176d/maintainability)](https://codeclimate.com/github/ManageIQ/manageiq-providers-azure/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/b870f505f2956081176d/test_coverage)](https://codeclimate.com/github/ManageIQ/manageiq-providers-azure/test_coverage)
 [![Security](https://hakiri.io/github/ManageIQ/manageiq-providers-azure/master.svg)](https://hakiri.io/github/ManageIQ/manageiq-providers-azure/master)
 
 [![Chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ManageIQ/manageiq-providers-azure?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
@@ -12,7 +11,7 @@ ManageIQ plugin for the Azure provider.
 
 ## Development
 
-See the section on pluggable providers in the [ManageIQ Developer Setup](http://manageiq.org/docs/guides/developer_setup)
+See the section on plugins in the [ManageIQ Developer Setup](http://manageiq.org/docs/guides/developer_setup/plugins)
 
 For quick local setup run `bin/setup`, which will clone the core ManageIQ repository under the *spec* directory and setup necessary config files. If you have already cloned it, you can run `bin/update` to bring the core ManageIQ code up to date.
 

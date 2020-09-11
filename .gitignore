@@ -1,4 +1,3 @@
-.rubocop-*
 /.bundle/
 /.yardoc
 /Gemfile.lock
@@ -9,9 +8,12 @@
 /spec/reports/
 /tmp/
 
+.rubocop-*
+/bundler.d/*
+!/bundler.d/.keep
 /config/settings.local.yml
 /config/settings/*.local.yml
 /config/environments/*.local.yml
-/config/secrets.yml
-
 /spec/manageiq
+
+/config/secrets.yml
