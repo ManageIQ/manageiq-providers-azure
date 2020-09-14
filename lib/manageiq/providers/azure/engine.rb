@@ -3,7 +3,9 @@ module ManageIQ
     module Azure
       class Engine < ::Rails::Engine
         isolate_namespace ManageIQ::Providers::Azure
+
         config.autoload_paths << root.join('app', 'services').to_s
+        config.autoload_paths << root.join('lib').to_s
 
         def self.vmdb_plugin?
           true
