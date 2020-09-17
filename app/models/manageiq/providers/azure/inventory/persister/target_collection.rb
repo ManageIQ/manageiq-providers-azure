@@ -19,6 +19,7 @@ class ManageIQ::Providers::Azure::Inventory::Persister::TargetCollection < Manag
   end
 
   def initialize_inventory_collections
+    initialize_tag_mapper
     initialize_cloud_inventory_collections
 
     @init_network_collections = true
