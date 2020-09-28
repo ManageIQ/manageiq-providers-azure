@@ -66,6 +66,7 @@ module ManageIQ::Providers::Azure::ManagerMixin
                 :id                     => 'authentications.default.valid',
                 :name                   => 'authentications.default.valid',
                 :skipSubmit             => true,
+                :isRequired             => true,
                 :validationDependencies => %w[type zone_id provider_region subscription uid_ems],
                 :fields                 => [
                   {
