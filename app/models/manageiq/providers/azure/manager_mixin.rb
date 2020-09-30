@@ -124,7 +124,7 @@ module ManageIQ::Providers::Azure::ManagerMixin
 
       client_id, client_key = default_endpoint&.values_at("userid", "password")
 
-      client_key = MiqPassword.try_decrypt(client_key)
+      client_key = ManageIQ::Password.try_decrypt(client_key)
       # Pull out the password from the database if a provider ID is available
       client_key ||= find(args["id"]).authentication_password('default')
 
