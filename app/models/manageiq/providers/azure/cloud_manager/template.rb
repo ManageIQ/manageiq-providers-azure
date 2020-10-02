@@ -13,4 +13,8 @@ class ManageIQ::Providers::Azure::CloudManager::Template < ::ManageIQ::Providers
     connection ||= ext_management_system.connect
     connection.images[ems_ref]
   end
+
+  def self.display_name(number = 1)
+    n_('Image (Microsoft Azure)', 'Images (Microsoft Azure)', number)
+  end
 end
