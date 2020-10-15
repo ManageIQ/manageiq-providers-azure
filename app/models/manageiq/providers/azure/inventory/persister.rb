@@ -23,4 +23,10 @@ class ManageIQ::Providers::Azure::Inventory::Persister < ManageIQ::Providers::In
 
     initialize_inventory_collections
   end
+
+  private
+
+  def case_sensitive_labels?
+    false
+  end
 end
