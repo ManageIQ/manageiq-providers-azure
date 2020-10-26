@@ -18,6 +18,27 @@ class ManageIQ::Providers::Azure::CloudManager::Vm < ManageIQ::Providers::CloudM
     true
   end
 
+  def params_for_create_snapshot
+    {
+      :fields => [
+        {
+          :component  => 'text-field',
+          :name       => 'name',
+          :id         => 'name',
+          :label      => _('Name'),
+          :isRequired => true,
+          :validate   => [{ type: 'required' }],
+        },
+        {
+          :component  => 'textarea',
+          :name       => 'description',
+          :id         => 'description',
+          :label      => _('Description'),
+        },
+      ],
+    }
+  end
+
   def self.calculate_power_state(raw_power_state)
     case raw_power_state.downcase
     when /running/, /starting/
