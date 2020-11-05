@@ -31,6 +31,8 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
     end
   end
 
+  supports :label_mapping
+
   before_create :ensure_managers
   before_update :ensure_managers_zone_and_provider_region
 
@@ -189,5 +191,17 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
 
   def self.display_name(number = 1)
     n_('Cloud Provider (Microsoft Azure)', 'Cloud Providers (Microsoft Azure)', number)
+  end
+
+  LABEL_MAPPING_ENTITIES = {
+    "VmAzure" => "ManageIQ::Providers::Azure::CloudManager::Vm"
+  }.freeze
+
+  def self.entities_for_label_mapping
+    LABEL_MAPPING_ENTITIES
+  end
+
+  def self.label_mapping_prefix
+    ems_type
   end
 end
