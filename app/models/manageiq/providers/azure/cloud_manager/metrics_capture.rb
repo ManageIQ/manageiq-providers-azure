@@ -5,7 +5,7 @@
 class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Providers::CloudManager::MetricsCapture
   INTERVAL_1_MINUTE = 'PT1M'
   VIM_INTERVAL = 20.seconds.freeze
-  private_constant(*%i[INTERVAL_1_MINUTE VIM_INTERVAL])
+  private_constant :INTERVAL_1_MINUTE, :VIM_INTERVAL
 
   COUNTERS_INFO = [
     ## CPU
