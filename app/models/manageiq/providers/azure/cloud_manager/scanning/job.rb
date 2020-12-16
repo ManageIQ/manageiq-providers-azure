@@ -127,7 +127,7 @@ class ManageIQ::Providers::Azure::CloudManager::Scanning::Job < VmScan
   def create_snapshot
     if vm.ext_management_system
       _log.info("Creating snapshot")
-      user_event = start_user_event_message
+      log_start_user_event_message
       options[:snapshot] = :server
       begin
         # TODO: should this be a vm method?
