@@ -14,6 +14,14 @@ module ManageIQ
         def self.plugin_name
           _('Azure Provider')
         end
+
+        def self.init_loggers
+          $azure_log ||= Vmdb::Loggers.create_logger("azure.log")
+        end
+
+        def self.apply_logger_config(config)
+          Vmdb::Loggers.apply_config_value(config, $azure_log, :level_azure)
+        end
       end
     end
   end
