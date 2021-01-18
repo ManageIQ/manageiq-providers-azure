@@ -16,7 +16,7 @@ module ManageIQ
         end
 
         def self.init_loggers
-          $azure_log ||= Vmdb::Loggers.create_logger("azure.log")
+          $azure_log ||= Vmdb::Loggers.create_logger("azure.log", Vmdb::Loggers::ProviderSdkLogger)
         end
 
         def self.apply_logger_config(config)
