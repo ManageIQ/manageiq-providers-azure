@@ -175,7 +175,7 @@ module AzureRefresherSpecCommon
       :orchestration_stack_parameter     => 13,
       :orchestration_stack_resource      => 15,
       :orchestration_template            => 12,
-      :relationship                      => 2,
+      :relationship                      => 0,
       :resource_group                    => 8,
       :security_group                    => 5,
       :vm                                => 9,
