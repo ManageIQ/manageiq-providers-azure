@@ -70,13 +70,12 @@
 :log:
   :level_azure: warn
 :workers:
-  :worker_base:
-    :event_catcher:
-      :event_catcher_azure:
-        :poll: 15.seconds
-    :queue_worker_base:
-      :ems_metrics_collector_worker:
-        :ems_metrics_collector_worker_azure: {}
-      :ems_refresh_worker:
-        :ems_refresh_worker_azure: {}
-        :ems_refresh_worker_azure_network: {}
+  :ems_metrics_collector_worker_azure:
+    :inherits_from: ems_metrics_collector_worker
+  :ems_refresh_worker_azure:
+    :inherits_from: ems_refresh_worker
+  :ems_refresh_worker_azure_network:
+    :inherits_from: ems_refresh_worker
+  :event_catcher_azure:
+    :inherits_from: event_catcher
+    :poll: 15.seconds
