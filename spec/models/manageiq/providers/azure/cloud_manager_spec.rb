@@ -304,30 +304,25 @@ describe ManageIQ::Providers::Azure::CloudManager do
       end
 
       it "supports regions" do
-        expect(@ems).to respond_to(:supports_regions?)
-        expect(@ems.supports_regions?).to eql(true)
+        expect(@ems.supports?(:regions)).to eql(true)
       end
 
       it "supports_not discovery" do
-        expect(@ems).to respond_to(:supports_discovery?)
-        expect(@ems.supports_discovery?).to eql(false)
+        expect(@ems.supports?(:discovery)).to eql(false)
       end
 
       it "supports provisioning" do
-        expect(@ems).to respond_to(:supports_provisioning?)
-        expect(@ems.supports_provisioning?).to eql(true)
+        expect(@ems.supports?(:provisioning)).to eql(true)
       end
 
       it "supports timeline events if insights is registered" do
         allow(@ems).to receive(:insights?).and_return(true)
-        expect(@ems).to respond_to(:supports_timeline?)
-        expect(@ems.supports_provisioning?).to eql(true)
+        expect(@ems.supports?(:timeline)).to eql(true)
       end
 
       it "does not support timeline events if insights not registered" do
         allow(@ems).to receive(:insights?).and_return(false)
-        expect(@ems).to respond_to(:supports_timeline?)
-        expect(@ems.supports_timeline?).to eql(false)
+        expect(@ems.supports?(:timeline)).to eql(false)
         expect(@ems.unsupported_reason(:timeline)).to eql('Timeline not supported for this region')
       end
     end

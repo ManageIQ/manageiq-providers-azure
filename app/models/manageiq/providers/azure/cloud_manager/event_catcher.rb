@@ -6,7 +6,7 @@ class ManageIQ::Providers::Azure::CloudManager::EventCatcher < ManageIQ::Provide
   #
   def self.all_valid_ems_in_zone
     super.select do |ems|
-      ems.supports_timeline?.tap do |available|
+      ems.supports?(:timeline).tap do |available|
         _log.info(ems.unsupported_reason(:timeline) + " [#{ems.provider_region}]") unless available
       end
     end
