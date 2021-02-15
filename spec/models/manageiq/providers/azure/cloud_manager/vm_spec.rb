@@ -20,15 +20,15 @@ describe ManageIQ::Providers::Azure::CloudManager::Vm do
 
   context "reset" do
     it "does not support the reset operation" do
-      expect(vm.supports_reset?).to be_falsy
+      expect(vm.supports?(:reset)).to be_falsy
       expect(vm.unsupported_reason(:reset)).to eql("Hard reboot not supported on Azure")
     end
   end
 
-  describe "#supports_terminate?" do
+  describe "#supports?(:terminate)" do
     context "when connected to a provider" do
       it "returns true" do
-        expect(vm.supports_terminate?).to be_truthy
+        expect(vm.supports?(:terminate)).to be_truthy
       end
     end
 
@@ -36,7 +36,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Vm do
       let(:archived_vm) { FactoryBot.create(:vm_azure) }
 
       it "returns false" do
-        expect(archived_vm.supports_terminate?).to be_falsey
+        expect(archived_vm.supports?(:terminate)).to be_falsey
         expect(archived_vm.unsupported_reason(:terminate)).to eq("The VM is not connected to an active Provider")
       end
     end
