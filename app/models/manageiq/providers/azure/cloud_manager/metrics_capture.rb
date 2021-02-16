@@ -15,7 +15,7 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
       :metrics     => [
         'Percentage CPU',
       ].freeze,
-      :calculation => ->(stats) { stats.mean },
+      :calculation => ->(stats, _) { stats.mean },
       :unit_key    => 'percent',
     },
     ## Memory
@@ -26,7 +26,7 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
         '/builtin/memory/percentusedmemory', # linux
         '\Memory\% Committed Bytes In Use', # windows
       ].freeze,
-      :calculation => ->(stats) { stats.mean },
+      :calculation => ->(stats, _) { stats.mean },
       :unit_key    => 'percent',
     },
     ## Disk
@@ -34,10 +34,10 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
       :counter_key => 'disk_usage_rate_average', # TODO: should be 'disk_usage_absolute_average',
       :source      => :api,
       :metrics     => [
-        'Per Disk Read Bytes/sec',
-        'Per Disk Write Bytes/sec',
+        'Disk Read Bytes',
+        'Disk Write Bytes',
       ].freeze,
-      :calculation => ->(stats) { stats.sum / 1.kilobyte },
+      :calculation => ->(stats, interval) { stats.sum / 1.kilobyte / interval },
       :unit_key    => 'kilobytespersecond',
     },
     ## Network
@@ -48,7 +48,7 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
         'Network In Total',
         'Network Out Total',
       ].freeze,
-      :calculation => ->(stats) { stats.sum / 1.kilobyte },
+      :calculation => ->(stats, interval) { stats.sum / 1.kilobyte / interval },
       :unit_key    => 'kilobytespersecond',
     },
   ].map { |h| OpenStruct.new(h).freeze }.group_by(&:source).to_h.freeze
@@ -82,6 +82,7 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
     end_time       = end_time   ? end_time.to_time.utc   : Time.now.utc
     start_time     = start_time ? start_time.to_time.utc : (end_time - 4.hours) # 4 hours for symmetry with VIM
     time_interval  = start_time..end_time
+    data_interval  = 60.seconds
     counter_values = {}
 
     # This is just for consistency, to produce a :connect benchmark
@@ -184,7 +185,7 @@ class ManageIQ::Providers::Azure::CloudManager::MetricsCapture < ManageIQ::Provi
 
         # { timestamp => value, ... }
         timestamped_values.transform_values! do |values|
-          counter_info.calculation.call(values)
+          counter_info.calculation.call(values, data_interval)
         end
 
         timestamped_values.sort_by! { |timestamp, _value| timestamp }
