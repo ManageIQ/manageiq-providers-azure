@@ -138,40 +138,87 @@ describe ManageIQ::Providers::Azure::CloudManager::MetricsCapture do
     end
 
     it "parses and aggregates read and write on disk" do
-      counters = stage_counter_data(['Per Disk Read Bytes/sec',
-                                     'Per Disk Write Bytes/sec'])
+      counters = stage_counter_data(['Disk Read Bytes',
+                                     'Disk Write Bytes'])
 
+      disk_read_write_bytes = 982_252_000
       metric_data = [
-        build_metric_data(982_252_000, "2016-07-23T07:20:00.5580968Z"),
-        build_metric_data(982_252_000, "2016-07-23T07:21:00.5580968Z"),
-        build_metric_data(982_252_000, "2016-07-23T07:22:00.5580968Z")
+        build_metric_data(disk_read_write_bytes, "2016-07-23T07:20:00.5580968Z"),
+        build_metric_data(disk_read_write_bytes, "2016-07-23T07:21:00.5580968Z"),
+        build_metric_data(disk_read_write_bytes, "2016-07-23T07:22:00.5580968Z")
       ]
       stage_metrics(metric_data, counters)
 
       _, metrics_by_id_and_ts = vm.perf_collect_metrics('interval_name')
 
+      expected_usage_kb_per_sec = (2 * disk_read_write_bytes) / 1.kilobyte / 1.minute
+
       expected_metrics = {
         "my_ems_ref" => {
           "2016-07-23T07:20:00Z" => {
-            "disk_usage_rate_average" => 1_918_460
+            "disk_usage_rate_average" => expected_usage_kb_per_sec
           },
           "2016-07-23T07:20:20Z" => {
-            "disk_usage_rate_average" => 1_918_460
+            "disk_usage_rate_average" => expected_usage_kb_per_sec
           },
           "2016-07-23T07:20:40Z" => {
-            "disk_usage_rate_average" => 1_918_460
+            "disk_usage_rate_average" => expected_usage_kb_per_sec
           },
           "2016-07-23T07:21:00Z" => {
-            "disk_usage_rate_average" => 1_918_460
+            "disk_usage_rate_average" => expected_usage_kb_per_sec
           },
           "2016-07-23T07:21:20Z" => {
-            "disk_usage_rate_average" => 1_918_460
+            "disk_usage_rate_average" => expected_usage_kb_per_sec
           },
           "2016-07-23T07:21:40Z" => {
-            "disk_usage_rate_average" => 1_918_460
+            "disk_usage_rate_average" => expected_usage_kb_per_sec
           },
           "2016-07-23T07:22:00Z" => {
-            "disk_usage_rate_average" => 1_918_460
+            "disk_usage_rate_average" => expected_usage_kb_per_sec
+          }
+        }
+      }
+      expect(metrics_by_id_and_ts).to eq(expected_metrics)
+    end
+
+    it "parses and aggregates network input/output" do
+      counters = stage_counter_data(['Network In Total',
+                                     'Network Out Total'])
+
+      net_read_write_bytes = 10_000
+      metric_data = [
+        build_metric_data(net_read_write_bytes, "2016-07-23T07:20:00.5580968Z"),
+        build_metric_data(net_read_write_bytes, "2016-07-23T07:21:00.5580968Z"),
+        build_metric_data(net_read_write_bytes, "2016-07-23T07:22:00.5580968Z")
+      ]
+      stage_metrics(metric_data, counters)
+
+      _, metrics_by_id_and_ts = vm.perf_collect_metrics('interval_name')
+
+      expected_usage_kb_per_sec = (2 * net_read_write_bytes) / 1.kilobyte / 1.minute
+
+      expected_metrics = {
+        "my_ems_ref" => {
+          "2016-07-23T07:20:00Z" => {
+            "net_usage_rate_average" => expected_usage_kb_per_sec
+          },
+          "2016-07-23T07:20:20Z" => {
+            "net_usage_rate_average" => expected_usage_kb_per_sec
+          },
+          "2016-07-23T07:20:40Z" => {
+            "net_usage_rate_average" => expected_usage_kb_per_sec
+          },
+          "2016-07-23T07:21:00Z" => {
+            "net_usage_rate_average" => expected_usage_kb_per_sec
+          },
+          "2016-07-23T07:21:20Z" => {
+            "net_usage_rate_average" => expected_usage_kb_per_sec
+          },
+          "2016-07-23T07:21:40Z" => {
+            "net_usage_rate_average" => expected_usage_kb_per_sec
+          },
+          "2016-07-23T07:22:00Z" => {
+            "net_usage_rate_average" => expected_usage_kb_per_sec
           }
         }
       }
