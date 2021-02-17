@@ -11,7 +11,16 @@ module ManageIQ::Providers::Azure::ManagerMixin
   end
 
   def verify_credentials(_auth_type = nil, options = {})
-    connect(options)
+    conn = connect(options)
+
+    # Check if the Microsoft.Insights Resource Provider is registered.  If not then
+    # neither events nor metrics are supported.
+    ms_insights_service = ::Azure::Armrest::ResourceProviderService.new(conn).get('Microsoft.Insights')
+    capabilities["insights"] = ms_insights_service.registration_state.casecmp('registered').zero?
+
+    save! if changed?
+
+    true
   end
 
   module ClassMethods
