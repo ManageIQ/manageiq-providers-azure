@@ -40,11 +40,7 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
   # events nor metrics are supported for that EMS.
   #
   def insights?
-    require 'azure-armrest'
-    with_provider_connection do |conf|
-      rps = ::Azure::Armrest::ResourceProviderService.new(conf)
-      rps.get('Microsoft.Insights').registration_state.casecmp('registered').zero?
-    end
+    !!capabilities["insights"]
   end
 
   def ensure_network_manager
