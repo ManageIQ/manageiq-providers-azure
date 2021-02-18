@@ -1,9 +1,10 @@
 require 'azure-armrest'
 
 describe ManageIQ::Providers::Azure::CloudManager::MetricsCapture do
-  let(:ems)      { FactoryBot.create(:ems_azure) }
+  let(:ems)      { FactoryBot.create(:ems_azure, :capabilities => {"insights" => insights_registered?}) }
   let(:vm)       { FactoryBot.build(:vm_azure, :ext_management_system => ems, :ems_ref => "my_ems_ref") }
   let(:group)    { FactoryBot.build(:azure_resource_group) }
+  let(:insights_registered?) { true }
   let(:armrest_environment) { double('Armrest environment', :resource_url => 'http://example.com') }
   let(:armrest_service) { double('::Azure::Armrest::ArmrestService', :environment => armrest_environment) }
 
@@ -28,15 +29,17 @@ describe ManageIQ::Providers::Azure::CloudManager::MetricsCapture do
       allow(::Azure::Armrest::Insights::MetricsService).to receive(:new).and_return(armrest_service)
     end
 
-    it "returns nothing if the insights service is not registered" do
-      allow(ems).to receive(:insights?).and_return(false)
-      counters, values = metric.perf_collect_metrics('whatever')
-      expect(counters).to eq({})
-      expect(values).to eq({})
+    context "with the insights service not registered" do
+      let(:insights_registered?) { false }
+
+      it "returns nothing if the insights service is not registered" do
+        counters, values = metric.perf_collect_metrics('whatever')
+        expect(counters).to eq({})
+        expect(values).to eq({})
+      end
     end
 
     it "returns nothing if the region is not supported" do
-      allow(ems).to receive(:insights?).and_return(true)
       allow(armrest_service).to receive(:rest_get).and_raise(::Azure::Armrest::BadRequestException.new('x', 'y', 'z'))
       expect($log).to receive(:warn).with(/problem collecting metrics/i)
       counters, values = metric.perf_collect_metrics('whatever')
@@ -45,7 +48,6 @@ describe ManageIQ::Providers::Azure::CloudManager::MetricsCapture do
     end
 
     it "returns nothing if a timeout occurs" do
-      allow(ems).to receive(:insights?).and_return(true)
       allow(armrest_service).to receive(:rest_get).and_raise(::Azure::Armrest::RequestTimeoutException.new('x', 'y', 'z'))
       expect($log).to receive(:warn).with(/timeout attempting to collect metrics/i)
       counters, values = metric.perf_collect_metrics('whatever')
@@ -54,16 +56,6 @@ describe ManageIQ::Providers::Azure::CloudManager::MetricsCapture do
     end
 
     it "returns nothing if the VM could not be found" do
-      allow(ems).to receive(:insights?).and_return(true)
-      allow(armrest_service).to receive(:rest_get).and_raise(::Azure::Armrest::NotFoundException.new('x', 'y', nil))
-      expect($log).to receive(:warn).with(/could not find metrics for/i)
-      counters, values = metric.perf_collect_metrics('whatever')
-      expect(counters).to eq({})
-      expect(values).to eq({})
-    end
-
-    it "raises an error if any other exception occurs" do
-      allow(ems).to receive(:insights?).and_return(true)
       allow(armrest_service).to receive(:rest_get).and_raise(Exception.new)
       expect($log).to receive(:error).with(/unhandled exception/i)
       expect { metric.perf_collect_metrics('whatever') }.to raise_error(Exception)
@@ -72,7 +64,6 @@ describe ManageIQ::Providers::Azure::CloudManager::MetricsCapture do
 
   context "#perf_collect_metrics" do
     before do
-      allow(ems).to receive(:insights?).and_return(true)
       allow(vm).to receive(:resource_group).and_return(group)
       allow(::Azure::Armrest::Insights::MetricsService).to receive(:new).and_return(armrest_service)
     end
