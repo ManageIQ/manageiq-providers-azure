@@ -8,14 +8,13 @@ module ManageIQ::Providers::Azure::Inventory::Persister::Definitions::CloudColle
        hardwares
        networks
        operating_systems
+       miq_templates
        vm_and_template_labels
        vm_and_template_taggings
        vms).each do |name|
 
       add_collection(cloud, name)
     end
-
-    add_miq_templates
 
     add_auth_key_pairs
 
@@ -42,17 +41,6 @@ module ManageIQ::Providers::Azure::Inventory::Persister::Definitions::CloudColle
   end
 
   # ------ IC provider specific definitions -------------------------
-
-  def add_miq_templates
-    add_collection(cloud, :miq_templates) do |builder|
-      builder.add_properties(:model_class => ::ManageIQ::Providers::Azure::CloudManager::Template)
-
-      builder.add_default_values(
-        :ems_id => manager.id,
-        :vendor => builder.vendor
-      )
-    end
-  end
 
   def add_resource_groups
     add_collection(cloud, :resource_groups, {}, {:auto_inventory_attributes => false}) do |builder|
