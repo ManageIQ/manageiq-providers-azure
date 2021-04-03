@@ -35,7 +35,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::CloudManager < ManageIQ:
   def images
     collect_inventory(:private_images) { gather_data_for_this_region(@sas, 'list_all_private_images') }
   rescue ::Azure::Armrest::ApiException => err
-    _log.warn("Unable to collect Azure private images for: [#{@ems.name}] - [#{@ems.id}]: #{err.message}")
+    _log.warn("Unable to collect Azure private images for: [#{@ems.name}] - [#{@ems.id}]: #{err.message.force_encoding("utf-8")}")
     []
   end
 
