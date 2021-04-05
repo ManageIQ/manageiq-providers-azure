@@ -17,4 +17,16 @@ VCR.configure do |config|
       VCR.request_matchers.uri_without_param('api-version')
     ]
   }
+  config.define_cassette_placeholder(Rails.application.secrets.azure_defaults[:client_id]) do
+    Rails.application.secrets.azure[:client_id]
+  end
+  config.define_cassette_placeholder(Rails.application.secrets.azure_defaults[:client_secret]) do
+    Rails.application.secrets.azure[:client_secret]
+  end
+  config.define_cassette_placeholder(Rails.application.secrets.azure_defaults[:tenant_id]) do
+    Rails.application.secrets.azure[:tenant_id]
+  end
+  config.define_cassette_placeholder(Rails.application.secrets.azure_defaults[:subscription_id]) do
+    Rails.application.secrets.azure[:subscription_id]
+  end
 end

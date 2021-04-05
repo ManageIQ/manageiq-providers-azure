@@ -6,10 +6,10 @@ FactoryBot.define do
     end
 
     after(:create) do |ems|
-      client_id       = Rails.application.secrets.azure.try(:[], :client_id) || 'AZURE_CLIENT_ID'
-      client_key      = Rails.application.secrets.azure.try(:[], :client_secret) || 'AZURE_CLIENT_SECRET'
-      tenant_id       = Rails.application.secrets.azure.try(:[], :tenant_id) || 'AZURE_TENANT_ID'
-      subscription_id = Rails.application.secrets.azure.try(:[], :subscription_id) || 'AZURE_SUBSCRIPTION_ID'
+      client_id       = Rails.application.secrets.azure[:client_id]
+      client_key      = Rails.application.secrets.azure[:client_secret]
+      tenant_id       = Rails.application.secrets.azure[:tenant_id]
+      subscription_id = Rails.application.secrets.azure[:subscription_id]
 
       cred = {
         :userid   => client_id,

@@ -203,10 +203,10 @@ describe ManageIQ::Providers::Azure::CloudManager do
     before do
       EvmSpecHelper.local_miq_server(:zone => Zone.seed)
 
-      @client_id    = Rails.application.secrets.azure.try(:[], :client_id) || 'AZURE_CLIENT_ID'
-      @client_key   = Rails.application.secrets.azure.try(:[], :client_secret) || 'AZURE_CLIENT_SECRET'
-      @tenant_id    = Rails.application.secrets.azure.try(:[], :tenant_id) || 'AZURE_TENANT_ID'
-      @subscription = Rails.application.secrets.azure.try(:[], :subscription_id) || 'AZURE_SUBSCRIPTION_ID'
+      @client_id    = Rails.application.secrets.azure[:client_id]
+      @client_key   = Rails.application.secrets.azure[:client_secret]
+      @tenant_id    = Rails.application.secrets.azure[:tenant_id]
+      @subscription = Rails.application.secrets.azure[:subscription_id]
 
       @alt_client_id    = 'testuser'
       @alt_client_key   = 'secret'
