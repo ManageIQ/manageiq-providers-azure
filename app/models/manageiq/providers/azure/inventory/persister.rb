@@ -39,6 +39,7 @@ class ManageIQ::Providers::Azure::Inventory::Persister < ManageIQ::Providers::In
        hardwares
        networks
        operating_systems
+       resource_groups
        miq_templates
        vm_and_template_labels
        vm_and_template_taggings
@@ -48,8 +49,6 @@ class ManageIQ::Providers::Azure::Inventory::Persister < ManageIQ::Providers::In
     end
 
     add_auth_key_pairs
-
-    add_resource_groups
 
     add_orchestration_stacks
 
@@ -96,13 +95,6 @@ class ManageIQ::Providers::Azure::Inventory::Persister < ManageIQ::Providers::In
   end
 
   # ------ IC provider specific definitions -------------------------
-
-  def add_resource_groups
-    add_cloud_collection(:resource_groups, {}, {:auto_inventory_attributes => false}) do |builder|
-      builder.add_properties(:model_class => ::ManageIQ::Providers::Azure::ResourceGroup)
-      builder.add_default_values(:ems_id => manager.id)
-    end
-  end
 
   def add_auth_key_pairs(extra_properties = {})
     add_cloud_collection(:auth_key_pairs, extra_properties) do |builder|
