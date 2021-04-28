@@ -4,7 +4,7 @@ describe ManageIQ::Providers::Azure::CloudManager::EventCatcher do
 
     before do
       @ems = FactoryBot.create(:ems_azure)
-      allow(@ems).to receive(:authentication_status_ok?).and_return(true)
+      allow(@ems).to receive(:provider_authentication_status_ok?).and_return(true)
       allow(described_class).to receive(:all_ems_in_zone).and_return([@ems])
     end
 
