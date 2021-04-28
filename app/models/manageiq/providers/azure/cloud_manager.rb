@@ -6,6 +6,7 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
   require_nested :MetricsCapture
   require_nested :MetricsCollectorWorker
   require_nested :RefreshWorker
+  require_nested :ResourceGroup
   require_nested :Refresher
   require_nested :Vm
   require_nested :Template
