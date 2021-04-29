@@ -1,4 +1,4 @@
-describe ManageIQ::Providers::Azure::ResourceGroup do
+describe ManageIQ::Providers::Azure::CloudManager::ResourceGroup do
   context 'inheritance' do
     it 'is a subclass of ResourceGroup' do
       expect(subject).to be_a_kind_of(ResourceGroup)
