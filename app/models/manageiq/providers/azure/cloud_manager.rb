@@ -33,6 +33,11 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
   end
 
   supports :label_mapping
+  supports :metrics do
+    unless insights?
+      unsupported_reason_add(:metrics, _('Capacity & Utilization not supported for this region'))
+    end
+  end
 
   before_create :ensure_managers
   before_update :ensure_managers_zone_and_provider_region
