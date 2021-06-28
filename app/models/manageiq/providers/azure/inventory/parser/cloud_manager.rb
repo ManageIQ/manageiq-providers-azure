@@ -38,14 +38,13 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
       name = flavor.name
 
       persister.flavors.build(
-        :ems_ref        => name.downcase,
-        :name           => name,
-        :cpus           => flavor.number_of_cores, # where are the virtual CPUs??
-        :cpu_cores      => flavor.number_of_cores,
-        :memory         => flavor.memory_in_mb.megabytes,
-        :root_disk_size => flavor.os_disk_size_in_mb.megabytes,
-        :swap_disk_size => flavor.resource_disk_size_in_mb.megabytes,
-        :enabled        => true
+        :ems_ref         => name.downcase,
+        :name            => name,
+        :cpu_total_cores => flavor.number_of_cores,
+        :memory          => flavor.memory_in_mb.megabytes,
+        :root_disk_size  => flavor.os_disk_size_in_mb.megabytes,
+        :swap_disk_size  => flavor.resource_disk_size_in_mb.megabytes,
+        :enabled         => true
       )
     end
   end
@@ -104,8 +103,7 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
   def instance_hardware(persister_instance, instance, series)
     persister_hardware = persister.hardwares.build(
       :vm_or_template  => persister_instance,
-      :cpu_sockets     => series[:cpus],
-      :cpu_total_cores => series[:cpus],
+      :cpu_total_cores => series[:cpu_total_cores],
       :memory_mb       => series[:memory] / 1.megabyte,
       :disk_capacity   => series[:root_disk_size] + series[:swap_disk_size],
     )
