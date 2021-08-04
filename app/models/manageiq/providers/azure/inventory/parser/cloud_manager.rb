@@ -15,6 +15,7 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
     stack_templates
     instances
     managed_images
+    sql_databases
     images if collector.options.get_private_images
     market_images if collector.options.get_market_images
 
@@ -430,6 +431,20 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
       :vm_or_template => persister_miq_template,
       :product_name   => guest_os(image)
     )
+  end
+
+  def sql_databases
+    collector.sql_databases.each do |sql_server, sql_database|
+      rg_ems_ref = collector.get_resource_group_ems_ref(sql_database)
+
+      persister.cloud_databases.build(
+        :ems_ref        => sql_database.id,
+        :name           => "#{sql_server.name}/#{sql_database.name}",
+        :status         => sql_database.properties&.status,
+        :db_engine      => "SQL Server #{sql_server.properties&.version}",
+        :resource_group => persister.resource_groups.lazy_find(rg_ems_ref)
+      )
+    end
   end
 
   # Helper methods

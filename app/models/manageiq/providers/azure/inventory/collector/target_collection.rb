@@ -251,6 +251,14 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
     end
   end
 
+  def sql_servers
+    []
+  end
+
+  def sql_databases
+    []
+  end
+
   ###########################################
   # API queries for NetworkManager
   ###########################################

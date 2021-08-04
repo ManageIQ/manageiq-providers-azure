@@ -226,6 +226,18 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
     end
   end
 
+  def sql_server_service(config)
+    ::Azure::Armrest::Sql::SqlServerService.new(config) do |service|
+      service.api_version = valid_api_version(config, service, 'sql_server')
+    end
+  end
+
+  def sql_db_service(config)
+    ::Azure::Armrest::Sql::SqlDatabaseService.new(config) do |service|
+      service.api_version = valid_api_version(config, service, 'sql_server')
+    end
+  end
+
   def virtual_machine_service(config)
     ::Azure::Armrest::VirtualMachineService.new(config).tap do |service|
       service.api_version = valid_api_version(config, service, 'virtual_machine')
@@ -236,5 +248,9 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
     ::Azure::Armrest::Network::VirtualNetworkService.new(config).tap do |service|
       service.api_version = valid_api_version(config, service, 'virtual_network')
     end
+  end
+
+  def provider_region_description
+    @provider_region_description ||= ManageIQ::Providers::Azure::Regions::REGIONS.dig(@ems.provider_region, :description)
   end
 end
