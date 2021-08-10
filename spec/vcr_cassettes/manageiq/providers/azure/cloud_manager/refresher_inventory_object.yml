@@ -10377,6 +10377,119 @@ http_interactions:
   recorded_at: Tue, 06 Nov 2018 15:52:59 GMT
 - request:
     method: get
+    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.DBforPostgreSQL/servers?api-version=2017-12-01
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.7.4p191
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Im5PbzNaRHJPRFhFSzFqS1doWHNsSFJfS1hFZyIsImtpZCI6Im5PbzNaRHJPRFhFSzFqS1doWHNsSFJfS1hFZyJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9mY2Y2NzA1Ny01MGM5LTRhZDQtOThmMy1mZmNhNjRhZGQ5ZTkvIiwiaWF0IjoxNjI4Njk2NjU5LCJuYmYiOjE2Mjg2OTY2NTksImV4cCI6MTYyODcwMDU1OSwiYWlvIjoiRTJaZ1lEalc2aDR1dTlkNWJrMzhET1c2K2JIM0FBPT0iLCJhcHBpZCI6ImQ0YmRlMjlmLWNlMWEtNDY4Mi04YmJiLTNlMTQ5MzIxNjNiNSIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2ZjZjY3MDU3LTUwYzktNGFkNC05OGYzLWZmY2E2NGFkZDllOS8iLCJvaWQiOiJiMTRjZTA2ZS03YTRlLTRlODYtYjk4ZC01OTFmMWIzYjI4ZGQiLCJyaCI6IjAuQVJnQVYzRDJfTWxRMUVxWThfX0taSzNaNlpfaXZkUWF6b0pHaTdzLUZKTWhZN1VZQUFBLiIsInN1YiI6ImIxNGNlMDZlLTdhNGUtNGU4Ni1iOThkLTU5MWYxYjNiMjhkZCIsInRpZCI6ImZjZjY3MDU3LTUwYzktNGFkNC05OGYzLWZmY2E2NGFkZDllOSIsInV0aSI6InpsUTk5VGxIblVHNGswMEZnYXJhQWciLCJ2ZXIiOiIxLjAiLCJ4bXNfdGNkdCI6MTQ0NzI3MzA2OX0.MgWWDrwMXZfW2Qh55PcVmvFezqW5osS9MLN_1xDkIshQqc6KMwVnIG2BS-MjedTumlMjtA3annRwco28rmQ8zvG66xBbey_4kg9tQwu82FldAfsdl63lvNGUYgnIDfq91GVJ9a1vCMHx6-Hk7BMen5RIpgqeog0Jm51N1Pihpe31FTtuobclqF5iYltI1ld-1EticYKxZKbrv6FIZhXntMIbP0wDXjT1dU5cUdVlolFVz3OgsHHhIYBrmKykAN9Tk-UL7m2MMCNUAs_kOXqghKxlFJeZLkK8oavKo2AmKLzzKlNCRFKH-HPrKNCR2LCbdtCremamlQYa8I2_YXRrpg
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Vary:
+      - Accept-Encoding
+      X-Ms-Request-Id:
+      - f81f9dbe-bdb4-4fdb-86f7-05521e010ab2
+      Server:
+      - Microsoft-HTTPAPI/2.0
+      X-Ms-Ratelimit-Remaining-Subscription-Reads:
+      - '11995'
+      X-Ms-Correlation-Request-Id:
+      - f9a81c13-8b9d-4d9c-92f5-057c37396de0
+      X-Ms-Routing-Request-Id:
+      - CANADACENTRAL:20210811T154934Z:f9a81c13-8b9d-4d9c-92f5-057c37396de0
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Wed, 11 Aug 2021 15:49:34 GMT
+    body:
+      encoding: ASCII-8BIT
+      string: '{"value":[{"sku":{"name":"GP_Gen5_4","tier":"GeneralPurpose","family":"Gen5","capacity":4},"properties":{"administratorLogin":"agrare","storageProfile":{"storageMB":102400,"backupRetentionDays":7,"geoRedundantBackup":"Disabled","storageAutogrow":"Enabled"},"version":"11","sslEnforcement":"Enabled","minimalTlsVersion":"TLSEnforcementDisabled","userVisibleState":"Ready","fullyQualifiedDomainName":"pg-test.postgres.database.azure.com","earliestRestoreDate":"2021-08-05T13:29:33.877+00:00","replicationRole":"","masterServerId":"","byokEnforcement":"Disabled","privateEndpointConnections":[],"infrastructureEncryption":"Disabled","publicNetworkAccess":"Enabled"},"location":"eastus","tags":{},"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.DBforPostgreSQL/servers/pg-test","name":"pg-test","type":"Microsoft.DBforPostgreSQL/servers"}]}'
+    http_version: null
+  recorded_at: Wed, 11 Aug 2021 15:49:34 GMT
+- request:
+    method: get
+    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.DBforPostgreSQL/servers/pg-test/databases?api-version=2017-12-01
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.7.4p191
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Im5PbzNaRHJPRFhFSzFqS1doWHNsSFJfS1hFZyIsImtpZCI6Im5PbzNaRHJPRFhFSzFqS1doWHNsSFJfS1hFZyJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9mY2Y2NzA1Ny01MGM5LTRhZDQtOThmMy1mZmNhNjRhZGQ5ZTkvIiwiaWF0IjoxNjI4Njk2NjU5LCJuYmYiOjE2Mjg2OTY2NTksImV4cCI6MTYyODcwMDU1OSwiYWlvIjoiRTJaZ1lEalc2aDR1dTlkNWJrMzhET1c2K2JIM0FBPT0iLCJhcHBpZCI6ImQ0YmRlMjlmLWNlMWEtNDY4Mi04YmJiLTNlMTQ5MzIxNjNiNSIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2ZjZjY3MDU3LTUwYzktNGFkNC05OGYzLWZmY2E2NGFkZDllOS8iLCJvaWQiOiJiMTRjZTA2ZS03YTRlLTRlODYtYjk4ZC01OTFmMWIzYjI4ZGQiLCJyaCI6IjAuQVJnQVYzRDJfTWxRMUVxWThfX0taSzNaNlpfaXZkUWF6b0pHaTdzLUZKTWhZN1VZQUFBLiIsInN1YiI6ImIxNGNlMDZlLTdhNGUtNGU4Ni1iOThkLTU5MWYxYjNiMjhkZCIsInRpZCI6ImZjZjY3MDU3LTUwYzktNGFkNC05OGYzLWZmY2E2NGFkZDllOSIsInV0aSI6InpsUTk5VGxIblVHNGswMEZnYXJhQWciLCJ2ZXIiOiIxLjAiLCJ4bXNfdGNkdCI6MTQ0NzI3MzA2OX0.MgWWDrwMXZfW2Qh55PcVmvFezqW5osS9MLN_1xDkIshQqc6KMwVnIG2BS-MjedTumlMjtA3annRwco28rmQ8zvG66xBbey_4kg9tQwu82FldAfsdl63lvNGUYgnIDfq91GVJ9a1vCMHx6-Hk7BMen5RIpgqeog0Jm51N1Pihpe31FTtuobclqF5iYltI1ld-1EticYKxZKbrv6FIZhXntMIbP0wDXjT1dU5cUdVlolFVz3OgsHHhIYBrmKykAN9Tk-UL7m2MMCNUAs_kOXqghKxlFJeZLkK8oavKo2AmKLzzKlNCRFKH-HPrKNCR2LCbdtCremamlQYa8I2_YXRrpg
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Vary:
+      - Accept-Encoding
+      X-Ms-Request-Id:
+      - d2ff1a70-9108-4859-8339-379a4cff27ab
+      Server:
+      - Microsoft-HTTPAPI/2.0
+      X-Ms-Ratelimit-Remaining-Subscription-Reads:
+      - '11996'
+      X-Ms-Correlation-Request-Id:
+      - fd98a41a-5c2e-451e-9724-d961a3c43c4b
+      X-Ms-Routing-Request-Id:
+      - CANADACENTRAL:20210811T154935Z:fd98a41a-5c2e-451e-9724-d961a3c43c4b
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Wed, 11 Aug 2021 15:49:34 GMT
+    body:
+      encoding: ASCII-8BIT
+      string: '{"value":[{"properties":{"charset":"UTF8","collation":"English_United
+        States.1252"},"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.DBforPostgreSQL/servers/pg-test/databases/postgres","name":"postgres","type":"Microsoft.DBforPostgreSQL/servers/databases"},{"properties":{"charset":"UTF8","collation":"English_United
+        States.1252"},"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.DBforPostgreSQL/servers/pg-test/databases/azure_maintenance","name":"azure_maintenance","type":"Microsoft.DBforPostgreSQL/servers/databases"},{"properties":{"charset":"UTF8","collation":"English_United
+        States.1252"},"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.DBforPostgreSQL/servers/pg-test/databases/azure_sys","name":"azure_sys","type":"Microsoft.DBforPostgreSQL/servers/databases"}]}'
+    http_version: null
+  recorded_at: Wed, 11 Aug 2021 15:49:35 GMT
+- request:
+    method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.Sql/servers?api-version=2014-04-01
     body:
       encoding: US-ASCII
