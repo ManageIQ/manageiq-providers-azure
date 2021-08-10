@@ -298,13 +298,11 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManageIQ::Providers::In
   end
 
   def sql_servers
-    @sql_servers ||= begin
-      @sqls.list_all.select do |server|
-        # SqlServer instances have a "user friendly" location name
-        # e.g. "US East 2" rather than the more common "useast2" that the
-        # `gather_data_for_this_region` method is expecting
-        server.location == provider_region_description
-      end
+    @sql_servers ||= @sqls.list_all.select do |server|
+      # SqlServer instances have a "user friendly" location name
+      # e.g. "US East 2" rather than the more common "useast2" that the
+      # `gather_data_for_this_region` method is expecting
+      server.location == provider_region_description
     end
   end
 
