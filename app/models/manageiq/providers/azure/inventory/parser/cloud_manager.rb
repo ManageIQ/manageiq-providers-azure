@@ -434,6 +434,18 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
   end
 
   def cloud_databases
+    collector.mariadb_databases.each do |server, database|
+      rg_ems_ref = collector.get_resource_group_ems_ref(database)
+
+      persister.cloud_databases.build(
+        :ems_ref        => database.id,
+        :name           => "#{server.name}/#{database.name}",
+        :status         => server.properties&.user_visible_state,
+        :db_engine      => "MariaDB #{server.properties&.version}",
+        :resource_group => persister.resource_groups.lazy_find(rg_ems_ref)
+      )
+    end
+
     collector.mysql_databases.each do |server, database|
       rg_ems_ref = collector.get_resource_group_ems_ref(database)
 
