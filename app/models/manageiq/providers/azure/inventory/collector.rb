@@ -43,6 +43,8 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManageIQ::Providers::In
     @rgs  = resource_group_service(@config)
     @sas  = storage_account_service(@config)
     @sds  = storage_disk_service(@config)
+    @sqls = sql_server_service(@config)
+    @dbs  = sql_db_service(@config)
     @mis  = managed_image_service(@config)
     @vmis = virtual_machine_image_service(@config, :location => @ems.provider_region)
 
@@ -293,6 +295,21 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManageIQ::Providers::In
 
   def security_groups
     gather_data_for_this_region(@nsg)
+  end
+
+  def sql_servers
+    @sql_servers ||= @sqls.list_all.select do |server|
+      # SqlServer instances have a "user friendly" location name
+      # e.g. "US East 2" rather than the more common "useast2" that the
+      # `gather_data_for_this_region` method is expecting
+      server.location == provider_region_description
+    end
+  end
+
+  def sql_databases
+    @sql_databases ||= sql_servers.flat_map do |sql_server|
+      @dbs.list_all(sql_server.name, sql_server.resource_group).map { |db| [sql_server, db] }
+    end
   end
 
   def load_balancers

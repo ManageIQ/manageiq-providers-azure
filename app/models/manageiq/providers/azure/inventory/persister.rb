@@ -32,6 +32,7 @@ class ManageIQ::Providers::Azure::Inventory::Persister < ManageIQ::Providers::In
 
   def initialize_cloud_inventory_collections
     %i(availability_zones
+       cloud_databases
        disks
        flavors
        hardwares
