@@ -251,6 +251,14 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
     end
   end
 
+  def mysql_servers
+    []
+  end
+
+  def mysql_databases
+    []
+  end
+
   def postgresql_servers
     []
   end
