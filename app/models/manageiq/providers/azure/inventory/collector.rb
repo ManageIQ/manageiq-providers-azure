@@ -36,24 +36,26 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManageIQ::Providers::In
     @template_refs     = {} # templates need to be retrieved from VMDB
     @template_directs  = {} # templates contents already got by API
 
-    @nis    = network_interface_service(@config)
-    @ips    = ip_address_service(@config)
-    @vmm    = virtual_machine_service(@config)
-    @asm    = availability_set_service(@config)
-    @tds    = template_deployment_service(@config)
-    @rgs    = resource_group_service(@config)
-    @sas    = storage_account_service(@config)
-    @sds    = storage_disk_service(@config)
-    @pgs    = postgresql_server_service(@config)
-    @pgdbs  = postgresql_db_service(@config)
-    @sqls   = sql_server_service(@config)
-    @sqldbs = sql_db_service(@config)
-    @mis    = managed_image_service(@config)
-    @vmis   = virtual_machine_image_service(@config, :location => @ems.provider_region)
-    @vns    = virtual_network_service(@config)
-    @nsg    = network_security_group_service(@config)
-    @lbs    = load_balancer_service(@config)
-    @rts    = route_table_service(@config)
+    @nis      = network_interface_service(@config)
+    @ips      = ip_address_service(@config)
+    @vmm      = virtual_machine_service(@config)
+    @asm      = availability_set_service(@config)
+    @tds      = template_deployment_service(@config)
+    @rgs      = resource_group_service(@config)
+    @sas      = storage_account_service(@config)
+    @sds      = storage_disk_service(@config)
+    @mysqls   = mysql_server_service(@config)
+    @mysqldbs = mysql_database_service(@config)
+    @pgs      = postgresql_server_service(@config)
+    @pgdbs    = postgresql_db_service(@config)
+    @sqls     = sql_server_service(@config)
+    @sqldbs   = sql_db_service(@config)
+    @mis      = managed_image_service(@config)
+    @vmis     = virtual_machine_image_service(@config, :location => @ems.provider_region)
+    @vns      = virtual_network_service(@config)
+    @nsg      = network_security_group_service(@config)
+    @lbs      = load_balancer_service(@config)
+    @rts      = route_table_service(@config)
   end
 
   ##############################################################
@@ -311,6 +313,16 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManageIQ::Providers::In
   def sql_databases
     @sql_databases ||= sql_servers.flat_map do |sql_server|
       @sqldbs.list_all(sql_server.name, sql_server.resource_group).map { |db| [sql_server, db] }
+    end
+  end
+
+  def mysql_servers
+    @mysql_servers ||= gather_data_for_this_region(@mysqls)
+  end
+
+  def mysql_databases
+    @mysql_databases ||= mysql_servers.flat_map do |server|
+      @mysqldbs.list_all(server.name, server.resource_group).map { |db| [server, db] }
     end
   end
 

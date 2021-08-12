@@ -10377,6 +10377,116 @@ http_interactions:
   recorded_at: Tue, 06 Nov 2018 15:52:59 GMT
 - request:
     method: get
+    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.DBforMySQL/servers?api-version=2017-12-01
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.7.4p191
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Im5PbzNaRHJPRFhFSzFqS1doWHNsSFJfS1hFZyIsImtpZCI6Im5PbzNaRHJPRFhFSzFqS1doWHNsSFJfS1hFZyJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9mY2Y2NzA1Ny01MGM5LTRhZDQtOThmMy1mZmNhNjRhZGQ5ZTkvIiwiaWF0IjoxNjI4NzAxODkxLCJuYmYiOjE2Mjg3MDE4OTEsImV4cCI6MTYyODcwNTc5MSwiYWlvIjoiRTJaZ1lHaVFuOWgwVm5sM3BjKzg3R016SFN0MUFBPT0iLCJhcHBpZCI6ImQ0YmRlMjlmLWNlMWEtNDY4Mi04YmJiLTNlMTQ5MzIxNjNiNSIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2ZjZjY3MDU3LTUwYzktNGFkNC05OGYzLWZmY2E2NGFkZDllOS8iLCJvaWQiOiJiMTRjZTA2ZS03YTRlLTRlODYtYjk4ZC01OTFmMWIzYjI4ZGQiLCJyaCI6IjAuQVJnQVYzRDJfTWxRMUVxWThfX0taSzNaNlpfaXZkUWF6b0pHaTdzLUZKTWhZN1VZQUFBLiIsInN1YiI6ImIxNGNlMDZlLTdhNGUtNGU4Ni1iOThkLTU5MWYxYjNiMjhkZCIsInRpZCI6ImZjZjY3MDU3LTUwYzktNGFkNC05OGYzLWZmY2E2NGFkZDllOSIsInV0aSI6IlVwcmF3NTZJWGt1UGNra040V2NoQXciLCJ2ZXIiOiIxLjAiLCJ4bXNfdGNkdCI6MTQ0NzI3MzA2OX0.dOOn5zTR8XcSIwzTu88-jROPRbebJTsJ4PKSx8LQXA7ZcFXjlvyxzRHQe2s0jaT-o980CIYqIvqRAdWqXyCeYo5hbTH-UG1FkOrXHFxH9YT8lLHULGOG7Uar448_4hrG3VZJo_drTL5FBfLtNleCy08OU-BDDslzNL41DLYzTgCqwQbj7j2OvcMz2hWUoOOhIc9DzXbszwf8A75eWhJR6OkgTZb-YhAc-t7TT1B1tAen_lt6CtZ_O7FrdTUyGLKcylRAm4NenajtB4asIpVNoAt60QneiztoIgaYjOBFrsmL7Aw2UGEOmtdTlKOgK-d1AXuJ-EdEK2bjerMFzlnEXQ
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Vary:
+      - Accept-Encoding
+      X-Ms-Request-Id:
+      - c164cf81-ac30-47df-9dbb-c5dfc27f7c13
+      Server:
+      - Microsoft-HTTPAPI/2.0
+      X-Ms-Ratelimit-Remaining-Subscription-Reads:
+      - '11997'
+      X-Ms-Correlation-Request-Id:
+      - db179939-9693-4350-8717-b6e718e6b528
+      X-Ms-Routing-Request-Id:
+      - CANADACENTRAL:20210811T171647Z:db179939-9693-4350-8717-b6e718e6b528
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Wed, 11 Aug 2021 17:16:47 GMT
+    body:
+      encoding: ASCII-8BIT
+      string: '{"value":[{"sku":{"name":"GP_Gen5_4","tier":"GeneralPurpose","family":"Gen5","capacity":4},"properties":{"administratorLogin":"agrare","storageProfile":{"storageMB":102400,"backupRetentionDays":7,"geoRedundantBackup":"Disabled","storageAutogrow":"Enabled"},"version":"5.7","sslEnforcement":"Enabled","minimalTlsVersion":"TLSEnforcementDisabled","userVisibleState":"Ready","fullyQualifiedDomainName":"mysql-test.mysql.database.azure.com","earliestRestoreDate":"2021-08-11T16:42:37.147+00:00","replicationRole":"","masterServerId":"","byokEnforcement":"Disabled","privateEndpointConnections":[],"infrastructureEncryption":"Disabled","publicNetworkAccess":"Enabled"},"location":"eastus","tags":{},"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.DBforMySQL/servers/mysql-test","name":"mysql-test","type":"Microsoft.DBforMySQL/servers"}]}'
+    http_version: null
+  recorded_at: Wed, 11 Aug 2021 17:16:47 GMT
+- request:
+    method: get
+    uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.DBforMySQL/servers/mysql-test/databases?api-version=2017-12-01
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.7.4p191
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Im5PbzNaRHJPRFhFSzFqS1doWHNsSFJfS1hFZyIsImtpZCI6Im5PbzNaRHJPRFhFSzFqS1doWHNsSFJfS1hFZyJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9mY2Y2NzA1Ny01MGM5LTRhZDQtOThmMy1mZmNhNjRhZGQ5ZTkvIiwiaWF0IjoxNjI4NzAxODkxLCJuYmYiOjE2Mjg3MDE4OTEsImV4cCI6MTYyODcwNTc5MSwiYWlvIjoiRTJaZ1lHaVFuOWgwVm5sM3BjKzg3R016SFN0MUFBPT0iLCJhcHBpZCI6ImQ0YmRlMjlmLWNlMWEtNDY4Mi04YmJiLTNlMTQ5MzIxNjNiNSIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2ZjZjY3MDU3LTUwYzktNGFkNC05OGYzLWZmY2E2NGFkZDllOS8iLCJvaWQiOiJiMTRjZTA2ZS03YTRlLTRlODYtYjk4ZC01OTFmMWIzYjI4ZGQiLCJyaCI6IjAuQVJnQVYzRDJfTWxRMUVxWThfX0taSzNaNlpfaXZkUWF6b0pHaTdzLUZKTWhZN1VZQUFBLiIsInN1YiI6ImIxNGNlMDZlLTdhNGUtNGU4Ni1iOThkLTU5MWYxYjNiMjhkZCIsInRpZCI6ImZjZjY3MDU3LTUwYzktNGFkNC05OGYzLWZmY2E2NGFkZDllOSIsInV0aSI6IlVwcmF3NTZJWGt1UGNra040V2NoQXciLCJ2ZXIiOiIxLjAiLCJ4bXNfdGNkdCI6MTQ0NzI3MzA2OX0.dOOn5zTR8XcSIwzTu88-jROPRbebJTsJ4PKSx8LQXA7ZcFXjlvyxzRHQe2s0jaT-o980CIYqIvqRAdWqXyCeYo5hbTH-UG1FkOrXHFxH9YT8lLHULGOG7Uar448_4hrG3VZJo_drTL5FBfLtNleCy08OU-BDDslzNL41DLYzTgCqwQbj7j2OvcMz2hWUoOOhIc9DzXbszwf8A75eWhJR6OkgTZb-YhAc-t7TT1B1tAen_lt6CtZ_O7FrdTUyGLKcylRAm4NenajtB4asIpVNoAt60QneiztoIgaYjOBFrsmL7Aw2UGEOmtdTlKOgK-d1AXuJ-EdEK2bjerMFzlnEXQ
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Vary:
+      - Accept-Encoding
+      X-Ms-Request-Id:
+      - 0a6bb253-2284-4e01-9600-aa5dca580262
+      Server:
+      - Microsoft-HTTPAPI/2.0
+      X-Ms-Ratelimit-Remaining-Subscription-Reads:
+      - '11998'
+      X-Ms-Correlation-Request-Id:
+      - b472ecd3-1a02-4cef-a3bb-a1f02069d5b2
+      X-Ms-Routing-Request-Id:
+      - CANADACENTRAL:20210811T171647Z:b472ecd3-1a02-4cef-a3bb-a1f02069d5b2
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Wed, 11 Aug 2021 17:16:46 GMT
+    body:
+      encoding: ASCII-8BIT
+      string: '{"value":[{"properties":{"charset":"utf8","collation":"utf8_general_ci"},"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.DBforMySQL/servers/mysql-test/databases/information_schema","name":"information_schema","type":"Microsoft.DBforMySQL/servers/databases"},{"properties":{"charset":"latin1","collation":"latin1_swedish_ci"},"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.DBforMySQL/servers/mysql-test/databases/mysql","name":"mysql","type":"Microsoft.DBforMySQL/servers/databases"},{"properties":{"charset":"utf8","collation":"utf8_general_ci"},"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.DBforMySQL/servers/mysql-test/databases/performance_schema","name":"performance_schema","type":"Microsoft.DBforMySQL/servers/databases"},{"properties":{"charset":"utf8","collation":"utf8_general_ci"},"id":"/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.DBforMySQL/servers/mysql-test/databases/sys","name":"sys","type":"Microsoft.DBforMySQL/servers/databases"}]}'
+    http_version: null
+  recorded_at: Wed, 11 Aug 2021 17:16:47 GMT
+- request:
+    method: get
     uri: https://management.azure.com/subscriptions/AZURE_SUBSCRIPTION_ID/providers/Microsoft.DBforPostgreSQL/servers?api-version=2017-12-01
     body:
       encoding: US-ASCII
