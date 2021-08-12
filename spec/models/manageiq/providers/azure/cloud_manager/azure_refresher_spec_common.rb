@@ -148,7 +148,7 @@ module AzureRefresherSpecCommon
   def expected_table_counts
     {
       :availability_zone                 => 1,
-      :cloud_database                    => 2,
+      :cloud_database                    => 5,
       :cloud_network                     => 3,
       :cloud_subnet                      => 3,
       :disk                              => 11,
@@ -854,16 +854,28 @@ module AzureRefresherSpecCommon
   end
 
   def assert_specific_cloud_database
-    cloud_database = ManageIQ::Providers::Azure::CloudManager::CloudDatabase.find_by(
+    resource_group = ManageIQ::Providers::Azure::CloudManager::ResourceGroup.find_by(:name => @misc_group)
+
+    sql_cloud_database = ManageIQ::Providers::Azure::CloudManager::CloudDatabase.find_by(
       :ems_ref => "/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.Sql/servers/db-test/databases/miq-test"
     )
 
-    resource_group = ManageIQ::Providers::Azure::CloudManager::ResourceGroup.find_by(:name => @misc_group)
-
-    expect(cloud_database).to have_attributes(
+    expect(sql_cloud_database).to have_attributes(
       :ems_ref        => "/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.Sql/servers/db-test/databases/miq-test",
       :name           => "db-test/miq-test",
       :db_engine      => "SQL Server 12.0",
+      :resource_group => resource_group
+    )
+
+    pg_cloud_database = ManageIQ::Providers::Azure::CloudManager::CloudDatabase.find_by(
+      :ems_ref => "/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.DBforPostgreSQL/servers/pg-test/databases/postgres"
+    )
+
+    expect(pg_cloud_database).to have_attributes(
+      :ems_ref        => "/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.DBforPostgreSQL/servers/pg-test/databases/postgres",
+      :name           => "pg-test/postgres",
+      :db_engine      => "PostgreSQL 11",
+      :status         => "Ready",
       :resource_group => resource_group
     )
   end
