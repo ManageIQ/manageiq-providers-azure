@@ -226,6 +226,18 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
     end
   end
 
+  def postgresql_db_service(config)
+    ::Azure::Armrest::Sql::PostgresqlDatabaseService.new(config) do |service|
+      service.api_version = valid_api_version(config, service, 'postgresql_database')
+    end
+  end
+
+  def postgresql_server_service(config)
+    ::Azure::Armrest::Sql::PostgresqlServerService.new(config) do |service|
+      service.api_version = valid_api_version(config, service, 'postgresql_server')
+    end
+  end
+
   def sql_server_service(config)
     ::Azure::Armrest::Sql::SqlServerService.new(config) do |service|
       service.api_version = valid_api_version(config, service, 'sql_server')
