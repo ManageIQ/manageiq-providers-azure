@@ -19,7 +19,6 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "azure-armrest", "~>0.13"
-  spec.add_dependency "azure_mgmt_container_service", "~>0.22"
 
   spec.add_development_dependency "manageiq-style"
   spec.add_development_dependency "simplecov"
