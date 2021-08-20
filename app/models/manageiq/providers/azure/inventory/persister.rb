@@ -1,4 +1,5 @@
 class ManageIQ::Providers::Azure::Inventory::Persister < ManageIQ::Providers::Inventory::Persister
+  require_nested :ContainerManager
   require_nested :CloudManager
   require_nested :NetworkManager
   require_nested :TargetCollection

@@ -1,4 +1,5 @@
 class ManageIQ::Providers::Azure::Inventory::Parser < ManageIQ::Providers::Inventory::Parser
+  require_nested :ContainerManager
   require_nested :CloudManager
   require_nested :NetworkManager
 
