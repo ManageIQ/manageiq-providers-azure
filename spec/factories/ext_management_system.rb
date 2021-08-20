@@ -21,4 +21,13 @@ FactoryBot.define do
       ems.update(:subscription => subscription_id)
     end
   end
+
+  factory :ems_azure_aks,
+          :aliases => ["manageiq/providers/azure/container_manager"],
+          :class   => "ManageIQ::Providers::Azure::ContainerManager",
+          :parent  => :ems_container do
+    provider_region { "eastus" }
+    security_protocol { "ssl-without-validation" }
+    port { 443 }
+  end
 end
