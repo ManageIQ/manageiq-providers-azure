@@ -38,6 +38,11 @@
     :disabled_regions: []
     :additional_regions: {}
 :ems_refresh:
+  :aks:
+    :streaming_refresh: true
+    :chunk_size: 1_000
+    :inventory_collections:
+      :saver_strategy: batch
   :azure:
     # If get_market_images is enabled with no filters, all public images will be added
     # This will cause performance issues during refresh and at places in the UI where images are listed
@@ -74,9 +79,12 @@
     :event_catcher:
       :event_catcher_azure:
         :poll: 15.seconds
+      :event_catcher_azure_aks:
+        :poll: 15.seconds
     :queue_worker_base:
       :ems_metrics_collector_worker:
         :ems_metrics_collector_worker_azure: {}
       :ems_refresh_worker:
         :ems_refresh_worker_azure: {}
+        :ems_refresh_worker_azure_aks: {}
         :ems_refresh_worker_azure_network: {}
