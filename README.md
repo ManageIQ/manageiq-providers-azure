@@ -1,9 +1,9 @@
 # ManageIQ::Providers::Azure
 
-[![Build Status](https://travis-ci.com/ManageIQ/manageiq-providers-azure.svg?branch=lasker)](https://travis-ci.com/ManageIQ/manageiq-providers-azure)
+[![Build Status](https://travis-ci.com/ManageIQ/manageiq-providers-azure.svg?branch=morphy)](https://travis-ci.com/ManageIQ/manageiq-providers-azure)
 [![Maintainability](https://api.codeclimate.com/v1/badges/b870f505f2956081176d/maintainability)](https://codeclimate.com/github/ManageIQ/manageiq-providers-azure/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/b870f505f2956081176d/test_coverage)](https://codeclimate.com/github/ManageIQ/manageiq-providers-azure/test_coverage)
-[![Security](https://hakiri.io/github/ManageIQ/manageiq-providers-azure/lasker.svg)](https://hakiri.io/github/ManageIQ/manageiq-providers-azure/lasker)
+[![Security](https://hakiri.io/github/ManageIQ/manageiq-providers-azure/morphy.svg)](https://hakiri.io/github/ManageIQ/manageiq-providers-azure/morphy)
 
 [![Chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ManageIQ/manageiq-providers-azure?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
