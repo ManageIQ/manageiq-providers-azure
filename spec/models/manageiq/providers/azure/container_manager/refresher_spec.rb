@@ -70,12 +70,12 @@ describe ManageIQ::Providers::Azure::ContainerManager::Refresher do
   def assert_specific_container_service
     container_service = ems.container_services.find_by(:name => "kube-dns")
     expect(container_service).to have_attributes(
-      :ems_ref => "064c713f-6e88-4947-baf1-21f57a6b2902",
-      :name    => "kube-dns",
+      :ems_ref          => "064c713f-6e88-4947-baf1-21f57a6b2902",
+      :name             => "kube-dns",
       :resource_version => "450",
       :session_affinity => "None",
       :portal_ip        => "10.0.0.10",
-      :service_type     => "ClusterIP",
+      :service_type     => "ClusterIP"
     )
 
     expect(container_service.container_project.name).to eq("kube-system")
