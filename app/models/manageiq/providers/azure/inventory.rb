@@ -9,7 +9,11 @@ class ManageIQ::Providers::Azure::Inventory < ManageIQ::Providers::Inventory
     "CloudManager"
   end
 
-  def self.parser_classes_for(_ems, _target)
-    [ManageIQ::Providers::Azure::Inventory::Parser::CloudManager, ManageIQ::Providers::Azure::Inventory::Parser::NetworkManager]
+  def self.parser_classes_for(ems, _target)
+    if ems.kind_of?(ManageIQ::Providers::Azure::ContainerManager)
+      super
+    else
+      [ManageIQ::Providers::Azure::Inventory::Parser::CloudManager, ManageIQ::Providers::Azure::Inventory::Parser::NetworkManager]
+    end
   end
 end
