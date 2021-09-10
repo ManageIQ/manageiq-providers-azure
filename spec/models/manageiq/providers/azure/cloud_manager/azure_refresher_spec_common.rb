@@ -855,7 +855,7 @@ module AzureRefresherSpecCommon
   end
 
   def assert_specific_cloud_database
-    resource_group = ManageIQ::Providers::Azure::CloudManager::ResourceGroup.find_by(:name => @misc_group)
+    resource_group = ManageIQ::Providers::Azure::ResourceGroup.find_by(:name => @misc_group)
 
     sql_cloud_database = ManageIQ::Providers::Azure::CloudManager::CloudDatabase.find_by(
       :ems_ref => "/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/miq-misc-eastus/providers/Microsoft.Sql/servers/db-test/databases/miq-test"
