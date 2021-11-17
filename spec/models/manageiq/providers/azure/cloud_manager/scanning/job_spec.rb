@@ -24,7 +24,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Scanning::Job do
       expect(job.dispatch_status).to eq("pending")
     end
 
-    context "#start" do
+    describe "#start" do
       it "should raise vm_scan_start for Vm" do
         expect(MiqAeEvent).to receive(:raise_evm_event).with(
           "vm_scan_start",
@@ -40,6 +40,17 @@ describe ManageIQ::Providers::Azure::CloudManager::Scanning::Job do
         job_item = MiqQueue.find_by(:class_name => "MiqAeEngine", :method_name => "deliver")
         job_item.delivered(*job_item.deliver)
         expect(MiqQueue.last.method_name).to eq("signal")
+
+        expect(MiqQueue.first).to have_attributes(:class_name => described_class.name, :method_name => "signal", :args => %i[before_scan])
+      end
+    end
+
+    describe "#before_scan" do
+      before { job.update(:state => "checking_policy") }
+
+      it "calls start_snapshot" do
+        expect(job).to receive(:start_snapshot)
+        job.signal(:before_scan)
       end
     end
 
@@ -72,6 +83,24 @@ describe ManageIQ::Providers::Azure::CloudManager::Scanning::Job do
         allow(vm).to receive(:scan_metadata).and_raise("Any Error")
         expect(job).to receive(:signal).with(:abort, any_args)
         job.call_scan
+      end
+
+      it "calls delete_snapshot if there is a snapshot_mor" do
+        snapshot_name = "SSA-Snapshot"
+        job.update(:context => job.context.merge(:snapshot_mor => snapshot_name))
+
+        allow(vm).to receive(:scan_metadata).and_raise("Any Error")
+        expect(job).to receive(:delete_snapshot).with(snapshot_name)
+        job.call_scan
+      end
+    end
+
+    describe "#after_scan" do
+      before { job.update(:state => "scanning") }
+
+      it "calls snapshot_delete" do
+        expect(job).to receive(:snapshot_delete)
+        job.signal(:after_scan)
       end
     end
 

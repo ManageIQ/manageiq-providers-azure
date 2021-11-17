@@ -93,8 +93,8 @@ class ManageIQ::Providers::Azure::CloudManager::Scanning::Job < VmScan
   def process_cancel(*args)
     begin
       delete_snapshot_and_reset_snapshot_mor("canceling")
-      super
-      rescue => err
+    rescue => err
+      _log.warn(err)
       _log.log_backtrace(err)
     end
 
@@ -104,8 +104,8 @@ class ManageIQ::Providers::Azure::CloudManager::Scanning::Job < VmScan
   def process_abort(*args)
     begin
       delete_snapshot_and_reset_snapshot_mor("aborting")
-      super
     rescue => err
+      _log.warn(err)
       _log.log_backtrace(err)
     end
 
@@ -121,10 +121,11 @@ class ManageIQ::Providers::Azure::CloudManager::Scanning::Job < VmScan
     end
   end
 
-
   # All other signals
-  alias_method :start_snapshot,     :call_snapshot_create
-  alias_method :snapshot_delete,    :call_snapshot_delete
+  alias_method :start_snapshot,  :call_snapshot_create
+  alias_method :snapshot_delete, :call_snapshot_delete
+  alias_method :abort_job,       :process_abort
+  alias_method :cancel,          :process_cancel
 
   private
 
