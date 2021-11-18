@@ -122,10 +122,10 @@ class ManageIQ::Providers::Azure::CloudManager::Scanning::Job < VmScan
   end
 
   # All other signals
-  alias_method :start_snapshot,  :call_snapshot_create
-  alias_method :snapshot_delete, :call_snapshot_delete
-  alias_method :abort_job,       :process_abort
-  alias_method :cancel,          :process_cancel
+  alias start_snapshot  call_snapshot_create
+  alias snapshot_delete call_snapshot_delete
+  alias abort_job       process_abort
+  alias cancel          process_cancel
 
   private
 
