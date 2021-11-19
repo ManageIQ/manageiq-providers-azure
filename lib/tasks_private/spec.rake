@@ -8,7 +8,7 @@ namespace :spec do
     spec_dir = File.join(base_dir, 'models/manageiq/providers/azure')
 
     desc "Regenerate all the cassettes"
-    task :all do
+    task :all => :environment do
       Dir["#{cass_dir}/**/*.yml"].each do |file|
         FileUtils.rm(file, :verbose => true)
       end
@@ -16,7 +16,7 @@ namespace :spec do
     end
 
     desc "Regenerate the refresher cassette"
-    task :refresher do
+    task :refresher => :environment do
       spec_file = Dir["#{spec_dir}/**/refresher_spec.rb"].first
       Dir["#{cass_dir}/**/refresher*.yml"].each do |file|
         FileUtils.rm(file, :verbose => true)
