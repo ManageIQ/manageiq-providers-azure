@@ -86,9 +86,15 @@ francesouth:
 germany:
   :name: germany
   :description: Germany
+germanycentral:
+  :name: germanycentral
+  :description: Germany Central
 germanynorth:
   :name: germanynorth
   :description: Germany North
+germanynortheast:
+  :name: germanynortheast
+  :description: Germany Northeast
 germanywestcentral:
   :name: germanywestcentral
   :description: Germany West Central
@@ -197,6 +203,18 @@ ukwest:
 unitedstates:
   :name: unitedstates
   :description: United States
+usgovarizona:
+  :name: usgovarizona
+  :description: US Gov Arizona
+usgoviowa:
+  :name: usgoviowa
+  :description: US Gov Iowa
+usgovtexas:
+  :name: usgovtexas
+  :description: US Gov Texas
+usgovvirginia:
+  :name: usgovvirginia
+  :description: US Gov Virginia
 westcentralus:
   :name: westcentralus
   :description: West Central US
