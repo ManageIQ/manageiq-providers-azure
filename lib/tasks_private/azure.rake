@@ -21,7 +21,7 @@ namespace :azure do
         }
       end
 
-      regions_by_name = regions.index_by { |r| r[:name] }
+      regions_by_name = regions.sort_by { |r| r[:name] }.index_by { |r| r[:name] }
       File.write("db/fixtures/azure_regions.yml", regions_by_name.to_yaml)
     end
   end
