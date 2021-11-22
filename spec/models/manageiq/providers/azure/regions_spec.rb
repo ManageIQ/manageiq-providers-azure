@@ -19,7 +19,7 @@ describe ManageIQ::Providers::Azure::Regions do
     end
 
     it "returns the expected array for the names method" do
-      expect(azure_regions).to match_array(described_class.names)
+      expect(described_class.names).to include(*azure_regions)
     end
 
     it "returns the expected result for find_by_name" do

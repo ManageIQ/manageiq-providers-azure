@@ -1,24 +1,44 @@
-namespace :spec do
-  namespace :regenerate do
-    base_dir = File.join(ManageIQ::Providers::Azure::Engine.config.root.to_s, 'spec')
-    cass_dir = File.join(base_dir, 'vcr_cassettes/manageiq/providers/azure')
-    spec_dir = File.join(base_dir, 'models/manageiq/providers/azure')
+namespace :azure do
+  namespace :regions do
+    desc "List all regions"
+    task :list => :environment do
+      stdout, status = Open3.capture2('az account list-locations')
+      raise status unless status.success?
 
-    desc "Regenerate all the cassettes"
-    task :all do
-      Dir["#{cass_dir}/**/*.yml"].each do |file|
-        FileUtils.rm(file, :verbose => true)
-      end
-      sh "bundle exec rspec"
+      regions = JSON.parse(stdout)
+      puts regions.map { |r| "#{r["name"]} - #{r["displayName"]}" }.join("\n")
     end
 
-    desc "Regenerate the refresher cassette"
-    task :refresher do
-      spec_file = Dir["#{spec_dir}/**/refresher_spec.rb"].first
-      Dir["#{cass_dir}/**/refresher*.yml"].each do |file|
-        FileUtils.rm(file, :verbose => true)
+    desc "Update list of regions"
+    task :update => :environment do
+      stdout, status = Open3.capture2('az account list-locations')
+      raise status unless status.success?
+
+      regions = JSON.parse(stdout).map do |region|
+        {
+          :name        => region["name"],
+          :description => region["displayName"]
+        }
       end
-      sh "bundle exec rspec #{spec_file}"
+
+      regions += additional_regions
+
+      regions_by_name = regions.sort_by { |r| r[:name] }.index_by { |r| r[:name] }
+      File.write("db/fixtures/azure_regions.yml", regions_by_name.to_yaml)
+    end
+
+    private
+
+    # These are regions that are not returned by list-locations using a subscription that we have access to
+    def additional_regions
+      [
+        {:name => "germanycentral",   :description => "Germany Central"},
+        {:name => "germanynortheast", :description => "Germany Northeast"},
+        {:name => "usgovarizona",     :description => "US Gov Arizona"},
+        {:name => "usgoviowa",        :description => "US Gov Iowa"},
+        {:name => "usgovtexas",       :description => "US Gov Texas"},
+        {:name => "usgovvirginia",    :description => "US Gov Virginia"}
+      ]
     end
   end
 end
