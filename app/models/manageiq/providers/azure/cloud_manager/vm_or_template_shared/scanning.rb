@@ -14,7 +14,6 @@ module ManageIQ::Providers::Azure::CloudManager::VmOrTemplateShared::Scanning
     ManageIQ::Providers::Azure::CloudManager::Scanning::Job
   end
 
-
   #
   # Adjustment Multiplier is 4 (i.e. 4 times the specified timeout)
   #
@@ -27,7 +26,7 @@ module ManageIQ::Providers::Azure::CloudManager::VmOrTemplateShared::Scanning
   def perform_metadata_scan(ost)
     require 'MiqVm/miq_azure_vm'
 
-    vm_args = { :name => name }
+    vm_args = {:name => name}
     _log.debug("name: #{name} (template = #{template})")
     if template
       if managed_image?
