@@ -1,0 +1,241 @@
+---
+asia:
+  :name: asia
+  :description: Asia
+asiapacific:
+  :name: asiapacific
+  :description: Asia Pacific
+australia:
+  :name: australia
+  :description: Australia
+australiacentral:
+  :name: australiacentral
+  :description: Australia Central
+australiacentral2:
+  :name: australiacentral2
+  :description: Australia Central 2
+australiaeast:
+  :name: australiaeast
+  :description: Australia East
+australiasoutheast:
+  :name: australiasoutheast
+  :description: Australia Southeast
+brazil:
+  :name: brazil
+  :description: Brazil
+brazilsouth:
+  :name: brazilsouth
+  :description: Brazil South
+brazilsoutheast:
+  :name: brazilsoutheast
+  :description: Brazil Southeast
+canada:
+  :name: canada
+  :description: Canada
+canadacentral:
+  :name: canadacentral
+  :description: Canada Central
+canadaeast:
+  :name: canadaeast
+  :description: Canada East
+centralindia:
+  :name: centralindia
+  :description: Central India
+centralus:
+  :name: centralus
+  :description: Central US
+centraluseuap:
+  :name: centraluseuap
+  :description: Central US EUAP
+centralusstage:
+  :name: centralusstage
+  :description: Central US (Stage)
+eastasia:
+  :name: eastasia
+  :description: East Asia
+eastasiastage:
+  :name: eastasiastage
+  :description: East Asia (Stage)
+eastus:
+  :name: eastus
+  :description: East US
+eastus2:
+  :name: eastus2
+  :description: East US 2
+eastus2euap:
+  :name: eastus2euap
+  :description: East US 2 EUAP
+eastus2stage:
+  :name: eastus2stage
+  :description: East US 2 (Stage)
+eastusstage:
+  :name: eastusstage
+  :description: East US (Stage)
+europe:
+  :name: europe
+  :description: Europe
+france:
+  :name: france
+  :description: France
+francecentral:
+  :name: francecentral
+  :description: France Central
+francesouth:
+  :name: francesouth
+  :description: France South
+germany:
+  :name: germany
+  :description: Germany
+germanycentral:
+  :name: germanycentral
+  :description: Germany Central
+germanynorth:
+  :name: germanynorth
+  :description: Germany North
+germanynortheast:
+  :name: germanynortheast
+  :description: Germany Northeast
+germanywestcentral:
+  :name: germanywestcentral
+  :description: Germany West Central
+global:
+  :name: global
+  :description: Global
+india:
+  :name: india
+  :description: India
+japan:
+  :name: japan
+  :description: Japan
+japaneast:
+  :name: japaneast
+  :description: Japan East
+japanwest:
+  :name: japanwest
+  :description: Japan West
+jioindiacentral:
+  :name: jioindiacentral
+  :description: Jio India Central
+jioindiawest:
+  :name: jioindiawest
+  :description: Jio India West
+korea:
+  :name: korea
+  :description: Korea
+koreacentral:
+  :name: koreacentral
+  :description: Korea Central
+koreasouth:
+  :name: koreasouth
+  :description: Korea South
+northcentralus:
+  :name: northcentralus
+  :description: North Central US
+northcentralusstage:
+  :name: northcentralusstage
+  :description: North Central US (Stage)
+northeurope:
+  :name: northeurope
+  :description: North Europe
+norway:
+  :name: norway
+  :description: Norway
+norwayeast:
+  :name: norwayeast
+  :description: Norway East
+norwaywest:
+  :name: norwaywest
+  :description: Norway West
+southafrica:
+  :name: southafrica
+  :description: South Africa
+southafricanorth:
+  :name: southafricanorth
+  :description: South Africa North
+southafricawest:
+  :name: southafricawest
+  :description: South Africa West
+southcentralus:
+  :name: southcentralus
+  :description: South Central US
+southcentralusstage:
+  :name: southcentralusstage
+  :description: South Central US (Stage)
+southeastasia:
+  :name: southeastasia
+  :description: Southeast Asia
+southeastasiastage:
+  :name: southeastasiastage
+  :description: Southeast Asia (Stage)
+southindia:
+  :name: southindia
+  :description: South India
+swedencentral:
+  :name: swedencentral
+  :description: Sweden Central
+switzerland:
+  :name: switzerland
+  :description: Switzerland
+switzerlandnorth:
+  :name: switzerlandnorth
+  :description: Switzerland North
+switzerlandwest:
+  :name: switzerlandwest
+  :description: Switzerland West
+uae:
+  :name: uae
+  :description: United Arab Emirates
+uaecentral:
+  :name: uaecentral
+  :description: UAE Central
+uaenorth:
+  :name: uaenorth
+  :description: UAE North
+uk:
+  :name: uk
+  :description: United Kingdom
+uksouth:
+  :name: uksouth
+  :description: UK South
+ukwest:
+  :name: ukwest
+  :description: UK West
+unitedstates:
+  :name: unitedstates
+  :description: United States
+usgovarizona:
+  :name: usgovarizona
+  :description: US Gov Arizona
+usgoviowa:
+  :name: usgoviowa
+  :description: US Gov Iowa
+usgovtexas:
+  :name: usgovtexas
+  :description: US Gov Texas
+usgovvirginia:
+  :name: usgovvirginia
+  :description: US Gov Virginia
+westcentralus:
+  :name: westcentralus
+  :description: West Central US
+westeurope:
+  :name: westeurope
+  :description: West Europe
+westindia:
+  :name: westindia
+  :description: West India
+westus:
+  :name: westus
+  :description: West US
+westus2:
+  :name: westus2
+  :description: West US 2
+westus2stage:
+  :name: westus2stage
+  :description: West US 2 (Stage)
+westus3:
+  :name: westus3
+  :description: West US 3
+westusstage:
+  :name: westusstage
+  :description: West US (Stage)
