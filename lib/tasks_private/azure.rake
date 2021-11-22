@@ -21,8 +21,24 @@ namespace :azure do
         }
       end
 
+      regions += additional_regions
+
       regions_by_name = regions.sort_by { |r| r[:name] }.index_by { |r| r[:name] }
       File.write("db/fixtures/azure_regions.yml", regions_by_name.to_yaml)
+    end
+
+    private
+
+    # These are regions that are not returned by list-locations using a subscription that we have access to
+    def additional_regions
+      [
+        {:name => "germanycentral",   :description => "Germany Central"},
+        {:name => "germanynortheast", :description => "Germany Northeast"},
+        {:name => "usgovarizona",     :description => "US Gov Arizona"},
+        {:name => "usgoviowa",        :description => "US Gov Iowa"},
+        {:name => "usgovtexas",       :description => "US Gov Texas"},
+        {:name => "usgovvirginia",    :description => "US Gov Virginia"}
+      ]
     end
   end
 end
