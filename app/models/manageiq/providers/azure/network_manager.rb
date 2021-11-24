@@ -49,7 +49,7 @@ class ManageIQ::Providers::Azure::NetworkManager < ManageIQ::Providers::NetworkM
   end
 
   def description
-    ManageIQ::Providers::Azure::Regions.find_by_name(provider_region)[:description]
+    ManageIQ::Providers::Azure::Regions.regions.dig(provider_region, :description)
   end
 
   def allow_targeted_refresh?

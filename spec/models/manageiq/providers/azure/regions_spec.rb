@@ -22,11 +22,6 @@ describe ManageIQ::Providers::Azure::Regions do
       expect(described_class.names).to include(*azure_regions)
     end
 
-    it "returns the expected result for find_by_name" do
-      expect(described_class.find_by_name('eastus')).to eql(eastus)
-      expect(described_class.find_by_name('germanycentral')).to eql(germanycentral)
-    end
-
     it "returns expected results for the all method" do
       expect(described_class.all).to include(eastus)
       expect(described_class.all).to include(germanycentral)
