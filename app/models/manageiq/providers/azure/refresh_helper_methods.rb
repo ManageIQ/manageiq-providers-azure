@@ -287,6 +287,6 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
   end
 
   def provider_region_description
-    @provider_region_description ||= ManageIQ::Providers::Azure::Regions::REGIONS.dig(@ems.provider_region, :description)
+    @provider_region_description ||= ManageIQ::Providers::Azure::Regions.regions.dig(@ems.provider_region, :description)
   end
 end

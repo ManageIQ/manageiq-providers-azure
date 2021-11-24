@@ -80,7 +80,7 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
   end
 
   def description
-    ManageIQ::Providers::Azure::Regions.find_by_name(provider_region)[:description]
+    ManageIQ::Providers::Azure::Regions.regions.dig(provider_region, :description)
   end
 
   def self.catalog_types
