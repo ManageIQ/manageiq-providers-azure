@@ -35,17 +35,17 @@ describe ManageIQ::Providers::Azure::Regions do
 
   context "disable regions via Settings" do
     it "contains gov_cloud without it being disabled" do
-      allow(Settings.ems.ems_azure).to receive(:disabled_regions).and_return([])
+      stub_settings(:ems => {:ems_azure => {:disabled_regions => []}})
       expect(described_class.names).to include("usgoviowa")
     end
 
     it "contains gov_cloud without disabled_regions being set at all - for backwards compatibility" do
-      allow(Settings.ems).to receive(:ems_azure).and_return(nil)
+      stub_settings(:ems => {})
       expect(described_class.names).to include("usgoviowa")
     end
 
     it "does not contain some regions that are disabled" do
-      allow(Settings.ems.ems_azure).to receive(:disabled_regions).and_return(['usgoviowa'])
+      stub_settings(:ems => {:ems_azure => {:disabled_regions => ['usgoviowa']}})
       expect(described_class.names).not_to include('usgoviowa')
     end
   end
@@ -58,7 +58,7 @@ describe ManageIQ::Providers::Azure::Regions do
 
       it "returns standard regions" do
         stub_settings(settings)
-        expect(described_class.names).to eql(described_class::REGIONS.keys)
+        expect(described_class.names).to eql(described_class.send(:from_file).keys)
       end
     end
 
