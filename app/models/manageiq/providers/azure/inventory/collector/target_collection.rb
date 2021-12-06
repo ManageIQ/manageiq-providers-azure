@@ -392,17 +392,6 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
     []
   end
 
-  ###########################################
-  # Helper method for getting references
-  ###########################################
-  def references(collection)
-    target.manager_refs_by_association.try(:[], collection).try(:[], :ems_ref).try(:to_a).try(:compact) || []
-  end
-
-  def name_references(collection)
-    target.manager_refs_by_association.try(:[], collection).try(:[], :name).try(:to_a).try(:compact) || []
-  end
-
   private
 
   attr_accessor :targeted_stacks_cache
@@ -411,13 +400,9 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
     target.targets.each do |t|
       case t
       when Vm
-        parse_vm_target!(t)
+        add_target!(:vms, t.ems_ref)
       end
     end
-  end
-
-  def parse_vm_target!(t)
-    add_simple_target!(:vms, t.ems_ref)
   end
 
   def infer_related_ems_refs!
@@ -449,14 +434,14 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
   def infer_related_lb_ems_refs_api!
     references(:load_balancers).each do |lb_ref|
       # We have artificially modeled network port for LB
-      add_simple_target!(:network_ports, "#{lb_ref}/nic1")
+      add_target!(:network_ports, "#{lb_ref}/nic1")
     end
 
     load_balancers.each do |lb|
       next unless lb.properties.frontend_ip_configurations
 
       lb.properties.frontend_ip_configurations.each do |front_end_config|
-        add_simple_target!(:floating_ips, front_end_config.try(:properties).try(:public_ip_address).try(:id))
+        add_target!(:floating_ips, front_end_config.try(:properties).try(:public_ip_address).try(:id))
       end
     end
   end
@@ -465,7 +450,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
     # Get resource groups out of Stack references, we need them to fetch stacks
     references(:orchestration_stacks).each do |stack_ems_ref|
       resource_group_ems_ref = stack_ems_ref.split("/")[0..4].join("/")
-      add_simple_target!(:resource_groups, resource_group_ems_ref.downcase)
+      add_target!(:resource_groups, resource_group_ems_ref.downcase)
     end
     target.manager_refs_by_association_reset
 
@@ -509,17 +494,17 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
   def add_stack_resource_target(resource)
     case resource.resource_type
     when "Microsoft.Compute/virtualMachines"
-      add_simple_target!(:vms, resource_id_for_instance_id(resource.id))
+      add_target!(:vms, resource_id_for_instance_id(resource.id))
     when "Microsoft.Network/loadBalancers"
-      add_simple_target!(:load_balancers, resource.id)
+      add_target!(:load_balancers, resource.id)
     when "Microsoft.Network/networkInterfaces"
-      add_simple_target!(:network_ports, resource.id)
+      add_target!(:network_ports, resource.id)
     when "Microsoft.Network/publicIPAddresses"
-      add_simple_target!(:floating_ips, resource.id)
+      add_target!(:floating_ips, resource.id)
     when "Microsoft.Network/virtualNetworks"
-      add_simple_target!(:cloud_networks, resource.id)
+      add_target!(:cloud_networks, resource.id)
     when "Microsoft.Resources/deployments"
-      add_simple_target!(:orchestration_stacks, resource.id)
+      add_target!(:orchestration_stacks, resource.id)
       return true
     end
 
@@ -535,18 +520,18 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
       stack      = vm.orchestration_stack
       all_stacks = ([stack] + (stack.try(:ancestors) || [])).compact
 
-      all_stacks.collect(&:ems_ref).compact.each { |ems_ref| add_simple_target!(:orchestration_stacks, ems_ref) }
-      vm.cloud_networks.collect(&:ems_ref).compact.each { |ems_ref| add_simple_target!(:cloud_networks, ems_ref) }
-      vm.floating_ips.collect(&:ems_ref).compact.each { |ems_ref| add_simple_target!(:floating_ips, ems_ref) }
+      all_stacks.collect(&:ems_ref).compact.each { |ems_ref| add_target!(:orchestration_stacks, ems_ref) }
+      vm.cloud_networks.collect(&:ems_ref).compact.each { |ems_ref| add_target!(:cloud_networks, ems_ref) }
+      vm.floating_ips.collect(&:ems_ref).compact.each { |ems_ref| add_target!(:floating_ips, ems_ref) }
       vm.network_ports.collect(&:ems_ref).compact.each do |ems_ref|
         # Add only real network ports, starting with "eni-"
-        add_simple_target!(:network_ports, ems_ref) if ems_ref.start_with?("eni-")
+        add_target!(:network_ports, ems_ref) if ems_ref.start_with?("eni-")
       end
       vm.key_pairs.collect(&:name).compact.each do |name|
         target.add_target(:association => :key_pairs, :manager_ref => {:name => name})
       end
 
-      add_simple_target!(:resource_groups, vm.resource_group.try(:ems_ref))
+      add_target!(:resource_groups, vm.resource_group.try(:ems_ref))
     end
   end
 
@@ -554,23 +539,23 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
     instances.each do |instance|
       # TODO(lsmola) add API scanning
       target.add_target(:association => :flavors, :manager_ref => {:ems_ref => instance.properties.hardware_profile.vm_size.downcase})
-      add_simple_target!(:availability_zones, 'default')
-      add_simple_target!(:resource_groups, get_resource_group_ems_ref(instance))
+      add_target!(:availability_zones, 'default')
+      add_target!(:resource_groups, get_resource_group_ems_ref(instance))
       instance.properties.network_profile.network_interfaces.collect(&:id).each do |network_port_ems_ref|
-        add_simple_target!(:network_ports, network_port_ems_ref)
+        add_target!(:network_ports, network_port_ems_ref)
       end
 
       disks = instance.properties.storage_profile.data_disks + [instance.properties.storage_profile.os_disk]
       disks.each do |disk|
         if instance.managed_disk?
-          add_simple_target!(:managed_disks, disk.managed_disk.id)
+          add_target!(:managed_disks, disk.managed_disk.id)
         else
           disk_location = disk.try(:vhd).try(:uri)
           if disk_location
             uri = Addressable::URI.parse(disk_location)
             storage_name = uri.host.split('.').first
 
-            add_simple_target!(:storage_accounts, "#{get_resource_group_ems_ref(instance)}/#{storage_name}")
+            add_target!(:storage_accounts, "#{get_resource_group_ems_ref(instance)}/#{storage_name}")
           end
         end
       end
@@ -586,23 +571,23 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
                                    .includes(:floating_ips, :cloud_subnets => [:cloud_network])
 
     changed_network_ports.each do |network_port|
-      network_port.cloud_subnets.collect { |x| x.cloud_network.try(:ems_ref) }.compact.each { |ems_ref| add_simple_target!(:cloud_networks, ems_ref) }
-      network_port.floating_ips.collect(&:ems_ref).compact.each { |ems_ref| add_simple_target!(:floating_ips, ems_ref) }
+      network_port.cloud_subnets.collect { |x| x.cloud_network.try(:ems_ref) }.compact.each { |ems_ref| add_target!(:cloud_networks, ems_ref) }
+      network_port.floating_ips.collect(&:ems_ref).compact.each { |ems_ref| add_target!(:floating_ips, ems_ref) }
     end
   end
 
   def infer_related_network_port_ems_refs_api!
     network_ports.each do |network_port|
-      add_simple_target!(:security_groups, network_port.properties.try(:network_security_group).try(:id))
+      add_target!(:security_groups, network_port.properties.try(:network_security_group).try(:id))
 
       # We do not model subnets as top level collection for Azure, so we want to obtain only cloud_network
       subnets = network_port.properties.ip_configurations.map { |x| x.properties.try(:subnet).try(:id) }
       subnets.compact.map { |x| x.split("/")[0..-3].join("/") }.each do |cloud_network_ems_ref|
-        add_simple_target!(:cloud_networks, cloud_network_ems_ref)
+        add_target!(:cloud_networks, cloud_network_ems_ref)
       end
 
       network_port.properties.ip_configurations.map { |x| x.properties.try(:public_ip_address).try(:id) }.each do |floating_ip_ems_ref|
-        add_simple_target!(:floating_ips, floating_ip_ems_ref)
+        add_target!(:floating_ips, floating_ip_ems_ref)
       end
     end
 
@@ -616,14 +601,8 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
                                     .includes(:orchestration_stack)
 
     changed_cloud_networks.each do |cloud_network|
-      add_simple_target!(:orchestration_stacks, cloud_network.orchestration_stack.try(:ems_ref))
+      add_target!(:orchestration_stacks, cloud_network.orchestration_stack.try(:ems_ref))
     end
-  end
-
-  def add_simple_target!(association, ems_ref)
-    return if ems_ref.blank?
-
-    target.add_target(:association => association, :manager_ref => {:ems_ref => ems_ref})
   end
 
   def resource_id_for_instance_id(id)
