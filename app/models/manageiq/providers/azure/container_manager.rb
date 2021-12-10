@@ -9,6 +9,8 @@ class ManageIQ::Providers::Azure::ContainerManager < ManageIQ::Providers::Kubern
   require_nested :Refresher
   require_nested :RefreshWorker
 
+  supports :create
+
   class << self
     def ems_type
       @ems_type ||= "aks".freeze
