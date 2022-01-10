@@ -4,10 +4,13 @@ class ManageIQ::Providers::Azure::ContainerManager < ManageIQ::Providers::Kubern
   require_nested :Container
   require_nested :ContainerGroup
   require_nested :ContainerNode
+  require_nested :ContainerTemplate
   require_nested :EventCatcher
   require_nested :EventParser
   require_nested :Refresher
   require_nested :RefreshWorker
+  require_nested :ServiceInstance
+  require_nested :ServiceOffering
 
   supports :create
 
