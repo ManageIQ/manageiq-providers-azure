@@ -2,19 +2,13 @@ namespace :azure do
   namespace :regions do
     desc "List all regions"
     task :list => :environment do
-      stdout, status = Open3.capture2('az account list-locations')
-      raise status unless status.success?
-
-      regions = JSON.parse(stdout)
-      puts regions.map { |r| "#{r["name"]} - #{r["displayName"]}" }.join("\n")
+      puts physical_regions.map { |r| "#{r["name"]} - #{r["displayName"]}" }.join("\n")
     end
 
     desc "Update list of regions"
     task :update => :environment do
-      stdout, status = Open3.capture2('az account list-locations')
-      raise status unless status.success?
-
-      regions = JSON.parse(stdout).map do |region|
+      # Only physical regions (not logical regions) can be used
+      regions = physical_regions.map do |region|
         {
           :name        => region["name"],
           :description => region["displayName"]
@@ -39,6 +33,17 @@ namespace :azure do
         {:name => "usgovtexas",       :description => "US Gov Texas"},
         {:name => "usgovvirginia",    :description => "US Gov Virginia"}
       ]
+    end
+
+    def all_regions
+      stdout, status = Open3.capture2('az account list-locations')
+      raise status unless status.success?
+
+      JSON.parse(stdout)
+    end
+
+    def physical_regions
+      all_regions.select { |region| region.dig("metadata", "regionType") == "Physical" }
     end
   end
 end
