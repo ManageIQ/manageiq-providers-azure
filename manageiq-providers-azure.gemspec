@@ -21,5 +21,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency "azure-armrest", "~>0.13"
 
   spec.add_development_dependency "manageiq-style"
-  spec.add_development_dependency "simplecov"
+  spec.add_development_dependency "simplecov", ">= 0.21.2"
 end
