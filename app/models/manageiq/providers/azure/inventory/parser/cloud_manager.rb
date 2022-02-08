@@ -71,6 +71,7 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
 
       # TODO(lsmola) we have a non lazy dependency, can we remove that?
       series = persister.flavors.find(instance.properties.hardware_profile.vm_size.downcase)
+      next if series.nil?
 
       rg_ems_ref = collector.get_resource_group_ems_ref(instance)
       parent_ref = collector.parent_ems_ref(instance)
