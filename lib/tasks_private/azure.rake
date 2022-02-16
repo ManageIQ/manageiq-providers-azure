@@ -7,7 +7,6 @@ namespace :azure do
 
     desc "Update list of regions"
     task :update => :environment do
-      # Only physical regions (not logical regions) can be used
       regions = physical_regions.map do |region|
         {
           :name        => region["name"],
@@ -35,15 +34,12 @@ namespace :azure do
       ]
     end
 
-    def all_regions
-      stdout, status = Open3.capture2('az account list-locations')
+    def physical_regions
+      # Only physical regions (not logical regions) can be used
+      stdout, status = Open3.capture2("az account list-locations --query \"[?contains(metadata.regionType, 'Physical')]\"")
       raise status unless status.success?
 
       JSON.parse(stdout)
-    end
-
-    def physical_regions
-      all_regions.select { |region| region.dig("metadata", "regionType") == "Physical" }
     end
   end
 end
