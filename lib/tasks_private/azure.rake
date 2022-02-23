@@ -36,7 +36,7 @@ namespace :azure do
 
     def physical_regions
       # Only physical regions (not logical regions) can be used
-      stdout, status = Open3.capture2("az account list-locations --query \"[?contains(metadata.regionType, 'Physical')]\"")
+      stdout, status = Open3.capture2("az account list-locations --query \"[?contains(metadata.regionType, 'Physical') && (metadata.physicalLocation!=null)]\"")
       raise status unless status.success?
 
       JSON.parse(stdout)
