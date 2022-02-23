@@ -11,16 +11,18 @@ module ManageIQ::Providers::Azure::ManagerMixin
   end
 
   def verify_credentials(_auth_type = nil, options = {})
-    conn = connect(options)
+    self.class.connection_rescue_block do
+      conn = connect(options)
 
-    # Check if the Microsoft.Insights Resource Provider is registered.  If not then
-    # neither events nor metrics are supported.
-    ms_insights_service = ::Azure::Armrest::ResourceProviderService.new(conn).get('Microsoft.Insights')
-    capabilities["insights"] = ms_insights_service.registration_state.casecmp('registered').zero?
+      # Check if the Microsoft.Insights Resource Provider is registered.  If not then
+      # neither events nor metrics are supported.
+      ms_insights_service = ::Azure::Armrest::ResourceProviderService.new(conn).get('Microsoft.Insights')
+      capabilities["insights"] = ms_insights_service.registration_state.casecmp('registered').zero?
 
-    save! if changed?
+      save! if changed?
 
-    true
+      true
+    end
   end
 
   module ClassMethods
@@ -138,7 +140,14 @@ module ManageIQ::Providers::Azure::ManagerMixin
       # Pull out the password from the database if a provider ID is available
       client_key ||= find(args["id"]).authentication_password('default')
 
-      !!raw_connect(client_id, client_key, azure_tenant_id, subscription, http_proxy_uri, region, endpoint_url)
+      connection_rescue_block do
+        conn = raw_connect(client_id, client_key, azure_tenant_id, subscription, http_proxy_uri, region, endpoint_url)
+
+        # Issue a simple API call to list vm series/flavors to ensure VMM service is available for this
+        # subscription in this region.
+        vmm = ::Azure::Armrest::VirtualMachineService.new(conn)
+        vmm.series(region)
+      end
     end
 
     def raw_connect(client_id, client_key, azure_tenant_id, subscription, proxy_uri = nil, provider_region = nil, endpoint = nil)
@@ -166,16 +175,14 @@ module ManageIQ::Providers::Azure::ManagerMixin
 
       ::Azure::Armrest::Configuration.log = $azure_log
 
-      connection_rescue_block do
-        ::Azure::Armrest::Configuration.new(
-          :client_id       => client_id,
-          :client_key      => ManageIQ::Password.try_decrypt(client_key),
-          :tenant_id       => azure_tenant_id,
-          :subscription_id => subscription,
-          :proxy           => proxy_uri,
-          :environment     => environment
-        )
-      end
+      ::Azure::Armrest::Configuration.new(
+        :client_id       => client_id,
+        :client_key      => ManageIQ::Password.try_decrypt(client_key),
+        :tenant_id       => azure_tenant_id,
+        :subscription_id => subscription,
+        :proxy           => proxy_uri,
+        :environment     => environment
+      )
     end
 
     def connection_rescue_block
