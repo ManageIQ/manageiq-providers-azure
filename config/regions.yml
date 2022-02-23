@@ -29,9 +29,6 @@ centralindia:
 centralus:
   :name: centralus
   :description: Central US
-centraluseuap:
-  :name: centraluseuap
-  :description: Central US EUAP
 eastasia:
   :name: eastasia
   :description: East Asia
@@ -41,9 +38,6 @@ eastus:
 eastus2:
   :name: eastus2
   :description: East US 2
-eastus2euap:
-  :name: eastus2euap
-  :description: East US 2 EUAP
 francecentral:
   :name: francecentral
   :description: France Central
