@@ -126,7 +126,7 @@ module ManageIQ::Providers::Azure::ManagerMixin
     #   }
     # }
     def verify_credentials(args)
-      region           = args["region"]
+      region           = args["provider_region"]
       subscription     = args["subscription"]
       azure_tenant_id  = args["uid_ems"]
       default_endpoint = args.dig("authentications", "default")
