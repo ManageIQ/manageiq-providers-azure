@@ -36,6 +36,12 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
   end
 
   supports :label_mapping
+
+  supports :events do
+    unless insights?
+      unsupported_reason_add(:events, _('Events are not supported for this region'))
+    end
+  end
   supports :metrics do
     unless insights?
       unsupported_reason_add(:metrics, _('Capacity & Utilization not supported for this region'))
