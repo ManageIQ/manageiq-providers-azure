@@ -191,7 +191,7 @@ module ManageIQ::Providers::Azure::ManagerMixin
     rescue ArgumentError => err
       raise MiqException::MiqInvalidCredentialsError, _("Incorrect credentials - %{error_message}") % {:error_message => err.message}
     rescue ::Azure::Armrest::UnauthorizedException, ::Azure::Armrest::BadRequestException
-      raise MiqException::MiqInvalidCredentialsError, _("Incorrect credentials - check your Azure Client ID and Client Key")
+      raise MiqException::MiqInvalidCredentialsError, _("Incorrect credentials - check your Azure Tenant ID, Client ID, and Client Key")
     rescue MiqException::MiqInvalidCredentialsError
       raise # Raise before falling into catch-all block below
     rescue StandardError => err
