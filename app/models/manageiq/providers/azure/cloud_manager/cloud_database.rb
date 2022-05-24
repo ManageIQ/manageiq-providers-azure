@@ -44,13 +44,13 @@ class ManageIQ::Providers::Azure::CloudManager::CloudDatabase < ::CloudDatabase
   def self.raw_create_cloud_database(ext_management_system, options)
     case options[:database]
     when 'SQL'
-      db_client = get_sql_db_client(ext_management_system)
+      db_client = ext_management_system.connect(:service => "SqlDatabaseService")
     when 'MySQL'
-      db_client = get_mysql_db_client(ext_management_system)
+      db_client = ext_management_system.connect(:service => "MysqlDatabaseService")
     when 'PostgreSQL'
-      db_client = get_postgresql_db_client(ext_management_system)
+      db_client = ext_management_system.connect(:service => "PostgresqlDatabaseService")
     when 'MariaDB'
-      db_client = get_mariadb_db_client(ext_management_system)
+      db_client = ext_management_system.connect(:service => "MariadbDatabaseService")
     else
       raise ArgumentError, _("Invalid database type")
     end
@@ -64,40 +64,16 @@ class ManageIQ::Providers::Azure::CloudManager::CloudDatabase < ::CloudDatabase
   def raw_delete_cloud_database
     case db_engine
     when /SQL Server/
-      self.class.get_sql_db_client(ext_management_system).delete_by_id(ems_ref)
+      ext_management_system.connect(:service => "SqlDatabaseService").delete_by_id(ems_ref)
     when /MariaDB/
-      self.class.get_mariadb_db_client(ext_management_system).delete_by_id(ems_ref)
+      ext_management_system.connect(:service => "MariadbDatabaseService").delete_by_id(ems_ref)
     when /MySQL/
-      self.class.get_mysql_db_client(ext_management_system).delete_by_id(ems_ref)
+      ext_management_system.connect(:service => "MysqlDatabaseService").delete_by_id(ems_ref)
     when /PostgreSQL/
-      self.class.get_postgresql_db_client(ext_management_system).delete_by_id(ems_ref)
+      ext_management_system.connect(:service => "PostgresqlDatabaseService").delete_by_id(ems_ref)
     end
   rescue => err
     _log.error("cloud database=[#{name}], error: #{err}")
     raise
-  end
-
-  def self.get_sql_db_client(ems)
-    require 'azure-armrest'
-
-    ::Azure::Armrest::Sql::SqlDatabaseService.new(ems.connect)
-  end
-
-  def self.get_mysql_db_client(ems)
-    require 'azure-armrest'
-
-    ::Azure::Armrest::Sql::MysqlDatabaseService.new(ems.connect)
-  end
-
-  def self.get_postgresql_db_client(ems)
-    require 'azure-armrest'
-
-    ::Azure::Armrest::Sql::PostgresqlDatabaseService.new(ems.connect)
-  end
-
-  def self.get_mariadb_db_client(ems)
-    require 'azure-armrest'
-
-    ::Azure::Armrest::Sql::MariadbDatabaseService.new(ems.connect)
   end
 end
