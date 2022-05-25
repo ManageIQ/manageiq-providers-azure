@@ -1,13 +1,15 @@
 module ManageIQ::Providers::Azure::ManagerMixin
   extend ActiveSupport::Concern
 
+  include ManageIQ::Providers::Azure::RefreshHelperMethods
+
   def connect(options = {})
     raise MiqException::MiqHostError, _("No credentials defined") if missing_credentials?(options[:auth_type])
 
     client_id  = options[:user] || authentication_userid(options[:auth_type])
     client_key = options[:pass] || authentication_password(options[:auth_type])
 
-    self.class.raw_connect(client_id, client_key, azure_tenant_id, subscription, options[:proxy_uri] || http_proxy_uri, provider_region, default_endpoint)
+    self.class.raw_connect(client_id, client_key, azure_tenant_id, subscription, options[:service], options[:proxy_uri] || http_proxy_uri, provider_region, default_endpoint)
   end
 
   def verify_credentials(_auth_type = nil, options = {})
@@ -141,7 +143,7 @@ module ManageIQ::Providers::Azure::ManagerMixin
       client_key ||= find(args["id"]).authentication_password('default')
 
       connection_rescue_block do
-        conn = raw_connect(client_id, client_key, azure_tenant_id, subscription, http_proxy_uri, region, endpoint_url)
+        conn = raw_connect(client_id, client_key, azure_tenant_id, subscription, nil, http_proxy_uri, region, endpoint_url)
 
         # Issue a simple API call to list vm series/flavors to ensure VMM service is available for this
         # subscription in this region.
@@ -150,7 +152,7 @@ module ManageIQ::Providers::Azure::ManagerMixin
       end
     end
 
-    def raw_connect(client_id, client_key, azure_tenant_id, subscription, proxy_uri = nil, provider_region = nil, endpoint = nil)
+    def raw_connect(client_id, client_key, azure_tenant_id, subscription, service = nil, proxy_uri = nil, provider_region = nil, endpoint = nil)
       require 'azure-armrest'
 
       if subscription.blank?
@@ -175,7 +177,7 @@ module ManageIQ::Providers::Azure::ManagerMixin
 
       ::Azure::Armrest::Configuration.log = $azure_log
 
-      ::Azure::Armrest::Configuration.new(
+      config = ::Azure::Armrest::Configuration.new(
         :client_id       => client_id,
         :client_key      => ManageIQ::Password.try_decrypt(client_key),
         :tenant_id       => azure_tenant_id,
@@ -183,6 +185,57 @@ module ManageIQ::Providers::Azure::ManagerMixin
         :proxy           => proxy_uri,
         :environment     => environment
       )
+
+      case service
+      when 'AvailabilitySetService'
+        availability_set_service(config)
+      when 'IpAddressService'
+        ip_address_service(config)
+      when 'LoadBalancerService'
+        load_balancer_service(config)
+      when 'ImageService'
+        managed_image_service(config)
+      when 'VirtualMachineImageService'
+        virtual_machine_image_service(config)
+      when 'NetworkInterfaceService'
+        network_interface_service(config)
+      when 'NetworkSecurityGroupService'
+        network_security_group_service(config)
+      when 'ResourceGroupService'
+        resource_group_service(config)
+      when 'ResourceProviderService'
+        resource_provider_service(config)
+      when 'RouteTableService'
+        route_table_service(config)
+      when 'TemplateDeploymentService'
+        template_deployment_service(config)
+      when 'DiskService'
+        storage_disk_service(config)
+      when 'StorageAccountService'
+        storage_account_service(config)
+      when 'MariadbServerService'
+        mariadb_server_service(config)
+      when 'MariadbDatabaseService'
+        mariadb_database_service(config)
+      when 'MysqlServerService'
+        mysql_server_service(config)
+      when 'MysqlDatabaseService'
+        mysql_database_service(config)
+      when 'PostgresqlServerService'
+        postgresql_server_service(config)
+      when 'PostgresqlDatabaseService'
+        postgresql_db_service(config)
+      when 'SqlServerService'
+        sql_server_service(config)
+      when 'SqlDatabaseService'
+        sql_db_service(config)
+      when 'VirtualMachineService'
+        virtual_machine_service(config)
+      when 'VirtualNetworkService'
+        virtual_network_service(config)
+      else
+        config
+      end
     end
 
     def connection_rescue_block

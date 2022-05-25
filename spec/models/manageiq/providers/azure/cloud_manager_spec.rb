@@ -113,7 +113,7 @@ describe ManageIQ::Providers::Azure::CloudManager do
         proxy = 'http://www.foo.bar'
         allow(@e).to receive(:http_proxy_uri).and_return(proxy)
 
-        expect(described_class).to receive(:raw_connect) do |_id, _key, _tenant, _sub, http_proxy_uri|
+        expect(described_class).to receive(:raw_connect) do |_id, _key, _tenant, _sub, _service, http_proxy_uri|
           expect(http_proxy_uri).to eq(proxy)
         end
 
@@ -121,7 +121,7 @@ describe ManageIQ::Providers::Azure::CloudManager do
       end
 
       it "with provider_region" do
-        expect(described_class).to receive(:raw_connect) do |_id, _key, _tenant, _sub, _proxy, provider_region|
+        expect(described_class).to receive(:raw_connect) do |_id, _key, _tenant, _sub, _service, _proxy, provider_region|
           expect(provider_region).to eq("westus2")
         end
 
@@ -133,7 +133,7 @@ describe ManageIQ::Providers::Azure::CloudManager do
         endpoint = Endpoint.new(:url => 'http://www.foo.bar', :hostname => 'www.foo.bar', :path => '/')
         allow(@e).to receive(:default_endpoint).and_return(endpoint)
 
-        expect(described_class).to receive(:raw_connect) do |_id, _key, _tenant, _sub, _proxy, _region, default_endpoint|
+        expect(described_class).to receive(:raw_connect) do |_id, _key, _tenant, _sub, _service, _proxy, _region, default_endpoint|
           expect(default_endpoint.url).to eq('http://www.foo.bar')
           expect(default_endpoint.hostname).to eq('www.foo.bar')
           expect(default_endpoint.path).to eq('/')
@@ -146,7 +146,7 @@ describe ManageIQ::Providers::Azure::CloudManager do
         endpoint = Endpoint.new(:url => 'http://www.foo.bar/some/path', :hostname => 'www.foo.bar', :path => '/some/path')
         allow(@e).to receive(:default_endpoint).and_return(endpoint)
 
-        expect(described_class).to receive(:raw_connect) do |_id, _key, _tenant, _sub, _proxy, _region, default_endpoint|
+        expect(described_class).to receive(:raw_connect) do |_id, _key, _tenant, _sub, _service, _proxy, _region, default_endpoint|
           expect(default_endpoint.url).to eq('http://www.foo.bar/some/path')
           expect(default_endpoint.hostname).to eq('www.foo.bar')
           expect(default_endpoint.path).to eq('/some/path')

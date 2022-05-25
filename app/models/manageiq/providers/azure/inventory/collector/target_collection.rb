@@ -334,7 +334,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
 
     @network_ports_cache ||= if refs.size > record_limit
                                set = Set.new(refs)
-                               collect_inventory(:network_ports) { @network_ports_cache ||= network_interfaces }.select do |network_port|
+                               collect_inventory(:network_ports) { @network_ports_cache ||= get_network_interfaces }.select do |network_port|
                                  set.include?(network_port.id)
                                end
                              else

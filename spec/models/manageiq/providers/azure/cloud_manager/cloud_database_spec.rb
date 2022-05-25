@@ -13,17 +13,13 @@ describe ManageIQ::Providers::Azure::CloudManager::CloudDatabase do
     double(":Azure::Armrest::Configuration")
   end
 
-  before do
-    allow(ems).to receive(:connect).and_return(config)
-  end
-
   describe 'sql database actions' do
     let(:db_client) do
       double("::Azure::Armrest::Sql::SqlDatabaseService")
     end
 
     before do
-      allow(::Azure::Armrest::Sql::SqlDatabaseService).to receive(:new).with(config).and_return(db_client)
+      allow(ems).to receive(:connect).and_return(db_client)
     end
 
     it 'creates a SQL database' do
@@ -47,7 +43,7 @@ describe ManageIQ::Providers::Azure::CloudManager::CloudDatabase do
     end
 
     before do
-      allow(::Azure::Armrest::Sql::MariadbDatabaseService).to receive(:new).with(config).and_return(db_client)
+      allow(ems).to receive(:connect).and_return(db_client)
     end
 
     it 'creates a MariaDB database' do
@@ -71,7 +67,7 @@ describe ManageIQ::Providers::Azure::CloudManager::CloudDatabase do
     end
 
     before do
-      allow(::Azure::Armrest::Sql::MysqlDatabaseService).to receive(:new).with(config).and_return(db_client)
+      allow(ems).to receive(:connect).and_return(db_client)
     end
 
     it 'creates a MySQL database' do
@@ -95,7 +91,7 @@ describe ManageIQ::Providers::Azure::CloudManager::CloudDatabase do
     end
 
     before do
-      allow(::Azure::Armrest::Sql::PostgresqlDatabaseService).to receive(:new).with(config).and_return(db_client)
+      allow(ems).to receive(:connect).and_return(db_client)
     end
 
     it 'creates a PostgreSQL database' do

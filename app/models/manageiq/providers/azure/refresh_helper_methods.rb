@@ -75,7 +75,7 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
     elsif method_name.to_s == 'list_all_private_images' # requires special handling
       arm_service.send(method_name, :location => @ems.provider_region)
     else
-      resource_groups.collect do |resource_group|
+      get_resource_groups.collect do |resource_group|
         arm_service.send(method_name, resource_group.name).select do |resource|
           location = resource.respond_to?(:location) ? resource.location : resource_group.location
           location.casecmp(@ems.provider_region).zero?
@@ -87,7 +87,7 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
   # Because resources do not necessarily have to belong to the same region as
   # the resource group they live in, we do not filter by region here.
   #
-  def resource_groups
+  def get_resource_groups
     @resource_groups ||= @rgs.list(:all => true)
   end
 
@@ -103,7 +103,7 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
     network_interfaces.find_all { |nic| nic_ids.include?(nic.id) }
   end
 
-  def network_interfaces
+  def get_network_interfaces
     @network_interfaces ||= gather_data_for_this_region(@nis)
   end
 
@@ -111,7 +111,7 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
     @ip_addresses ||= gather_data_for_this_region(@ips)
   end
 
-  def network_routers
+  def get_network_routers
     @network_routers ||= gather_data_for_this_region(@rts)
   end
 
