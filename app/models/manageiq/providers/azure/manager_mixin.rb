@@ -1,8 +1,6 @@
 module ManageIQ::Providers::Azure::ManagerMixin
   extend ActiveSupport::Concern
 
-  include ManageIQ::Providers::Azure::RefreshHelperMethods
-
   def connect(options = {})
     raise MiqException::MiqHostError, _("No credentials defined") if missing_credentials?(options[:auth_type])
 
@@ -188,51 +186,51 @@ module ManageIQ::Providers::Azure::ManagerMixin
 
       case service
       when 'AvailabilitySetService'
-        availability_set_service(config)
+        ::Azure::Armrest::AvailabilitySetService.new(config)
       when 'IpAddressService'
-        ip_address_service(config)
+        ::Azure::Armrest::Network::IpAddressService.new(config)
       when 'LoadBalancerService'
-        load_balancer_service(config)
+        ::Azure::Armrest::Network::LoadBalancerService.new(config)
       when 'ImageService'
-        managed_image_service(config)
+        ::Azure::Armrest::Storage::ImageService.new(config)
       when 'VirtualMachineImageService'
-        virtual_machine_image_service(config)
+        ::Azure::Armrest::VirtualMachineImageService.new(config, :location => provider_region)
       when 'NetworkInterfaceService'
-        network_interface_service(config)
+        ::Azure::Armrest::Network::NetworkInterfaceService.new(config)
       when 'NetworkSecurityGroupService'
-        network_security_group_service(config)
+        ::Azure::Armrest::Network::NetworkSecurityGroupService.new(config)
       when 'ResourceGroupService'
-        resource_group_service(config)
+        ::Azure::Armrest::ResourceGroupService.new(config)
       when 'ResourceProviderService'
-        resource_provider_service(config)
+        ::Azure::Armrest::ResourceProviderService.new(config)
       when 'RouteTableService'
-        route_table_service(config)
+        ::Azure::Armrest::Network::RouteTableService.new(config)
       when 'TemplateDeploymentService'
-        template_deployment_service(config)
+        ::Azure::Armrest::TemplateDeploymentService.new(config)
       when 'DiskService'
-        storage_disk_service(config)
+        ::Azure::Armrest::Storage::DiskService.new(config)
       when 'StorageAccountService'
-        storage_account_service(config)
+        ::Azure::Armrest::StorageAccountService.new(config)
       when 'MariadbServerService'
-        mariadb_server_service(config)
+        ::Azure::Armrest::Sql::MariadbServerService.new(config)
       when 'MariadbDatabaseService'
-        mariadb_database_service(config)
+        ::Azure::Armrest::Sql::MariadbDatabaseService.new(config)
       when 'MysqlServerService'
-        mysql_server_service(config)
+        ::Azure::Armrest::Sql::MysqlServerService.new(config)
       when 'MysqlDatabaseService'
-        mysql_database_service(config)
+        ::Azure::Armrest::Sql::MysqlDatabaseService.new(config)
       when 'PostgresqlServerService'
-        postgresql_server_service(config)
+        ::Azure::Armrest::Sql::PostgresqlServerService.new(config)
       when 'PostgresqlDatabaseService'
-        postgresql_db_service(config)
+        ::Azure::Armrest::Sql::PostgresqlDatabaseService.new(config)
       when 'SqlServerService'
-        sql_server_service(config)
+        ::Azure::Armrest::Sql::SqlServerService.new(config)
       when 'SqlDatabaseService'
-        sql_db_service(config)
+        ::Azure::Armrest::Sql::SqlDatabaseService.new(config)
       when 'VirtualMachineService'
-        virtual_machine_service(config)
+        ::Azure::Armrest::VirtualMachineService.new(config)
       when 'VirtualNetworkService'
-        virtual_network_service(config)
+        ::Azure::Armrest::Network::VirtualNetworkService.new(config)
       else
         config
       end
