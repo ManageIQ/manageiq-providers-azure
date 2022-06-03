@@ -33,6 +33,8 @@ class ManageIQ::Providers::Azure::NetworkManager < ManageIQ::Providers::NetworkM
            :default_endpoint,
            :endpoints,
            :azure_tenant_id,
+           :refresh_ems,
+           :refresh,
            :to        => :parent_manager,
            :allow_nil => true
 
