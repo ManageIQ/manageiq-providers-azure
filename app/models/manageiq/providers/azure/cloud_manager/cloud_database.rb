@@ -18,6 +18,7 @@ class ManageIQ::Providers::Azure::CloudManager::CloudDatabase < ::CloudDatabase
           :label        => _('Database Type'),
           :includeEmpty => true,
           :isRequired   => true,
+          :validate   => [{:type => 'required'}],
           :options      => ['MySQL', 'SQL', 'MariaDB', 'PostgreSQL'].map do |db|
             {
               :label => db,
