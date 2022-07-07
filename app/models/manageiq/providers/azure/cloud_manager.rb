@@ -1,6 +1,7 @@
 class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManager
   require_nested :AvailabilityZone
   require_nested :CloudDatabase
+  require_nested :CloudDatabaseServer
   require_nested :EventCatcher
   require_nested :EventParser
   require_nested :Flavor
