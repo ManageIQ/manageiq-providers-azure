@@ -2,14 +2,31 @@ class ManageIQ::Providers::Azure::CloudManager::CloudDatabase < ::CloudDatabase
   supports :create
   supports :delete
 
-  def self.params_for_create
+  def self.params_for_create(ems)
     {
       :fields => [
         {
-          :component => 'text-field',
-          :id        => 'name',
-          :name      => 'name',
-          :label     => _('Cloud Database Name'),
+          :component  => 'text-field',
+          :id         => 'name',
+          :name       => 'name',
+          :label      => _('Cloud Database Name'),
+          :isRequired => true,
+          :validate   => [{:type => 'required'}],
+        },
+        {
+          :component    => 'select',
+          :id           => 'resource_group',
+          :name         => 'resource_group',
+          :label        => _('Resource Group'),
+          :includeEmpty => true,
+          :isRequired   => true,
+          :validate     => [{:type => 'required'}],
+          :options      => ems.resource_groups.map do |rg|
+            {
+              :label => rg[:name],
+              :value => rg[:name],
+            }
+          end,
         },
         {
           :component    => 'select',
@@ -18,32 +35,22 @@ class ManageIQ::Providers::Azure::CloudManager::CloudDatabase < ::CloudDatabase
           :label        => _('Database Type'),
           :includeEmpty => true,
           :isRequired   => true,
-          :validate   => [{:type => 'required'}],
+          :validate     => [{:type => 'required'}],
           :options      => ['MySQL', 'SQL', 'MariaDB', 'PostgreSQL'].map do |db|
             {
               :label => db,
-              :value => db
+              :value => db,
             }
           end,
         },
-        {
-          :component => 'text-field',
-          :id        => 'server',
-          :name      => 'server',
-          :label     => _('Database Server Name'),
-        },
-        {
-          :component => 'text-field',
-          :id        => 'resource_group',
-          :name      => 'resource_group',
-          :label     => _('Resource Group'),
-        },
+        # TODO: Database Server dropdown is dependent on 'database type' and 'resource group'
+        # so it cannot be handled here, it will be handled in the UI repo
       ],
     }
   end
 
   def self.raw_create_cloud_database(ext_management_system, options)
-    case options[:database]
+    case options["database"]
     when 'SQL'
       db_client = ext_management_system.connect(:service => "SqlDatabaseService")
     when 'MySQL'
@@ -56,7 +63,7 @@ class ManageIQ::Providers::Azure::CloudManager::CloudDatabase < ::CloudDatabase
       raise ArgumentError, _("Invalid database type")
     end
 
-    db_client.create(options[:server], options[:name], options[:resource_group], {:location => ext_management_system.provider_region})
+    db_client.create(options["server"], options["name"], options["resource_group"], {:location => ext_management_system.provider_region})
   rescue => err
     _log.error("cloud database=[#{options[:name]}], error: #{err}")
     raise
