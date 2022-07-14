@@ -16,6 +16,7 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
     instances
     managed_images
     cloud_databases
+    cloud_database_servers
     images if collector.options.get_private_images
     market_images if collector.options.get_market_images
 
@@ -439,11 +440,12 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
       rg_ems_ref = collector.get_resource_group_ems_ref(database)
 
       persister.cloud_databases.build(
-        :ems_ref        => database.id,
-        :name           => "#{server.name}/#{database.name}",
-        :status         => server.properties&.user_visible_state,
-        :db_engine      => "MariaDB #{server.properties&.version}",
-        :resource_group => persister.resource_groups.lazy_find(rg_ems_ref)
+        :ems_ref               => database.id,
+        :name                  => "#{server.name}/#{database.name}",
+        :status                => server.properties&.user_visible_state,
+        :db_engine             => "MariaDB #{server.properties&.version}",
+        :resource_group        => persister.resource_groups.lazy_find(rg_ems_ref),
+        :cloud_database_server => persister.cloud_database_servers.lazy_find(server.id)
       )
     end
 
@@ -451,11 +453,12 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
       rg_ems_ref = collector.get_resource_group_ems_ref(database)
 
       persister.cloud_databases.build(
-        :ems_ref        => database.id,
-        :name           => "#{server.name}/#{database.name}",
-        :status         => server.properties&.user_visible_state,
-        :db_engine      => "MySQL #{server.properties&.version}",
-        :resource_group => persister.resource_groups.lazy_find(rg_ems_ref)
+        :ems_ref               => database.id,
+        :name                  => "#{server.name}/#{database.name}",
+        :status                => server.properties&.user_visible_state,
+        :db_engine             => "MySQL #{server.properties&.version}",
+        :resource_group        => persister.resource_groups.lazy_find(rg_ems_ref),
+        :cloud_database_server => persister.cloud_database_servers.lazy_find(server.id)
       )
     end
 
@@ -463,11 +466,12 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
       rg_ems_ref = collector.get_resource_group_ems_ref(database)
 
       persister.cloud_databases.build(
-        :ems_ref   => database.id,
-        :name      => "#{server.name}/#{database.name}",
-        :status    => server.properties&.user_visible_state,
-        :db_engine => "PostgreSQL #{server.properties&.version}",
-        :resource_group => persister.resource_groups.lazy_find(rg_ems_ref)
+        :ems_ref               => database.id,
+        :name                  => "#{server.name}/#{database.name}",
+        :status                => server.properties&.user_visible_state,
+        :db_engine             => "PostgreSQL #{server.properties&.version}",
+        :resource_group        => persister.resource_groups.lazy_find(rg_ems_ref),
+        :cloud_database_server => persister.cloud_database_servers.lazy_find(server.id)
       )
     end
 
@@ -475,10 +479,65 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
       rg_ems_ref = collector.get_resource_group_ems_ref(sql_database)
 
       persister.cloud_databases.build(
-        :ems_ref        => sql_database.id,
-        :name           => "#{sql_server.name}/#{sql_database.name}",
-        :status         => sql_database.properties&.status,
-        :db_engine      => "SQL Server #{sql_server.properties&.version}",
+        :ems_ref               => sql_database.id,
+        :name                  => "#{sql_server.name}/#{sql_database.name}",
+        :status                => sql_database.properties&.status,
+        :db_engine             => "SQL Server #{sql_server.properties&.version}",
+        :resource_group        => persister.resource_groups.lazy_find(rg_ems_ref),
+        :cloud_database_server => persister.cloud_database_servers.lazy_find(sql_server.id)
+      )
+    end
+  end
+
+  def cloud_database_servers
+    collector.sql_servers.each do |server|
+      rg_ems_ref = collector.get_resource_group_ems_ref(server)
+
+      persister.cloud_database_servers.build(
+        :ems_ref        => server.id,
+        :name           => server.name,
+        :server_type    => 'SQL',
+        :status         => normalize_cloud_database_server_status(server.properties&.state),
+        :version        => server.properties&.version,
+        :resource_group => persister.resource_groups.lazy_find(rg_ems_ref)
+      )
+    end
+
+    collector.mysql_servers.each do |server|
+      rg_ems_ref = collector.get_resource_group_ems_ref(server)
+
+      persister.cloud_database_servers.build(
+        :ems_ref        => server.id,
+        :name           => server.name,
+        :server_type    => 'MySQL',
+        :status         => normalize_cloud_database_server_status(server.properties&.user_visible_state),
+        :version        => server.properties&.version,
+        :resource_group => persister.resource_groups.lazy_find(rg_ems_ref)
+      )
+    end
+
+    collector.mariadb_servers.each do |server|
+      rg_ems_ref = collector.get_resource_group_ems_ref(server)
+
+      persister.cloud_database_servers.build(
+        :ems_ref        => server.id,
+        :name           => server.name,
+        :server_type    => 'MariaDB',
+        :status         => normalize_cloud_database_server_status(server.properties&.user_visible_state),
+        :version        => server.properties&.version,
+        :resource_group => persister.resource_groups.lazy_find(rg_ems_ref)
+      )
+    end
+
+    collector.postgresql_servers.each do |server|
+      rg_ems_ref = collector.get_resource_group_ems_ref(server)
+
+      persister.cloud_database_servers.build(
+        :ems_ref        => server.id,
+        :name           => server.name,
+        :server_type    => 'PostgreSQL',
+        :status         => normalize_cloud_database_server_status(server.properties&.user_visible_state),
+        :version        => server.properties&.version,
         :resource_group => persister.resource_groups.lazy_find(rg_ems_ref)
       )
     end
@@ -509,5 +568,14 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
   def build_image_description(image)
     # Description is a concatenation of resource group and storage account
     "#{image.storage_account.resource_group}/#{image.storage_account.name}"
+  end
+
+  def normalize_cloud_database_server_status(server_status)
+    case server_status.downcase
+    when /ready/
+      "running"
+    else
+      "unknown"
+    end
   end
 end
