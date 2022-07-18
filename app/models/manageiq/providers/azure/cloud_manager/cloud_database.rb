@@ -43,8 +43,22 @@ class ManageIQ::Providers::Azure::CloudManager::CloudDatabase < ::CloudDatabase
             }
           end,
         },
-        # TODO: Database Server dropdown is dependent on 'database type' and 'resource group'
-        # so it cannot be handled here, it will be handled in the UI repo
+        # TODO: Database Server dropdown should be dependent on 'database type' and 'resource group'
+        {
+          :component    => 'select',
+          :name         => 'server',
+          :id           => 'server',
+          :label        => _('Database Server Name'),
+          :includeEmpty => true,
+          :isRequired   => true,
+          :validate     => [{:type => 'required'}],
+          :options      => ems.cloud_database_servers.map do |srv|
+            {
+              :label => srv.name,
+              :value => srv.name,
+            }
+          end,
+        },
       ],
     }
   end
