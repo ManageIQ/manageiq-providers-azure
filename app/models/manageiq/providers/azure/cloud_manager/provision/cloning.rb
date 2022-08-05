@@ -1,17 +1,12 @@
 module ManageIQ::Providers::Azure::CloudManager::Provision::Cloning
-  def do_clone_task_check(clone_task_ref)
+  def do_clone_task_check(_clone_task_ref)
     source.with_provider_connection do |azure|
       vms      = ::Azure::Armrest::VirtualMachineService.new(azure)
-      instance = vms.get(clone_task_ref[:vm_name], clone_task_ref[:vm_resource_group])
+      instance = vms.get(dest_name, resource_group.name)
       status   = instance.properties.provisioning_state
       return true if status == "Succeeded"
       return false, status
     end
-  end
-
-  def find_destination_in_vmdb(vm_uid_hash)
-    ems_ref = vm_uid_hash.values.join("/")
-    ManageIQ::Providers::Azure::CloudManager::Vm.find_by("lower(ems_ref) = ?", ems_ref.downcase)
   end
 
   def gather_storage_account_properties
@@ -186,12 +181,7 @@ module ManageIQ::Providers::Azure::CloudManager::Provision::Cloning
       vms = ::Azure::Armrest::VirtualMachineService.new(azure)
       vm  = vms.create(dest_name, resource_group.name, clone_options)
 
-      {
-        :subscription_id   => azure.subscription_id,
-        :vm_resource_group => vm.resource_group,
-        :type              => vm.type.downcase,
-        :vm_name           => vm.name
-      }
+      File.join(azure.subscription_id, vm.resource_group.downcase, vm.type.downcase, vm.name)
     end
   end
 end
