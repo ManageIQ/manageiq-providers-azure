@@ -21,30 +21,6 @@ describe ManageIQ::Providers::Azure::CloudManager::Provision do
       allow(subject).to receive(:create_nic).and_return(nic_id)
     end
 
-    context "#find_destination_in_vmdb" do
-      vm_uid_hash = {
-        :subscription_id => subscription_id,
-        :resource_group  => resource_group,
-        :type            => type,
-        :name            => name
-      }
-      it "VM in same sub-class" do
-        vm_uid_hash[:subscription_id] = subscription_id
-        vm
-        expect(subject.find_destination_in_vmdb(vm_uid_hash)).to eq(vm)
-      end
-
-      it "VM in same sub-class with invalid parameters" do
-        vm_uid_hash[:subscription_id] = "invalid_subscription_id"
-        expect(subject.find_destination_in_vmdb(vm_uid_hash)).to be_nil
-      end
-
-      it "VM in different sub-class" do
-        vm = FactoryBot.create(:vm_openstack, :ext_management_system => provider)
-        expect(subject.find_destination_in_vmdb(:ems_ref => vm.ems_ref)).to be_nil
-      end
-    end
-
     context "#validate_dest_name" do
       let(:vm) { FactoryBot.create(:vm_azure, :ext_management_system => provider) }
 
