@@ -290,14 +290,12 @@ class ManageIQ::Providers::Azure::Inventory::Parser::NetworkManager < ManageIQ::
     collector.floating_ips.each do |ip|
       uid = ip.id
 
-      # TODO(lsmola) get rid of all the find method that are ineffective, a lazy_find multi should solve it
       network_port_id = floating_ip_network_port_id(ip)
-
-      network_port = persister.network_ports.find(network_port_id)
-      if network_port
-        vm = network_port.try(:[], :device)
-      elsif persister.load_balancers.find(network_port_id)
+      if load_balancer_network_port?(network_port_id)
         network_port = persister.network_ports.lazy_find("#{network_port_id}/nic1")
+      else
+        network_port = persister.network_ports.lazy_find(network_port_id)
+        vm           = persister.network_ports.lazy_find(network_port_id, {:key => :device, :default => nil})
       end
 
       persister.floating_ips.build(
@@ -309,6 +307,12 @@ class ManageIQ::Providers::Azure::Inventory::Parser::NetworkManager < ManageIQ::
         :vm               => vm
       )
     end
+  end
+
+  def load_balancer_network_port?(network_port_id)
+    # Check if the network_port_id is from a loadBalancer
+    # e.g. /subscriptions/SUBSCRIPTION_ID/resourceGroups/RESOURCE_GROUP/providers/Microsoft.Network/loadBalancers/LOAD_BALANCER
+    network_port_id.match?(/\/Microsoft.Network\/loadBalancers\/.+$/)
   end
 
   def calculate_source_ip_range(rule)
