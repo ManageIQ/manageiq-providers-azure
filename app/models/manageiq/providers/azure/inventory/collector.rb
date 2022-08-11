@@ -229,7 +229,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManageIQ::Providers::In
   end
 
   def flavors
-    collect_inventory(:series) do
+    @flavors ||= collect_inventory(:series) do
       begin
         @vmm.series(@ems.provider_region)
       rescue ::Azure::Armrest::BadGatewayException, ::Azure::Armrest::GatewayTimeoutException,
@@ -238,6 +238,10 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManageIQ::Providers::In
         []
       end
     end
+  end
+
+  def flavors_by_name
+    @flavors_by_name ||= flavors.index_by(&:name)
   end
 
   def availability_zones

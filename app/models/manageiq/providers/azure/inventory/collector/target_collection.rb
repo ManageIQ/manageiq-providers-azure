@@ -47,16 +47,18 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
 
   def flavors
     refs = references(:flavors)
-
     return [] if refs.blank?
-    set = Set.new(refs)
 
-    collect_inventory_targeted(:series) { @vmm.series(@ems.provider_region) }.select do |flavor|
-      set.include?(flavor.name.downcase) # ems_ref is downcased flavor name
+    @flavors ||= begin
+      set = Set.new(refs)
+
+      collect_inventory_targeted(:series) { @vmm.series(@ems.provider_region) }.select do |flavor|
+        set.include?(flavor.name.downcase) # ems_ref is downcased flavor name
+      end
+    rescue ::Azure::Armrest::Exception => err
+      _log.error("Error Class=#{err.class.name}, Message=#{err.message}")
+      []
     end
-  rescue ::Azure::Armrest::Exception => err
-    _log.error("Error Class=#{err.class.name}, Message=#{err.message}")
-    []
   end
 
   def availability_zones
