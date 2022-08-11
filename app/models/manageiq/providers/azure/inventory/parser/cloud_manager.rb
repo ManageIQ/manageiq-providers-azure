@@ -70,8 +70,12 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
                       instance.name)
 
       # TODO(lsmola) we have a non lazy dependency, can we remove that?
-      series = persister.flavors.find(instance.properties.hardware_profile.vm_size.downcase)
-      next if series.nil?
+      vm_size_name = instance.properties.hardware_profile.vm_size
+      vm_size = collector.flavors_by_name[vm_size_name]
+      next if vm_size.nil?
+
+      flavor_ems_ref = vm_size_name.downcase
+      flavor         = persister.flavors.lazy_find(flavor_ems_ref)
 
       rg_ems_ref = collector.get_resource_group_ems_ref(instance)
       parent_ref = collector.parent_ems_ref(instance)
@@ -86,7 +90,7 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
         :vendor              => "azure",
         :connection_state    => "connected",
         :raw_power_state     => status,
-        :flavor              => series,
+        :flavor              => flavor,
         :location            => instance.location,
         :genealogy_parent    => persister.miq_templates.lazy_find(parent_ref),
         # TODO(lsmola) for release > g, we can use secondary indexes for this as
@@ -95,7 +99,7 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
         :resource_group      => persister.resource_groups.lazy_find(rg_ems_ref),
       )
 
-      instance_hardware(persister_instance, instance, series)
+      instance_hardware(persister_instance, instance, vm_size)
       instance_operating_system(persister_instance, instance)
 
       vm_and_template_labels(persister_instance, instance['tags'] || [])
@@ -103,12 +107,12 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
     end
   end
 
-  def instance_hardware(persister_instance, instance, series)
+  def instance_hardware(persister_instance, instance, vm_size)
     persister_hardware = persister.hardwares.build(
       :vm_or_template  => persister_instance,
-      :cpu_total_cores => series[:cpu_total_cores],
-      :memory_mb       => series[:memory] / 1.megabyte,
-      :disk_capacity   => series[:root_disk_size] + series[:swap_disk_size],
+      :cpu_total_cores => vm_size.number_of_cores,
+      :memory_mb       => vm_size.memory_in_mb,
+      :disk_capacity   => vm_size.os_disk_size_in_mb.megabytes + vm_size.resource_disk_size_in_mb.megabytes
     )
 
     hardware_networks(persister_hardware, instance)
