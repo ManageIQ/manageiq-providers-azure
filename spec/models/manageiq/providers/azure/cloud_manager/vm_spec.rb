@@ -6,7 +6,7 @@ describe ManageIQ::Providers::Azure::CloudManager::Vm do
   let(:power_state_off) { "VM deallocated" }
   let(:power_state_suspended) { "VM stopping" }
 
-  context "#is_available?" do
+  context "#supports?" do
     context("with :start") do
       let(:state) { :start }
       include_examples "Vm operation is available when not powered on"
