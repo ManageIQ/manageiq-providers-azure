@@ -98,6 +98,7 @@ module AzureRefresherSpecCommon
 
     @vm_powered_on = @ubuntu_east
     @vm_powered_off = @centos_east
+    @vm_in_other_region = "miq-vm-ubuntu1-eastus2"
     @disk_powered_on = 'miq-vm-ubuntu-disk1'
 
     FactoryBot.create(:tag_mapping_with_category,
@@ -1053,6 +1054,14 @@ module AzureRefresherSpecCommon
 
   def vm_powered_on_target
     vm_resource_id = "#{@ems.subscription}/#{@vm_group}/microsoft.compute/virtualmachines/#{@vm_powered_on}"
+
+    InventoryRefresh::Target.new(:manager     => @ems,
+                                 :association => :vms,
+                                 :manager_ref => {:ems_ref => vm_resource_id})
+  end
+
+  def vm_in_other_region
+    vm_resource_id = "#{@ems.subscription}/#{@vm_group}2/microsoft.compute/virtualmachines/#{@vm_in_other_region}"
 
     InventoryRefresh::Target.new(:manager     => @ems,
                                  :association => :vms,
