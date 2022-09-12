@@ -69,9 +69,7 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
   #
   def gather_data_for_this_region(arm_service, method_name = 'list_all')
     if method_name.to_s == 'list_all'
-      arm_service.send(method_name).select do |resource|
-        resource.try(:location).try(:casecmp, @ems.provider_region).zero?
-      end.flatten
+      in_this_region(arm_service.send(method_name))
     elsif method_name.to_s == 'list_all_private_images' # requires special handling
       arm_service.send(method_name, :location => @ems.provider_region)
     else
@@ -82,6 +80,14 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
         end
       end.flatten
     end
+  end
+
+  def in_this_region(resources = nil)
+    resources = yield if block_given?
+
+    Array.wrap(resources)
+         .compact
+         .select { |resource| resource.try(:location).try(:casecmp, @ems.provider_region).zero? }
   end
 
   # Because resources do not necessarily have to belong to the same region as
