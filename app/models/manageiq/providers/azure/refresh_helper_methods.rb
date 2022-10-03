@@ -69,7 +69,7 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
   #
   def gather_data_for_this_region(arm_service, method_name = 'list_all')
     if method_name.to_s == 'list_all'
-      in_this_region(arm_service.send(method_name))
+      filter_my_region(arm_service.send(method_name))
     elsif method_name.to_s == 'list_all_private_images' # requires special handling
       arm_service.send(method_name, :location => @ems.provider_region)
     else
@@ -82,12 +82,16 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
     end
   end
 
-  def in_this_region(resources = nil)
+  def filter_my_region(resources = nil)
     resources = yield if block_given?
 
     Array.wrap(resources)
          .compact
          .select { |resource| resource.try(:location).try(:casecmp, @ems.provider_region).zero? }
+  end
+
+  def filter_my_region_parallel_map(refs, in_threads: thread_limit, &block)
+    filter_my_region { Parallel.map(refs, :in_threads => in_threads, &block) }
   end
 
   # Because resources do not necessarily have to belong to the same region as

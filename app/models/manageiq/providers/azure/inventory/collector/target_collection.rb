@@ -31,10 +31,8 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
                            end
                          else
                            collect_inventory_targeted(:resource_groups) do
-                             in_this_region do
-                               Parallel.map(refs, :in_threads => thread_limit) do |ref|
-                                 safe_targeted_request { @rgs.get(ref) }
-                               end
+                             filter_my_region_parallel_map(refs) do |ref|
+                               safe_targeted_request { @rgs.get(ref) }
                              end
                            end
                          end
@@ -134,11 +132,9 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
                            end
                          else
                            collect_inventory_targeted(:instances) do
-                             in_this_region do
-                               Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
-                                 _subscription_id, group, _provider, _service, name = ems_ref.split('/')
-                                 safe_targeted_request { @vmm.get(name, group) }
-                               end
+                             filter_my_region_parallel_map(refs) do |ems_ref|
+                               _subscription_id, group, _provider, _service, name = ems_ref.split('/')
+                               safe_targeted_request { @vmm.get(name, group) }
                              end
                            end
                          end
@@ -159,10 +155,8 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
                          end
                        else
                          collect_inventory_targeted(:managed_disks) do
-                           in_this_region do
-                             Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
-                               safe_targeted_request { @sds.get_by_id(ems_ref) }
-                             end
+                           filter_my_region_parallel_map(refs) do |ems_ref|
+                             safe_targeted_request { @sds.get_by_id(ems_ref) }
                            end
                          end
                        end
@@ -180,14 +174,12 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
                             super # This is already filtered to used storage_accounts only in full refresh
                           else
                             collect_inventory_targeted(:storage_accounts) do
-                              in_this_region do
-                                Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
-                                  arr            = ems_ref.split("/")
-                                  resource_group = arr[-2] # get method just takes resource group name
-                                  storage_acc    = arr[-1]
+                              filter_my_region_parallel_map(refs) do |ems_ref|
+                                arr            = ems_ref.split("/")
+                                resource_group = arr[-2] # get method just takes resource group name
+                                storage_acc    = arr[-1]
 
-                                  safe_targeted_request { @sas.get(storage_acc, resource_group) }
-                                end
+                                safe_targeted_request { @sas.get(storage_acc, resource_group) }
                               end
                             end
                           end
@@ -221,10 +213,8 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
       end
     else
       collect_inventory_targeted(:managed_images) do
-        in_this_region do
-          Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
-            safe_targeted_request { @mis.get_by_id(ems_ref) }
-          end
+        filter_my_region_parallel_map(refs) do |ems_ref|
+          safe_targeted_request { @mis.get_by_id(ems_ref) }
         end
       end
     end
@@ -309,10 +299,8 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
       end
     else
       collect_inventory_targeted(:cloud_networks) do
-        in_this_region do
-          Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
-            safe_targeted_request { @vns.get_by_id(ems_ref) }
-          end
+        filter_my_region_parallel_map(refs) do |ems_ref|
+          safe_targeted_request { @vns.get_by_id(ems_ref) }
         end
       end
     end
@@ -332,10 +320,8 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
       end
     else
       collect_inventory_targeted(:security_groups) do
-        in_this_region do
-          Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
-            safe_targeted_request { @nsg.get_by_id(ems_ref) }
-          end
+        filter_my_region_parallel_map(refs) do |ems_ref|
+          safe_targeted_request { @nsg.get_by_id(ems_ref) }
         end
       end
     end
@@ -356,10 +342,8 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
                              else
                                refs = refs.select { |ems_ref| ems_ref =~ /networkinterfaces/i }
                                collect_inventory_targeted(:network_ports) do
-                                 in_this_region do
-                                   Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
-                                     safe_targeted_request { @nis.get_by_id(ems_ref) }
-                                   end
+                                 filter_my_region_parallel_map(refs) do |ems_ref|
+                                   safe_targeted_request { @nis.get_by_id(ems_ref) }
                                  end
                                end
                              end
@@ -379,10 +363,8 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
                                 end
                               else
                                 collect_inventory_targeted(:load_balancers) do
-                                  in_this_region do
-                                    Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
-                                      safe_targeted_request { @lbs.get_by_id(ems_ref) }
-                                    end
+                                  filter_my_region_parallel_map(refs) do |ems_ref|
+                                    safe_targeted_request { @lbs.get_by_id(ems_ref) }
                                   end
                                 end
                               end
@@ -402,10 +384,8 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
                               end
                             else
                               collect_inventory_targeted(:floating_ips) do
-                                in_this_region do
-                                  Parallel.map(refs, :in_threads => thread_limit) do |ems_ref|
-                                    safe_targeted_request { @ips.get_by_id(ems_ref) }
-                                  end
+                                filter_my_region_parallel_map(refs) do |ems_ref|
+                                  safe_targeted_request { @ips.get_by_id(ems_ref) }
                                 end
                               end
                             end
