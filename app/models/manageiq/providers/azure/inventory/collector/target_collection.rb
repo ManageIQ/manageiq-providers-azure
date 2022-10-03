@@ -122,7 +122,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
 
     @instances_cache ||= if refs.size > record_limit
                            set = Set.new(refs)
-                           collect_inventory(:instances) { gather_data_for_this_region(@vmm) }.select do |instance|
+                           collect_inventory(:instances) { filter_my_region(@vmm.list_all) }.select do |instance|
                              uid = File.join(subscription_id,
                                              instance.resource_group.downcase,
                                              instance.type.downcase,
@@ -194,7 +194,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
 
     set = Set.new(refs)
 
-    collect_inventory_targeted(:private_images) { gather_data_for_this_region(@sas, 'list_all_private_images') }.select do |image|
+    collect_inventory_targeted(:private_images) { @sas.list_all_private_images(:location => @ems.provider_region) }.select do |image|
       set.include?(image.uri)
     end
   rescue ::Azure::Armrest::Exception => err
@@ -208,7 +208,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
 
     if refs.size > record_limit
       set = Set.new(refs)
-      collect_inventory(:managed_images) { gather_data_for_this_region(@mis) }.select do |image|
+      collect_inventory(:managed_images) { filter_my_region(@mis.list_all) }.select do |image|
         set.include?(image.id.downcase)
       end
     else
@@ -244,7 +244,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
           )
         end
       else
-        gather_data_for_this_region(@vmis)
+        filter_my_region(@vmis.list_all)
       end
     end
 
@@ -294,7 +294,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
 
     if refs.size > record_limit
       set = Set.new(refs)
-      collect_inventory(:cloud_networks) { gather_data_for_this_region(@vns) }.select do |cloud_network|
+      collect_inventory(:cloud_networks) { filter_my_region(@vns.list_all) }.select do |cloud_network|
         set.include?(cloud_network.id)
       end
     else
@@ -315,7 +315,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
 
     if refs.size > record_limit
       set = Set.new(refs)
-      collect_inventory(:security_groups) { gather_data_for_this_region(@nsg) }.select do |security_group|
+      collect_inventory(:security_groups) { filter_my_region(@nsg.list_all) }.select do |security_group|
         set.include?(security_group.id)
       end
     else
@@ -358,7 +358,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
 
     @load_balancers_cache ||= if refs.size > record_limit
                                 set = Set.new(refs)
-                                collect_inventory(:load_balancers) { @load_balancers ||= gather_data_for_this_region(@lbs) }.select do |load_balancer|
+                                collect_inventory(:load_balancers) { @load_balancers ||= filter_my_region(@lbs.list_all) }.select do |load_balancer|
                                   set.include?(load_balancer.id)
                                 end
                               else
@@ -379,7 +379,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
 
     @floating_ips_cache ||= if refs.size > record_limit
                               set = Set.new(refs)
-                              collect_inventory(:floating_ips) { @floating_ips_cache ||= gather_data_for_this_region(@ips) }.select do |floating_ip|
+                              collect_inventory(:floating_ips) { @floating_ips_cache ||= filter_my_region(@ips.list_all) }.select do |floating_ip|
                                 set.include?(floating_ip.id)
                               end
                             else
