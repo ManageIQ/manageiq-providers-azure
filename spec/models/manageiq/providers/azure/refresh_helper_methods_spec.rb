@@ -67,30 +67,23 @@ describe ManageIQ::Providers::Azure::RefreshHelperMethods do
     end
   end
 
-  context "gather_data_for_region" do
-    it "requires a service name" do
-      expect { @ems_azure.gather_data_for_this_region }.to raise_error(ArgumentError)
-    end
-
-    it "accepts an optional method name" do
-      allow(virtual_machine_service).to receive(:list_all).and_return([])
-      expect(@ems_azure.gather_data_for_this_region(virtual_machine_service, 'list_all')).to eql([])
-    end
-
+  context "filter_my_region" do
     it "returns the expected results for matching location" do
       allow(virtual_machine_service).to receive(:list_all).and_return([virtual_machine_eastus])
-      expect(@ems_azure.gather_data_for_this_region(virtual_machine_service, 'list_all')).to eql([virtual_machine_eastus])
+      expect(
+        @ems_azure.filter_my_region(virtual_machine_service.list_all)
+      ).to eql([virtual_machine_eastus])
     end
 
     it "returns the expected results for non-matching location" do
       allow(virtual_machine_service).to receive(:list_all).and_return([virtual_machine_southindia])
-      expect(@ems_azure.gather_data_for_this_region(virtual_machine_service, 'list_all')).to eql([])
+      expect(@ems_azure.filter_my_region(virtual_machine_service.list_all)).to eql([])
     end
 
     it "ignores case when searching for matching locations" do
       @ems_azure.provider_region = 'southindia'
       allow(virtual_machine_service).to receive(:list_all).and_return([virtual_machine_southindia])
-      expect(@ems_azure.gather_data_for_this_region(virtual_machine_service, 'list_all')).to eql([virtual_machine_southindia])
+      expect(@ems_azure.filter_my_region(virtual_machine_service.list_all)).to eql([virtual_machine_southindia])
     end
   end
 end
