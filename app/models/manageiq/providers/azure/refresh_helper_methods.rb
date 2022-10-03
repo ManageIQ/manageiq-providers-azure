@@ -95,10 +95,6 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
     network_interfaces.find_all { |nic| nic_ids.include?(nic.id) }
   end
 
-  def get_network_interfaces
-    @network_interfaces ||= filter_my_region(@nis.list_all)
-  end
-
   def ip_addresses
     @ip_addresses ||= filter_my_region(@ips.list_all)
   end
