@@ -115,6 +115,14 @@ describe ManageIQ::Providers::Azure::CloudManager::Refresher do
             end
           end
 
+          it "will not create a VM from another region" do
+            2.times do # Run twice to verify that a second run with existing data does not change anything
+              refresh_with_cassette([vm_in_other_region], vcr_suffix("vm_in_other_region_refresh"))
+
+              expect(@ems.reload.vms.pluck(:ems_ref)).not_to include("#{@ems.subscription}/#{@vm_group}2/microsoft.compute/virtualmachines/#{@vm_in_other_region}")
+            end
+          end
+
           it "will refresh VM with managed disk" do
             2.times do # Run twice to verify that a second run with existing data does not change anything
               refresh_with_cassette([vm_with_managed_disk_target], vcr_suffix("vm_with_managed_disk_refresh"))
