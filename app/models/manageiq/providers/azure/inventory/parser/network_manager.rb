@@ -291,6 +291,8 @@ class ManageIQ::Providers::Azure::Inventory::Parser::NetworkManager < ManageIQ::
       uid = ip.id
 
       network_port_id = floating_ip_network_port_id(ip)
+      next if network_port_id.nil?
+
       if load_balancer_network_port?(network_port_id)
         network_port = persister.network_ports.lazy_find("#{network_port_id}/nic1")
       else

@@ -183,7 +183,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManageIQ::Providers::In
     init_template_hash(deployment, content.to_s).tap do |template_hash|
       @template_directs[deployment.id] = template_hash
     end
-  rescue ::Azure::Armrest::ConflictException
+  rescue ::Azure::Armrest::ConflictException, ::Azure::Armrest::ForbiddenException
     # Templates were not saved for deployments created before 03/20/2016
     nil
   end
