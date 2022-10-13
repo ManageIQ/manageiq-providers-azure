@@ -157,7 +157,7 @@ module AzureRefresherSpecCommon
       :flavor                            => 198,
       :floating_ip                       => 9,
       :guest_device                      => 0,
-      :hardware                          => 10,
+      :hardware                          => 21,
       :load_balancer                     => 2,
       :load_balancer_pool                => 1,
       :load_balancer_pool_member         => 2,
@@ -166,7 +166,7 @@ module AzureRefresherSpecCommon
       :load_balancer_listener_pool       => 1,
       :load_balancer_health_check        => 3,
       :load_balancer_health_check_member => 2,
-      :miq_template                      => 1,
+      :miq_template                      => 12,
       :network                           => 16,
       :network_port                      => 11,
       :network_router                    => 1,
@@ -180,7 +180,7 @@ module AzureRefresherSpecCommon
       :resource_group                    => 8,
       :security_group                    => 5,
       :vm                                => 9,
-      :vm_or_template                    => 10,
+      :vm_or_template                    => 21,
     }
   end
 

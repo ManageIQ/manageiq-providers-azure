@@ -46,7 +46,7 @@
   :azure:
     # If get_market_images is enabled with no filters, all public images will be added
     # This will cause performance issues during refresh and at places in the UI where images are listed
-    :get_market_images: false
+    :get_market_images: true
     # Optionally collecting private images [Graph refresh only]
     :get_private_images: true
     :market_image_urns:
