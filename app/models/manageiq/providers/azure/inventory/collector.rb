@@ -104,7 +104,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManageIQ::Providers::In
   end
 
   def network_ports
-    @network_interfaces ||= collect_inventory(:network_ports) { filter_my_region(@nis.list_all) }
+    @network_ports ||= collect_inventory(:network_ports) { filter_my_region(@nis.list_all) }
   end
 
   def network_routers

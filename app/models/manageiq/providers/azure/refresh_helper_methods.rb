@@ -89,24 +89,6 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
     "/subscriptions/#{object.subscription_id}/resourcegroups/#{object.resource_group}".downcase
   end
 
-  # TODO(lsmola) NetworkManager, move below methods under NetworkManager, once it is not needed in Cloudmanager
-  def get_vm_nics(instance)
-    nic_ids = instance.properties.network_profile.network_interfaces.collect(&:id)
-    network_interfaces.find_all { |nic| nic_ids.include?(nic.id) }
-  end
-
-  def get_network_interfaces
-    @network_interfaces ||= filter_my_region(@nis.list_all)
-  end
-
-  def ip_addresses
-    @ip_addresses ||= filter_my_region(@ips.list_all)
-  end
-
-  def get_network_routers
-    @network_routers ||= filter_my_region(@rts.list_all)
-  end
-
   # Create the necessary service classes and lock down their api-version
   # strings using the config/settings.yml from the provider repo.
 
