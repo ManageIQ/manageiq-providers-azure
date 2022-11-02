@@ -46,13 +46,21 @@
   :azure:
     # If get_market_images is enabled with no filters, all public images will be added
     # This will cause performance issues during refresh and at places in the UI where images are listed
-    :get_market_images: false
+    :get_market_images: true
     # Optionally collecting private images [Graph refresh only]
     :get_private_images: true
     :market_image_urns:
+      - Canonical:UbuntuServer:18_04-lts-gen2:18.04.202209210
+      - Canonical:0001-com-ubuntu-minimal-focal:minimal-20_04-lts:20.04.202210110
       - MicrosoftWindowsServer:WindowsServer-HUB:2016-Datacenter-HUB:2016.127.20170630
+      - MicrosoftWindowsServer:WindowsServer:2019-Datacenter:2019.0.20190410
+      - MicrosoftWindowsServer:WindowsServer:2022-datacenter:20348.887.220806
       - OpenLogic:CentOS:7.3:7.3.20170517
+      - OpenLogic:CentOS:7.5:7.5.201808150
+      - OpenLogic:CentOS:8_5:8.5.2022012100
       - RedHat:RHEL:7.3:7.3.2017051117
+      - RedHat:RHEL:8_5:8.5.2022061001
+      - RedHat:RHEL:9_0:9.0.2022090613
     # Collecting disk information on unmanaged VM's slows down the refresh.
     :get_unmanaged_disk_space: true
     # Limit of threads we spawn to speed up API queries [Graph refresh only]

@@ -64,22 +64,16 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
     end
   end
 
-  # For those resources without a location, default to the location of
-  # their resource group.
-  #
-  def gather_data_for_this_region(arm_service, method_name = 'list_all')
-    if method_name.to_s == 'list_all'
-      filter_my_region(arm_service.send(method_name))
-    elsif method_name.to_s == 'list_all_private_images' # requires special handling
-      arm_service.send(method_name, :location => @ems.provider_region)
-    else
-      get_resource_groups.collect do |resource_group|
-        arm_service.send(method_name, resource_group.name).select do |resource|
-          location = resource.respond_to?(:location) ? resource.location : resource_group.location
-          location.casecmp(@ems.provider_region).zero?
-        end
-      end.flatten
-    end
+  def filter_my_region(resources = nil)
+    resources = yield if block_given?
+
+    Array.wrap(resources)
+         .compact
+         .select { |resource| resource.try(:location).try(:casecmp, @ems.provider_region).zero? }
+  end
+
+  def filter_my_region_parallel_map(refs, in_threads: thread_limit, &block)
+    filter_my_region { Parallel.map(refs, :in_threads => in_threads, &block) }
   end
 
   def filter_my_region(resources = nil)
@@ -105,24 +99,6 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
   #
   def get_resource_group_ems_ref(object)
     "/subscriptions/#{object.subscription_id}/resourcegroups/#{object.resource_group}".downcase
-  end
-
-  # TODO(lsmola) NetworkManager, move below methods under NetworkManager, once it is not needed in Cloudmanager
-  def get_vm_nics(instance)
-    nic_ids = instance.properties.network_profile.network_interfaces.collect(&:id)
-    network_interfaces.find_all { |nic| nic_ids.include?(nic.id) }
-  end
-
-  def get_network_interfaces
-    @network_interfaces ||= gather_data_for_this_region(@nis)
-  end
-
-  def ip_addresses
-    @ip_addresses ||= gather_data_for_this_region(@ips)
-  end
-
-  def get_network_routers
-    @network_routers ||= gather_data_for_this_region(@rts)
   end
 
   # Create the necessary service classes and lock down their api-version

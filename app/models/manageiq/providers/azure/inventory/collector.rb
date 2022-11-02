@@ -104,15 +104,15 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManageIQ::Providers::In
   end
 
   def network_ports
-    @network_interfaces ||= collect_inventory(:network_ports) { gather_data_for_this_region(@nis) }
+    @network_ports ||= collect_inventory(:network_ports) { filter_my_region(@nis.list_all) }
   end
 
   def network_routers
-    @network_routers ||= collect_inventory(:network_routers) { gather_data_for_this_region(@rts) }
+    @network_routers ||= collect_inventory(:network_routers) { filter_my_region(@rts.list_all) }
   end
 
   def floating_ips
-    @floating_ips ||= collect_inventory(:floating_ips) { gather_data_for_this_region(@ips) }
+    @floating_ips ||= collect_inventory(:floating_ips) { filter_my_region(@ips.list_all) }
   end
 
   def instance_network_ports(instance)
@@ -183,7 +183,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManageIQ::Providers::In
     init_template_hash(deployment, content.to_s).tap do |template_hash|
       @template_directs[deployment.id] = template_hash
     end
-  rescue ::Azure::Armrest::ConflictException
+  rescue ::Azure::Armrest::ConflictException, ::Azure::Armrest::ForbiddenException
     # Templates were not saved for deployments created before 03/20/2016
     nil
   end
@@ -249,7 +249,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManageIQ::Providers::In
   end
 
   def instances
-    @instances_cache ||= collect_inventory(:instances) { gather_data_for_this_region(@vmm) }
+    @instances_cache ||= collect_inventory(:instances) { filter_my_region(@vmm.list_all) }
 
     instances_power_state_advanced_caching(@instances_cache) unless @instances_advanced_caching_done
     @instances_advanced_caching_done = true
@@ -262,14 +262,14 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManageIQ::Providers::In
   # that it doesn't affect the rest of inventory collection.
   #
   def images
-    collect_inventory(:private_images) { gather_data_for_this_region(@sas, 'list_all_private_images') }
+    collect_inventory(:private_images) { @sas.list_all_private_images(:location => @ems.provider_region) }
   rescue ::Azure::Armrest::ApiException => err
     _log.warn("Unable to collect Azure private images for: [#{@ems.name}] - [#{@ems.id}]: #{err.message}")
     []
   end
 
   def managed_images
-    collect_inventory(:managed_images) { gather_data_for_this_region(@mis) }
+    collect_inventory(:managed_images) { filter_my_region(@mis.list_all) }
   end
 
   # Collect marketplace image information if configured to do so. Normally
@@ -295,16 +295,16 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManageIQ::Providers::In
         )
       end
     else
-      gather_data_for_this_region(@vmis)
+      filter_my_region(@vmis.list_all)
     end
   end
 
   def cloud_networks
-    gather_data_for_this_region(@vns)
+    filter_my_region(@vns.list_all)
   end
 
   def security_groups
-    gather_data_for_this_region(@nsg)
+    filter_my_region(@nsg.list_all)
   end
 
   def sql_servers
@@ -323,7 +323,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManageIQ::Providers::In
   end
 
   def mariadb_servers
-    @mariadb_servers ||= gather_data_for_this_region(@marias)
+    @mariadb_servers ||= filter_my_region(@marias.list_all)
   end
 
   def mariadb_databases
@@ -333,7 +333,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManageIQ::Providers::In
   end
 
   def mysql_servers
-    @mysql_servers ||= gather_data_for_this_region(@mysqls)
+    @mysql_servers ||= filter_my_region(@mysqls.list_all)
   end
 
   def mysql_databases
@@ -343,7 +343,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManageIQ::Providers::In
   end
 
   def postgresql_servers
-    @postgresql_servers ||= gather_data_for_this_region(@pgs)
+    @postgresql_servers ||= filter_my_region(@pgs.list_all)
   end
 
   def postgresql_databases
@@ -353,7 +353,7 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManageIQ::Providers::In
   end
 
   def load_balancers
-    @load_balancers ||= gather_data_for_this_region(@lbs)
+    @load_balancers ||= filter_my_region(@lbs.list_all)
   end
 
   protected
