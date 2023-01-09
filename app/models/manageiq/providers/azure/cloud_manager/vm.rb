@@ -2,6 +2,8 @@ class ManageIQ::Providers::Azure::CloudManager::Vm < ManageIQ::Providers::CloudM
   include_concern 'Operations'
   include_concern 'ManageIQ::Providers::Azure::CloudManager::VmOrTemplateShared'
 
+  supports :capture
+
   #
   # Relationship methods
   #
