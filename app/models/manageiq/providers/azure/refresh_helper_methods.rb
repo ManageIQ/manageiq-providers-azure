@@ -200,18 +200,6 @@ module ManageIQ::Providers::Azure::RefreshHelperMethods
     end
   end
 
-  def mariadb_server_service(config)
-    ::Azure::Armrest::Sql::MariadbServerService.new(config) do |service|
-      service.api_version = valid_api_version(config, service, 'mariadb_server')
-    end
-  end
-
-  def mariadb_database_service(config)
-    ::Azure::Armrest::Sql::MariadbDatabaseService.new(config) do |service|
-      service.api_version = valid_api_version(config, service, 'mariadb_database')
-    end
-  end
-
   def mysql_server_service(config)
     ::Azure::Armrest::Sql::MysqlServerService.new(config) do |service|
       service.api_version = valid_api_version(config, service, 'mysql_server')

@@ -149,7 +149,7 @@ module AzureRefresherSpecCommon
   def expected_table_counts
     {
       :availability_zone                 => 1,
-      :cloud_database                    => 13,
+      :cloud_database                    => 9,
       :cloud_network                     => 3,
       :cloud_subnet                      => 3,
       :disk                              => 11,

@@ -253,14 +253,6 @@ class ManageIQ::Providers::Azure::Inventory::Collector::TargetCollection < Manag
     end
   end
 
-  def mariadb_servers
-    []
-  end
-
-  def mariadb_databases
-    []
-  end
-
   def mysql_servers
     []
   end

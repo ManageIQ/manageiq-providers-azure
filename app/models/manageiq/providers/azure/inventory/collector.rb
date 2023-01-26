@@ -44,8 +44,6 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManageIQ::Providers::In
     @rgs      = resource_group_service(@config)
     @sas      = storage_account_service(@config)
     @sds      = storage_disk_service(@config)
-    @marias   = mariadb_server_service(@config)
-    @mariadbs = mariadb_database_service(@config)
     @mysqls   = mysql_server_service(@config)
     @mysqldbs = mysql_database_service(@config)
     @pgs      = postgresql_server_service(@config)
@@ -319,16 +317,6 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManageIQ::Providers::In
   def sql_databases
     @sql_databases ||= sql_servers.flat_map do |sql_server|
       @sqldbs.list_all(sql_server.name, sql_server.resource_group).map { |db| [sql_server, db] }
-    end
-  end
-
-  def mariadb_servers
-    @mariadb_servers ||= filter_my_region(@marias.list_all)
-  end
-
-  def mariadb_databases
-    @mariadb_databases ||= mariadb_servers.flat_map do |server|
-      @mariadbs.list_all(server.name, server.resource_group).map { |db| [server, db] }
     end
   end
 
