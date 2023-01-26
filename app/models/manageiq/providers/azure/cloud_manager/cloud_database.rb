@@ -36,7 +36,7 @@ class ManageIQ::Providers::Azure::CloudManager::CloudDatabase < ::CloudDatabase
           :includeEmpty => true,
           :isRequired   => true,
           :validate     => [{:type => 'required'}],
-          :options      => ['MySQL', 'SQL', 'MariaDB', 'PostgreSQL'].map do |db|
+          :options      => ['MySQL', 'SQL', 'PostgreSQL'].map do |db|
             {
               :label => db,
               :value => db,
@@ -71,8 +71,6 @@ class ManageIQ::Providers::Azure::CloudManager::CloudDatabase < ::CloudDatabase
       db_client = ext_management_system.connect(:service => "MysqlDatabaseService")
     when 'PostgreSQL'
       db_client = ext_management_system.connect(:service => "PostgresqlDatabaseService")
-    when 'MariaDB'
-      db_client = ext_management_system.connect(:service => "MariadbDatabaseService")
     else
       raise ArgumentError, _("Invalid database type")
     end
@@ -87,8 +85,6 @@ class ManageIQ::Providers::Azure::CloudManager::CloudDatabase < ::CloudDatabase
     case db_engine
     when /SQL Server/
       ext_management_system.connect(:service => "SqlDatabaseService").delete_by_id(ems_ref)
-    when /MariaDB/
-      ext_management_system.connect(:service => "MariadbDatabaseService").delete_by_id(ems_ref)
     when /MySQL/
       ext_management_system.connect(:service => "MysqlDatabaseService").delete_by_id(ems_ref)
     when /PostgreSQL/

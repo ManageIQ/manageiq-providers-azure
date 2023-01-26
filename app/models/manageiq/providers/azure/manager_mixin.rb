@@ -211,10 +211,6 @@ module ManageIQ::Providers::Azure::ManagerMixin
         ::Azure::Armrest::Storage::DiskService.new(config)
       when 'StorageAccountService'
         ::Azure::Armrest::StorageAccountService.new(config)
-      when 'MariadbServerService'
-        ::Azure::Armrest::Sql::MariadbServerService.new(config)
-      when 'MariadbDatabaseService'
-        ::Azure::Armrest::Sql::MariadbDatabaseService.new(config)
       when 'MysqlServerService'
         ::Azure::Armrest::Sql::MysqlServerService.new(config)
       when 'MysqlDatabaseService'

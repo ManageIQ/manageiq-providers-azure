@@ -37,30 +37,6 @@ describe ManageIQ::Providers::Azure::CloudManager::CloudDatabase do
     end
   end
 
-  describe 'mariadb database actions' do
-    let(:db_client) do
-      double("::Azure::Armrest::Sql::MariadbDatabaseService")
-    end
-
-    before do
-      allow(ems).to receive(:connect).and_return(db_client)
-    end
-
-    it 'creates a MariaDB database' do
-      expect(db_client).to receive(:create).with("test-server", cloud_database.name, "test-group", {:location => ems.provider_region})
-      cloud_database.class.raw_create_cloud_database(ems, {"name"           => cloud_database.name,
-                                                           "server"         => "test-server",
-                                                           "database"       => "MariaDB",
-                                                           "resource_group" => "test-group"})
-    end
-
-    it 'delete a MariaDB database' do
-      expect(db_client).to receive(:delete_by_id).with(cloud_database.ems_ref)
-      cloud_database.db_engine = "MariaDB"
-      cloud_database.delete_cloud_database
-    end
-  end
-
   describe 'mysql database actions' do
     let(:db_client) do
       double("::Azure::Armrest::Sql::MysqlDatabaseService")
