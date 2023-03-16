@@ -52,11 +52,8 @@ module AzureRefresherSpecCommon
     stub_with_current_settings(refresh_settings)
     @ems.reload
 
-    name = described_class.name.underscore
-    name += '_inventory_object'
-
     # Must decode compressed response for subscription id.
-    VCR.use_cassette(name, :allow_unused_http_interactions => true, :decode_compressed_response => true) do
+    VCR.use_cassette(described_class.name.underscore, :allow_unused_http_interactions => true, :decode_compressed_response => true) do
       EmsRefresh.refresh(@ems)
     end
 
