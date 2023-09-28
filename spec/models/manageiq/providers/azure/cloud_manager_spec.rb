@@ -54,6 +54,20 @@ describe ManageIQ::Providers::Azure::CloudManager do
     end
   end
 
+  context "#pause!" do
+    let(:zone) { FactoryBot.create(:zone) }
+    let(:ems)  { FactoryBot.create(:ems_azure, :zone => zone) }
+
+    include_examples "ExtManagementSystem#pause!"
+  end
+
+  context "#resume!" do
+    let(:zone) { FactoryBot.create(:zone) }
+    let(:ems)  { FactoryBot.create(:ems_azure, :zone => zone) }
+
+    include_examples "ExtManagementSystem#resume!"
+  end
+
   it "does not create orphaned network_manager" do
     # When the cloud_manager is destroyed during a refresh the there will still be an instance
     # of the cloud_manager in the refresh worker. After the refresh we will try to save the cloud_manager
