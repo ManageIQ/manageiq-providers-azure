@@ -297,7 +297,7 @@ class ManageIQ::Providers::Azure::Inventory::Parser::NetworkManager < ManageIQ::
         network_port = persister.network_ports.lazy_find("#{network_port_id}/nic1")
       else
         network_port = persister.network_ports.lazy_find(network_port_id)
-        vm           = persister.network_ports.lazy_find(network_port_id, {:key => :device, :default => nil})
+        vm           = persister.network_ports.lazy_find(network_port_id, :key => :device, :default => nil)
       end
 
       persister.floating_ips.build(
