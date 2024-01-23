@@ -55,7 +55,7 @@ class ManageIQ::Providers::Azure::ContainerManager < ManageIQ::Providers::Kubern
                       :name                   => 'authentications.default.valid',
                       :skipSubmit             => true,
                       :isRequired             => true,
-                      :validationDependencies => %w[type],
+                      :validationDependencies => %w[type zone_id],
                       :fields                 => [
                         {
                           :component    => "select",
