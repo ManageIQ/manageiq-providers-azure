@@ -1,6 +1,6 @@
 module ManageIQ::Providers::Azure::CloudManager::Vm::Operations
   extend ActiveSupport::Concern
-  include_concern 'Power'
+  include Power
 
   included do
     supports :terminate do

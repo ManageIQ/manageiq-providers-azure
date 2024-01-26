@@ -1,6 +1,6 @@
 module ManageIQ::Providers::Azure::CloudManager::VmOrTemplateShared
   extend ActiveSupport::Concern
-  include_concern 'Scanning'
+  include Scanning
   SSA_SNAPSHOT_SUFFIX = "_SSA_SNAPSHOT".freeze
   SSA_NAME_MAX        = 80
 

@@ -1,6 +1,6 @@
 class ManageIQ::Providers::Azure::CloudManager::Vm < ManageIQ::Providers::CloudManager::Vm
-  include_concern 'Operations'
-  include_concern 'ManageIQ::Providers::Azure::CloudManager::VmOrTemplateShared'
+  include Operations
+  include ManageIQ::Providers::Azure::CloudManager::VmOrTemplateShared
 
   supports :capture
 

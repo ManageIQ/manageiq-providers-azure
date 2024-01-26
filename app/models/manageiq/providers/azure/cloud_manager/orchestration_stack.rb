@@ -1,6 +1,6 @@
 class ManageIQ::Providers::Azure::CloudManager::OrchestrationStack < ManageIQ::Providers::CloudManager::OrchestrationStack
   require_dependency 'manageiq/providers/azure/cloud_manager/orchestration_stack/status'
-  include_concern 'ManageIQ::Providers::Azure::CloudManager::Deployment'
+  include ManageIQ::Providers::Azure::CloudManager::Deployment
 
   def self.raw_create_stack(orchestration_manager, stack_name, template, options = {})
     resource_group, create_options = make_create_options(template, options)
