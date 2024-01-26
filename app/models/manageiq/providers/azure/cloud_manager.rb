@@ -1,23 +1,4 @@
 class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManager
-  require_nested :AvailabilityZone
-  require_nested :CloudDatabase
-  require_nested :CloudDatabaseServer
-  require_nested :EventCatcher
-  require_nested :EventParser
-  require_nested :Flavor
-  require_nested :MetricsCapture
-  require_nested :MetricsCollectorWorker
-  require_nested :RefreshWorker
-  require_nested :ResourceGroup
-  require_nested :Refresher
-  require_nested :Vm
-  require_nested :Template
-  require_nested :Provision
-  require_nested :ProvisionWorkflow
-  require_nested :OrchestrationStack
-  require_nested :OrchestrationTemplate
-  require_nested :OrchestrationServiceOptionConverter
-
   include ManageIQ::Providers::Azure::ManagerMixin
 
   alias_attribute :azure_tenant_id, :uid_ems

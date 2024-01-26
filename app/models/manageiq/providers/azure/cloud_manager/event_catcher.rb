@@ -1,6 +1,4 @@
 class ManageIQ::Providers::Azure::CloudManager::EventCatcher < ManageIQ::Providers::BaseManager::EventCatcher
-  require_nested :Runner
-
   # Override the superclass method in order to disable event collection for
   # providers that do not support it.
   #
