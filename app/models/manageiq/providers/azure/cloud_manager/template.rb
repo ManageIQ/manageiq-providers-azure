@@ -1,5 +1,5 @@
 class ManageIQ::Providers::Azure::CloudManager::Template < ::ManageIQ::Providers::CloudManager::Template
-  include_concern 'ManageIQ::Providers::Azure::CloudManager::VmOrTemplateShared'
+  include ManageIQ::Providers::Azure::CloudManager::VmOrTemplateShared
 
   supports :provisioning do
     if ext_management_system

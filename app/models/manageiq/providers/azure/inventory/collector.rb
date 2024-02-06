@@ -1,9 +1,4 @@
 class ManageIQ::Providers::Azure::Inventory::Collector < ManageIQ::Providers::Inventory::Collector
-  require_nested :ContainerManager
-  require_nested :CloudManager
-  require_nested :NetworkManager
-  require_nested :TargetCollection
-
   # TODO: cleanup later when old refresh is deleted
   include ManageIQ::Providers::Azure::RefreshHelperMethods
   include Vmdb::Logging
