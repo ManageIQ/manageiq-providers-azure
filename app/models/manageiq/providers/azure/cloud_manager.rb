@@ -8,27 +8,13 @@ class ManageIQ::Providers::Azure::CloudManager < ManageIQ::Providers::CloudManag
   supports     :catalog
   supports     :create
   supports_not :discovery
+  supports     :label_mapping
   supports     :provisioning
   supports     :regions
 
-  supports :timeline do
-    unless insights?
-      unsupported_reason_add(:timeline, _('Timeline not supported for this region'))
-    end
-  end
-
-  supports :label_mapping
-
-  supports :events do
-    unless insights?
-      unsupported_reason_add(:events, _('Events are not supported for this region'))
-    end
-  end
-  supports :metrics do
-    unless insights?
-      unsupported_reason_add(:metrics, _('Capacity & Utilization not supported for this region'))
-    end
-  end
+  supports(:events) { _('Events are not supported for this region') unless insights? }
+  supports(:metrics) { _('Capacity & Utilization not supported for this region') unless insights? }
+  supports(:timeline) { _('Timeline not supported for this region') unless insights? }
 
   before_create :ensure_managers
   before_update :ensure_managers_zone_and_provider_region
