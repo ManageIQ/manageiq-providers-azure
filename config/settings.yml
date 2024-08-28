@@ -2,21 +2,21 @@
 :ems:
   :ems_azure:
     :api_versions:
-      :availability_set: "2017-12-01"
-      :ip_address: "2017-11-01"
-      :load_balancer: "2017-11-01"
-      :managed_image: "2017-12-01"
-      :network_interface: "2017-11-01"
-      :network_security_group: "2017-11-01"
-      :resource: "2017-08-01"
-      :resource_group: "2017-08-01"
-      :resource_provider: "2016-09-01"
-      :route_table: "2018-03-01"
-      :storage_account: "2017-10-01"
-      :storage_disk: "2017-03-30"
-      :template_deployment: "2017-08-01"
-      :virtual_machine: "2017-12-01"
-      :virtual_network: "2017-11-01"
+      :availability_set: "2024-07-01"
+      :ip_address: "2024-01-01"
+      :load_balancer: "2024-01-01"
+      :managed_image: "2024-07-01"
+      :network_interface: "2024-01-01"
+      :network_security_group: "2024-01-01"
+      :resource: "2022-12-01"
+      :resource_group: "2021-04-01"
+      :resource_provider: "2021-04-01" 
+      :route_table: "2024-01-01" 
+      :storage_account: "2023-05-01" 
+      :storage_disk: "2024-03-02" 
+      :template_deployment: "2021-04-01"
+      :virtual_machine: "2024-07-01"
+      :virtual_network: "2024-01-01"
     :blacklisted_event_names:
       - storageAccounts_listKeys_BeginRequest
       - storageAccounts_listKeys_EndRequest
