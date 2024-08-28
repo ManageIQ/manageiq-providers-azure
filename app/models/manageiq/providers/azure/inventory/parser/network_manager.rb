@@ -81,10 +81,19 @@ class ManageIQ::Providers::Azure::Inventory::Parser::NetworkManager < ManageIQ::
   def cloud_subnets(persister_cloud_networks, cloud_network)
     cloud_network.properties.subnets.each do |subnet|
       uid = subnet.id
+
+      # Older apiVersions of Microsoft.Network returned Subnet addressPrefix as
+      # a single value, but newer versions have an array of addressPrefixes.
+      # If you try to create a second addressPrefix Azure will create a new subnet
+      # rather than add a second entry into this array so we can use .first as
+      # at the current time there only ever is a single value here.
+      cidr   = subnet.properties.try(:address_prefix)
+      cidr ||= subnet.properties.address_prefixes.first
+
       persister.cloud_subnets.build(
         :ems_ref           => uid,
         :name              => subnet.name,
-        :cidr              => subnet.properties.address_prefix,
+        :cidr              => cidr,
         :cloud_network     => persister_cloud_networks,
         :availability_zone => persister.availability_zones.lazy_find('default'),
         :network_router    => persister.network_routers.lazy_find(subnet.properties.try(:route_table).try(:id))
