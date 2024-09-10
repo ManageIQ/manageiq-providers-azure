@@ -151,11 +151,13 @@ describe ManageIQ::Providers::Azure::CloudManager::Provision::Cloning do
       expect(ip_address_service).to have_received(:delete)
       expect(nic_service).to have_received(:delete)      
     end
+
     it 'phase_context is requeued properly after BadRequestException' do
       allow(nic_service).to receive(:delete).and_raise(Azure::Armrest::BadRequestException.new('errors', 'details', 'info'))
       provision.start_clone_task
       expect(provision).to have_received(:requeue_phase).with(3.minutes)
     end
+
     it 'phase_context errors are properly set after BadRequestException' do
       allow(nic_service).to receive(:delete).and_raise(Azure::Armrest::BadRequestException.new('errors', 'details', 'info'))
       provision.start_clone_task
