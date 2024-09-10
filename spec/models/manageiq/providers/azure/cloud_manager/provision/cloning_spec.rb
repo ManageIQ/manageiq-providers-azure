@@ -1,10 +1,18 @@
 require 'azure-armrest'
 
 describe ManageIQ::Providers::Azure::CloudManager::Provision::Cloning do
-  let(:provision) { ManageIQ::Providers::Azure::CloudManager::Provision.new }
+  let(:template) { FactoryBot.create(:azure_image, :ext_management_system => ems) }
+  let(:provision) { FactoryBot.create(:miq_provision_azure, :options => {:src_vm_id => template.id}, :miq_request => miq_request) }
+  let(:configuration) { double("azure armrest configuration") }
+  let(:vms) { double("virtual machine service") }
   let(:ems) { FactoryBot.create(:ems_azure_with_authentication) }
   let(:ip_address_service) { double('ip address service') }
+  let(:public_ip) { double('public ip') }
+  let(:network_interface) { double('network interface') }
+  let(:nic_service) { double("nic service") }
   let(:nic_id) { '/subscriptions/xyz/resourceGroups/foo/providers/Microsoft.Network/networkInterfaces/foo_nic' }
+  let(:miq_request) { FactoryBot.create(:miq_provision_request) }
+
 
   context "associated_nic" do
     before do
@@ -111,6 +119,50 @@ describe ManageIQ::Providers::Azure::CloudManager::Provision::Cloning do
 
     it "creates a NIC with a private IP if its argument is false" do
       expect(provision.create_nic(false)).to eql(@nic_object.id)
+    end
+  end
+
+  context "start_clone_task" do
+    before do
+      resource_group = FactoryBot.create(:azure_resource_group)
+      dest_name = "test"
+      clone_options = {clone_options: {name: "test-name", location: "germanycentralwest"}}
+
+      allow(Azure::Armrest::Network::IpAddressService).to receive(:new).and_return(ip_address_service)
+      allow(Azure::Armrest::Network::NetworkInterfaceService).to receive(:new).and_return(nic_service)
+      allow(Azure::Armrest::Configuration).to receive(:new).and_return(configuration)
+      allow(Azure::Armrest::VirtualMachineService).to receive(:new).and_return(vms)
+
+      allow(provision).to receive(:resource_group).and_return(resource_group)
+      allow(provision).to receive(:dest_name).and_return(dest_name)
+      allow(provision).to receive(:phase_context).and_return(clone_options)
+      allow(provision).to receive(:requeue_phase)
+
+      allow(vms).to receive(:create).and_raise(Azure::Armrest::BadRequestException.new('errors', 'details', 'info'))
+      allow(ip_address_service).to receive(:get).and_return(public_ip)
+      allow(nic_service).to receive(:get).and_return(network_interface)
+      
+      allow(nic_service).to receive(:delete)
+      allow(ip_address_service).to receive(:delete)
+    end
+  
+    it 'deletes the public IP and network interface when a BadRequestException is raised' do
+      provision.start_clone_task
+      expect(ip_address_service).to have_received(:delete)
+      expect(nic_service).to have_received(:delete)      
+    end
+
+    it 'phase_context is requeued properly after BadRequestException' do
+      allow(nic_service).to receive(:delete).and_raise(Azure::Armrest::BadRequestException.new('errors', 'details', 'info'))
+      provision.start_clone_task
+      expect(provision).to have_received(:requeue_phase).with(3.minutes)
+    end
+
+    it 'phase_context errors are properly set after BadRequestException' do
+      allow(nic_service).to receive(:delete).and_raise(Azure::Armrest::BadRequestException.new('errors', 'details', 'info'))
+      provision.start_clone_task
+      expect(provision.phase_context[:exception_class]).to eq('Azure::Armrest::BadRequestException')
+      expect(provision.phase_context[:exception_message]).to eq('details')
     end
   end
 end

@@ -176,6 +176,16 @@ module ManageIQ::Providers::Azure::CloudManager::Provision::Cloning
     network_options
   end
 
+  def start_clone_task
+    super
+  rescue Azure::Armrest::BadRequestException => err
+    phase_context[:exception_class]     = err.class.name
+    phase_context[:exception_message]   = err.message
+    phase_context[:exception_backtrace] = err.backtrace
+    phase_context[:error_phase]         = phase
+    signal :clone_failure_cleanup
+  end
+
   def start_clone(clone_options)
     source.with_provider_connection do |azure|
       vms = ::Azure::Armrest::VirtualMachineService.new(azure)
