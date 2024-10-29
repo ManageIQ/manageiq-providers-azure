@@ -25,6 +25,10 @@ class ManageIQ::Providers::Azure::NetworkManager < ManageIQ::Providers::NetworkM
            :to        => :parent_manager,
            :allow_nil => true
 
+  class << self
+    delegate :refresh_ems, :to => ManageIQ::Providers::Azure::CloudManager
+  end
+
   def self.ems_type
     @ems_type ||= "azure_network".freeze
   end
