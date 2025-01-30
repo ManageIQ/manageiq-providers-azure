@@ -17,8 +17,8 @@ describe ManageIQ::Providers::Azure::CloudManager do
     expect(described_class.description).to eq('Azure')
   end
 
-  it ".default_blacklisted_event_names" do
-    expect(described_class.default_blacklisted_event_names).to eq(Settings.ems.ems_azure.blacklisted_event_names)
+  it ".filtered_event_names" do
+    expect(described_class.filtered_event_names).to eq(Settings.ems.ems_azure.blacklisted_event_names)
   end
 
   describe ".params_for_create" do
