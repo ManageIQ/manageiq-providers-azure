@@ -42,6 +42,7 @@ describe ManageIQ::Providers::Azure::ContainerManager::Refresher do
 
   def assert_specific_container_project
     expect(ems.container_projects.find_by(:name => "default")).to have_attributes(
+      :type             => "ManageIQ::Providers::Azure::ContainerManager::ContainerProject",
       :name             => "default",
       :ems_ref          => "d6ed5673-46af-4166-a9b9-a794f0675098",
       :resource_version => "205"
