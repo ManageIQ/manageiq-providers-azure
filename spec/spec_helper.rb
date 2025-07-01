@@ -18,11 +18,6 @@ VCR.configure do |config|
     ]
   }
 
-  secrets = Rails.application.secrets
-  secrets.azure.each do |key, val|
-    config.define_cassette_placeholder(secrets.azure_defaults[key]) { val }
-  end
-  secrets.azure_aks.each do |key, val|
-    config.define_cassette_placeholder(secrets.azure_aks_defaults[key]) { val }
-  end
+  VcrSecrets.define_all_cassette_placeholders(config, :azure)
+  VcrSecrets.define_all_cassette_placeholders(config, :azure_aks)
 end
