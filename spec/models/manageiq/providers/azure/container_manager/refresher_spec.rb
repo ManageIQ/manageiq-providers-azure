@@ -5,10 +5,10 @@ describe ManageIQ::Providers::Azure::ContainerManager::Refresher do
 
   let(:zone) { EvmSpecHelper.create_guid_miq_server_zone.last }
   let!(:ems) do
-    hostname = Rails.application.secrets.azure_aks[:hostname]
+    hostname = VcrSecrets.azure_aks.hostname
 
     FactoryBot.create(:ems_azure_aks, :hostname => hostname, :zone => zone).tap do |ems|
-      token = Rails.application.secrets.azure_aks[:cluster_admin_token]
+      token = VcrSecrets.azure_aks.cluster_admin_token
       ems.update_authentication(:bearer => {:auth_key => token})
     end
   end
