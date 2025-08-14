@@ -5,10 +5,10 @@ describe ManageIQ::Providers::Azure::ContainerManager::Refresher do
 
   let(:zone) { EvmSpecHelper.create_guid_miq_server_zone.last }
   let!(:ems) do
-    hostname = Rails.application.secrets.azure_aks[:hostname]
+    hostname = VcrSecrets.azure_aks.hostname
 
     FactoryBot.create(:ems_azure_aks, :hostname => hostname, :zone => zone).tap do |ems|
-      token = Rails.application.secrets.azure_aks[:cluster_admin_token]
+      token = VcrSecrets.azure_aks.cluster_admin_token
       ems.update_authentication(:bearer => {:auth_key => token})
     end
   end
@@ -42,6 +42,7 @@ describe ManageIQ::Providers::Azure::ContainerManager::Refresher do
 
   def assert_specific_container_project
     expect(ems.container_projects.find_by(:name => "default")).to have_attributes(
+      :type             => "ManageIQ::Providers::Azure::ContainerManager::ContainerProject",
       :name             => "default",
       :ems_ref          => "d6ed5673-46af-4166-a9b9-a794f0675098",
       :resource_version => "205"

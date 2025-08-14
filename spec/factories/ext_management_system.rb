@@ -6,10 +6,10 @@ FactoryBot.define do
     end
 
     after(:create) do |ems|
-      client_id       = Rails.application.secrets.azure[:client_id]
-      client_key      = Rails.application.secrets.azure[:client_secret]
-      tenant_id       = Rails.application.secrets.azure[:tenant_id]
-      subscription_id = Rails.application.secrets.azure[:subscription_id]
+      client_id       = VcrSecrets.azure.client_id
+      client_key      = VcrSecrets.azure.client_secret
+      tenant_id       = VcrSecrets.azure.tenant_id
+      subscription_id = VcrSecrets.azure.subscription_id
 
       cred = {
         :userid   => client_id,
