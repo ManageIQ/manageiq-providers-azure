@@ -117,6 +117,7 @@
         :poll: 15.seconds
       :event_catcher_azure_aks:
         :poll: 15.seconds
+        :rails_worker: false
     :queue_worker_base:
       :ems_metrics_collector_worker:
         :ems_metrics_collector_worker_azure: {}
