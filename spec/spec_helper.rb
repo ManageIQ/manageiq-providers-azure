@@ -18,6 +18,17 @@ VCR.configure do |config|
     ]
   }
 
+  config.filter_sensitive_data('BEARER_TOKEN') do |interaction|
+    if (auth_header = interaction.request.headers['Authorization'])
+      auth_header.first.sub(/^Bearer /, '')
+    end
+  end
+  config.filter_sensitive_data('BEARER_TOKEN') do |interaction|
+    if interaction.request.uri.end_with?('/oauth2/token')
+      JSON.parse(interaction.response.body)['access_token'] rescue nil
+    end
+  end
+
   VcrSecrets.define_all_cassette_placeholders(config, :azure)
   VcrSecrets.define_all_cassette_placeholders(config, :azure_aks)
 end
